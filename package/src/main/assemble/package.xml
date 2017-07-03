@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<assembly>
+	<id>distribution</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>maven</baseDirectory>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+           <fileSet>
+                   <directory>../build/</directory>
+                   <includes>
+                       <include>**/*</include>
+                   </includes>
+                   <outputDirectory>/</outputDirectory>
+           </fileSet>
+    </fileSets>
+</assembly>
