@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MessengerDisplay from "./messenger";
+import InputDisplay from "./input";
+
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={content:""}
+  }
   render() {
+    var content=this.state.content;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <MessengerDisplay messageListener={this}/>
+        <InputDisplay content={content}/>
       </div>
+
     );
+  }
+  setContent(content){
+    this.setState(Object.assign({}, this.state, {content}));
+  }
+  onReceiveClientMessage(data){
+    console.log("*****"+JSON.stringify(data));
+    this.setContent(data.content);
   }
 }
 

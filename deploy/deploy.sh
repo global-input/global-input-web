@@ -7,6 +7,3 @@ buildVariables
 createFolders
 uploadZipFile
 unzipZipFile
-makeSchellScriptExecutable
-copyTheAppToDockerFolder
-buildAndStartDocker
