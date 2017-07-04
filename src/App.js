@@ -13,13 +13,16 @@ class App extends Component {
     return (
       <div>
         <MessengerDisplay messageListener={this}/>
-        <InputDisplay content={content}/>
+        <InputDisplay content={content} contentEdited={this.contentEdited.bind(this)}/>
       </div>
 
     );
   }
   setContent(content){
     this.setState(Object.assign({}, this.state, {content}));
+  }
+  contentEdited(content){
+    this.setContent(content);
   }
   onReceiveClientMessage(data){
     console.log("*****"+JSON.stringify(data));
