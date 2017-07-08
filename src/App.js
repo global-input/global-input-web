@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MessengerDisplay from "./messenger";
+import MessengerDisplay,{messenger} from "./messenger";
 import InputDisplay from "./input";
-
+import {util} from "./util";
 
 class App extends Component {
   constructor(props){
@@ -20,6 +20,13 @@ class App extends Component {
   }
   setContent(content){
     this.setState(Object.assign({}, this.state, {content}));
+    var messageId=util.createGuid();
+   var data={
+      id:messageId,
+      content:content
+  };
+
+  messenger.sendMessage(data);
   }
   contentEdited(content){
     this.setContent(content);

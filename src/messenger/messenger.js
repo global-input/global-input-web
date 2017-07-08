@@ -1,4 +1,6 @@
 import {api} from "../data";
+
+
 import SocketIOClient from "socket.io-client";
 
 var socket=null;
@@ -9,7 +11,8 @@ class Messenger{
      var that=this;
      api.getClientIdFromServer().then(function(data){
          that.clientId=data.clientId;
-         socket=SocketIOClient(api.baseURL);
+         //that.clientId="100";
+         socket=SocketIOClient(api.socketBaseUrl());
          if(that.ml){
              that.ml.setClientId(that.clientId);
          }
@@ -32,10 +35,15 @@ class Messenger{
     var obj=JSON.parse(data);
     if(this.ml){
         this.ml.onReceiveClientMessage(obj);
+
     }
   }
   addMessageListener(ml){
     this.ml=ml;
+  }
+  sendMessage(data){
+      console.log("sending the mssage:"+JSON.stringify(data)+ " too:"+this.getClientId());
+      socket.emit(this.getClientId(), JSON.stringify(data));
   }
 
 }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import {api} from "../data";
-import SocketIOClient from "socket.io-client";
+
 import {messenger} from "./messenger"
 
 
@@ -14,7 +14,7 @@ class BarcodeView extends Component{
       return(
         <div>
            {clientId}
-           <img src={barcodeImageURL}/>
+           <img src={barcodeImageURL} alt="qrcode"/>
         </div>
       );
   }
@@ -43,3 +43,5 @@ export default class MessengerDisplay extends Component{
 
 
 }
+
+export {messenger}

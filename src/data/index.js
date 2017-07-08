@@ -1,6 +1,7 @@
 
 export const api={
    baseURL: "https://globalinput.co.uk",
+   socketBaseUrl:function(){this.baseURL+"/global-messages"},
    serviceURL: function(){
      return this.baseURL+"/global-input";
    },
