@@ -7,7 +7,13 @@ var socket=null;
 
 class Messenger{
    constructor(){
-     this.clientId=this.guid();
+     this.config={};
+     this.config.sessionId=this.guid(),
+     this.config.clientId=this.guid(),
+     
+
+
+     this.clientId=
      var that=this;
      api.getClientIdFromServer().then(function(data){
          that.clientId=data.clientId;
