@@ -9,7 +9,7 @@ export function createGUID() {
  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
    s4() + '-' + s4() + s4() + s4();
 }
-export const api={
+const api={
    baseURL: "https://globalinput.co.uk",
    socketBaseUrl:function(){
      return this.baseURL;
@@ -17,11 +17,11 @@ export const api={
    serviceURL: function(){
      return this.baseURL+"/global-input";
    },
-   qrURL: function(qrcode){
-       return this.serviceURL()+"/qr-code/"+qrcode.session+"/"+qrcode.client+"/simple";
+   qrURL: function(session,client){
+       return this.serviceURL()+"/qr-code/"+session+"/"+client+"/simple";
    },
-   messageURL:function(qrcode){
-       return this.serviceURL()+"/messages/"+qrcode.session+"/"+qrcode.client;
+   messageURL:function(session,client){
+       return this.serviceURL()+"/messages/"+session+"/"+client;
    },
    apiHeader: function(){
          return {'Accept': 'application/json',
@@ -57,45 +57,22 @@ export const api={
                    });
 
    },
-   sendData:function(qrcode,data){
-      const posturl=this.messageURL(qrcode);
+   sendData:function(session,client,data){
+      const posturl=this.messageURL(session,client);
       return this.postApi(posturl,data);
    }
  };
 
 
 
- class MessageService{
+ class GlobalInputMessageConnector{
     constructor(){
-
-      this.qrcode={
-        session:createGUID(),
-        client:createGUID()
-      }
-      this.socket=null;
-    }
-    joinSession(session,onReceiveClientMessage){
-      this.qrcode.session=session;
-      this.connect(onReceiveClientMessage);
+        this.session=createGUID();
+        this.client=createGUID();
+        this.socket=null;
     }
     isConnected(){
       return this.socket!=null;
-    }
-    connect(onReceiveClientMessage){
-      if(this.socket && this.connectedClient && this.connectedClient === this.qrcode.client){
-        console.log("already connected, so will skip");
-        return;
-      }
-
-        this.disconnect();
-        this.socket=SocketIOClient(api.socketBaseUrl());
-        this.connectedClient=this.qrcode.client;
-        var messageReceived=function(data){
-              const message=JSON.parse(data);
-              onReceiveClientMessage(message);
-        }
-        this.socket.on(this.qrcode.session, messageReceived);
-
     }
     disconnect(){
         if(this.socket){
@@ -103,27 +80,46 @@ export const api={
           this.socket=null;
         }
     }
+    connect(onMessageReceived){
+      if(this.socket && this.connectedSession && this.connectedSession === this.qrcode.session){
+        console.log("already connected to the session");
+        return;
+      }
+      const that=this;
+      this.disconnect();
+      this.socket=SocketIOClient(api.socketBaseUrl());
+        this.connectedSession=this.session;
+        this.socket.on(this.session, function(data){
+              console.log("message received:"+data);
+              const message=JSON.parse(data);
+              if(message.client===that.client){
+                  console.log("client is the same:"+message.client);
+              }
+              else{
+                    onMessageReceived(message.data);
+              }
+        });
 
+        console.log("connected:"+this.session);
+    }
+    joinSession(session,onMessageReceived){
+      this.session=session;
+      this.connect(onMessageReceived);
+    }
 
-   buildMessage(message){
-     return {
-      client:this.qrcode.client,
-      session:this.qrcode.session,
-      message:message
-     }
-   }
    emit(data){
-       const jsondata=JSON.stringify(this.buildMessage(data));
-       console.log("sending the mssage:"+jsondata+ " too:"+this.config.session);
-       this.socket.emit(this.config.session, jsondata);
+      var message={
+        client:this.client,
+        data:data
+      }
+      this.socket.emit(this.session, JSON.stringify(message));
    }
    sendData(data){
-    api.sendData(this.qrcode,this.buildMessage(data)).then(function(data){
-       console.log("data is sent");
-    });
-
-
+        api.sendData(this.session,this.client,data).then(function(data){
+           console.log("data is sent");
+        });
    }
+
    onBarCodeRead(barcodedata,onReceiveClientMessage){
      if(barcodedata.se){
         console.log("joing the session:"+JSON.stringify(barcodedata));
@@ -134,8 +130,18 @@ export const api={
      }
 
    }
-
+   qrcodeURL(){
+     return api.qrURL(this.session,this.client);
+   }
+   genererateQrContent(){
+     const qr={se:this.session,
+               cl:this.client,
+               dt:"simple"
+             };
+    return JSON.stringify(qr);
+  }
  }
- export function createMessageService(){
-   return new MessageService();
+ export function createGlobalInputMessageConnector(){
+   return new GlobalInputMessageConnector();
  }
+ 

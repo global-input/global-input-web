@@ -4,17 +4,17 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {api,createMessageService} from "../global-input";
+import {createGlobalInputMessageConnector} from "../global-input-message";
+import QRCode from "qrcode.react";
+
 
 
 class SimpleInputView extends Component{
   render(){
-
       const {onContentEdited, content}=this.props;
       return(
         <div>
           Content: <input type="text" name="name" onChange={onContentEdited} value={content}/>
-
         </div>
       );
   }
@@ -26,7 +26,7 @@ export default class SimpleInput extends Component {
 
  constructor(props){
     super(props);
-    this.messageService=createMessageService();
+    this.connector=createGlobalInputMessageConnector();
     this.state={content:""};
  }
  setContent(content){
@@ -34,37 +34,28 @@ export default class SimpleInput extends Component {
  }
 
   componentWillMount(){
-      this.messageService.connect(this.onReceiveClientMessage.bind(this));
+      this.connector.connect(this.onMessageReceived.bind(this));
   }
 
   componentWillUnmount(){
-      this.messageService.disconnect();
+      this.connector.disconnect();
   }
 
-  onReceiveClientMessage(message){
-    if(!message.client){
-      console.log("ignoring, because client is not set:"+JSON.stringify(message));
-      return;
-    }
-    if(message.client===this.messageService.qrcode.client){
-        console.log("client is the same:"+message.client);
-        return;
-    }
+  onMessageReceived(message){
     console.log("setting:"+JSON.stringify(message));
-    this.setContent(message.data.content);
+    this.setContent(message.content);
   }
   onContentEditedLocally(evt){
-
     this.setContent(evt.target.value);
   }
   render() {
-    const qrCodeImageURL=api.qrURL(this.messageService.qrcode);
-    const content=this.state.content;
 
+    const content=this.state.content;
+    const qrcontent=this.connector.genererateQrContent();
     return (
       <div>
           <h1>Simple Input Example</h1>
-          <img src={qrCodeImageURL} alt="qrcode"/>
+          <QRCode value={qrcontent}/> 
           <SimpleInputView content={content} onContentEdited={this.onContentEditedLocally.bind(this)}/>
       </div>
     );
