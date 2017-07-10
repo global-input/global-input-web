@@ -1,40 +1,29 @@
-import React, { Component } from 'react';
-import MessengerDisplay,{messenger} from "./messenger";
-import InputDisplay from "./input";
-import {util} from "./util";
+import React, {Component} from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import Home from "./home";
+import SimpleInput from "./simple-input";
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={content:""}
-  }
-  render() {
-    var content=this.state.content;
+export default class App extends Component{
+  render(){
     return (
-      <div>
-        <MessengerDisplay messageListener={this}/>
-        <InputDisplay content={content} contentEdited={this.contentEdited.bind(this)}/>
-      </div>
+      <Router>
+        <div>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/simpleInput">Simple Input Example</Link></li>
+          </ul>
 
-    );
-  }
-  setContent(content){
-    this.setState(Object.assign({}, this.state, {content}));
-    var messageId=util.createGuid();
-   var data={
-      id:messageId,
-      content:content
-  };
+          <hr/>
 
-  messenger.sendMessage(data);
-  }
-  contentEdited(content){
-    this.setContent(content);
-  }
-  onReceiveClientMessage(data){
-    console.log("*****"+JSON.stringify(data));
-    this.setContent(data.content);
-  }
+          <Route exact path="/" component={Home}/>
+          <Route path="/simpleInput" component={SimpleInput}/>
+
+        </div>
+      </Router>
+      )
+    }
 }
-
-export default App;
