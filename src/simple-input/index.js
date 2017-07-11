@@ -4,32 +4,29 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createGlobalInputMessageConnector} from "../global-input-message";
+import {createMessageConnector,changeBaseURL} from "global-input-message";
 import QRCode from "qrcode.react";
 
 
+/**running locally**/
 
-class SimpleInputView extends Component{
-  render(){
-      const {onContentEdited, content}=this.props;
-      return(
-        <div>
-          Content: <input type="text" name="name" onChange={onContentEdited} value={content}/>
-        </div>
-      );
-  }
 
-}
+//changeBaseURL("http://localhost:1337");
+
+
+
 
 
 export default class SimpleInput extends Component {
 
  constructor(props){
     super(props);
-    this.connector=createGlobalInputMessageConnector();
+    this.connector=createMessageConnector();
     this.state={content:""};
  }
  setContent(content){
+   console.log("content to be set:"+content);
+
    this.setState(Object.assign({}, this.state,{content}));
  }
 
@@ -45,18 +42,36 @@ export default class SimpleInput extends Component {
     console.log("setting:"+JSON.stringify(message));
     this.setContent(message.content);
   }
-  onContentEditedLocally(evt){
-    this.setContent(evt.target.value);
-  }
-  render() {
 
+
+  render() {
+    const linenumber=4;
     const content=this.state.content;
-    const qrcontent=this.connector.genererateQrContent();
+
+    console.log(" so the content in the state:"+content);
+    const qrcontent=this.connector.genererateQrContent([{
+      nm:"Content",
+      ln:linenumber,
+      vl:content
+    }]);
+    console.log("qrcontent:"+qrcontent);
     return (
       <div>
+      <div style={{display:"flex"}}>
+
           <h1>Simple Input Example</h1>
-          <QRCode value={qrcontent}/> 
-          <SimpleInputView content={content} onContentEdited={this.onContentEditedLocally.bind(this)}/>
+            <div style={{margin:5}}>
+              <QRCode value={qrcontent}/>
+            </div>
+
+
+      </div>
+
+        Content:
+        <textarea rows={linenumber} cols="50" onChange={(evt) => {
+              this.setContent(evt.target.value);
+          }} value={content}/>
+
       </div>
     );
   }
