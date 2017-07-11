@@ -55,7 +55,7 @@ export default class SimpleInput extends Component {
     return (
       <div>
           <h1>Simple Input Example</h1>
-          <QRCode value={qrcontent}/> 
+          <QRCode value={qrcontent}/>
           <SimpleInputView content={content} onContentEdited={this.onContentEditedLocally.bind(this)}/>
       </div>
     );
