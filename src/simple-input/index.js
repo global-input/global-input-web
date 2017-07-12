@@ -4,44 +4,67 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createMessageConnector,changeBaseURL} from "global-input-message";
+import {createMessageConnector,switchMessageServer} from "global-input-message";
 import QRCode from "qrcode.react";
 
+import {config} from "../config";
 
-/**running locally**/
-
-
-//changeBaseURL("http://localhost:1337");
 
 
 
 
 
 export default class SimpleInput extends Component {
+  connectToMessenger(){
+            switchMessageServer(config.baseURL);
+            this.connector=createMessageConnector();
+            this.qrcodedata=[
+              {
+                name:"Content",
+                value:this.state.content
+              },
+               {
+                 name:"Submit",
+                 type:"action"
+               }
+            ];
+            const dataprocessors=[
+                this.setContent.bind(this),
+                this.submit.bind(this)
+            ];
+
+            this.connector.connect(message=>{
+            console.log("setting:"+JSON.stringify(message));
+            dataprocessors[message.index](message.value);
+
+            });
+  }
+  disconnectFromMessenger(){
+    this.connector.disconnect();
+  }
+  buildQRCodeData(){
+      return this.connector.buidQRCodeData(this.metadata);
+  }
 
  constructor(props){
     super(props);
-    this.connector=createMessageConnector();
     this.state={content:""};
+ }
+ submit(){
+   this.props.history.push("/simpleinput-submit");
  }
  setContent(content){
    console.log("content to be set:"+content);
 
    this.setState(Object.assign({}, this.state,{content}));
  }
+ componentWillMount(){
+     this.connectToMessenger();
+ }
 
-  componentWillMount(){
-      this.connector.connect(this.onMessageReceived.bind(this));
-  }
-
-  componentWillUnmount(){
-      this.connector.disconnect();
-  }
-
-  onMessageReceived(message){
-    console.log("setting:"+JSON.stringify(message));
-    this.setContent(message.content);
-  }
+ componentWillUnmount(){
+     this.disconnectFromMessenger();
+ }
 
 
   render() {
@@ -49,12 +72,7 @@ export default class SimpleInput extends Component {
     const content=this.state.content;
 
     console.log(" so the content in the state:"+content);
-    const qrcontent=this.connector.genererateQrContent([{
-      nm:"Content",
-      ln:linenumber,
-      vl:content
-    }]);
-    console.log("qrcontent:"+qrcontent);
+    const qrcontent=this.connector.buidQRCodeData(this.qrcodedata);
     return (
       <div>
       <div style={{display:"flex"}}>
@@ -71,6 +89,9 @@ export default class SimpleInput extends Component {
         <textarea rows={linenumber} cols="50" onChange={(evt) => {
               this.setContent(evt.target.value);
           }} value={content}/>
+          <button onClick={(evt) => {
+               this.submit();
+           }}>Submit</button>
 
       </div>
     );

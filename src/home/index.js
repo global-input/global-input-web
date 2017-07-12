@@ -24,56 +24,57 @@ var messageURL="https://globalinput.co.uk/global-input/messages/<session-id>/<cl
           <div>
               <h1>Global Input</h1>
           </div>
-
           <div>
-              <h3> Originator application</h3>
-
-                Should do the following:
-                <ol>
-                   <li>Generate a random uuid representing the current session</li>
-                   <li>Generate a random uuid representing the current  client application instance</li>
-                   <li>Display the picture loaded from url along the form that the user needs to fill in
-
-                   </li>
-
-                    <li> The application running on mobile will not be able to connect to the application by scanning the picture
-                    </li>
-                </ol>
-
-          </div>
-
-          <div>
-              <h3>Connector application</h3>
-
-                Should do the following:
-                <ol>
-                   <li>Scan the picture from the original application to get the json data in the following format:
-                     <p>
-                     <p>
-                        {textlines.map(t=>{
-                        return (
-                          <div>{t}</div>
-                        )
-
-                      })}
-
-                      </p>
-
-                     </p>
-                    </li>
-
-                    <li>
-                        Now the application will be able to send message to the original with to the following URL:
-
+              <h3> How to enable application powered by Global Input</h3>
+                  <p>
+                    npm install --save global-input-message
+                  </p>
+                  <ol>
+                      <li>import the library:
+                          <p>
+                              {'import {switchMessageServer} from "global-input-message";'}
+                          </p>
+                      </li>
+                      <li>
+                          create the connector:
+                          <p>
+                              var connector=createMessageConnector();
+                          </p>
+                      </li>
+                      <li>
+                         Build QR Code data and display it:
+                         <p>
+                           const qrdata=this.connector.buidQRCodeData(data);
+                           for example in react js: {'import QRCode from qrcode.react and then:'}:
+                           {'<QRCode value={qrdata}/>'}
+                        </p>
+                        In the above the data is an array containing the sequence of data item corresponding to each input field  visually.
+                      </li>
+                      <li>
+                        connect to the message connector begin to receive message:
                         <p>
-{messageURL}
+                          <p>
+                          {'this.connector.connect(function(message){'}
+                          </p>
+                          <p>
+                                {'message.index is the index of the field'}
+                          </p>
+                          <p>
+                                {'message.value is the typed by the user'}
+                          </p>
+                          <p>
+                              {'}});'}'
+                          </p>
                         </p>
 
-                    </li>
+                      </li>
 
-                </ol>
+
+                  </ol>
 
           </div>
+
+
 
 
       </div>

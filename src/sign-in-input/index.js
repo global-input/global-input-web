@@ -4,22 +4,52 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createMessageConnector,changeBaseURL} from "global-input-message";
+
+import {createMessageConnector,switchMessageServer} from "global-input-message";
 import QRCode from "qrcode.react";
-
-
-/**running locally**/
-
-
-//changeBaseURL("http://localhost:1337");
-
+import {config} from "../config";
 
 
 export default class SignInInput extends Component {
 
+  connectToMessenger(){
+            switchMessageServer(config.baseURL);
+            this.connector=createMessageConnector();
+            this.qrcodedata=[
+              {
+                name:"Email address",
+                value:this.state.username
+               },{
+                 name:"Password",
+                 type:"secret"
+               },
+               {
+                 name:"Login",
+                 type:"action"
+               }
+            ];
+            const dataprocessors=[
+                this.setUsername.bind(this),
+                this.setPassword.bind(this),
+                this.login.bind(this)
+            ];
+
+            this.connector.connect(message=>{
+            console.log("setting:"+JSON.stringify(message));
+            dataprocessors[message.index](message.value);
+
+            });
+  }
+  disconnectFromMessenger(){
+    this.connector.disconnect();
+  }
+  buildQRCodeData(){
+      return this.connector.buidQRCodeData(this.metadata);
+  }
+
+
  constructor(props){
     super(props);
-    this.connector=createMessageConnector();
     this.state={username:"",password:""};
  }
  setUsername(username){
@@ -32,41 +62,23 @@ export default class SignInInput extends Component {
  }
 
   componentWillMount(){
-      this.connector.connect(this.onMessageReceived.bind(this));
+      this.connectToMessenger();
   }
 
   componentWillUnmount(){
-      this.connector.disconnect();
+      this.disconnectFromMessenger();
   }
 
-  onMessageReceived(message){
-    console.log("setting:"+JSON.stringify(message));
-    if(message.name==="Email address"){
-        this.setUsername(message.content);
-    }
-    else if(message.name==="Password"){
-        this.setPassword(message.content);
-    }
-    else{
-      console.log("message ignored");
-    }
-  }
+login(){
+    this.props.history.push("/signin-success");
+}
 
 
   render() {
     const linenumber=4;
     const {username,password}=this.state;
+    const qrcontent=this.connector.buidQRCodeData(this.qrcodedata);
 
-
-    const qrcontent=this.connector.genererateQrContent([{
-      nm:"Email address",
-      vl:this.state.username
-    },
-    {
-      nm:"Password"
-    }
-  ]);
-    console.log("qrcontent:"+qrcontent);
     return (
     <div>
           <div style={{display:"flex"}}>
@@ -86,8 +98,24 @@ export default class SignInInput extends Component {
                     this.setPassword(evt.target.value);
                 }} value={password}/>
           </div>
+          <div>
+               <button onClick={(evt) => {
+                    this.login();
+                }}>Login</button>
+                
+          </div>
 
+          <Route path="/success" component={SigninSuccess}/>
       </div>
     );
+  }
+}
+
+class SigninSuccess extends Component{
+  render(){
+    return(
+      <div>Sign in Success</div>
+    );
+
   }
 }
