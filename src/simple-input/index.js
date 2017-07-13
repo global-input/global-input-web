@@ -4,7 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createMessageConnector,switchMessageServer} from "global-input-message";
+import {createMessageConnector,setMessageConnectorURL} from "global-input-message";
 import QRCode from "qrcode.react";
 
 import {config} from "../config";
@@ -13,37 +13,40 @@ import {config} from "../config";
 
 
 
-
 export default class SimpleInput extends Component {
-  connectToMessenger(){
-            switchMessageServer(config.baseURL);
+
+
+    connectToMessenger(){
             this.connector=createMessageConnector();
-            this.qrcodedata=[
-              {
-                name:"Content",
-                value:this.state.content
-              },
-               {
-                 name:"Submit",
-                 type:"action"
-               }
-            ];
+
             const dataprocessors=[
                 this.setContent.bind(this),
                 this.submit.bind(this)
             ];
-
-            this.connector.connect(message=>{
-            console.log("setting:"+JSON.stringify(message));
-            dataprocessors[message.index](message.value);
-
-            });
+            var options={
+              url:config.baseURL,
+              onMessageReceived:function(message){
+                console.log("setting:"+JSON.stringify(message));
+                dataprocessors[message.index](message.value);
+              }
+            }
+            this.connector.connect(options);
   }
   disconnectFromMessenger(){
     this.connector.disconnect();
   }
-  buildQRCodeData(){
-      return this.connector.buidQRCodeData(this.metadata);
+  getConnectionData(){
+    var metadata=[
+      {
+        name:"Content",
+        value:this.state.content
+      },
+       {
+         name:"Submit",
+         type:"action"
+       }
+    ];
+    return this.connector.getConnectionData(this.metadata);
   }
 
  constructor(props){
@@ -72,7 +75,7 @@ export default class SimpleInput extends Component {
     const content=this.state.content;
 
     console.log(" so the content in the state:"+content);
-    const qrcontent=this.connector.buidQRCodeData(this.qrcodedata);
+    const qrcontent=JSON.stringify(this.getConnectionData());
     return (
       <div>
       <div style={{display:"flex"}}>
