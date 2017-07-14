@@ -1,4 +1,4 @@
 export const config={
-      baseURL1:"https://globalinput.co.uk",
-      baseURL:"http://192.168.0.5:1337"
+      baseURL:"https://globalinput.co.uk",
+      baseURLdev:"http://192.168.0.5:1337"
 };
