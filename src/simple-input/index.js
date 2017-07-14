@@ -15,19 +15,38 @@ import {config} from "../config";
 
 export default class SimpleInput extends Component {
 
+    getMetadata(){
+      return  [
+        {
+          name:"Content",
+          value:this.state.content
+        },
+         {
+           name:"Submit",
+           type:"action"
+         }
+      ];
+    }
+    getProcessors(){
+      return [
+          this.setContent.bind(this),
+          this.submit.bind(this)
+        ];
+    }
+    getQRData(){
+      return JSON.stringify(this.connector.getConnectionData(this.getMetadata()));
+    }
+
 
     connectToMessenger(){
             this.connector=createMessageConnector();
 
-            const dataprocessors=[
-                this.setContent.bind(this),
-                this.submit.bind(this)
-            ];
+            const dataprocessors=this.getProcessors();
             var options={
               url:config.baseURL,
               onMessageReceived:function(message){
                 console.log("setting:"+JSON.stringify(message));
-                dataprocessors[message.index](message.value);
+                dataprocessors[message.data.index](message.data.value);
               }
             }
             this.connector.connect(options);
@@ -35,19 +54,7 @@ export default class SimpleInput extends Component {
   disconnectFromMessenger(){
     this.connector.disconnect();
   }
-  getConnectionData(){
-    var metadata=[
-      {
-        name:"Content",
-        value:this.state.content
-      },
-       {
-         name:"Submit",
-         type:"action"
-       }
-    ];
-    return this.connector.getConnectionData(this.metadata);
-  }
+
 
  constructor(props){
     super(props);
@@ -73,9 +80,8 @@ export default class SimpleInput extends Component {
   render() {
     const linenumber=4;
     const content=this.state.content;
-
     console.log(" so the content in the state:"+content);
-    const qrcontent=JSON.stringify(this.getConnectionData());
+    const qrcontent=this.getQRData();
     return (
       <div>
       <div style={{display:"flex"}}>

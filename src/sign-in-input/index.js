@@ -5,47 +5,65 @@ import {
   Link
 } from 'react-router-dom'
 
-import {createMessageConnector,switchMessageServer} from "global-input-message";
+import {createMessageConnector} from "global-input-message";
 import QRCode from "qrcode.react";
 import {config} from "../config";
 
 
 export default class SignInInput extends Component {
 
+
+  getMetadata(){
+    return  [
+      {
+        name:"Email address",
+        value:this.state.username
+       },{
+         name:"Password",
+         type:"secret"
+       },
+       {
+         name:"Login",
+         type:"action"
+       }
+    ];
+  }
+  getProcessors(){
+    return [
+      this.setUsername.bind(this),
+      this.setPassword.bind(this),
+      this.login.bind(this)
+    ];
+  }
+  getQRData(){
+    return JSON.stringify(this.connector.getConnectionData(this.getMetadata()));
+  }
+
+
   connectToMessenger(){
-            switchMessageServer(config.baseURL);
-            this.connector=createMessageConnector();
-            this.qrcodedata=[
-              {
-                name:"Email address",
-                value:this.state.username
-               },{
-                 name:"Password",
-                 type:"secret"
-               },
-               {
-                 name:"Login",
-                 type:"action"
-               }
-            ];
-            const dataprocessors=[
-                this.setUsername.bind(this),
-                this.setPassword.bind(this),
-                this.login.bind(this)
-            ];
+          this.connector=createMessageConnector();
 
-            this.connector.connect(message=>{
-            console.log("setting:"+JSON.stringify(message));
-            dataprocessors[message.index](message.value);
+          const dataprocessors=this.getProcessors();
+          var options={
+            url:config.baseURL,
+            onMessageReceived:function(message){
+              console.log("setting:"+JSON.stringify(message));
+              dataprocessors[message.data.index](message.data.value);
+            }
+          }
+          this.connector.connect(options);
+}
 
-            });
-  }
-  disconnectFromMessenger(){
-    this.connector.disconnect();
-  }
-  buildQRCodeData(){
-      return this.connector.buidQRCodeData(this.metadata);
-  }
+
+
+
+
+
+
+disconnectFromMessenger(){
+  this.connector.disconnect();
+}
+
 
 
  constructor(props){
@@ -77,7 +95,7 @@ login(){
   render() {
     const linenumber=4;
     const {username,password}=this.state;
-    const qrcontent=this.connector.buidQRCodeData(this.qrcodedata);
+    const qrcontent=this.getQRData();
 
     return (
     <div>
@@ -102,7 +120,7 @@ login(){
                <button onClick={(evt) => {
                     this.login();
                 }}>Login</button>
-                
+
           </div>
 
           <Route path="/success" component={SigninSuccess}/>
