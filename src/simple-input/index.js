@@ -4,7 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createMessageConnector,switchMessageServer} from "global-input-message";
+import {createMessageConnector,setMessageConnectorURL} from "global-input-message";
 import QRCode from "qrcode.react";
 
 import {config} from "../config";
@@ -13,38 +13,48 @@ import {config} from "../config";
 
 
 
-
 export default class SimpleInput extends Component {
-  connectToMessenger(){
-            switchMessageServer(config.baseURL);
+
+    getMetadata(){
+      return  [
+        {
+          name:"Content",
+          value:this.state.content
+        },
+         {
+           name:"Submit",
+           type:"action"
+         }
+      ];
+    }
+    getProcessors(){
+      return [
+          this.setContent.bind(this),
+          this.submit.bind(this)
+        ];
+    }
+    getQRData(){
+      return JSON.stringify(this.connector.getConnectionData(this.getMetadata()));
+    }
+
+
+    connectToMessenger(){
             this.connector=createMessageConnector();
-            this.qrcodedata=[
-              {
-                name:"Content",
-                value:this.state.content
-              },
-               {
-                 name:"Submit",
-                 type:"action"
-               }
-            ];
-            const dataprocessors=[
-                this.setContent.bind(this),
-                this.submit.bind(this)
-            ];
 
-            this.connector.connect(message=>{
-            console.log("setting:"+JSON.stringify(message));
-            dataprocessors[message.index](message.value);
-
-            });
+            const dataprocessors=this.getProcessors();
+            var options={
+              url:config.baseURL,
+              onMessageReceived:function(message){
+                console.log("setting:"+JSON.stringify(message));
+                dataprocessors[message.data.index](message.data.value);
+              }
+            }
+            this.connector.connect(options);
   }
   disconnectFromMessenger(){
     this.connector.disconnect();
   }
-  buildQRCodeData(){
-      return this.connector.buidQRCodeData(this.metadata);
-  }
+
 
  constructor(props){
     super(props);
@@ -70,9 +80,8 @@ export default class SimpleInput extends Component {
   render() {
     const linenumber=4;
     const content=this.state.content;
-
     console.log(" so the content in the state:"+content);
-    const qrcontent=this.connector.buidQRCodeData(this.qrcodedata);
+    const qrcontent=this.getQRData();
     return (
       <div>
       <div style={{display:"flex"}}>
