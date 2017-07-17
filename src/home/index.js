@@ -25,7 +25,7 @@ var messageURL="https://globalinput.co.uk/global-input/messages/<session-id>/<cl
               <h1>Global Input</h1>
           </div>
           <div>
-              <h3> How to enable application powered by Global Input</h3>
+              <h3> How to power application with Global Input</h3>
                   <p>
                     npm install --save global-input-message
                   </p>
