@@ -11,24 +11,22 @@ import {config} from "../config";
 
 
 export default class SignInInput extends Component {
-
-
   getMetadata(){
     return  [
-      {
-        name:"Email address",
-        value:this.state.username
-       },{
-         name:"Password",
-         type:"secret"
-       },
-       {
-         name:"Login",
-         type:"action"
-       }
-    ];
+                {
+                  name:"Email address",
+                  value:this.state.username
+                 },{
+                   name:"Password",
+                   type:"secret"
+                 },
+                 {
+                   name:"Login",
+                   type:"action"
+                 }
+            ];
   }
-  getProcessors(){
+  getInputProcessors(){
     return [
       this.setUsername.bind(this),
       this.setPassword.bind(this),
@@ -36,20 +34,21 @@ export default class SignInInput extends Component {
     ];
   }
   getQRData(){
-    return JSON.stringify(this.connector.getConnectionData(this.getMetadata()));
+    return JSON.stringify(this.connector.getConnectionData({}));
+
   }
 
-
+onInputMessageReceived(inputMessage){
+   var dataprocessors=this.getInputProcessors();
+   console.log("setting:"+JSON.stringify(inputMessage));
+   dataprocessors[inputMessage.data.index](inputMessage.data.value);
+}
   connectToMessenger(){
           this.connector=createMessageConnector();
-
-          const dataprocessors=this.getProcessors();
           var options={
             url:config.baseURL,
-            onMessageReceived:function(message){
-              console.log("setting:"+JSON.stringify(message));
-              dataprocessors[message.data.index](message.data.value);
-            }
+            onInputMessageReceived:this.onInputMessageReceived.bind(this),
+            metadata:this.getMetadata()
           }
           this.connector.connect(options);
 }
