@@ -5,66 +5,35 @@ import {
   Link
 } from 'react-router-dom'
 
-import {createMessageConnector} from "global-input-message";
-import QRCode from "qrcode.react";
+import {GlobalInputReceiver} from "../global-input-react";
+
 import {config} from "../config";
 
 
-export default class SignInInput extends Component {
-  getMetadata(){
-    return  [
+export default class SignInInput extends GlobalInputReceiver {
+  getGlobalInputConfig(){
+    return  {
+              url:config.url,
+              onInput:this.onInput.bind(this),
+              metadata:
+              [
                 {
                   name:"Email address",
-                  value:this.state.username
+                  value:this.state.username,
+                  onInput:this.setUsername.bind(this)
                  },{
                    name:"Password",
-                   type:"secret"
+                   type:"secret",
+                   onInput:this.setPassword.bind(this)
                  },
                  {
                    name:"Login",
-                   type:"action"
+                   type:"action",
+                   onInput:this.login.bind(this)
                  }
-            ];
-  }
-  getInputProcessors(){
-    return [
-      this.setUsername.bind(this),
-      this.setPassword.bind(this),
-      this.login.bind(this)
-    ];
-  }
-  getQRData(){
-    return JSON.stringify(this.connector.getConnectionData({}));
-
-  }
-
-onInputMessageReceived(inputMessage){
-   var dataprocessors=this.getInputProcessors();
-   console.log("setting:"+JSON.stringify(inputMessage));
-   dataprocessors[inputMessage.data.index](inputMessage.data.value);
-}
-  connectToMessenger(){
-          this.connector=createMessageConnector();
-          var options={
-            url:config.baseURL,
-            onInputMessageReceived:this.onInputMessageReceived.bind(this),
-            metadata:this.getMetadata()
+            ]
           }
-          this.connector.connect(options);
-}
-
-
-
-
-
-
-
-disconnectFromMessenger(){
-  this.connector.disconnect();
-}
-
-
-
+  }
  constructor(props){
     super(props);
     this.state={username:"",password:""};
@@ -78,13 +47,7 @@ disconnectFromMessenger(){
    this.setState(Object.assign({}, this.state,{password}));
  }
 
-  componentWillMount(){
-      this.connectToMessenger();
-  }
 
-  componentWillUnmount(){
-      this.disconnectFromMessenger();
-  }
 
 login(){
     this.props.history.push("/signin-success");
@@ -94,7 +57,7 @@ login(){
   render() {
     const linenumber=4;
     const {username,password}=this.state;
-    const qrcontent=this.getQRData();
+
 
     return (
     <div>
@@ -102,7 +65,7 @@ login(){
 
               <h1>Login Input Example</h1>
                 <div style={{margin:5}}>
-                  <QRCode value={qrcontent}/>
+                  {this.displayInputCode()}
                 </div>
           </div>
           <div>
@@ -122,17 +85,8 @@ login(){
 
           </div>
 
-          <Route path="/success" component={SigninSuccess}/>
+
       </div>
     );
-  }
-}
-
-class SigninSuccess extends Component{
-  render(){
-    return(
-      <div>Sign in Success</div>
-    );
-
   }
 }

@@ -7,7 +7,7 @@ import {
 import Home from "./home";
 import SimpleInput from "./simple-input";
 import SignInInput from "./sign-in-input";
-import SignInSuccess from "./signin-success";
+
 import SimpleInputSubmit from "./simple-input-submit";
 export default class App extends Component{
   render(){
@@ -31,4 +31,16 @@ export default class App extends Component{
       </Router>
       )
     }
+}
+class SignInSuccess extends Component{
+  render(){
+    return(
+      <div>
+  <h1>
+        Sign in result spage</h1>
+
+      </div>
+    );
+
+  }
 }
