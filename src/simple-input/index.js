@@ -4,57 +4,31 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import {createMessageConnector,setMessageConnectorURL} from "global-input-message";
-import QRCode from "qrcode.react";
-
+import {GlobalInputReceiver} from "../global-input-react";
 import {config} from "../config";
 
 
 
+export default class SimpleInput extends GlobalInputReceiver {
 
+    getGlobalInputConfig(){
+      return {
+          url:config.url,
+          metadata:[
+            {
+              name:"Content",
+              value:this.state.content,
+              onInput:this.setContent.bind(this)
+            },
+             {
+               name:"Submit",
+               type:"action",
+               onInput:this.submit.bind(this)
+             }
+          ]
+      }
 
-export default class SimpleInput extends Component {
-
-    getMetadata(){
-      return  [
-        {
-          name:"Content",
-          value:this.state.content
-        },
-         {
-           name:"Submit",
-           type:"action"
-         }
-      ];
     }
-    getProcessors(){
-      return [
-          this.setContent.bind(this),
-          this.submit.bind(this)
-        ];
-    }
-    getQRData(){
-      return JSON.stringify(this.connector.getConnectionData(this.getMetadata()));
-    }
-
-
-    connectToMessenger(){
-            this.connector=createMessageConnector();
-
-            const dataprocessors=this.getProcessors();
-            var options={
-              url:config.baseURL,
-              onMessageReceived:function(message){
-                console.log("setting:"+JSON.stringify(message));
-                dataprocessors[message.data.index](message.data.value);
-              }
-            }
-            this.connector.connect(options);
-  }
-  disconnectFromMessenger(){
-    this.connector.disconnect();
-  }
-
 
  constructor(props){
     super(props);
@@ -81,14 +55,14 @@ export default class SimpleInput extends Component {
     const linenumber=4;
     const content=this.state.content;
     console.log(" so the content in the state:"+content);
-    const qrcontent=this.getQRData();
+
     return (
       <div>
       <div style={{display:"flex"}}>
 
           <h1>Simple Input Example</h1>
             <div style={{margin:5}}>
-              <QRCode value={qrcontent}/>
+              {this.displayInputCode()}
             </div>
 
 
