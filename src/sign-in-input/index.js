@@ -85,17 +85,8 @@ login(){
 
           </div>
 
-          <Route path="/success" component={SigninSuccess}/>
+
       </div>
     );
-  }
-}
-
-class SigninSuccess extends Component{
-  render(){
-    return(
-      <div>Sign in Success</div>
-    );
-
   }
 }
