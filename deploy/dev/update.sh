@@ -1,1 +1,1 @@
-npm install global-input-message
+npm install global-input-react

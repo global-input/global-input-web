@@ -1,10 +1,5 @@
 import React, {Component} from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import {GlobalInputReceiver} from "../global-input-react";
+import {GlobalInputReceiver} from "global-input-react";
 import {config} from "../config";
 
 
@@ -42,13 +37,7 @@ export default class SimpleInput extends GlobalInputReceiver {
 
    this.setState(Object.assign({}, this.state,{content}));
  }
- componentWillMount(){
-     this.connectToMessenger();
- }
 
- componentWillUnmount(){
-     this.disconnectFromMessenger();
- }
 
 
   render() {

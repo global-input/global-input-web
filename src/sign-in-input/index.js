@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
-import {GlobalInputReceiver} from "../global-input-react";
+
+import {GlobalInputReceiver} from "global-input-react";
 
 import {config} from "../config";
 
@@ -55,7 +51,7 @@ login(){
 
 
   render() {
-    const linenumber=4;
+
     const {username,password}=this.state;
 
 
