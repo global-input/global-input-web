@@ -3,13 +3,13 @@ import React, {Component} from 'react'
 
 import {GlobalInputReceiver} from "global-input-react";
 
-import {config} from "../config";
+
 
 
 export default class SignInInput extends GlobalInputReceiver {
   getGlobalInputConfig(){
     var globalConfig=super.getGlobalInputConfig();
-    globalConfig.options.url=config.url;
+
     globalConfig.metadata=[
                 {
                   name:"Email address",
