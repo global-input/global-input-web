@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {GlobalInputReceiver} from "global-input-react";
-import {config} from "../config";
+
 
 
 
