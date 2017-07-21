@@ -8,11 +8,9 @@ import {config} from "../config";
 
 export default class SignInInput extends GlobalInputReceiver {
   getGlobalInputConfig(){
-    return  {
-              url:config.url,
-              onInput:this.onInput.bind(this),
-              metadata:
-              [
+    var globalConfig=super.getGlobalInputConfig();
+    globalConfig.options.url=config.url;
+    globalConfig.metadata=[
                 {
                   name:"Email address",
                   value:this.state.username,
@@ -27,8 +25,8 @@ export default class SignInInput extends GlobalInputReceiver {
                    type:"action",
                    onInput:this.login.bind(this)
                  }
-            ]
-          }
+            ];
+            return globalConfig;
   }
  constructor(props){
     super(props);
