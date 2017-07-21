@@ -7,22 +7,21 @@ import {config} from "../config";
 export default class SimpleInput extends GlobalInputReceiver {
 
     getGlobalInputConfig(){
-      return {
-          url:config.url,
-          metadata:[
-            {
-              name:"Content",
-              value:this.state.content,
-              onInput:this.setContent.bind(this)
-            },
-             {
-               name:"Submit",
-               type:"action",
-               onInput:this.submit.bind(this)
-             }
-          ]
-      }
-
+        var globalConfig=super.getGlobalInputConfig();
+        globalConfig.options.url=config.url;
+        globalConfig.metadata=[
+          {
+            name:"Content",
+            value:this.state.content,
+            onInput:this.setContent.bind(this)
+          },
+           {
+             name:"Submit",
+             type:"action",
+             onInput:this.submit.bind(this)
+           }
+        ];
+        return globalConfig;
     }
 
  constructor(props){
