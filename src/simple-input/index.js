@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import {GlobalInputReceiver} from "global-input-react";
+import {CodeDataRenderer} from "../code-data-renderer";
+import {GlobalInputComponent} from "global-input-react";
 
 
 
-
-export default class SimpleInput extends GlobalInputReceiver {
+export default class SimpleInput extends GlobalInputComponent {
 
     getGlobalInputConfig(){
         var globalConfig=super.getGlobalInputConfig();
@@ -49,7 +49,7 @@ export default class SimpleInput extends GlobalInputReceiver {
 
           <h1>Simple Input Example</h1>
             <div style={{margin:5}}>
-              {this.displayInputCode()}
+              <CodeDataRenderer connector={this.connector} type="input"/>
             </div>
 
 

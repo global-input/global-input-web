@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 
 
-import {GlobalInputReceiver} from "global-input-react";
+import {CodeDataRenderer} from "../code-data-renderer";
+import {GlobalInputComponent} from "global-input-react";
 
-
-
-
-export default class SignInInput extends GlobalInputReceiver {
-  getGlobalInputConfig(){
+export default class SignInInput extends GlobalInputComponent {
+    getGlobalInputConfig(){
     var globalConfig=super.getGlobalInputConfig();
 
     globalConfig.metadata=[
@@ -59,7 +57,7 @@ login(){
 
               <h1>Login Input Example</h1>
                 <div style={{margin:5}}>
-                  {this.displayInputCode()}
+                  <CodeDataRenderer type="input" connector={this.connector}/>
                 </div>
           </div>
           <div>
