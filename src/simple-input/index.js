@@ -1,41 +1,36 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {CodeDataRenderer} from "../code-data-renderer";
-import {GlobalInputComponent} from "global-input-react";
+import {GlobalInputComponent} from "../global-input-component";
 
 
 
 export default class SimpleInput extends GlobalInputComponent {
 
-    getGlobalInputConfig(){
-        var globalConfig=super.getGlobalInputConfig();
-        globalConfig.metadata=[
-          {
-            name:"Content",
-            value:this.state.content,
-            onInput:this.setContent.bind(this)
-          },
-           {
-             name:"Submit",
-             type:"action",
-             onInput:this.submit.bind(this)
-           }
-        ];
-        return globalConfig;
+  constructor(props){
+     super(props);
+     this.state={content:""};
+  }
+    getMetadata(){
+        return {
+                title:"Simple Input Example",
+                fields:[{
+                      label:"Content",
+                      value:this.state.content,
+                      onInput:this.setContent.bind(this)
+                },{
+                     label:"Submit",
+                     type:"button",
+                     onInput:this.submit.bind(this)
+                 }]
+         };
     }
-
- constructor(props){
-    super(props);
-    this.state={content:""};
- }
  submit(){
    this.props.history.push("/simpleinput-submit");
  }
  setContent(content){
    console.log("content to be set:"+content);
-
    this.setState(Object.assign({}, this.state,{content}));
  }
-
 
 
   render() {

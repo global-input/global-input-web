@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
 
 import {CodeDataRenderer} from "../code-data-renderer";
-import {GlobalInputComponent} from "global-input-react";
+import {createMessageConnector} from "global-input-message";
+
 import "./index.css";
 
 
 
-export default class SettingsView extends GlobalInputComponent {
-
-
-
- constructor(props){
+export default class SettingsView extends Component {
+  constructor(props){
     super(props);
-    this.state={content:""};
- }
+    this.connector=createMessageConnector();
+  }
+ 
 
   render() {
     return (
@@ -23,7 +22,7 @@ export default class SettingsView extends GlobalInputComponent {
 
       <div className="mainBody">
             <div className="codeContainer">
-              
+
               <div className="codeLabel">apikey</div>
               <div className="codeData">
                   <CodeDataRenderer connector={this.connector} type="apikey"/>
