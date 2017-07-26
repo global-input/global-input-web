@@ -12,7 +12,7 @@ export default class SettingsView extends Component {
     super(props);
     this.connector=createMessageConnector();
   }
- 
+
 
   render() {
     return (

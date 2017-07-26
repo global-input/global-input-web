@@ -16,7 +16,8 @@ export default class SimpleInput extends GlobalInputComponent {
                 fields:[{
                       label:"Content",
                       value:this.state.content,
-                      onInput:this.setContent.bind(this)
+                      onInput:this.setContent.bind(this),
+                      nLines:4
                 },{
                      label:"Submit",
                      type:"button",
