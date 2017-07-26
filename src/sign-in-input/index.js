@@ -1,37 +1,33 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 
-import {GlobalInputReceiver} from "global-input-react";
+import {CodeDataRenderer} from "../code-data-renderer";
+import {GlobalInputComponent} from "../global-input-component";
 
-
-
-
-export default class SignInInput extends GlobalInputReceiver {
-  getGlobalInputConfig(){
-    var globalConfig=super.getGlobalInputConfig();
-
-    globalConfig.metadata=[
-                {
-                  name:"Email address",
-                  value:this.state.username,
-                  onInput:this.setUsername.bind(this)
-                 },{
-                   name:"Password",
-                   type:"secret",
-                   onInput:this.setPassword.bind(this)
-                 },
-                 {
-                   name:"Login",
-                   type:"action",
-                   onInput:this.login.bind(this)
-                 }
-            ];
-            return globalConfig;
+export default class SignInInput extends GlobalInputComponent {
+  constructor(props){
+     super(props);
+     this.state={username:"",password:""};
   }
- constructor(props){
-    super(props);
-    this.state={username:"",password:""};
- }
+    getMetadata(){
+        return {
+                title:"Login",
+                fields:[{
+                          label:"Email address",
+                          value:this.state.username,
+                          onInput:this.setUsername.bind(this)
+                        },{
+                           label:"Password",
+                           type:"secret",
+                           onInput:this.setPassword.bind(this)
+                        },{
+                           label:"Login",
+                           type:"button",
+                           onInput:this.login.bind(this)
+                        }]
+                }
+    }
+
  setUsername(username){
    console.log("content to be set:"+username);
    this.setState(Object.assign({}, this.state,{username}));
@@ -40,8 +36,6 @@ export default class SignInInput extends GlobalInputReceiver {
    console.log("content to be set:"+password);
    this.setState(Object.assign({}, this.state,{password}));
  }
-
-
 
 login(){
     this.props.history.push("/signin-success");
@@ -59,7 +53,7 @@ login(){
 
               <h1>Login Input Example</h1>
                 <div style={{margin:5}}>
-                  {this.displayInputCode()}
+                  <CodeDataRenderer type="input" connector={this.connector}/>
                 </div>
           </div>
           <div>

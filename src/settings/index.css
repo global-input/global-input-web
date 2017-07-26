@@ -1,0 +1,16 @@
+.mainBody{
+  display: flex;
+  flex-direction: column;
+}
+.codeContainer{
+  display: flex;
+  flexDirection: row;
+
+}
+.codeLabel{
+
+
+}
+.codeData{
+
+}
