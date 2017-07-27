@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 
 
-export default class SimpleInputSubmit extends Component {
+export  class SimpleInputSubmit extends Component {
 
   render() {
 

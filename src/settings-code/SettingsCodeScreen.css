@@ -1,0 +1,23 @@
+.codeSettings.settings{
+  display: table;
+}
+
+.codeSettings .record{
+  display: table-row;
+
+}
+
+.codeSettings .label, .codeSettings .code{
+  display: table-cell;
+  align-content:ceter;
+  padding:100px;
+}
+.codeSettings .labelContainer{
+  display:flex;
+  width:"100%";
+  height:"100%";
+  font-size: 36px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}

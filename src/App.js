@@ -4,11 +4,11 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Home from "./home";
+import {Home} from "./home";
 import {SimpleInput} from "./simple-input";
 import {SignInInput} from "./sign-in-input";
-import SettingsView from "./settings";
-import SimpleInputSubmit from "./simple-input-submit";
+import {SettingsCodeScreen} from "./settings-code";
+import {SimpleInputSubmit} from "./simple-input-submit";
 export default class App extends Component{
   render(){
     return (
@@ -26,7 +26,7 @@ export default class App extends Component{
           <Route exact path="/" component={Home}/>
           <Route path="/simpleInput" component={SimpleInput}/>
           <Route path="/signinput" component={SignInInput}/>
-          <Route path="/settings" component={SettingsView}/>
+          <Route path="/settings" component={SettingsCodeScreen}/>
           <Route path="/signin-success" component={SignInSuccess}/>
           <Route path="/simpleinput-submit" component={SimpleInputSubmit}/>
         </div>
