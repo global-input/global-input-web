@@ -3,7 +3,7 @@ import QRCode from "qrcode.react";
 
 
 
-export   class CodeDataRenderer extends Component {
+export   default class CodeDataRenderer extends Component {
   render() {
       var {connector,type}=this.props;
       var codedata=null;

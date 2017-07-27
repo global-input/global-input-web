@@ -1,0 +1,13 @@
+.signin.container {
+
+display:flex;
+flex-direction: "row";
+justify-content: "flex-start";
+
+}
+.signin.formContainer {
+  background-color: #CCEEFF;
+  flex:1;
+  display:"flex";
+  flex-direction: "column";
+}

@@ -5,8 +5,8 @@ import {
   Link
 } from 'react-router-dom'
 import Home from "./home";
-import SimpleInput from "./simple-input";
-import SignInInput from "./sign-in-input";
+import {SimpleInput} from "./simple-input";
+import {SignInInput} from "./sign-in-input";
 import SettingsView from "./settings";
 import SimpleInputSubmit from "./simple-input-submit";
 export default class App extends Component{
