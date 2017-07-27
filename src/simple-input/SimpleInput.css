@@ -1,0 +1,13 @@
+.simple.container {
+
+display:flex;
+flex-direction: "row";
+justify-content: "flex-start";
+
+}
+.simple.formContainer {
+  background-color: #CCEEFF;
+  flex:1;
+  display:"flex";
+  flex-direction: "column";
+}

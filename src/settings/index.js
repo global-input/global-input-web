@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-import {CodeDataRenderer} from "../code-data-renderer";
+import {CodeDataRenderer} from "../global-input-component";
 import {createMessageConnector} from "global-input-message";
 
-import "./index.css";
+
 
 
 
