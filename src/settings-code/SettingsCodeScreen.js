@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-import {CodeDataRenderer} from "../global-input-component";
+import {AdjustableCodeDataRenderer} from "../global-input-component";
 import {createMessageConnector} from "global-input-message";
 
-import styles from "./SettingsCodeScreen.css";
+import "./SettingsCodeScreen.css";
 
 
 
@@ -22,7 +22,7 @@ export default class SettingsCodeScreen extends Component {
             <div className="codeSettings settings">
                   <div className="codeSettings record">
                         <div className="code">
-                          <CodeDataRenderer connector={this.connector} type="codeAES"/>
+                          <AdjustableCodeDataRenderer connector={this.connector} type="codeAES"/>
                         </div>
                         <div className="label">
                             Code AES Key
@@ -31,7 +31,7 @@ export default class SettingsCodeScreen extends Component {
 
                   <div className="codeSettings record">
                        <div className="code">
-                          <CodeDataRenderer connector={this.connector} type="sessionGroup"/>
+                          <AdjustableCodeDataRenderer connector={this.connector} type="sessionGroup"/>
                         </div>
                         <div className="label">
                             Session Group ID
@@ -40,7 +40,7 @@ export default class SettingsCodeScreen extends Component {
 
                 <div className="codeSettings record">
                       <div className="code">
-                              <CodeDataRenderer connector={this.connector} type="apikey"/>
+                            <AdjustableCodeDataRenderer connector={this.connector} type="apikey"/>
                       </div>
                       <div className="label">
                         API Key

@@ -1,0 +1,18 @@
+.adjustableCodeData {
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.adjustableCodeDataContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.codedataControllerContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}

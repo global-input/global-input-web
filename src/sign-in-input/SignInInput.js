@@ -1,9 +1,9 @@
 import React from 'react'
 
-import styles from "./SignInInput.css";
+import  "./SignInInput.css";
 
 
-import {GlobalInputComponent,InputCodeRender} from "../global-input-component";
+import {GlobalInputComponent,AdjustableInputCodeRender} from "../global-input-component";
 
 export default class SignInInput extends GlobalInputComponent {
   constructor(props){
@@ -39,7 +39,7 @@ export default class SignInInput extends GlobalInputComponent {
  }
 
 login(){
-    this.props.history.push("/signin-success");
+    this.props.history.push("/global-input-app-example/signin-success");
 }
 
 
@@ -67,7 +67,8 @@ login(){
 
                  </div>
          </div>
-         <InputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+
+         <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
 
 
 
