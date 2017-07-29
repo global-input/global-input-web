@@ -46,6 +46,7 @@ export default class SimpleInput extends GlobalInputComponent {
                    <div>
                        <textarea rows={linenumber} cols="50" onChange={(evt) => {
                 			this.setContent(evt.target.value);
+                      this.connector.sendInputMessage(evt.target.value,0);   
         				    }} value={content}/>
                    </div>
 
