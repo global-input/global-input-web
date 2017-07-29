@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import  "./InputCodeRender.css";
-import CodeDataRenderer from "./CodeDataRenderer";
+import AdjustableCodeDataRenderer from "./AdjustableCodeDataRenderer";
 import SendersConnected from "./SendersConnected";
 
 
@@ -12,12 +12,12 @@ export default class AdjustableInputCodeRender extends Component {
       if(this.props.senders && this.props.senders.length>0){
           codeClassName="input senderConnected";
       }
-      const {level,size,connector}=this.props;
+      const {connector}=this.props;
 
 
     return (
           <div className={codeClassName}>
-                  <CodeDataRenderer type="input" connector={connector} level={level} size={size}/>
+                  <AdjustableCodeDataRenderer type="input" connector={connector}/>
                   <SendersConnected sender={this.props.sender} senders={this.props.senders}/>
          </div>
 

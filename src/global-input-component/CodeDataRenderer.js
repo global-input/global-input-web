@@ -5,7 +5,7 @@ import QRCode from "qrcode.react";
 
 export   default class CodeDataRenderer extends Component {
   render() {
-      var {connector,type}=this.props;
+      var {connector,type, level, size}=this.props;
       var codedata=null;
       if(type==="input"){
           codedata=connector.buildInputCodeData();
@@ -25,7 +25,7 @@ export   default class CodeDataRenderer extends Component {
       }
       console.log("*****"+type+" code[["+codedata+"]]");
       return(
-         <QRCode value={codedata} level="Q" size={300}/>
+         <QRCode value={codedata} level={level} size={size}/>
       );
   }
 }

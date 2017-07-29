@@ -17,19 +17,19 @@ export default class App extends Component{
         <div className="topContainer">
               <ul className="menuContainer">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/simpleInput">Simple Input Example</Link></li>
-                <li><Link to="/signinput">Sign In Example</Link></li>
-                <li><Link to="/settings">Settings</Link></li>
+                <li><Link to="/global-input-app-example/simpleInput">Simple Input Example</Link></li>
+                <li><Link to="/global-input-app-example/signinput">Sign In Example</Link></li>
+                <li><Link to="/global-input-app-example/settings">Settings</Link></li>
               </ul>
 
 
               <div className="contentContainer">
               <Route exact path="/" component={Home}/>
-              <Route path="/simpleInput" component={SimpleInput}/>
-              <Route path="/signinput" component={SignInInput}/>
-              <Route path="/settings" component={SettingsCodeScreen}/>
-              <Route path="/signin-success" component={SignInSuccess}/>
-              <Route path="/simpleinput-submit" component={SimpleInputSubmit}/>
+              <Route path="/global-input-app-example/simpleInput" component={SimpleInput}/>
+              <Route path="/global-input-app-example/signinput" component={SignInInput}/>
+              <Route path="/global-input-app-example/settings" component={SettingsCodeScreen}/>
+              <Route path="/global-input-app-example/signin-success" component={SignInSuccess}/>
+              <Route path="/global-input-app-example/simpleinput-submit" component={SimpleInputSubmit}/>
               </div>
             </div>
       </Router>

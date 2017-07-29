@@ -1,8 +1,8 @@
 import React from 'react'
 
-import {GlobalInputComponent,InputCodeRender} from "../global-input-component";
+import {GlobalInputComponent,AdjustableInputCodeRender} from "../global-input-component";
 
-import styles from "./SimpleInput.css";
+import  "./SimpleInput.css";
 
 export default class SimpleInput extends GlobalInputComponent {
 
@@ -26,7 +26,7 @@ export default class SimpleInput extends GlobalInputComponent {
          };
     }
  submit(){
-   this.props.history.push("/simpleinput-submit");
+   this.props.history.push("/global-input-app-example/simpleinput-submit");
  }
  setContent(content){
    console.log("content to be set:"+content);
@@ -46,7 +46,7 @@ export default class SimpleInput extends GlobalInputComponent {
                    <div>
                        <textarea rows={linenumber} cols="50" onChange={(evt) => {
                 			this.setContent(evt.target.value);
-                      this.connector.sendInputMessage(evt.target.value,0);   
+                      this.connector.sendInputMessage(evt.target.value,0);
         				    }} value={content}/>
                    </div>
 
@@ -57,7 +57,7 @@ export default class SimpleInput extends GlobalInputComponent {
 
                    </div>
            </div>
-           <InputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+           <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
 
 
 
