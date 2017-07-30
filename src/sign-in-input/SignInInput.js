@@ -10,22 +10,34 @@ export default class SignInInput extends GlobalInputComponent {
      super(props);
      this.state={username:"",password:"", sender:{}, senders:[]};
   }
-    getMetadata(){
+    buildInitData(){
         return {
-                title:"Login",
-                fields:[{
-                          label:"Email address",
-                          value:this.state.username,
-                          onInput:this.setUsername.bind(this)
-                        },{
-                           label:"Password",
-                           type:"secret",
-                           onInput:this.setPassword.bind(this)
-                        },{
-                           label:"Login",
-                           type:"button",
-                           onInput:this.login.bind(this)
-                        }]
+                action:"input-form",
+                form:{
+                  "title":"Sign In",
+                  fields:[{
+                            label:"Email address",
+                            value:this.state.username,
+                            operations:{
+                                onInput:this.setUsername.bind(this)
+                            }
+
+                          },{
+                             label:"Password",
+                             type:"secret",
+                             operations:{
+                               onInput:this.setPassword.bind(this)
+                             }
+
+                          },{
+                             label:"Login",
+                             type:"button",
+                             operations:{
+                                onInput:this.login.bind(this)
+                             }
+
+                          }]
+                      }
                 }
     }
 

@@ -31,10 +31,10 @@ export default class SettingsCodeScreen extends Component {
 
                   <div className="codeSettings record">
                        <div className="code">
-                          <AdjustableCodeDataRenderer connector={this.connector} type="sessionGroup"/>
+                          <AdjustableCodeDataRenderer connector={this.connector} type="securityGroup"/>
                         </div>
                         <div className="label">
-                            Session Group ID
+                            Security Group ID
                         </div>
                     </div>
 

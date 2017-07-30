@@ -13,8 +13,8 @@ export   default class CodeDataRenderer extends Component {
       else if(type==="apikey"){
           codedata=connector.buildAPIKeyCodeData();
       }
-      else if(type==="sessionGroup"){
-          codedata=connector.buildSessionGroupCodeData();
+      else if(type==="securityGroup"){
+          codedata=connector.buildSecurityGroupCodeData();
       }
       else if(type==="codeAES"){
           codedata=connector.buildCodeAESCodeData();

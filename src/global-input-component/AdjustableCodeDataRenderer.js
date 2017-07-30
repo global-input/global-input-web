@@ -22,7 +22,7 @@ export   default class AdjustableCodeDataRenderer extends Component {
           <div className="adjustableCodeDataContainer">
               <CodeDataRenderer connector={connector} type={type} size={size} level={level}/>
           </div>
-          <div class="codedataControllerContainer">
+          <div className="codedataControllerContainer">
             <input type="range" min="100" max="1000" step="10" value={size} onChange={evt=>{
                 this.setSize(evt.target.value);
             }}/>

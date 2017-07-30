@@ -10,19 +10,28 @@ export default class SimpleInput extends GlobalInputComponent {
      super(props);
      this.state={content:""};
   }
-    getMetadata(){
+    buildInitData(){
         return {
-                title:"Simple Input Example",
-                fields:[{
-                      label:"Content",
-                      value:this.state.content,
-                      onInput:this.setContent.bind(this),
-                      nLines:4
-                },{
-                     label:"Submit",
-                     type:"button",
-                     onInput:this.submit.bind(this)
-                 }]
+                action:"input-form",
+                form:{
+                      title:"Simple Input Example",
+                      fields:[{
+                            label:"Content",
+                            value:this.state.content,
+                            operations:{
+                                onInput:this.setContent.bind(this),
+                            },
+                            nLines:4
+                      },{
+                           label:"Submit",
+                           type:"button",
+                           operations:{
+                              onInput:this.submit.bind(this)
+                           }
+
+                       }]
+                }
+
          };
     }
  submit(){
