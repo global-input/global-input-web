@@ -1,0 +1,39 @@
+.adjustableCodeData {
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.adjustableCodeDataContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.codedataControllerContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+.formContainer{
+  display:flex;
+  flex-direction: row;
+}
+.inputcode{
+  margin-left: 50px;
+}
+@media print {
+    .toPrint {
+        background-color: blue;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}

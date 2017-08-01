@@ -12,7 +12,7 @@ export default class SimpleInput extends GlobalInputComponent {
   }
     buildInitData(){
         return {
-                action:"input-form",
+                action:"input",                
                 form:{
                       title:"Simple Input Example",
                       fields:[{

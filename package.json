@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "global-input-message": "^1.3.6",
+    "global-input-message": "^1.3.11",
     "qrcode.react": "^0.7.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

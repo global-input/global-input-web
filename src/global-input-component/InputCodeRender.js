@@ -5,7 +5,7 @@ import CodeDataRenderer from "./CodeDataRenderer";
 import SendersConnected from "./SendersConnected";
 
 
-export default class AdjustableInputCodeRender extends Component {
+export default class InputCodeRender extends Component {
 
   render() {
       var codeClassName="input senderNotConnected";
