@@ -12,7 +12,7 @@ export default class SignInInput extends GlobalInputComponent {
   }
     buildInitData(){
         return {
-                action:"input-form",
+                action:"input",
                 form:{
                   "title":"Sign In",
                   fields:[{

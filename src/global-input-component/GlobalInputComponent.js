@@ -23,20 +23,10 @@ export  default class GlobalInputComponent extends Component {
 
   buildConnectionOptions(){
     var options={
-        onInput:this.onInput.bind(this),
         initData:Object.assign({},this.buildInitData()),
         onSenderConnected:this.onSenderConnected.bind(this),
         onSenderDisconnected:this.onSenderDisconnected.bind(this)
     };
-    if(options.initData.form && options.initData.form.fields && options.initData.form.fields.length>0){
-        options.initData.form.fields=options.initData.form.fields.map(function(m){
-            var el=Object.assign({},m);
-            if(el.operations){
-                delete el.operations
-            }
-            return el;
-        });
-    }
     console.log("building this:"+JSON.stringify(options));
     return options;
   }
@@ -68,33 +58,6 @@ componentWillUnmount(){
     return null;
   }
 
-  onInput(inputMessage){
-
-      console.log("received the input message:"+inputMessage);
-
-      if(typeof inputMessage.data =="undefined"){
-        console.log("data field is missing in the input message");
-        return;
-      }
-      if(typeof inputMessage.data.index =="undefined"){
-        console.log("index should be set in the data field of the input message");
-        return;
-      }
-      var initData=this.buildInitData();
-      if((!initData.form) || (!initData.form.fields)){
-        console.log("field is missing in the initData");
-        return;
-      }
-      if(initData.form.fields.length<=inputMessage.data.index){
-          console.log("index data is too big in the input message");
-          return;
-      }
-      if(initData.form.fields[inputMessage.data.index].operations &&   initData.form.fields[inputMessage.data.index].operations.onInput){
-          initData.form.fields[inputMessage.data.index].operations.onInput(inputMessage.data.value);
-      }
-      else{
-        console.log("onInput operations is not defined in the initData index:"+inputMessage.data.index);
-      }
-  }
+  
 
 }

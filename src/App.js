@@ -10,6 +10,7 @@ import {SimpleInput} from "./simple-input";
 import {SignInInput} from "./sign-in-input";
 import {SettingsCodeScreen} from "./settings-code";
 import {SimpleInputSubmit} from "./simple-input-submit";
+import {QRCodePrintService} from "./qrcode-print-service";
 export default class App extends Component{
   render(){
     return (
@@ -20,6 +21,7 @@ export default class App extends Component{
                 <li><Link to="/global-input-app-example/simpleInput">Simple Input Example</Link></li>
                 <li><Link to="/global-input-app-example/signinput">Sign In Example</Link></li>
                 <li><Link to="/global-input-app-example/settings">Settings</Link></li>
+                <li><Link to="/global-input-app-example/qrcode-print">QR Code Printing Service</Link></li>
               </ul>
 
 
@@ -30,6 +32,7 @@ export default class App extends Component{
               <Route path="/global-input-app-example/settings" component={SettingsCodeScreen}/>
               <Route path="/global-input-app-example/signin-success" component={SignInSuccess}/>
               <Route path="/global-input-app-example/simpleinput-submit" component={SimpleInputSubmit}/>
+              <Route path="/global-input-app-example/qrcode-print" component={QRCodePrintService}/>
               </div>
             </div>
       </Router>
