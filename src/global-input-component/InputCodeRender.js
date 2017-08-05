@@ -12,7 +12,22 @@ export default class InputCodeRender extends Component {
       if(this.props.senders && this.props.senders.length>0){
           codeClassName="input senderConnected";
       }
-      const {level,size,connector}=this.props;
+      var {level,size,connector}=this.props;
+      if(!size){
+        size=300;
+      }
+      else{
+      try{
+          size=parseInt(size);
+          if(size<50){
+            size=50;            
+          }
+        }
+        catch(error){
+          console.error(error+" for size="+size);
+          size=300;
+        }
+      }
 
 
     return (

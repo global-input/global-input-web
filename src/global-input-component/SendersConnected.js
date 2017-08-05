@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {createMessageConnector} from "global-input-message";
+
 
 export   default class SendersConnected extends Component {
 

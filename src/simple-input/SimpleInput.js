@@ -12,7 +12,7 @@ export default class SimpleInput extends GlobalInputComponent {
   }
     buildInitData(){
         return {
-                action:"input",                
+                action:"input",
                 form:{
                       title:"Simple Input Example",
                       fields:[{
@@ -38,7 +38,6 @@ export default class SimpleInput extends GlobalInputComponent {
    this.props.history.push("/global-input-app-example/simpleinput-submit");
  }
  setContent(content){
-   console.log("content to be set:"+content);
    this.setState(Object.assign({}, this.state,{content}));
  }
 
@@ -46,7 +45,7 @@ export default class SimpleInput extends GlobalInputComponent {
   render() {
     const linenumber=4;
     const content=this.state.content;
-    console.log(" so the content in the state:"+content);
+    
 
     return (
       <div className="simple container">
