@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 
-import {AdjustableCodeDataRenderer} from "../global-input-component";
+import {AdjustableCodeDataRenderer} from "global-input-react";
 import {createMessageConnector} from "global-input-message";
+import "../css/global-input.css"
 
-import "./SettingsCodeScreen.css";
+import "../css/SettingsCodeScreen.css";
 
 
 
