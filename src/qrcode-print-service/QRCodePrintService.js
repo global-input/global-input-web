@@ -16,7 +16,7 @@ export default class QRCodePrintService extends GlobalInputComponent {
                   action:"input",
                   dataType:"qrcode",
                   form:{
-                    "title": "QR Code generator",
+                    "title": "QR Code Printing Service",
                     fields:[{
                               label:"Label",
                               operations:{
@@ -71,13 +71,13 @@ export default class QRCodePrintService extends GlobalInputComponent {
       this.setState(Object.assign({},this.state,{size}));
     }
     onLevelItemsSelected(items){
-      console.log("********selected item receifed:"+JSON.stringify(items));
+
         if(!items.length){
           console.log("received selected items length is zero");
           return;
         }
         var selected=items[0].value;
-        if(selected=="L"||selected=="M" || selected=="Q" || selected=="H"){
+        if(selected==="L"||selected==="M" || selected==="Q" || selected==="H"){
             this.setLevel(selected);
         }
     }
@@ -99,28 +99,35 @@ export default class QRCodePrintService extends GlobalInputComponent {
     render() {
 
         var {size,level,content,label}=this.state;
+        var formContainer="formContainer";
+        if(!content.length){
+          formContainer=formContainer+=" emptyContent";
+        }
         return(
-        <div className="formContainer">
+        <div className={formContainer}>
                 <div className="adjustableCodeData">
-                  <div className="adjustableCodeDataContainer toPrint">
 
-                      <QRCode value={content} level={level} size={size}/>
-                      {label}
+                      <div className="adjustableCodeDataContainer toPrint requiredForCode">
 
-                  </div>
-                  <div className="codedataControllerContainer">
-                    <input type="range" min="100" max="1000" step="10" value={size} onChange={evt=>{
-                        this.setSize(evt.target.value);
-                    }}/>
-                    <select value={level} onChange={evt=>{
-                      this.setLevel(evt.target.value);
-                    }}>
-                      <option value="L">L</option>
-                      <option value="M">M</option>
-                      <option value="Q">Q</option>
-                      <option value="H">H</option>
-                    </select>
-                  </div>
+                          <QRCode value={content} level={level} size={size}/>
+                          {label}
+
+                      </div>
+                      <div className="codedataControllerContainer requiredForCode">
+                        <input type="range" min="100" max="1000" step="10" value={size} onChange={evt=>{
+                            this.setSize(evt.target.value);
+                        }}/>
+                        <select value={level} onChange={evt=>{
+                          this.setLevel(evt.target.value);
+                        }}>
+                          <option value="L">L</option>
+                          <option value="M">M</option>
+                          <option value="Q">Q</option>
+                          <option value="H">H</option>
+                        </select>
+                      </div>
+
+
                   <div>
                       Content: <input type="text" onChange={(evt) => {
                             this.setContent(evt.target.value);
@@ -131,7 +138,7 @@ export default class QRCodePrintService extends GlobalInputComponent {
                             this.setLabel(evt.target.value);
                         }} value={this.state.label} size="30"/>
                   </div>
-                  <div>
+                  <div className="requiredForCode">
                       <button onClick={this.printQRCode}>
                       Print
                       </button>

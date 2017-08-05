@@ -42,11 +42,11 @@ export default class SignInInput extends GlobalInputComponent {
     }
 
  setUsername(username){
-   console.log("content to be set:"+username);
+
    this.setState(Object.assign({}, this.state,{username}));
  }
  setPassword(password){
-   console.log("content to be set:"+password);
+   
    this.setState(Object.assign({}, this.state,{password}));
  }
 

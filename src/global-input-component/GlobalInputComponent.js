@@ -27,22 +27,17 @@ export  default class GlobalInputComponent extends Component {
         onSenderConnected:this.onSenderConnected.bind(this),
         onSenderDisconnected:this.onSenderDisconnected.bind(this)
     };
-    console.log("building this:"+JSON.stringify(options));
     return options;
   }
   onSenderConnected(sender, senders){
-      console.log("a new device is connected:"+JSON.stringify(sender));
       this.setState(Object.assign({},this.state,{sender, senders}));
   }
   onSenderDisconnected(sender, senders){
-      console.log("a device is disconnected:"+JSON.stringify(sender));
       this.setState(Object.assign({},this.state,{sender, senders}));
   }
   connectToMessenger(){
           var options=this.buildConnectionOptions();
-          console.log("......*****:connection options***"+JSON.stringify(options));
-          this.connector.connect(options);
-          console.log("......*****:"+this.connector.url);
+          this.connector.connect(options);          
   }
 
 disconnectFromMessenger(){
@@ -58,6 +53,6 @@ componentWillUnmount(){
     return null;
   }
 
-  
+
 
 }
