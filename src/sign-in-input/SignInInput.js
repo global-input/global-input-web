@@ -1,9 +1,11 @@
 import React from 'react'
 
-import  "./SignInInput.css";
+import "../css/global-input.css"
+import  "../css/SignInInput.css";
 
 
-import {GlobalInputComponent,AdjustableInputCodeRender} from "../global-input-component";
+
+import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
 
 export default class SignInInput extends GlobalInputComponent {
   constructor(props){
@@ -46,7 +48,7 @@ export default class SignInInput extends GlobalInputComponent {
    this.setState(Object.assign({}, this.state,{username}));
  }
  setPassword(password){
-   
+
    this.setState(Object.assign({}, this.state,{password}));
  }
 

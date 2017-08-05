@@ -16,3 +16,17 @@
   justify-content: start;
   align-items: start;
 }
+.input.senderNotConnected {
+  background-color: white;
+  flex:1;
+  display:"flex";
+  flex-direction: "column";
+
+}
+
+.input.senderConnected {
+    border: 2px solid red;
+    flex:1;
+    display:"flex";
+    flex-direction: "column";
+}

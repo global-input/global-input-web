@@ -1,8 +1,8 @@
 import React from 'react'
 
-import {GlobalInputComponent,AdjustableInputCodeRender} from "../global-input-component";
-
-import  "./SimpleInput.css";
+import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
+import "../css/global-input.css"
+import  "../css/SimpleInput.css";
 
 export default class SimpleInput extends GlobalInputComponent {
 
@@ -45,7 +45,7 @@ export default class SimpleInput extends GlobalInputComponent {
   render() {
     const linenumber=4;
     const content=this.state.content;
-    
+
 
     return (
       <div className="simple container">

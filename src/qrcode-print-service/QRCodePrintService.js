@@ -1,9 +1,10 @@
 import React from 'react'
 import QRCode from "qrcode.react";
-import  "./QRCodePrintService.css";
+import "../css/global-input.css"
+import  "../css/QRCodePrintService.css";
 
 
-import {GlobalInputComponent,InputCodeRender} from "../global-input-component";
+import {GlobalInputComponent,InputCodeRender} from "global-input-react";
 
 export default class QRCodePrintService extends GlobalInputComponent {
   constructor(props){
