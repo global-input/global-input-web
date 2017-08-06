@@ -1,9 +1,11 @@
 import React from 'react'
 
 import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
-import "../css/global-input.css"
-import  "../css/SimpleInput.css";
 
+import SimpleInputSource from "./SimpleInputSource";
+
+
+const linenumber=10;
 export default class SimpleInput extends GlobalInputComponent {
 
   constructor(props){
@@ -21,9 +23,9 @@ export default class SimpleInput extends GlobalInputComponent {
                             operations:{
                                 onInput:this.setContent.bind(this),
                             },
-                            nLines:4
+                            nLines:linenumber
                       },{
-                           label:"Submit",
+                           label:"Finish",
                            type:"button",
                            operations:{
                               onInput:this.submit.bind(this)
@@ -43,33 +45,37 @@ export default class SimpleInput extends GlobalInputComponent {
 
 
   render() {
-    const linenumber=4;
+
     const content=this.state.content;
 
 
     return (
-      <div className="simple container">
+    <div>
+              <div className="simple container">
 
-           <div className="simple formContainer">
-                   <div>
-                       <textarea rows={linenumber} cols="50" onChange={(evt) => {
-                			this.setContent(evt.target.value);
-                      this.connector.sendInputMessage(evt.target.value,0);
-        				    }} value={content}/>
+                   <div className="simple formContainer">
+
+                           <div>
+                               <textarea rows={linenumber} cols="50" onChange={(evt) => {
+                        			this.setContent(evt.target.value);
+                              this.connector.sendInputMessage(evt.target.value,0);
+                				    }} value={content}/>
+                           </div>
+
+                           <div>
+                                  <button onClick={(evt) => {
+                         this.submit();
+                     }}>Finish</button>
+
+                           </div>
                    </div>
+                   <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+              </div>
 
-                   <div>
-                          <button onClick={(evt) => {
-                 this.submit();
-             }}>Submit</button>
+              <div>
+                  <SimpleInputSource/>
 
-                   </div>
-           </div>
-           <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
-
-
-
-
+              </div>
       </div>
     );
   }

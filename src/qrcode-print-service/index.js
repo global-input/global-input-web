@@ -1,2 +1,3 @@
-import QRCodePrintService from './QRCodePrintService';
-export {QRCodePrintService};
+
+import QRPrintingServiceHome from "./QRPrintingServiceHome";
+export {QRPrintingServiceHome};

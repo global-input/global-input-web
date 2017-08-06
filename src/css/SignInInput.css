@@ -6,8 +6,13 @@ justify-content: flex-start;
 
 }
 .signin.formContainer {
-  background-color: #CCEEFF;
-  flex:1;
-  display:flex;
+  position: relative;
+  background: #ffffff;
+  max-width: 320px;
+  width: 100%;
+  border-top: 5px solid #33b5e5;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  dispay:flex;
   flex-direction: column;
 }

@@ -1,15 +1,13 @@
 import React from 'react'
 import QRCode from "qrcode.react";
-import "../css/global-input.css"
-import  "../css/QRCodePrintService.css";
 
 
 import {GlobalInputComponent,InputCodeRender} from "global-input-react";
-
+import QRCodePrintServiceSource from "./QRCodePrintServiceSource";
 export default class QRCodePrintService extends GlobalInputComponent {
   constructor(props){
     super(props);
-    this.state={size:300,level:"Q", content:"", label:"",sender:{}, senders:[]};
+    this.state={size:300,level:"H", content:"", label:"",sender:{}, senders:[]};
   }
 
     buildInitData(){
@@ -49,14 +47,15 @@ export default class QRCodePrintService extends GlobalInputComponent {
                               },
                               type:"list",
                               selectType:"single",
-                              value:"Q",
+                              value:"H",
                               items:[
                                 {value:"L", label:"L"},
                                 {value:"M", label:"M"},
                                 {value:"Q", label:"Q"},
                                 {value:"H", label:"H"}
                               ]
-                            },{
+                            },
+                            {
                                label:"Print",
                                type:"button",
                                operations:{
@@ -105,7 +104,8 @@ export default class QRCodePrintService extends GlobalInputComponent {
           formContainer=formContainer+=" emptyContent";
         }
         return(
-        <div className={formContainer}>
+      <div>
+           <div className={formContainer}>
                 <div className="adjustableCodeData">
 
                       <div className="adjustableCodeDataContainer toPrint requiredForCode">
@@ -150,8 +150,12 @@ export default class QRCodePrintService extends GlobalInputComponent {
                 <div className="inputcode">
                   <InputCodeRender connector={this.connector} type="input"  level="Q" size="300" sender={this.state.sender} senders={this.state.senders}/>
                 </div>
-        </div>
 
+              </div>
+
+            <QRCodePrintServiceSource/>
+            
+        </div>
         );
     }
 }

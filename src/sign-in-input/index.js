@@ -1,2 +1,2 @@
-import SignInInput from './SignInInput';
-export {SignInInput};
+import SignInInputHome from './SignInInputHome';
+export {SignInInputHome};

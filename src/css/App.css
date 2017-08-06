@@ -5,9 +5,10 @@ body {
 }
 .topContainer{
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin:4px;
 }
 .menuContainer {
   display:flex;
@@ -18,7 +19,7 @@ body {
 }
 .contentContainer {
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 
@@ -30,4 +31,64 @@ body {
     padding: 0;
     white-space:nowrap;
 
+}
+
+.hideSource{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.introSection{
+  border-top:4px groove #3A627B;
+  border-bottom:4px groove #3A627B;
+  padding:5px;
+  margin:5px;
+
+}
+.codeContainer{
+  max-height: 500px;
+  max-width:800px;
+  margin-left: 30px;
+
+  background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+.showSourceText{
+  color:blue;
+  cursor:pointer;
+  margin:10px;
+
+
+}
+
+.appTitle{
+  font-size: 22px;
+}
+
+.loginComplete{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  margin:15px;
+
+}
+.loginComplete .title{
+    border:1px solid red;
+    padding:8px;
+}
+
+.simpleInputFinishedContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  margin:15px;
+}
+.simpleInputFinishedText{
+  border:1px solid red;
+  padding:8px;
 }
