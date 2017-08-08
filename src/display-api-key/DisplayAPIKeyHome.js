@@ -19,7 +19,7 @@ export default class DisplayAPIKeyHome extends Component{
                     <li className="appTitle"><Link to="/global-input-app-example/apikey">{textValues.apikey.title}</Link></li>
                 </ul>
                 <Route path="/global-input-app-example/apikey" component={DisplayAPIKey}/>
-                {textValues.apikey.content.p2}  
+                {textValues.apikey.content.p2}
             </div>
 
       )
