@@ -40,7 +40,7 @@ body {
 }
 .introSection{
   border-top:4px groove #3A627B;
-  
+
   padding:5px;
   margin:5px;
 
@@ -91,4 +91,8 @@ body {
 .simpleInputFinishedText{
   border:1px solid red;
   padding:8px;
+}
+.ptext{
+  margin-top:5px;
+  margin-bottom: 5px;
 }

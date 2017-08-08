@@ -22,5 +22,15 @@
   margin-top: 10px;
 }
 .subTitleText{
-  
+
+}
+
+.copyrightinfo{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  font-size: 10px;
 }

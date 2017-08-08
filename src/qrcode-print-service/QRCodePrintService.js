@@ -154,7 +154,7 @@ export default class QRCodePrintService extends GlobalInputComponent {
               </div>
 
             <QRCodePrintServiceSource/>
-            
+
         </div>
         );
     }

@@ -7,7 +7,7 @@ import {
 
 
 import SimpleInput from "./SimpleInput";
-
+import {textValues} from  "../configs";
 
 export default class SimpleInputHome extends Component{
   render(){
@@ -15,19 +15,22 @@ export default class SimpleInputHome extends Component{
 
 
             <div className="introSection">
-                Another example is the two-way editing, that you can edit both on computer and mobile at the same time and changes reflected on both screens.
+              <div>
+                {textValues.simpleInput.content.p1}
+              </div>
 
-                Click on the following link to check it out, again you need to use the Global Input App to connect your mobile to the app.
+
+
+
 
 
                 <ul className="menuContainer">
-                    <li className="appTitle"><Link to="/global-input-app-example/simpleInput">Simple Input (two way) Example</Link></li>
+                    <li className="appTitle"><Link to="/global-input-app-example/simpleInput">{textValues.simpleInput.title}</Link></li>
                 </ul>
                 <Route path="/global-input-app-example/simpleInput" component={SimpleInput}/>
                 <Route path="/global-input-app-example/simpleinput-submit" component={SimpleInputSubmit}/>
 
-              When you enter some text, you may prefer to use both your mobile and computer at the same time, for example, you may find it easier to do copy and paste content from Internet
-              on your computer and do other modifications with your mobile etc.
+                {textValues.simpleInput.content.p2}
             </div>
 
       )
