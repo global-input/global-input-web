@@ -1,3 +1,4 @@
-import SimpleInput from './SimpleInput';
+import SimpleInputHome from './SimpleInputHome';
 
-export {SimpleInput};
+
+export {SimpleInputHome};

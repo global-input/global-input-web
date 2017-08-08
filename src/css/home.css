@@ -1,0 +1,36 @@
+.homeContainer{
+
+  margin-bottom:10px;
+}
+
+
+.appLink{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  padding:10px;
+}
+
+.headerSection{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.titleText{
+  margin:0;
+  margin-top: 10px;
+}
+.subTitleText{
+
+}
+
+.copyrightinfo{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  font-size: 10px;
+}

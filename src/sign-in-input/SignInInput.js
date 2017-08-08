@@ -7,6 +7,10 @@ import  "../css/SignInInput.css";
 
 import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
 
+import SignInInputSource from "./SignInInputSource";
+
+
+
 export default class SignInInput extends GlobalInputComponent {
   constructor(props){
      super(props);
@@ -61,33 +65,34 @@ login(){
 
     const {username,password}=this.state;
     return (
-    <div className="signin container">
+      <div>
+            <div className="signin container">
 
-         <div className="signin formContainer">
-                 <div>
-                     Email address: <input type="text" onChange={(evt) => {
-                           this.setUsername(evt.target.value);
-                       }} value={username}/>
+                 <div className="signin formContainer">
+                         <div>
+                             Email address: <input type="text" onChange={(evt) => {
+                                   this.setUsername(evt.target.value);
+                               }} value={username}/>
+                         </div>
+                         <div>
+                             Password: <input type="password" onChange={(evt) => {
+                                   this.setPassword(evt.target.value);
+                               }} value={password}/>
+                         </div>
+                         <div>
+                              <button onClick={(evt) => {
+                                   this.login();
+                               }}>Login</button>
+
+                         </div>
                  </div>
-                 <div>
-                     Password: <input type="password" onChange={(evt) => {
-                           this.setPassword(evt.target.value);
-                       }} value={password}/>
-                 </div>
-                 <div>
-                      <button onClick={(evt) => {
-                           this.login();
-                       }}>Login</button>
 
-                 </div>
-         </div>
-
-         <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
-
-
-
-
-    </div>
+                 <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+               </div>
+               <div>
+               <SignInInputSource/>
+               </div>
+        </div>
     );
   }
 }
