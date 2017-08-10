@@ -43,28 +43,13 @@ const textValues={
         p2:"When you enter some text, you may prefer to use both your mobile and computer at the same time, for example, you may find it easier to do copy and paste content from Internet on your computer and do other modifications with your mobile etc."
     }
   },
-  securityGroup:{
-    title:"Pair the security group ID",
+  pairing:{
+    title:"Pair handsets",
     content:{
-      p1:"In some cases you would like to allow only some specific handsets that are pre-paired with your service applications to be able to connect to your services. For this, Global Input has the concept of Security Group ID, which you can display it or print it out, so that the user can pair their device simply by pointing the phone camera to the Security Group ID QR code.  Click on the following link to see how it works.",
-      p2:"In this case, the Security Group Id is the same with the default one that comes with the mobile app. So it does not make any difference whether you accept it or reject it when the dialog appears on your mobile phone.  Sure you can also print out your existing Security Group ID for later importing purposes before accepting a different Security Group ID value."
-    }
-  },
-  apikey:{
-    title:"Pairing the API Key",
-    content:{
-      p1:"Some service applications may need to use different API key to connect to the WebSocket server. In this case, the importing of the API Key value should also be part of the pre-paring process.  Click on the following link to see how it works.",
-      p2:"In this case, the Api Key is the same with the default one that comes with the mobile app, so it does not make any difference whether you accept it or reject it when the dialog appears on your mobile phone. Sure you can also print out your existing API Key value for later importing purpose before accept a different API Key."
-    }
-  },
-  codeAES:{
-    title:"Pair the Code Encryption Key",
-    content:{
-      p1:"When the Security Group ID or API Key are displayed or printed, it will be in its encrypted form. The encryption key value used comes with the app. Rarely you want to use a different one, if you do, you need to make it also part of the paring process. Click on the following link to see how it works.",
-      p2:"In this case, the Code Encryption Key is the same with the default one that comes with the mobile app,  so it does not make any difference whether you accept it or reject it when the dialog appears on your mobile phone. Sure you can also print out your existing value for later importing purposes before accept a different one."
+      p1:"In some cases you would like to allow only some specific handsets that are pre-paired with your service applications to be able to connect to your services. You can do so by displaying or printing out pairing data, and the phone needs to be paired can simply be pointed to the display QR Code.  Click on the following link to see how it works.",
+      p2:"It should display a dialog on the mobile phone whether it accept the pairing.  Before pairing, you can print out your existing pairing data for later importing purposes before accepting a different pairing data."
     }
   }
-
 
 };
 export default textValues;

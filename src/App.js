@@ -13,13 +13,13 @@ import  "./css/SimpleInput.css";
 
 import {Home} from "./home";
 import {SimpleInputHome} from "./simple-input";
-import {SignInInputHome} from "./sign-in-input";
-import {SettingsCodeScreen} from "./settings-code";
+ import {SignInInputHome} from "./sign-in-input";
+
 
 import {QRPrintingServiceHome} from "./qrcode-print-service";
-import {DisplaySecurityGroupHome} from "./display-security-group";
-import {DisplayAPIKeyHome} from "./display-api-key";
-import {DisplayCodeEncryptionKeyHome} from "./display-code-encryption-key";
+import {DisplayPrePairingHome} from "./display-pre-pairing";
+
+
 
 
 
@@ -33,12 +33,12 @@ export default class App extends Component{
             <Route  path="/" component={Home}/>
 
             <QRPrintingServiceHome/>
-            <SignInInputHome/>
-            <SimpleInputHome/>
-            <DisplaySecurityGroupHome/>
-            <DisplayAPIKeyHome/>
-            <DisplayCodeEncryptionKeyHome/>
 
+            <SignInInputHome/>
+
+            <SimpleInputHome/>
+            <DisplayPrePairingHome/>
+          
             </div>
       </Router>
       )

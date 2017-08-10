@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 import {DisplaySource} from "../components";
-export default class DisplayCodeEncryptionKeySource extends DisplaySource{
+export default class DisplayPrePairingSource extends DisplaySource{
 
   renderSource(){
 
@@ -18,8 +18,8 @@ export default class DisplayCodeEncryptionKeySource extends DisplaySource{
 
         import {AdjustableCodeDataRenderer} from "global-input-react";
         import {createMessageConnector} from "global-input-message";
-        import DisplayCodeEncryptionKeySource from "./DisplayCodeEncryptionKeySource";
-        export default class DisplayCodeEncryptionKey extends Component {
+        import DisplayPrePairingSource from "./DisplayPrePairingSource";
+        export default class DisplayPrePairing extends Component {
           constructor(props){
             super(props);
             this.connector=createMessageConnector();
@@ -30,20 +30,20 @@ export default class DisplayCodeEncryptionKeySource extends DisplaySource{
               <div>
                           <div className="codeSettings record">
                                <div className="code">
-                                  <AdjustableCodeDataRenderer connector={this.connector} type="codeAES"/>
+                                  <AdjustableCodeDataRenderer connector={this.connector} type="pairing"/>
                                 </div>
                                 <div className="label">
-                                    QR Code Encryption Key
+                                    Pairing data
                                 </div>
                             </div>
                             <div>
-                                <DisplayCodeEncryptionKeySource/>
+                                <DisplayPrePairingSource/>
+
                             </div>
               </div>
             );
           }
         }
-
 
 
         `}</pre>

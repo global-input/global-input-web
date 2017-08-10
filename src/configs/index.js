@@ -1,2 +1,3 @@
 import textValues from "./textValues";
-export {textValues};
+import config from "./config";
+export {textValues,config};

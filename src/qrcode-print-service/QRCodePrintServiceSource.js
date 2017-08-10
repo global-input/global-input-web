@@ -15,73 +15,93 @@ renderSource(){
 
     <pre>{`
 
-      import React from 'react'
+      import React, {Component} from 'react'
       import QRCode from "qrcode.react";
 
 
-      import {GlobalInputComponent,InputCodeRender} from "global-input-react";
-
-      export default class QRCodePrintService extends GlobalInputComponent {
+      import {InputCodeRender} from "global-input-react";
+      import {createMessageConnector} from "global-input-message";
+      import QRCodePrintServiceSource from "./QRCodePrintServiceSource";
+      import {config} from "../configs";
+      export default class QRCodePrintService extends Component {
         constructor(props){
           super(props);
-          this.state={size:300,level:"Q", content:"", label:"",sender:{}, senders:[]};
+          this.state={size:300,level:"H", content:"", label:"",sender:{}, senders:[]};
+         this.connector=createMessageConnector();
         }
+        connectToGlobalInput(){
+                 var options={
 
-          buildInitData(){
-              return {
-                        action:"input",
-                        dataType:"qrcode",
-                        form:{
-                          "title": "QR Code Printing Service",
-                          fields:[{
-                                    label:"Label",
-                                    operations:{
-                                        onInput:this.setLabel.bind(this)
-                                    }
-
-
-                                  },{
-                                     label:"Content",
+                       url:config.url,
+                       apikey:config.apikey,
+                       onSenderConnected:this.onSenderConnected.bind(this),
+                       onSenderDisconnected:this.onSenderDisconnected.bind(this),
+                       initData:{
+                         action:"input",
+                         form:{
+                           "title": "QR Code Printing Service",
+                           fields:[{
+                                     label:"Label",
                                      operations:{
-                                       onInput:this.setContent.bind(this)
+                                         onInput:this.setLabel.bind(this)
                                      }
 
-                                  },{
-                                     label:"Size",
+
+                                   },{
+                                      label:"Content",
+                                      operations:{
+                                        onInput:this.setContent.bind(this)
+                                      }
+
+                                   },{
+                                      label:"Size",
+                                      operations:{
+                                        onInput:this.setSize.bind(this)
+                                      },
+                                      value:300,
+                                      type:"range",
+                                      minimumValue:100,
+                                      maximumValue:1000,
+                                      step:10
+
+                                   },{
+                                     label:"Level",
                                      operations:{
-                                       onInput:this.setSize.bind(this)
+                                       onInput:this.onLevelItemsSelected.bind(this)
                                      },
-                                     value:300,
-                                     type:"range",
-                                     minimumValue:100,
-                                     maximumValue:1000,
-                                     step:10
+                                     type:"list",
+                                     selectType:"single",
+                                     value:"H",
+                                     items:[
+                                       {value:"L", label:"L"},
+                                       {value:"M", label:"M"},
+                                       {value:"Q", label:"Q"},
+                                       {value:"H", label:"H"}
+                                     ]
+                                   },
+                                   {
+                                      label:"Print",
+                                      type:"button",
+                                      operations:{
+                                         onInput:this.printQRCode.bind(this)
+                                      }
 
-                                  },{
-                                    label:"Level",
-                                    operations:{
-                                      onInput:this.onLevelItemsSelected.bind(this)
-                                    },
-                                    type:"list",
-                                    selectType:"single",
-                                    value:"Q",
-                                    items:[
-                                      {value:"L", label:"L"},
-                                      {value:"M", label:"M"},
-                                      {value:"Q", label:"Q"},
-                                      {value:"H", label:"H"}
-                                    ]
-                                  },{
-                                     label:"Print",
-                                     type:"button",
-                                     operations:{
-                                        onInput:this.printQRCode.bind(this)
-                                     }
+                                   }]
+                               }
+                      }
 
-                                  }]
-                              }
-                        }
+
+                 };
+
+               this.connector.connect(options);
           }
+          onSenderConnected(sender, senders){
+             this.setState(Object.assign({},this.state,{sender, senders}));
+         }
+         onSenderDisconnected(sender, senders){
+             this.setState(Object.assign({},this.state,{sender, senders}));
+         }
+
 
           setSize(size){
             this.setState(Object.assign({},this.state,{size}));
@@ -111,7 +131,12 @@ renderSource(){
           printQRCode(){
               window.print();
           }
-
+          componentDidMount(){
+              this.connectToGlobalInput();
+           }
+           componentWillUnmount(){
+              this.connector.disconnect();
+          }
           render() {
 
               var {size,level,content,label}=this.state;
@@ -120,7 +145,8 @@ renderSource(){
                 formContainer=formContainer+=" emptyContent";
               }
               return(
-              <div className={formContainer}>
+            <div>
+                 <div className={formContainer}>
                       <div className="adjustableCodeData">
 
                             <div className="adjustableCodeDataContainer toPrint requiredForCode">
@@ -165,12 +191,15 @@ renderSource(){
                       <div className="inputcode">
                         <InputCodeRender connector={this.connector} type="input"  level="Q" size="300" sender={this.state.sender} senders={this.state.senders}/>
                       </div>
-              </div>
 
+                    </div>
+
+                  <QRCodePrintServiceSource/>
+
+              </div>
               );
           }
       }
-
 
 
 
