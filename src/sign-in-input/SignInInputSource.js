@@ -20,23 +20,32 @@ renderSource(){
   return(
 
     <pre>{`
-
-      import React from 'react'
+      import React, {Component} from 'react'
 
       import "../css/global-input.css"
       import  "../css/SignInInput.css";
 
-
+      import {config} from "../configs";
 
       import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
 
-      export default class SignInInput extends GlobalInputComponent {
+      import SignInInputSource from "./SignInInputSource";
+
+
+
+      export default class SignInInput extends Component {
         constructor(props){
            super(props);
            this.state={username:"",password:"", sender:{}, senders:[]};
         }
-          buildInitData(){
-              return {
+        connectToGlobalInput(){
+              var options={
+
+                    url:config.url,
+                    apikey:config.apikey,
+                    onSenderConnected:this.onSenderConnected.bind(this),
+                    onSenderDisconnected:this.onSenderDisconnected.bind(this),
+                    initData:{
                       action:"input",
                       form:{
                         "title":"Sign In",
@@ -63,8 +72,21 @@ renderSource(){
 
                                 }]
                             }
-                      }
+                   }
+
+
+              };
+
+            this.connector.connect(options);
+       }
+       onSenderConnected(sender, senders){
+              this.setState(Object.assign({},this.state,{sender, senders}));
           }
+          onSenderDisconnected(sender, senders){
+              this.setState(Object.assign({},this.state,{sender, senders}));
+          }
+
+
 
        setUsername(username){
 
@@ -78,42 +100,50 @@ renderSource(){
       login(){
           this.props.history.push("/global-input-app-example/signin-success");
       }
-
+      componentDidMount(){
+         this.connectToGlobalInput();
+      }
+      componentWillUnmount(){
+         this.connector.disconnect();
+      }
 
         render() {
 
           const {username,password}=this.state;
           return (
-          <div className="signin container">
+            <div>
+                  <div className="signin container">
 
-               <div className="signin formContainer">
-                       <div>
-                           Email address: <input type="text" onChange={(evt) => {
-                                 this.setUsername(evt.target.value);
-                             }} value={username}/>
+                       <div className="signin formContainer">
+                               <div>
+                                   Email address: <input type="text" onChange={(evt) => {
+                                         this.setUsername(evt.target.value);
+                                     }} value={username}/>
+                               </div>
+                               <div>
+                                   Password: <input type="password" onChange={(evt) => {
+                                         this.setPassword(evt.target.value);
+                                     }} value={password}/>
+                               </div>
+                               <div>
+                                    <button onClick={(evt) => {
+                                         this.login();
+                                     }}>Login</button>
+
+                               </div>
                        </div>
-                       <div>
-                           Password: <input type="password" onChange={(evt) => {
-                                 this.setPassword(evt.target.value);
-                             }} value={password}/>
-                       </div>
-                       <div>
-                            <button onClick={(evt) => {
-                                 this.login();
-                             }}>Login</button>
 
-                       </div>
-               </div>
-
-               <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
-
-
-
-
-          </div>
+                       <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+                     </div>
+                     <div>
+                     <SignInInputSource/>
+                     </div>
+              </div>
           );
         }
       }
+
+
 
       `}</pre>
   )

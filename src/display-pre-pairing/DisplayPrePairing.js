@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 
 import {AdjustableCodeDataRenderer} from "global-input-react";
 import {createMessageConnector} from "global-input-message";
-import DisplaySecurityGroupSource from "./DisplaySecurityGroupSource";
-export default class DisplaySecurityGroup extends Component {
+import DisplayPrePairingSource from "./DisplayPrePairingSource";
+export default class DisplayPrePairing extends Component {
   constructor(props){
     super(props);
     this.connector=createMessageConnector();
+    
+
   }
 
   render() {
@@ -14,14 +16,14 @@ export default class DisplaySecurityGroup extends Component {
       <div>
                   <div className="codeSettings record">
                        <div className="code">
-                          <AdjustableCodeDataRenderer connector={this.connector} type="securityGroup"/>
+                          <AdjustableCodeDataRenderer connector={this.connector} type="pairing"/>
                         </div>
                         <div className="label">
-                            Security Group ID
+                            Pairing data
                         </div>
                     </div>
                     <div>
-                        <DisplaySecurityGroupSource/>
+                        <DisplayPrePairingSource/>
 
                     </div>
       </div>

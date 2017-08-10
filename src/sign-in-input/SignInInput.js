@@ -1,24 +1,32 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import "../css/global-input.css"
 import  "../css/SignInInput.css";
 
-
-
+import {config} from "../configs";
+import {createMessageConnector} from "global-input-message";
 import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
 
 import SignInInputSource from "./SignInInputSource";
 
 
 
-export default class SignInInput extends GlobalInputComponent {
+export default class SignInInput extends Component {
   constructor(props){
      super(props);
      this.state={username:"",password:"", sender:{}, senders:[]};
+     this.connector=createMessageConnector();
   }
-    buildInitData(){
-        return {
+  connectToGlobalInput(){
+        var options={
+
+              url:config.url,
+              apikey:config.apikey,
+              onSenderConnected:this.onSenderConnected.bind(this),
+              onSenderDisconnected:this.onSenderDisconnected.bind(this),
+              initData:{
                 action:"input",
+                dataType:"login",
                 form:{
                   "title":"Sign In",
                   fields:[{
@@ -44,8 +52,21 @@ export default class SignInInput extends GlobalInputComponent {
 
                           }]
                       }
-                }
+             }
+
+
+        };
+
+      this.connector.connect(options);
+ }
+ onSenderConnected(sender, senders){
+        this.setState(Object.assign({},this.state,{sender, senders}));
     }
+    onSenderDisconnected(sender, senders){
+        this.setState(Object.assign({},this.state,{sender, senders}));
+    }
+
+
 
  setUsername(username){
 
@@ -59,7 +80,12 @@ export default class SignInInput extends GlobalInputComponent {
 login(){
     this.props.history.push("/global-input-app-example/signin-success");
 }
-
+componentDidMount(){
+   this.connectToGlobalInput();
+}
+componentWillUnmount(){
+   this.connector.disconnect();
+}
 
   render() {
 
