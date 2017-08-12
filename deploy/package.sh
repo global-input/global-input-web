@@ -1,3 +1,6 @@
+
+sed -i -e "s,dev,prod,g" src/configs/config.js
+
 source deploy/util.sh
 yarn add global-input-message
 yarn build

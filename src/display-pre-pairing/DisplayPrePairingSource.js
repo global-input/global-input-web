@@ -16,21 +16,22 @@ export default class DisplayPrePairingSource extends DisplaySource{
       <pre>{`
         import React, {Component} from 'react';
 
-        import {AdjustableCodeDataRenderer} from "global-input-react";
-        import {createMessageConnector} from "global-input-message";
+        import {CodeDataRenderer} from "global-input-react";
+        import {config} from "../configs";
         import DisplayPrePairingSource from "./DisplayPrePairingSource";
         export default class DisplayPrePairing extends Component {
-          constructor(props){
-            super(props);
-            this.connector=createMessageConnector();
-          }
 
           render() {
+
+            var globalInputConfig={
+                    securityGroup:config.securityGroup
+            };
+
             return (
               <div>
                           <div className="codeSettings record">
                                <div className="code">
-                                  <AdjustableCodeDataRenderer connector={this.connector} type="pairing"/>
+                                      <CodeDataRenderer service={this} type="pairing" config={globalInputConfig} level="H" size="300"/>
                                 </div>
                                 <div className="label">
                                     Pairing data

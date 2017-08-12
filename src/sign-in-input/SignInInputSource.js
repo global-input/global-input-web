@@ -27,7 +27,7 @@ renderSource(){
 
       import {config} from "../configs";
 
-      import {GlobalInputComponent,AdjustableInputCodeRender} from "global-input-react";
+      import {CodeDataRenderer} from "global-input-react";
 
       import SignInInputSource from "./SignInInputSource";
 
@@ -36,55 +36,8 @@ renderSource(){
       export default class SignInInput extends Component {
         constructor(props){
            super(props);
-           this.state={username:"",password:"", sender:{}, senders:[]};
+           this.state={username:"",password:""};
         }
-        connectToGlobalInput(){
-              var options={
-
-                    url:config.url,
-                    apikey:config.apikey,
-                    onSenderConnected:this.onSenderConnected.bind(this),
-                    onSenderDisconnected:this.onSenderDisconnected.bind(this),
-                    initData:{
-                      action:"input",
-                      form:{
-                        "title":"Sign In",
-                        fields:[{
-                                  label:"Email address",
-                                  value:this.state.username,
-                                  operations:{
-                                      onInput:this.setUsername.bind(this)
-                                  }
-
-                                },{
-                                   label:"Password",
-                                   type:"secret",
-                                   operations:{
-                                     onInput:this.setPassword.bind(this)
-                                   }
-
-                                },{
-                                   label:"Login",
-                                   type:"button",
-                                   operations:{
-                                      onInput:this.login.bind(this)
-                                   }
-
-                                }]
-                            }
-                   }
-
-
-              };
-
-            this.connector.connect(options);
-       }
-       onSenderConnected(sender, senders){
-              this.setState(Object.assign({},this.state,{sender, senders}));
-          }
-          onSenderDisconnected(sender, senders){
-              this.setState(Object.assign({},this.state,{sender, senders}));
-          }
 
 
 
@@ -100,15 +53,46 @@ renderSource(){
       login(){
           this.props.history.push("/global-input-app-example/signin-success");
       }
-      componentDidMount(){
-         this.connectToGlobalInput();
-      }
-      componentWillUnmount(){
-         this.connector.disconnect();
-      }
+
 
         render() {
+          var globalInputConfig={
 
+                url:config.url,
+                apikey:config.apikey,
+                securityGroup:config.securityGroup,
+                initData:{
+                  action:"input",
+                  dataType:"login",
+                  form:{
+                    "title":"Sign In",
+                    fields:[{
+                              label:"Email address",
+                              value:this.state.username,
+                              operations:{
+                                  onInput:this.setUsername.bind(this)
+                              }
+
+                            },{
+                               label:"Password",
+                               type:"secret",
+                               operations:{
+                                 onInput:this.setPassword.bind(this)
+                               }
+
+                            },{
+                               label:"Login",
+                               type:"button",
+                               operations:{
+                                  onInput:this.login.bind(this)
+                               }
+
+                            }]
+                        }
+               }
+
+
+          };
           const {username,password}=this.state;
           return (
             <div>
@@ -132,8 +116,7 @@ renderSource(){
 
                                </div>
                        </div>
-
-                       <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+                         <CodeDataRenderer service={this}  config={globalInputConfig} level="H" size="300"/>
                      </div>
                      <div>
                      <SignInInputSource/>
@@ -142,6 +125,7 @@ renderSource(){
           );
         }
       }
+
 
 
 

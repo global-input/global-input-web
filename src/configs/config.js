@@ -1,4 +1,2 @@
-var config={
-    apikey:"k7jc3QcMPKEXGW5UC"
-}
+import config from "./dev";
 export default config;

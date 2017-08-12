@@ -20,8 +20,8 @@ return(
 <pre>{`
   import React, {Component} from 'react'
 
-  import {AdjustableInputCodeRender} from "global-input-react";
-  import {createMessageConnector} from "global-input-message";
+  import {CodeDataRenderer} from "global-input-react";
+
 
   import SimpleInputSource from "./SimpleInputSource";
   import {config} from "../configs";
@@ -32,51 +32,8 @@ return(
 
     constructor(props){
        super(props);
-       this.state={content:"",sender:null, senders:[]};
-       this.connector=createMessageConnector();
-
+       this.state={content:""};
     }
-    connectToGlobalInput(){
-           var options={
-
-                 url:config.url,
-                 apikey:config.apikey,
-                 onSenderConnected:this.onSenderConnected.bind(this),
-                 onSenderDisconnected:this.onSenderDisconnected.bind(this),
-                 initData:{
-                   action:"input",
-                   form:{
-                         title:"Simple Input Example",
-                         fields:[{
-                               label:"Content",
-                               value:this.state.content,
-                               operations:{
-                                   onInput:this.setContent.bind(this),
-                               },
-                               nLines:linenumber
-                         },{
-                              label:"Finish",
-                              type:"button",
-                              operations:{
-                                 onInput:this.submit.bind(this)
-                              }
-
-                          }]
-                   }
-                }
-
-
-           };
-
-         this.connector.connect(options);
-    }
-
-    onSenderConnected(sender, senders){
-         this.setState(Object.assign({},this.state,{sender, senders}));
-     }
-     onSenderDisconnected(sender, senders){
-         this.setState(Object.assign({},this.state,{sender, senders}));
-     }
 
 
    submit(){
@@ -85,14 +42,41 @@ return(
    setContent(content){
      this.setState(Object.assign({}, this.state,{content}));
    }
-   componentDidMount(){
-      this.connectToGlobalInput();
-   }
-   componentWillUnmount(){
-      this.connector.disconnect();
-  }
 
     render() {
+
+      var globalInputConfig={
+
+            url:config.url,
+            apikey:config.apikey,
+            securityGroup:config.securityGroup,
+            initData:{
+              action:"input",
+              dataType:"text",
+              form:{
+                    title:"Simple Input Example",
+                    fields:[{
+                          label:"Content",
+                          value:this.state.content,
+                          operations:{
+                              onInput:this.setContent.bind(this),
+                          },
+                          nLines:linenumber
+                    },{
+                         label:"Finish",
+                         type:"button",
+                         operations:{
+                            onInput:this.submit.bind(this)
+                         }
+
+                     }]
+              }
+           }
+
+
+      };
+
+
 
       const content=this.state.content;
 
@@ -117,7 +101,7 @@ return(
 
                              </div>
                      </div>
-                     <AdjustableInputCodeRender sender={this.state.sender} senders={this.state.senders} connector={this.connector}/>
+                    <CodeDataRenderer service={this}  config={globalInputConfig} level="H" size="300"/>
                 </div>
 
                 <div>
@@ -128,7 +112,6 @@ return(
       );
     }
   }
-
 
 
 
