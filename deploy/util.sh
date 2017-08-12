@@ -6,7 +6,8 @@ getProjectVersionFromPom(){
 }
 
 buildVariables(){
-  export websiterootfolder="/data/websites/iterativesolution/nginx/data/websites"
+  export websiterootfolder="/root/global-input-node/nginx/data/websites"
+  
   export websitefoldername="globalinput"
   export zipfilename="$projectName-$projectversion.zip"
   export sourcezipfilepath="package/target/$zipfilename"
