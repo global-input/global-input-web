@@ -2,45 +2,43 @@ import React, {Component} from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 
 import QRCodePrintService from "./QRCodePrintService";
 import {textValues} from  "../configs";
+import {images} from "../configs";
+import {ShowServiceLink,ServiceIntroduction,DisplayBlockText} from "../components";
+import QRCodePrintServiceSource from "../source-codes/QRCodePrintService";
+import QRCodePrintServiceSummary from "../source-codes/QRCodePrintServiceSummary";
+
 
 
 export default class QRPrintingServiceHome extends Component{
   render(){
+
     return (
-
-
-            <div className="introSection">
-              {textValues.qr.content.p1}
-
-              <ul className="menuContainer">
-                <li className="appTitle"><Link to="/global-input-app-example/qrcode-print">
-                  {textValues.qr.title}</Link>
-
-                </li>
-              </ul>
-              <div>
-                <Route path="/global-input-app-example/qrcode-print" component={QRCodePrintService}/>
-              </div>
-              <div className="ptext">
-                  {textValues.qr.content.p2}
-              </div>
-
-              <div className="ptext">
-                  {textValues.qr.content.p3}
-              </div>
-
-              <div>
-                  {textValues.qr.content.p4}
-
-              </div>
-
-          </div>
-
+            <div className="serviceContainer">
+                    <ServiceIntroduction title={textValues.qrcode.title} content={textValues.qrcode.content1}/>
+                    <ShowServiceLink serviceURI={textValues.qrcode.link.uri} linkText={textValues.qrcode.link.text}/>
+                    <Route path={textValues.qrcode.link.uri} component={DisplayService}/>
+                </div>
       )
     }
+}
+
+class DisplayService extends Component{
+  render(){
+    return(
+       <div>
+        <QRCodePrintService/>
+        <DisplayBlockText content={textValues.qrcode.content2}/>
+        <QRCodePrintServiceSource/>
+        <DisplayBlockText content={textValues.qrcode.content3}/>
+        <QRCodePrintServiceSummary/>
+      </div>
+    );
+
+  }
 }

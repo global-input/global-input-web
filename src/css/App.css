@@ -38,19 +38,16 @@ body {
   flex-direction: row;
   justify-content: center;
 }
-.introSection{
-  border-top:4px groove #3A627B;
-
-  padding:5px;
-  margin:5px;
-
+.serviceSection{
+   padding:5px;
+   margin:5px;
 }
 .codeContainer{
   max-height: 500px;
   max-width:800px;
   margin-left: 30px;
 
-  background: #F5F5F5;
+  background: #D9DFE9;
 	overflow-y: scroll;
 	margin-bottom: 25px;
 }
@@ -93,6 +90,151 @@ body {
   padding:8px;
 }
 .ptext{
-  margin-top:5px;
-  margin-bottom: 5px;
+  margin:5px;
+}
+
+
+
+
+
+
+
+
+
+a {
+  text-decoration:none;
+}
+.serviceContainer{
+  display:flex;
+  flex-direction: column;
+  border: 3px solid #C0D0E1;
+  margin:20px;
+}
+
+.linkSection{
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  width:100%;
+}
+.arrowContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+.serviceTitle{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size:24px;
+  background-color:#49729E;
+  height:50px;
+  color:#FFFFFF;
+}
+.applicationContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.simpleServiceContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+}
+
+.form{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: rigth;
+
+}
+.loginForm{
+    background-color: #B9C6DB;
+    box-shadow: 10px 10px 5px #888888;
+}
+.loginTitle{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  color:white;
+  align-items: center;
+  background-color: #396BBC;
+  font-size: 36px;
+}
+.button{
+  background-color: #396BBC;
+  font-size: 28px;
+  color:white;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.button a{
+  width:100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+}
+a{
+  cursor: pointer;
+}
+.contetAndLabelRecord{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: rigth;
+  margin:10px;
+  background-color: #E5E8EC
+}
+
+
+.contetAndLabelLabel{
+  width:100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding:8px;
+}
+.inputCodeContainer{
+  flex:1;
+
+}
+.soucecode{
+
+}
+
+@media print {
+    .toPrint {
+        background-color: blue;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
 }
