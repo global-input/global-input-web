@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 
-import "../css/global-input.css"
-import  "../css/SignInInput.css";
 
 import {config} from "../configs";
 
 import {CodeDataRenderer} from "global-input-react";
 
-import SignInInputSource from "./SignInInputSource";
+
 
 
 
@@ -29,77 +27,105 @@ export default class SignInInput extends Component {
  }
 
 login(){
-    this.props.history.push("/global-input-app-example/signin-success");
+    this.props.login(this.state.username, this.state.password);
 }
 
+buildGlobalInputConfig(){
+  return {
+
+        url:config.url,
+        apikey:config.apikey,
+        securityGroup:config.securityGroup,
+        initData:{
+          action:"input",
+          dataType:"login",
+          form:{
+            "title":"Sign In",
+            fields:[{
+                      label:"Email address",
+                      value:this.state.username,
+                      operations:{
+                          onInput:this.setUsername.bind(this)
+                      }
+
+                    },{
+                       label:"Password",
+                       type:"secret",
+                       operations:{
+                         onInput:this.setPassword.bind(this)
+                       }
+
+                    },{
+                       label:"Login",
+                       type:"button",
+                       operations:{
+                          onInput:this.login.bind(this)
+                       }
+
+                    }]
+                }
+       }
+    };
+
+}
 
   render() {
-    var globalInputConfig={
 
-          url:config.url,
-          apikey:config.apikey,
-          securityGroup:config.securityGroup,
-          initData:{
-            action:"input",
-            dataType:"login",
-            form:{
-              "title":"Sign In",
-              fields:[{
-                        label:"Email address",
-                        value:this.state.username,
-                        operations:{
-                            onInput:this.setUsername.bind(this)
-                        }
-
-                      },{
-                         label:"Password",
-                         type:"secret",
-                         operations:{
-                           onInput:this.setPassword.bind(this)
-                         }
-
-                      },{
-                         label:"Login",
-                         type:"button",
-                         operations:{
-                            onInput:this.login.bind(this)
-                         }
-
-                      }]
-                  }
-         }
-
-
-    };
-    const {username,password}=this.state;
     return (
-      <div>
-            <div className="signin container">
-
-                 <div className="signin formContainer">
-                         <div>
-                             Email address: <input type="text" onChange={(evt) => {
-                                   this.setUsername(evt.target.value);
-                               }} value={username}/>
-                         </div>
-                         <div>
-                             Password: <input type="password" onChange={(evt) => {
-                                   this.setPassword(evt.target.value);
-                               }} value={password}/>
-                         </div>
-                         <div>
-                              <button onClick={(evt) => {
-                                   this.login();
-                               }}>Login</button>
-
-                         </div>
-                 </div>
-                   <CodeDataRenderer service={this}  config={globalInputConfig} level="H" size="300"/>
-               </div>
-               <div>
-               <SignInInputSource/>
-               </div>
+       <div className="applicationContainer">
+            <div className="formContainer">
+                   <div className="form">
+                        <DisplaySignInForm username={this.state.username} password={this.state.password}
+                          setUsername={this.setUsername.bind(this)}
+                          setPassword={this.setPassword.bind(this)}
+                          login={this.login.bind(this)}/>
+                   </div>
+            </div>
+            <CodeDataRenderer service={this}  config={this.buildGlobalInputConfig()} level="H" size="300" showControl={true}/>
         </div>
     );
+  }
+}
+class DisplaySignInForm extends Component{
+  render(){
+    return(
+    <div className="loginForm">
+       <div className="loginTitle">LOGIN</div>
+        <div className="contetAndLabelRecord">
+
+        </div>
+        <div className="contetAndLabelRecord">
+
+               <div className="contetAndLabelLabel">
+                Username:
+              </div>
+              <input type="text" onChange={(evt) => {
+                  this.props.setUsername(evt.target.value);
+                }} value={this.props.username} size="30"/>
+        </div>
+        <div className="contetAndLabelRecord">
+                <div className="contetAndLabelLabel">
+                    Password:
+                  </div>
+                  <input type="password" onChange={(evt) => {
+                        this.props.setPassword(evt.target.value);
+                        }} value={this.props.password} size="30"/>
+        </div>
+        <div className="contetAndLabelRecord">
+          <div className="button">
+            <a onClick={(evt) => {
+                           this.props.login();
+                       }}>
+
+                Login
+
+
+            </a>
+            </div>
+       </div>
+    </div>
+  );
+
+
   }
 }

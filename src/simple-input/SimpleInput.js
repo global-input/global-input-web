@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {CodeDataRenderer} from "global-input-react";
 
 
-import SimpleInputSource from "./SimpleInputSource";
+
 import {config} from "../configs";
 
 
@@ -17,78 +17,77 @@ export default class SimpleInput extends Component {
 
 
  submit(){
-   this.props.history.push("/global-input-app-example/simpleinput-submit");
+   this.props.onComplete();
  }
  setContent(content){
    this.setState(Object.assign({}, this.state,{content}));
  }
+ buildGlobalInputConfig(){
+   return {
+         url:config.url,
+         apikey:config.apikey,
+         securityGroup:config.securityGroup,
+         initData:{
+           action:"input",
+           dataType:"text",
+           form:{
+                 title:"Simple Input Example",
+                 fields:[{
+                       label:"Content",
+                       value:this.state.content,
+                       operations:{
+                           onInput:this.setContent.bind(this),
+                       },
+                       nLines:linenumber
+                 },{
+                      label:"Finish",
+                      type:"button",
+                      operations:{
+                         onInput:this.submit.bind(this)
+                      }
+
+                  }]
+           }
+        }
+
+
+   };
+ }
+
 
   render() {
 
-    var globalInputConfig={
-
-          url:config.url,
-          apikey:config.apikey,
-          securityGroup:config.securityGroup,
-          initData:{
-            action:"input",
-            dataType:"text",
-            form:{
-                  title:"Simple Input Example",
-                  fields:[{
-                        label:"Content",
-                        value:this.state.content,
-                        operations:{
-                            onInput:this.setContent.bind(this),
-                        },
-                        nLines:linenumber
-                  },{
-                       label:"Finish",
-                       type:"button",
-                       operations:{
-                          onInput:this.submit.bind(this)
-                       }
-
-                   }]
-            }
-         }
-
-
-    };
-
-
-
-    const content=this.state.content;
-
-
     return (
-    <div>
-              <div className="simple container">
+    <div className='simpleServiceContainer'>
+              <div className="applicationContainer">
 
-                   <div className="simple formContainer">
+                   <div className="simpleFormContainer">
 
-                           <div>
+                           <div className="contetAndLabelRecord">
                                <textarea rows={linenumber} cols="50" onChange={(evt) => {
                         			this.setContent(evt.target.value);
-                              this.connector.sendInputMessage(evt.target.value,0);
-                				    }} value={content}/>
+                              this.globalInput.connector.sendInputMessage(evt.target.value,0);
+                				    }} value={this.state.content}/>
                            </div>
+                           <div className="contetAndLabelRecord">
+                             <div className="button">
+                               <a onClick={(evt) => {
+                                              this.submit();
+                                          }}>
 
-                           <div>
-                                  <button onClick={(evt) => {
-                         this.submit();
-                     }}>Finish</button>
+                                   Finish
 
-                           </div>
-                   </div>
-                  <CodeDataRenderer service={this}  config={globalInputConfig} level="H" size="300"/>
+
+                               </a>
+                               </div>
+                          </div>
+                  </div>
+
+                  <CodeDataRenderer service={this}  config={this.buildGlobalInputConfig()} level="H" size="300"/>
               </div>
 
-              <div>
-                  <SimpleInputSource/>
-
-              </div>
       </div>
+
     );
   }
 }

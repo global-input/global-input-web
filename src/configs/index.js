@@ -1,3 +1,4 @@
 import textValues from "./textValues";
 import config from "./config";
-export {textValues,config};
+import images from "./images";
+export {textValues,config, images};

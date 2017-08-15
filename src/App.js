@@ -7,8 +7,6 @@ import {
 import './css/App.css';
 import './css/home.css';
 import "./css/global-input.css"
-import  "./css/QRCodePrintService.css";
-
 import  "./css/SimpleInput.css";
 
 import {Home} from "./home";
@@ -38,7 +36,7 @@ export default class App extends Component{
 
             <SimpleInputHome/>
             <DisplayPrePairingHome/>
-          
+
             </div>
       </Router>
       )

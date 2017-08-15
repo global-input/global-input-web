@@ -1,32 +1,22 @@
-.adjustableCodeData {
-  display:flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
+.globalInputContainer{
+  padding:20px;
+  padding-right: 50px;
 }
-.adjustableCodeDataContainer{
-  display:flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-}
-.codedataControllerContainer{
-  display:flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: start;
-}
-.input.senderNotConnected {
-  background-color: white;
+.globalInputCodeContainer{
   flex:1;
   display:"flex";
   flex-direction: "column";
+  justify-content: center;
+  align-items: flex-end;
+  background-color: white;
+  margin:5px;
+}
+.globalInputCodeContainer.senderNotConnected {
+
+
 
 }
 
-.input.senderConnected {
+.globalInputCodeContainer.senderConnected {
     border: 2px solid red;
-    flex:1;
-    display:"flex";
-    flex-direction: "column";
 }

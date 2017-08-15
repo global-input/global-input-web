@@ -1,54 +1,92 @@
 const textValues={
   urls:{
     apk:"https://globalinput.co.uk/app/GlobalInputApp.apk",
-    github:{
-        web:"https://github.com/global-input/global-input-web"
-    }
+
   },
   home:{
      title:"Global Input Software",
      subtitle:"Connectings applications securely via phone camera",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
-     content:{
-        p1:"The Global Input open-source software enables service applications running on computers, Smart TVs, or any other devices to transfer some activities securely to the mobile app to allow users to operate with their mobile devices. The communication between them is established using the end-to-end encryption and the keys are passed over to the mobile app via the mobile's camera.",
-        p2:"If you would like to try it out the Global Input software, please install the GlobalInput app on your mobile. Launch the app on your mobile and visit this page with a browser on your computer. And then you will be able to interact with the sample applications listed on this page with your mobile.",
-        p3:"The mobile app will soon be available in both Android and Apple stores (in the submission process at the moment). If you have android phone, you can download and install the apk file directly from the following location and install it into your phone.",
-
-        p4:"Here I listed some sample applications with source codes to demonstrate how easy it is to extend a software application to have this capability.",
-        p5:"Most of the examples given here are in React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for the Java web applications rendering the page on the server side. I am in the process of writing the libraries for other programming languages as well. If you have any suggestions you can write to me (hewzulla@gmail.com) or you are welcome to ",
-        p6:"work together with me",
-     }
+     content1:["The Global Input open-source software enables service applications running on computers, Smart TVs, or any other devices to transfer some activities securely to the mobile app to allow users to operate with their mobile devices. The communication between them is established using the end-to-end encryption and the keys are passed over to the mobile app via the mobile phone's camera.",
+              "If you would like to try it out the Global Input software, please install the GlobalInput app on your mobile. Launch the app on your mobile and visit this page with a browser on your computer. And then you will be able to interact with the sample applications listed on this page with your mobile.",
+              "Here we have listed some sample applications with their source codes to demonstrate how easy it is to extend a software application to have this capability.",
+              "Most of the examples given here are in React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for the Java web applications rendering the page on the server side. We are in the process of writing the libraries for other programming languages as well.",
+      ],
+      email:{
+         link:"mailto:info@iterativesolution.co.uk?Subject=Global Input",
+         pretext:"If you have any suggestions you can ",
+         linkText:"write to us "
+      },
+      work:{
+        pretext:"or you are welcome to ",
+        link:"https://github.com/global-input/global-input-web",
+        linkText:"work together with us"
+      },
   },
-  qr:{
-    title:"QR Code Printing Service",
-    content:{
-      p1: "As the start,  you may try the QR Code Printing Service by clicking on the following link. Launch the Global Input App on your smart phone, and point your phone camera to  the QR code displayed on the right. When your mobile phone is connected to the sample application, the QR Code will be hightlighted indicating that an user is connected to the service and also the user ids are listed underneath.",
-      p2:"When the app is connected to the service application, the service app sends the metadata information such as the title of the service, the fields and the buttons etcs to the mobile app to allow the user to interact with the application without looking at the computer or the TV screen.",
-      p3:"When the app receives the form from the service applications, and it identifies that the service app is requesting the content of the QR code, it present user with a list of data items inside the app, so the form can be prefilled with the data that the user has selected. One of the features is to print the encrypted password or secrets on papers.  The password encryption key is generated on the first use and stay inside the app and will not be transmitted over the network. So only the phone that encrypts the password can decrypt it back. When app identifies a password via the phone camera, it immediately decrypts it and displays it on the screen.",
-      p4:"And also, QR printing Service demonstrates the possibilities that the public places like train stations and airports can install services with screens without keyboard or mouse and allow customers to operate on them securely via smart phones. Even in the case of devices with no screen, a printed QR label/ticket can do the job. Imagine the possibility of easily controlling IoT devices with your mobile phones without any hassle... "
-
-    }
+  qrcode:{
+        title:"QR Code Printing Service",
+        content1:["The QR Code Printing Service enables you to print QR code via your phone.",
+                  "This demonstrates how a service can be run on a device such as computer, smart TV or IoT, and can be securely connected and controlled via the Global Input app. ",
+                  "This brings the possibility of providing many types of electronic services in public places like train stations and airports. People can connect and operate on the devices securely via Global Input app. Even in the case of devices with no screen, a printed QR label/ticket can do the job."
+        ],
+        link:{
+          text:"Please click on the following arrow to see how it works.",
+          uri:"/global-input-app-example/qrcode-print"
+        },
+        content2:[
+          "After launching the Global Input app on your phone, and point the camera to the QR code on the right, the app will be connected to the application. When this happens, the QR Code will be highlighted indicating that an user is connected to the service.",
+          "When the app is connected to the service application, the service application sends the metadata information such as the title of the service, the fields and the buttons etc. to the app to allow you to interact with the service without looking at the computer or the TV screen.",
+          "When the app receives the form from the service application, it identifies that the type of the data that service is requesting is QR code content. So it will present you with a list of data items in the app that matches the data type. After you have selected one of the items, the service form will be filled with the data that you have selected. For example, one of the data item is allow you to print the encrypted password on paper.  The password encryption key is generated on the first use and stay inside the app and will not be transmitted over the network. So only the phone that encrypts the password can decrypt it back. When app identifies a password via the phone camera, it immediately decrypts it and displays it on the screen."
+        ],
+        content3:[
+          "In the source code shown above, the only part that related to Global Input is to build the metadata about service form and call the Global Input Component:"
+        ]
   },
+
   signin:{
     title:"Sign In Example",
-    content:{
-      p1:'The following is a Sign In sample code, clicking on it to try it out.',
-      p2:"Although it is indeed an ugly and useless login form, it serves the purpose. You can sign in via the mobile phone and see the action on the screen while you are typing.  Transferring the login process onto mobile makes sense because a user might be much more comfortable to enter her credential on his/her mobile rather than on a computer keyboard, especially in public places. Beside these, many users may have been storing passwords on mobile devices.  Also if the app is running on smart TV etc that does not have keyboard, it will make even more sense to have the ability to transfer the login process over to the mobile."
+    content1:['The Sign In sample demonstrates that a service application can transfer the Sign In process to your mobile. This is useful because many users may prefer to enter their credentials via their mobile phone rather on the computers. This is especially true in public places. It is also possible that that users store their frequently used password on their mobile phone.  In the workplaces, it is easy to turn the mobile phone devices into the authentication devices while using the hot desks or company facilities.',
+    "Also if the service application is running on a smart TV, entering the username and password via a remote control may not be so convenient, so it makes sense to transfer the Sign In process to the mobile.",
+    "This is useful in any circumstances that needs to authenticat a user, whether to gain access to a device or a company facility"
+     ],
+     content2:["In the source code shown above, the only part that is related to the Global Input is to build the metadata about sign in form and call the Global Input Component. In the folling sour code listing, the part not related to the Global Input functionality is omitted "],
+    link:{
+      text:"Please click on the following arrow to see how it works.",
+      uri:"/global-input-app-example/signinput"
+    },
+    complete:{
+      uri:  "/global-input-app-example/signinput-complete",
+      content1:[
+        "Login Submitted. This is just an example of how Global Input enabled Sign In works. If you can clicked on Login button via your mobile, you will see how your mobile is connected sucurely to the Sign In form."
+      ]
     }
   },
   simpleInput:{
     title:"Simple Input (two way) Example",
-    content:{
-        p1:"Another example is the two-way editing, that you can edit both on computer and mobile at the same time and changes reflected on both screens. Click on the following link to check it out. Again you need to use the Global Input App to connect your mobile to the sample service application.",
-        p2:"When you enter some text, you may prefer to use both your mobile and computer at the same time, for example, you may find it easier to do copy and paste content from Internet on your computer and do other modifications with your mobile etc."
+    content1:["This example demonstrates that it is also possible to enable the bidirectional operations. This means both the service applications and the Global Input app can be operated at the same time,  the changes will be reflected and synced on both screens as you can see.",
+              "This might be useful if you would like to use both your mobile and computer to carry out some tasks, for example copy and paste some content from the Internet using your laptop and carry out the rest of the editing on your mobile."],
+    link:{
+                text:"Please click on the following arrow to see how it works.",
+                uri:"/global-input-app-example/simple-input"
+          },
+    content2:["In the source code shown above, the only part that is related to the Global Input is to build the metadata about the edit form and call the Global Input Component. In the folling sour code listing, the part not related to the Global Input functionality is omitted "],
+    complete:{
+      uri:  "/global-input-app-example/simple-input-complete",
+      content1:[
+        "Edit Submitted. This is just an example of how Global Input enabled bidirectional operations. "
+      ]
     }
   },
   pairing:{
     title:"Pair handsets",
-    content:{
-      p1:"In some cases you would like to allow only some specific handsets that are pre-paired with your service applications to be able to connect to your services. You can do so by displaying or printing out pairing data, and the phone needs to be paired can simply be pointed to the display QR Code.  Click on the following link to see how it works.",
-      p2:"It should display a dialog on the mobile phone whether it accept the pairing.  Before pairing, you can print out your existing pairing data for later importing purposes before accepting a different pairing data."
-    }
+    content1:["This example demonstrates that you can also easily restrict your service application to only those that are pre-paired with your application service. If you use a different value for the service group id than the default one, only those handsets that are pre-paired can connect to your application service."
+      ],
+      link:{
+                  text:"Please click on the following arrow to see how it works.",
+                  uri:"/global-input-app-example/pairing"
+            },
+
+
   }
 
 };
