@@ -146,7 +146,7 @@ renderSource(){
                                 <div className="qrCodeContainer">
                                     <QRCode value={this.props.content} level={this.props.level} size={this.props.size}/>
                                 </div>
-                                <div class="qrCodeLabel">
+                                <div className="qrCodeLabel">
                                   {this.props.label}
                                 </div>
                             </div>
@@ -165,7 +165,7 @@ renderSource(){
           render(){
             if(this.props.content){
                   return (
-                  <div class="qrcodePropery">
+                  <div className="qrcodePropery">
                         <input type="range" min="100" max="1000" step="10" value={this.props.size} onChange={evt=>{
                             this.props.setSize(evt.target.value);
                         }}/>

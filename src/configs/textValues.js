@@ -24,7 +24,7 @@ const textValues={
       },
   },
   qrcode:{
-        title:"QR Code Printing Service",
+        title:"QR Code Printing",
         content1:["The QR Code Printing Service enables you to print a QR code via your phone.",
                   "This demonstrates how a service can be run on devices such as computers, smart TVs or IoTs, and can be securely connected and controlled via the Global Input app. ",
                   "Bringing the possibility of providing many types of electronic services in public places such as train stations and airports where people can connect and operate on devices securely via the Global Input app. Even in the case of devices with no screen, a printed QR label/ticket can do the job."
