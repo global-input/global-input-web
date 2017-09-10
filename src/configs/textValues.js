@@ -30,11 +30,26 @@ const textValues={
      title:"Global Input Software",
      subtitle:"A Universal input mobile app solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
+
      content1:["The Global Input open-source software enables service applications running on computers, Smart TVs, or any other devices to transfer specific activities securely to the mobile app, allowing users to operate with their mobile devices. The communication between them is established by using end-to-end encryption where the keys are passed over to the mobile app via the mobile phone's camera.",
-              "If you would like to try out the Global Input software, please install the GlobalInput app on your mobile. Launch the app and visit this page on your computer browser. Then you will be able to interact with the sample applications listed on this page with your mobile.",
-              "Here we have listed some sample applications with their source codes to demonstrate how easy it is to extend a software application to gain this capability.",
-              "Most of the examples given here are in React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for the Java web applications rendering the page on the server side. We are in the process of writing the libraries for other programming languages as well.",
       ],
+      appInstall:{
+          preContent:"Please free install Global Input mobile app on your mobile from ",
+          iosApp:{
+            link:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
+            linkText:" Apple App Store "
+          },
+          androidApp:{
+            link:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
+            linkText:" Google Play Store "
+          },
+          postContent:", and launch the app and visit this page on your computer browser. Then you will be able to operate on the sample applications listed on this page via your mobile.",
+      },
+
+      content2:[               
+               "Here we have listed some sample applications with their source codes to demonstrate how easy it is to extend a software application to gain this capability.",
+               "Most of the examples given here are in React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for the Java web applications rendering the page on the server side. We are in the process of writing the libraries for other programming languages as well.",
+       ],
       email:{
          link:"mailto:info@iterativesolution.co.uk?Subject=Global Input",
          pretext:"If you have any suggestions you can ",
