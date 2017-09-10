@@ -3,9 +3,32 @@ const textValues={
     apk:"https://globalinput.co.uk/app/GlobalInputApp.apk",
 
   },
+  company:{
+    title:"Iterative Solution",
+    link:"https://iterativesolution.co.uk",
+    tags:"Innovation and Excellence",
+    home:{
+      link:"https://iterativesolution.co.uk",
+      linkText:"HOME"
+    },
+    mobileForBusiness:{
+      link:"https://iterativesolution.co.uk/mobile-for-business/",
+      linkText:"MOBILE FOR BUSINESS"
+    },
+    mobileForBusiness:{
+      link:"https://iterativesolution.co.uk/computer-vision-ai/",
+      linkText:"COMPUTER VISION & AI"
+    },
+    contactUs:{
+      link:"https://iterativesolution.co.uk/contact-us/",
+      linkText:"CONTACT US"
+    },
+
+  },
   home:{
+
      title:"Global Input Software",
-     subtitle:"Connectings applications securely via phone camera",
+     subtitle:"A Universal input mobile app solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
      content1:["The Global Input open-source software enables service applications running on computers, Smart TVs, or any other devices to transfer specific activities securely to the mobile app, allowing users to operate with their mobile devices. The communication between them is established by using end-to-end encryption where the keys are passed over to the mobile app via the mobile phone's camera.",
               "If you would like to try out the Global Input software, please install the GlobalInput app on your mobile. Launch the app and visit this page on your computer browser. Then you will be able to interact with the sample applications listed on this page with your mobile.",
