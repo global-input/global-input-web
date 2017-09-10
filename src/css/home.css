@@ -1,8 +1,24 @@
+.headerSection{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.companyHeader{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+
 .homeContainer{
 
   margin-bottom:10px;
-}
+  margin-top: 60px;
 
+}
 
 .appLink{
   display:flex;
@@ -10,19 +26,48 @@
   justify-content: center;
   padding:10px;
 }
-
-.headerSection{
-  display:flex;
+.companyTitleContainer{
+  display: flex;
   flex-direction: column;
+
+}
+.companyName{
+ font-size: 32px;
+ font-family: sans-serif;
+ font-weight: 100;
+}
+.tagText{
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+.notFirstMenuItem{
+  border-left: 2px solid #dddddd;
+}
+
+.pageTitleContainer{
+  width:100%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  
 }
 .titleText{
-  margin:0;
-  margin-top: 10px;
+
+  font-family: sans-serif;
+  font-size: 40px;
+
 }
 .subTitleText{
-
+font-size: 12px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+.pageTitleBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .copyrightinfo{
@@ -34,3 +79,46 @@
   padding-bottom: 10px;
   font-size: 10px;
 }
+
+
+
+body {margin:0;}
+
+.topnav {
+  overflow: hidden;
+  margin-left:30px;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #8b9aA5;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+
+  color: #fe5722;
+}
+
+.topnav .icon {
+  display: none;
+  font-size:15px;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+.topnav.responsive a {
+   float: none;
+   display: block;
+   text-align: left;
+ }
