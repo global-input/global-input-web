@@ -6,6 +6,8 @@ import {
   withRouter
 } from 'react-router-dom'
 
+import ReactMarkdown from "react-markdown";
+
 
 import {textValues} from  "../configs";
 import {images} from "../configs";
@@ -17,7 +19,10 @@ export default class DisplayBlockText extends Component{
               const content=this.props.content;
               return(
                 <div className="serviceIntroduction">
-                  {content.map((p,index)=>{return(<div className="ptext" key={index}>{p}</div>);})}
+
+                  {content.map((p,index)=>{return(<div className="ptext" key={index}>
+                      <ReactMarkdown source={p} />
+                </div>);})}
                 </div>
               );
 

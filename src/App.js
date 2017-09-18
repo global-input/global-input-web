@@ -30,11 +30,12 @@ export default class App extends Component{
         <div className="topContainer">
             <Route  path="/" component={Home}/>
 
-            <QRPrintingServiceHome/>
+
 
             <SignInInputHome/>
 
             <SimpleInputHome/>
+            <QRPrintingServiceHome/>
             <DisplayPrePairingHome/>
 
             </div>

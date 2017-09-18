@@ -5,17 +5,11 @@ import {config} from "../configs";
 
 import {CodeDataRenderer} from "global-input-react";
 
-
-
-
-
 export default class SignInInput extends Component {
   constructor(props){
      super(props);
      this.state={username:"",password:""};
   }
-
-
 
  setUsername(username){
 
@@ -40,8 +34,11 @@ buildGlobalInputConfig(){
           action:"input",
           dataType:"login",
           form:{
-            "title":"Sign In",
+            id: "uaCbO8wfgBfdVfTke",
+            title:"Sign In",
+            label:"Example Sign In",
             fields:[{
+                      id:"emailAddress",
                       label:"Email address",
                       value:this.state.username,
                       operations:{
@@ -49,6 +46,7 @@ buildGlobalInputConfig(){
                       }
 
                     },{
+                       id:"password",
                        label:"Password",
                        type:"secret",
                        operations:{

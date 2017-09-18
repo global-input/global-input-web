@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import {textValues,images} from  "../configs";
-import {DisplayBlockText} from "../components";
+import {DisplayBlockText,ShowImage} from "../components";
 
 
 export  class Home extends Component {
@@ -56,26 +56,12 @@ export  class Home extends Component {
                   <div className="subTitleText">{textValues.home.subtitle}</div>
                 </div>
             </div>
-              <DisplayBlockText content={textValues.home.content1}/>
-              <div className="ptext">
-                {textValues.home.appInstall.preContent}
-                <a href={textValues.home.appInstall.iosApp.link}>{textValues.home.appInstall.iosApp.linkText}</a>
-                 or
-                <a href={textValues.home.appInstall.androidApp.link}>{textValues.home.appInstall.androidApp.linkText}</a>
-                {textValues.home.appInstall.postContent}
-              </div>
-              <DisplayBlockText content={textValues.home.content2}/>
+              <ShowImage/>
 
-              <div className="ptext">
-                  {textValues.home.email.pretext}
-                    <a href={textValues.home.email.link} target="_top">
-                      {textValues.home.email.linkText}
-                   </a>
-                   {textValues.home.work.pretext}
-                   <a href={textValues.home.work.link}>
-                     {textValues.home.work.linkText}
-                  </a>
-              </div>
+              <DisplayBlockText content={textValues.home.content1}/>
+
+
+              
 
           </div>
       </div>

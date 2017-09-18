@@ -3,4 +3,5 @@ import ShowServiceLink from "./ShowServiceLink";
 
 import ServiceIntroduction from "./ServiceIntroduction";
 import DisplayBlockText from "./DisplayBlockText";
-export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText};
+import ShowImage from "./ShowImage";
+export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText,ShowImage};

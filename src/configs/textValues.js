@@ -28,38 +28,20 @@ const textValues={
   home:{
 
      title:"Global Input Software",
-     subtitle:"A Universal input mobile app solution",
+     subtitle:"A Universal mobile input solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
 
-     content1:["The Global Input open-source software enables service applications running on computers, Smart TVs, or any other devices to transfer specific activities securely to the mobile app, allowing users to operate with their mobile devices. The communication between them is established by using end-to-end encryption where the keys are passed over to the mobile app via the mobile phone's camera.",
-      ],
-      appInstall:{
-          preContent:"Please free install Global Input mobile app on your mobile from ",
-          iosApp:{
-            link:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
-            linkText:" Apple App Store "
-          },
-          androidApp:{
-            link:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
-            linkText:" Google Play Store "
-          },
-          postContent:", and launch the app and visit this page on your computer browser. Then you will be able to operate on the sample applications listed on this page via your mobile.",
-      },
-
-      content2:[               
-               "Here we have listed some sample applications with their source codes to demonstrate how easy it is to extend a software application to gain this capability.",
-               "Most of the examples given here are in React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for the Java web applications rendering the page on the server side. We are in the process of writing the libraries for other programming languages as well.",
-       ],
-      email:{
-         link:"mailto:info@iterativesolution.co.uk?Subject=Global Input",
-         pretext:"If you have any suggestions you can ",
-         linkText:"write to us "
-      },
-      work:{
-        pretext:"or you are welcome to ",
-        link:"https://github.com/global-input/global-input-web",
-        linkText:"work together with us"
-      },
+     content1:["If you have service applications running on computers, Smart TVs, Set Top Boxes or IoT devices,  and you would like to allow your users to use their mobile to operate on them just by pointing the phone camera to the QR codes, you come to the right place!",
+        "Before going further, please install the Global Input mobile app on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB) and try it out",
+        "If you are already running the Global Input mobile app and visiting this website with your computer, you can click on the example services listed below and try to operate on them with your mobile.",
+        "If you have already tried the example services listed below, then try our [wordpress login](https://iterativesolution.co.uk/wp-admin/), we never type our password on computer keyboard. After remembering our passwords, our mobile will type the user name and password for us, so we can use really long and complex passwords! We can login very quickly just by pointing the mobile camera to the QR code regardless of how the password is!  You can have a look at [one of our business software products](https://mediaapp.boxplus.com/) as well, If you are still not convinced, imagine you are working on a shared company computer and you need to login into many applications and each have different passwords! And make it worse, imagine you have to access the services on your company's shared computers and somebody may be watching over your shoulders while you are typing your password! All can be resolved with the Global Input mobile app solution.",
+        "You may think what will happen if you loose your mobile. You can print out passwords on papers and only your mobile can decrypt it and display it on your mobile screen! And then you can print out your master encryption key and lock it in your safebox out of reach anybody. When you have a new phone, install the Global Input App on your new phone and point the mobile camera to the master QR code and your phone will recognize it automatically and impport it into your phone. This will pair your new phone with your old phone!",
+        "The Global Input Software is available is available at github, there you will see the step-by-step explanation.",
+        "[https://github.com/global-input/global-input-react](https://github.com/global-input/global-input-react)",
+        "[https://github.com/global-input/global-input-message](https://github.com/global-input/global-input-message)",
+        "Or if you want to play around with the source right now,  have a look at [this example](https://jsfiddle.net/dilshat/26jh68wv/) or [this example](https://jsfiddle.net/dilshat/c5fvyxqa/) or if you would like to make your wordpress website to support the Global Input App, then, have a look at [this](https://github.com/global-input/wordpress-login)",
+        "Most of the examples given below are in React.js framework, but as you can see from [here](https://github.com/global-input/global-input-message) it does not have to React JS application. We are in the process of preparing the libraries for other programming language as well",
+      ],      
   },
   qrcode:{
         title:"QR Code Printing",
