@@ -31,7 +31,6 @@ const textValues={
      subtitle:"A Universal mobile input solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
 
-<<<<<<< HEAD
      content1:["If you have service applications running on computers, Smart TVs, Set Top Boxes or IoT devices,  and you would like to allow your users to use their mobile to operate on them just by pointing the phone camera to the QR codes, you come to the right place!",
         "Before going further, please install the Global Input mobile app on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB) and try it out",
         "If you are already running the Global Input mobile app and visiting this website with your computer, you can click on the example services listed below and try to operate on them with your mobile.",
@@ -42,38 +41,7 @@ const textValues={
         "[https://github.com/global-input/global-input-message](https://github.com/global-input/global-input-message)",
         "Or if you want to play around with the source right now,  have a look at [this example](https://jsfiddle.net/dilshat/26jh68wv/) or [this example](https://jsfiddle.net/dilshat/c5fvyxqa/) or if you would like to make your wordpress website to support the Global Input App, then, have a look at [this](https://github.com/global-input/wordpress-login)",
         "Most of the examples given below are in React.js framework, but as you can see from [here](https://github.com/global-input/global-input-message) it does not have to React JS application. We are in the process of preparing the libraries for other programming language as well",
-      ],      
-=======
-     content1:["The Global Input open-source software enables service applications running on computers, Smart TVs, or any other device to transfer specific activities securely to the mobile app, allowing users to operate the service with their mobile device. The communication between them is established using end-to-end encryption where the keys are passed over to the mobile app via the mobile phone's camera.",
       ],
-      appInstall:{
-          preContent:"Please feel free to install the Global Input mobile app on your mobile device from the",
-          iosApp:{
-            link:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
-            linkText:" Apple App Store "
-          },
-          androidApp:{
-            link:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
-            linkText:" Google Play Store "
-          },
-          postContent:", and launch the app and visit this page on your computer browser. You will then be able to use the sample applications listed on this page via your mobile device.",
-      },
-
-      content2:[               
-               "Here we have listed some sample applications with their source code to demonstrate how easy it is to extend a software application to gain this capability.",
-               "Most of the examples given here are in the React.js framework, but it is equally simple to use plain old Javascript code or jQuery. The Java libraries are also available for Java web applications rendering the page on the server side. We are in the process of writing the libraries for other programming languages as well.",
-       ],
-      email:{
-         link:"mailto:info@iterativesolution.co.uk?Subject=Global Input",
-         pretext:"If you have any suggestions you can ",
-         linkText:"write to us "
-      },
-      work:{
-        pretext:"or you are welcome to ",
-        link:"https://github.com/global-input/global-input-web",
-        linkText:"work together with us"
-      },
->>>>>>> 48637e3c79c8f32ae30223199449a685fcc28e79
   },
   qrcode:{
         title:"QR Code Printing",
