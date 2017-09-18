@@ -16,7 +16,7 @@ import {SimpleInputHome} from "./simple-input";
 
 import {QRPrintingServiceHome} from "./qrcode-print-service";
 import {DisplayPrePairingHome} from "./display-pre-pairing";
-
+import {textValues,images} from  "./configs";
 
 
 
@@ -38,7 +38,12 @@ export default class App extends Component{
             <QRPrintingServiceHome/>
             <DisplayPrePairingHome/>
 
+
+                   
+
             </div>
+
+
       </Router>
       )
     }
