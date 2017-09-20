@@ -52,13 +52,16 @@ const textValues={
 
   signin:{
     title:"Sign In Example",
-    content1:['The Sign In sample demonstrates that a service application can transfer the Sign In process to your mobile. This is useful because many users may prefer to enter their credentials via their mobile phone instead of on a computer. This is especially apparant in public places. It is also possible for users to store their frequently used passwords on their mobile phone. Additionally, in workplaces it is easy to turn mobile phone devices into authentication devices while using hot desks or company facilities.',
-    "Also, if the service application is running on a smart TV, entering the username and password via a remote control may not be so convenient, so it makes sense to transfer the Sign In process to the mobile.",
-    "This is practical in any circumstances that needs user authentication, whether to gain access to a device or to a company facility."
+    content1:["This Sign In sample demonstrates that a service application can transfer the Sign In process to your mobile. This is useful because you may prefer to enter your credentials via mobile phone instead of on a computer or on a big screen device that everybody is watching.",
+    "You can make the Global Input App to memorize the form content, so that the mobile app will type the form content for you next time. This will greatly speed up the Sign In or other operations for you, especially if the password is long and complex",
+    "This is especially useful for using business applications in workplaces, for example on a shared computers or big sreens in conference rooms. In fact, we are already using the Global Input App for our business applications like Github, Gitlan, JIRA, Confluence, Lucidchart etc. If you need a demo, please [contact us](https://iterativesolution.co.uk/contact-us/).",
+    "If the service application is running on a smart TV, entering the username and password via a remote control may not be so convenient, so it makes sense to carry out the Sign In or Subscription process with the help of a mobile phone.",
+    "You can have a look at the detailed explanation about this Sign In example in the following github repository:",
+    "[https://github.com/global-input/global-input-react](https://github.com/global-input/global-input-react)"
      ],
      content2:["In the source code shown above, the only part that is related to the Global Input is to build the metadata for the sign in form and call the Global Input Component. In the folling source code listing, the part not related to the Global Input functionality is omitted."],
     link:{
-      text:"Please click on the following arrow to see how it works.",
+      text:"or you can click on the following arrow to see how it works.",
       uri:"/global-input-app-example/signinput"
     },
     complete:{
