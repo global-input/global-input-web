@@ -5,7 +5,7 @@ import {
   Link,
   withRouter
 } from 'react-router-dom'
-
+import ReactMarkdown from "react-markdown";
 import {textValues} from  "../configs";
 import {images} from "../configs";
 
@@ -19,7 +19,9 @@ class ShowServiceLink extends Component{
         else{
           return(
           <div className="linkSection">
-            <div>{this.props.linkText}</div>
+            <div className="ptext">
+              <ReactMarkdown source={this.props.linkText} />
+            </div>
             <div className="arrowContainer">
                 <Link to={this.props.serviceURI}>
                   <img src={images.downward}/>
