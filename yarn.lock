@@ -2762,23 +2762,17 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-input-message@^1.3.30:
-  version "1.3.30"
-  resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.3.30.tgz#13b6de24f6a2e20ebea0e385be15025eaa13c80e"
-  dependencies:
-    socket.io-client "^2.0.3"
-
 global-input-message@^1.3.34:
   version "1.3.34"
   resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.3.34.tgz#dd2373c5941eb78428597725f83712aa8076cca9"
   dependencies:
     socket.io-client "^2.0.3"
 
-global-input-react@^1.1.60:
-  version "1.1.60"
-  resolved "https://registry.yarnpkg.com/global-input-react/-/global-input-react-1.1.60.tgz#67e3e94c65634fc6814f083f88d4d8f592a05cc0"
+global-input-react@^1.1.62:
+  version "1.1.62"
+  resolved "https://registry.yarnpkg.com/global-input-react/-/global-input-react-1.1.62.tgz#9245a2dd679af95b302789b63131f59e2aee3e01"
   dependencies:
-    global-input-message "^1.3.30"
+    global-input-message "^1.3.34"
     qrcode.react "^0.7.1"
 
 globals@^9.0.0, globals@^9.14.0:
