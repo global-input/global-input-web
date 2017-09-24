@@ -2768,9 +2768,9 @@ global-input-message@^1.3.34:
   dependencies:
     socket.io-client "^2.0.3"
 
-global-input-react@^1.1.62:
-  version "1.1.62"
-  resolved "https://registry.yarnpkg.com/global-input-react/-/global-input-react-1.1.62.tgz#9245a2dd679af95b302789b63131f59e2aee3e01"
+global-input-react@^1.1.67:
+  version "1.1.67"
+  resolved "https://registry.yarnpkg.com/global-input-react/-/global-input-react-1.1.67.tgz#8496890730a51e12ca1ca97ee175c980649d6443"
   dependencies:
     global-input-message "^1.3.34"
     qrcode.react "^0.7.1"

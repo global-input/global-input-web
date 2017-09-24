@@ -1,23 +1,20 @@
 const textValues={
   urls:{
     apk:"https://globalinput.co.uk/app/GlobalInputApp.apk",
-
+    appstore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
+    playstore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB"
   },
-  company:{
-    title:"Iterative Solution",
+  topmenu:{
+    title:"Global Input Software",
     link:"https://iterativesolution.co.uk",
-    tags:"Innovation and Excellence",
+    tags:"A Universal Mobile Input Solution",
     home:{
-      link:"https://iterativesolution.co.uk",
+      link:"/",
       linkText:"HOME"
     },
-    mobileForBusiness:{
-      link:"https://iterativesolution.co.uk/mobile-for-business/",
-      linkText:"MOBILE FOR BUSINESS"
-    },
-    mobileForBusiness:{
-      link:"https://iterativesolution.co.uk/computer-vision-ai/",
-      linkText:"COMPUTER VISION & AI"
+    qrprinting:{
+      link:"/qr-printing",
+      linkText:"QR Code Printing"
     },
     contactUs:{
       link:"https://iterativesolution.co.uk/contact-us/",
@@ -88,21 +85,10 @@ const textValues={
   },
   qrcode:{
         title:"QR Code Printing",
-        content1:["The QR Code Printing Service enables you to print a QR code via your phone.",
-                  "This demonstrates how a service running on devices such as computers, smart TVs or IoTs can be securely connected to and controlled via the Global Input mobile app. ",
-                  "Bringing the possibility of providing many types of electronic services in public places such as train stations and airports where people can connect and operate on devices securely via the Global Input app. Even in the case of devices with no screen, a printed QR label/ticket can do the job."
-        ],
-        link:{
-          text:"Please click on the following arrow to see how it works.",
-          uri:"/global-input-app-example/qrcode-print"
-        },
-        content2:[
-          "After launching the Global Input app on your phone, point the camera to the QR code on the right and the app will connect to the application. When this happens, the QR Code will be highlighted indicating that a user is connected to the service.",
-          "When the app is connected to the service application, the service application sends the metadata information such as the title of the service, the fields and the buttons etc. to the app to allow the user to interact with the service directly via the app.",
-          "When the app receives the form from the service application, it identifies that the type of data that the service is requesting is QR code content. Consequently, it will present you with a list of data items in the app that matches the data type. After you have selected one of these items, the service form will be filled with the data that you have selected. For example, one of the data items is to allow you to print the encrypted password on paper. In this case, the password encryption key is generated on the first use and will stay inside the app and won't be transmitted over the network. Therefore, only the phone that encrypts the password can decrypt it back. When the app identifies a password via the phone camera, it immediately decrypts it and displays it on the screen."
-        ],
-        content3:[
-          "In the source code shown above, the only part that is related to the Global Input is to build the metadata about the service form and call the Global Input Component:"
+        intruction:"Please scan the following QR Code using the Global Input App",
+        content1:[
+          "After launching the Global Input app on your phone, point the camera to the QR code displayed on the top and the app will connect to the application. When this happens, the QR Code will be highlighted indicating that a user is connected to the service.",
+          "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper that you can use mobile phone to import back them in."
         ]
   },
   pairing:{
