@@ -22,6 +22,16 @@ export  class Home extends Component {
       console.log("pressed");
       this.setState(Object.assign({},this.state,{menuPressed:!this.state.menuPressed}));
   }
+  scrollDocumentOffsetTop(element){
+     return element.offsetTop + ( element.offsetParent ? this.scrollDocumentOffsetTop(element.offsetParent) : 0 );
+  }
+  gotoIntroduction(){
+       var scrollElement=document.getElementById("intro");
+             if(scrollElement){
+               var top=this.scrollDocumentOffsetTop(scrollElement)-(window.innerHeight / 2 );
+               window.scrollTo(0,top);
+             }
+  }
   render() {
     var responsiveMenuClass="topnav";
    if(this.state.menuPressed){
@@ -40,7 +50,7 @@ export  class Home extends Component {
                       {textValues.topmenu.qrprinting.linkText}
                 </Link>
                 <a href={textValues.topmenu.contactUs.link}>
-                
+
                       {textValues.topmenu.contactUs.linkText}
                 </a>
 
@@ -61,8 +71,9 @@ export  class Home extends Component {
 
                <DemoInput/>
                  <div style={styles.toApply}>
-
+                   <a onClick={this.gotoIntroduction.bind(this)}>
                     <img src={images.enableGlobalInput} style={styles.enableButton}/>
+                   </a>
                </div>
 
           </div>
@@ -75,10 +86,10 @@ export  class Home extends Component {
 
                 </div>
             </div>
-
+           <div id="intro">
 
               <DisplayBlockText content={textValues.home.content1}/>
-
+          </div>
 
 
 
