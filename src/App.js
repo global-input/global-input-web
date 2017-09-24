@@ -10,36 +10,24 @@ import "./css/global-input.css"
 import  "./css/SimpleInput.css";
 
 import {Home} from "./home";
-import {SimpleInputHome} from "./simple-input";
- import {SignInInputHome} from "./sign-in-input";
 
-
-import {QRPrintingServiceHome} from "./qrcode-print-service";
-import {DisplayPrePairingHome} from "./display-pre-pairing";
+import {QRPrinting} from "./qr-printing";
 import {textValues,images} from  "./configs";
-
 
 
 
 export default class App extends Component{
   render(){
+
     return (
 
       <Router>
 
         <div className="topContainer">
-            <Route  path="/" component={Home}/>
 
+            <Route  path="/" exact component={Home}/>
+            <Route  path="/qr-printing"  component={QRPrinting}/>
 
-
-            <SignInInputHome/>
-
-            <SimpleInputHome/>
-            <QRPrintingServiceHome/>
-            <DisplayPrePairingHome/>
-
-
-                   
 
             </div>
 

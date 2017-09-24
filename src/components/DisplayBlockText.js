@@ -13,12 +13,12 @@ import {textValues} from  "../configs";
 import {images} from "../configs";
 import {CodeDataRenderer} from "global-input-react";
 
-
+import {styles} from "./styles";
 export default class DisplayBlockText extends Component{
       render(){
               const content=this.props.content;
               return(
-                <div className="serviceIntroduction">
+                <div style={styles.introduction}>
 
                   {content.map((p,index)=>{return(<div className="ptext" key={index}>
                       <ReactMarkdown source={p} />
