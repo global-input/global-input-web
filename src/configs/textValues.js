@@ -28,6 +28,14 @@ const textValues={
      subtitle:"A Universal mobile input solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
 
+     first:{
+        title:"Universal Device Input",
+        description:[
+          "The Global Input App is a universal device input mobile app ready for you to use for all your service applications and devices. This allows you to have a single mobile app to operate on all services and devices.",
+
+           "If you are already running the Global Input App on your mobile and are visiting this website with your computer, you can either click on the example scenarios listed below and try to operate on them with your mobile, or you can go straight on [chrome extension](https://github.com/global-input/chrome-extension) and [word press changes](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website or your browser to enjoy how quickly and safely sign into your business applications.",
+        ]
+     },
      content1:[
        "The Global Input App allows users to connect their mobile to the service applications running on computers, Smart TVs, Set Top Boxes or IoT devices to operate on them just by pointing the mobile camera to the QR codes",
         "Before going further, please install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB) and try it out",

@@ -8,6 +8,6 @@ const images={
   storeBackground:require("../images/store-background.png"),
   arrowDownToApply:require("../images/arrow-down-to-apply.png"),
   enableGlobalInput:require("../images/global-apply.png"),
-
+  globalInputBanner:require("../images/global-input-banner.png"),
 }
 export default images;

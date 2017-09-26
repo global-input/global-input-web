@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+
+
 import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage} from "../components";
 import {
@@ -39,7 +41,7 @@ export  class Home extends Component {
    }
 
     return (
-      <div>
+      <div className="container-fluid">
           <div style={styles.headerSection}>
 
                <div className={responsiveMenuClass} id="myTopnav">
@@ -77,6 +79,17 @@ export  class Home extends Component {
                </div>
 
           </div>
+
+          <div className="row" >
+            <div className="col-sm-6">
+
+              <DisplayBlockText title={textValues.home.first.title} content={textValues.home.first.description}/>
+
+            </div>
+            <div className="col-sm-6"> <img src={images.globalInputBanner}/></div>
+          </div>
+
+
 
 
           <div className="homeContainer">
