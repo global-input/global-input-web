@@ -4,6 +4,12 @@ export const styles={
     fontFamily: "'Roboto', sans-serif",
     fontSize: 20,
     marginLeft:50,
+    marginTop:100
+  },
+  blockTitle:{
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 30,
+    marginLeft:20,
   }
 
 };

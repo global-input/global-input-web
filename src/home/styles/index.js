@@ -49,12 +49,11 @@ export const styles={
     flexDirection:"column",
     justifyContent:"flex-start",
     alignItems:"flex-start"
-
-
   },
   enableButton:{
     marginLeft:150,
     marginTop:70
-  }
+  },
+  
 
 };

@@ -8,8 +8,8 @@
     "global-input-react": "^1.1.67",
     "json-loader": "^0.5.7",
     "qrcode.react": "^0.7.1",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-markdown": "^2.5.0",
     "react-router-dom": "^4.1.2"
   },

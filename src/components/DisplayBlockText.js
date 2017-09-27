@@ -19,7 +19,7 @@ export default class DisplayBlockText extends Component{
               const content=this.props.content;
               return(
                 <div style={styles.introduction}>
-
+                  <DisplayTitle title={this.props.title}/>
                   {content.map((p,index)=>{return(<div className="ptext" key={index}>
                       <ReactMarkdown source={p} />
                 </div>);})}
@@ -27,4 +27,18 @@ export default class DisplayBlockText extends Component{
               );
 
       }
+}
+
+class DisplayTitle extends Component{
+
+  render(){
+    if(this.props.title){
+      return(
+        <div style={styles.blockTitle}>{this.props.title}</div>
+      );
+    }
+    else{
+      return null;
+    }
+  }
 }

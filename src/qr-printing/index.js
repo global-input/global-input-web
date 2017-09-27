@@ -161,6 +161,7 @@ export  class QRPrinting extends Component {
                </div>
                <DisplayIntroduction/>
 
+
           </div>
 
 
@@ -172,7 +173,8 @@ export  class QRPrinting extends Component {
                 </div>
             </div>
 
-<DisplayBlockText content={textValues.home.content1}/>
+<DisplayBlockText content={textValues.qrcode.content2}/>
+
 
 
           </div>
