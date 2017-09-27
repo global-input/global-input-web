@@ -29,26 +29,38 @@ const textValues={
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
 
      first:{
-        title:"Universal Device Input",
+        title:"A Universal Device Input Mobile App",
         description:[
-          "The Global Input App is a universal device input mobile app ready for you to use for all your service applications and devices. This allows you to have a single mobile app to operate on all services and devices.",
+          "For applications on Smart TV, Computers and other devices.",
+          "For Signing in on websites via mobile.",
+          "For Sign in to business applications:JIRA, Confluence, gitlab, github...",
+          "Operating on IoT devices",
+          "For getting access to company facilities"
+        ]
+     },
+     second:{
+        title:"End-to-end Encryption",
+        description:[
+          "Encryption key exchange via QR code only: only in the close distance.",
+           "Communication with end-to-end encryption: not possible to intercept communication.",
+           "Use different strong encryption key for each session: maximum security possible.",
 
-           "If you are already running the Global Input App on your mobile and are visiting this website with your computer, you can either click on the example scenarios listed below and try to operate on them with your mobile, or you can go straight on [chrome extension](https://github.com/global-input/chrome-extension) and [word press changes](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website or your browser to enjoy how quickly and safely sign into your business applications.",
         ]
      },
      content1:[
-       "The Global Input App allows users to connect their mobile to the service applications running on computers, Smart TVs, Set Top Boxes or IoT devices to operate on them just by pointing the mobile camera to the QR codes",
-        "Before going further, please install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB) and try it out",
-        "If you are already running the Global Input App on your mobile and are visiting this website with your computer, you can either click on the example scenarios listed below and try to operate on them with your mobile, or you can go straight on [chrome extension](https://github.com/global-input/chrome-extension) and [word press changes](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website or your browser to enjoy how quickly and safely sign into your business applications.",
 
-        "If you are javascript developer, you may like to play around with the code yourself with [the React JS example](https://jsfiddle.net/dilshat/26jh68wv/) and [the plain JavaScript example](https://jsfiddle.net/dilshat/c5fvyxqa/) or you may have a look at the documentation and code samples in the github repositories listed below",
+        "Install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB).",
+        "You may be already running the Global Input App on your mobile app and have tried the app by scanning the QR code on the top of the page. You may try the app on the QR Code Printing Service by clicking on the menu on the top of this page. The QR Code Printing Service is a Single Page Application with any back-end services. ",
+        "then you can download the [chrome extension](https://github.com/global-input/chrome-extension) so you can use it on the various business application such as Confluence, JIRA, GitLab, GitHub, LucidChart, etc",
+
+        "If you have a word press website, you can have a look at the [this github repository](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website. As the live example, you can visit [here](https://iterativesolution.co.uk/wp-admin/)",
+
+        "If you are javascript developer, you can try online [the React JS example](https://jsfiddle.net/dilshat/26jh68wv/) and [the plain JavaScript example](https://jsfiddle.net/dilshat/c5fvyxqa/) or you may have a look at the documentation and code samples in the github repositories listed below",
         "[https://github.com/global-input/global-input-react](https://github.com/global-input/global-input-react)",
         "[https://github.com/global-input/global-input-message](https://github.com/global-input/global-input-message)",
-        "We are using our Global Input App to [sign into our websites](https://iterativesolution.co.uk/wp-admin/), which is powered by Wordpress.  We are also using it everyday on our business applications such as Jira, Confluece, GitLab, Github, lucidchart etc.  We are also using it on the media software products that we have developed ourselves. ",
-        "We can login very quickly just by pointing the mobile camera to the QR code regardless of how long and how complex the password is! And none of us have to remember the long passwords anymore. We don't have such hesitation or embarrassment when we need to sign into the services via the big screen devices while everybody else in the room is watching. And now you can do the same. In your workplace, you may often have to work on a shared computer and you need to login into many applications and each have different passwords. For security purposes, each service application should have different and long password, and you need to sign in very quickly. All can be now solved with the Global Input mobile app solution.",
-        "You may think what will happen if you lose your mobile. You can print out passwords on papers and only your mobile can decrypt it and display it on your mobile screen! And then you can print out your master encryption key and lock it in your safebox. When you have a new phone, install the Global Input App on your new phone and point the mobile camera to the master QR code and your phone will recognize it automatically and import it into your phone. This will pair your new phone with your old phone!",
-        "If you install [this Chrome extension](https://github.com/global-input/chrome-extension), you will be able to use the Global Input App on the Jira, Confluence, GitLab etc business applications.",
-        "The following examples are written using the React.js framework. You can also have look at [here](https://github.com/global-input/global-input-message) if your application is not written in ReactJS. We are in the process of preparing the libraries for other programming languages as well, so please watch this space.",
+        "After this, you can sign it on business applications such as Jira, Confluece, GitLab, Github, lucidchart etc.  Our [media software products](https://github.com/boxmediapp) that we have developed are also comes with Global Input enabled. ",
+        "You can login very quickly just by pointing the mobile camera to the QR code regardless of how long and how complex the password is! You don't have to remember the long passwords anymore. You don't have such hesitation or embarrassment when you need to sign into the services via the big screen devices while everybody else in the room is watching. In workplace, using shared computer are common place, using complex and different password for each applications and devices greatly increases security. Global Input App will types fill in the same automatically when you scan the QR code.",
+        "You can even print out passwords on papers and only your mobile can decrypt it via its camera and display it on your mobile screen! You can print out your master encryption key and lock it in your safebox. When you have a new phone, install the Global Input App on your new phone and point the mobile camera to the master QR code and your phone will recognize it automatically and import it into your phone. This will pair your new phone with your old phone!",
       ],
 
   },
@@ -97,6 +109,11 @@ const textValues={
         content1:[
           "After launching the Global Input app on your phone, point the camera to the QR code displayed on the top and the app will connect to the application. When this happens, the QR Code will be highlighted indicating that a user is connected to the service.",
           "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper that you can use mobile phone to import back them in."
+        ],
+        content2:[
+          "This example demonstrate that a website or service applicatios that are providing service can transfer any input form or control to the Global Input App so that users can operate on the mobile.",
+          "The source code of this website is available on the following github repository:",
+          "[https://github.com/global-input/global-input-web](https://github.com/global-input/global-input-web)"
         ]
   },
   pairing:{

@@ -89,7 +89,15 @@ export  class Home extends Component {
             <div className="col-sm-6"> <img src={images.globalInputBanner}/></div>
           </div>
 
+          <div className="row" >
+                <div className="col-sm-6"> <img src={images.endToEnd}/></div>
+            <div className="col-sm-6">
 
+                <DisplayBlockText title={textValues.home.second.title} content={textValues.home.second.description}/>
+
+            </div>
+
+        </div>
 
 
           <div className="homeContainer">
