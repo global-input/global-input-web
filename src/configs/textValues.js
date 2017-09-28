@@ -108,7 +108,7 @@ const textValues={
 
         content1:[
           "Please scan the QR code displayed above with the Global Input App on your phone.",
-          "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper so that you can import back them into your phone if you loose your ph."
+          "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper so that you can import back them into your phone if you loose your phone."
         ],
         content2:[
           "This service application is a single page application that do not use back-end services, its source code is available as part of this website at the following github repository",
