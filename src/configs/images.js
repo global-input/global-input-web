@@ -10,6 +10,6 @@ const images={
   enableGlobalInput:require("../images/global-apply.png"),
   globalInputBanner:require("../images/global-input-banner.png"),
   endToEnd:require("../images/end-to-end.png"),
-
+  passwordPrinting:require("../images/password-printing.png")
 }
 export default images;

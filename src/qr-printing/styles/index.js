@@ -32,7 +32,7 @@ export const styles={
   },
 
   qrServiceContainer:{
-    marginLeft:"20px"
+    marginLeft:"140px",
   },
   qrcodeContainer:{
   },
