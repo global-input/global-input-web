@@ -147,8 +147,20 @@ export  class QRPrinting extends Component {
                      </a>
                       <a className="icon" onClick={this.menuPressed.bind(this)}>&#9776;</a>
                </div>
+
+
                <div style={styles.serviceTitle}>
                      {textValues.qrcode.title}
+               </div>
+               <div style={styles.fromStore}>
+                  <a href={textValues.urls.playstore}>
+                   <img src={images.playstore} style={styles.storeImage}/>
+                  </a>
+                  <a href={textValues.urls.appstore}>
+                   <img src={images.appstore} style={styles.imageStore}/>
+                   </a>
+
+
                </div>
                <DisplayQRCode config={config} service={this} senders={this.state.senders}/>
                <div id="bidirectionalInputTest">
@@ -172,8 +184,16 @@ export  class QRPrinting extends Component {
 
                 </div>
             </div>
+            <div className="row" >
+              <div className="col-sm-6">
 
-<DisplayBlockText content={textValues.qrcode.content2}/>
+                <DisplayBlockText title={textValues.qrcode.passwordPring.title} content={textValues.qrcode.passwordPring.content}/>
+
+              </div>
+              <div className="col-sm-6"> <img src={images.passwordPrinting}/></div>
+            </div>
+
+            <DisplayBlockText content={textValues.qrcode.content2}/>
 
 
 
@@ -209,9 +229,7 @@ class DisplayQRCode extends Component{
     if(!this.props.senders || this.props.senders.length===0){
           return(
             <div style={styles.qrServiceContainer}>
-                  <div style={styles.instruction}>
-                    <ReactMarkdown source={textValues.qrcode.intruction} />
-                  </div>
+                  
                   <div style={styles.qrcodeContainer}>
                     <CodeDataRenderer service={this.props.service}  config={this.props.config} level="H" size="300"/>
                   </div>

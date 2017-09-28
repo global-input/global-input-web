@@ -105,16 +105,28 @@ const textValues={
   },
   qrcode:{
         title:"QR Code Printing",
-        intruction:"Please scan the following QR Code using the Global Input App",
+
         content1:[
-          "After launching the Global Input app on your phone, point the camera to the QR code displayed on the top and the app will connect to the application. When this happens, the QR Code will be highlighted indicating that a user is connected to the service.",
-          "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper that you can use mobile phone to import back them in."
+          "Please scan the QR code displayed above with the Global Input App on your phone.",
+          "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper so that you can import back them into your phone if you loose your ph."
         ],
         content2:[
-          "This example demonstrate that a website or service applicatios that are providing service can transfer any input form or control to the Global Input App so that users can operate on the mobile.",
-          "The source code of this website is available on the following github repository:",
-          "[https://github.com/global-input/global-input-web](https://github.com/global-input/global-input-web)"
-        ]
+          "This service application is a single page application that do not use back-end services, its source code is available as part of this website at the following github repository",
+          "[https://github.com/global-input/global-input-web](https://github.com/global-input/global-input-web)",
+          "This also demonstrates that a website or service applicatios that are providing service can transfer any input form or control to the Global Input App so that users can operate on the mobile."
+        ],
+        passwordPring:{
+            title:"Password Printing",
+            content:[
+                  "You can now put your passwords on the stickers. They will be revealed only via your phone camera and can be imported into your phone.",
+                  "You can now print your passwords on papers. They will be revealed only via your phone camera and can be imported into your phone.",
+                  "You can now place your passwords on the confluence page where you placed the links to login pages. They will be revealed only via your phone camera and can imported into your phone.",
+                  "The passwords in the QR Codes are encrypted with a strong master encryption key in your phone.",
+                  "A unique master encryption key is generated when you first time run the Global Input App and it will stay in your phone.",
+                  "You can print out your master key and place it in a safe place, or you can pair it with another phone."
+            ]
+
+        }
   },
   pairing:{
     title:"Pair handsets",
