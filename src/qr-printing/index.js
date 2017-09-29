@@ -4,6 +4,7 @@ import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage} from "../components";
 import {CodeDataRenderer} from "global-input-react";
 import ReactMarkdown from "react-markdown";
+import {TopMenu} from "../menu";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,7 +19,7 @@ import {config} from "../configs";
 export  class QRPrinting extends Component {
   constructor(props){
       super(props);
-      this.state={menuPressed:false,size:300,level:"H", content:"", label:""};
+      this.state={size:300,level:"H", content:"", label:""};
   }
 
   menuPressed(){
@@ -124,29 +125,13 @@ export  class QRPrinting extends Component {
     };
   }
   render() {
-    var responsiveMenuClass="topnav";
-   if(this.state.menuPressed){
-       responsiveMenuClass="topnav responsive";
-   }
+
      var config=this.buildGlobalInputConfig();
     return (
       <div>
           <div style={styles.headerSection}>
+              <TopMenu selected="qrprinting"/>
 
-               <div className={responsiveMenuClass} id="myTopnav">
-                     <Link to={textValues.topmenu.home.link}>
-                           {textValues.topmenu.home.linkText}
-                     </Link>
-                     <Link to={textValues.topmenu.qrprinting.link}>
-                           {textValues.topmenu.qrprinting.linkText}
-                     </Link>
-
-                     <a href={textValues.topmenu.contactUs.link}>
-
-                           {textValues.topmenu.contactUs.linkText}
-                     </a>
-                      <a className="icon" onClick={this.menuPressed.bind(this)}>&#9776;</a>
-               </div>
 
 
                <div style={styles.serviceTitle}>
@@ -229,7 +214,7 @@ class DisplayQRCode extends Component{
     if(!this.props.senders || this.props.senders.length===0){
           return(
             <div style={styles.qrServiceContainer}>
-                  
+
                   <div style={styles.qrcodeContainer}>
                     <CodeDataRenderer service={this.props.service}  config={this.props.config} level="H" size="300"/>
                   </div>
