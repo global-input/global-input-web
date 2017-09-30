@@ -12,29 +12,16 @@ export const styles={
     color: "#333",
     backgroundColor: "#fff",
     backgroundImage:"url("+images.globalInputBackground+")",
-    height:1100
-
-  },
-  fromStore:{
-    display:"flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    backgroundImage:"url("+images.storeBackground+")",
-    magin:0,
-    padding:0,
-    height:400
-  },
-  storeImage:{
-    magin:0,
-    border:"solid 10 red",
-    marginRight:"100px"
+    height:1000,
   },
 
-  qrServiceContainer:{
+  qrCodeContainer:{
     marginLeft:"0px",
+    width:700
   },
-
+  serviceContainer:{
+      marginLeft:150
+  },
   toApply:{
     backgroundImage:"url("+images.arrowDownToApply+")",
     margin:0,
@@ -45,8 +32,6 @@ export const styles={
     flexDirection:"column",
     justifyContent:"flex-start",
     alignItems:"flex-start"
-
-
   },
   enableButton:{
     marginLeft:150,
@@ -75,6 +60,32 @@ export const styles={
     fontFamily: "'Roboto', sans-serif",
     fontSize: 20,
     marginLeft:50,
+  },
+  qrcodePropery:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start"
+  },
+  buttonContainer:{
+
+    backgroundColor: "#396BBC",
+    display:"flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%"
+  },
+
+  buttonLink:{
+    width:"100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    display:"flex",
+    cursor: "pointer",
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 28,
+    color: "#FFFFFF",
   }
+
 
 };

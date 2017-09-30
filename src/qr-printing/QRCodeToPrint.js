@@ -10,7 +10,7 @@ import  "./styles/QRCodeToPrint.css";
 
 export default class QRCodeToPrint extends Component{
   render(){
-            if(this.props.content){
+            if(this.props.render){
                       return(
                       <div className="toPrint">
                           <div className="qrCodeContainer">

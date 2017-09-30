@@ -3,25 +3,19 @@ import React, {Component} from 'react'
 import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage} from "../components";
 
+import "./styles/DisplayForm.css"
 import ReactMarkdown from "react-markdown";
 
 
 
-
-
-
-import QRCodeToPrint from "./QRCodeToPrint";
 import ContetAndLabel from "./ContetAndLabel";
 import QRCodePropertyFields from "./QRCodePropertyFields";
 
 export default class DisplayForm extends Component{
     render(){
-      if(this.props.senders && this.props.senders.length>0){
+      if(this.props.render){
            return(
-                <div className="formContainer">
-                  <QRCodeToPrint content={this.props.content} label={this.props.label} level={this.props.level}
-                  size={this.props.size}/>
-
+                <div className="formContainer">                    
                     <div className="form notForPrinting">
                           <ContetAndLabel setContent={this.props.setContent}
                             setLabel={this.props.setLabel}

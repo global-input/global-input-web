@@ -15,21 +15,7 @@ export const styles={
     height:1100
 
   },
-  fromStore:{
-    display:"flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    backgroundImage:"url("+images.storeBackground+")",
-    magin:0,
-    padding:0,
-    height:400
-  },
-  storeImage:{
-    magin:0,
-    border:"solid 10 red",
-    marginRight:"100px"
-  },
+
   demoContainer:{
     display:"flex",
     flexDirection: "column",
@@ -54,6 +40,6 @@ export const styles={
     marginLeft:150,
     marginTop:70
   },
-  
+
 
 };
