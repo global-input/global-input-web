@@ -1,0 +1,28 @@
+@media print {
+    div.notForPrinting {
+         display: none;
+    }
+    div.toPrint {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+        border: 1px solid blue;
+        background-color: white;
+        opacity: 1;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+
+    }
+
+
+}

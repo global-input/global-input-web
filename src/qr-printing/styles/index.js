@@ -32,10 +32,9 @@ export const styles={
   },
 
   qrServiceContainer:{
-    marginLeft:"140px",
+    marginLeft:"0px",
   },
-  qrcodeContainer:{
-  },
+
   toApply:{
     backgroundImage:"url("+images.arrowDownToApply+")",
     margin:0,

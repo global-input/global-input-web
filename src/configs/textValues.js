@@ -13,7 +13,7 @@ const textValues={
       linkText:"HOME"
     },
     qrprinting:{
-      link:"/qr-printing",
+      link:"/global-input-app/qr-printing",
       linkText:"QR Code Printing"
     },
     contactUs:{
@@ -27,7 +27,7 @@ const textValues={
      title:"Global Input Software",
      subtitle:"A Universal mobile input solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
-
+     qrscan:"Scan the following QR code",
      first:{
         title:"A Universal Device Input Mobile App",
         description:[
@@ -105,7 +105,7 @@ const textValues={
   },
   qrcode:{
         title:"QR Code Printing",
-
+        qrscan:"Scan to start to create QR Code",
         content1:[
           "Please scan the QR code displayed above with the Global Input App on your phone.",
           "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper so that you can import back them into your phone if you loose your phone."
