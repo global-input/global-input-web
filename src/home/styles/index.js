@@ -5,14 +5,17 @@ export const styles={
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    margin:4,
+    margin:0,
     fontFamily: "'Roboto', sans-serif",
     fontSize: 14,
     lineHeight: "1.42857143",
     color: "#333",
     backgroundColor: "#fff",
     backgroundImage:"url("+images.globalInputBackground+")",
-    height:1100
+    backgroundRepeat:"no-repeat",
+    backgroundAttachement:"scroll",
+    backgroundPosition:"center center",
+    height:950,
 
   },
 
