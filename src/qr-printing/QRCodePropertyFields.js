@@ -5,7 +5,7 @@ import {textValues,images} from  "../configs";
 
 import ReactMarkdown from "react-markdown";
 
-
+import {styles} from "./styles";
 
 
 
@@ -18,7 +18,7 @@ export default class QRCodePropertyFields extends Component{
   render(){
     if(this.props.content){
           return (
-          <div className="qrcodePropery">
+          <div style={styles.qrcodePropery}>
                 <input type="range" min="100" max="1000" step="10" value={this.props.size} onChange={evt=>{
                     this.props.setSize(evt.target.value);
                 }}/>
@@ -30,8 +30,8 @@ export default class QRCodePropertyFields extends Component{
                   <option value="Q">Q</option>
                   <option value="H">H</option>
                 </select>
-                <div className="button">
-                  <a onClick={this.props.printQRCode}>
+                <div style={styles.buttonContainer}>
+                  <a onClick={this.props.printQRCode} style={styles.buttonLink}>
                     Print
                   </a>
                 </div>

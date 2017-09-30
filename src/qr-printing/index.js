@@ -9,7 +9,8 @@ import {TopMenu} from "../menu";
 import DisplayIntroduction from "./DisplayIntroduction";
 import DisplayQRCode from "./DisplayQRCode";
 import DisplayForm from "./DisplayForm";
-
+import QRCodeToPrint from "./QRCodeToPrint";
+import DisplayQRPrintingTitle from "./DisplayQRPrintingTitle";
 
 
 import {styles} from "./styles";
@@ -18,6 +19,9 @@ export  class QRPrinting extends Component {
   constructor(props){
       super(props);
       this.state={size:300,level:"H", content:"", label:""};
+  }
+  isSendersConnected(){
+      return this.state.senders && this.state.senders.length>0;
   }
 
 
@@ -53,7 +57,7 @@ export  class QRPrinting extends Component {
           url:config.url,
           apikey:config.apikey,
           securityGroup:config.securityGroup,
-          scrollToOnConnected:"bidirectionalInputTest",
+          scrollToOnConnected:"createQRCodeForm",
           onSenderConnected:this.setSenders.bind(this),
           onSenderDisconnected:this.setSenders.bind(this),
           initData:{
@@ -117,38 +121,41 @@ export  class QRPrinting extends Component {
     };
   }
   render() {
+    var config=this.buildGlobalInputConfig();
+    const senderConnected=this.isSendersConnected();
+    var renderQRCondeToPrint=false;
+    if(senderConnected && this.state.content){
+      renderQRCondeToPrint=true;
+    }
 
-     var config=this.buildGlobalInputConfig();
+
     return (
       <div>
           <div style={styles.headerSection}>
              <div className="notForPrinting">
                     <TopMenu selected="qrprinting"/>
-                    <DownloadApp actionText={textValues.qrcode.qrscan}/>                    
-                     <DisplayQRCode config={config} service={this} senders={this.state.senders}/>
-                </div>
-
-               <div id="bidirectionalInputTest">
-                 <DisplayForm content={this.state.content}  setContent={this.setContent.bind(this)} senders={this.state.senders}
-                 label={this.state.label} level={this.state.level}
-                 size={this.state.size}
-                 setLabel={this.setLabel.bind(this)}
-                 setSize={this.setSize.bind(this)} printQRCode={this.printQRCode.bind(this)}
-                 setLevel={this.setLevel.bind(this)}/>
-               </div>
-               <DisplayIntroduction/>
+                    <DownloadApp actionText={textValues.qrcode.qrscan} render={!senderConnected}/>
+                    <DisplayQRCode config={config} service={this} senders={this.state.senders} render={!senderConnected}/>
+                    <DisplayQRPrintingTitle render={senderConnected}/>
+                    <DisplayIntroduction/>
+            </div>
 
 
+
+              <div id="createQRCodeForm" style={styles.serviceContainer}>
+                <QRCodeToPrint content={this.state.content} label={this.state.label} level={this.state.level}
+                size={this.state.size} render={renderQRCondeToPrint}/>
+                <DisplayForm content={this.state.content}  setContent={this.setContent.bind(this)}
+                    label={this.state.label} level={this.state.level}
+                    size={this.state.size}
+                    setLabel={this.setLabel.bind(this)}
+                    setSize={this.setSize.bind(this)} printQRCode={this.printQRCode.bind(this)}
+                    setLevel={this.setLevel.bind(this)} render={senderConnected}/>
+              </div>
           </div>
 
 
-          <div className="homeContainer">
-
-            <div className="pageTitleContainer">
-                <div className="pageTitleBlock">
-
-                </div>
-            </div>
+            <div className="homeContainer">
             <div className="row" >
               <div className="col-sm-6">
 

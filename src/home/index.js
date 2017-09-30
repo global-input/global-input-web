@@ -34,7 +34,7 @@ export  class Home extends Component {
       <div className="container-fluid">
           <div style={styles.headerSection}>
             <TopMenu selected="home"/>
-               <DownloadApp actionText={textValues.home.qrscan}/>
+               <DownloadApp actionText={textValues.home.qrscan} render={true}/>
 
                <DemoInput/>
                  <div style={styles.toApply}>

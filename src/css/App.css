@@ -168,21 +168,7 @@ a {
   align-items: center;
 }
 
-.formContainer{
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex:1;
-}
 
-.form{
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: rigth;
-
-}
 .loginForm{
     background-color: #B9C6DB;
     box-shadow: 10px 10px 5px #888888;
@@ -196,27 +182,7 @@ a {
   background-color: #396BBC;
   font-size: 36px;
 }
-.button{
-  background-color: #396BBC;
-  font-size: 28px;
-  color:white;
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.button a{
-  width:100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
-  display: flex;
-}
-a{
-  cursor: pointer;
-}
 .contetAndLabelRecord{
   display:flex;
   flex-direction: row;

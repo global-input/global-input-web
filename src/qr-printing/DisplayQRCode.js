@@ -10,14 +10,10 @@ import {styles} from "./styles";
 export default class DisplayQRCode extends Component{
 
   render(){
-    if(!this.props.senders || this.props.senders.length===0){
+    if(this.props.render){
           return(
-            <div style={styles.qrServiceContainer}>
-
-                  <div style={styles.qrcodeContainer}>
-                    <CodeDataRenderer service={this.props.service}  config={this.props.config} level="H" size="300"/>
-                  </div>
-
+            <div style={styles.qrCodeContainer}>
+                    <CodeDataRenderer service={this.props.service}  config={this.props.config} level="H" size="300"/> 
             </div>
 
 
@@ -25,7 +21,6 @@ export default class DisplayQRCode extends Component{
           );
     }
     else{
-        console.log("----qr senders-:"+this.props.senders)
           return null;
     }
 
