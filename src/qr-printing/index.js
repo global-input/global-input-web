@@ -29,16 +29,10 @@ export  class QRPrinting extends Component {
     this.setState(Object.assign({},this.state,{size}));
   }
   setSenders(sender, senders){
-    this.setState(Object.assign({}, this.state,{senders:senders}));
-    console.log("--sender::::::-:"+senders);
+    this.setState(Object.assign({}, this.state,{senders:senders}));    
   }
-  onLevelItemsSelected(items){
-      if(items.length){
-          var selected=items[0].value;
-          if(selected==="L"||selected==="M" || selected==="Q" || selected==="H"){
+  onLevelItemsSelected(selected){
               this.setLevel(selected);
-          }
-      }
   }
   setLevel(level){
         this.setState(Object.assign({},this.state,{level}));
