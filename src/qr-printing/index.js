@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
 import QRCode from "qrcode.react";
-import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage} from "../components";
 import {CodeDataRenderer} from "global-input-react";
 import ReactMarkdown from "react-markdown";
+import {textValues,images} from  "../configs";
+import {DisplayBlockText,ShowImage,DownloadApp} from "../components";
+
 import {TopMenu} from "../menu";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
+import DisplayIntroduction from "./DisplayIntroduction";
+import DisplayQRCode from "./DisplayQRCode";
+import DisplayForm from "./DisplayForm";
 
 
 
@@ -21,12 +19,6 @@ export  class QRPrinting extends Component {
       super(props);
       this.state={size:300,level:"H", content:"", label:""};
   }
-
-  menuPressed(){
-      console.log("pressed");
-      this.setState(Object.assign({},this.state,{menuPressed:!this.state.menuPressed}));
-  }
-
 
 
   setSize(size){
@@ -130,24 +122,12 @@ export  class QRPrinting extends Component {
     return (
       <div>
           <div style={styles.headerSection}>
-              <TopMenu selected="qrprinting"/>
+             <div className="notForPrinting">
+                    <TopMenu selected="qrprinting"/>
+                    <DownloadApp actionText={textValues.qrcode.qrscan}/>                    
+                     <DisplayQRCode config={config} service={this} senders={this.state.senders}/>
+                </div>
 
-
-
-               <div style={styles.serviceTitle}>
-                     {textValues.qrcode.title}
-               </div>
-               <div style={styles.fromStore}>
-                  <a href={textValues.urls.playstore}>
-                   <img src={images.playstore} style={styles.storeImage}/>
-                  </a>
-                  <a href={textValues.urls.appstore}>
-                   <img src={images.appstore} style={styles.imageStore}/>
-                   </a>
-
-
-               </div>
-               <DisplayQRCode config={config} service={this} senders={this.state.senders}/>
                <div id="bidirectionalInputTest">
                  <DisplayForm content={this.state.content}  setContent={this.setContent.bind(this)} senders={this.state.senders}
                  label={this.state.label} level={this.state.level}
@@ -191,162 +171,3 @@ export  class QRPrinting extends Component {
             );
   }
 }
-
-
-class DisplayIntroduction extends Component{
-
-  render(){
-    return(
-      <div style={styles.introduction}>
-          {textValues.qrcode.content1.map((p,index)=>{return(<div className="ptext" key={index}>
-          <ReactMarkdown source={p} />
-          </div>);})}
-      </div>
-
-    );
-
-  }
-}
-
-class DisplayQRCode extends Component{
-
-  render(){
-    if(!this.props.senders || this.props.senders.length===0){
-          return(
-            <div style={styles.qrServiceContainer}>
-
-                  <div style={styles.qrcodeContainer}>
-                    <CodeDataRenderer service={this.props.service}  config={this.props.config} level="H" size="300"/>
-                  </div>
-
-            </div>
-
-
-
-          );
-    }
-    else{
-        console.log("----qr senders-:"+this.props.senders)
-          return null;
-    }
-
-  }
-}
-
-class DisplayForm extends Component{
-    render(){
-      if(this.props.senders && this.props.senders.length>0){
-           return(
-             <div className="formContainer">
-                    <div className="form">
-                          <QRCodeToPrint content={this.props.content} label={this.props.label} level={this.props.level}
-                          size={this.props.size}/>
-                          <ContetAndLabel setContent={this.props.setContent}
-                            setLabel={this.props.setLabel}
-                            label={this.props.label} content={this.props.content}/>
-                          <QRCodePropertyFields
-                              content={this.props.content}
-                              size={this.props.size}
-                              level={this.props.level}
-                              setSize={this.props.setSize}
-                              setLevel={this.props.setLevel}
-                              printQRCode={this.props.printQRCode}/>
-                      </div>
-                </div>
-           );
-         }
-         else{
-           return null;
-         }
-
-
-
-
-
-
-    }
-
-
-}
-
-
-class QRCodeToPrint extends Component{
-  render(){
-            if(this.props.content){
-                      return(
-                      <div className="toPrint">
-                          <div className="qrCodeContainer">
-                              <QRCode value={this.props.content} level={this.props.level} size={this.props.size}/>
-                          </div>
-                          <div className="qrCodeLabel">
-                            {this.props.label}
-                          </div>
-                      </div>
-                      );
-
-            }
-            else{
-              return null;
-            }
-      }
-
-  }
-
-  class QRCodePropertyFields extends Component{
-
-    render(){
-      if(this.props.content){
-            return (
-            <div className="qrcodePropery">
-                  <input type="range" min="100" max="1000" step="10" value={this.props.size} onChange={evt=>{
-                      this.props.setSize(evt.target.value);
-                  }}/>
-                <select value={this.props.level} onChange={evt=>{
-                    this.props.setLevel(evt.target.value);
-                  }}>
-                    <option value="L">L</option>
-                    <option value="M">M</option>
-                    <option value="Q">Q</option>
-                    <option value="H">H</option>
-                  </select>
-                  <div className="button">
-                    <a onClick={this.props.printQRCode}>
-                      Print
-                    </a>
-                  </div>
-              </div>
-            );
-      }
-      else{
-        return null;
-      }
-
-    }
-  }
-
-  class ContetAndLabel extends Component{
-    render(){
-      return(
-      <div className="contetAndLabel">
-        <div className="contetAndLabelRecord">
-           <div className="contetAndLabelLabel">
-              Content:
-            </div>
-
-             <input type="text" onChange={(evt) => {
-                  this.props.setContent(evt.target.value);
-              }} value={this.props.content} size="30"/>
-        </div>
-          <div className="contetAndLabelRecord">
-            <div className="contetAndLabelLabel">
-              Label:
-            </div>
-               <input type="text" onChange={(evt) => {
-                    this.props.setLabel(evt.target.value);
-                }} value={this.props.label} size="30"/>
-          </div>
-      </div>
-    );
-    }
-
-  }

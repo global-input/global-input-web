@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 
 
 import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage} from "../components";
+import {DisplayBlockText,ShowImage,DownloadApp} from "../components";
 import {
   BrowserRouter as Router,
   Route,
@@ -34,23 +34,14 @@ export  class Home extends Component {
       <div className="container-fluid">
           <div style={styles.headerSection}>
             <TopMenu selected="home"/>
-               <div style={styles.fromStore}>
-                  <a href={textValues.urls.playstore}>
-                   <img src={images.playstore} style={styles.storeImage}/>
-                  </a>
-                  <a href={textValues.urls.appstore}>
-                   <img src={images.appstore} style={styles.imageStore}/>
-                   </a>
-
-
-               </div>
+               <DownloadApp actionText={textValues.home.qrscan}/>
 
                <DemoInput/>
                  <div style={styles.toApply}>
                    <a onClick={this.gotoIntroduction.bind(this)}>
                     <img src={images.enableGlobalInput} style={styles.enableButton}/>
                    </a>
-               </div>
+                 </div>
 
           </div>
 

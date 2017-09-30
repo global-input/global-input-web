@@ -7,7 +7,7 @@ import {
 import './css/App.css';
 import './css/home.css';
 import "./css/global-input.css"
-import  "./css/SimpleInput.css";
+
 
 import {Home} from "./home";
 
@@ -26,7 +26,7 @@ export default class App extends Component{
         <div className="topContainer">
 
             <Route  path="/" exact component={Home}/>
-            <Route  path="/qr-printing"  component={QRPrinting}/>
+            <Route  path="/global-input-app/qr-printing"  component={QRPrinting}/>
 
 
             </div>
