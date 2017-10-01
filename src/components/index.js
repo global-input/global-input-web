@@ -8,5 +8,6 @@ import DownloadApp from "./download-app/DownloadApp";
 import RenderText from "./RenderText";
 import RenderTextImage from "./RenderTextImage";
 import RenderImageText from "./RenderImageText";
+import ContactUsButton from "./ContactUsButton";
 export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText,ShowImage,DownloadApp,
-        RenderText,RenderTextImage,RenderImageText};
+        RenderText,RenderTextImage,RenderImageText,ContactUsButton};

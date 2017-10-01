@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../components/styles/index.css";
 
 import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage,DownloadApp,RenderText} from "../components";
+import {DisplayBlockText,ShowImage,DownloadApp,RenderText,ContactUsButton} from "../components";
 import {
   BrowserRouter as Router,
   Route,
@@ -22,6 +22,7 @@ import UniversalApp from "./UniversalApp";
 import EndToEndEncryption from "./EndToEndEncryption";
 import AutomaticIdentification from "./AutomaticIdentification";
 import AutomateProcess from "./AutomateProcess";
+import PasswordPrinting from "./PasswordPrinting";
 
 export  class Home extends Component {
 
@@ -43,8 +44,10 @@ render() {
                  <EndToEndEncryption/>
                  <AutomaticIdentification/>
                  <AutomateProcess/>
+                 <PasswordPrinting/>
           </div>
 
+          <ContactUsButton/>
 
       </div>
             );
