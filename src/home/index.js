@@ -39,7 +39,7 @@ export  class Home extends Component {
   render() {
 
     return (
-      <div className="homeContainer">
+      <div className="container">
           <div style={globalStyles.headerSection}>
                <TopMenu selected="home"/>
                <DownloadApp actionText={textValues.home.qrscan} render={true}/>
@@ -49,26 +49,12 @@ export  class Home extends Component {
 
 
 
-          <div className="container" id="mainContent">
+          <div id="mainContent">
                  <UniversalApp/>
                  <EndToEndEncryption/>
                  <AutomaticIdentification/>
-                 <AutomateProcess/>                 
+                 <AutomateProcess/>
           </div>
-
-
-
-
-
-
-              <DisplayBlockText content={textValues.home.content1}/>
-
-
-
-
-
-
-
 
 
       </div>
