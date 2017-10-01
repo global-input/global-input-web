@@ -50,11 +50,7 @@ export  default class TopMenu extends Component {
                     </Link>
                     <Link to={textValues.topmenu.documentation.link} className={documentationClass}>
                           {textValues.topmenu.documentation.linkText}
-                    </Link>
-                    <a href={textValues.topmenu.contactUs.link} className={contactUsClass}>
-
-                          {textValues.topmenu.contactUs.linkText}
-                    </a>
+                    </Link>            
                     <a className="icon" onClick={this.menuPressed.bind(this)}>&#9776;</a>
                </div>
             );

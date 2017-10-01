@@ -4,7 +4,7 @@ import {CodeDataRenderer} from "global-input-react";
 import ReactMarkdown from "react-markdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage,DownloadApp} from "../components";
+import {DisplayBlockText,ShowImage,DownloadApp,ContactUsButton} from "../components";
 
 import {TopMenu} from "../menu";
 import DisplayIntroduction from "./DisplayIntroduction";
@@ -152,12 +152,12 @@ export  class QRPrinting extends Component {
           </div>
 
             <div className="homeContainer">
-                  <PasswordPrintingIntroduction/>  
+                  <PasswordPrintingIntroduction/>
            </div>
 
 
 
-
+          <ContactUsButton/>
       </div>
             );
   }
