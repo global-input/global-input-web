@@ -1,44 +1,34 @@
 import React, {Component} from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/index.css";
+import {globalStyles} from "./styles";
+import RenderText from "./RenderText";
 
 import ReactMarkdown from "react-markdown";
 
 
-import {textValues} from  "../configs";
-import {images} from "../configs";
-import {CodeDataRenderer} from "global-input-react";
 
-import {styles} from "./styles";
 export default class DisplayBlockText extends Component{
       render(){
-              const content=this.props.content;
-              return(
-                <div style={styles.introduction}>
-                  <DisplayTitle title={this.props.title}/>
-                  {content.map((p,index)=>{return(<div className="ptext" key={index}>
-                      <ReactMarkdown source={p} />
-                </div>);})}
-                </div>
-              );
+        if(this.props.content){
+          return(
+            <div className="row top-margin-md">
+              <h2 className="section-heading">
+                    {this.props.title}
+              </h2>
+              {this.props.content.map((p,index)=>{
+                  return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
+                      <ReactMarkdown source={p}/>
+                  </h3>);
+                 })
+              }
+            </div>
+          );
+        }
+        else{
+          return null;
+        }
+
 
       }
-}
-
-class DisplayTitle extends Component{
-
-  render(){
-    if(this.props.title){
-      return(
-        <div style={styles.blockTitle}>{this.props.title}</div>
-      );
-    }
-    else{
-      return null;
-    }
-  }
 }

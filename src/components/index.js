@@ -5,4 +5,8 @@ import ServiceIntroduction from "./ServiceIntroduction";
 import DisplayBlockText from "./DisplayBlockText";
 import ShowImage from "./ShowImage";
 import DownloadApp from "./download-app/DownloadApp";
-export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText,ShowImage,DownloadApp};
+import RenderText from "./RenderText";
+import RenderTextImage from "./RenderTextImage";
+import RenderImageText from "./RenderImageText";
+export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText,ShowImage,DownloadApp,
+        RenderText,RenderTextImage,RenderImageText};
