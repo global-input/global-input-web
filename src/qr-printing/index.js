@@ -12,6 +12,7 @@ import DisplayQRCode from "./DisplayQRCode";
 import DisplayForm from "./DisplayForm";
 import QRCodeToPrint from "./QRCodeToPrint";
 import DisplayQRPrintingTitle from "./DisplayQRPrintingTitle";
+import PasswordPrintingIntroduction from "./PasswordPrintingIntroduction";
 
 
 import {styles} from "./styles";
@@ -126,7 +127,7 @@ export  class QRPrinting extends Component {
 
 
     return (
-      <div>
+      <div className="container">
           <div style={globalStyles.headerSection}>
              <div className="notForPrinting">
                     <TopMenu selected="qrprinting"/>
@@ -150,22 +151,9 @@ export  class QRPrinting extends Component {
               </div>
           </div>
 
-
             <div className="homeContainer">
-            <div className="row" >
-              <div className="col-sm-6">
-
-                <DisplayBlockText title={textValues.qrcode.passwordPring.title} content={textValues.qrcode.passwordPring.content}/>
-
-              </div>
-              <div className="col-sm-6"> <img src={images.passwordPrinting}/></div>
-            </div>
-
-            <DisplayBlockText content={textValues.qrcode.content2}/>
-
-
-
-          </div>
+                  <PasswordPrintingIntroduction/>  
+           </div>
 
 
 
