@@ -25,18 +25,7 @@ import AutomateProcess from "./AutomateProcess";
 
 export  class Home extends Component {
 
-
-  scrollDocumentOffsetTop(element){
-     return element.offsetTop + ( element.offsetParent ? this.scrollDocumentOffsetTop(element.offsetParent) : 0 );
-  }
-  gotoIntroduction(){
-       var scrollElement=document.getElementById("intro");
-             if(scrollElement){
-               var top=this.scrollDocumentOffsetTop(scrollElement)-(window.innerHeight / 2 );
-               window.scrollTo(0,top);
-             }
-  }
-  render() {
+render() {
 
     return (
       <div className="container">
