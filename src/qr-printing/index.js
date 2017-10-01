@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import QRCode from "qrcode.react";
 import {CodeDataRenderer} from "global-input-react";
 import ReactMarkdown from "react-markdown";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage,DownloadApp} from "../components";
 
@@ -14,6 +15,7 @@ import DisplayQRPrintingTitle from "./DisplayQRPrintingTitle";
 
 
 import {styles} from "./styles";
+import {globalStyles} from "../components/styles";
 import {config} from "../configs";
 export  class QRPrinting extends Component {
   constructor(props){
@@ -29,7 +31,7 @@ export  class QRPrinting extends Component {
     this.setState(Object.assign({},this.state,{size}));
   }
   setSenders(sender, senders){
-    this.setState(Object.assign({}, this.state,{senders:senders}));    
+    this.setState(Object.assign({}, this.state,{senders:senders}));
   }
   onLevelItemsSelected(selected){
               this.setLevel(selected);
@@ -125,7 +127,7 @@ export  class QRPrinting extends Component {
 
     return (
       <div>
-          <div style={styles.headerSection}>
+          <div style={globalStyles.headerSection}>
              <div className="notForPrinting">
                     <TopMenu selected="qrprinting"/>
                     <DownloadApp actionText={textValues.qrcode.qrscan} render={!senderConnected}/>

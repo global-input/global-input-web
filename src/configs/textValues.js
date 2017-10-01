@@ -16,6 +16,10 @@ const textValues={
       link:"/global-input-app/qr-printing",
       linkText:"QR Code Printing"
     },
+    documentation:{
+      link:"/global-input-app/documentation",
+      linkText:"Documentation"
+    },
     contactUs:{
       link:"https://iterativesolution.co.uk/contact-us/",
       linkText:"CONTACT US"
@@ -28,25 +32,48 @@ const textValues={
      subtitle:"A Universal mobile input solution",
      copyrightinfo:"Copyright © 2017-2022 by Iterative Solution Limited",
      qrscan:"Scan the following QR code",
-     first:{
-        title:"A Universal Device Input Mobile App",
-        description:[
-          "For applications on Smart TV, Computers and other devices.",
-          "For Signing in on websites via mobile.",
-          "For Sign in to business applications:JIRA, Confluence, gitlab, github...",
-          "Operating on IoT devices",
-          "For getting access to company facilities"
+     universalApp:{
+        title:"A Universal Mobile App",
+        content:[
+          "The Global Input App is a universal mobile app for carrying out input operations on applications running on Smart TVs, Set top boxes, computers and other devices including your IoT products.",
+          "With the mobile app, you will be able to operate on various applications running on various devices just by scanning the QR code displayed, and the app wil decide what to do based on the data contained inside the QR code.",
+          "The Global Input App allows the service applications to transfer some of its operations or processes to the mobile app, so that the users can operate or control via their mobile.",
+          "This brings the mobile app development environment into your service application, please visit  [our documentations](global-input-app/documentation) for details"
         ]
      },
-     second:{
+     endToEnd:{
         title:"End-to-end Encryption",
-        description:[
-          "Encryption key exchange via QR code only: only in the close distance.",
-           "Communication with end-to-end encryption: not possible to intercept communication.",
-           "Use different strong encryption key for each session: maximum security possible.",
+        content:[
+           "The communication between service application and the Global Input App is initiated by scanning the QR code to obtain the encryption key as well as the other information necessary for establishing the communication.",
+           "The end-to-end encryption ensures nothing between service application and the mobile app can intercept the communication.",
+           "A unique and strong encryption key will be generated for each session on the service application side and transferred via the QR code to achieve the maximum security. ",
+           "Nothing is stored or processed on the server side. Everything is encrypted inside the devices and transferred to and from service application. The authentication and autherization happens on the service application side.",
+           "With the help of this secure communication channel, the service application will be able to instructs the mobile app to display any form and receive events from the mobile app. please visit  [our documentations](global-input-app/documentation) for details."
 
         ]
      },
+     identification:{
+        title:"Identification via mobile",
+        content:[
+          "The Global Input App allows you to use your mobile to automate the sign in operations on web and business applications.",
+          "No embarrassement anymore when you need to sign in on a big screen in a conference room while everybody is looking at what you are typing. You just need to scan the QR code displayed, and your mobile app will sign in for you.",
+          "For example, you can use  the Global Input App to automate the sign in operations on JIRA, Confluence, Gitlab, Github and your Wordpress websites.",
+          "You no longer need to remember long passwords or make your passwords memorable. You can use a randomly generated password and save it to you Global Input App.  Note that the data are not stored and managed centrally on the server. All your data are encrypted and stored in your mobile phone only. You own your own data and nobody manage it for you. You can backup your data with the [QR Code Printing Service](/global-input-app/qr-printing) if you are worry about loosing your phone. In the business applications, your IT support will reset your passwords in this case anyway.",
+          "With help of Global Input App, every business system can now uses a completely different and complex password for each user. Even if one of the systems is compremised and the user credentails are revealed, the other systems will be safe.",
+          "This is particularly important in the today's businessa world because it is getting increasingly  difficult to anticipate and overcome the human and system vulneraribilities, especially it is difficult to avoid the human errors. So it is always beneficial if we can easily contain the damage when a part of our business system is compromised.",
+          "In the same way, the Global Input App also allows you automate the identification process to give access to some company facilities."
+        ]
+     },
+     automateProcess:{
+        title:"Automate your business processes via mobile",
+        content:[
+          "The Global Input App not only can automate the sign in operations, it also makes it possible to automate the other common operations in your business applications.",
+          "The operations and actities along with required data can be configured and saved into your mobile, so that Global Input app can automate the process for you.",
+          "You just need to scan the QR code displayed, and your mobile app will start the configured operations on your business application automatically.",
+          "For example if you always do a set of operations as soon as you have signed in, then you can set them up in your app, so that it can be repeated after the sign in operations. Or you can display the QR code where you can automate the process via your mobile phone."
+        ]
+     },
+
      content1:[
 
         "Install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB).",
@@ -107,7 +134,7 @@ const textValues={
         title:"QR Code Printing",
         qrscan:"Scan to start to create QR Code",
         content1:[
-          
+
           "The QR Code Printing Service enables you to print a QR code via your phone. Using this service you can print out your passwords that only your phone can decrypt, you can backup your data on paper so that you can import back them into your phone if you loose your phone."
         ],
         content2:[

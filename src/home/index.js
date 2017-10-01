@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../components/styles/index.css";
 
 import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage,DownloadApp} from "../components";
+import {DisplayBlockText,ShowImage,DownloadApp,RenderText} from "../components";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,7 +14,15 @@ import {
 
 import DemoInput from "./DemoInput";
 import {styles} from "./styles";
+import {globalStyles} from "../components/styles";
+
 import {TopMenu} from "../menu";
+import ScrollButton from "./ScrollButton";
+import UniversalApp from "./UniversalApp";
+import EndToEndEncryption from "./EndToEndEncryption";
+import AutomaticIdentification from "./AutomaticIdentification";
+import AutomateProcess from "./AutomateProcess";
+
 export  class Home extends Component {
 
 
@@ -31,57 +39,22 @@ export  class Home extends Component {
   render() {
 
     return (
-      <div className="container-fluid">
-          <div style={styles.headerSection}>
-            <TopMenu selected="home"/>
+      <div className="container">
+          <div style={globalStyles.headerSection}>
+               <TopMenu selected="home"/>
                <DownloadApp actionText={textValues.home.qrscan} render={true}/>
-
                <DemoInput/>
-                 <div style={styles.toApply}>
-                   <a onClick={this.gotoIntroduction.bind(this)}>
-                    <img src={images.enableGlobalInput} style={styles.enableButton}/>
-                   </a>
-                 </div>
-
-          </div>
-
-          <div className="row" >
-            <div className="col-sm-6">
-
-              <DisplayBlockText title={textValues.home.first.title} content={textValues.home.first.description}/>
-
-            </div>
-            <div className="col-sm-6"> <img src={images.globalInputBanner}/></div>
-          </div>
-
-          <div className="row" >
-                <div className="col-sm-6"> <img src={images.endToEnd}/></div>
-            <div className="col-sm-6">
-
-                <DisplayBlockText title={textValues.home.second.title} content={textValues.home.second.description}/>
-
-            </div>
-
-        </div>
-
-
-          <div className="homeContainer">
-
-            <div className="pageTitleContainer">
-                <div className="pageTitleBlock">
-
-                </div>
-            </div>
-           <div id="intro">
-
-              <DisplayBlockText content={textValues.home.content1}/>
+               <ScrollButton scrollTo="mainContent"/>
           </div>
 
 
 
+          <div id="mainContent">
+                 <UniversalApp/>
+                 <EndToEndEncryption/>
+                 <AutomaticIdentification/>
+                 <AutomateProcess/>
           </div>
-
-
 
 
       </div>

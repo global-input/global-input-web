@@ -1,0 +1,40 @@
+.top-margin-md {
+  margin-top:40px!important;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333;
+}
+h2.section-heading {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+h3.section-subheading {
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+  text-transform: none;
+  font-weight: 300;
+  color: #6f7c82;
+  line-height: 1.5;
+}
+h2 {
+    display: block;
+
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+
+}
+
+.bottom-margin-sm {
+    margin-bottom: 20px!important;
+}
+::selection {
+    text-shadow: none;
+    background: #fed136;
+}
