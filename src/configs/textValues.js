@@ -78,7 +78,13 @@ const textValues={
 
   },
   documentation:{
-
+   getStarted:{
+     title:"Get Started",
+     content:[
+       "Install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB). and test out by scanning the QR code on the top of [home page](/).",
+       "If you have a word press website, then you can have a look at the [this github repository](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website. You can have a look at the live demo on [our login wage](https://iterativesolution.co.uk/wp-admin/)",
+     ]
+   },
     content:[
 
        "Please install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB).",

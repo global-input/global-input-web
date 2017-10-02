@@ -21,7 +21,8 @@ render() {
                  <TopMenu selected="documentation"/>
             </div>
             <div className="container" id="mainContent">
-                  <DisplayBlockText content={textValues.documentation.content}/>
+                <DisplayBlockText title={textValues.documentation.getStarted.title} content={textValues.documentation.getStarted.content}/>
+                  <DisplayBlockText  content={textValues.documentation.content}/>
             </div>
             <ContactUsButton/>
       </div>
