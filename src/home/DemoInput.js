@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import {CodeDataRenderer} from "global-input-react";
 
-
+import "../components/styles/index.css";
 
 
 import {config} from "../configs";

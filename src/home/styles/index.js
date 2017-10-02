@@ -6,11 +6,13 @@ export const styles={
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
+
   },
   demoQrCodeContainer:{
-    marginLeft:"150px"
+    marginLeft:"150px",
+
   },
-  
+
   enableButton:{
     marginLeft:150,
     marginTop:70
