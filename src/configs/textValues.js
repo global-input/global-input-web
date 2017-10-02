@@ -81,16 +81,66 @@ const textValues={
    getStarted:{
      title:"Get Started",
      content:[
-       "Install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB). and test out by scanning the QR code on the top of [home page](/).",
-       "If you have a word press website, then you can have a look at the [this github repository](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website. You can have a look at the live demo on [our login wage](https://iterativesolution.co.uk/wp-admin/)",
+       "Please install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB), and then test it out by scanning the QR code on the top of the [home page](/).",
+       "Then you can download the [chrome extension](https://github.com/global-input/chrome-extension) to  use the Gloabal Input App to automate the Sign In process on the various business applications such as Confluence, JIRA, GitLab, GitHub, LucidChart, etc.",
+       "If you have a word press website,  you can use [the instructions in this github repository](https://github.com/global-input/wordpress-login) to automate the Sign In process on your website.",
+       "Alternatively, you can play around online with this [the React JS example](https://jsfiddle.net/dilshat/3crLw63v/) or [this JavaScript example](https://jsfiddle.net/dilshat/c5fvyxqa/) to make your JavaScript application support the Global Input App.",
      ]
    },
-   
+   installation:{
+         title:"React JS application",
+         content:[
+           "Type the following to install the Global Input React JS library into your application:",
+           "```npm install --save global-input-react```",
+            "Then you can import the Global Input component in your application:",
+            "```import {CodeDataRenderer} from \"global-input-react\";```",
+            " and the use it to display the Global Input QR Code in your ```render()``` function:",
+            "```<CodeDataRenderer service={this}  config={globalInputConfig} level=\"H\" size=\"300\" showControl={true}/>```",
+            "Following describes the attributes used:",
+            "<div class='subheader'>The <span class='codeFragment'> service</span> attribute </div>",
+            "The ```service``` attribute accepts the component that holds and display the QR code. Normally you just need to pass the value ```this``` as shown in the example.",
+            "<div class='subheader'>The <span class='codeFragment'> config</span> attribute </div>",
+
+            "The ```config``` attribute accepts the data that describes the form that you would like to display on the mobile screen. The data also contains the references to the callback functions that you would like to be invoked when the user interact with the form.",
+            "In the above example, the value of the variable ```globalInputConfig``` is passed as the value of ```config``` attribute, so you need to define the ```globalInputConfig``` variable within your ```render()``` function or anywhere in your code. Following describes the the example data used in [the Sign In example application](https://jsfiddle.net/dilshat/3crLw63v/):",
+            "```var globaInputConfig = {``` // starting to define the variable called 'globaInputConfig'. ",
+            "```initData:{```// starting to define the data used for initialising the mobile app.",
+            "```form:{```// starting to define the form to be displayed on the form.",
+            "```title:\"Sign In\",``` // the tile of the form will be 'Sign In'.",
+            "```fields:[{``` //starting to define a set of form fields to be displayed on the form starting with the first.",
+            "```label: \"Email address\",``` // the label of the field is 'Email Address'.",
+            "```operations:{ onInput:setUsername}``` // when the user types on the field, the callback function 'setUsername(username)' will be called.  ",
+            "```},{``` // begins to define the next form field.",
+            "```label:\"Password\",``` // the label of the field is 'Password'.",
+            "```type:\"secret\",``` // the type of the field is secret, so it will display stars on the mobile screen as user types on the field. ",
+            "```operations:{onInput:setPassword}``` // when the user types on the field, the callback function setPassword(password) will be called.",
+            "```},{``` // begins to define the next form field.",
+            "```type: \"button\,``` // the button will be displayed.",
+            "```label:\"Login\",``` // The label of the button is \"Login\"",
+            "```operations:{onInput:login}``` // the callback function 'login()' will be invoked when the user pressed on the button",
+            "```}]``` //finish the definition of the form fields",
+            "```}``` //final boundary of the data definition",
+            "<div class='subheader'>The <span class='codeFragment'> level</span> attribute </div>",
+            "The ```level``` attribute defines error correction level of the QR code. It can be one of ```H```, ```Q```, ```M```, ```L```",
+            "<div class='subheader'>The <span class='codeFragment'> size</span> attribute </div>",
+            "The ```size``` attribute defines size of the QR code in pixel",
+            "More information can be found in the [github repository](https://github.com/global-input/global-input-react)"
+
+
+
+
+
+
+         ]
+
+   },
+
+
     content:[
 
        "Please install the Global Input App on your mobile from [Apple App Store](https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4) or [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB).",
        "You may be already running the Global Input App on your mobile app and have tried the app by scanning the QR code on the top of the page. You may try the app on the QR Code Printing Service by clicking on the menu on the top of this page. The QR Code Printing Service is a Single Page Application with any back-end services. ",
-       "then you can download the [chrome extension](https://github.com/global-input/chrome-extension) so you can use it on the various business application such as Confluence, JIRA, GitLab, GitHub, LucidChart, etc",
+
 
        "If you have a word press website, you can have a look at the [this github repository](https://github.com/global-input/wordpress-login) to enable the Global Input Software on your website. As the live example, you can visit [here](https://iterativesolution.co.uk/wp-admin/)",
 

@@ -75,3 +75,23 @@ h2 {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+.subheader {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 0px;
+  border-left: 3px solid black;
+  padding-left: 10px;
+}
+.codeFragment {
+    padding: .2rem .4rem;
+    color: #bd4147;
+    background-color: #f8f9fa;
+    border-radius: .25rem;
+}
+.codeComment {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding-left: 10px;
+}
