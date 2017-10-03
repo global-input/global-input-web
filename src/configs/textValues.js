@@ -90,8 +90,8 @@ const textValues={
    installation:{
          title:"React JS application",
          content:[
-           "Type the following to install the Global Input React JS library into your application:",
-           "```npm install --save global-input-react```",
+            "Type the following to install the Global Input React JS library into your application:",
+            "```npm install --save global-input-react```",
             "Then you can import the Global Input component in your application:",
             "```import {CodeDataRenderer} from \"global-input-react\";```",
             " and the use it to display the Global Input QR Code in your ```render()``` function:",

@@ -10,6 +10,10 @@ import ReactMarkdown from "react-markdown";
 
 export default class DisplayBlockText extends Component{
       render(){
+        var mdClassName="mdText";
+        if(this.props.mdTextClass){
+          mdClassName=this.props.mdTextClass;
+        }
         if(this.props.content){
           return(
             <div className="row top-margin-md" >
@@ -19,9 +23,25 @@ export default class DisplayBlockText extends Component{
                       {this.props.title}
                 </h2>
                 {this.props.content.map((p,index)=>{
-                    return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
-                        <ReactMarkdown source={p}/>
-                    </h3>);
+                    if(typeof p==="string"){
+                      if(p.match("^```")){
+                        return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
+                            <ReactMarkdown source={p} className="codeLine"/>
+                        </h3>);
+                      }
+                      else{
+                        return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
+                            <ReactMarkdown source={p} className={mdClassName}/>
+                        </h3>);
+                      }
+
+                    }
+                    else{
+                      return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
+                          <ReactMarkdown source={p.content} className={p.className}/>
+                      </h3>);
+                    }
+
                    })
                 }
               </div>
