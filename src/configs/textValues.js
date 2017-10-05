@@ -87,18 +87,15 @@ const textValues={
        title:"Free to use",
        content:[
           "The Global Input App running on your mobile does not use any back-end services, so it is completely free to use.",
-          "If you have implemented service applications and are using the Global Input library to power your software product, you may be probably using the default proxy websocket server provided by us. This is free to use on faire-usage policy.",
-          "If you wish to install the proxy server into your cloud or on-premises infrastructure, you can download it from [the github repository](https://github.com/global-input/global-input-node). In this case you will be in comple control and will manage workload etc yourself, but we hope you can contact us know and let us know you are using it that way. This will at least inspire us to improve our software further and will provide some support for free, for example we may provide you with some free support to help you to install it in the most efficient way on your cloud or on-premise network.",
-          "If you are business customer, and you wish us us provide the websocket proxy server,  in this case, we will provide you with a different api key which lets your service application to use a dedicated proxy server farm separate from the shared one to ensure the smooth and instant user experience.",
+          "If you have implemented service applications and are using the Global Input library to power your software product, you may be probably using the shared proxy websocket server provided by us. This is free to use on faire-usage policy.",
+          "If you wish to install the proxy server into your cloud or on-premises infrastructure, you can download it yourselve from [the github repository](https://github.com/global-input/global-input-node). You can also build the docker image from it or you can download the docker image from the docker-hub. In this case you will be in comple control and will manage workload etc yourself, but we hope you can contact us to let us know you are using it that way. This will at least inspire us to improve the software further and will provide some support for free, for example we may provide you with some free support to help you to install it in the most efficient way on your cloud or on-premise network.",
        ]
     },
     proxyfarm:{
        title:"Dedicated Websocket proxy server farm (starts from £20)",
        content:[
-          "If you are service application owners, and you are not downloading the websocket proxy server from [the github repository](https://github.com/global-input/global-input-node) and host it yourself, and you would like us to provide a dedicate websocket proxy server farm sepaerate from the shared one instead, then you can contact us to get your own api key.",
+          "If you are business customer, and you wish to use our websocket proxy server farm dedicated for you only, please contact us, we will provide you with an api key which lets your service application to use a dedicated proxy server farm separate from the shared one to ensure the smooth and reliable user experience.",
           "A dedicated proxy server farm starts with £20 per month depends on the number of Global Input App users tring to connect to your service application at the same time."
-
-
        ]
     },
 
