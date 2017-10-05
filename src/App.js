@@ -11,6 +11,7 @@ import "./css/global-input.css"
 
 import {Home} from "./home";
 import {Documentation} from "./documentation";
+import {Pricing} from "./pricing";
 
 import {QRPrinting} from "./qr-printing";
 import {textValues,images} from  "./configs";
@@ -29,6 +30,7 @@ export default class App extends Component{
             <Route  path="/" exact component={Home}/>
             <Route  path="/global-input-app/qr-printing"  component={QRPrinting}/>
             <Route  path="/global-input-app/documentation"  component={Documentation}/>
+            <Route  path="/global-input-app/pricing"  component={Pricing}/>
 
 
             </div>

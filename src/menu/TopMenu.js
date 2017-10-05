@@ -28,6 +28,7 @@ export  default class TopMenu extends Component {
     var qrprintingClass="notSelected";
     var contactUsClass="notSelected";
     var documentationClass="notSelected";
+    var pricingClass="notSelected";
     if(this.props.selected==="home"){
           homeClass="selected";
     }
@@ -36,6 +37,9 @@ export  default class TopMenu extends Component {
     }
     else if(this.props.selected==="documentation"){
           documentationClass="selected";
+    }
+    else if(this.props.selected==="pricing"){
+            pricingClass="selected";
     }
 
 
@@ -50,7 +54,10 @@ export  default class TopMenu extends Component {
                     </Link>
                     <Link to={textValues.topmenu.documentation.link} className={documentationClass}>
                           {textValues.topmenu.documentation.linkText}
-                    </Link>            
+                    </Link>
+                    <Link to={textValues.topmenu.pricing.link} className={pricingClass}>
+                          {textValues.topmenu.pricing.linkText}
+                    </Link>
                     <a className="icon" onClick={this.menuPressed.bind(this)}>&#9776;</a>
                </div>
             );
