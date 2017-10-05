@@ -18,6 +18,7 @@ import PasswordPrintingIntroduction from "./PasswordPrintingIntroduction";
 import {styles} from "./styles";
 import {globalStyles} from "../components/styles";
 import {config} from "../configs";
+import "./styles/index.css";
 export  class QRPrinting extends Component {
   constructor(props){
       super(props);
@@ -129,7 +130,7 @@ export  class QRPrinting extends Component {
     return (
       <div className="container">
           <div style={globalStyles.headerSection}>
-             <div className="notForPrinting">
+             <div className="notForPrinting headerContainer">
                     <TopMenu selected="qrprinting"/>
                     <DownloadApp actionText={textValues.qrcode.qrscan} render={!senderConnected}/>
                     <DisplayQRCode config={config} service={this} senders={this.state.senders} render={!senderConnected}/>
