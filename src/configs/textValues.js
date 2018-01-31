@@ -43,7 +43,7 @@ const textValues={
           "The Global Input App is a universal mobile app for carrying out input operations on applications running on Smart TVs, Set top boxes, computers and other devices including your IoT products.",
           "With the mobile app, you will be able to operate on various applications running on various devices just by scanning the QR code displayed, and the app wil decide what to do based on the data contained inside the QR code.",
           "The Global Input App allows the service applications to transfer some of its operations or processes to the mobile app, so that the users can operate or control via their mobile.",
-          "This brings the mobile app development environment into your service application, please visit  [our documentations](global-input-app/documentation) for details"
+          "This brings the mobile app development environment into your service application, please visit  [our documentations](/global-input-app/documentation) for details"
         ]
      },
      endToEnd:{
