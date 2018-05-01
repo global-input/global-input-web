@@ -4,7 +4,7 @@ import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage} from "../components";
 
 import ReactMarkdown from "react-markdown";
-import  "./styles/QRCodeToPrint.css";
+//import  "./styles/QRCodeToPrint.css";
 
 
 

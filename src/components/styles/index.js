@@ -1,5 +1,49 @@
 import {images} from  "../../configs";
-export const globalStyles={
+var globalStyles={
+  applicationSection:{
+    display:"flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    margin:0,
+    backgroundColor: "#4880ED",
+    paddingTop:20,
+    paddingLeft:20,
+    paddingRight:0,
+    paddingBottom:0,
+
+  },
+  getApplicationSection:function(){
+
+    if(!this.mql.matches){
+        return Object.assign({},this.applicationSection, {flexDirection:"column",alignItems:"flex-end"});
+    }
+    else {
+      return this.applicationSection;
+    }
+  },
+  mql:window.matchMedia(`(min-width: 800px)`),
+  appDescription:{
+    display:"flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    margin:0,
+    minHeight:500,
+    marginRight:20
+
+
+  },
+  link:{
+      color:"white",
+      textDecoration:"underline"
+
+  },
+  appImage:{
+    margin:0
+  },
+
+
   headerSection:{
     display:"flex",
     flexDirection: "column",
@@ -32,3 +76,6 @@ export const globalStyles={
   },
 
 };
+
+
+export {globalStyles};

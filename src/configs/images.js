@@ -14,6 +14,10 @@ const images={
   identification:require("../images/identification.png"),
   automateProcess:require("../images/automate-process.png"),
   documentBackground:require("../images/document-background.png"),
+  appIcon:require("../images/globalInput-100.png"),
+  globalInputApp:require("../images/global-input-app.png"),
+  contentTransfer:require("../images/content-transfer.png"),
+  qrPrinting:require("../images/qr-printing.png"),
 
 }
 export default images;

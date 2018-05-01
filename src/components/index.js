@@ -9,5 +9,7 @@ import RenderText from "./RenderText";
 import RenderTextImage from "./RenderTextImage";
 import RenderImageText from "./RenderImageText";
 import ContactUsButton from "./ContactUsButton";
+import TopMenu from "./menu/TopMenu";
+import LoadingIcon from "./loading/LoadingIcon";
 export {DisplaySource,ShowServiceLink,ServiceIntroduction,DisplayBlockText,ShowImage,DownloadApp,
-        RenderText,RenderTextImage,RenderImageText,ContactUsButton};
+        RenderText,RenderTextImage,RenderImageText,ContactUsButton,TopMenu,LoadingIcon};

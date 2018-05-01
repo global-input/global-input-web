@@ -15,6 +15,7 @@ export default class RenderText extends Component{
                   </h3>);
                  })
               }
+              {this.props.children}
             </div>
           );
         }
