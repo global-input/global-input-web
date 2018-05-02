@@ -28,7 +28,7 @@ export  default class ScrollButton extends Component {
 
     return (
                  <div style={globalStyles.scrollToButton}>
-                   <button type="button" className="btn btn-success" onClick={this.gotoIntroduction.bind(this)}>Continue</button>
+                   <button type="button" className="btn btn-primary" onClick={this.gotoIntroduction.bind(this)}>Continue</button>
 
                  </div>
             );

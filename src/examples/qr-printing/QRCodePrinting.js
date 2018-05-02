@@ -230,7 +230,7 @@ export default class QRCodePrinting extends Component {
           <div style={styles.content}>
             <RenderTextImage reverse={true} title={qrPrintingConfig.title} content={qrPrintingConfig.content} image={images.qrPrinting}>
             <div style={styles.buttonContainer}>
-                  <button type="button" className="btn btn-success" onClick={this.connectGlobalInput.bind(this)}>Start</button>
+                  <button type="button" className="btn btn-primary" onClick={this.connectGlobalInput.bind(this)}>{qrPrintingConfig.startButton}</button>
             </div>
 
             </RenderTextImage>
@@ -259,7 +259,7 @@ export default class QRCodePrinting extends Component {
           </div>
 
           <div style={styles.buttonContainer}>
-                <button type="button" className="btn btn-success" onClick={this.disconnectGlobalInput.bind(this)}>Cancel</button>
+                <button type="button" className="btn btn-primary" onClick={this.disconnectGlobalInput.bind(this)}>{qrPrintingConfig.cancelButton}</button>
           </div>
 
 
@@ -272,22 +272,7 @@ export default class QRCodePrinting extends Component {
 
 
     }
-    renderCopyButton(contentField){
-      if(contentField.value){
-        return (
-          <div style={styles.button}>
-            <button type="button" className="btn btn-success" onClick={()=>{
-              document.getElementById("contentTextArea").select();
-              document.execCommand("Copy");
-              this.setState({action:this.state.action, message:qrPrintingConfig.clipboard.copied})
-            }}>Copy</button>
-          </div>
-        );
-      }
-      else{
-        return null;
-      }
-    }
+
     renderSenderConnected(){
       var action=this.state.action;
 
@@ -349,9 +334,11 @@ export default class QRCodePrinting extends Component {
                         </div>
                           {this.renderMessage()}
                           <div style={styles.buttonContainer}>
-                              {this.renderCopyButton(contentField)}
+                            <div style={styles.button}>
+                              <button type="button" className="btn btn-primary" onClick={this.printQRCode.bind(this)}>{qrPrintingConfig.printButton}</button>
+                            </div>
                               <div style={styles.button}>
-                                <button type="button" className="btn btn-success" onClick={this.disconnectGlobalInput.bind(this)}>Finish</button>
+                                <button type="button" className="btn btn-primary" onClick={this.disconnectGlobalInput.bind(this)}>{qrPrintingConfig.finishButton}</button>
                               </div>
                           </div>
 

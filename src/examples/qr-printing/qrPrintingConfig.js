@@ -4,9 +4,13 @@ const qrPrintingConfig={
       "Click the start button below to start"],
     connecting:["Connecting..."],
     connected:["Scan the QR Code below with the Global Input App on your mobile"],
-    senderConnected:["Please first encrypt the content on your mobile by pressing the \"Encrypt\" button on the Global Input App."],
+    senderConnected:["You need to encrypt the content on your mobile first by pressing the \"Encrypt\" button in the Global Input App. Then the encrypted content will be send over to the content field below."],
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
-    }
+    },
+    startButton:"START",
+    cancelButton:"CANCEL",
+    printButton:"PRINT",
+    finishButton:"FINISH"
 }
 export default qrPrintingConfig;

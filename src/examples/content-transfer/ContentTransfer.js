@@ -173,7 +173,7 @@ export default class ContentTransfer extends Component {
           <div style={styles.content}>
             <RenderTextImage title={contentTransferConfig.title} content={contentTransferConfig.content} image={images.contentTransfer}>
             <div style={styles.buttonContainer}>
-                  <button type="button" className="btn btn-success" onClick={this.connectGlobalInput.bind(this)}>{contentTransferConfig.startButton}</button>
+                  <button type="button" className="btn btn-primary" onClick={this.connectGlobalInput.bind(this)}>{contentTransferConfig.startButton}</button>
             </div>
 
             </RenderTextImage>
@@ -202,7 +202,7 @@ export default class ContentTransfer extends Component {
                 </div>
 
                 <div style={styles.buttonContainer}>
-                      <button type="button" className="btn btn-success" onClick={this.disconnectGlobalInput.bind(this)}>{contentTransferConfig.cancelButton}</button>
+                      <button type="button" className="btn btn-primary" onClick={this.disconnectGlobalInput.bind(this)}>{contentTransferConfig.cancelButton}</button>
                 </div>
           </RenderTextImage>
 
@@ -216,7 +216,7 @@ export default class ContentTransfer extends Component {
       if(contentField.value){
         return (
           <div style={styles.button}>
-            <button type="button" className="btn btn-success" onClick={()=>{
+            <button type="button" className="btn btn-primary" onClick={()=>{
               document.getElementById("contentTextArea").select();
               document.execCommand("Copy");
               this.setState({action:this.state.action, message:contentTransferConfig.clipboard.copied})
@@ -245,7 +245,7 @@ export default class ContentTransfer extends Component {
                         <div style={styles.buttonContainer}>
                             {this.renderCopyButton(contentField)}
                             <div style={styles.button}>
-                              <button type="button" className="btn btn-success" onClick={this.disconnectGlobalInput.bind(this)}>{contentTransferConfig.finishButton}</button>
+                              <button type="button" className="btn btn-primary" onClick={this.disconnectGlobalInput.bind(this)}>{contentTransferConfig.finishButton}</button>
                             </div>
                         </div>
 

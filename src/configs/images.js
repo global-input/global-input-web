@@ -18,6 +18,6 @@ const images={
   globalInputApp:require("../images/global-input-app.png"),
   contentTransfer:require("../images/content-transfer.png"),
   qrPrinting:require("../images/qr-printing.png"),
-
+  createform:require("../images/createform.png")
 }
 export default images;
