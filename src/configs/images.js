@@ -17,7 +17,12 @@ const images={
   appIcon:require("../images/globalInput-100.png"),
   globalInputApp:require("../images/global-input-app.png"),
   contentTransfer:require("../images/content-transfer.png"),
-  qrPrinting:require("../images/qr-printing.png"),
-  createform:require("../images/createform.png")
+  encryptedQRCode:require("../images/encrypted-qr-code.png"),
+  showSecret:require("../images/show-icon.png"),
+  hideSecret:require("../images/hide-icon.png"),
+  showSecretOver:require("../images/show-icon-over.png"),
+  hideSecretOver:require("../images/hide-icon-over.png"),
+  transferForm:require("../images/transfer-form.png"),
+  chromeExtension:require("../images/chrome-extension.png"),
 }
 export default images;

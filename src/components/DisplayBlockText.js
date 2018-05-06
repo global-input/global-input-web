@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/index.css";
+
+
 import {globalStyles} from "./styles";
 import RenderText from "./RenderText";
 

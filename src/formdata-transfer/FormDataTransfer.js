@@ -1,0 +1,619 @@
+import React, {Component} from 'react'
+
+
+
+import {createMessageConnector} from "global-input-message";
+
+
+
+
+import {config,images} from "../configs";
+
+
+import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
+  TextRadioButtons,NotificationMessage} from "../components";
+import formDataTransferConfig from "./formDataTransferConfig";
+import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode} from "../page-templates";
+import {styles} from "./styles";
+export default class FormDataTransfer extends Component {
+  ACT_TYPE={
+      COMPOSE_FORM:2,
+      ADD_NEW_FIELD:3,
+      CONNECTING:4,
+      CONNECTED:5,
+      SENDER_CONNECTED:6
+  }
+  FORM_FIELD_TYPES=[
+    {label:"Single-line"},
+    {label:"Multi-line"}
+  ]
+
+
+  constructor(props){
+      super(props);
+      this.state=this.getStateFromProps(this.props);
+    }
+    componentWillUnmount(){
+        this.disconnectGlobalInput();
+    }
+   componentWillReceiveProps(nextProps){
+        //this.setState(this.getStateFromProps(nextProps))
+    }
+    getStateFromProps(props){
+            var action=this.createNewAction();
+            return {action, message:null, show:false};
+    }
+    setMessage(message){
+      this.setState(Object.assign({}, this.state,{message}));
+    }
+    getFormId(){
+      var action=this.state.action;
+      return action.options.initData.form.id;
+    }
+    getFormLabel(){
+      var action=this.state.action;
+      return action.options.initData.form.label;
+    }
+    setFormId(formid){
+      var action=this.state.action;
+      action.options.initData.form.id=formid;
+      action.selectedFieldId=null;
+      this.setState({action});
+    }
+    setShow(show){
+        var action=this.state.action;
+        action.show=show;
+        action.selectedFieldId=null;
+        this.setState({action});
+    }
+    setFormLabel(formlabel){
+      var action=this.state.action;
+      action.options.initData.form.label=formlabel;
+      action.selectedFieldId=null;
+      this.setState({action});
+    }
+    getFields(action){
+      return  action.options.initData.form.fields;
+    }
+    getField(index){
+      var fields=this.getFields(this.state.action);
+      return fields[index];
+    }
+    setFieldValue(index, value){
+      this.getField(index).value=value;
+      var action=this.state.action;      
+      this.setState({action});
+    }
+    onFieldValueChangged(value,index){
+          this.setFieldValue(index,value);
+          this.sendInputMessage(value,index);
+    }
+
+    getNewFieldLabel(){
+        return this.state.action.newField.label;
+    }
+    getNewFieldNLines(){
+        return this.state.action.newField.nLines;
+    }
+    setNewFieldNLines(nLines){
+        var action=this.state.action;
+        action.newField.nLines=nLines;
+        action.selectedFieldId=null;
+        this.setState({action});
+    }
+    setNewFieldLabel(label){
+        var action=this.state.action;
+        action.newField.label=label;
+        action.selectedFieldId=null;
+        this.setState({action});
+    }
+    setSelectedField(selectedFieldId){
+        var action=this.state.action;
+        action.selectedFieldId=selectedFieldId;
+        this.setState({action});
+    }
+
+
+    addTextField(action,fieldProperty){
+          var fieldId=fieldProperty.id;
+          if(!fieldId){
+            this.setMessage(formDataTransferConfig.newField.errorMessages.missingid);
+            return;
+          }
+          var fields=this.getFields(action);
+          var existingFields=fields.filter(f=>f.id===fieldId);
+          if(existingFields.length){
+            this.setMessage(formDataTransferConfig.newField.errorMessages.exists);
+            return;
+          }
+          var fieldIndex=0;
+          for(fieldIndex=0;fieldIndex<fields.length;fieldIndex++){
+              if(fields[fieldIndex].type==='button'){
+                break;
+              }
+          }
+          var value="";
+          if(fieldProperty.value){
+            value=fieldProperty.value;
+          }
+          var composedField={
+                id:fieldId,
+                label:fieldProperty.label,
+                type:"text",
+                value,
+                nLines:fieldProperty.nLines,
+                operations:{
+                              onInput: value=>{
+                                    this.setFieldValue(fieldIndex,value);
+
+                            }
+                }
+          };
+          fields.splice(fieldIndex,0,composedField);
+    }
+
+
+
+    createNewAction(){
+      var action= {
+                actType:this.ACT_TYPE.COMPOSE_FORM,
+                qrsize:400,
+                connector:null,
+                connected:false,
+                senders:null,
+                newField:{
+                    label:"",
+                    id:"",
+                    nLines:null
+                },
+                selectedFieldId:null,
+                options:{
+                            url:config.url,
+                            apikey:config.apikey,
+                            securityGroup:config.securityGroup,
+                            initData:{
+                                action:"input",
+                                dataType:"content",
+                                form:{
+                                  id:"###username###"+"@"+window.location.host,
+                                  title:formDataTransferConfig.senderConnected.title,
+                                  label:window.location.host,
+                                  fields:[]
+                                }
+                          },
+                          onSenderConnected:this.onSenderConnected.bind(this),
+                          onSenderDisconnected:this.onSenderDisconnected.bind(this),
+                          onRegistered:(next)=>{
+                                  next();
+                                  this.onConnected();
+                          }
+                        }
+                  };
+                  this.addTextField(action,{
+                      id:"username",
+                      label:"Username"
+                  });
+                  this.addTextField(action,{
+                      id:"password",
+                      label:"Password"
+                  });
+                  this.getFields(action).push(
+                    {
+                      label:"Finish",
+                      type:"button",
+                      operations:{
+                          onInput:()=>{
+                              this.disconnectGlobalInput();
+                           }
+                       }
+                     }
+                  );
+                  return action;
+
+    }
+
+    deleteField(){
+          var action=this.state.action;
+          var fields=this.getFields(action);
+          var selectedFieldId=action.selectedFieldId;
+          action.selectedFieldId=null;
+          var textFields=[];
+          var buttons=[];
+          fields.forEach(f=>{
+                  if(f.id!==selectedFieldId && f.type!=='button'){
+                      textFields.push(f);
+                  }
+                  else if(f.type==='button'){
+                      buttons.push(f);
+                  }
+          });
+
+          action.options.initData.form.fields=[];
+          textFields.forEach(f=>{
+            this.addTextField(action,{
+                id:f.id,
+                label:f.label
+            });
+          });
+          buttons.forEach(f=>{
+              action.options.initData.form.fields.push(f);
+          });
+          action.selectedFieldId=null;
+          this.setState({action});
+
+    }
+    addNewField(){
+          var action=this.state.action;
+          var label=action.newField.label;
+          var id=action.newField.id;
+          var nLines=action.newField.nLines;
+          if((!label) && (!id)){
+            this.setMessage(formDataTransferConfig.newField.errorMessages.missingid);
+            return;
+          }
+          if(!id){
+              id=label.replace(' ',"_").toLowerCase();
+          }
+          else if(!label){
+              label=id;
+          }
+
+          this.addTextField(action,{
+              id,
+              label,
+              nLines
+          });
+
+          action.actType=this.ACT_TYPE.COMPOSE_FORM;
+          action.selectedFieldId=null;
+          this.setState({action});
+    }
+    toComposeForm(){
+      var action=this.state.action;
+      action.actType=this.ACT_TYPE.COMPOSE_FORM;
+      this.setState({action});
+    }
+    toAddNewField(){
+      var action=this.state.action;
+      action.actType=this.ACT_TYPE.ADD_NEW_FIELD;
+      this.setState({action});
+    }
+
+    onSenderConnected(sender, senders){
+         console.log("Sender Connected");
+         var action=this.state.action;
+         action.senders=senders;
+         action.actType=this.ACT_TYPE.SENDER_CONNECTED;
+         this.setState({action});
+    }
+    onSenderDisconnected(sender,senders){
+        console.log("Sender Disconnected");
+   }
+  onConnected(){
+    var action=this.state.action;
+    action.connected=true;
+    action.actType=this.ACT_TYPE.CONNECTED;
+    this.setState({action});
+  }
+
+
+  disconnectGlobalInput(){
+      var action=this.state.action;
+      if(action.connector){
+              action.connector.disconnect();
+              action.connector=null;
+      }
+      this.setState(this.getStateFromProps(this.props));
+  }
+  isSenderConnected(){
+    return this.state.action.actType===this.ACT_TYPE.SENDER_CONNECTED && this.state.action.connector;
+  }
+  sendInputMessage(message, fieldIndex){
+    if(this.isSenderConnected()){
+       this.state.action.connector.sendInputMessage(message,fieldIndex);
+    }
+  }
+
+
+
+    connectGlobalInput(){
+        var action=this.state.action;
+        var fields=this.getFields(this.state.action);
+        action.connector=createMessageConnector();
+        action.actType=this.ACT_TYPE.CONNECTING;
+        this.setState({action});
+        action.connector.connect(action.options);
+    }
+
+    render(){
+      return(
+        <PageWithHeader content={formDataTransferConfig.topContent}>
+              <div style={styles.content}>
+                  {this.renderContent()}
+              </div>
+        </PageWithHeader>
+      );
+
+    }
+    renderContent(){
+        var action=this.state.action;
+        if(action.actType===this.ACT_TYPE.CONNECTING){
+              return this.renderConnecting();
+        }
+        else if(action.actType===this.ACT_TYPE.ADD_NEW_FIELD){
+              return this.renderAddNewField();
+        }
+        else if(action.actType===this.ACT_TYPE.CONNECTED && action.connector){
+              return this.renderConnected();
+        }
+        else if(action.actType===this.ACT_TYPE.SENDER_CONNECTED && action.connector){
+              return this.renderSenderConnected();
+        }
+        else {
+              return this.renderComposeForm();
+        }
+
+
+    }
+    renderConnecting(){
+       return(
+         <DisplayLoading title={formDataTransferConfig.connecting.title}
+           content={formDataTransferConfig.connecting.content}/>
+      );
+    }
+
+
+
+renderAField(formField, index){
+  var label=formField.id;
+    var multiline=false;
+
+    if(formField.label && formField.label.trim().length>1){
+        label=formField.label;
+    }
+    if(formField.type==='button'){
+      return null;
+    }
+
+
+    if(formField.nLines && formField.nLines>1){
+        multiline=true;
+    }
+    var inputType="password";
+    if(this.state.action.show){
+        inputType="text";
+    }
+
+    var fieldSelected=false;
+    if(this.state.action.selectedFieldId===formField.id){
+          fieldSelected=true;
+    }
+
+
+    if(multiline){
+      return(
+        <TextAreaWithSelect
+          key={index}
+                  rows={formField.nLines} cols={100}
+                  onChange={this.onFieldValueChangged.bind(this)}
+                  fieldIndex={index}
+                  fieldId={formField.id}
+                  value={formField.value}
+                  label={label}
+                  fieldSelected={fieldSelected}
+                  setSelectedField={this.setSelectedField.bind(this)}/>
+       );
+    }
+    else{
+
+
+      return(
+              <InputWithSelect key={index}
+                      type={inputType}
+                      onChange={this.onFieldValueChangged.bind(this)}
+                      fieldIndex={index}
+                      fieldId={formField.id}
+                      value={formField.value}
+                      label={label}
+                      fieldSelected={fieldSelected}
+                      setSelectedField={this.setSelectedField.bind(this)}/>
+       );
+    }
+
+
+
+
+}
+
+
+renderComposeButtons(){
+  if(this.state.action.selectedFieldId){
+    return (
+      <div style={styles.buttonContainer}>
+        <TextButton label={formDataTransferConfig.deleteButton}
+          onPress={this.deleteField.bind(this)}/>
+
+          <TextButton label={formDataTransferConfig.unselectButton}
+            onPress={()=>{
+                this.setSelectedField(null);
+            }}/>
+          {this.renderCopyButton()}
+
+      </div>
+    );
+  }
+  else{
+
+        return (
+          <div style={styles.buttonContainer}>
+               <TextButton label={formDataTransferConfig.backButton}
+                 link="/"/>
+               <TextButton label={formDataTransferConfig.addNewFieldButton}
+                  onPress={this.toAddNewField.bind(this)}/>
+
+              <TextButton label={formDataTransferConfig.nextButton}
+                     onPress={this.connectGlobalInput.bind(this)}/>
+          </div>
+        );
+    }
+
+}
+
+renderComposeForm(){
+    var formid=this.getFormId();
+    var formLabel=this.getFormLabel();
+    var fields=this.getFields(this.state.action);
+
+
+    return (
+
+      <div style={styles.content}>
+            <SectionHeader title={formDataTransferConfig.compose.title}
+                  content={formDataTransferConfig.compose.content}/>
+                <div style={styles.formContainer}>
+                        <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
+                        <InputWithLabel fieldId="formId"
+                          onChange={this.setFormId.bind(this)}
+                          value={formid}
+                          label="Form Id"/>
+                        <InputWithLabel fieldId="folder"
+                            onChange={this.setFormLabel.bind(this)}
+                            value={formLabel}
+                            label="Folder"/>
+                      {fields.map(this.renderAField.bind(this))}
+
+          </div>
+          <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+        {this.renderComposeButtons()}
+
+
+
+      </div>
+
+
+
+    );
+}
+
+
+renderAddNewField(){
+
+  var newFieldLabel=this.getNewFieldLabel();
+  var selected=this.FORM_FIELD_TYPES[0];
+  var nLines=this.getNewFieldNLines();
+  if(nLines && nLines>1){
+      selected=this.FORM_FIELD_TYPES[1];
+  }
+
+  return (
+
+    <div style={styles.content}>
+      <SectionHeader title={formDataTransferConfig.newField.title}
+            content={formDataTransferConfig.newField.content}/>
+
+        <div style={styles.formContainer}>
+                      <InputWithLabel fieldId="newfieldid"
+                        onChange={this.setNewFieldLabel.bind(this)}
+                        value={newFieldLabel}
+                        label={formDataTransferConfig.newField.fieldLabel}/>
+                        <TextRadioButtons selections={this.FORM_FIELD_TYPES} selected={selected} onChange={selectedItem=>{
+                                  if(selectedItem===this.FORM_FIELD_TYPES[1]){
+                                        this.setNewFieldNLines(5);
+                                  }
+                                  else{
+                                        this.setNewFieldNLines(null);
+                                  }
+                          }}/>
+        </div>
+      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+      <div style={styles.buttonContainer}>
+          <TextButton label={formDataTransferConfig.backButton}
+           onPress={this.toComposeForm.bind(this)}/>
+
+        <TextButton label={formDataTransferConfig.addButton}
+            onPress={this.addNewField.bind(this)}/>
+      </div>
+
+    </div>
+
+
+
+  );
+
+}
+
+    renderConnected(){
+
+      var qrCodeContent=this.state.action.connector.buildInputCodeData();
+      console.log(":::"+formDataTransferConfig.connected.title);
+      return(
+        <DisplayQRCode
+          title={formDataTransferConfig.connected.title}
+          content={formDataTransferConfig.connected.content}
+          qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
+          buttonLabel={formDataTransferConfig.cancelButton}
+          onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+      );
+
+
+    }
+    renderCopyButton(){
+      var action=this.state.action;
+      var fields=this.getFields(action);
+      var selectedFieldId=action.selectedFieldId;
+      if(!selectedFieldId){
+        return null;
+      }
+      var matchedFields=fields.filter(f=>f.id===selectedFieldId);
+      if(!matchedFields.length){
+        return null;
+      }
+      var matchedField=matchedFields[0];
+
+
+      if(matchedField.value){
+        return (
+          <ClipboardButton
+              fieldId={matchedField.id}
+              label={formDataTransferConfig.copyButton}
+              message={formDataTransferConfig.clipboard.copied}
+              setMessage={this.setMessage.bind(this)}/>
+        );
+      }
+      else{
+        return null;
+      }
+    }
+    renderSenderConnected(){
+      var action=this.state.action;
+      var fields=this.getFields(action);
+
+          return(
+            <div style={styles.content}>
+                    <SectionHeader title={formDataTransferConfig.senderConnected.title}
+                    content={formDataTransferConfig.senderConnected.content}/>
+
+                      <div style={styles.formContainer}>
+                            <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
+                            {fields.map(this.renderAField.bind(this))}
+                      </div>
+                      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                        <div style={styles.buttonContainer}>
+                            {this.renderCopyButton()}
+                            <TextButton label={formDataTransferConfig.finishButton}
+                              onPress={this.disconnectGlobalInput.bind(this)}/>
+                        </div>
+
+
+
+
+
+           </div>
+
+          );
+
+
+   }
+
+
+}

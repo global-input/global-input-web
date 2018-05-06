@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import QRCode from "qrcode.react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import {createMessageConnector} from "global-input-message";
 
-import "../../components/styles/index.css";
+
 
 
 import {config,images} from "../../configs";

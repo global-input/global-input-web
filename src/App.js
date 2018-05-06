@@ -4,16 +4,21 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import './css/App.css';
-import './css/home.css';
-import "./css/global-input.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/general.css";
+import "./css/loader.css";
+import "./css/print.css";
+import "./css/input.css";
 
-
-import {Home} from "./home";
-import {Documentation} from "./documentation";
+import {Home,homeTextConfig} from "./home";
+import {Documentation,documentationConfig} from "./documentation";
 import {Pricing} from "./pricing";
 
-import {QRPrinting} from "./qr-printing";
+import {ContentTransfer,contentTransferConfig} from "./content-transfer";
+import {QRCodePrinting,qrPrintingConfig} from "./qr-printing";
+import {FormDataTransfer,formDataTransferConfig} from "./formdata-transfer";
+
+
 import {textValues,images} from  "./configs";
 
 
@@ -26,14 +31,12 @@ export default class App extends Component{
       <Router>
 
         <div className="topContainer">
-
-            <Route  path="/" exact component={Home}/>
-            <Route  path="/global-input-app/qr-printing"  component={QRPrinting}/>
-            <Route  path="/global-input-app/documentation"  component={Documentation}/>
-            <Route  path="/global-input-app/pricing"  component={Pricing}/>
-
-
-            </div>
+            <Route  path={homeTextConfig.menu.link} exact component={Home}/>
+            <Route  path={documentationConfig.menu.link}  component={Documentation}/>
+            <Route  path={contentTransferConfig.menu.link}  component={ContentTransfer}/>
+            <Route  path={qrPrintingConfig.menu.link}  component={QRCodePrinting}/>
+            <Route  path={formDataTransferConfig.menu.link}  component={FormDataTransfer}/>
+        </div>
 
 
       </Router>

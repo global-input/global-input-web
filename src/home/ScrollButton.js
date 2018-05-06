@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../components/styles/index.css";
+
+
 
 import {textValues,images} from  "../configs";
 

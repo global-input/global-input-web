@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../components/styles/index.css";
+
+
 
 import {textValues,images} from  "../configs";
 import {DisplayBlockText,ShowImage,DownloadApp,RenderText,ContactUsButton} from "../components";
@@ -22,7 +22,7 @@ render() {
             </div>
             <div className="container" id="mainContent">
                 <DisplayBlockText title={textValues.pricing.software.title} content={textValues.pricing.software.content}/>
-                <DisplayBlockText title={textValues.pricing.proxyfarm.title} content={textValues.pricing.proxyfarm.content}/>                
+                <DisplayBlockText title={textValues.pricing.proxyfarm.title} content={textValues.pricing.proxyfarm.content}/>
             </div>
             <ContactUsButton/>
       </div>

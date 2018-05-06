@@ -3,8 +3,9 @@ import React, {Component} from 'react'
 import {
   Link
 } from 'react-router-dom'
-import {menusConfig,images,homeTextConfig} from "../../configs";
+
 import {styles} from "./styles";
+
 
 export  default class TopMenu extends Component {
   constructor(props){
@@ -37,9 +38,9 @@ export  default class TopMenu extends Component {
 
             return (
                        <div style={styles.topnav}>
-                            <img src={images.appIcon} style={styles.logo}/>
+                            <img src={this.props.appLogo} style={styles.logo}/>
                             <div style={styles.appTitleContainer}>
-                                    <div style={styles.appTitle}>{homeTextConfig.application.title}</div>
+                                    <div style={styles.appTitle}>{this.props.appTitle}</div>
                             </div>
 
                             <ListMenuItems {...this.props} menuPressed={this.state.menuPressed}/>
@@ -59,9 +60,9 @@ export  default class TopMenu extends Component {
                       <MobileMenuIcon menuPressed={this.menuPressed.bind(this)}/>
                       <ListMenuItems {...this.props} menuPressed={this.state.menuPressed}/>
                       <MobileMenuOverlayer {...this.props} menuPressed={this.state.menuPressed} setMenuPressed={this.setMenuPressed.bind(this)}/>
-                        <img src={images.appIcon} style={styles.logo}/>
+                        <img src={this.props.appLogo} style={styles.logo}/>
                         <div style={styles.appTitleContainer}>
-                                <div style={styles.appTitle}>{homeTextConfig.application.title}</div>
+                                <div style={styles.appTitle}>{this.props.appTitle}</div>
                         </div>
 
 
@@ -91,15 +92,18 @@ class MobileMenuIcon extends Component{
 
 class ListMenuItems extends Component{
 
+  renderMenu(menu,index){
+      return(
+         <MenuItem {...this.props} menu={menu} selected={this.props.selected} key={index}/>
+      );
+  }
   render(){
      if(styles.mql.matches || this.props.menuPressed){
 
        return(
            <div style={styles.menuItems()}>
-             <MenuItem {...this.props} displayItem="home" selected={this.props.selected}/>             
-             <MenuItem {...this.props} displayItem="documentation" selected={this.props.selected}/>
-             <MenuItem {...this.props} displayItem="pricing" selected={this.props.selected}/>
-         </div>
+                {this.props.menus.map(this.renderMenu.bind(this))}
+            </div>
 
            );
      }
@@ -124,14 +128,14 @@ class MenuItem extends Component{
   }
   render(){
 
-    var link=menusConfig[this.props.displayItem].link;
+    var link=this.props.menu.link;
     if(!link){
       link="/";
     }
-    var linkText=menusConfig[this.props.displayItem].linkText;
+    var linkText=this.props.menu.linkText;
 
         return(
-          <Link to={link} style={styles.menuItem(this.props.selected===this.props.displayItem, this.state.hover)}
+          <Link to={link} style={styles.menuItem(this.props.menu.link===this.props.selected.link, this.state.hover)}
             onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)}>
                 {linkText}
           </Link>

@@ -3,6 +3,9 @@ const menusConfig={
     link:"/",
     linkText:"HOME"
   },
+  contentTransfer:{
+      link:"/global-input-app/content-transfer"
+  },
   qrprinting:{
     link:"/global-input-app/qr-printing",
     linkText:"QR Code Printing"

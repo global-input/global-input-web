@@ -49,10 +49,10 @@ export var styles={
  itemSection:{
     marginTop:10,
     marginBottom:10,
-    padding:10,
+    paddingLeft:20,
+    paddingRight:20,
     paddingBottom:0,
-    backgroundColor:"white"
-
+    backgroundColor:"white",
  }
 
 

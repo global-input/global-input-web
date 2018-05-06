@@ -3,13 +3,13 @@ import QRCode from "qrcode.react";
 
 import {createMessageConnector} from "global-input-message";
 
-import "../../components/styles/index.css";
+
 
 
 import {config,images} from "../../configs";
 
 
-import {RenderTextImage,LoadingIcon} from "../../components";
+import {RenderTextImage,LoadingIcon,DisplayTextImage} from "../../components";
 import contentTransferConfig from "./contentTransferConfig";
 import {styles} from "./styles";
 export default class ContentTransfer extends Component {
@@ -170,15 +170,10 @@ export default class ContentTransfer extends Component {
     }
     renderIntroduction(){
         return(
-          <div style={styles.content}>
-            <RenderTextImage title={contentTransferConfig.title} content={contentTransferConfig.content} image={images.contentTransfer}>
-            <div style={styles.buttonContainer}>
-                  <button type="button" className="btn btn-primary" onClick={this.connectGlobalInput.bind(this)}>{contentTransferConfig.startButton}</button>
-            </div>
+          <DisplayTextImage title={contentTransferConfig.title}
+              content={contentTransferConfig.content} image={images.contentTransfer}
+              buttonLabel={contentTransferConfig.startButton} buttonOnPress={this.connectGlobalInput.bind(this)}/>
 
-            </RenderTextImage>
-
-          </div>
 
         );
 

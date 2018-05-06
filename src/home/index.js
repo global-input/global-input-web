@@ -1,2 +1,3 @@
 import Home from "./Home";
-export {Home};
+import homeTextConfig from "./homeTextConfig";
+export {Home,homeTextConfig};

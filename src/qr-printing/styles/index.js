@@ -1,63 +1,60 @@
-import {images} from  "../../configs";
 export const styles={
+  content:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+    paddingTop:10
+
+  },
+  buttonContainer:{
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
+      width:"100%",
+      marginTop:20
+  },
 
   qrCodeContainer:{
-    marginLeft:"0px",
-    width:700
+    marginLeft:"150px",
+    padding:10
   },
-  serviceContainer:{
-      marginLeft:150
-  },
-  
-  serviceTitle:{
+  qrCodeLabel:{
+    fontSize: 17,
     fontFamily: "'Roboto', sans-serif",
-    fontSize: 36,
-    marginLeft:150,
-    marginTop:25,
-    marginBottom:30,
-    lineHeight: "1.42857143",
-    color: "#333",
+    color:"black",
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"center",
+
+    height:50
   },
-  instruction:{
-    fontFamily: "'Roboto', sans-serif",
-    fontSize: 20,
-    marginLeft:50,
-    marginTop:25,
-    marginBottom:5,
-    lineHeight: "1.42857143",
-    color: "#333",
+  textareaContainer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"center",
   },
-  introduction:{
-    maxWidth:800,
+  button:{
+      marginLeft:20,
+      marginRight:20,
+  },
+  message:{
+    fontSize: 17,
     fontFamily: "'Roboto', sans-serif",
-    fontSize: 20,
-    marginLeft:50,
+    textTransform: "none",
+    fontWeight: 300,
+    color: "blue",
+    lineHeight: 1.5
+
   },
   qrcodePropery:{
     display:"flex",
     flexDirection:"column",
     justifyContent:"flex-start"
   },
-  buttonContainer:{
-
-    backgroundColor: "#396BBC",
-    display:"flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%"
-  },
-
-  buttonLink:{
-    width:"100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    display:"flex",
-    cursor: "pointer",
-    fontFamily: "'Roboto', sans-serif",
-    fontSize: 28,
-    color: "#FFFFFF",
+  description:{
+      maxWidth:500
   }
-
-
 };

@@ -3,9 +3,9 @@ import QRCode from "qrcode.react";
 
 import {createMessageConnector} from "global-input-message";
 
-import "../../components/styles/index.css";
 
-import "./styles/index.css";
+
+
 import {config,images} from "../../configs";
 
 
