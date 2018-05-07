@@ -13,7 +13,8 @@ export const styles={
       justifyContent:"center",
       alignItems:"center",
       width:"100%",
-      marginTop:20
+      marginTop:20,
+      marginBottom:20
   },
 
   qrCodeContainer:{

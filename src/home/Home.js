@@ -16,7 +16,7 @@ import {
 
 import {images,chromeExtensionConfig} from "../configs";
 
-import {ContactUsButton,TopMenu,DisplayTextImage} from "../components";
+import {ContactUsButton,TopMenu,DisplayTextImage,BookMark} from "../components";
 
 import {styles} from "./styles";
 
@@ -29,7 +29,7 @@ import UniversalApp from "./UniversalApp";
 import EndToEndEncryption from "./EndToEndEncryption";
 import AutomaticIdentification from "./AutomaticIdentification";
 import AutomateProcess from "./AutomateProcess";
-import PasswordPrinting from "./PasswordPrinting";
+
 
 
 import {PageWithHeader} from "../page-templates";
@@ -44,7 +44,31 @@ export  default class Home extends Component {
     }
      componentDidMount() {
          window.addEventListener("resize", this.onWindowResize);
+         this.processQueryParameters(this.props);
      }
+     getQueryParam(query,variable) {
+            if(!query){
+              return null;
+            }
+            query=query.substring(1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (decodeURIComponent(pair[0]) == variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+  }
+     processQueryParameters(props){
+            if(props && props.location && props.location.search){
+                    var scrollTo=this.getQueryParam(props.location.search, "scrollTo");
+                    setTimeout(function(){
+                          var elmnt = document.getElementById(scrollTo);
+                          elmnt.scrollIntoView()
+                    },200);
+            }
+     }
+
      componentWillUnmount() {
          window.removeEventListener("resize", this.onWindowResize);
      }
@@ -70,22 +94,27 @@ render() {
 
 
          <div style={styles.content}>
+              <BookMark bookmark="contentTransfer"/>
+
               <div style={styles.itemSection}>
                     <DisplayTextImage title={contentTransferConfig.title}
                        content={contentTransferConfig.content} image={images.contentTransfer}
                        linkText={contentTransferConfig.startButton} link={contentTransferConfig.menu.link}/>
               </div>
+              <BookMark bookmark="qrPrinting"/>
 
               <div style={styles.itemSection}>
                     <DisplayTextImage title={qrPrintingConfig.title}
                        content={qrPrintingConfig.content} image={images.encryptedQRCode}
                        linkText={qrPrintingConfig.startButton} link={qrPrintingConfig.menu.link}/>
               </div>
+              <BookMark bookmark="formDataTransfer"/>
               <div style={styles.itemSection}>
                     <DisplayTextImage title={formDataTransferConfig.title}
                        content={formDataTransferConfig.content} image={images.transferForm}
                        linkText={formDataTransferConfig.startButton} link={formDataTransferConfig.menu.link}/>
               </div>
+              <BookMark bookmark="chromeExtension"/>
 
               <div style={styles.itemSection}>
                     <DisplayTextImage title={chromeExtensionConfig.title}
@@ -101,7 +130,7 @@ render() {
                  <EndToEndEncryption/>
                  <AutomaticIdentification/>
                  <AutomateProcess/>
-                 <PasswordPrinting/>
+
           </div>
           <div className="noprint">
                 <ContactUsButton/>

@@ -1,7 +1,7 @@
 const  homeTextConfig={
   menu:{
     link:"/",
-    linkText:"HOME"
+    linkText:"Home"
   },
     application:{
       title:"Global Input App ",

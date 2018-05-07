@@ -81,7 +81,7 @@ export default class FormDataTransfer extends Component {
     }
     setFieldValue(index, value){
       this.getField(index).value=value;
-      var action=this.state.action;      
+      var action=this.state.action;
       this.setState({action});
     }
     onFieldValueChangged(value,index){
@@ -318,24 +318,19 @@ export default class FormDataTransfer extends Component {
 
     connectGlobalInput(){
         var action=this.state.action;
-        var fields=this.getFields(this.state.action);
+        if(action.connector){
+                action.connector.disconnect();
+                action.connector=null;
+                action.senders=[];
+        }
         action.connector=createMessageConnector();
         action.actType=this.ACT_TYPE.CONNECTING;
         this.setState({action});
         action.connector.connect(action.options);
     }
 
-    render(){
-      return(
-        <PageWithHeader content={formDataTransferConfig.topContent}>
-              <div style={styles.content}>
-                  {this.renderContent()}
-              </div>
-        </PageWithHeader>
-      );
 
-    }
-    renderContent(){
+    render(){
         var action=this.state.action;
         if(action.actType===this.ACT_TYPE.CONNECTING){
               return this.renderConnecting();
@@ -357,8 +352,10 @@ export default class FormDataTransfer extends Component {
     }
     renderConnecting(){
        return(
-         <DisplayLoading title={formDataTransferConfig.connecting.title}
-           content={formDataTransferConfig.connecting.content}/>
+           <PageWithHeader content={formDataTransferConfig.topContent}>
+                 <DisplayLoading title={formDataTransferConfig.connecting.title}
+                   content={formDataTransferConfig.connecting.content}/>
+            </PageWithHeader>
       );
     }
 
@@ -426,37 +423,17 @@ renderAField(formField, index){
 }
 
 
-renderComposeButtons(){
+
+renderDeleteFieldButton(){
   if(this.state.action.selectedFieldId){
-    return (
-      <div style={styles.buttonContainer}>
-        <TextButton label={formDataTransferConfig.deleteButton}
-          onPress={this.deleteField.bind(this)}/>
-
-          <TextButton label={formDataTransferConfig.unselectButton}
-            onPress={()=>{
-                this.setSelectedField(null);
-            }}/>
-          {this.renderCopyButton()}
-
-      </div>
-    );
+          return(
+            <TextButton label={formDataTransferConfig.deleteButton}
+              onPress={this.deleteField.bind(this)}/>
+          );
   }
   else{
-
-        return (
-          <div style={styles.buttonContainer}>
-               <TextButton label={formDataTransferConfig.backButton}
-                 link="/"/>
-               <TextButton label={formDataTransferConfig.addNewFieldButton}
-                  onPress={this.toAddNewField.bind(this)}/>
-
-              <TextButton label={formDataTransferConfig.nextButton}
-                     onPress={this.connectGlobalInput.bind(this)}/>
-          </div>
-        );
-    }
-
+    return null;
+  }
 }
 
 renderComposeForm(){
@@ -466,10 +443,10 @@ renderComposeForm(){
 
 
     return (
-
-      <div style={styles.content}>
-            <SectionHeader title={formDataTransferConfig.compose.title}
-                  content={formDataTransferConfig.compose.content}/>
+      <PageWithHeader content={formDataTransferConfig.topContent}
+         sectionHeaderTitle={formDataTransferConfig.compose.title}
+         sectionHeaderContent={formDataTransferConfig.compose.content}
+         sectionFooterContent={formDataTransferConfig.compose.footer}>
                 <div style={styles.formContainer}>
                         <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                         <InputWithLabel fieldId="formId"
@@ -482,13 +459,20 @@ renderComposeForm(){
                             label="Folder"/>
                       {fields.map(this.renderAField.bind(this))}
 
-          </div>
-          <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
-        {this.renderComposeButtons()}
+              </div>
+              <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+              <div style={styles.buttonContainer}>
+                  <TextButton label={formDataTransferConfig.backButton}
+                   link={formDataTransferConfig.menu.backLink}/>
 
-
-
-      </div>
+                 {this.renderDeleteFieldButton()}
+                 <TextButton label={formDataTransferConfig.addNewFieldButton}
+                    onPress={this.toAddNewField.bind(this)}/>
+                  {this.renderCopyButton()}
+                <TextButton label={formDataTransferConfig.nextButton}
+                       onPress={this.connectGlobalInput.bind(this)}/>
+              </div>
+          </PageWithHeader>
 
 
 
@@ -506,11 +490,10 @@ renderAddNewField(){
   }
 
   return (
-
-    <div style={styles.content}>
-      <SectionHeader title={formDataTransferConfig.newField.title}
-            content={formDataTransferConfig.newField.content}/>
-
+  <PageWithHeader content={formDataTransferConfig.topContent}
+    sectionHeaderTitle={formDataTransferConfig.newField.title}
+    sectionHeaderContent={formDataTransferConfig.newField.content}
+    sectionFooterContent={formDataTransferConfig.newField.example}>
         <div style={styles.formContainer}>
                       <InputWithLabel fieldId="newfieldid"
                         onChange={this.setNewFieldLabel.bind(this)}
@@ -534,7 +517,8 @@ renderAddNewField(){
             onPress={this.addNewField.bind(this)}/>
       </div>
 
-    </div>
+
+    </PageWithHeader>
 
 
 
@@ -547,12 +531,14 @@ renderAddNewField(){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
       console.log(":::"+formDataTransferConfig.connected.title);
       return(
-        <DisplayQRCode
-          title={formDataTransferConfig.connected.title}
-          content={formDataTransferConfig.connected.content}
-          qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
-          buttonLabel={formDataTransferConfig.cancelButton}
-          onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+        <PageWithHeader content={formDataTransferConfig.topContent}>
+              <DisplayQRCode
+                title={formDataTransferConfig.connected.title}
+                content={formDataTransferConfig.connected.content}
+                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
+                buttonLabel={formDataTransferConfig.cancelButton}
+                onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+      </PageWithHeader>
       );
 
 
@@ -589,10 +575,9 @@ renderAddNewField(){
       var fields=this.getFields(action);
 
           return(
-            <div style={styles.content}>
-                    <SectionHeader title={formDataTransferConfig.senderConnected.title}
-                    content={formDataTransferConfig.senderConnected.content}/>
-
+              <PageWithHeader content={formDataTransferConfig.topContent}
+                sectionHeaderTitle={formDataTransferConfig.senderConnected.title}
+                sectionHeaderContent={formDataTransferConfig.senderConnected.content}>
                       <div style={styles.formContainer}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                             {fields.map(this.renderAField.bind(this))}
@@ -604,11 +589,7 @@ renderAddNewField(){
                               onPress={this.disconnectGlobalInput.bind(this)}/>
                         </div>
 
-
-
-
-
-           </div>
+           </PageWithHeader>
 
           );
 

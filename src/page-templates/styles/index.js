@@ -45,7 +45,7 @@ export const styles={
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        margin:0,
+        marginTop:70,
         marginRight:20,
         paddingBottom:30,
 
@@ -54,9 +54,6 @@ export const styles={
           color:"white",
           textDecoration:"underline"
       },
-      qrCodeContainer:{
-        marginLeft:"150px",
-        padding:10
-      },
+      
 
 }

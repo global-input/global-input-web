@@ -8,9 +8,30 @@ import {styles} from "./styles";
 
 import {TopMenu,DisplayTextImage} from "../components";
 import ApplicationDescription from "./ApplicationDescription";
+import SectionHeader from "./sections/SectionHeader";
+import SectionFooter from "./sections/SectionFooter";
 
 
 export  default class PageWithHeader extends Component {
+    renderSectionHeader(){
+        if(this.props.sectionHeaderTitle){
+          return(
+            <SectionHeader title={this.props.sectionHeaderTitle}
+                content={this.props.sectionHeaderContent}/>
+            );
+        }
+        else{
+          return null;
+        }
+    }
+    renderSectionFooter(){
+        if(this.props.sectionFooterContent){
+            return(<SectionFooter content={this.props.sectionFooterContent}/>);
+        }
+        else{
+          return null;
+        }
+    }
     render(){
         var menus=[];
         menus.push(homeTextConfig.menu);
@@ -21,7 +42,9 @@ export  default class PageWithHeader extends Component {
 
             <ApplicationDescription image={this.props.image} content={this.props.content} />
             <div style={styles.content}>
+                  {this.renderSectionHeader()}
                   {this.props.children}
+                  {this.renderSectionFooter()}
            </div>
           </div>
         );

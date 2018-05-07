@@ -39,7 +39,10 @@ export const styles={
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor:"#EEEEEE"
+    backgroundColor:"#EEEEEE",
+     position: "fixed",
+     top:0,
+     zIndex:1000
   },
   topnavmobile: {
     overflow: "hidden",
@@ -50,7 +53,10 @@ export const styles={
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:"#EEEEEE"
+    backgroundColor:"#EEEEEE",
+    position: "fixed",
+    top:0,
+
   },
 
   appTitleContainer:{
@@ -58,12 +64,10 @@ export const styles={
     paddingTop:5
   },
   appTitle:{
-    fontFamily: "GiorgioSans-Regular",
     fontSize: 25,
-    fontWeight:400,
     color: "#4880ED",
     whiteSpace: "nowrap",
-    boxSizing: "inherit"
+    fontWeight: "lighter"
   },
   appVersion:{
     fontFamily: "GiorgioSans-Regular",
@@ -102,7 +106,7 @@ export const styles={
       width:"100%",
       height:window.innerHeight,
       backgroundColor:"rgba(8,88,88, 0)",
-      zIndex:0
+      zIndex:1000
 
 
   },
@@ -117,7 +121,6 @@ export const styles={
           top:0,
           backgroundColor:"white",
           boxShadow: "10px 10px 5px #888888",
-          zIndex:1000,
         };
 
     }
@@ -145,7 +148,8 @@ export const styles={
       marginBottom: 0,
       fontFamily:"Gobold Thin",
       color: "#4880ED",
-      whiteSpace:"nowrap"
+      whiteSpace:"nowrap",
+      fontWeight:100
     };
     if(isDesktop){
         ret.borderTopRightRadius=10;
@@ -158,12 +162,14 @@ export const styles={
         ret.textAlign="left";
     }
     if(isSelected){
-      ret.color="white";
-      ret.backgroundColor="#4880ED";
+      ret.color="#002080";
+      ret.fontWeight=500;
+      //ret.backgroundColor="#4880ED";
     }
     else if(hover){
-      ret.backgroundColor="#D8D0ED";
-      ret.color="#5C5A5B";
+      //ret.backgroundColor="#D8D0ED";
+      ret.color="#66ccff";
+      ret.fontWeight=300;
     }
 
 
@@ -184,6 +190,9 @@ export const styles={
     maxWidth:80,
     marginLeft:20,
     marginBottom:4
+  },
+  bookmark:{
+    height:50
   }
 
 };
