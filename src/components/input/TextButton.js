@@ -13,6 +13,11 @@ export default class TextButton extends Component{
           <Link to={this.props.link} className="btn btn-primary">{this.props.label}</Link>
       );
     }
+    else if(this.props.href){
+      return(
+          <a href={this.props.href} className="btn btn-primary">{this.props.label}</a>
+      );
+    }
     else{
       return(
         <div style={styles.button}>

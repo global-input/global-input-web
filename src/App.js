@@ -9,18 +9,19 @@ import "./css/general.css";
 import "./css/loader.css";
 import "./css/print.css";
 import "./css/input.css";
-
-import {Home,homeTextConfig} from "./home";
-import {Documentation,documentationConfig} from "./documentation";
-import {Pricing} from "./pricing";
-
-import {ContentTransfer,contentTransferConfig} from "./content-transfer";
-import {QRCodePrinting,qrPrintingConfig} from "./qr-printing";
-import {FormDataTransfer,formDataTransferConfig} from "./formdata-transfer";
+import "./css/simpleAnimate.css";
 
 
-import {textValues,images} from  "./configs";
+import {HomeScreen} from "./home";
+import {DevelopersScreen} from "./developers";
 
+
+
+import {ContentTransfer} from "./content-transfer";
+import {QRCodePrinting} from "./qr-printing";
+import {FormDataTransfer} from "./formdata-transfer";
+
+import {applicationPathConfig} from "./page-templates";
 
 
 export default class App extends Component{
@@ -31,11 +32,11 @@ export default class App extends Component{
       <Router>
 
         <div className="topContainer">
-            <Route  path={homeTextConfig.menu.link} exact component={Home}/>
-            <Route  path={documentationConfig.menu.link}  component={Documentation}/>
-            <Route  path={contentTransferConfig.menu.link}  component={ContentTransfer}/>
-            <Route  path={qrPrintingConfig.menu.link}  component={QRCodePrinting}/>
-            <Route  path={formDataTransferConfig.menu.link}  component={FormDataTransfer}/>
+            <Route  path={applicationPathConfig.home.menu.link} exact component={HomeScreen}/>
+            <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransfer}/>
+            <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
+            <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
+            <Route  path={applicationPathConfig.developer.menu.link}  component={DevelopersScreen}/>
         </div>
 
 

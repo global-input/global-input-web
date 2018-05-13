@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {homeTextConfig} from "../home";
-import {documentationConfig} from "../documentation";
-import {images} from "../configs";
 
+
+import {images} from "../configs";
+import applicationPathConfig from "./configs/applicationPathConfig";
 
 import {styles} from "./styles";
 import {TopMenu,DisplayTextImage} from "../components";
-import ApplicationDescription from "./ApplicationDescription";
+import PageDescription from "./sections/PageDescription";
 import SectionHeader from "./sections/SectionHeader";
 import SectionFooter from "./sections/SectionFooter";
 
@@ -35,14 +35,15 @@ export  default class PageWithHeaderNoPrint extends Component {
 
 
     render(){
-        var menus=[];
-        menus.push(homeTextConfig.menu);
-        menus.push(documentationConfig.menu);
+      var selected=this.props.selected;
+      if(!selected){
+        selected=applicationPathConfig.home.menu;
+      }
         return(
           <div>
             <div className="noprint">
-                  <TopMenu  menus={menus} selected={homeTextConfig.menu} appLogo={images.appIcon} appTitle={homeTextConfig.application.title}/>
-                  <ApplicationDescription image={this.props.image} content={this.props.content} />
+                  <TopMenu  menus={applicationPathConfig.menus} selected={selected} appLogo={images.appIcon} appTitle={applicationPathConfig.appTitle}/>
+                  <PageDescription image={this.props.image} content={this.props.content} />
             </div>
             <div style={styles.content}>
                 <div className="noprint">

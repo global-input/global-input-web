@@ -24,5 +24,9 @@ const images={
   hideSecretOver:require("../images/hide-icon-over.png"),
   transferForm:require("../images/transfer-form.png"),
   chromeExtension:require("../images/chrome-extension.png"),
+  endToEndEncryption:require("../images/end-to-end-encryption.png"),
+  websiteCode:require("../images/website-code.png"),
+  jslibrary:require("../images/jslibrary.png"),
+  proxyRepo:require("../images/proxy-server.png"),
 }
 export default images;

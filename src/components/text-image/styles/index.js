@@ -24,4 +24,13 @@ export const styles={
        color: "blue",
        lineHeight: 1.5
      },
+     lineStyle:{
+       fontSize: 16,
+       color: "#414242",
+       fontWeight: "lighter",
+       marginBottom:10
+     },
+
+
+
 }

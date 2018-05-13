@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {homeTextConfig} from "../home";
-import {documentationConfig} from "../documentation";
+
+
 import {images} from "../configs";
 import {styles} from "./styles";
 
-import {TopMenu,DisplayTextImage} from "../components";
-import ApplicationDescription from "./ApplicationDescription";
+import {TopMenu,DisplayTextImage,DisplayContent} from "../components";
+import PageDescription from "./sections/PageDescription";
+import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
 import SectionFooter from "./sections/SectionFooter";
-
+import applicationPathConfig from "./configs/applicationPathConfig";
 
 export  default class PageWithHeader extends Component {
+  
     renderSectionHeader(){
         if(this.props.sectionHeaderTitle){
           return(
@@ -32,15 +34,31 @@ export  default class PageWithHeader extends Component {
           return null;
         }
     }
+    renderAdvert(){
+        if(this.props.advert){
+          return(
+              <PageAdvert image={this.props.image} advert={this.props.advert}/>
+          );
+        }
+        else{
+            return(
+                <PageDescription image={this.props.image} content={this.props.content}/>
+            );
+        }
+    }
     render(){
-        var menus=[];
-        menus.push(homeTextConfig.menu);
-        menus.push(documentationConfig.menu);
+        var selected=this.props.selected;
+        if(!selected){
+          selected=applicationPathConfig.home.menu;
+        }
+        var appTitle=applicationPathConfig.appTitle;
+        if(this.props.appTitle){
+          appTitle=this.props.appTitle;
+        }
         return(
           <div style={styles.container}>
-            <TopMenu  menus={menus} selected={homeTextConfig.menu} appLogo={images.appIcon} appTitle={homeTextConfig.application.title}/>
-
-            <ApplicationDescription image={this.props.image} content={this.props.content} />
+            <TopMenu  menus={applicationPathConfig.menus} selected={selected} appLogo={images.appIcon} appTitle={appTitle}/>
+            {this.renderAdvert()}
             <div style={styles.content}>
                   {this.renderSectionHeader()}
                   {this.props.children}

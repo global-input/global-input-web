@@ -10,9 +10,9 @@ import {createMessageConnector} from "global-input-message";
 
 import {config,images} from "../configs";
 
-import {PageWithHeader} from "../page-templates";
-import {RenderTextImage,LoadingIcon,DisplayTextImage,TopMenu} from "../components";
-import contentTransferConfig from "./contentTransferConfig";
+import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {LoadingIcon,ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton} from "../components";
+
 import {styles} from "./styles";
 export default class ContentTransfer extends Component {
   ACT_TYPE={
@@ -20,6 +20,9 @@ export default class ContentTransfer extends Component {
       CONNECTED:3,
       SENDER_CONNECTED:4
   }
+
+  CONTENT_FIELD_INDEX=0;
+
 
   constructor(props){
       super(props);
@@ -40,13 +43,27 @@ export default class ContentTransfer extends Component {
             var action=this.createNewAction();
             return {action, message:null};
     }
-
-    setContent(content){
-      this.getContentField().value=content;
-      this.setState({action:this.state.action, message:null});
+    getFields(action){
+          return  action.options.initData.form.fields;
     }
-    getContentField(){
-      return this.state.action.options.initData.form.fields[0];
+    getField(index){
+          var fields=this.getFields(this.state.action);
+          return fields[index];
+    }
+    getFieldValue(index){
+      this.getField(index).value;
+    }
+    setFieldValue(index, value){
+          this.getField(index).value=value;
+          var action=this.state.action;
+          this.setState({action});
+    }
+    setMessage(message){
+      this.setState(Object.assign({}, this.state,{message}));
+    }
+    onFieldValueChangged(value,index){
+              this.setFieldValue(index,value);
+              this.sendInputMessage(value,index);
     }
 
     createNewAction(){
@@ -73,7 +90,7 @@ export default class ContentTransfer extends Component {
                                     value:"",
                                     nLines:10,
                                     operations:{
-                                        onInput:this.setContent.bind(this)
+                                        onInput:value=>this.setFieldValue(this.CONTENT_FIELD_INDEX,value)
                                     },
                                   },{
                                     label:"Finish",
@@ -159,18 +176,9 @@ export default class ContentTransfer extends Component {
 
 
 
+
+
     render(){
-      return(
-        <PageWithHeader content={contentTransferConfig.topContent}>
-              <div style={styles.content}>
-                  {this.renderContent()}
-              </div>
-        </PageWithHeader>
-      );
-
-    }
-
-    renderContent(){
         var action=this.state.action;
 
         if(action.actType===this.ACT_TYPE.CONNECTED && action.connector){
@@ -185,15 +193,17 @@ export default class ContentTransfer extends Component {
 
 
     }
+
     renderConnecting(){
        return(
-        <div style={styles.content}>
-
-          <RenderTextImage title={contentTransferConfig.title} content={contentTransferConfig.connecting}/>
-          <LoadingIcon loading={true}/>
-        </div>
+           <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}>
+                 <DisplayLoading title={applicationPathConfig.contentTransfer.connecting.title}
+                   content={applicationPathConfig.contentTransfer.connecting.content}/>
+            </PageWithHeader>
       );
     }
+
+
 
 
 
@@ -203,38 +213,29 @@ export default class ContentTransfer extends Component {
       console.log("qrcode:[["+qrCodeContent+"]]");
 
       return(
-        <div style={styles.content}>
-          <RenderTextImage title={contentTransferConfig.title} content={contentTransferConfig.connected}>
-                  <div style={styles.qrCodeContainer}>
-
-                              <QRCode
-                                    value={qrCodeContent}
-                                    level="H"
-                                    size={this.state.action.qrsize}
-                                   />
-                </div>
-
-                <div style={styles.buttonContainer}>
-                      <Link to="/" className="btn btn-primary">BACK</Link>
-                </div>
-          </RenderTextImage>
-
-        </div>
-
+        <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}>
+              <DisplayQRCode
+                title={applicationPathConfig.contentTransfer.connected.title}
+                content={applicationPathConfig.contentTransfer.connected.content}
+                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
+                buttonLabel={applicationPathConfig.contentTransfer.cancelButton}
+                link={applicationPathConfig.contentTransfer.menu.backLink}/>
+      </PageWithHeader>
       );
+
 
 
     }
     renderCopyButton(contentField){
+
+
       if(contentField.value){
         return (
-          <div style={styles.button}>
-            <button type="button" className="btn btn-primary" onClick={()=>{
-              document.getElementById("contentTextArea").select();
-              document.execCommand("Copy");
-              this.setState({action:this.state.action, message:contentTransferConfig.clipboard.copied})
-            }}>Copy</button>
-          </div>
+          <ClipboardButton
+              fieldId={contentField.id}
+              label={applicationPathConfig.contentTransfer.copyButton}
+              message={applicationPathConfig.contentTransfer.clipboard.copied}
+              setMessage={this.setMessage.bind(this)}/>
         );
       }
       else{
@@ -244,48 +245,31 @@ export default class ContentTransfer extends Component {
     renderSenderConnected(){
       var action=this.state.action;
 
-      var contentField=this.getContentField();
+      var contentField=this.getField(this.CONTENT_FIELD_INDEX);
+
           return(
-            <div style={styles.content}>
-                    <RenderTextImage title={contentTransferConfig.title} content={contentTransferConfig.senderConnected}>
-                        <div style={styles.textareaContainer}>
-                                <textarea id="contentTextArea" rows={contentField.nLines} cols="100" onChange={(evt) => {
-                                 this.setContent(evt.target.value);
-                                 this.sendInputMessage(evt.target.value,0);
-                               }} value={contentField.value}/>
-                        </div>
-                        {this.renderMessage()}
+            <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}
+               sectionHeaderTitle={applicationPathConfig.contentTransfer.senderConnected.title}
+               sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}>
+                 <TextAreaWithLabel
+                           rows={10} cols={70}
+                           onChange={this.onFieldValueChangged.bind(this)}
+                           fieldIndex={0}
+                           fieldId={contentField.id}
+                           value={contentField.value}
+                           label={applicationPathConfig.contentTransfer.contentField.label}/>
+                           <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
                         <div style={styles.buttonContainer}>
                             {this.renderCopyButton(contentField)}
-                            <div style={styles.button}>
-                              <button type="button" className="btn btn-primary" onClick={()=>{
-                                  this.connectGlobalInput();
-                                   this.setContent("");
-                              }}>{contentTransferConfig.finishButton}</button>
-                            </div>
+                            <TextButton label={applicationPathConfig.contentTransfer.finishButton}
+                             onPress={this.connectGlobalInput.bind(this)}/>
                         </div>
-
-
-
-                    </RenderTextImage>
-
-           </div>
+           </PageWithHeader>
 
           );
 
 
    }
-renderMessage(){
-  if(this.state.message){
-    return(
-        <div style={styles.message}>{this.state.message}</div>
-    );
-  }
-  else{
-    return null;
-  }
-}
-
 
 
 }

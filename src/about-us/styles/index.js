@@ -53,7 +53,6 @@ export var styles={
     paddingRight:20,
     paddingBottom:0,
     backgroundColor:"white",
-    
  }
 
 

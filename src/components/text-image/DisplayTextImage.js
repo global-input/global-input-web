@@ -3,27 +3,22 @@ import {
   Link
 } from 'react-router-dom'
 
-import ReactMarkdown from "react-markdown";
+
 import {styles} from "./styles";
+import {TextButton} from "../index";
+import DisplayContent from "./DisplayContent";
 
 
 
 export  default class DisplayTextImage extends Component {
 
   renderButton(){
-      if(this.props.buttonOnPress){
+      if(this.props.buttonLabel){
         return(
+
           <div style={styles.buttonContainer}>
-                <button type="button" className="btn btn-primary" onClick={this.props.buttonOnPress}>{this.props.buttonLabel}</button>
-          </div>
-        );
-      }
-      else if(this.props.link){
-        return(
-          <div style={styles.buttonContainer}>
-                <Link to={this.props.link} className="btn btn-primary">
-                      {this.props.linkText}
-                </Link>
+                <TextButton label={this.props.buttonLabel} onPress={this.props.buttonOnPress} link={this.props.buttonLink}
+                  href={this.props.buttonHRef}/>
           </div>
         );
       }
@@ -42,12 +37,7 @@ export  default class DisplayTextImage extends Component {
           <div style={styles.sectionHeading}>
                   {this.props.title}
           </div>
-          {this.props.content.map((p,index)=>{
-              return(<h3 className="section-subheading text-muted bottom-margin-sm" key={index}>
-                          <ReactMarkdown source={p}/>
-                     </h3>);
-              })
-          }
+          <DisplayContent content={this.props.content}/>
           {this.props.children}
           {this.renderButton()}
         </div>

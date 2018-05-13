@@ -14,10 +14,10 @@ import {config,images} from "../configs";
 import {TextSelectOptions,InputWithLabel,NotificationMessage,TextButton} from "../components";
 
 
-import qrPrintingConfig from "./qrPrintingConfig";
+
 import {styles} from "./styles";
 
-import {PageWithHeader,PageWithHeaderNoPrint,SectionHeader,DisplayLoading,DisplayQRCode} from "../page-templates";
+import {PageWithHeader,PageWithHeaderNoPrint,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 
 export default class QRCodePrinting extends Component {
   ACT_TYPE={
@@ -248,9 +248,9 @@ export default class QRCodePrinting extends Component {
 
     renderConnecting(){
    return(
-       <PageWithHeader content={qrPrintingConfig.topContent}>
-             <DisplayLoading title={qrPrintingConfig.connecting.title}
-               content={qrPrintingConfig.connecting.content}/>
+       <PageWithHeader content={applicationPathConfig.qrPrinting.topContent}>
+             <DisplayLoading title={applicationPathConfig.qrPrinting.connecting.title}
+               content={applicationPathConfig.qrPrinting.connecting.content}/>
         </PageWithHeader>
   );
  }
@@ -264,13 +264,13 @@ export default class QRCodePrinting extends Component {
 
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
       return(
-       <PageWithHeader content={qrPrintingConfig.topContent}>
+       <PageWithHeader content={applicationPathConfig.qrPrinting.topContent}>
              <DisplayQRCode
-               title={qrPrintingConfig.connected.title}
-               content={qrPrintingConfig.connected.content}
+               title={applicationPathConfig.qrPrinting.connected.title}
+               content={applicationPathConfig.qrPrinting.connected.content}
                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
-               buttonLabel={qrPrintingConfig.cancelButton}
-               link={qrPrintingConfig.menu.backLink}/>
+               buttonLabel={applicationPathConfig.qrPrinting.cancelButton}
+               link={applicationPathConfig.qrPrinting.menu.backLink}/>
      </PageWithHeader>
      );
 
@@ -290,12 +290,12 @@ export default class QRCodePrinting extends Component {
 
           return(
 
-            <PageWithHeaderNoPrint content={qrPrintingConfig.topContent}
-               sectionHeaderTitle={qrPrintingConfig.senderConnected.title}
-               sectionHeaderContent={qrPrintingConfig.senderConnected.content}>
+            <PageWithHeaderNoPrint content={applicationPathConfig.qrPrinting.topContent}
+               sectionHeaderTitle={applicationPathConfig.qrPrinting.senderConnected.title}
+               sectionHeaderContent={applicationPathConfig.qrPrinting.senderConnected.content}>
                     <div className="printOnly">
-                          <DisplayQRCode title={qrPrintingConfig.printed.title}
-                            content={qrPrintingConfig.printed.content}
+                          <DisplayQRCode title={applicationPathConfig.qrPrinting.printed.title}
+                            content={applicationPathConfig.qrPrinting.printed.content}
                             qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize}/>
 
                           <div style={styles.qrCodeLabel}>{qrcodeLabel}</div>
@@ -306,24 +306,24 @@ export default class QRCodePrinting extends Component {
                                 <InputWithLabel type="text"
                                      onChange={this.onFieldValueChangged.bind(this)}
                                      fieldIndex={this.CONTENT_FIELD}
-                                     label={qrPrintingConfig.contentField.label}
+                                     label={applicationPathConfig.qrPrinting.contentField.label}
                                      value={qrcodeContent}/>
 
                                 <InputWithLabel type="text"
                                           onChange={this.onFieldValueChangged.bind(this)}
                                           fieldIndex={this.LABEL_FIELD}
-                                          label={qrPrintingConfig.labelField.label}
+                                          label={applicationPathConfig.qrPrinting.labelField.label}
                                           value={qrcodeLabel}/>
 
                                 <InputWithLabel type="range"
                                       onChange={this.onFieldValueChangged.bind(this)}
                                       fieldIndex={this.SIZE_FIELD}
-                                      label={qrPrintingConfig.sizeField.label}
+                                      label={applicationPathConfig.qrPrinting.sizeField.label}
                                       value={qrcodeSize}/>
 
                                     <TextSelectOptions selections={this.QR_CODE_LEVELS}
                                          fieldId="qrcodeLevel"
-                                         label={qrPrintingConfig.levelField.label}
+                                         label={applicationPathConfig.qrPrinting.levelField.label}
                                          value={qrcodeLevel}
                                          selected={selectedQRLevelItem}
                                          fieldIndex={this.LEVEL_FIELD}
@@ -331,11 +331,11 @@ export default class QRCodePrinting extends Component {
 
                                         <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
                           <div style={styles.buttonContainer}>
-                                    <TextButton label={qrPrintingConfig.printButton}
+                                    <TextButton label={applicationPathConfig.qrPrinting.printButton}
                                       onPress={this.printQRCode.bind(this)}/>
 
 
-                                      <TextButton label={qrPrintingConfig.finishButton}
+                                      <TextButton label={applicationPathConfig.qrPrinting.finishButton}
                                         onPress={this.connectGlobalInput.bind(this)}/>
 
                           </div>
