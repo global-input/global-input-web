@@ -4,7 +4,8 @@ export const styles={
     flexDirection:"column",
     justifyContent:"center",
     alignItems:"center",
-    paddingTop:10
+    paddingTop:10,
+
 
   },
   buttonContainer:{
@@ -57,5 +58,10 @@ export const styles={
   },
   description:{
       maxWidth:500
-  }
+  },
+  formContainer:{
+    minWidth:400,
+    padding:50,
+  },
+
 };

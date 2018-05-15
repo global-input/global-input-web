@@ -14,9 +14,10 @@ import SectionFooter from "./sections/SectionFooter";
 import applicationPathConfig from "./configs/applicationPathConfig";
 
 export  default class PageWithHeader extends Component {
-  
+
     renderSectionHeader(){
-        if(this.props.sectionHeaderTitle){
+
+        if(this.props.sectionHeaderTitle || this.props.sectionHeaderContent){
           return(
             <SectionHeader title={this.props.sectionHeaderTitle}
                 content={this.props.sectionHeaderContent}/>
@@ -35,7 +36,9 @@ export  default class PageWithHeader extends Component {
         }
     }
     renderAdvert(){
+
         if(this.props.advert){
+
           return(
               <PageAdvert image={this.props.image} advert={this.props.advert}/>
           );
@@ -47,17 +50,14 @@ export  default class PageWithHeader extends Component {
         }
     }
     render(){
-        var selected=this.props.selected;
-        if(!selected){
-          selected=applicationPathConfig.home.menu;
-        }
+
         var appTitle=applicationPathConfig.appTitle;
         if(this.props.appTitle){
           appTitle=this.props.appTitle;
         }
         return(
           <div style={styles.container}>
-            <TopMenu  menus={applicationPathConfig.menus} selected={selected} appLogo={images.appIcon} appTitle={appTitle}/>
+            <TopMenu  menus={applicationPathConfig.menus} selected={this.props.selected} appLogo={images.appIcon} appTitle={appTitle}/>
             {this.renderAdvert()}
             <div style={styles.content}>
                   {this.renderSectionHeader()}

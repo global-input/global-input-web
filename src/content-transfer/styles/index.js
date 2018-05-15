@@ -1,11 +1,15 @@
 export const styles={
-  content:{    
+  content:{
     display:"flex",
     flexDirection:"column",
     justifyContent:"center",
-    alignItems:"center"
+    alignItems:"center",
+    width:"100%",
+    paddingTop:20
+
 
   },
+
   buttonContainer:{
       display:"flex",
       flexDirection:"row",

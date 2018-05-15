@@ -196,7 +196,7 @@ export default class ContentTransfer extends Component {
 
     renderConnecting(){
        return(
-           <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}>
+           <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}>
                  <DisplayLoading title={applicationPathConfig.contentTransfer.connecting.title}
                    content={applicationPathConfig.contentTransfer.connecting.content}/>
             </PageWithHeader>
@@ -212,10 +212,10 @@ export default class ContentTransfer extends Component {
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
       console.log("qrcode:[["+qrCodeContent+"]]");
 
+
       return(
-        <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}>
+        <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}>
               <DisplayQRCode
-                title={applicationPathConfig.contentTransfer.connected.title}
                 content={applicationPathConfig.contentTransfer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.contentTransfer.cancelButton}
@@ -248,9 +248,9 @@ export default class ContentTransfer extends Component {
       var contentField=this.getField(this.CONTENT_FIELD_INDEX);
 
           return(
-            <PageWithHeader content={applicationPathConfig.contentTransfer.topContent}
-               sectionHeaderTitle={applicationPathConfig.contentTransfer.senderConnected.title}
+            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}               
                sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}>
+              <div style={styles.content}>
                  <TextAreaWithLabel
                            rows={10} cols={70}
                            onChange={this.onFieldValueChangged.bind(this)}
@@ -264,6 +264,7 @@ export default class ContentTransfer extends Component {
                             <TextButton label={applicationPathConfig.contentTransfer.finishButton}
                              onPress={this.connectGlobalInput.bind(this)}/>
                         </div>
+              </div>
            </PageWithHeader>
 
           );

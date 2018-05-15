@@ -18,53 +18,64 @@ export  default class PageAdvert extends Component {
       this.onWindowResize=this.onWindowResize.bind(this);
       this.state=this.getStateFromProps(this.props);
     }
+
+    componentDidMount() {
+        window.addEventListener("resize", this.onWindowResize);
+        this.stopSiwtchContentThread(this.props);
+        this.startSiwtchContentThread(this.props);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.onWindowResize);
+        this.stopSiwtchContentThread(this.props);
+    }
+
+    onWindowResize(){
+      this.forceUpdate();
+    }
+
+
     componentWillReceiveProps(nextProps){
         if(this.props.advert!=nextProps.advert){
             this.setState(this.getStateFromProps(nextProps))
+            this.stopSiwtchContentThread(nextProps);
+            this.startSiwtchContentThread(nextProps);
         }
     }
+
+
     getStateFromProps(props){
         return {index:0};
     }
 
-    componentWillMount(){
-        this.stopSiwtchContentThread();
-        this.startSiwtchContentThread();
-    }
-    componentWillUnmount(){
-        this.stopSiwtchContentThread();
-    }
-
-    nextContent(){
-        var index=this.state.index;
-        index++;
-        if(index>=this.props.advert.items.length){
-            index=0;
-        }
-        this.setState(Object.assign({}, this.state,{index}));
-    }
-    stopSiwtchContentThread(){
+    stopSiwtchContentThread(props){
       if(this.starterThread){
         clearInterval(this.starterThread);
         this.starterThread=null;
       }
     }
-    startSiwtchContentThread(){
-          this.starterThread=setInterval(this.nextContent.bind(this),this.props.advert.duration);
+    startSiwtchContentThread(props){
+          if(props.advert.items && props.advert.items.length && props.advert.items.length>1){
+                this.starterThread=setInterval(this.nextContent.bind(this),this.props.advert.duration);
+          }
+    }
+
+    nextContent(){
+      
+         if(this.starterThread){
+           var index=this.state.index;
+           index++;
+           if(index>=this.props.advert.items.length){
+               index=0;
+           }
+           this.setState(Object.assign({}, this.state,{index}));
+         }
 
     }
 
 
 
-     componentDidMount() {
-         window.addEventListener("resize", this.onWindowResize);
-     }
-     componentWillUnmount() {
-         window.removeEventListener("resize", this.onWindowResize);
-     }
-     onWindowResize(){
-       this.forceUpdate();
-     }
+
+
 
 renderPageDescription(content, index){
   return(
@@ -72,6 +83,19 @@ renderPageDescription(content, index){
         {content}
         </div>
   );
+}
+renderInstall(){
+    if(this.props.advert.install){
+      return(
+          <div style={styles.installContainer}>
+              <DisplayContent content={this.props.advert.install} lineStyle={styles.advertLine}
+              linkStyle={styles.imageLink}/>
+          </div>
+      );
+    }
+    else{
+      return null;
+    }
 }
 
 renderAdverts(){
@@ -88,10 +112,7 @@ renderAdverts(){
                 <div style={styles.advertTitle}>{advertItem.title}</div>
                 <DisplayContent content={advertItem.content} lineStyle={styles.advertContent}/>
           </div>
-          <div style={styles.advertContainer}>
-              <DisplayContent content={this.props.advert.install} lineStyle={styles.advertLine}
-              linkStyle={styles.imageLink}/>
-          </div>
+          {this.renderInstall()}
       </div>
     );
 

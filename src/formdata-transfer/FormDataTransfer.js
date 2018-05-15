@@ -352,7 +352,7 @@ export default class FormDataTransfer extends Component {
     }
     renderConnecting(){
        return(
-           <PageWithHeader content={applicationPathConfig.formData.topContent}>
+           <PageWithHeader advert={applicationPathConfig.formData.advert}>
                  <DisplayLoading title={applicationPathConfig.formData.connecting.title}
                    content={applicationPathConfig.formData.connecting.content}/>
             </PageWithHeader>
@@ -443,8 +443,8 @@ renderComposeForm(){
 
 
     return (
-      <PageWithHeader content={applicationPathConfig.formData.topContent}
-         sectionHeaderTitle={applicationPathConfig.formData.compose.title}
+      <PageWithHeader advert={applicationPathConfig.formData.advert}
+
          sectionHeaderContent={applicationPathConfig.formData.compose.content}
          sectionFooterContent={applicationPathConfig.formData.compose.footer}>
                 <div style={styles.formContainer}>
@@ -458,20 +458,21 @@ renderComposeForm(){
                             value={formLabel}
                             label="Folder"/>
                       {fields.map(this.renderAField.bind(this))}
+                      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                      <div style={styles.buttonContainer}>
+                          <TextButton label={applicationPathConfig.formData.backButton}
+                           link={applicationPathConfig.formData.menu.backLink}/>
+
+                         {this.renderDeleteFieldButton()}
+                         <TextButton label={applicationPathConfig.formData.addNewFieldButton}
+                            onPress={this.toAddNewField.bind(this)}/>
+                          {this.renderCopyButton()}
+                        <TextButton label={applicationPathConfig.formData.nextButton}
+                               onPress={this.connectGlobalInput.bind(this)}/>
+                      </div>
 
               </div>
-              <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
-              <div style={styles.buttonContainer}>
-                  <TextButton label={applicationPathConfig.formData.backButton}
-                   link={applicationPathConfig.formData.menu.backLink}/>
 
-                 {this.renderDeleteFieldButton()}
-                 <TextButton label={applicationPathConfig.formData.addNewFieldButton}
-                    onPress={this.toAddNewField.bind(this)}/>
-                  {this.renderCopyButton()}
-                <TextButton label={applicationPathConfig.formData.nextButton}
-                       onPress={this.connectGlobalInput.bind(this)}/>
-              </div>
           </PageWithHeader>
 
 
@@ -490,7 +491,7 @@ renderAddNewField(){
   }
 
   return (
-  <PageWithHeader content={applicationPathConfig.formData.topContent}
+  <PageWithHeader advert={applicationPathConfig.formData.advert}
     sectionHeaderTitle={applicationPathConfig.formData.newField.title}
     sectionHeaderContent={applicationPathConfig.formData.newField.content}
     sectionFooterContent={applicationPathConfig.formData.newField.example}>
@@ -507,15 +508,17 @@ renderAddNewField(){
                                         this.setNewFieldNLines(null);
                                   }
                           }}/>
-        </div>
-      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
-      <div style={styles.buttonContainer}>
-          <TextButton label={applicationPathConfig.formData.backButton}
-           onPress={this.toComposeForm.bind(this)}/>
 
-        <TextButton label={applicationPathConfig.formData.addButton}
-            onPress={this.addNewField.bind(this)}/>
-      </div>
+                          <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                          <div style={styles.buttonContainer}>
+                              <TextButton label={applicationPathConfig.formData.backButton}
+                               onPress={this.toComposeForm.bind(this)}/>
+
+                              <TextButton label={applicationPathConfig.formData.addButton}
+                                onPress={this.addNewField.bind(this)}/>
+                          </div>
+
+        </div>
 
 
     </PageWithHeader>
@@ -531,9 +534,9 @@ renderAddNewField(){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
 
       return(
-        <PageWithHeader content={applicationPathConfig.formData.topContent}>
+        <PageWithHeader advert={applicationPathConfig.formData.advert}>
               <DisplayQRCode
-                title={applicationPathConfig.formData.connected.title}
+
                 content={applicationPathConfig.formData.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.formData.cancelButton}
@@ -575,19 +578,20 @@ renderAddNewField(){
       var fields=this.getFields(action);
 
           return(
-              <PageWithHeader content={applicationPathConfig.formData.topContent}
-                sectionHeaderTitle={applicationPathConfig.formData.senderConnected.title}
+              <PageWithHeader advert={applicationPathConfig.formData.advert}
+
                 sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}>
                       <div style={styles.formContainer}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                             {fields.map(this.renderAField.bind(this))}
+                            <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                              <div style={styles.buttonContainer}>
+                                  {this.renderCopyButton()}
+                                  <TextButton label={applicationPathConfig.formData.finishButton}
+                                    onPress={this.disconnectGlobalInput.bind(this)}/>
+                              </div>
                       </div>
-                      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
-                        <div style={styles.buttonContainer}>
-                            {this.renderCopyButton()}
-                            <TextButton label={applicationPathConfig.formData.finishButton}
-                              onPress={this.disconnectGlobalInput.bind(this)}/>
-                        </div>
+
 
            </PageWithHeader>
 

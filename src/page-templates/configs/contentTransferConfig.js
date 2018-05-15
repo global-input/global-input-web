@@ -4,13 +4,32 @@ const contentTransferConfig={
       linkText:"Content Transfer",
       backLink:"/?scrollTo=contentTransfer"
     },
+    advert:{
+            duration:10000,
+            items:[{
+              title:"Live Transfer Between Your Mobile and Your Computers",
+              content:["The End-To-End Encryption for Data Transfer",
+                      "Encrypted Data Transfer Between the Global Input App and the JavaScript Code On the Page"],
+              className: "animateLeftRight"
+            },{
+              title:"Type On Your Mobile or On Your Computer Keyboard",
+              content:["Live Content Transfer Between the Global Input App and the the JavaScript Code On the Page",
+                      "Share the Encruption Key via the QR Code for the End-To-End Encryption"],
+              className: "animateAppearFromSmallToBig"
+            },{
+              title:"Encrypted Content Transfer Between Your Mobile and Your Computer",
+              content:["No More Typing Master Password on Computers, Transfer Only the Content You Need",
+                      "Transfer Content From Your Mobile to Your Computer via the End-To-End Encryption"],
+              className: "animateWithRotate"
+            }]
 
-    title:"Encrypted Content Transfer",
-    content:["The Global Input App allows you to transfer content between your devices using the End-To-End encryption. If you would like to transfer data between your mobiles, you can press \"Transfer\" button in the Form Editor screen.",
-              "Here you can transfer content from mobile to your computer or vice versa. Click the start button below to start"],
-    advert:["Transfer Data Between Your Devices via End-To-End Encryption",
-            "New Encryption Key for Each Session", "Say No to Typing Your Master Password on Computers"],
-    topContent:["The Global Input App allows you to transfer content between your mobile and your computer using the End-To-End encryption. A new encryption will be generated on the fly and displayed as part of the QR code. The Global Input App reads the encryption key from the QR Code and use it for the end-to-end encryption."],
+    },
+    title:"Content Transfer Using the End-To-End Encryption",
+    content:["You can transfer content between the Global Input App instances running on different mobiles by pressing the \"Transfer\" button in the Form Editor screen in the Global Input App.",
+              "Here you can transfer content from mobile to your computer or vice versa.",
+              "Click the start button below to start"],
+
+
 
     connecting:{
         title:"Encrypted Content Transfer",
@@ -20,7 +39,10 @@ const contentTransferConfig={
         title:"Encrypted Content Transfer",
         content:"Scan the QR Code below with the Global Input App on your mobile"
     },
-    senderConnected:["You can now input content on your mobile or computer and the data will transfer live between your devices."],
+    senderConnected:{
+        title:"Encrypted Content Transfer",
+        content:"You can now type content on your mobile or on your computer, the content will appear on both of them.",
+    },
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
     },

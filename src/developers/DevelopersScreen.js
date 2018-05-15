@@ -80,7 +80,7 @@ render() {
 
     return (
 
-      <PageWithHeader  content={blockTextConfig.developers.home.content} image={images.endToEndEncryption} selected={blockTextConfig.developers.home.menu}
+      <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
         appTitle={blockTextConfig.developers.home.appTitle}>
          <div style={styles.content}>
            <div style={styles.itemSection}>

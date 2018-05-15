@@ -14,7 +14,7 @@ export const styles={
     marginBottom:20
   },
   label:{
-    minWidth:100,    
+    minWidth:100,
   },
 
   buttonContainer:{
@@ -51,9 +51,8 @@ export const styles={
 
   },
   formContainer:{
-   minWidth:400,
-
-    paddingTop:30
+    minWidth:400,
+    padding:50,
   },
   fieldrow:{
       display:"flex",

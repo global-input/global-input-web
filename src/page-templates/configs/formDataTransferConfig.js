@@ -5,15 +5,37 @@ const formDataTransferConfig={
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer"
   },
-  content:["The Global Input App allows you to store form data (key-value data) on your mobile. The data stay encrypted in your device and will not be stored anywhere else. The data is encrypted with the encryption key that you also manage in the app, and the encryption key is encryptef with your password. The data will stay encrypted in your device, and decrypted only when it is needed and discarded afterwards.",
-            "When you need any of the data on the other devices, you can transfer it via the end-to-end encryption. Here you can transfer the form data from your mobile to your computer or vice versa.",
-            "Click the start button below to start"],
-  topContent:["The Global Input App allows you to store form data (key-value data) on your mobile. The data stay encrypted in your device and will not be stored anywhere else. When you need data transfer to your computer, you can do so on-demand usng the end-to-end encryption."],
+  content:["Store form data (key-value data) on your mobile, and encrypted with one of the encryption keys that you also manage in your app. The encryption keys are encrypted with your App password.",
+  "The data stay encrypted in your device and will not be stored anywhere else, and decrypted only when it is needed and discarded afterwards.",
+            "You can transfer the data on-demand between your devices via the end-to-end encryption, so no longer need to type your master passwords on computers.",
+            "Here you can transfer the form data from your mobile to your computer or vice versa.",
+            "Click the button below to start"],
+
+  advert:{
+                    duration:10000,
+                    items:[{
+                      title:"Transfer Form Data From Your Mobile to Your Computer",
+                      content:["Manage Form (Key-Value) Data on Your Mobile and Transfer On-Demand to Your Computer",
+                              "Transfer Encrypted Data Between the Global Input App and the JavaScript Code in the Page."],
+                      className: "animateLeftRight"
+                    },{
+                      title:"Transfer Form Data From Your Mobile to Your Computer",
+                      content:["Save Form (Key-Value) Data in Your Mobile, Encrypted with Your Encryption Key.",
+                               "On-Demand Transfer to Your Computer: Typing Master Password On Computers Are Not Required."],
+                      className: "animateAppearFromSmallToBig"
+                    },{
+                      title:"Transfer Form Data From Your Mobile to Your Computer",
+                      content:["Save Form (Key-Value) Data in Your Mobile, Encrypted with Your Encryption Key.",
+                               "Use End-To-End Encryption to Transfer Data On-Demand From Your Mobile to Your Computer."],
+                      className:"animateWithRotate"
+                    }]
+  },
+
 
    compose:{
      title:"Transfer Form Data",
      content:"Create the form to receive data from the Global Input App:",
-     footer:["Both the \"Form Id\" and \"Fonder\" are optional. The value of the \"Form Id\" will assist the Global Input App to find the matching records for auto-filling operation. It is required for identifying the record uniquely in the app if it is saved for later use.",
+     footer:["Both the \"Form Id\" and \"Folder\" are optional. The value of the \"Form Id\" will assist the Global Input App to find the matching records for auto-filling operation. It is required for identifying the record uniquely in the app if it is saved for later use.",
              "The value of the \"Folder\" is also required if the data is saved for later use, so that the form data can be organized into folders in the app."]
 
    },

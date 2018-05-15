@@ -6,7 +6,7 @@ const  homeTextConfig={
     linkText:"Home"
   },
   advert:{
-      duration:6000,
+      duration:5000,
       items:[{
         title:"Encrypted Data Storage in Your Devices",
         content:["Owns Your Encryption as Well as Your Data",

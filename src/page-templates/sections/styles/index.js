@@ -124,6 +124,10 @@ const styles={
         marginRight:20,
         paddingBottom:30,
         flex:1
+      },
+      installContainer:{
+         marginTop:40,
+         paddingLeft:50
       }
 
 

@@ -33,6 +33,12 @@ export  default class DisplayQRCode extends Component {
     }
     render(){
       var {qrCodeContent,qrsize,qrCodeLevel}=this.props;
+      if(!qrsize){
+        qrsize=300;
+      }
+      else{
+        qrsize=parseInt(qrsize);
+      }
       if(!qrCodeLevel){
         qrCodeLevel="H";
       }

@@ -5,10 +5,37 @@ const qrPrintingConfig={
         linkText:"QR Code Printing",
          backLink:"/?scrollTo=qrPrinting"
     },
-    content:["Global Input App allows you to create and scan Encrypted QR Codes. You can use encrypted QR codes to transfer encrypted content without the need for network. You can use papers or images to store or transfert encrypted content.",
-    "The Global Input App can scan and decrypt the QR code only if it contains the same encryption key that was used for encrypting the content. Here you can send the encrypted content to your computer to print the QR code via your computer.",
-      "Click the start button below to start"],
-    topContent:["The Global Input App allows you to encrypt a content with any of your encryption keys, and send the enrypted content to your computer to create an Ecnyprted QR code for print."],
+    content:["Create and scan Encrypted QR Codes.",
+    "Use papers or images to store or transfer encrypted content. You may prefer this if you do not want to use network or electronic storage to store or transfer some encrypted information.",
+    "The encrypted QR Code can only be decrypted if the Global Input App contains the same encryption key that was used in encryption. ",
+    "Here you can encrypt the content in the Global Input App and send the encrypted content over to your computer for printing the QR code.",
+    "Click the button below to start"],
+
+    advert:{
+            duration:10000,
+            items:[{
+              title:"Create & Scan Encrypted QR Codes",
+              content:["Transfer the Encrypted Content Between Your Devices Without Using the Network",
+                      "Store and Transfer Content Using the Encrypted QR Codes"],
+              className: "animateLeftRight"
+            },{
+              title:"Use Papers to Backup Encryption Keys",
+              content:["Use the Encrypted QR Code to Backup Your Encryption Keys",
+                      "Scan to Import the Encryption Keys"],
+              className: "animateAppearFromSmallToBig"
+            },{
+              title:"Encrypted QR Codes",
+              content:["Use the Encrypted QR Codes to Store and Transfer Encrypted Messages",
+                      "Scan and Decrypt the Encrypted Messages"],
+              className: "animateWithRotate"
+            },{
+              title:"Control the Access to the Content with the Encryption Keys",
+              content:["Share Encryptions Keys with the Other Devices or Other People.",
+                      "Select From the Encryption Keys in the Global Input App to Encrypt the Content"],
+              className: "animateLeftRight"
+            }]
+
+    },
 
     connecting:{
         title:"Encrypted QR Code",
@@ -25,7 +52,7 @@ const qrPrintingConfig={
     },
     senderConnected:{
         title:"Encrypted QR Code",
-        content:"You need to encrypt the content on your mobile first by pressing the \"Encrypt\" button in the Global Input App. Then the encrypted content will be send over to the content field below."
+        content:"Press the \"Encrypt\" button in the Global Input App to compose an encrypted message. The encrypted content will be send over from the Global Input App to here for use as the content of the QR code."
     },
     contentField:{
         label:"Content"
@@ -42,9 +69,9 @@ const qrPrintingConfig={
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
     },
-    startButton:"START",
-    cancelButton:"BACK",
-    printButton:"PRINT",
-    finishButton:"BACK"
+    startButton:"Start",
+    cancelButton:"Back",
+    printButton:"Print",
+    finishButton:"Back"
 }
 export default qrPrintingConfig;

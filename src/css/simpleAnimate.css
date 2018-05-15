@@ -162,26 +162,25 @@
   opacity: 0;
   transform: translate(0) rotate(0deg) scale(0);
   animation: leftRight 1s forwards;
-  margin-bottom:40px;
-
+  margin-bottom:5px;
 }
 
 .animateAppearFromSmallToBig {
   opacity: 0;
   transform: translate(0) rotate(0deg) scale(0);
   animation: smallToBig 1s forwards;
-  margin-bottom:40px;
+  margin-bottom:5px;
 }
 .animateWithRotate{
    opacity: 0;
    transform: translate(-150px, -50px) rotate(-180deg) scale(3);
    animation: revolveScale 1s forwards;
-   margin-bottom:40px;
+   margin-bottom:5px;
 }
 
 .animateSideSlide{
   opacity: 0;
   transform: translate(-150px, -50px) rotate(-180deg) scale(3);
   animation: sideSlide 1s forwards;
-  margin-bottom:40px;
+  margin-bottom:5px;
 }

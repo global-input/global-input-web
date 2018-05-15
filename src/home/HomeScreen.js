@@ -80,7 +80,7 @@ render() {
 
       <PageWithHeader image={images.globalInputApp}
           advert={applicationPathConfig.home.advert}
-          select={applicationPathConfig.home.menu}>
+          selected={applicationPathConfig.home.menu}>
 
 
          <div style={styles.content}>

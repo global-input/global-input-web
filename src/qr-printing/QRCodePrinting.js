@@ -25,9 +25,8 @@ export default class QRCodePrinting extends Component {
       CONNECTED:3,
       SENDER_CONNECTED:4
   }
-
-  LABEL_FIELD=0
-  CONTENT_FIELD=1
+  CONTENT_FIELD=0
+  LABEL_FIELD=1
   SIZE_FIELD=2
   LEVEL_FIELD=3
 
@@ -64,20 +63,19 @@ export default class QRCodePrinting extends Component {
     getFields(action){
         return  action.options.initData.form.fields;
      }
-    getField(index){
-      var fields=this.getFields(this.state.action);
+    getField(index, action){
+      var fields=this.getFields(action);
       return fields[index];
     }
     getFieldValue(index){
-      return this.getField(index).value;
+      return this.getField(index,this.state.action).value;
     }
-    setFieldValue(index, value){
-      this.getField(index).value=value;
-      var action=this.state.action;
+    setFieldValue(index, value, action){
+      this.getField(index,action).value=value;
       this.setState({action});
     }
     onFieldValueChangged(value,index){
-          this.setFieldValue(index,value);
+          this.setFieldValue(index,value,this.state.action);
           this.sendInputMessage(value,index);
     }
 
@@ -102,24 +100,24 @@ export default class QRCodePrinting extends Component {
                                   title:"QR Code Printing",
                                   label:"globalinput",
                                   fields:[{
-                                            label:"Label",
-                                            value:"",
-                                            operations:{
-                                                  onInput:value=>this.setFieldValue(0,value)
-                                            }
-
-
-                                            },{
                                             label:"Content",
                                             value:"",
                                                   operations:{
-                                                        onInput:value=>this.setFieldValue(1,value)
+                                                        onInput:value=>this.setFieldValue(this.CONTENT_FIELD,value,this.state.action)
                                                       }
+
+                                            },{
+                                                      label:"Label",
+                                                      value:"",
+                                                      operations:{
+                                                            onInput:value=>this.setFieldValue(this.LABEL_FIELD,value,this.state.action)
+                                                      }
+
 
                                             },{
                                             label:"Size",
                                                   operations:{
-                                                        onInput:value=>this.setFieldValue(2,value)
+                                                        onInput:value=>this.setFieldValue(this.SIZE_FIELD,value,this.state.action)
                                                   },
                                                   value:300,
                                                   type:"range",
@@ -129,7 +127,7 @@ export default class QRCodePrinting extends Component {
                                             },{
                                                   label:"Level",
                                                   operations:{
-                                                      onInput:value=>this.setFieldValue(3,value)
+                                                      onInput:value=>this.setFieldValue(this.LEVEL_FIELD,value,this.state.action)
                                                     },
                                                     type:"list",
                                                     selectType:"single",
@@ -152,7 +150,6 @@ export default class QRCodePrinting extends Component {
                                                     operations:{
                                                       onInput:()=>{
                                                          this.connectGlobalInput();
-                                                         this.setContent("");
                                                       }
                                                     }
                                         }]
@@ -221,8 +218,7 @@ export default class QRCodePrinting extends Component {
 
         action.connector=createMessageConnector();
         action.actType=this.ACT_TYPE.CONNECTING;
-        this.getField(this.LABEL_FIELD).value="";
-        this.setState({action});
+        this.setFieldValue(this.CONTENT_FIELD,"",action)
         action.connector.connect(action.options);
     }
 
@@ -248,8 +244,9 @@ export default class QRCodePrinting extends Component {
 
     renderConnecting(){
    return(
-       <PageWithHeader content={applicationPathConfig.qrPrinting.topContent}>
-             <DisplayLoading title={applicationPathConfig.qrPrinting.connecting.title}
+       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}>
+             <DisplayLoading
+              title={applicationPathConfig.qrPrinting.connecting.title}
                content={applicationPathConfig.qrPrinting.connecting.content}/>
         </PageWithHeader>
   );
@@ -264,9 +261,9 @@ export default class QRCodePrinting extends Component {
 
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
       return(
-       <PageWithHeader content={applicationPathConfig.qrPrinting.topContent}>
+       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}>
              <DisplayQRCode
-               title={applicationPathConfig.qrPrinting.connected.title}
+
                content={applicationPathConfig.qrPrinting.connected.content}
                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                buttonLabel={applicationPathConfig.qrPrinting.cancelButton}
@@ -290,8 +287,7 @@ export default class QRCodePrinting extends Component {
 
           return(
 
-            <PageWithHeaderNoPrint content={applicationPathConfig.qrPrinting.topContent}
-               sectionHeaderTitle={applicationPathConfig.qrPrinting.senderConnected.title}
+            <PageWithHeaderNoPrint advert={applicationPathConfig.qrPrinting.advert}
                sectionHeaderContent={applicationPathConfig.qrPrinting.senderConnected.content}>
                     <div className="printOnly">
                           <DisplayQRCode title={applicationPathConfig.qrPrinting.printed.title}
@@ -301,44 +297,51 @@ export default class QRCodePrinting extends Component {
                           <div style={styles.qrCodeLabel}>{qrcodeLabel}</div>
                     </div>
                     <div className="noprint">
+                                <div style={styles.formContainer}>
+                                  <DisplayQRCode qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize}/>
 
-                                <DisplayQRCode qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize}/>
-                                <InputWithLabel type="text"
-                                     onChange={this.onFieldValueChangged.bind(this)}
-                                     fieldIndex={this.CONTENT_FIELD}
-                                     label={applicationPathConfig.qrPrinting.contentField.label}
-                                     value={qrcodeContent}/>
-
-                                <InputWithLabel type="text"
-                                          onChange={this.onFieldValueChangged.bind(this)}
-                                          fieldIndex={this.LABEL_FIELD}
-                                          label={applicationPathConfig.qrPrinting.labelField.label}
-                                          value={qrcodeLabel}/>
-
-                                <InputWithLabel type="range"
-                                      onChange={this.onFieldValueChangged.bind(this)}
-                                      fieldIndex={this.SIZE_FIELD}
-                                      label={applicationPathConfig.qrPrinting.sizeField.label}
-                                      value={qrcodeSize}/>
-
-                                    <TextSelectOptions selections={this.QR_CODE_LEVELS}
-                                         fieldId="qrcodeLevel"
-                                         label={applicationPathConfig.qrPrinting.levelField.label}
-                                         value={qrcodeLevel}
-                                         selected={selectedQRLevelItem}
-                                         fieldIndex={this.LEVEL_FIELD}
-                                         onChange={this.onFieldValueChangged.bind(this)}/>
-
-                                        <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
-                          <div style={styles.buttonContainer}>
-                                    <TextButton label={applicationPathConfig.qrPrinting.printButton}
-                                      onPress={this.printQRCode.bind(this)}/>
+                                    <InputWithLabel type="text"
+                                         onChange={this.onFieldValueChangged.bind(this)}
+                                         fieldIndex={this.CONTENT_FIELD}
+                                         label={applicationPathConfig.qrPrinting.contentField.label}
+                                         value={qrcodeContent}/>
 
 
-                                      <TextButton label={applicationPathConfig.qrPrinting.finishButton}
-                                        onPress={this.connectGlobalInput.bind(this)}/>
+                                        <InputWithLabel type="text"
+                                                  onChange={this.onFieldValueChangged.bind(this)}
+                                                  fieldIndex={this.LABEL_FIELD}
+                                                  label={applicationPathConfig.qrPrinting.labelField.label}
+                                                  value={qrcodeLabel}/>
 
-                          </div>
+
+                                  <InputWithLabel type="range"
+                                        onChange={this.onFieldValueChangged.bind(this)}
+                                        fieldIndex={this.SIZE_FIELD}
+                                        label={applicationPathConfig.qrPrinting.sizeField.label}
+                                        value={qrcodeSize}/>
+
+                                      <TextSelectOptions selections={this.QR_CODE_LEVELS}
+                                           fieldId="qrcodeLevel"
+                                           label={applicationPathConfig.qrPrinting.levelField.label}
+                                           value={qrcodeLevel}
+                                           selected={selectedQRLevelItem}
+                                           fieldIndex={this.LEVEL_FIELD}
+                                           onChange={this.onFieldValueChangged.bind(this)}/>
+
+                                          <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+
+                                            <div style={styles.buttonContainer}>
+                                                      <TextButton label={applicationPathConfig.qrPrinting.printButton}
+                                                        onPress={this.printQRCode.bind(this)}/>
+
+
+                                                        <TextButton label={applicationPathConfig.qrPrinting.finishButton}
+                                                          onPress={this.connectGlobalInput.bind(this)}/>
+
+                                            </div>
+
+                                </div>
+
                 </div>
 
 
