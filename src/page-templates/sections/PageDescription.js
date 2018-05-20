@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 
 import {images} from  "../../configs";
 
-import {DisplayContent} from "../../components";
+import {DisplayStaticContent} from "../../components";
 
 import {styles} from "./styles";
 
@@ -42,7 +42,7 @@ renderDescription(){
     }
     return (
       <div style={pageDescription}>
-            <DisplayContent content={this.props.content} lineStyle={styles.pageDescriptionLine}
+            <DisplayStaticContent content={this.props.content} lineStyle={styles.pageDescriptionLine}
             linkStyle={styles.link}/>
       </div>
     );

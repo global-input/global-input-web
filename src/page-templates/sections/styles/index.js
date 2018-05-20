@@ -4,7 +4,10 @@ const styles={
       return !this.mql.matches;
   },
       container:{
-
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"flex-start"
       },
       appImage:{
 
@@ -20,12 +23,13 @@ const styles={
       },
 
       qrCodeContainer:{
-        marginLeft:"150px",
+        marginLeft:20,
         padding:10
+
       },
       subHeader:{
           width:"100%",
-          paddingLeft:50,
+          paddingLeft:10,
           paddingTop:10,
           paddingBottom:10,
           paddingRight:10,

@@ -48,11 +48,48 @@ export var styles={
   },
  itemSection:{
     marginTop:10,
+    paddingTop:10,
     marginBottom:10,
     paddingLeft:20,
     paddingRight:20,
     paddingBottom:0,
     backgroundColor:"white",
+    width:"100%"
+ },
+
+
+ sectionHeading:{
+    fontWeight: 500,
+    fontSize: 26,
+    marginTop: 0,
+    marginBottom: 0,
+    marginTop:20,
+    color: "#414242",
+ },
+ subtitle:{
+   fontWeight: 500,
+   fontSize: 18,
+   marginTop: 0,
+   marginBottom: 0,
+   marginTop:20,
+   color: "#414242",
+ },
+ addressContainer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"flex-start"
+ },
+ linaddress:{
+   fontSize: 16,
+   color: "#414242",
+   fontWeight: "lighter",
+   marginBottom:0,
+
+ },
+ contactFormContainer:{
+    width:500
+
  }
 
 

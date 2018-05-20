@@ -6,7 +6,7 @@ import {
 
 import {styles} from "./styles";
 import {TextButton} from "../index";
-import DisplayContent from "./DisplayContent";
+import DisplayStaticContent from "./DisplayStaticContent";
 
 
 
@@ -37,7 +37,7 @@ export  default class DisplayTextImage extends Component {
           <div style={styles.sectionHeading}>
                   {this.props.title}
           </div>
-          <DisplayContent content={this.props.content}/>
+          <DisplayStaticContent content={this.props.content}/>
           {this.props.children}
           {this.renderButton()}
         </div>

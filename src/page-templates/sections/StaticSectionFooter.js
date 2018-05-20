@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {styles} from "./styles";
-export default class SectionFooter extends Component{
+export default class StaticSectionFooter extends Component{
   renderItem(p,index){
     return (<div style={styles.instruction} key={index}>{p}</div>);
   }

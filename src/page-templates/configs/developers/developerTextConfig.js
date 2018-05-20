@@ -21,6 +21,20 @@ const developerTextConfig={
                 "Encrypted Communication between Global Input App and the UI elements in the Applications.",
                 "Allow the Users to Use Mobile to Automate the Subscriptions, Sign In, Change Account Details etc."],
         className: "animateWithRotate"
+      },{
+        title:"Making IoT Applications Operable via Mobile",
+        content:["Implement Processess in Applications that Can be Operated with the Global Input App",
+                 "Define UI Elements and Callbacks to Received User Inputs from the Global Input App",
+                 "Allowing Users to Store Data in their Mobile and Apply Them in the Operations"
+                ],
+        className: "animateAppearFromSmallToBig"
+      },{
+        title:"Making Smart TV Applications Operable via Mobile",
+        content:[ "Define UI elements and Callbacks for User to Send Over the Data",
+                  "Allow Users to Automate Subscription, Sign In, Account Management, Change Password ...",
+                  "Remove the Need to Use the TV Remote Control for Various Operations"
+                ],
+        className: "animateWithRotate"
       }]
   }
 

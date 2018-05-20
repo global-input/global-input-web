@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 
 import {images} from  "../../configs";
 
-import {DisplayContent} from "../../components";
+import {DisplayStaticContent} from "../../components";
 
 
 import {styles} from "./styles";
@@ -60,7 +60,7 @@ export  default class PageAdvert extends Component {
     }
 
     nextContent(){
-      
+
          if(this.starterThread){
            var index=this.state.index;
            index++;
@@ -88,7 +88,7 @@ renderInstall(){
     if(this.props.advert.install){
       return(
           <div style={styles.installContainer}>
-              <DisplayContent content={this.props.advert.install} lineStyle={styles.advertLine}
+              <DisplayStaticContent content={this.props.advert.install} lineStyle={styles.advertLine}
               linkStyle={styles.imageLink}/>
           </div>
       );
@@ -110,7 +110,7 @@ renderAdverts(){
       <div style={pageDescription}>
           <div className={advertItem.className}>
                 <div style={styles.advertTitle}>{advertItem.title}</div>
-                <DisplayContent content={advertItem.content} lineStyle={styles.advertContent}/>
+                <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
           </div>
           {this.renderInstall()}
       </div>
@@ -119,9 +119,17 @@ renderAdverts(){
 }
 renderImage(){
   if(this.props.image){
-    return(
-      <img src={this.props.image} style={styles.appImage}/>
-    );
+    if(this.props.mobileImage && styles.isMobile()){
+      return(
+        <img src={this.props.mobileImage} style={styles.appImage}/>
+      );
+    }
+    else{
+      return(
+        <img src={this.props.image} style={styles.appImage}/>
+      );
+    }
+
   }
   else{
       return null;

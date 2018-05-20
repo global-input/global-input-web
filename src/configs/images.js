@@ -16,6 +16,7 @@ const images={
   documentBackground:require("../images/document-background.png"),
   appIcon:require("../images/globalInput-100.png"),
   globalInputApp:require("../images/global-input-app.png"),
+  globalInputAppMobile:require("../images/global-input-app-mobile.png"),
   contentTransfer:require("../images/content-transfer.png"),
   encryptedQRCode:require("../images/encrypted-qr-code.png"),
   showSecret:require("../images/show-icon.png"),
@@ -28,5 +29,10 @@ const images={
   websiteCode:require("../images/website-code.png"),
   jslibrary:require("../images/jslibrary.png"),
   proxyRepo:require("../images/proxy-server.png"),
+  aboutGlobalInputApp:require("../images/about-global-input.png"),
+  aboutUsInputApp:require("../images/about-us.png"),
+  contactUs:require("../images/contact-us.png"),
+
+
 }
 export default images;

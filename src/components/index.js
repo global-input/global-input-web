@@ -14,7 +14,7 @@ import BookMark from "./menu/BookMark";
 
 import DisplayTextImage from "./text-image/DisplayTextImage";
 import NotificationMessage from "./text-image/NotificationMessage";
-import DisplayContent from "./text-image/DisplayContent";
+import DisplayStaticContent from "./text-image/DisplayStaticContent";
 import ShowHideButton from "./input/ShowHideButton";
 import InputWithLabel from "./input/InputWithLabel";
 import InputWithSelect from "./input/InputWithSelect";
@@ -25,6 +25,6 @@ import ClipboardButton from "./input/ClipboardButton";
 import TextRadioButtons from "./input/TextRadioButtons";
 import TextSelectOptions from "./input/TextSelectOptions";
 export {
-        ContactUsButton,TopMenu,DisplayTextImage,DisplayContent,
+        ContactUsButton,TopMenu,DisplayTextImage,DisplayStaticContent,
         ShowHideButton,
         InputWithLabel,InputWithSelect,TextSelectOptions,TextAreaWithSelect,TextAreaWithLabel,TextButton,ClipboardButton,TextRadioButtons,NotificationMessage,BookMark};

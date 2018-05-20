@@ -6,13 +6,13 @@
     "bootstrap": "4.0.0-beta",
     "eslint-config-react-app": "^2.0.0",
     "global-input-message": "^1.3.42",
-    "global-input-react": "^1.1.75",
     "json-loader": "^0.5.7",
     "qrcode.react": "^0.7.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-markdown": "^2.5.0",
-    "react-router-dom": "^4.1.2"
+    "react-router-dom": "^4.1.2",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "react-scripts": "1.0.10"

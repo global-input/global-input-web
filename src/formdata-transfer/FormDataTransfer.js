@@ -359,12 +359,27 @@ export default class FormDataTransfer extends Component {
       );
     }
 
+    getMapItemKey(item,index){
+        if(item.id){
+              return item.id;
+        }
+        else if(item.label){
+              return index+"_"+item.label;
+        }
+        else if(item.value){
+                  return index+"_"+item.value;
+        }
+        else{
+              return index;
+        }
 
+
+    }
 
 renderAField(formField, index){
   var label=formField.id;
     var multiline=false;
-
+    var key=this.getMapItemKey(formField,index);
     if(formField.label && formField.label.trim().length>1){
         label=formField.label;
     }
@@ -390,7 +405,7 @@ renderAField(formField, index){
     if(multiline){
       return(
         <TextAreaWithSelect
-          key={index}
+          key={key}
                   rows={formField.nLines} cols={100}
                   onChange={this.onFieldValueChangged.bind(this)}
                   fieldIndex={index}
@@ -405,7 +420,7 @@ renderAField(formField, index){
 
 
       return(
-              <InputWithSelect key={index}
+              <InputWithSelect key={key}
                       type={inputType}
                       onChange={this.onFieldValueChangged.bind(this)}
                       fieldIndex={index}

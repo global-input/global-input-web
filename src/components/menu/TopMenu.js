@@ -30,93 +30,71 @@ export  default class TopMenu extends Component {
   menuPressed(){
       this.setState(Object.assign({},this.state,{menuPressed:!this.state.menuPressed}));
   }
-  setMenuPressed(menuPressed){
-      this.setState(Object.assign({},this.state,{menuPressed}));
-  }
+
   renderMenuItem(menu,index){
-      return(<MenuItem  menu={menu} selected={this.props.selected} key={index}/>);
+      var key=index+"_"+menu.label;
+      return(<MenuItem  menu={menu} selected={this.props.selected} key={key}/>);
   }
-  renderMobileMenuItems(){
-         return(<div style={styles.menuItemsMobile}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>
-             );
-  }
+
   renderDesktopMenuItems(){
     return(<div style={styles.menuItems}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>
         );
 
   }
 
-  renderMobileMenuPressed(){
-    return (
-               <div style={styles.topnavmobileMenuPressed}>
-                       <div style={styles.mobileMenuOverlay} onClick={(evt)=>{
-                             this.setMenuPressed(false);
-                           }}>
-                       </div>
-                      <img src={this.props.appLogo} style={styles.logo}/>
-                      <div style={styles.appTitleContainer}>
-                              <div style={styles.appTitle}>{this.props.appTitle}</div>
-                      </div>
-                      {this.renderMobileMenuItems()}
 
 
-               </div>
-            );
-  }
-renderNarrowMobileMenuNotPressed(){
-  return (
-             <div style={styles.topnavmobile}>
-                     <div style={styles.mobileMenu}>
-                        <a style={styles.mobileMenuIcon} onClick={this.menuPressed.bind(this)}>&#9776;</a>
-                    </div>
-                    <div style={styles.appTitleContainer}>
-                            <div style={styles.appTitle}>{this.props.appTitle}</div>
-                    </div>
-             </div>
-          );
-}
-  renderMobileMenuNotPressed(){
-    return (
-               <div style={styles.topnavmobile}>
-                       <div style={styles.mobileMenu}>
-                          <a style={styles.mobileMenuIcon} onClick={this.menuPressed.bind(this)}>&#9776;</a>
-                      </div>
-                      <img src={this.props.appLogo} style={styles.logo}/>
-                      <div style={styles.appTitleContainer}>
-                              <div style={styles.appTitle}>{this.props.appTitle}</div>
-                      </div>
-               </div>
-            );
-  }
+
+
   renderDeskTop(){
     return (
-               <div style={styles.topnav}>
-                    <img src={this.props.appLogo} style={styles.logo}/>
-                    <div style={styles.appTitleContainer}>
-                            <div style={styles.appTitle}>{this.props.appTitle}</div>
-                    </div>
-                    {this.renderDesktopMenuItems()}
+              <div style={styles.topnavContainer}>
+                   <div style={styles.topnav}>
+                        <img src={this.props.appLogo} style={styles.logo}/>
+                        <div style={styles.appTitleContainer}>
+                                <div style={styles.appTitle}>{this.props.appTitle}</div>
+                        </div>
+                        {this.renderDesktopMenuItems()}
 
-               </div>
+                   </div>
+                </div>
             );
   }
+  renderMobile(){
+    return(
+    <div style={styles.topnavContainer}>
+          <div style={styles.topnavmobile}>
+                 <img src={this.props.appLogo} style={styles.logo}/>
+                 <div style={styles.appTitleContainer}>
+                         <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
+                 </div>
+                 <div style={styles.mobileMenu}>
+                    <a style={styles.mobileMenuIcon} onClick={this.menuPressed.bind(this)}>&#9776;</a>
+                </div>
+          </div>
+          {this.renderMobileMenuItems()}
+    </div>
+  );
+  }
+  renderMobileMenuItems(){
+       if(this.state.menuPressed){
+         return(<div style={styles.menuItemsMobile}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>);
+       }
+       else{
+         return null;
+       }
+
+  }
   render() {
+
       if(styles.isDesktop()){
         return this.renderDeskTop();
       }
-      else{          
-          if(this.state.menuPressed){
-              return this.renderMobileMenuPressed();
-          }
-          else if(styles.isNarrowMobile()){
-
-              return this.renderNarrowMobileMenuNotPressed();
-          }
-          else{
-              return this.renderMobileMenuNotPressed();
-          }
+      else{
+        return this.renderMobile();
       }
   }
+
 }
 
 

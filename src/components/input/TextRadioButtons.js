@@ -11,8 +11,9 @@ export default class TextRadioButtons extends Component{
     if(item===this.props.selected){
       selected=true;
     }
+    var key=index+"_"+item.label;
     return(
-            <div style={styles.selectionContainer} key={index}>
+            <div style={styles.selectionContainer} key={key}>
 
                  <div style={styles.label}>{item.label}</div>
                 <input type="radio" checked={selected} onChange={()=>{}} onClick={()=>{

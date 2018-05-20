@@ -6,11 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {images} from "../configs";
 import {styles} from "./styles";
 
-import {TopMenu,DisplayTextImage,DisplayContent} from "../components";
+import {TopMenu,DisplayTextImage,DisplayStaticContent} from "../components";
 import PageDescription from "./sections/PageDescription";
 import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
-import SectionFooter from "./sections/SectionFooter";
+import StaticSectionFooter from "./sections/StaticSectionFooter";
 import applicationPathConfig from "./configs/applicationPathConfig";
 
 export  default class PageWithHeaderNoPrint extends Component {
@@ -30,7 +30,7 @@ export  default class PageWithHeaderNoPrint extends Component {
     renderSectionFooter(){
         if(this.props.sectionFooterContent){
             return(
-                  <SectionFooter content={this.props.sectionFooterContent}/>            
+                  <StaticSectionFooter content={this.props.sectionFooterContent}/>
             );
         }
         else{

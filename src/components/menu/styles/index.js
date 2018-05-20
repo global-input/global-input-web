@@ -17,28 +17,53 @@ var styles={
   isNarrowMobile:function(){
       return !this.narrowMobile.matches;
   },
-
+  topnavContainer:{
+    width:"100%",
+    display:"flex",
+    flexDirection: "column",
+    width:"100%",
+    justifyContent: "flex-start",
+    alignItems:"flex-start",
+    position:"fixed",
+    top:0,
+    left:0,
+    zIndex:2000,
+  },
   topnavmobile: {
-    overflow: "hidden",
     paddingRight:30,
     paddingTop:10,
     width:"100%",
     display:"flex",
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor:"#EEEEEE",
-    position: "fixed",
-    top:0,
-    zIndex:1000,
+    borderBottomColor:'#888888',
+    borderBottomStyle:"solid",
+    shadowColor:"#888888",
+    shadowOffset:{ width: 10, height: 10 },
+    shadowOpacity: 0.75,
+    shadowRadius: 5,
+    elevation: 10,
+    alignItems: "center",
+
   },
+
+
+
 
   appTitleContainer:{
     marginLeft:10,
     paddingTop:5
   },
+
   appTitle:{
     fontSize: 25,
+    color: "#4880ED",
+    whiteSpace: "nowrap",
+    fontWeight: "lighter"
+  },
+  appMobileTitle:{
+    fontSize: 16,
     color: "#4880ED",
     whiteSpace: "nowrap",
     fontWeight: "lighter"
@@ -63,9 +88,7 @@ var styles={
     color: "#80ccff",
   },
   mobileMenu:{
-     position:"absolute",
-     left:0,
-     top:0
+
   },
   mobileMenuIcon:{
     fontWeight: 'normal',
@@ -95,15 +118,10 @@ var styles={
     top:24
   },
   menuItemsMobile:{
-    position:"fixed",
     display:"flex",
     flexDirection:"column",
-    left:0,
-    top:0,
-    backgroundColor:"white",
-    boxShadow: "10px 10px 5px #888888",
-    zIndex:1001,
-
+    backgroundColor:"#EEEEEE",
+    width:"100%"
   },
 
 
@@ -131,6 +149,9 @@ var styles={
     else{
         ret.color="#4880ED";
         ret.textAlign="left";
+        ret.backgroundColor="#FFFFFF";
+        ret.marginBottom=5;
+
     }
     if(isSelected){
       ret.color="#002080";
@@ -169,17 +190,6 @@ var styles={
 };
 styles.topnav=Object.assign({},styles.topnavmobile,{
       justifyContent: "flex-start",
-      alignItems: "center",
-      borderBottomColor:'#888888',
-      borderBottomStyle:"solid",
-      shadowColor:"#888888",
-      shadowOffset:{ width: 10, height: 10 },
-      shadowOpacity: 0.75,
-      shadowRadius: 5,
-      elevation: 10,
-});
-styles.topnavmobileMenuPressed=Object.assign({},styles.topnavmobile,{
-
 });
 
 

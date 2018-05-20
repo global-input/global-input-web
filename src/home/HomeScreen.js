@@ -79,6 +79,7 @@ render() {
     return (
 
       <PageWithHeader image={images.globalInputApp}
+          mobileImage={images.globalInputAppMobile}
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
 

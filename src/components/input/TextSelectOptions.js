@@ -7,8 +7,9 @@ import {styles} from "./styles";
 
 export default class TextSelectOptions extends Component{
   renderItem(item,index){
+    var key=index+"_"+item.label;
     return(
-              <option value={item.value} key={index}>{item.label}</option>
+              <option value={item.value} key={key}>{item.label}</option>
         );
   }
 

@@ -30,7 +30,7 @@ export const styles={
        fontWeight: "lighter",
        marginBottom:10
      },
-
+     
 
 
 }
