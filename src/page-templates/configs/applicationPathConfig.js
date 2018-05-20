@@ -5,6 +5,7 @@ import formDataTransferConfig from "./formDataTransferConfig";
 import developerTextConfig from "./developers/developerTextConfig";
 import aboutTextConfig from "./about/aboutTextConfig";
 import contactUsConfig from "./about/contactUsConfig";
+import privacyConfig from "./about/privacyConfig";
 
 
 
@@ -13,7 +14,10 @@ const applicationPathConfig={
     menus:[
         homeTextConfig.menu,
         developerTextConfig.menu,
-        aboutTextConfig.menu
+        privacyConfig.menu,
+        aboutTextConfig.menu,
+        contactUsConfig.menu
+
 
     ],
     home:           homeTextConfig,
@@ -23,7 +27,8 @@ const applicationPathConfig={
     developer:      developerTextConfig,
     about:          {
                       home:aboutTextConfig,
-                      contact:contactUsConfig
+                      contact:contactUsConfig,
+                      privacy:privacyConfig
                     }
 };
 

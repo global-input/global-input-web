@@ -3,6 +3,7 @@ const styles={
   isMobile(){
       return !this.mql.matches;
   },
+
       container:{
         display:"flex",
         flexDirection:"column",
@@ -71,6 +72,7 @@ const styles={
           marginTop:20,
           marginBottom:10
       },
+
       pageDescriptionSection:{
               display:"flex",
               flexDirection: "row",
@@ -82,7 +84,10 @@ const styles={
               paddingLeft:20,
               paddingRight:0,
               paddingBottom:0,
+              width:"100%",
+
       },
+
       pageDescriptionLine:{
         fontSize: 16,
         color: "#414242",
@@ -147,7 +152,8 @@ styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSecti
 });
 
 styles.pageDescriptionWithImage=Object.assign({},styles.pageDescription,{
-        minHeight:532
+        minHeight:532,
+
 });
 
 

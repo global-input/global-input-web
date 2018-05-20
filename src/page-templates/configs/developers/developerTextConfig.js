@@ -1,5 +1,6 @@
 const developerTextConfig={
-  appTitle:"Global Input App for Developers",
+  appTitle:"Global Input App",
+  appSubtitle:"For Developers",
   menu:{
     link:"/global-input-app/developers",
     linkText:"Developers"

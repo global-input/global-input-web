@@ -44,7 +44,28 @@ export  default class TopMenu extends Component {
 
 
 
+    renderDesktopSubtitle(){
+          if(this.props.appSubtitle){
+              return(
+                <div style={styles.subtitleDesktopContaier}>{this.props.appSubtitle}</div>
+              );
+          }
+          else{
+            return null;
+          }
 
+    }
+    renderMobileSubtitle(){
+          if(this.props.appSubtitle){
+              return(
+                <div style={styles.subtitleMobileContaier}>{this.props.appSubtitle}</div>
+              );
+          }
+          else{
+            return null;
+          }
+
+    }
 
   renderDeskTop(){
     return (
@@ -52,7 +73,8 @@ export  default class TopMenu extends Component {
                    <div style={styles.topnav}>
                         <img src={this.props.appLogo} style={styles.logo}/>
                         <div style={styles.appTitleContainer}>
-                                <div style={styles.appTitle}>{this.props.appTitle}</div>
+                                <div style={styles.appDesktopTitle}>{this.props.appTitle}</div>
+                                {this.renderDesktopSubtitle()}
                         </div>
                         {this.renderDesktopMenuItems()}
 
@@ -60,6 +82,7 @@ export  default class TopMenu extends Component {
                 </div>
             );
   }
+
   renderMobile(){
     return(
     <div style={styles.topnavContainer}>
@@ -67,6 +90,7 @@ export  default class TopMenu extends Component {
                  <img src={this.props.appLogo} style={styles.logo}/>
                  <div style={styles.appTitleContainer}>
                          <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
+                         {this.renderMobileSubtitle()}
                  </div>
                  <div style={styles.mobileMenu}>
                     <a style={styles.mobileMenuIcon} onClick={this.menuPressed.bind(this)}>&#9776;</a>

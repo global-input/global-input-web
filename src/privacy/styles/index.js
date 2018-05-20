@@ -37,13 +37,14 @@ export var styles={
     lineHeight: 1.5
   },
   content:{
-      padding:20,
+      paddingLeft:20,
+      paddingTop:10,
+      paddingRight:20,
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-      backgroundColor:"#dddddd",
-      
+      backgroundColor:"#dddddd"
   },
  itemSection:{
     marginTop:10,
@@ -52,7 +53,6 @@ export var styles={
     paddingRight:20,
     paddingBottom:0,
     backgroundColor:"white",
-
  }
 
 

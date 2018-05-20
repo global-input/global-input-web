@@ -7,6 +7,7 @@ import aboutTextConfig from "./about/aboutTextConfig";
 import aboutGlobalInputConfig from "./about/aboutGlobalInputConfig";
 import aboutUsConfig from "./about/aboutUsConfig";
 import contactUsConfig from "./about/contactUsConfig";
+import privacyConfig from "./about/privacyConfig";
 const blockTextConfig={
       chrome:chromeExtensionConfig,
       developers:{
@@ -20,7 +21,8 @@ const blockTextConfig={
             home:aboutTextConfig,
             globalInputApp:aboutGlobalInputConfig,
             us:aboutUsConfig,
-            contact:contactUsConfig
+            contact:contactUsConfig,
+            privacy:privacyConfig
       }
 };
 

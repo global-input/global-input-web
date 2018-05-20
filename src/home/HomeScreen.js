@@ -16,7 +16,7 @@ import {
 
 import {images} from "../configs";
 
-import {ContactUsButton,TopMenu,DisplayTextImage,BookMark} from "../components";
+import {TopMenu,DisplayTextImage,BookMark} from "../components";
 
 import {styles} from "./styles";
 
@@ -119,7 +119,7 @@ render() {
           </div>
 
 
-          <ContactUsButton/>
+
 
       </PageWithHeader>
             );

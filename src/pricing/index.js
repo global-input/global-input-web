@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 
 
 import {textValues,images} from  "../configs";
-import {DisplayBlockText,ShowImage,DownloadApp,RenderText,ContactUsButton} from "../components";
+import {DisplayBlockText,ShowImage,RenderText,ContactUsButton} from "../components";
 
 import {styles} from "./styles";
 import {globalStyles} from "../components/styles";

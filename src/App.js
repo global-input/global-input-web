@@ -23,7 +23,8 @@ import {FormDataTransfer} from "./formdata-transfer";
 
 import {applicationPathConfig} from "./page-templates";
 import {AboutScreen} from "./about";
-
+import {PrivacyScreen} from "./privacy";
+import {ContactFormHome} from "./contact-form";
 
 export default class App extends Component{
   render(){
@@ -39,6 +40,8 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
             <Route  path={applicationPathConfig.developer.menu.link}  component={DevelopersScreen}/>
             <Route  path={applicationPathConfig.about.home.menu.link}  component={AboutScreen}/>
+            <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
+            <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
         </div>
 
 

@@ -6,6 +6,17 @@ export const styles={
     alignItems:"center",
     width:"100%"
   },
+  itemSection:{
+     marginTop:10,
+     paddingTop:10,
+     marginBottom:10,
+     paddingLeft:20,
+     paddingRight:20,
+     paddingBottom:0,
+     backgroundColor:"white",
+     width:"100%"
+  },
+
   selectionContainer:{
     display:"flex",
     flexDirection:"row",

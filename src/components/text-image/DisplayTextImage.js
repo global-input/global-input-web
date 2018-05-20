@@ -56,7 +56,7 @@ export  default class DisplayTextImage extends Component {
   render() {
           if(this.props.reverse){
             return (
-                          <div className="row top-margin-md" >
+                          <div className="row" >
                               {this.renderImage()}
                               {this.renderTextContent()}
                           </div>
@@ -64,7 +64,7 @@ export  default class DisplayTextImage extends Component {
           }
           else{
             return (
-                          <div className="row top-margin-md" >
+                          <div className="row" >
                             {this.renderTextContent()}
                             {this.renderImage()}
                           </div>

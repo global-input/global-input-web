@@ -143,12 +143,17 @@ render() {
       pageDescriptionSection=styles.pageDescriptionSectionMobile;
     }
     return (
+                      <div style={pageDescriptionSection}>
+                            {this.renderAdverts()}
+                            {this.renderImage()}
 
-                <div style={pageDescriptionSection}>
-                      {this.renderAdverts()}
-                      {this.renderImage()}
+                      </div>
 
-                </div>
+
+
             );
   }
+
+
+
 }

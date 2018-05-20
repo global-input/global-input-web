@@ -1,2 +1,3 @@
 import ContactForm from "./ContactForm";
-export {ContactForm};
+import ContactFormHome from "./ContactFormHome";
+export {ContactFormHome,ContactForm};

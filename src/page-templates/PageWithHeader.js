@@ -57,9 +57,11 @@ export  default class PageWithHeader extends Component {
         }
         return(
           <div style={styles.container}>
-            <TopMenu  menus={applicationPathConfig.menus} selected={this.props.selected} appLogo={images.appIcon} appTitle={appTitle}/>
-            {this.renderAdvert()}
+            <TopMenu  menus={applicationPathConfig.menus} selected={this.props.selected} appLogo={images.appIcon} appTitle={appTitle}
+              appSubtitle={this.props.appSubtitle}/>
+
             <div style={styles.content}>
+              {this.renderAdvert()}
                   {this.renderSectionHeader()}
                   {this.props.children}
                   {this.renderSectionFooter()}

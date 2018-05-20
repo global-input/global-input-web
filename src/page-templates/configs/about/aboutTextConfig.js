@@ -1,5 +1,6 @@
 const aboutTextConfig={
-  appTitle:"Global Input App For Business",
+  appTitle:"Global Input App",
+  appSubtitle:"About Us",
   menu:{
     link:"/global-input-app/about",
     linkText:"About"

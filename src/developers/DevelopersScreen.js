@@ -81,7 +81,8 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
-        appTitle={blockTextConfig.developers.home.appTitle}>
+        appTitle={blockTextConfig.developers.home.appTitle}
+        appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
            <div style={styles.itemSection}>
                  <DisplayTextImage title={blockTextConfig.developers.example.title} reverse={true}

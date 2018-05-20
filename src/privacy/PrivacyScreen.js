@@ -23,7 +23,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage,DisplayStaticContent,BookMark} from "../components";
+import {DisplayTextImage} from "../components";
 
 
 
@@ -31,9 +31,9 @@ import {DisplayTextImage,DisplayStaticContent,BookMark} from "../components";
 
 import {PageWithHeader,blockTextConfig} from "../page-templates";
 
-import {ContactForm} from "../contact-form";
 
-export  default class AboutScreen extends Component {
+
+export  default class PrivacyScreen extends Component {
 
     constructor(props){
       super(props);
@@ -72,10 +72,7 @@ export  default class AboutScreen extends Component {
      onWindowResize(){
        this.forceUpdate();
      }
-onContactFormConnected(){
-    var elmnt = document.getElementById("contactForm");
-    elmnt.scrollIntoView()
-}
+
 
 render() {
 
@@ -83,22 +80,16 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.about.home.advert}  selected={blockTextConfig.about.home.menu}
-        appTitle={blockTextConfig.about.home.appTitle} appSubtitle={blockTextConfig.about.home.appSubtitle}>
-         <div style={styles.content}>
-               <div style={styles.itemSection}>
-                     <DisplayTextImage title={blockTextConfig.about.globalInputApp.title} reverse={true}
-                        content={blockTextConfig.about.globalInputApp.content} image={images.aboutGlobalInputApp}/>
-               </div>
-               <div style={styles.itemSection}>
-                     <DisplayTextImage title={blockTextConfig.about.us.title}
-                        content={blockTextConfig.about.us.content} image={images.aboutUsInputApp}
-                        buttonLabel={blockTextConfig.about.us.visitButton}
-                        buttonHRef={blockTextConfig.about.us.visitLink}/>
-               </div>
-               
-         </div>
+      <PageWithHeader  advert={blockTextConfig.about.privacy.advert}  selected={blockTextConfig.about.privacy.menu}
+        appTitle={blockTextConfig.about.privacy.appTitle}
+        appSubtitle={blockTextConfig.about.privacy.appSubtitle}>
 
+         <div style={styles.content}>
+           <div style={styles.itemSection}>
+                 <DisplayTextImage title={blockTextConfig.about.privacy.title} reverse={true}
+                    content={blockTextConfig.about.privacy.content} image={images.privacy}/>
+           </div>
+         </div>
       </PageWithHeader>
             );
   }

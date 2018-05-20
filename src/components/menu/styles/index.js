@@ -53,11 +53,12 @@ var styles={
 
   appTitleContainer:{
     marginLeft:10,
-    paddingTop:5
+    paddingTop:5,
+
   },
 
-  appTitle:{
-    fontSize: 25,
+  appDesktopTitle:{
+    fontSize: 20,
     color: "#4880ED",
     whiteSpace: "nowrap",
     fontWeight: "lighter"
@@ -74,11 +75,21 @@ var styles={
     color: "#4880ED",
     marginLeft:10
   },
-  subtitleContaier:{
+  subtitleDesktopContaier:{
       display:"flex",
       flexDirection:"row",
+      justifyContent:"flex-end",
       fontFamily: "GiorgioSans-Regular",
       color: "#4880ED",
+      fontSize: 12,
+  },
+  subtitleMobileContaier:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"flex-end",
+    fontFamily: "GiorgioSans-Regular",
+    color: "#4880ED",
+    fontSize: 12,
   },
   userinfo:{
     position:"absolute",

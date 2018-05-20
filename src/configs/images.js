@@ -32,6 +32,7 @@ const images={
   aboutGlobalInputApp:require("../images/about-global-input.png"),
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
+  privacy:require("../images/privacy.png"),
 
 
 }

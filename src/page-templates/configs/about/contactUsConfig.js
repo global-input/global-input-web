@@ -1,5 +1,20 @@
 const contactUsConfig={
   title:"Contact us",
+  appTitle:"Global Input App",
+  appSubtitle:"Contact Us",
+  menu:{
+    link:"/global-input-app/contact-us",
+    linkText:"Contact Us"
+  },
+  advert:{
+      duration:5000,
+      items:[{
+        title:"Use Mobile to Operate on Business Applications",
+        content:["Easy to Enable Applications to Support the Global Input App",
+                "Data Stored in the App to Automate the Processes in the Business Applications"],
+        className:"animateAppearFromSmallToBig"
+      }]
+  },
   pageContent:{
           address:{
               title:"Address",
