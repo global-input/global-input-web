@@ -53,7 +53,7 @@ const contactUsConfig={
       },
   contactForm:{
       id:"###company_name###@contacts",
-      title:"Our Contact Deatils",
+      title:"Our Contact Details",
       label:"contacts",
       companyname:{
                     id:"company_name",

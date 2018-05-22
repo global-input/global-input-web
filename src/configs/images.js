@@ -33,7 +33,6 @@ const images={
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
   privacy:require("../images/privacy.png"),
-
-
+  
 }
 export default images;

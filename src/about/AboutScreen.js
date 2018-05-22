@@ -72,10 +72,6 @@ export  default class AboutScreen extends Component {
      onWindowResize(){
        this.forceUpdate();
      }
-onContactFormConnected(){
-    var elmnt = document.getElementById("contactForm");
-    elmnt.scrollIntoView()
-}
 
 render() {
 
@@ -96,7 +92,7 @@ render() {
                         buttonLabel={blockTextConfig.about.us.visitButton}
                         buttonHRef={blockTextConfig.about.us.visitLink}/>
                </div>
-               
+
          </div>
 
       </PageWithHeader>

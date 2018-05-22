@@ -14,10 +14,18 @@ export default class TextSelectOptions extends Component{
   }
 
   render(){
+    var selectedValue="";
+    if(this.props.selected){
+      selectedValue=this.props.selected.value;
+    }
+    else{
+      console.warn("****TextSelectOptions missing selected property");
+    }
+
     return(
       <div className="form-group">
             <select id={this.props.fieldId} className="form-control"
-              value={this.props.selected.value} onChange={evt=>{
+              value={selectedValue} onChange={evt=>{
                   this.props.onChange(evt.target.value, this.props.fieldIndex);
 
             }}>

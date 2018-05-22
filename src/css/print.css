@@ -6,6 +6,7 @@
 @media print {
   div.noprint{
     display:none;
+    
   };
   div.printOnly {
       height: 100%;
