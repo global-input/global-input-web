@@ -143,6 +143,7 @@ export default class ContactForm extends Component {
                                   },{
                                                 label:applicationPathConfig.about.contact.contactForm.nextButton.label,
                                                 type:applicationPathConfig.about.contact.contactForm.nextButton.type,
+                                                icon:"continue",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.toSendMessageForm();
@@ -151,6 +152,7 @@ export default class ContactForm extends Component {
                                         },{
                                                 label:applicationPathConfig.about.contact.contactForm.cancelButton.label,
                                                 type:applicationPathConfig.about.contact.contactForm.cancelButton.type,
+                                                icon:"cancel",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.disconnectGlobalInput();
@@ -248,6 +250,7 @@ export default class ContactForm extends Component {
                                   },{
                                                 label:applicationPathConfig.about.contact.messageForm.sendButton.label,
                                                 type:applicationPathConfig.about.contact.messageForm.sendButton.type,
+                                                icon:"send",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.sendMessageToUs();
@@ -256,6 +259,7 @@ export default class ContactForm extends Component {
                                         },{
                                                 label:applicationPathConfig.about.contact.messageForm.cancelButton.label,
                                                 type:applicationPathConfig.about.contact.messageForm.cancelButton.type,
+                                                icon:"cancel",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.disconnectGlobalInput();

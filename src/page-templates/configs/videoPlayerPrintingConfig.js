@@ -1,15 +1,14 @@
-const qrPrintingConfig={
-    title:"Encrypted QR Code",
+const videoPlayerPrintingConfig={
+    title:"Controller Device and the Second Screen",
     menu:{
-        link:"/global-input-app/qr-printing",
-        linkText:"QR Code Printing",
-         backLink:"/?scrollTo=qrPrinting",
-         bookmark:"qrPrinting"      
+        link:"/global-input-app/video-player",
+        linkText:"Video Player",
+        backLink:"/?scrollTo=videoPlayer",
+        bookmark:"videoPlayer"
     },
-    content:["Create and scan Encrypted QR Codes.",
-    "Use papers or images to store or transfer encrypted content. You may prefer this if you do not want to use network or electronic storage to store or transfer some encrypted information.",
-    "The encrypted QR Code can only be decrypted if the Global Input App contains the same encryption key that was used in encryption. ",
-    "Here you can encrypt the content in the Global Input App and send the encrypted content over to your computer for printing the QR code.",
+    content:["Universal Device Controller App",
+    "Enable applications running on Computers, Smart TV, set-top boxes and IoT devices. Scan the QR code displayed to control the applications or use the mobile as the second screen. All the Business Logic is implemented within the applications and the applications only needs to define the UI to be displayed on mobile and the callback interface. The data transfer between the devices uses the end-to-end encryption.",
+    "Here is an example for using the Global Input App to control a video player.",
     "Click the button below to start"],
 
     advert:{
@@ -75,4 +74,4 @@ const qrPrintingConfig={
     printButton:"Print",
     finishButton:"Back"
 }
-export default qrPrintingConfig;
+export default videoPlayerPrintingConfig;

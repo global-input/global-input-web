@@ -6,6 +6,10 @@ import developerTextConfig from "./developers/developerTextConfig";
 import aboutTextConfig from "./about/aboutTextConfig";
 import contactUsConfig from "./about/contactUsConfig";
 import privacyConfig from "./about/privacyConfig";
+import chromeExtensionConfig from "./chromeExtensionConfig";
+
+
+import videoPlayerPrintingConfig from "./videoPlayerPrintingConfig";
 
 
 
@@ -16,20 +20,21 @@ const applicationPathConfig={
         developerTextConfig.menu,
         privacyConfig.menu,
         aboutTextConfig.menu,
-        contactUsConfig.menu
-
+        contactUsConfig.menu,
 
     ],
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,
     qrPrinting:     qrPrintingConfig,
     formData:       formDataTransferConfig,
+    chrome:         chromeExtensionConfig,
     developer:      developerTextConfig,
     about:          {
                       home:aboutTextConfig,
                       contact:contactUsConfig,
                       privacy:privacyConfig
-                    }
+                    },
+    videoPlayer:videoPlayerPrintingConfig
 };
 
 

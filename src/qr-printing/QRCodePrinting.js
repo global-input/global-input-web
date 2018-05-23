@@ -128,7 +128,7 @@ export default class QRCodePrinting extends Component {
                                             },{
                                                   label:"Level",
                                                   operations:{
-                                                      onInput:selectedValue=>{                                                        
+                                                      onInput:selectedValue=>{
                                                         var value="H";
                                                         if(typeof selectedValue ==='object' && selectedValue.length){
                                                                 value=selectedValue[0];
@@ -148,12 +148,14 @@ export default class QRCodePrinting extends Component {
                                           },{
                                                     label:"Print",
                                                     type:"button",
+                                                    icon:"print",
                                                     operations:{
                                                       onInput:this.printQRCode.bind(this)
                                                     }
                                         },{
                                                     label:"Back",
                                                     type:"button",
+                                                    icon:"back",
                                                     operations:{
                                                       onInput:()=>{
                                                          this.connectGlobalInput();

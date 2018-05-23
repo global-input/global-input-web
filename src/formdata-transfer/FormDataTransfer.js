@@ -201,6 +201,7 @@ export default class FormDataTransfer extends Component {
                     {
                       label:"Finish",
                       type:"button",
+                      icon:"ok",
                       operations:{
                           onInput:()=>{
                               this.disconnectGlobalInput();

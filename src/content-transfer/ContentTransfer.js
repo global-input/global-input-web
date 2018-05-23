@@ -93,8 +93,9 @@ export default class ContentTransfer extends Component {
                                         onInput:value=>this.setFieldValue(this.CONTENT_FIELD_INDEX,value)
                                     },
                                   },{
-                                    label:"Finish",
+                                    label:"Back",
                                     type:"button",
+                                    icon:"back",
                                     operations:{
                                         onInput:()=>{
                                             this.connectGlobalInput();
@@ -248,7 +249,7 @@ export default class ContentTransfer extends Component {
       var contentField=this.getField(this.CONTENT_FIELD_INDEX);
 
           return(
-            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}               
+            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
                sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}>
               <div style={styles.content}>
                  <TextAreaWithLabel
