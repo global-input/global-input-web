@@ -173,7 +173,7 @@ export default class FormDataTransfer extends Component {
                             securityGroup:config.securityGroup,
                             initData:{
                                 action:"input",
-                                dataType:"content",
+                                dataType:"form",
                                 form:{
                                   id:"###username###"+"@"+window.location.host,
                                   title:applicationPathConfig.formData.senderConnected.title,

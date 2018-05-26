@@ -29,7 +29,7 @@ export default class ContentTransfer extends Component {
       this.state=this.getStateFromProps(this.props);
     }
     componentWillUnmount(){
-        this.disconnectGlobalInput();
+          this.disconnectGlobalInput();
     }
     componentWillMount(){
       this.connectGlobalInput();
@@ -79,7 +79,7 @@ export default class ContentTransfer extends Component {
                             securityGroup:config.securityGroup,
                             initData:{
                                 action:"input",
-                                dataType:"content",
+                                dataType:"form",
                                 form:{
                                   id:"contentTransfer@globalinput.co.uk",
                                   title:"Live Encrypted Data Transfer",
@@ -95,13 +95,11 @@ export default class ContentTransfer extends Component {
                                   },{
                                     label:"Back",
                                     type:"button",
-                                    icon:"back",
+                                    icon:"back",                                    
                                     operations:{
                                         onInput:()=>{
                                             this.connectGlobalInput();
                                             this.setContent("");
-
-
                                       }
                                    }
                                  }]

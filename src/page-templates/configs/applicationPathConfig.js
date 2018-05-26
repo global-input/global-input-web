@@ -9,7 +9,7 @@ import privacyConfig from "./about/privacyConfig";
 import chromeExtensionConfig from "./chromeExtensionConfig";
 
 
-import videoPlayerPrintingConfig from "./videoPlayerPrintingConfig";
+import videoPlayerConfig from "./videoPlayerConfig";
 
 
 
@@ -34,7 +34,7 @@ const applicationPathConfig={
                       contact:contactUsConfig,
                       privacy:privacyConfig
                     },
-    videoPlayer:videoPlayerPrintingConfig
+    videoPlayer:videoPlayerConfig
 };
 
 

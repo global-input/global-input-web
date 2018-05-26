@@ -1,4 +1,4 @@
-const videoPlayerPrintingConfig={
+const videoPlayerConfig={
     title:"Controller Device and the Second Screen",
     menu:{
         link:"/global-input-app/video-player",
@@ -35,6 +35,62 @@ const videoPlayerPrintingConfig={
               className: "animateLeftRight"
             }]
 
+    },
+    form:{
+        title:"Video Player",
+        videoTitle:{
+            type: "info",
+            id:"videoTitle",
+            value:{
+                type:"text",
+                content:"Big Buck Bunny",
+                style:{
+                    fontSize:26,
+                    marginTop:50,
+
+                }
+            },
+        },
+        playStatus:{
+            type:"info",
+            id:"playerStatus",
+            value:{
+              type:"view",
+              style:{
+                borderColor:"#rgba(72,128,237,0.5)",
+                borderWidth:1,
+                minWidth:150,
+                minHeight:150,
+              },
+              content:{
+                  type:"text",
+                  content:"Loading",
+                  style:{
+                      fontSize:20
+                  }
+                }
+
+            }
+
+        },
+        playButton:{
+            label:"Play",
+            type:"button",
+            icon:"play",
+            groupId:"footer"
+          },
+        backButton:{
+          label:"Back",
+          type:"button",
+          icon:"back",
+          groupId:"footer"
+        },
+        pauseButton:{
+          label:"Pause",
+          type:"button",
+          icon:"pause",
+          groupId:"footer"
+        }
     },
 
     connecting:{
@@ -74,4 +130,4 @@ const videoPlayerPrintingConfig={
     printButton:"Print",
     finishButton:"Back"
 }
-export default videoPlayerPrintingConfig;
+export default videoPlayerConfig;
