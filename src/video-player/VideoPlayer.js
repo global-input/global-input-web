@@ -96,25 +96,24 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.playStatus.value,
                                               groupId:applicationPathConfig.videoPlayer.form.playStatus.groupId,
                                         },{
+                                              id:   applicationPathConfig.videoPlayer.form.playButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.playButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.playButton.value,
                                               label:applicationPathConfig.videoPlayer.form.playButton.label,
-                                              type:applicationPathConfig.videoPlayer.form.playButton.type,
-                                              icon:applicationPathConfig.videoPlayer.form.playButton.icon,
+                                              icon: applicationPathConfig.videoPlayer.form.playButton.icon,
+                                              options:applicationPathConfig.videoPlayer.form.playButton.options,
                                               groupId:applicationPathConfig.videoPlayer.form.playButton.groupId,
                                               operations:{
                                                             onInput: value=>{
-                                                                    this.playVideo();
+                                                                    if(value){
+                                                                      this.pauseVideo();
+                                                                    }
+                                                                    else{
+                                                                      this.playVideo();
+                                                                    }
+
                                                             }
                                               }
-                                        },{
-                                                label:applicationPathConfig.videoPlayer.form.pauseButton.label,
-                                                type:applicationPathConfig.videoPlayer.form.pauseButton.type,
-                                                icon:applicationPathConfig.videoPlayer.form.pauseButton.icon,
-                                                groupId:applicationPathConfig.videoPlayer.form.playButton.groupId,
-                                                operations:{
-                                                      onInput: value=>{
-                                                            this.pauseVideo();
-                                                      }
-                                                }
                                         },{
                                                 label:applicationPathConfig.videoPlayer.form.backButton.label,
                                                 type:applicationPathConfig.videoPlayer.form.backButton.type,
@@ -212,9 +211,9 @@ export default class VideoPlayer extends Component {
 
     renderConnecting(){
              return(
-                <PageWithHeader advert={applicationPathConfig.formData.advert}>
-                      <DisplayLoading title={applicationPathConfig.formData.connecting.title}
-                        content={applicationPathConfig.formData.connecting.content}/>
+                <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
+                      <DisplayLoading title={applicationPathConfig.videoPlayer.connecting.title}
+                        content={applicationPathConfig.videoPlayer.connecting.content}/>
                  </PageWithHeader>
            );
 
@@ -326,46 +325,20 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
 
       return(
-        <PageWithHeader advert={applicationPathConfig.formData.advert}>
+        <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
               <DisplayQRCode
 
-                content={applicationPathConfig.formData.connected.content}
+                content={applicationPathConfig.videoPlayer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
-                buttonLabel={applicationPathConfig.formData.cancelButton}
-                onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+                buttonLabel={applicationPathConfig.videoPlayer.cancelButton}
+                link={applicationPathConfig.videoPlayer.menu.backLink}/>
       </PageWithHeader>
       );
 
 
 
     }
-    renderCopyButton(){
-      var action=this.state.action;
-      var fields=this.getFields(action);
-      var selectedFieldId=action.selectedFieldId;
-      if(!selectedFieldId){
-        return null;
-      }
-      var matchedFields=fields.filter(f=>f.id===selectedFieldId);
-      if(!matchedFields.length){
-        return null;
-      }
-      var matchedField=matchedFields[0];
 
-
-      if(matchedField.value){
-        return (
-          <ClipboardButton
-              fieldId={matchedField.id}
-              label={applicationPathConfig.formData.copyButton}
-              message={applicationPathConfig.formData.clipboard.copied}
-              setMessage={this.setMessage.bind(this)}/>
-        );
-      }
-      else{
-        return null;
-      }
-    }
     playVideo(){
       if(this.videoPlayer){
           this.videoPlayer.play();
@@ -379,7 +352,7 @@ renderAField(formField, index){
       }
     }
     onAbort(){
-      this.sendPlayStatusMessage("Aborted")
+      this.setToCanPlay("Aborted");
     }
     onCanPlay(){
 
@@ -394,10 +367,27 @@ renderAField(formField, index){
 
     }
     onEnded(){
-        this.sendPlayStatusMessage("Play Completed");
+        this.setToCanPlay("Completed");
     }
-    onError(){
-      this.sendPlayStatusMessage("Player Error");
+    processError(message, error){
+        var cache = [];
+        var errorDetails=JSON.stringify(error, function(key, value) {
+            if (typeof value === 'object' && value !== null) {
+                if (cache.indexOf(value) !== -1) {
+                    // Circular reference found, discard key
+                    return;
+                }
+                // Store value in our collection
+                cache.push(value);
+            }
+            return value;
+         });
+         cache = null;
+         console.warn(message+":"+errorDetails);
+    }
+    onError(error){
+      this.processError("Player Error",error);
+      this.setToCanPlay("Player Error");
     }
     onLoadedData(){
 
@@ -412,18 +402,27 @@ renderAField(formField, index){
 
     }
     onPause(){
-        this.sendPlayStatusMessage("Player paused");
+        this.setToCanPlay("Paused");
     }
     onPlay(){
-        this.sendPlayStatusMessage("Playing");
+
     }
     sendPlayStatusMessage(message){
          var playStatusValue=Object.assign({},applicationPathConfig.videoPlayer.form.playStatus.value);
          playStatusValue.content.content=message;
-          this.sendInputMessage(playStatusValue,null,applicationPathConfig.videoPlayer.form.playStatus.id);
+         this.sendInputMessage(playStatusValue,null,applicationPathConfig.videoPlayer.form.playStatus.id);
     }
     onPlaying(){
+        this.setToCanPause();
+
+    }
+    setToCanPause(){
+        this.sendInputMessage(applicationPathConfig.videoPlayer.PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,null,applicationPathConfig.videoPlayer.form.playButton.id);
         this.sendPlayStatusMessage("Playing");
+    }
+    setToCanPlay(message){
+        this.sendInputMessage(applicationPathConfig.videoPlayer.PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,null,applicationPathConfig.videoPlayer.form.playButton.id);
+        this.sendPlayStatusMessage(message);
     }
     onProgress(){
 
@@ -461,7 +460,6 @@ renderAField(formField, index){
               <div style={styles.content}>
               <video width="640" height="360"  id="videoplayer" autoPlay={false}
                   ref={videoPlayer=>this.videoPlayer=videoPlayer}
-                  autoPlay={false}
                   onAbort={this.onAbort.bind(this)}
                   onCanPlay={this.onCanPlay.bind(this)}
                   onCanPlay={this.onCanPlayThrough.bind(this)}
@@ -489,11 +487,6 @@ renderAField(formField, index){
                     <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"/>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"/>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"/>
-                    <object width="640" height="360" type="application/x-shockwave-flash" data="player.swf">
-                        <param name="movie" value="player.swf"/>
-                        <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=http://clips.vorwaerts-gmbh.de/VfE_flash.mp4"/>
-                        <img src="poster.jpg" width="640" height="360" alt="Big Buck Bunny" title="No video playback capabilities"/>
-                    </object>
                 </video>
               </div>
            </PageWithHeader>

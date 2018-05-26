@@ -2770,9 +2770,9 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-input-message@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.4.3.tgz#9c958969c1a8840dbfd2de1c6f0953c2b4f133b5"
+global-input-message@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.4.5.tgz#886ac18bff17153846f3afc7c6ad5fb1a4068295"
   dependencies:
     socket.io-client "^2.0.3"
 

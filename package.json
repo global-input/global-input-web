@@ -5,7 +5,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta",
     "eslint-config-react-app": "^2.0.0",
-    "global-input-message": "^1.4.3",
+    "global-input-message": "^1.4.5",
     "json-loader": "^0.5.7",
     "qrcode.react": "^0.7.1",
     "react": "^16.0.0",

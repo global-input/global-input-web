@@ -6,13 +6,6 @@ import React, {Component} from 'react'
 
 
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
-
 
 import {images} from "../configs";
 
@@ -23,7 +16,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage,DisplayStaticContent,BookMark} from "../components";
+import {DisplayTextImage} from "../components";
 
 
 

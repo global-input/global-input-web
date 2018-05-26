@@ -1,5 +1,12 @@
+const PLAY_PAUSE_BUTTON_STATUS={
+    CAN_PLAY:0,
+    CAN_PAUSE:1
+}
+
 const videoPlayerConfig={
+    PLAY_PAUSE_BUTTON_STATUS,
     title:"Controller Device and the Second Screen",
+
     menu:{
         link:"/global-input-app/video-player",
         linkText:"Video Player",
@@ -14,25 +21,20 @@ const videoPlayerConfig={
     advert:{
             duration:10000,
             items:[{
-              title:"Create & Scan Encrypted QR Codes",
-              content:["Transfer the Encrypted Content Between Your Devices Without Using the Network",
-                      "Store and Transfer Content Using the Encrypted QR Codes"],
+              title:"Universal Input App for Applications",
+              content:["Allows Users to Use Mobile to Control Service Applications without Doing Mobile Development",
+                      "Defines Mobile UI Interface Elements Declatively and the Callbacks to Support the Globabl Input App"],
               className: "animateLeftRight"
             },{
-              title:"Use Papers to Backup Encryption Keys",
-              content:["Use the Encrypted QR Code to Backup Your Encryption Keys",
-                      "Scan to Import the Encryption Keys"],
+              title:"Allow Users to Use the Mobile as Remote Control",
+              content:["Defines Buttons and the Callbacks to Allow Users to Have Remote Control on the Mobile",
+                      "Single App for All Applications with Encrypted Data Storage and Encrypted Data Transfer"],
               className: "animateAppearFromSmallToBig"
             },{
-              title:"Encrypted QR Codes",
-              content:["Use the Encrypted QR Codes to Store and Transfer Encrypted Messages",
-                      "Scan and Decrypt the Encrypted Messages"],
+              title:"Integrated Desktop and Mobile Application Developments",
+              content:["Mobile Control for Applications Running on Smart TV, Desktip, IoT, and Web Applications.",
+                      "Scan to Operate, Secure Communications, Support the Automations."],
               className: "animateWithRotate"
-            },{
-              title:"Control the Access to the Content with the Encryption Keys",
-              content:["Share Encryptions Keys with the Other Devices or Other People.",
-                      "Select From the Encryption Keys in the Global Input App to Encrypt the Content"],
-              className: "animateLeftRight"
             }]
 
     },
@@ -64,7 +66,7 @@ const videoPlayerConfig={
               },
               content:{
                   type:"text",
-                  content:"Loading",
+                  content:"",
                   style:{
                       fontSize:20
                   }
@@ -77,18 +79,15 @@ const videoPlayerConfig={
             label:"Play",
             type:"button",
             icon:"play",
-            groupId:"footer"
-          },
+            groupId:"footer",
+            value:0,
+            id:"playPauseButton",
+            options:[{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,label:"Play",icon:"play"},{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,label:"Pause",icon:"pause"}]
+        },
         backButton:{
           label:"Back",
           type:"button",
           icon:"back",
-          groupId:"footer"
-        },
-        pauseButton:{
-          label:"Pause",
-          type:"button",
-          icon:"pause",
           groupId:"footer"
         }
     },

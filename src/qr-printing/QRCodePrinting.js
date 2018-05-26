@@ -1,23 +1,19 @@
 import React, {Component} from 'react'
-import {
-  Link
-} from 'react-router-dom'
 
-import QRCode from "qrcode.react";
 
 import {createMessageConnector} from "global-input-message";
 
 
 
 
-import {config,images} from "../configs";
+import {config} from "../configs";
 import {TextSelectOptions,InputWithLabel,NotificationMessage,TextButton} from "../components";
 
 
 
 import {styles} from "./styles";
 
-import {PageWithHeader,PageWithHeaderNoPrint,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,PageWithHeaderNoPrint,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 
 export default class QRCodePrinting extends Component {
   ACT_TYPE={
@@ -285,7 +281,7 @@ export default class QRCodePrinting extends Component {
     }
 
     renderSenderConnected(){
-      var action=this.state.action;
+
       var qrcodeLabel=this.getFieldValue(this.LABEL_FIELD);
       var qrcodeContent=this.getFieldValue(this.CONTENT_FIELD);
       var qrcodeLevel=this.getFieldValue(this.LEVEL_FIELD);

@@ -1,17 +1,14 @@
 import React, {Component} from 'react'
-import {
-  Link
-} from 'react-router-dom'
-import QRCode from "qrcode.react";
+
 import {createMessageConnector} from "global-input-message";
 
 
 
 
-import {config,images} from "../configs";
+import {config} from "../configs";
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
-import {LoadingIcon,ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton} from "../components";
+import {ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton} from "../components";
 
 import {styles} from "./styles";
 export default class ContentTransfer extends Component {
@@ -51,7 +48,7 @@ export default class ContentTransfer extends Component {
           return fields[index];
     }
     getFieldValue(index){
-      this.getField(index).value;
+      return this.getField(index).value;
     }
     setFieldValue(index, value){
           this.getField(index).value=value;
@@ -95,7 +92,7 @@ export default class ContentTransfer extends Component {
                                   },{
                                     label:"Back",
                                     type:"button",
-                                    icon:"back",                                    
+                                    icon:"back",
                                     operations:{
                                         onInput:()=>{
                                             this.connectGlobalInput();
@@ -242,7 +239,7 @@ export default class ContentTransfer extends Component {
       }
     }
     renderSenderConnected(){
-      var action=this.state.action;
+
 
       var contentField=this.getField(this.CONTENT_FIELD_INDEX);
 

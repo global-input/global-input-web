@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {images} from "../configs";
 import {styles} from "./styles";
 
-import {TopMenu,DisplayTextImage,DisplayStaticContent} from "../components";
+import {TopMenu} from "../components";
 import PageDescription from "./sections/PageDescription";
 import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
