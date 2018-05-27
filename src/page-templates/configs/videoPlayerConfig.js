@@ -57,23 +57,37 @@ const videoPlayerConfig={
             type:"info",
             id:"playerStatus",
             value:{
-              type:"view",
-              style:{
-                borderColor:"#rgba(72,128,237,0.5)",
-                borderWidth:1,
-                minWidth:150,
-                minHeight:150,
-              },
-              content:{
-                  type:"text",
-                  content:"",
-                  style:{
-                      fontSize:20
-                  }
-                }
+                      type:"view",
+                      style:{
+                        borderColor:"#rgba(72,128,237,0.5)",
+                        borderWidth:1,
+                        minWidth:150,
+                        minHeight:150,
+                      },
+                      content:[{
+                          type:"text",
+                          content:"",
+                          style:{
+                              fontSize:20
+                          }
+                        },{
+                            type:"text",
+                            content:"",
+                            style:{
+                                fontSize:14
+                            }
+                          }]
 
             }
 
+        },
+        currentTimeSlider:{
+            type:"range",
+            id:"currentTime",
+            min:0,
+            max:100,
+            value:0,
+            step:1
         },
         playButton:{
             label:"Play",
@@ -84,49 +98,58 @@ const videoPlayerConfig={
             id:"playPauseButton",
             options:[{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,label:"Play",icon:"play"},{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,label:"Pause",icon:"pause"}]
         },
+        skipToBeginButton:{
+            label:"Begin",
+            type:"button",
+            icon:"skip-to-begin",
+            groupId:"footer",
+            id:"skipToBeginButton",
+        },
+        skipToEndButton:{
+            label:"End",
+            type:"button",
+            icon:"skip-to-end",
+            groupId:"footer",
+            id:"skipToEndButton",
+        },
+        ffButton:{
+            label:"FF",
+            type:"button",
+            icon:"ff",
+            groupId:"footer",
+            id:"ffButton",
+        },
+        rwButton:{
+            label:"RW",
+            type:"button",
+            icon:"rw",
+            groupId:"footer",
+            id:"rwButton",
+        },
         backButton:{
           label:"Back",
           type:"button",
           icon:"back",
-          groupId:"footer"
+          groupId:"footer2",
+          buttonText:"Back"
         }
     },
 
     connecting:{
-        title:"Encrypted QR Code",
+        title:"Video Player",
         content:"Loading..."
     },
-    printed:{
-        title:"QR Code",
-        content:"Scan the QR Code below with the Global Input App"
-    },
-
     connected:{
-      title:"Encrypted QR Code",
+      title:"Video Player",
       content:"Scan the QR Code below with the Global Input App on your mobile"
     },
     senderConnected:{
-        title:"Encrypted QR Code",
-        content:"Press the \"Encrypt\" button in the Global Input App to compose an encrypted message. The encrypted content will be send over from the Global Input App to here for use as the content of the QR code."
+        title:"Video Player",
+        content:"Please use the player controller displayed in the Global Input App to Control the video"
     },
-    contentField:{
-        label:"Content"
-    },
-    labelField:{
-        label:"Label"
-    },
-    sizeField:{
-        label:"Size"
-    },
-    levelField:{
-        label:"Level"
-    },
-    clipboard:{
-      copied:"The content of the text field is copied into your clipboard"
-    },
+
     startButton:"Start",
     cancelButton:"Back",
-    printButton:"Print",
     finishButton:"Back"
 }
 export default videoPlayerConfig;

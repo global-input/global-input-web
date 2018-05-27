@@ -153,7 +153,7 @@ export default class QRCodePrinting extends Component {
                                                     label:"Back",
                                                     type:"button",
                                                     icon:"back",
-                                                    groupId:"buttons",
+                                                    groupId:"buttons",                                                    
                                                     operations:{
                                                       onInput:()=>{
                                                          this.connectGlobalInput();

@@ -40,10 +40,20 @@ export default class VideoPlayer extends Component {
     }
     getStateFromProps(props){
             var action=this.createNewPlayFormAction();
-            return {action, message:null};
+            return {action, message:null, currentTime:0};
     }
     setMessage(message){
       this.setState(Object.assign({}, this.state,{message}));
+    }
+    updateCurrentTime(){
+      var currentTime=this.videoPlayer.currentTime;
+      console.log(":::currentTime:"+currentTime);
+
+      if(Math.round(currentTime)!==Math.round(this.state.currentTime)){
+            this.setState(Object.assign({}, this.state,{currentTime}));
+
+      }
+
     }
 
     getFields(action){
@@ -96,6 +106,43 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.playStatus.value,
                                               groupId:applicationPathConfig.videoPlayer.form.playStatus.groupId,
                                         },{
+                                              value:applicationPathConfig.videoPlayer.form.currentTimeSlider.value,
+                                              type:applicationPathConfig.videoPlayer.form.currentTimeSlider.type,
+                                              id:applicationPathConfig.videoPlayer.form.currentTimeSlider.id,
+                                              minimumValue:applicationPathConfig.videoPlayer.form.currentTimeSlider.min,
+                                              maximumValue:applicationPathConfig.videoPlayer.form.currentTimeSlider.max,
+                                              step:applicationPathConfig.videoPlayer.form.currentTimeSlider.step,
+                                              operations:{
+                                                    onInput:this.onSliderChanged.bind(this)
+                                              },
+
+                                        },{
+                                              id:   applicationPathConfig.videoPlayer.form.skipToBeginButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.skipToBeginButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.skipToBeginButton.value,
+                                              label:applicationPathConfig.videoPlayer.form.skipToBeginButton.label,
+                                              icon: applicationPathConfig.videoPlayer.form.skipToBeginButton.icon,
+                                              groupId:applicationPathConfig.videoPlayer.form.skipToBeginButton.groupId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    this.skipToBegin();
+
+                                                            }
+                                              }
+                                        },{
+                                              id:   applicationPathConfig.videoPlayer.form.rwButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.rwButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.rwButton.value,
+                                              label:applicationPathConfig.videoPlayer.form.rwButton.label,
+                                              icon: applicationPathConfig.videoPlayer.form.rwButton.icon,
+                                              groupId:applicationPathConfig.videoPlayer.form.rwButton.groupId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    this.rewind();
+
+                                                            }
+                                              }
+                                        },{
                                               id:   applicationPathConfig.videoPlayer.form.playButton.id,
                                               type: applicationPathConfig.videoPlayer.form.playButton.type,
                                               value:applicationPathConfig.videoPlayer.form.playButton.value,
@@ -115,6 +162,31 @@ export default class VideoPlayer extends Component {
                                                             }
                                               }
                                         },{
+                                              id:   applicationPathConfig.videoPlayer.form.ffButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.ffButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.ffButton.value,
+                                              label:applicationPathConfig.videoPlayer.form.ffButton.label,
+                                              icon: applicationPathConfig.videoPlayer.form.ffButton.icon,
+                                              groupId:applicationPathConfig.videoPlayer.form.ffButton.groupId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    this.fastForward();
+                                                            }
+                                              }
+                                        },{
+                                              id:   applicationPathConfig.videoPlayer.form.skipToEndButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.skipToEndButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.skipToEndButton.value,
+                                              label:applicationPathConfig.videoPlayer.form.skipToEndButton.label,
+                                              icon: applicationPathConfig.videoPlayer.form.skipToEndButton.icon,
+                                              groupId:applicationPathConfig.videoPlayer.form.skipToEndButton.groupId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    this.skipToEnd();
+
+                                                            }
+                                              }
+                                        },{
                                                 label:applicationPathConfig.videoPlayer.form.backButton.label,
                                                 type:applicationPathConfig.videoPlayer.form.backButton.type,
                                                 icon:applicationPathConfig.videoPlayer.form.backButton.icon,
@@ -123,8 +195,17 @@ export default class VideoPlayer extends Component {
                                                       onInput: value=>{
                                                             this.connectGlobalInput();
                                                       }
-                                                }
-                                        }]
+                                                },
+                                                buttonText:applicationPathConfig.videoPlayer.form.backButton.buttonText
+                                        }],
+                                        fieldGroups:{
+                                          footer2:{
+                                              style:{
+                                                  justifyContent:"flex-start",
+                                                  width:"100%",
+                                              }
+                                          }
+                                        }
                                 }
                           },
                           onSenderConnected:this.onSenderConnected.bind(this),
@@ -340,16 +421,72 @@ renderAField(formField, index){
     }
 
     playVideo(){
+      this.stopSkipTimers();
       if(this.videoPlayer){
           this.videoPlayer.play();
+          this.videoPlayer.playbackRate=1;
       }
 
 
     }
     pauseVideo(){
+      this.stopSkipTimers();
       if(this.videoPlayer){
           this.videoPlayer.pause();
+          this.videoPlayer.playbackRate=1;
       }
+    }
+    getVideoPlayRate(){
+      return this.videoPlayer.playbackRate;
+    }
+    skipToBegin(){
+      this.stopSkipTimers();
+      this.videoPlayer.currentTime=0;
+      this.videoPlayer.playbackRate=1;
+    }
+    onSliderChanged(sliderPosition){
+      console.log("sliderPosition:"+sliderPosition);
+      var duration=this.videoPlayer.duration;
+      if(!duration){
+        return;
+      }
+      this.videoPlayer.currentTime=sliderPosition*duration/100;
+    }
+    skipToEnd(){
+      this.stopSkipTimers();
+      this.videoPlayer.currentTime=this.videoPlayer.duration;
+
+      this.videoPlayer.playbackRate=1;
+    }
+    stopSkipTimers(){
+      if(this.skipInterval){
+        clearInterval(this.skipInterval);
+        this.skipInterval=null;
+        this.videoPlayer.playbackRate=1;
+      }
+
+    }
+    fastForward(){
+      this.stopSkipTimers();
+      this.videoPlayer.playbackRate++;
+      this.sendPlayStatusMessage("Playing","x "+this.videoPlayer.playbackRate);
+    }
+    rewind(){
+      console.log("rewinding");
+      this.stopSkipTimers();
+      this.sendPlayStatusMessage("Rewinding","");
+      this.videoPlayer.pause();
+      this.skipInterval=setInterval(()=>{
+        var nextPosition=this.videoPlayer.currentTime -0.1;
+        if(nextPosition<=0){
+          this.videoPlayer.currentTime=0;
+          this.stopSkipTimers();
+        }
+        else{
+            this.videoPlayer.currentTime=nextPosition;
+        }
+      },30);
+
     }
     onAbort(){
       this.setToCanPlay("Aborted");
@@ -407,10 +544,39 @@ renderAField(formField, index){
     onPlay(){
 
     }
-    sendPlayStatusMessage(message){
+
+
+
+
+    sendPlayStatusMessage(title, message){
          var playStatusValue=Object.assign({},applicationPathConfig.videoPlayer.form.playStatus.value);
-         playStatusValue.content.content=message;
+
+         playStatusValue.content=[...applicationPathConfig.videoPlayer.form.playStatus.value.content];
+         playStatusValue.content[0]=Object.assign({},playStatusValue.content[0],{
+              content:title
+         });
+         playStatusValue.content[1]=Object.assign({},playStatusValue.content[1],{
+              content:message
+         });
          this.sendInputMessage(playStatusValue,null,applicationPathConfig.videoPlayer.form.playStatus.id);
+    }
+    sendCurrentTime(){
+      var duration=this.videoPlayer.duration;
+      var currentTime=this.videoPlayer.currentTime;
+      if(!duration){
+        return;
+      }
+      var nowTime=(new Date()).getTime();
+      var sliderValue={
+                  value:Math.floor(currentTime*100/duration),
+                  sentTime:nowTime
+                };
+      if(this.sliderValue && (sliderValue.sentTime-this.sliderValue.sentTime)<2000){
+            return;
+      }
+      this.sendInputMessage(sliderValue.value,null,applicationPathConfig.videoPlayer.form.currentTimeSlider.id);
+      this.sliderValue=sliderValue;
+
     }
     onPlaying(){
         this.setToCanPause();
@@ -418,11 +584,12 @@ renderAField(formField, index){
     }
     setToCanPause(){
         this.sendInputMessage(applicationPathConfig.videoPlayer.PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,null,applicationPathConfig.videoPlayer.form.playButton.id);
-        this.sendPlayStatusMessage("Playing");
+        this.sendPlayStatusMessage("Playing","x "+this.getVideoPlayRate());
+
     }
     setToCanPlay(message){
         this.sendInputMessage(applicationPathConfig.videoPlayer.PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,null,applicationPathConfig.videoPlayer.form.playButton.id);
-        this.sendPlayStatusMessage(message);
+        this.sendPlayStatusMessage(message,"");
     }
     onProgress(){
 
@@ -434,29 +601,53 @@ renderAField(formField, index){
 
     }
     onSeeking(){
-          this.sendPlayStatusMessage("Seeking");
+
     }
     onStalled(){
-        this.sendPlayStatusMessage("Stalled");
+        this.sendPlayStatusMessage("Stalled","");
     }
     onSuspend(){
 
     }
     onTimeUpdate(){
-
+        this.updateCurrentTime();
+        this.sendCurrentTime();
     }
     onVolumeChange(){
 
     }
     onWaiting(){
-        this.sendPlayStatusMessage("Loading...");
+        this.sendPlayStatusMessage("Loading...","");
+    }
+    renderCurrentTime(){
+
+      if(this.videoPlayer){
+        var currentTimeString=this.buildTimeString(this.state.currentTime);
+        var durationString=this.buildTimeString(this.videoPlayer.duration);
+        return(<div>{currentTimeString}/{durationString}</div>);
+      }
+      else{
+        return null;
+      }
+
+    }
+
+    buildTimeString(timestamp) {
+        var mininutes = Math.floor(timestamp / 60) % 60;
+        var hours = Math.floor(timestamp / 3600);
+        var minutesString = mininutes.toString().length < 2 ? '0' + mininutes : mininutes.toString();
+
+        var seconds = Math.floor(timestamp) % 60;
+        var secondsString = seconds.toString().length < 2 ? '0' + seconds : seconds;
+        var result = (hours > 0) ? (hours.toString() + ':' + minutesString + ':' + secondsString) : (minutesString + ':' + secondsString);
+        return result.match(/^([0-9]+:)?[0-9]*\:[0-9]*$/) ? result : '00:00';
     }
     renderSenderConnected(){
 
           return(
 
-            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
-               sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}>
+            <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}
+               sectionHeaderContent={applicationPathConfig.videoPlayer.senderConnected.content}>
               <div style={styles.content}>
               <video width="640" height="360"  id="videoplayer" autoPlay={false}
                   ref={videoPlayer=>this.videoPlayer=videoPlayer}
@@ -483,15 +674,16 @@ renderAField(formField, index){
                   onTimeUpdate={this.onTimeUpdate.bind(this)}
                   onVolumeChange={this.onVolumeChange.bind(this)}
                   onWaiting={this.onWaiting.bind(this)}
-                  >
+                  controls>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"/>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"/>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"/>
                 </video>
+                {this.renderCurrentTime()}
+
               </div>
            </PageWithHeader>
           );
-
 
    }
 
