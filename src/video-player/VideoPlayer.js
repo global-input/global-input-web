@@ -91,20 +91,20 @@ export default class VideoPlayer extends Component {
                             apikey:config.apikey,
                             securityGroup:config.securityGroup,
                             initData:{
-                                action:"control",
-                                dataType:"content",
+                                action:"input",
+                                dataType:"control",
                                 form:{
                                   title:applicationPathConfig.videoPlayer.form.title,
                                   fields:[{
                                          id:applicationPathConfig.videoPlayer.form.videoTitle.id,
                                          type:applicationPathConfig.videoPlayer.form.videoTitle.type,
                                          value:applicationPathConfig.videoPlayer.form.videoTitle.value,
-                                         groupId:applicationPathConfig.videoPlayer.form.videoTitle.groupId,
+                                         viewId:applicationPathConfig.videoPlayer.form.videoTitle.viewId,
                                        },{
                                               id:applicationPathConfig.videoPlayer.form.playStatus.id,
                                               type:applicationPathConfig.videoPlayer.form.playStatus.type,
                                               value:applicationPathConfig.videoPlayer.form.playStatus.value,
-                                              groupId:applicationPathConfig.videoPlayer.form.playStatus.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.playStatus.viewId,
                                         },{
                                               value:applicationPathConfig.videoPlayer.form.currentTimeSlider.value,
                                               type:applicationPathConfig.videoPlayer.form.currentTimeSlider.type,
@@ -122,7 +122,7 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.skipToBeginButton.value,
                                               label:applicationPathConfig.videoPlayer.form.skipToBeginButton.label,
                                               icon: applicationPathConfig.videoPlayer.form.skipToBeginButton.icon,
-                                              groupId:applicationPathConfig.videoPlayer.form.skipToBeginButton.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.skipToBeginButton.viewId,
                                               operations:{
                                                             onInput: value=>{
                                                                     this.skipToBegin();
@@ -135,7 +135,7 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.rwButton.value,
                                               label:applicationPathConfig.videoPlayer.form.rwButton.label,
                                               icon: applicationPathConfig.videoPlayer.form.rwButton.icon,
-                                              groupId:applicationPathConfig.videoPlayer.form.rwButton.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.rwButton.viewId,
                                               operations:{
                                                             onInput: value=>{
                                                                     this.rewind();
@@ -149,7 +149,7 @@ export default class VideoPlayer extends Component {
                                               label:applicationPathConfig.videoPlayer.form.playButton.label,
                                               icon: applicationPathConfig.videoPlayer.form.playButton.icon,
                                               options:applicationPathConfig.videoPlayer.form.playButton.options,
-                                              groupId:applicationPathConfig.videoPlayer.form.playButton.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.playButton.viewId,
                                               operations:{
                                                             onInput: value=>{
                                                                     if(value){
@@ -167,7 +167,7 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.ffButton.value,
                                               label:applicationPathConfig.videoPlayer.form.ffButton.label,
                                               icon: applicationPathConfig.videoPlayer.form.ffButton.icon,
-                                              groupId:applicationPathConfig.videoPlayer.form.ffButton.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.ffButton.viewId,
                                               operations:{
                                                             onInput: value=>{
                                                                     this.fastForward();
@@ -179,7 +179,7 @@ export default class VideoPlayer extends Component {
                                               value:applicationPathConfig.videoPlayer.form.skipToEndButton.value,
                                               label:applicationPathConfig.videoPlayer.form.skipToEndButton.label,
                                               icon: applicationPathConfig.videoPlayer.form.skipToEndButton.icon,
-                                              groupId:applicationPathConfig.videoPlayer.form.skipToEndButton.groupId,
+                                              viewId:applicationPathConfig.videoPlayer.form.skipToEndButton.viewId,
                                               operations:{
                                                             onInput: value=>{
                                                                     this.skipToEnd();
@@ -190,7 +190,7 @@ export default class VideoPlayer extends Component {
                                                 label:applicationPathConfig.videoPlayer.form.backButton.label,
                                                 type:applicationPathConfig.videoPlayer.form.backButton.type,
                                                 icon:applicationPathConfig.videoPlayer.form.backButton.icon,
-                                                groupId:applicationPathConfig.videoPlayer.form.backButton.groupId,
+                                                viewId:applicationPathConfig.videoPlayer.form.backButton.viewId,
                                                 operations:{
                                                       onInput: value=>{
                                                             this.connectGlobalInput();
@@ -198,13 +198,19 @@ export default class VideoPlayer extends Component {
                                                 },
                                                 buttonText:applicationPathConfig.videoPlayer.form.backButton.buttonText
                                         }],
-                                        fieldGroups:{
-                                          footer2:{
-                                              style:{
-                                                  justifyContent:"flex-start",
-                                                  width:"100%",
+                                        views:{
+                                              viewIds:{
+                                                footer2:{
+                                                    style:{
+                                                        justifyContent:"flex-start",
+                                                        width:"100%",
+
+                                                        borderTopWidth:1,
+                                                        borderColor:"#4880ED",
+                                                    }
+                                                }
                                               }
-                                          }
+
                                         }
                                 }
                           },
@@ -530,7 +536,7 @@ renderAField(formField, index){
 
     }
     onLoadedMetadata(){
-
+      this.sendCurrentTime();
     }
     onLoadStart(){
 
@@ -574,7 +580,17 @@ renderAField(formField, index){
       if(this.sliderValue && (sliderValue.sentTime-this.sliderValue.sentTime)<2000){
             return;
       }
-      this.sendInputMessage(sliderValue.value,null,applicationPathConfig.videoPlayer.form.currentTimeSlider.id);
+
+
+      var sendValue={
+          value:sliderValue.value,
+          labels:{
+            value:this.buildTimeString(currentTime),
+            minimumValue:this.buildTimeString(0),
+            maximumValue:this.buildTimeString(duration)
+          }
+      }
+      this.sendInputMessage(sendValue,null,applicationPathConfig.videoPlayer.form.currentTimeSlider.id);
       this.sliderValue=sliderValue;
 
     }

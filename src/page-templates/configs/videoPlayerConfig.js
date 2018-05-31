@@ -93,7 +93,7 @@ const videoPlayerConfig={
             label:"Play",
             type:"button",
             icon:"play",
-            groupId:"footer",
+            viewId:"footer",
             value:0,
             id:"playPauseButton",
             options:[{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,label:"Play",icon:"play"},{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,label:"Pause",icon:"pause"}]
@@ -102,36 +102,36 @@ const videoPlayerConfig={
             label:"Begin",
             type:"button",
             icon:"skip-to-begin",
-            groupId:"footer",
+            viewId:"footer",
             id:"skipToBeginButton",
         },
         skipToEndButton:{
             label:"End",
             type:"button",
             icon:"skip-to-end",
-            groupId:"footer",
+            viewId:"footer",
             id:"skipToEndButton",
         },
         ffButton:{
             label:"FF",
             type:"button",
             icon:"ff",
-            groupId:"footer",
+            viewId:"footer",
             id:"ffButton",
         },
         rwButton:{
             label:"RW",
             type:"button",
             icon:"rw",
-            groupId:"footer",
+            viewId:"footer",
             id:"rwButton",
         },
         backButton:{
-          label:"Back",
+          label:"Disconnect",
           type:"button",
-          icon:"back",
-          groupId:"footer2",
-          buttonText:"Back"
+          icon:"disconnect",
+          viewId:"footer2",
+          buttonText:"Disconnect"
         }
     },
 

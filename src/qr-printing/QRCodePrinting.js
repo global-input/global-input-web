@@ -109,8 +109,6 @@ export default class QRCodePrinting extends Component {
                                                       operations:{
                                                             onInput:value=>this.setFieldValue(this.LABEL_FIELD,value,this.state.action)
                                                       }
-
-
                                             },{
                                             label:"Size",
                                                   operations:{
@@ -142,24 +140,26 @@ export default class QRCodePrinting extends Component {
                                                         {value:"H", label:"High"}
                                                       ]
                                           },{
-                                                    label:"Print",
-                                                    type:"button",
-                                                    icon:"print",
-                                                    groupId:"buttons",
-                                                    operations:{
-                                                      onInput:this.printQRCode.bind(this)
-                                                    }
-                                        },{
                                                     label:"Back",
                                                     type:"button",
+                                                    buttonText:"Back",
                                                     icon:"back",
-                                                    groupId:"buttons",                                                    
+                                                    viewId:"buttons",
                                                     operations:{
                                                       onInput:()=>{
                                                          this.connectGlobalInput();
                                                       }
                                                     }
-                                        }]
+                                        },{
+                                                  label:"Print",
+                                                  type:"button",
+                                                  icon:"print",
+                                                  buttonText:"Print",
+                                                  viewId:"buttons",
+                                                  operations:{
+                                                    onInput:this.printQRCode.bind(this)
+                                                  }
+                                      }]
                                 }
                           },
 

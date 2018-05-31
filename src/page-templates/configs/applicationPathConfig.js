@@ -7,6 +7,7 @@ import aboutTextConfig from "./about/aboutTextConfig";
 import contactUsConfig from "./about/contactUsConfig";
 import privacyConfig from "./about/privacyConfig";
 import chromeExtensionConfig from "./chromeExtensionConfig";
+import gameExampleConfig from "./gameExampleConfig";
 
 
 import videoPlayerConfig from "./videoPlayerConfig";
@@ -34,7 +35,8 @@ const applicationPathConfig={
                       contact:contactUsConfig,
                       privacy:privacyConfig
                     },
-    videoPlayer:videoPlayerConfig
+    videoPlayer:videoPlayerConfig,
+    gameExample:gameExampleConfig
 };
 
 

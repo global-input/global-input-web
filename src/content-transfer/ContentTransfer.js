@@ -93,10 +93,12 @@ export default class ContentTransfer extends Component {
                                     label:"Back",
                                     type:"button",
                                     icon:"back",
+                                    buttonText:"Back",
                                     operations:{
                                         onInput:()=>{
                                             this.connectGlobalInput();
-                                            this.setContent("");
+
+
                                       }
                                    }
                                  }]

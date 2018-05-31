@@ -117,6 +117,15 @@ render() {
               </div>
 
 
+              <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
+              <div style={styles.itemSection}>
+                    <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
+                       content={applicationPathConfig.gameExample.content} image={images.transferForm}
+                       buttonLabel={applicationPathConfig.gameExample.startButton}
+                      buttonLink={applicationPathConfig.gameExample.menu.link}/>
+              </div>
+
+
 
 
           </div>
