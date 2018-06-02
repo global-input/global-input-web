@@ -1,5 +1,10 @@
+const START_PAUSE_BUTTON_STATUS={
+    CAN_START:0,
+    CAN_PAUSE:1
+}
 
 const gameExampleConfig={
+    START_PAUSE_BUTTON_STATUS,
     title:"Game Controller",
     menu:{
         link:"/global-input-app/game-example",
@@ -34,7 +39,17 @@ const gameExampleConfig={
     },
 
     form:{
-        title:"Device Control Example",
+        title:{
+                  type:"view",
+                  style:{width:"100%",backgroundColor:"green"},
+                  content:{
+                              type:"text",
+                              content:"Device Control Example",
+                              style:{color:"white"}
+                        }
+
+        },
+
         upButton:{
           label:"Up",
           type:"button",
@@ -70,6 +85,14 @@ const gameExampleConfig={
           viewId:"footer",
           buttonText:"Disconnect"
         },
+        startPauseButton:{
+          label:"Start",
+          type:"button",
+          viewId:"footer",
+          value:0,
+          id:"startPauseButton",
+          options:[{value:START_PAUSE_BUTTON_STATUS.CAN_START,container:{label:"Start"},icon:"play"},{value:START_PAUSE_BUTTON_STATUS.CAN_PAUSE,container:{label:"Pause"},icon:"pause"}]
+        },
         newGameButton:{
             label:"New Game",
             type:"button",
@@ -91,7 +114,7 @@ const gameExampleConfig={
           type:"button",
           viewId:"row4",
           id:"speedDown",
-          buttonText:"Speed Down",        
+          buttonText:"Speed Down",
         },
         speedText:{
           id:"speedText",

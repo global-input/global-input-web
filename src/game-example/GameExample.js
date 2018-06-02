@@ -78,12 +78,25 @@ isGameStarted(){
 }
   startGame() {
 
-    this.stopGame();
+    this.stopThread();
     this.initGameState();
-    if(this.interval){
-          clearInterval(this.interval);
-    }
+    this.startThread();
+    this.setToCanPause("Game Started");
+  }
+  resumeGame(){
+    this.stopThread();
+    this.startThread();
+    this.setToCanPause("Game Paused");
+  }
+  startThread(){
     this.interval = setInterval(this.runGame.bind(this), 20);
+  }
+  stopThread(){
+    if(this.interval){
+        clearInterval(this.interval);
+        this.interval=null;
+    }
+
   }
   runGame(){
       if(!this.updateGameArea()){
@@ -91,10 +104,8 @@ isGameStarted(){
       }
   }
   stopGame(){
-    if(this.interval){
-        clearInterval(this.interval);
-        this.interval=null;
-    }
+      this.stopThread();
+      this.setToCanPlay("Game Over");
   }
 
 
@@ -151,16 +162,28 @@ accelerate(n) {
 }
 onUpButtonPressed(){
     this.myGamePiece.moveUp();
+    if(!this.isGameStarted()){
+       this.updateGameArea();
+    }
 }
 
 onDownButtonPressed(){
   this.myGamePiece.moveDown();
+  if(!this.isGameStarted()){
+     this.updateGameArea();
+  }
 }
 onRightButtonPressed(){
   this.myGamePiece.moveRight();
+  if(!this.isGameStarted()){
+     this.updateGameArea();
+  }
 }
 onLeftButtonPressed(){
   this.myGamePiece.moveLeft();
+  if(!this.isGameStarted()){
+     this.updateGameArea();
+  }
 }
 
 
@@ -182,7 +205,14 @@ onLeftButtonPressed(){
           this.setFieldValue(index,value);
           this.sendInputMessage(value,index);
     }
-
+    setToCanPlay(message){
+        this.sendInputMessage(applicationPathConfig.gameExample.START_PAUSE_BUTTON_STATUS.CAN_START,null,applicationPathConfig.gameExample.form.startPauseButton.id);
+    //    this.sendPlayStatusMessage(message,"");
+    }
+    setToCanPause(message){
+        this.sendInputMessage(applicationPathConfig.gameExample.START_PAUSE_BUTTON_STATUS.CAN_PAUSE,null,applicationPathConfig.gameExample.form.startPauseButton.id);
+    //    this.sendPlayStatusMessage(message,"");
+    }
 
     createPlayControlAction(){
       var action= {
@@ -212,12 +242,7 @@ onLeftButtonPressed(){
                                                     icon: applicationPathConfig.gameExample.form.upButton.icon,
                                                     viewId:applicationPathConfig.gameExample.form.upButton.viewId,
                                                     operations:{
-                                                                  onInput: value=>{
-                                                                        this.onUpButtonPressed();
-                                                                        if(!this.isGameStarted()){
-                                                                            this.startGame();
-                                                                        }
-                                                                  }
+                                                                  onInput: value=> this.onUpButtonPressed()
                                                     }
                                               },{
                                                           id:   applicationPathConfig.gameExample.form.leftButton.id,
@@ -226,13 +251,7 @@ onLeftButtonPressed(){
                                                           icon: applicationPathConfig.gameExample.form.leftButton.icon,
                                                           viewId:applicationPathConfig.gameExample.form.leftButton.viewId,
                                                           operations:{
-                                                                        onInput: value=>{
-                                                                              this.onLeftButtonPressed();
-                                                                              if(!this.isGameStarted()){
-                                                                                  this.startGame();
-                                                                              }
-
-                                                                        }
+                                                                        onInput: value=>this.onLeftButtonPressed()
                                                           }
                                               },{
                                                           type: "info",
@@ -251,14 +270,8 @@ onLeftButtonPressed(){
                                                           icon: applicationPathConfig.gameExample.form.rightButton.icon,
                                                           viewId:applicationPathConfig.gameExample.form.rightButton.viewId,
                                                           operations:{
-                                                                        onInput: value=>{
-                                                                              this.onRightButtonPressed();
-                                                                              if(!this.isGameStarted()){
-                                                                                  this.startGame();
-                                                                              }
-
-                                                                        }
-                                                          }
+                                                                        onInput: value=>this.onRightButtonPressed()
+                                                                      }
                                               },{
                                                           id:   applicationPathConfig.gameExample.form.downButton.id,
                                                           type: applicationPathConfig.gameExample.form.downButton.type,
@@ -266,14 +279,8 @@ onLeftButtonPressed(){
                                                           icon: applicationPathConfig.gameExample.form.downButton.icon,
                                                           viewId:applicationPathConfig.gameExample.form.downButton.viewId,
                                                           operations:{
-                                                                        onInput: value=>{
-                                                                              this.onDownButtonPressed();
-                                                                              if(!this.isGameStarted()){
-                                                                                  this.startGame();
-                                                                              }
-
+                                                                        onInput: value=>this.onDownButtonPressed()
                                                                         }
-                                                          }
                                               },{
                                                           id:   applicationPathConfig.gameExample.form.speedDown.id,
                                                           type: applicationPathConfig.gameExample.form.speedDown.type,
@@ -283,9 +290,8 @@ onLeftButtonPressed(){
                                                           container:{label: applicationPathConfig.gameExample.form.speedDown.buttonText},
                                                           viewId:applicationPathConfig.gameExample.form.speedDown.viewId,
                                                           operations:{
-                                                                        onInput: value=>{
-                                                                              this.speedDown();
-                                                                        }
+                                                                        onInput: value=>this.speedDown()
+
                                                           }
                                               },{
                                                           id:applicationPathConfig.gameExample.form.speedText.id,
@@ -307,11 +313,8 @@ onLeftButtonPressed(){
                                                                     label:applicationPathConfig.gameExample.form.speedUp.buttonText,
                                                            },
                                                           operations:{
-                                                                        onInput: value=>{
-                                                                              this.speedUp();
+                                                                        onInput: value=>this.speedUp()
 
-
-                                                                        }
                                                           }
                                               },{
                                                 label:applicationPathConfig.gameExample.form.backButton.label,
@@ -325,6 +328,25 @@ onLeftButtonPressed(){
                                                 },
                                                 container:{label:applicationPathConfig.gameExample.form.backButton.buttonText}
                                         },{
+                                              id:   applicationPathConfig.gameExample.form.startPauseButton.id,
+                                              type: applicationPathConfig.gameExample.form.startPauseButton.type,
+                                              value:applicationPathConfig.gameExample.form.startPauseButton.value,
+                                              label:applicationPathConfig.gameExample.form.startPauseButton.label,
+                                              icon: applicationPathConfig.gameExample.form.startPauseButton.icon,
+                                              options:applicationPathConfig.gameExample.form.startPauseButton.options,
+                                              viewId:applicationPathConfig.gameExample.form.startPauseButton.viewId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    if(value){
+                                                                      this.stopGame();
+                                                                    }
+                                                                    else {
+                                                                      this.resumeGame();
+                                                                    }
+
+                                                            }
+                                              }
+                                        },{
                                                     id:   applicationPathConfig.gameExample.form.newGameButton.id,
                                                     type: applicationPathConfig.gameExample.form.newGameButton.type,
                                                     label:applicationPathConfig.gameExample.form.newGameButton.label,
@@ -332,9 +354,7 @@ onLeftButtonPressed(){
                                                     icon: applicationPathConfig.gameExample.form.newGameButton.icon,
                                                     viewId:applicationPathConfig.gameExample.form.newGameButton.viewId,
                                                     operations:{
-                                                                  onInput: value=>{
-                                                                            this.startGame();
-                                                                  }
+                                                                  onInput: value=>this.startGame()
                                                     }
                                               }],
                                         views:{

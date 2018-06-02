@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {createMessageConnector} from "global-input-message";
+import {createMessageConnector} from "../global-input-message";
 
 
 
@@ -90,10 +90,10 @@ export default class ContentTransfer extends Component {
                                         onInput:value=>this.setFieldValue(this.CONTENT_FIELD_INDEX,value)
                                     },
                                   },{
-                                    label:"Back",
+                                    label:"Disconnect",
                                     type:"button",
-                                    icon:"back",
-                                    buttonText:"Back",
+                                    icon:"disconnect",
+                                    container:{label:"Disconnect"},
                                     operations:{
                                         onInput:()=>{
                                             this.connectGlobalInput();
@@ -166,10 +166,11 @@ export default class ContentTransfer extends Component {
                 action.connector=null;
                 action.senders=[];
         }
-        action.connector=createMessageConnector();
-        action.actType=this.ACT_TYPE.CONNECTING;
-        this.setState({action});
-        action.connector.connect(action.options);
+
+        var state=this.getStateFromProps(this.props)
+        state.action.connector=createMessageConnector();
+        this.setState(state);
+        state.action.connector.connect(state.action.options);
     }
 
 
