@@ -88,7 +88,7 @@ export default class ContactForm extends Component {
                             securityGroup:config.securityGroup,
                             initData:{
                                 action:"input",
-                                dataType:"content",
+                                dataType:"form",
                                 form:{
                                   id:applicationPathConfig.about.contact.contactForm.id,
                                   title:applicationPathConfig.about.contact.contactForm.title,
@@ -141,22 +141,26 @@ export default class ContactForm extends Component {
                                               type:applicationPathConfig.about.contact.contactForm.info.type,
                                               value:applicationPathConfig.about.contact.contactForm.info.value,
                                   },{
-                                                label:applicationPathConfig.about.contact.contactForm.nextButton.label,
-                                                type:applicationPathConfig.about.contact.contactForm.nextButton.type,
-                                                operations:{
-                                                      onInput: value=>{
-                                                            this.toSendMessageForm();
-                                                      }
-                                                }
-                                        },{
                                                 label:applicationPathConfig.about.contact.contactForm.cancelButton.label,
                                                 type:applicationPathConfig.about.contact.contactForm.cancelButton.type,
+                                                icon:"cancel",
+                                                groupId:"footer",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.disconnectGlobalInput();
                                                       }
                                                 }
-                                        }]
+                                    },{
+                                                  label:applicationPathConfig.about.contact.contactForm.nextButton.label,
+                                                  type:applicationPathConfig.about.contact.contactForm.nextButton.type,
+                                                  icon:"continue",
+                                                  groupId:"footer",
+                                                  operations:{
+                                                        onInput: value=>{
+                                                              this.toSendMessageForm();
+                                                        }
+                                                  }
+                                    }]
                                 }
                           },
                           onSenderConnected:this.onSenderConnected.bind(this),
@@ -185,7 +189,7 @@ export default class ContactForm extends Component {
                             securityGroup:this.state.action.options.securityGroup,
                             initData:{
                                 action:"input",
-                                dataType:"content",
+                                dataType:"form",
                                 form:{
                                   id:applicationPathConfig.about.contact.messageForm.id,
                                   title:applicationPathConfig.about.contact.messageForm.title,
@@ -246,19 +250,23 @@ export default class ContactForm extends Component {
                                                             }
                                               }
                                   },{
+                                          label:applicationPathConfig.about.contact.messageForm.cancelButton.label,
+                                          type:applicationPathConfig.about.contact.messageForm.cancelButton.type,
+                                          icon:"cancel",
+                                          groupId:"footer",
+                                          operations:{
+                                                onInput: value=>{
+                                                      this.disconnectGlobalInput();
+                                                }
+                                          }
+                                  },{
                                                 label:applicationPathConfig.about.contact.messageForm.sendButton.label,
                                                 type:applicationPathConfig.about.contact.messageForm.sendButton.type,
+                                                icon:"send",
+                                                groupId:"footer",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.sendMessageToUs();
-                                                      }
-                                                }
-                                        },{
-                                                label:applicationPathConfig.about.contact.messageForm.cancelButton.label,
-                                                type:applicationPathConfig.about.contact.messageForm.cancelButton.type,
-                                                operations:{
-                                                      onInput: value=>{
-                                                            this.disconnectGlobalInput();
                                                       }
                                                 }
                                         }]

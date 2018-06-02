@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/general.css";
@@ -25,6 +24,8 @@ import {applicationPathConfig} from "./page-templates";
 import {AboutScreen} from "./about";
 import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
+import {VideoPlayer} from "./video-player";
+import {GameExample} from "./game-example";
 
 export default class App extends Component{
   render(){
@@ -42,6 +43,8 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.about.home.menu.link}  component={AboutScreen}/>
             <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
             <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
+            <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={VideoPlayer}/>
+            <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
         </div>
 
 

@@ -2,7 +2,8 @@ const contentTransferConfig={
    menu:{
       link:"/global-input-app/content-transfer",
       linkText:"Content Transfer",
-      backLink:"/?scrollTo=contentTransfer"
+      backLink:"/?scrollTo=contentTransfer",
+      bookmark:"contentTransfer"      
     },
     advert:{
             duration:10000,

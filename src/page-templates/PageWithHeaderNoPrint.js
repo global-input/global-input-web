@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {images} from "../configs";
 import {styles} from "./styles";
 
-import {TopMenu,DisplayTextImage,DisplayStaticContent} from "../components";
+import {TopMenu} from "../components";
 import PageDescription from "./sections/PageDescription";
 import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
@@ -42,7 +42,7 @@ export  default class PageWithHeaderNoPrint extends Component {
         return(
 
             <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}/>
-          
+
         );
       }
       else{

@@ -7,13 +7,13 @@ import {createMessageConnector} from "global-input-message";
 
 
 
-import {config,images} from "../configs";
+import {config} from "../configs";
 
 
-import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
+import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
   TextRadioButtons,NotificationMessage} from "../components";
 
-import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class FormDataTransfer extends Component {
   ACT_TYPE={
@@ -173,9 +173,9 @@ export default class FormDataTransfer extends Component {
                             securityGroup:config.securityGroup,
                             initData:{
                                 action:"input",
-                                dataType:"content",
+                                dataType:"form",
                                 form:{
-                                  id:"###username###"+"@"+window.location.host,
+                                  id:"###username###@"+window.location.host,
                                   title:applicationPathConfig.formData.senderConnected.title,
                                   label:window.location.host,
                                   fields:[]
@@ -201,6 +201,8 @@ export default class FormDataTransfer extends Component {
                     {
                       label:"Finish",
                       type:"button",
+                      icon:"ok",
+                      buttonText:"Finish",
                       operations:{
                           onInput:()=>{
                               this.disconnectGlobalInput();

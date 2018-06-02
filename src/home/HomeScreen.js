@@ -6,17 +6,11 @@ import React, {Component} from 'react'
 
 
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
 
 
 import {images} from "../configs";
 
-import {TopMenu,DisplayTextImage,BookMark} from "../components";
+import {DisplayTextImage,BookMark} from "../components";
 
 import {styles} from "./styles";
 
@@ -42,7 +36,7 @@ export  default class HomeScreen extends Component {
             var vars = query.split('&');
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split('=');
-                if (decodeURIComponent(pair[0]) == variable) {
+                if (decodeURIComponent(pair[0]) === variable) {
                     return decodeURIComponent(pair[1]);
                 }
             }
@@ -85,27 +79,27 @@ render() {
 
 
          <div style={styles.content}>
-              <BookMark bookmark="contentTransfer"/>
+              <BookMark bookmark={applicationPathConfig.contentTransfer.menu.bookmark}/>
 
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.contentTransfer.title}
                        content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
                        buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
               </div>
-              <BookMark bookmark="qrPrinting"/>
+              <BookMark bookmark={applicationPathConfig.qrPrinting.menu.bookmark}/>
 
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.qrPrinting.title} reverse={true}
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
               </div>
-              <BookMark bookmark="formDataTransfer"/>
+              <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.formData.title}
                        content={applicationPathConfig.formData.content} image={images.transferForm}
                        buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
               </div>
-              <BookMark bookmark="chromeExtension"/>
+              <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
 
               <div style={styles.itemSection}>
                     <DisplayTextImage title={blockTextConfig.chrome.title} reverse={true}
@@ -113,6 +107,24 @@ render() {
                        buttonLabel={blockTextConfig.chrome.startButton}
                        buttonHRef={blockTextConfig.chrome.install.link}/>
               </div>
+
+              <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
+              <div style={styles.itemSection}>
+                    <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
+                       content={applicationPathConfig.videoPlayer.content} image={images.transferForm}
+                       buttonLabel={applicationPathConfig.videoPlayer.startButton}
+                      buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
+              </div>
+
+
+              <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
+              <div style={styles.itemSection}>
+                    <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
+                       content={applicationPathConfig.gameExample.content} image={images.transferForm}
+                       buttonLabel={applicationPathConfig.gameExample.startButton}
+                      buttonLink={applicationPathConfig.gameExample.menu.link}/>
+              </div>
+
 
 
 

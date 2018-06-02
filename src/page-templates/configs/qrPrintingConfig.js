@@ -3,7 +3,8 @@ const qrPrintingConfig={
     menu:{
         link:"/global-input-app/qr-printing",
         linkText:"QR Code Printing",
-         backLink:"/?scrollTo=qrPrinting"
+         backLink:"/?scrollTo=qrPrinting",
+         bookmark:"qrPrinting"      
     },
     content:["Create and scan Encrypted QR Codes.",
     "Use papers or images to store or transfer encrypted content. You may prefer this if you do not want to use network or electronic storage to store or transfer some encrypted information.",

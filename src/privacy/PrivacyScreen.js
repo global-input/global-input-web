@@ -1,19 +1,6 @@
 import React, {Component} from 'react'
 
 
-
-
-
-
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
-
-
 import {images} from "../configs";
 
 
@@ -51,7 +38,7 @@ export  default class PrivacyScreen extends Component {
             var vars = query.split('&');
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split('=');
-                if (decodeURIComponent(pair[0]) == variable) {
+                if (decodeURIComponent(pair[0]) === variable) {
                     return decodeURIComponent(pair[1]);
                 }
             }

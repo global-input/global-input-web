@@ -3,7 +3,8 @@ const formDataTransferConfig={
   menu:{
      link:"/global-input-app/formd-data-transfer",
      linkText:"Form Data Transfer",
-     backLink:"/?scrollTo=formDataTransfer"
+     backLink:"/?scrollTo=formDataTransfer",
+     bookmark:"formDataTransfer"      
   },
   content:["Store form data (key-value data) on your mobile, and encrypted with one of the encryption keys that you also manage in your app. The encryption keys are encrypted with your App password.",
   "The data stay encrypted in your device and will not be stored anywhere else, and decrypted only when it is needed and discarded afterwards.",
