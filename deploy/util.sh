@@ -7,7 +7,7 @@ getProjectVersionFromPom(){
 
 buildVariables(){
   export websiterootfolder="/root/global-input-node/nginx/data/websites"
-  
+
   export websitefoldername="globalinput"
   export zipfilename="$projectName-$projectversion.zip"
   export sourcezipfilepath="package/target/$zipfilename"
@@ -73,8 +73,8 @@ createSCriptFormakeSchellScriptExecutable(){
 }
 
 createDeployScript(){
-    echo "source $3" > deploy/deploy_to_$1.sh
-    echo 'echo "deploying the version '$2' to '$5'@'$4' using the property file '$3' (for replacement of the environment specific variables) ..."' >>  deploy/deploy_to_$1.sh
+
+    echo 'echo "deploying the version '$2' to '$5'@'$4' "' >  deploy/deploy_to_$1.sh
     echo "deploy/deploy.sh $4 $5 $2" >> deploy/deploy_to_$1.sh
     chmod u+x deploy/deploy_to_$1.sh
 }
@@ -98,4 +98,26 @@ copyTheAppToDockerFolder(){
 }
 buildAndStartDocker(){
     executeDeployedScriptOnServer start.sh
+}
+
+displayDeploymentHelp(){
+  echo
+  echo
+  echo "********* Completed $1 *********"
+  echo
+  echo "Finished packaging version $projectversion, you can run the following command to deploy to your server:"
+  echo
+  echo "deploy/deploy.sh <host-name-of-your-server> <user-name-for-connecting-to-your-server> $projectversion"
+  echo
+  echo
+
+}
+
+displayDeploymentCompleted(){
+  echo
+  echo
+  echo "********* Completed deployment *********"
+  echo
+  echo
+
 }

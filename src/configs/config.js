@@ -1,2 +1,2 @@
-import config from "./dev";
+import config from "./auto";
 export default config;
