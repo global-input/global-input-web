@@ -58,20 +58,12 @@ render() {
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
            <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.example.menu.bookmark}/>
-                 <DisplayTextImage title={blockTextConfig.developers.example.title} reverse={true}
-                    content={blockTextConfig.developers.example.content} image={images.websiteCode}
-                    buttonLabel={blockTextConfig.developers.example.startButton}
-                    buttonHRef={blockTextConfig.developers.example.install.link}/>
-           </div>
-           <div style={styles.itemSection}>
                   <BookMark bookmark={blockTextConfig.developers.jslibrary.menu.bookmark}/>
                  <DisplayTextImage title={blockTextConfig.developers.jslibrary.title}
                     content={blockTextConfig.developers.jslibrary.content} image={images.jslibrary}
                     buttonLabel={blockTextConfig.developers.jslibrary.startButton}
                     buttonHRef={blockTextConfig.developers.jslibrary.install.link}/>
            </div>
-
            <div style={styles.itemSection}>
                   <BookMark bookmark={blockTextConfig.developers.proxy.menu.bookmark}/>
                  <DisplayTextImage title={blockTextConfig.developers.proxy.title} reverse={true}
@@ -79,6 +71,16 @@ render() {
                     buttonLabel={blockTextConfig.developers.proxy.startButton}
                     buttonHRef={blockTextConfig.developers.proxy.install.link}/>
            </div>
+           <div style={styles.itemSection}>
+                  <BookMark bookmark={blockTextConfig.developers.example.menu.bookmark}/>
+                 <DisplayTextImage title={blockTextConfig.developers.example.title} 
+                    content={blockTextConfig.developers.example.content} image={images.websiteCode}
+                    buttonLabel={blockTextConfig.developers.example.startButton}
+                    buttonHRef={blockTextConfig.developers.example.install.link}/>
+           </div>
+
+
+
          </div>
       </PageWithHeader>
             );

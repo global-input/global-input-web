@@ -1,2 +1,2 @@
-import config from "./auto";
+import config from "./prod";
 export default config;
