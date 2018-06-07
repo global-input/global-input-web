@@ -73,19 +73,15 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.about.home.advert}  selected={blockTextConfig.about.home.menu}
+        image={images.aboutGlobalInputApp}
+            mobileImage={images.aboutGlobalInputApp}
+
         appTitle={blockTextConfig.about.home.appTitle} appSubtitle={blockTextConfig.about.home.appSubtitle}>
          <div style={styles.content}>
                <div style={styles.itemSection}>
-                     <DisplayTextImage title={blockTextConfig.about.globalInputApp.title} reverse={true}
-                        content={blockTextConfig.about.globalInputApp.content} image={images.aboutGlobalInputApp}/>
+                     <DisplayTextImage title={blockTextConfig.about.globalInputApp.title}
+                        content={blockTextConfig.about.globalInputApp.content} />
                </div>
-               <div style={styles.itemSection}>
-                     <DisplayTextImage title={blockTextConfig.about.us.title}
-                        content={blockTextConfig.about.us.content} image={images.aboutUsInputApp}
-                        buttonLabel={blockTextConfig.about.us.visitButton}
-                        buttonHRef={blockTextConfig.about.us.visitLink}/>
-               </div>
-
          </div>
 
       </PageWithHeader>

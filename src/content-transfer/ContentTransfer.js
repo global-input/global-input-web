@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {createMessageConnector} from "../global-input-message";
+import {createMessageConnector} from "global-input-message";
 
 
 
@@ -125,11 +125,7 @@ export default class ContentTransfer extends Component {
     }
     onSenderDisconnected(sender,senders){
         console.log("Sender Disconnected");
-        console.log("Sender Connected");
-        var action=this.state.action;
-        action.senders=senders;
-        action.actType=this.ACT_TYPE.CONNECTED;
-        this.setState({action});
+        this.connectGlobalInput();
    }
 
   onConnected(){
@@ -167,7 +163,9 @@ export default class ContentTransfer extends Component {
                 action.senders=[];
         }
 
-        var state=this.getStateFromProps(this.props)
+        var state=this.getStateFromProps(this.props);
+        console.log(":::::"+JSON.stringify(state));
+
         state.action.connector=createMessageConnector();
         this.setState(state);
         state.action.connector.connect(state.action.options);
@@ -195,7 +193,8 @@ export default class ContentTransfer extends Component {
 
     renderConnecting(){
        return(
-           <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}>
+           <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
+             appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
                  <DisplayLoading title={applicationPathConfig.contentTransfer.connecting.title}
                    content={applicationPathConfig.contentTransfer.connecting.content}/>
             </PageWithHeader>
@@ -208,12 +207,14 @@ export default class ContentTransfer extends Component {
 
     renderConnected(){
 
-      var qrCodeContent=this.state.action.connector.buildInputCodeData();
+      var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
       console.log("qrcode:[["+qrCodeContent+"]]");
 
 
       return(
-        <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}>
+        <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
+          appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
+
               <DisplayQRCode
                 content={applicationPathConfig.contentTransfer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
@@ -248,7 +249,8 @@ export default class ContentTransfer extends Component {
 
           return(
             <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
-               sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}>
+               sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}
+               appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
               <div style={styles.content}>
                  <TextAreaWithLabel
                            rows={10} cols={70}

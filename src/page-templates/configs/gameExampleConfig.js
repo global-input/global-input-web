@@ -5,16 +5,16 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"Game Controller",
+    title:"Universal Device Controller App",
     menu:{
         link:"/global-input-app/game-example",
         linkText:"Game Example",
         backLink:"/?scrollTo=gameExample",
         bookmark:"gameExample"
     },
-    content:["Universal Device Controller App",
-    "Enable applications running on Computers, Smart TV, set-top boxes and IoT devices. Scan the QR code displayed to control the applications or use the mobile as the second screen. All the Business Logic is implemented within the applications and the applications only needs to define the UI to be displayed on mobile and the callback interface. The data transfer between the devices uses the end-to-end encryption.",
-    "Here is an example for using the Global Input App to control a video player.",
+    content:[
+    "Use Mobile to control applications running on Big Screen devices, IoT devices and  computers without developing separate mobile applications. ",
+    "Here is an example for using the Global Input App as the controller for a video game running on a computer. The video application just need to declaratively define the UI elements displayed on the mobile screen and the callback interface for user interactions.",
     "Click the button below to start"],
 
     advert:{

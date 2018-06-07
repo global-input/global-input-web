@@ -30,7 +30,12 @@ export const styles={
        fontWeight: "lighter",
        marginBottom:10
      },
-     
+     spanStyle:{
+       fontSize: 16,
+       color: "#414242",
+       fontWeight: "lighter",
+     },
+
 
 
 }

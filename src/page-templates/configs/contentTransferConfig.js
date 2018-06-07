@@ -3,7 +3,7 @@ const contentTransferConfig={
       link:"/global-input-app/content-transfer",
       linkText:"Content Transfer",
       backLink:"/?scrollTo=contentTransfer",
-      bookmark:"contentTransfer"      
+      bookmark:"contentTransfer"
     },
     advert:{
             duration:10000,
@@ -26,6 +26,7 @@ const contentTransferConfig={
 
     },
     title:"Content Transfer Using the End-To-End Encryption",
+    appSubtitle:"Content Transfer",
     content:["You can transfer content between the Global Input App instances running on different mobiles by pressing the \"Transfer\" button in the Form Editor screen in the Global Input App.",
               "Here you can transfer content from mobile to your computer or vice versa.",
               "Click the start button below to start"],

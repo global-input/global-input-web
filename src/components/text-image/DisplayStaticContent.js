@@ -23,6 +23,14 @@ export  default class DisplayStaticContent extends Component {
       return styles.lineStyle;
     }
   }
+  getSpanStyle(item){
+    if(item.style){
+      return item.style;
+    }
+    else{
+      return styles.spanStyle;
+    }
+  }
   renderItem(content,type,key){
         if(typeof content==='object'){
               return this.renderObject(content,type,key);
@@ -86,11 +94,21 @@ export  default class DisplayStaticContent extends Component {
       }
 
       else if(item.type==='span'){
-            return (
-                <span key={key} className={item.className}>
-                      {item.content}
-                </span>
-            );
+                if(item.className){
+                  return (
+                      <span key={key} className={item.className}>
+                            {item.content}
+                      </span>
+                  );
+                }
+                else{
+                      return (
+                          <span key={key} style={this.getSpanStyle(item)}>
+                                {item.content}
+                          </span>
+                      );
+                }
+
       }
       else if(item.type==="splitSpan"){
               return(

@@ -1,11 +1,21 @@
 # global-input-web
-This is the ReactJS web application deployed to
+
+The global-input-web is a ReactJS web application, that contains a set example RectJS components that uses the [global-input-message](https://github.com/global-input/global-input-message) JavaScript library.
+
+The [global-input-message](https://github.com/global-input/global-input-message) is a JavaScript library for transfering data between applications using the end-to-end encryption via the [Global Input WebSocket server](https://github.com/global-input/global-input-node). The JavaScript library is available at:
+
+[https://github.com/global-input/global-input-message](https://github.com/global-input/global-input-message)
+
+
+The WebSocket server is available at
+    [https://github.com/global-input/global-input-node](https://github.com/global-input/global-input-node)
+
+
+The ReactJS application in this repository is deployed to:
 
 [https://globalinput.co.uk/](https://globalinput.co.uk/)
 
-This ReactJS web application demonstrate how to use the Global Input javascript library available in the following github repository:
-
-[https://github.com/global-input/global-input-react](https://github.com/global-input/global-input-react)
+It is also the same default test web application when you install the [Global Input WebSocket server](https://github.com/global-input/global-input-node).
 
 ### Checkout
 
@@ -19,27 +29,3 @@ or
 >```npm start```
 
 This React JS application is created with ```create-react-app```, and [the generated readme file is available here](https://github.com/global-input/global-input-web/blob/master/README-original.md)
-
-### How to deploy it to your own server
-
-open the following file with an editor
-
-```deploy/create_deploy_scripts.sh```
-
-and add the following a new line representing your target host:
-
-```createDeployScript <replace-it-with-a-unique-name>  $projectversion  ~/global-input-secrets/env.sh  <host-name>      <user-name> ```
-
-the ```env.sh``` in this case an empty file.
-
- then package it by running the following command:
-
- ```deploy/package.sh```
-
- and then deploy it to your host:
-
- ```deploy/<replace-it-with-unique-name>.sh```
-
- above script will be generated when you run the ```deploy/package.sh```
-
-It will just copy the static files to the host.
