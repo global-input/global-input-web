@@ -35,6 +35,10 @@ export const styles={
        color: "#414242",
        fontWeight: "lighter",
      },
+     image:{
+       maxWidth: "100%",
+       height: "auto"
+     }
 
 
 

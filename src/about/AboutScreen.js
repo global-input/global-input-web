@@ -73,8 +73,9 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.about.home.advert}  selected={blockTextConfig.about.home.menu}
-        image={images.aboutGlobalInputApp}
-            mobileImage={images.aboutGlobalInputApp}
+        
+
+
 
         appTitle={blockTextConfig.about.home.appTitle} appSubtitle={blockTextConfig.about.home.appSubtitle}>
          <div style={styles.content}>

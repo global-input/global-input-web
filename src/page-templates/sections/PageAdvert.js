@@ -98,25 +98,7 @@ renderInstall(){
     }
 }
 
-renderAdverts(){
 
-      var pageDescription=styles.pageDescription;
-      if(this.props.image){
-          pageDescription=styles.pageDescriptionWithImage;
-      }
-      var advertItem=this.props.advert.items[this.state.index];
-
-    return (
-      <div style={pageDescription}>
-          <div className={advertItem.className}>
-                <div style={styles.advertTitle}>{advertItem.title}</div>
-                <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
-          </div>
-          {this.renderInstall()}
-      </div>
-    );
-
-}
 renderImage(){
   if(this.props.image){
     if(this.props.mobileImage && styles.isMobile()){
@@ -142,9 +124,21 @@ render() {
     if(styles.isMobile()){
       pageDescriptionSection=styles.pageDescriptionSectionMobile;
     }
+    var pageDescription=styles.pageDescription;
+     if(this.props.image){
+         pageDescription=styles.pageDescriptionWithImage;
+     }
+    var advertItem=this.props.advert.items[this.state.index];
+    advertItem=this.props.advert.items[1];
     return (
                       <div style={pageDescriptionSection}>
-                            {this.renderAdverts()}
+                              <div style={pageDescription}>
+                                  <div className={advertItem.className}>
+                                        <div style={styles.advertTitle}>{advertItem.title}</div>
+                                        <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
+                                  </div>
+                                  {this.renderInstall()}
+                              </div>
                             {this.renderImage()}
 
                       </div>

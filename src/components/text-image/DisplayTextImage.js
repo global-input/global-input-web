@@ -45,15 +45,17 @@ export  default class DisplayTextImage extends Component {
 
   }
   renderImage(){
+
     if(this.props.image){
         return(
           <div className="col-md-6">
-              <img src={this.props.image} className="img-responsive"/>
+              <img src={this.props.image} style={styles.image}/>
           </div>
         );
     }
   }
   render() {
+
           if(this.props.reverse){
             return (
                           <div className="row" >
