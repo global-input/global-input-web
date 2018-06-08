@@ -65,18 +65,18 @@ render() {
                     buttonHRef={blockTextConfig.developers.jslibrary.install.link}/>
            </div>
            <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.proxy.menu.bookmark}/>
-                 <DisplayTextImage title={blockTextConfig.developers.proxy.title} reverse={true}
-                    content={blockTextConfig.developers.proxy.content} image={images.proxyRepo}
-                    buttonLabel={blockTextConfig.developers.proxy.startButton}
-                    buttonHRef={blockTextConfig.developers.proxy.install.link}/>
+                  <BookMark bookmark={blockTextConfig.developers.websocketServer.menu.bookmark}/>
+                 <DisplayTextImage title={blockTextConfig.developers.websocketServer.title} reverse={true}
+                    content={blockTextConfig.developers.websocketServer.content} image={images.proxyRepo}
+                    buttonLabel={blockTextConfig.developers.websocketServer.startButton}
+                    buttonHRef={blockTextConfig.developers.websocketServer.install.link}/>
            </div>
            <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.example.menu.bookmark}/>
-                 <DisplayTextImage title={blockTextConfig.developers.example.title} 
-                    content={blockTextConfig.developers.example.content} image={images.websiteCode}
-                    buttonLabel={blockTextConfig.developers.example.startButton}
-                    buttonHRef={blockTextConfig.developers.example.install.link}/>
+                  <BookMark bookmark={blockTextConfig.developers.websiteSourceCode.menu.bookmark}/>
+                 <DisplayTextImage title={blockTextConfig.developers.websiteSourceCode.title}
+                    content={blockTextConfig.developers.websiteSourceCode.content} image={images.websiteCode}
+                    buttonLabel={blockTextConfig.developers.websiteSourceCode.startButton}
+                    buttonHRef={blockTextConfig.developers.websiteSourceCode.install.link}/>
            </div>
 
 

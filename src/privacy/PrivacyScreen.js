@@ -69,7 +69,7 @@ render() {
 
       <PageWithHeader  advert={blockTextConfig.about.privacy.advert}  selected={blockTextConfig.about.privacy.menu}
         appTitle={blockTextConfig.about.privacy.appTitle}
-        image={images.privacy}
+        
             mobileImage={images.privacy}
 
         appSubtitle={blockTextConfig.about.privacy.appSubtitle}>

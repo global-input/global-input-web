@@ -12,12 +12,6 @@ const styles={
             justifyContent:"flex-start",
             alignItems:"flex-start",
             width:"100%",
-
-
-
-            
-
-
         }
 };
 

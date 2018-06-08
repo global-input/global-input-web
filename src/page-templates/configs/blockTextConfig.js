@@ -1,6 +1,6 @@
 import chromeExtensionConfig from "./chromeExtensionConfig";
 import developerTextConfig from "./developers/developerTextConfig";
-import exampleConfig from "./developers/exampleConfig";
+import websiteSourceCodeConfig from "./developers/websiteSourceCodeConfig";
 import introductionToJSlibraryConfig from "./developers/introductionToJSlibraryConfig";
 import webSocketServerConfig from "./developers/webSocketServerConfig";
 import aboutTextConfig from "./about/aboutTextConfig";
@@ -12,9 +12,9 @@ const blockTextConfig={
       chrome:chromeExtensionConfig,
       developers:{
              home:developerTextConfig,
-             example:exampleConfig,
+             websiteSourceCode:websiteSourceCodeConfig,
              jslibrary:introductionToJSlibraryConfig,
-             proxy:webSocketServerConfig
+             websocketServer:webSocketServerConfig
 
          },
       about:{

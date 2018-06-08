@@ -23,11 +23,7 @@ var styles={
     flexDirection: "column",
     width:"100%",
     justifyContent: "flex-start",
-    alignItems:"flex-start",
-    position:"fixed",
-    top:0,
-    left:0,
-    zIndex:2000,
+    alignItems:"flex-start",    
   },
   topnavmobile: {
     paddingRight:30,

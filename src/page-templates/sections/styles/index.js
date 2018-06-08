@@ -148,11 +148,12 @@ const styles={
 
 styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSection,{
   flexDirection:"column",
-  alignItems:"flex-end"
+  //alignItems:"flex-end"
+
 });
 
 styles.pageDescriptionWithImage=Object.assign({},styles.pageDescription,{
-        minHeight:532,
+        //minHeight:400,
 
 });
 
