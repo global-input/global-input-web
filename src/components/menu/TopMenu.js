@@ -30,6 +30,9 @@ export  default class TopMenu extends Component {
   menuPressed(){
       this.setState(Object.assign({},this.state,{menuPressed:!this.state.menuPressed}));
   }
+  hideMenu(){
+      this.setState(Object.assign({},this.state,{menuPressed:false}));
+  }
 
   renderMenuItem(menu,index){
       var key=index+"_"+menu.label;
@@ -100,9 +103,23 @@ export  default class TopMenu extends Component {
     </div>
   );
   }
+  renderTransparentSection(){
+      return(
+            <a  onClick={this.hideMenu.bind(this)}>
+                <div style={styles.mobileMenuOverlay}>                  
+                </div>
+            </a>
+      );
+
+  }
   renderMobileMenuItems(){
        if(this.state.menuPressed){
-         return(<div style={styles.menuItemsMobile}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>);
+         return(
+           <div style={styles.menuItemsMobile}>
+               {this.props.menus.map(this.renderMenuItem.bind(this))}
+               {this.renderTransparentSection()}
+
+       </div>);
        }
        else{
          return null;

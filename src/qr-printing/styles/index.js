@@ -4,9 +4,10 @@ export const styles={
     flexDirection:"column",
     justifyContent:"center",
     alignItems:"center",
-    paddingTop:10,
-
-
+    width:"100%",
+    paddingTop:20,
+    paddingLeft:10,
+    paddingRight:10,
   },
   buttonContainer:{
       display:"flex",

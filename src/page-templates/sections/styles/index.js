@@ -11,7 +11,7 @@ const styles={
         alignItems:"flex-start"
       },
       appImage:{
-
+        marginTop:20
       },
       link:{
           color:"white",
@@ -24,9 +24,8 @@ const styles={
       },
 
       qrCodeContainer:{
-        marginLeft:20,
-        padding:10
-
+        paddingTop:10,
+        paddingBottom:10
       },
       subHeader:{
           width:"100%",

@@ -9,64 +9,62 @@ const  homeTextConfig={
       duration:5000,
       items:[{
         title:"Encrypted Data Storage in Your Devices",
-        content:["Owns Your Encryption as Well as Your Data",
-                "Manage Your Own Encryption Keys As Well As Your Data"],
+        content:["Owns Your Data and Encryptions",
+                "Manage Encryption Keys In Your Device",
+                "Share with Password Encrypted QR Codes"],
         className: "animateLeftRight"
       },{
         title:"Nothing Stored Outside Your Device",
-        content:["Everything Is Stored In Your Device Encrypted with Your Encryption Key",
-                 "Decrypted Only at the Point Where It Is Needed, and Discarded Afterwards"],
+        content:["Your Data Stay Encrypted In Your Device",
+                 "Stay Encrypted Even in Memory",
+                 "Decrypted Only Where It is Needed"],
         className:"animateWithRotate"
       },{
-        title:"Encrypted Data Transfer Between Your Devices",
+        title:"Open Source Solution",
+        content:["Password Management, Encrypted Storage & Transfer",
+                 "Device Control, Second Screen, All in One Solution",
+                 "Extend Your Existing Applications into Mobile Devices"],
+        className:"animateSideSlide"
+      },{
+        title:"Data Transfer Between Your Devices",
         content:["Data Transfer via the End-To-End Encryption",
-                "Use Different Encryption Key for Each Session to Maximise the Transfer Security"],
+                "Encrypted Data Transfer via Open Source WebSocket Server"],
         className: "animateAppearFromSmallToBig"
       },{
-        title:"Sign In On Public Big Screen",
-        content:["You Can Now Sign In Safely On Computers While Everybody Is Watching Over Your Shoulder",
-                  "Use Your Mobile to Sign In On Computers and Other Devices and Automate Your Sign In"],
+        title:"Secure Sign In on Public Big Screen",
+        content:["Sign In Securely While Everybody Is Watching",
+                  "Use Your Mobile to Automate Your Sign In"],
         className:"animateSideSlide"
       },{
           title:"Encrypted QR Codes",
-          content:["Transfer Data encrypted Without Network",
-                    "Use Papers or Images to Store or Transfer Encrypted Content"],
+          content:["Transfer Data encrypted Without Using Network",
+                    "Use Papers or Images",
+                    "Store and Transfer Encrypted Content"],
           className: "animateLeftRight"
       },{
-          title:"Use Encryption Keys to Manage Access",
-          content:["Create, Manage and Share Encryption Keys with Your Devices and Other People",
+          title:"Personalize Encryption Keys",
+          content:["Create, Manage and Share Encryption Keys",
+                  "Select Encrypt Key to Control Access to Data",
                   "Scan to Import Password-Encrypted Encryption Keys"],
           className:"animateWithRotate"
       },{
-        title:"Encrypted Data & Encrypted Data Transfer",
-        content:["No More Reliance On the Security in the Storages, Networks, Servers and Cloud Infrastructures",
-                "Data Transfer with the End-To-End Encryption and only Your Devices Can Decrypt the Data"],
+        title:"Encrypted Storage & Data Transfer",
+        content:["Removed the Reliance on the Security in the Storages, Networks, Servers ...",
+                "Data Transfer with the End-To-End Encryption",
+                "Secure Data Transfer between Your Devices"],
         className: "animateLeftRight"
       },{
-          title:"Backup Data with Encryption",
-          content:["Export Password-Encrypted Encryptions Keys via QR Codes or Text Form",
-                  "Export All Your Form Data Encrypted with Your Encryption Key"],
+          title:"Export Data Encrypted",
+          content:["Export Encryptions Keys as Password Encrypted QR Codes",
+                  "Export Data Encrypted with Your Encryption Key"],
           className: "animateAppearFromSmallToBig"
       },{
-          title:"Manage Key-Value Form Data",
-          content:["Manage Your Data with Custom Fields, Form Data and Forlders",
-                  "Search and Locate and Auto-matching the Form Data"],
-          className:"animateSideSlide"
-      },{
-        title:"Manage Encryption Keys",
-        content:["Manage Access with Shared Encryption Keys",
-                  "Sharing Encryption Keys with Password Encrypted QR Codes"],
-        className: "animateLeftRight"
-      },{
         title:"Own Your Own Data",
-        content:["No Need for Privacy Policy Because No data is Collected, and No Subscription Happened",
-                "No Master Password Over the NetWork, Everything is In Your Control and In Your Device Only"],
+        content:["Best Privacy Policy Because No Subscription",
+                 "No Data Collection and No Database Server",
+                 "Everything is Stored in Your Device"],
+
         className:"animateWithRotate"
-      },{
-        title:"Operate on Applications Running On Computers",
-        content:["Easy to Enable Applications to Support the Global Input App",
-                "Use the Data Stored in Your App to Automate the Processes in the Service Applications"],
-        className:"animateAppearFromSmallToBig"
       }],
 
 

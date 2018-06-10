@@ -5,9 +5,9 @@ export const styles={
     justifyContent:"center",
     alignItems:"center",
     width:"100%",
-    paddingTop:20
-
-
+    paddingTop:20,
+    paddingLeft:10,
+    paddingRight:10,
   },
 
   buttonContainer:{

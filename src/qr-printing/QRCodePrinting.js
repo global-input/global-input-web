@@ -7,7 +7,7 @@ import {createMessageConnector} from "global-input-message";
 
 
 import {config} from "../configs";
-import {TextSelectOptions,InputWithLabel,NotificationMessage,TextButton} from "../components";
+import {TextSelectOptions,InputWithLabel,NotificationMessage,TextButton, DisplayStaticContent} from "../components";
 
 
 
@@ -82,7 +82,6 @@ export default class QRCodePrinting extends Component {
     createNewAction(){
       return {
                 actType:this.ACT_TYPE.CONNECTING,
-                qrsize:400,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -143,7 +142,7 @@ export default class QRCodePrinting extends Component {
                                                     label:"Back",
                                                     type:"button",
                                                     buttonText:"Back",
-                                                    icon:"back",
+                                                    icon:"disconnect",
                                                     viewId:"buttons",
                                                     operations:{
                                                       onInput:()=>{
@@ -251,10 +250,14 @@ export default class QRCodePrinting extends Component {
 
     renderConnecting(){
    return(
-       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}>
-             <DisplayLoading
-              title={applicationPathConfig.qrPrinting.connecting.title}
-               content={applicationPathConfig.qrPrinting.connecting.content}/>
+       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}
+         appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
+         <div style={styles.content}>
+           <DisplayLoading
+            title={applicationPathConfig.qrPrinting.connecting.title}
+             content={applicationPathConfig.qrPrinting.connecting.content}/>
+         </div>
+
         </PageWithHeader>
   );
  }
@@ -268,13 +271,16 @@ export default class QRCodePrinting extends Component {
 
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
       return(
-       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}>
+       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}
+         appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
+         <div style={styles.content}>
              <DisplayQRCode
 
                content={applicationPathConfig.qrPrinting.connected.content}
                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                buttonLabel={applicationPathConfig.qrPrinting.cancelButton}
                link={applicationPathConfig.qrPrinting.menu.backLink}/>
+           </div>
      </PageWithHeader>
      );
 
@@ -295,8 +301,13 @@ export default class QRCodePrinting extends Component {
           return(
 
             <PageWithHeaderNoPrint advert={applicationPathConfig.qrPrinting.advert}
-               sectionHeaderContent={applicationPathConfig.qrPrinting.senderConnected.content}>
+              appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
+                  <div style={styles.content}>
+                    <div className="noprint">
+                      <DisplayStaticContent content={applicationPathConfig.qrPrinting.senderConnected.content}/>
+                    </div>
                     <div className="printOnly">
+
                           <DisplayQRCode title={applicationPathConfig.qrPrinting.printed.title}
                             content={applicationPathConfig.qrPrinting.printed.content}
                             qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize.value}/>
@@ -342,12 +353,13 @@ export default class QRCodePrinting extends Component {
                                           <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
 
                                             <div style={styles.buttonContainer}>
+                                              <TextButton label={applicationPathConfig.qrPrinting.finishButton}
+                                                onPress={this.connectGlobalInput.bind(this)}/>
+
                                                       <TextButton label={applicationPathConfig.qrPrinting.printButton}
                                                         onPress={this.printQRCode.bind(this)}/>
 
 
-                                                        <TextButton label={applicationPathConfig.qrPrinting.finishButton}
-                                                          onPress={this.connectGlobalInput.bind(this)}/>
 
                                             </div>
 
@@ -356,7 +368,7 @@ export default class QRCodePrinting extends Component {
                 </div>
 
 
-
+                </div>
         </PageWithHeaderNoPrint>
 
           );

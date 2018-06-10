@@ -7,7 +7,7 @@ import {images} from "../configs";
 import {styles} from "./styles";
 
 import {TopMenu} from "../components";
-import PageDescription from "./sections/PageDescription";
+
 import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
 import StaticSectionFooter from "./sections/StaticSectionFooter";
@@ -37,19 +37,12 @@ export  default class PageWithHeaderNoPrint extends Component {
   }
   renderAdvert(){
 
-      if(this.props.advert){
-
         return(
 
             <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}/>
 
+
         );
-      }
-      else{
-          return(
-              <PageDescription image={this.props.image} content={this.props.content}/>
-          );
-      }
   }
   render(){
 
@@ -65,10 +58,10 @@ export  default class PageWithHeaderNoPrint extends Component {
         </div>
 
           <div style={styles.content}>
-
-                  {this.renderAdvert()}
-                {this.renderSectionHeader()}
-
+                <div className="noprint fillAllWidth">                
+                      {this.renderAdvert()}
+                      {this.renderSectionHeader()}
+                </div>
                 {this.props.children}
             <div className="noprint">
                 {this.renderSectionFooter()}

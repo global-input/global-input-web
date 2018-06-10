@@ -7,7 +7,6 @@ import {images} from "../configs";
 import {styles} from "./styles";
 
 import {TopMenu} from "../components";
-import PageDescription from "./sections/PageDescription";
 import PageAdvert from "./sections/PageAdvert";
 import SectionHeader from "./sections/SectionHeader";
 import StaticSectionFooter from "./sections/StaticSectionFooter";
@@ -36,18 +35,11 @@ export  default class PageWithHeader extends Component {
         }
     }
     renderAdvert(){
-
-        if(this.props.advert){
-
-          return(
+      return(
               <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}/>
           );
-        }
-        else{
-            return(
-                <PageDescription image={this.props.image} content={this.props.content}/>
-            );
-        }
+
+
     }
     render(){
 

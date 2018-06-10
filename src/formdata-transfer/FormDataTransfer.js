@@ -11,7 +11,7 @@ import {config} from "../configs";
 
 
 import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage} from "../components";
+  TextRadioButtons,NotificationMessage,DisplayTextImage} from "../components";
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
@@ -157,7 +157,6 @@ export default class FormDataTransfer extends Component {
     createNewAction(){
       var action= {
                 actType:this.ACT_TYPE.COMPOSE_FORM,
-                qrsize:400,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -355,8 +354,11 @@ export default class FormDataTransfer extends Component {
     renderConnecting(){
        return(
            <PageWithHeader advert={applicationPathConfig.formData.advert}>
-                 <DisplayLoading title={applicationPathConfig.formData.connecting.title}
-                   content={applicationPathConfig.formData.connecting.content}/>
+                <div style={styles.content}>
+                  <DisplayLoading title={applicationPathConfig.formData.connecting.title}
+                    content={applicationPathConfig.formData.connecting.content}/>
+                </div>
+
             </PageWithHeader>
       );
     }
@@ -464,6 +466,7 @@ renderComposeForm(){
 
          sectionHeaderContent={applicationPathConfig.formData.compose.content}
          sectionFooterContent={applicationPathConfig.formData.compose.footer}>
+            <div style={styles.content}>
                 <div style={styles.formContainer}>
                         <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                         <InputWithLabel fieldId="formId"
@@ -489,7 +492,7 @@ renderComposeForm(){
                       </div>
 
               </div>
-
+              </div>
           </PageWithHeader>
 
 
@@ -508,10 +511,11 @@ renderAddNewField(){
   }
 
   return (
-  <PageWithHeader advert={applicationPathConfig.formData.advert}
-    sectionHeaderTitle={applicationPathConfig.formData.newField.title}
-    sectionHeaderContent={applicationPathConfig.formData.newField.content}
-    sectionFooterContent={applicationPathConfig.formData.newField.example}>
+  <PageWithHeader advert={applicationPathConfig.formData.advert}>
+    <div style={styles.content}>
+        <DisplayTextImage title={applicationPathConfig.formData.newField.title}
+            content={applicationPathConfig.formData.newField.content}/>
+
         <div style={styles.formContainer}>
                       <InputWithLabel fieldId="newfieldid"
                         onChange={this.setNewFieldLabel.bind(this)}
@@ -536,8 +540,9 @@ renderAddNewField(){
                           </div>
 
         </div>
-
-
+        <DisplayTextImage
+            content={applicationPathConfig.formData.newField.example}/>
+  </div>
     </PageWithHeader>
 
 
@@ -552,12 +557,14 @@ renderAddNewField(){
 
       return(
         <PageWithHeader advert={applicationPathConfig.formData.advert}>
+            <div style={styles.content}>
               <DisplayQRCode
-
                 content={applicationPathConfig.formData.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.formData.cancelButton}
                 onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+            </div>
+
       </PageWithHeader>
       );
 
@@ -598,6 +605,8 @@ renderAddNewField(){
               <PageWithHeader advert={applicationPathConfig.formData.advert}
 
                 sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}>
+                <div style={styles.content}>
+
                       <div style={styles.formContainer}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                             {fields.map(this.renderAField.bind(this))}
@@ -608,7 +617,7 @@ renderAddNewField(){
                                     onPress={this.disconnectGlobalInput.bind(this)}/>
                               </div>
                       </div>
-
+              </div>
 
            </PageWithHeader>
 

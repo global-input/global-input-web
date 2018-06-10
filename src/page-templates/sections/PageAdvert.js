@@ -61,18 +61,48 @@ export  default class PageAdvert extends Component {
 
     nextContent(){
 
-         if(this.starterThread){
-           var index=this.state.index;
-           index++;
-           if(index>=this.props.advert.items.length){
-               index=0;
-           }
-           this.setState(Object.assign({}, this.state,{index}));
-         }
+          if(this.starterThread && this.isInViewport()){
+            var index=this.state.index;
+            index++;
+            if(index>=this.props.advert.items.length){
+                index=0;
+            }
+            this.setState(Object.assign({}, this.state,{index}));
+          }
+          else{
+            console.log("out of view point");
+          }
+
+
 
     }
 
+  isInViewport() {
+      var advertSection=document.getElementById("advertSection");
+      if(advertSection){
+                var top = advertSection.offsetTop;
+           var left = advertSection.offsetLeft;
+           var width = advertSection.offsetWidth;
+           var height = advertSection.offsetHeight;
 
+           while(advertSection.offsetParent) {
+             advertSection = advertSection.offsetParent;
+             top += advertSection.offsetTop;
+             left += advertSection.offsetLeft;
+           }
+
+           return (
+             top >= window.pageYOffset &&
+             left >= window.pageXOffset &&
+             (top + height) <= (window.pageYOffset + window.innerHeight) &&
+             (left + width) <= (window.pageXOffset + window.innerWidth)
+           );
+      }
+      else{
+        return false;
+      }
+
+    }
 
 
 
@@ -129,9 +159,9 @@ render() {
          pageDescription=styles.pageDescriptionWithImage;
      }
     var advertItem=this.props.advert.items[this.state.index];
-    advertItem=this.props.advert.items[1];
+
     return (
-                      <div style={pageDescriptionSection}>
+                      <div style={pageDescriptionSection} id="advertSection">
                               <div style={pageDescription}>
                                   <div className={advertItem.className}>
                                         <div style={styles.advertTitle}>{advertItem.title}</div>
