@@ -8,7 +8,7 @@ import {createMessageConnector} from "global-input-message";
 import {config} from "../configs";
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
-import {ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton} from "../components";
+import {ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton,DisplayStaticContent} from "../components";
 
 import {styles} from "./styles";
 export default class ContentTransfer extends Component {
@@ -66,7 +66,6 @@ export default class ContentTransfer extends Component {
     createNewAction(){
       return {
                 actType:this.ACT_TYPE.CONNECTING,
-                qrsize:400,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -195,8 +194,10 @@ export default class ContentTransfer extends Component {
        return(
            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
              appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
+             <div style={styles.content}>
                  <DisplayLoading title={applicationPathConfig.contentTransfer.connecting.title}
                    content={applicationPathConfig.contentTransfer.connecting.content}/>
+               </div>
             </PageWithHeader>
       );
     }
@@ -214,12 +215,14 @@ export default class ContentTransfer extends Component {
       return(
         <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
           appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
+          <div style={styles.content}>
 
               <DisplayQRCode
                 content={applicationPathConfig.contentTransfer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.contentTransfer.cancelButton}
                 link={applicationPathConfig.contentTransfer.menu.backLink}/>
+          </div>
       </PageWithHeader>
       );
 
@@ -249,9 +252,10 @@ export default class ContentTransfer extends Component {
 
           return(
             <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
-               sectionHeaderContent={applicationPathConfig.contentTransfer.senderConnected.content}
                appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
               <div style={styles.content}>
+                  <DisplayStaticContent content={applicationPathConfig.contentTransfer.senderConnected.content}/>
+
                  <TextAreaWithLabel
                            rows={10} cols={70}
                            onChange={this.onFieldValueChangged.bind(this)}

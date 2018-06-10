@@ -87,5 +87,8 @@ padding-left: 10px;
   flex-direction:column;
   justify-content:center;
   align-items:flex-start;
+}
+.fillAllWidth {
+  width: 100%;
 
 }

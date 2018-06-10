@@ -4,13 +4,14 @@ const formDataTransferConfig={
      link:"/global-input-app/formd-data-transfer",
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer",
-     bookmark:"formDataTransfer"      
+     bookmark:"formDataTransfer"
   },
-  content:["Store form data (key-value data) on your mobile, and encrypted with one of the encryption keys that you also manage in your app. The encryption keys are encrypted with your App password.",
-  "The data stay encrypted in your device and will not be stored anywhere else, and decrypted only when it is needed and discarded afterwards.",
-            "You can transfer the data on-demand between your devices via the end-to-end encryption, so no longer need to type your master passwords on computers.",
-            "Here you can transfer the form data from your mobile to your computer or vice versa.",
-            "Click the button below to start"],
+  content:["Transfer form data from one device to another.",
+            "The data stay encrypted in your device and will not be stored anywhere else, and decrypted only where it is needed",
+            "You can transfer any form data on-demand between your devices via the end-to-end encryption, so no need for typing your app password on computers.",
+            {type:"line", content:["This is also an example of how to use ",{
+              type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
+            }, " WebSocket JavaScript library  to declaratively define form fields to receive form data from the Global Input App"]}],
 
   advert:{
                     duration:10000,

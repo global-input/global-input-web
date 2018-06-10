@@ -217,7 +217,6 @@ onLeftButtonPressed(){
     createPlayControlAction(){
       var action= {
                     actType:this.ACT_TYPE.CONNECTING,
-                    qrsize:400,
                     connector:null,
                     connected:false,
                     senders:null,
@@ -461,8 +460,11 @@ onLeftButtonPressed(){
 
              return(
                 <PageWithHeader advert={applicationPathConfig.gameExample.advert}>
+                    <div style={styles.content}>
                       <DisplayLoading title={applicationPathConfig.gameExample.connecting.title}
                         content={applicationPathConfig.gameExample.connecting.content}/>
+                    </div>
+
                  </PageWithHeader>
            );
 
@@ -576,12 +578,14 @@ renderAField(formField, index){
 
       return(
         <PageWithHeader advert={applicationPathConfig.gameExample.advert}>
+          <div style={styles.content}>
               <DisplayQRCode
 
                 content={applicationPathConfig.gameExample.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.gameExample.cancelButton}
                 link={applicationPathConfig.gameExample.menu.backLink}/>
+            </div>
       </PageWithHeader>
       );
 

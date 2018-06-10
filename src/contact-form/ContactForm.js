@@ -14,7 +14,7 @@ import "whatwg-fetch";
 import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
   TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
 
-import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class ContactForm extends Component {
   ACT_TYPE={
@@ -77,7 +77,6 @@ export default class ContactForm extends Component {
     createNewContactFormAction(){
       var action= {
                 actType:this.ACT_TYPE.START,
-                qrsize:400,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -144,7 +143,7 @@ export default class ContactForm extends Component {
                                                 label:applicationPathConfig.about.contact.contactForm.cancelButton.label,
                                                 type:applicationPathConfig.about.contact.contactForm.cancelButton.type,
                                                 icon:"cancel",
-                                                groupId:"footer",
+                                                viewId:"footer",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.disconnectGlobalInput();
@@ -154,7 +153,7 @@ export default class ContactForm extends Component {
                                                   label:applicationPathConfig.about.contact.contactForm.nextButton.label,
                                                   type:applicationPathConfig.about.contact.contactForm.nextButton.type,
                                                   icon:"continue",
-                                                  groupId:"footer",
+                                                  viewId:"footer",
                                                   operations:{
                                                         onInput: value=>{
                                                               this.toSendMessageForm();
@@ -534,7 +533,7 @@ renderAField(formField, index){
               <DisplayQRCode
 
                 content={applicationPathConfig.about.contact.connected.content}
-                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
+                qrCodeContent={qrCodeContent}
                 buttonLabel={applicationPathConfig.about.contact.connected.backButton}
                 onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
 

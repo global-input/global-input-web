@@ -6,17 +6,7 @@ import {TextButton} from "../../components";
 
 export  default class DisplayQRCode extends Component {
 
-    renderSectionHeader(){
-            if(this.props.title || this.props.content){
-              return (
-                <SectionHeader title={this.props.title}
-                  content={this.props.content}/>
-              );
-            }
-            else{
-              return null;
-            }
-    }
+
     renderButton(){
           if(this.props.buttonLabel){
                 return(
@@ -34,7 +24,18 @@ export  default class DisplayQRCode extends Component {
     render(){
       var {qrCodeContent,qrsize,qrCodeLevel}=this.props;
       if(!qrsize){
-        qrsize=300;
+            var w = window.innerWidth-50;
+            var h = window.innerHeight-50;
+            if(w<h){
+                qrsize=w;
+            }
+            else{
+              qrsize=h;
+            }
+            if(qrsize>400){
+              qrsize=400;
+            }
+
       }
       else{
         qrsize=parseInt(qrsize);
@@ -45,19 +46,20 @@ export  default class DisplayQRCode extends Component {
       console.log("qrcontent:[["+qrCodeContent+"]]");
               return(
           <div style={styles.container}>
-                {this.renderSectionHeader()}
-                    <div style={styles.qrCodeContainer}>
+                      <div style={styles.title}>{this.props.title}</div>
+                      <div style={styles.instruction}>{this.props.content}</div>
+                      <div style={styles.qrCodeContainer}>
+                              <QRCode
+                                        value={qrCodeContent}
+                                        level={qrCodeLevel}
+                                        size={qrsize}
+                                       />
+                      </div>
 
-                                <QRCode
-                                      value={qrCodeContent}
-                                      level={qrCodeLevel}
-                                      size={qrsize}
-                                     />
-                  </div>
+
                   {this.renderButton()}
           </div>
         );
 
     }
-
-}
+  }

@@ -82,7 +82,6 @@ export default class VideoPlayer extends Component {
     createNewPlayFormAction(){
       var action= {
                 actType:this.ACT_TYPE.CONNECTING,
-                qrsize:400,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -299,8 +298,11 @@ export default class VideoPlayer extends Component {
     renderConnecting(){
              return(
                 <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
-                      <DisplayLoading title={applicationPathConfig.videoPlayer.connecting.title}
-                        content={applicationPathConfig.videoPlayer.connecting.content}/>
+                      <div style={styles.content}>
+                        <DisplayLoading title={applicationPathConfig.videoPlayer.connecting.title}
+                          content={applicationPathConfig.videoPlayer.connecting.content}/>
+                      </div>
+
                  </PageWithHeader>
            );
 
@@ -413,12 +415,14 @@ renderAField(formField, index){
 
       return(
         <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
+            <div style={styles.content}>
               <DisplayQRCode
-
                 content={applicationPathConfig.videoPlayer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.videoPlayer.cancelButton}
                 link={applicationPathConfig.videoPlayer.menu.backLink}/>
+            </div>
+
       </PageWithHeader>
       );
 

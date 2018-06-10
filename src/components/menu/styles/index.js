@@ -23,7 +23,11 @@ var styles={
     flexDirection: "column",
     width:"100%",
     justifyContent: "flex-start",
-    alignItems:"flex-start",    
+    alignItems:"flex-start",
+    position:"fixed",
+    zIndex:100,
+    top:0,
+    left:0
   },
   topnavmobile: {
     paddingRight:30,
@@ -104,18 +108,8 @@ var styles={
     fontStyle: 'normal',
   },
   mobileMenuOverlay:{
-    position:"fixed",
-      left:0,
-      top:0,
       width:"100%",
-      Height:"100%",
-      height:window.innerHeight,
-      backgroundColor:"rgba(88,88,88,0.5)",
-      zIndex:1000,
-
-
-
-
+      height:1000
   },
   menuItems:{
     position:"absolute",
@@ -127,8 +121,9 @@ var styles={
   menuItemsMobile:{
     display:"flex",
     flexDirection:"column",
-    backgroundColor:"#EEEEEE",
-    width:"100%"
+    backgroundColor:"rgba(0,0,0,0)",
+    width:"100%",
+
   },
 
 
@@ -157,7 +152,10 @@ var styles={
         ret.color="#4880ED";
         ret.textAlign="left";
         ret.backgroundColor="#FFFFFF";
-        ret.marginBottom=5;
+        ret.borderBottomColor='#888888';
+        ret.borderBottomStyle="solid";
+        ret.borderBottomWidth=5;
+
 
     }
     if(isSelected){
