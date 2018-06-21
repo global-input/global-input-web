@@ -5,7 +5,7 @@ const PLAY_PAUSE_BUTTON_STATUS={
 
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"Controller Device and the Second Screen",
+    title:"Video Player Control Example",
 
     menu:{
         link:"/global-input-app/video-player",
@@ -13,10 +13,12 @@ const videoPlayerConfig={
         backLink:"/?scrollTo=videoPlayer",
         bookmark:"videoPlayer"
     },
-    content:["Universal Device Controller App",
-    "Enable applications running on Computers, Smart TV, set-top boxes and IoT devices. Scan the QR code displayed to control the applications or use the mobile as the second screen. All the Business Logic is implemented within the applications and the applications only needs to define the UI to be displayed on mobile and the callback interface. The data transfer between the devices uses the end-to-end encryption.",
-    "Here is an example for using the Global Input App to control a video player.",
-    "Click the button below to start"],
+    content:[
+    "An example of using the Global Input App to control a video player. It can be extended to a much more complicated application including a second screen experience application.",
+    "This demonstrate all the business logic is implemented within the applications and the applications only needs to define the UI to be displayed on mobile and the callback interface. The data transfer between the devices uses the end-to-end encryption.",
+    {type:"line", content:["This demonstrate how to use ",{
+      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
+    }, " WebSocket JavaScript library  to implement business logic within the media application itself and declatively specify the UI elements for Global Input App to interact with the media application using the end-to-end encryption."]}],
 
     advert:{
             duration:10000,
@@ -47,8 +49,8 @@ const videoPlayerConfig={
                 type:"text",
                 content:"Big Buck Bunny",
                 style:{
-                    fontSize:26,
-                    marginTop:50,
+                    fontSize:18,
+                    marginTop:20,
 
                 }
             },
@@ -61,14 +63,15 @@ const videoPlayerConfig={
                       style:{
                         borderColor:"#rgba(72,128,237,0.5)",
                         borderWidth:1,
-                        minWidth:150,
-                        minHeight:150,
+                        marginTop:5,
+                        minWidth:80,
+                        minHeight:80,
                       },
                       content:[{
                           type:"text",
                           content:"",
                           style:{
-                              fontSize:20
+                              fontSize:14
                           }
                         },{
                             type:"text",
@@ -89,50 +92,46 @@ const videoPlayerConfig={
             value:0,
             step:1
         },
+        ffButton:{
+            label:"FF",
+            type:"button",
+            icon:"ff",
+            viewId:"row1",
+            id:"ffButton",
+        },
         playButton:{
             label:"Play",
             type:"button",
             icon:"play",
-            viewId:"footer",
+            viewId:"row1",
             value:0,
             id:"playPauseButton",
             options:[{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PLAY,label:"Play",icon:"play"},{value:PLAY_PAUSE_BUTTON_STATUS.CAN_PAUSE,label:"Pause",icon:"pause"}]
+        },
+        rwButton:{
+            label:"RW",
+            type:"button",
+            icon:"rw",
+            viewId:"row1",
+            id:"rwButton",
         },
         skipToBeginButton:{
             label:"Begin",
             type:"button",
             icon:"skip-to-begin",
-            viewId:"footer",
+            viewId:"row2",
             id:"skipToBeginButton",
         },
         skipToEndButton:{
             label:"End",
             type:"button",
             icon:"skip-to-end",
-            viewId:"footer",
+            viewId:"row2",
             id:"skipToEndButton",
         },
-        ffButton:{
-            label:"FF",
-            type:"button",
-            icon:"ff",
-            viewId:"footer",
-            id:"ffButton",
-        },
-        rwButton:{
-            label:"RW",
-            type:"button",
-            icon:"rw",
-            viewId:"footer",
-            id:"rwButton",
-        },
-        backButton:{
-          label:"Disconnect",
-          type:"button",
-          icon:"disconnect",
-          viewId:"footer2",
-          buttonText:"Disconnect"
-        }
+
+
+
     },
 
     connecting:{

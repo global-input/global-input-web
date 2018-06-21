@@ -47,7 +47,7 @@ export default class VideoPlayer extends Component {
     }
     updateCurrentTime(){
       var currentTime=this.videoPlayer.currentTime;
-      console.log(":::currentTime:"+currentTime);
+      
 
       if(Math.round(currentTime)!==Math.round(this.state.currentTime)){
             this.setState(Object.assign({}, this.state,{currentTime}));
@@ -116,19 +116,6 @@ export default class VideoPlayer extends Component {
                                               },
 
                                         },{
-                                              id:   applicationPathConfig.videoPlayer.form.skipToBeginButton.id,
-                                              type: applicationPathConfig.videoPlayer.form.skipToBeginButton.type,
-                                              value:applicationPathConfig.videoPlayer.form.skipToBeginButton.value,
-                                              label:applicationPathConfig.videoPlayer.form.skipToBeginButton.label,
-                                              icon: applicationPathConfig.videoPlayer.form.skipToBeginButton.icon,
-                                              viewId:applicationPathConfig.videoPlayer.form.skipToBeginButton.viewId,
-                                              operations:{
-                                                            onInput: value=>{
-                                                                    this.skipToBegin();
-
-                                                            }
-                                              }
-                                        },{
                                               id:   applicationPathConfig.videoPlayer.form.rwButton.id,
                                               type: applicationPathConfig.videoPlayer.form.rwButton.type,
                                               value:applicationPathConfig.videoPlayer.form.rwButton.value,
@@ -173,6 +160,19 @@ export default class VideoPlayer extends Component {
                                                             }
                                               }
                                         },{
+                                              id:   applicationPathConfig.videoPlayer.form.skipToBeginButton.id,
+                                              type: applicationPathConfig.videoPlayer.form.skipToBeginButton.type,
+                                              value:applicationPathConfig.videoPlayer.form.skipToBeginButton.value,
+                                              label:applicationPathConfig.videoPlayer.form.skipToBeginButton.label,
+                                              icon: applicationPathConfig.videoPlayer.form.skipToBeginButton.icon,
+                                              viewId:applicationPathConfig.videoPlayer.form.skipToBeginButton.viewId,
+                                              operations:{
+                                                            onInput: value=>{
+                                                                    this.skipToBegin();
+
+                                                            }
+                                              }
+                                        },{
                                               id:   applicationPathConfig.videoPlayer.form.skipToEndButton.id,
                                               type: applicationPathConfig.videoPlayer.form.skipToEndButton.type,
                                               value:applicationPathConfig.videoPlayer.form.skipToEndButton.value,
@@ -185,32 +185,8 @@ export default class VideoPlayer extends Component {
 
                                                             }
                                               }
-                                        },{
-                                                label:applicationPathConfig.videoPlayer.form.backButton.label,
-                                                type:applicationPathConfig.videoPlayer.form.backButton.type,
-                                                icon:applicationPathConfig.videoPlayer.form.backButton.icon,
-                                                viewId:applicationPathConfig.videoPlayer.form.backButton.viewId,
-                                                operations:{
-                                                      onInput: value=>{
-                                                            this.connectGlobalInput();
-                                                      }
-                                                },
-                                                buttonText:applicationPathConfig.videoPlayer.form.backButton.buttonText
-                                        }],
-                                        views:{
-                                              viewIds:{
-                                                footer2:{
-                                                    style:{
-                                                        justifyContent:"flex-start",
-                                                        width:"100%",
+                                        }]
 
-                                                        borderTopWidth:1,
-                                                        borderColor:"#4880ED",
-                                                    }
-                                                }
-                                              }
-
-                                        }
                                 }
                           },
                           onSenderConnected:this.onSenderConnected.bind(this),
@@ -453,6 +429,7 @@ renderAField(formField, index){
       this.stopSkipTimers();
       this.videoPlayer.currentTime=0;
       this.videoPlayer.playbackRate=1;
+      this.sendPlayeHeadPositionWhenSkipToBegin();
     }
     onSliderChanged(sliderPosition){
       console.log("sliderPosition:"+sliderPosition);
@@ -465,8 +442,8 @@ renderAField(formField, index){
     skipToEnd(){
       this.stopSkipTimers();
       this.videoPlayer.currentTime=this.videoPlayer.duration;
-
       this.videoPlayer.playbackRate=1;
+      this.sendPlayeHeadPositionWhenSkipToEnd();
     }
     stopSkipTimers(){
       if(this.skipInterval){
@@ -540,7 +517,12 @@ renderAField(formField, index){
 
     }
     onLoadedMetadata(){
-      this.sendCurrentTime();
+      var duration=this.videoPlayer.duration;
+      var currentTime=this.videoPlayer.currentTime;
+      if(!duration){
+        return;
+      }
+      this.sendPlayHeadPosition(currentTime,duration);
     }
     onLoadStart(){
 
@@ -570,24 +552,21 @@ renderAField(formField, index){
          });
          this.sendInputMessage(playStatusValue,null,applicationPathConfig.videoPlayer.form.playStatus.id);
     }
-    sendCurrentTime(){
+
+    sendPlayeHeadPositionWhenSkipToBegin(){
       var duration=this.videoPlayer.duration;
-      var currentTime=this.videoPlayer.currentTime;
+        this.sendPlayHeadPosition(0,duration);
+    }
+    sendPlayeHeadPositionWhenSkipToEnd(){
+      var duration=this.videoPlayer.duration;
+      this.sendPlayHeadPosition(duration,duration);
+    }
+    sendPlayHeadPosition(currentTime, duration){
       if(!duration){
-        return;
+              return;
       }
-      var nowTime=(new Date()).getTime();
-      var sliderValue={
-                  value:Math.floor(currentTime*100/duration),
-                  sentTime:nowTime
-                };
-      if(this.sliderValue && (sliderValue.sentTime-this.sliderValue.sentTime)<2000){
-            return;
-      }
-
-
       var sendValue={
-          value:sliderValue.value,
+          value:Math.floor(currentTime*100/duration),
           labels:{
             value:this.buildTimeString(currentTime),
             minimumValue:this.buildTimeString(0),
@@ -595,9 +574,8 @@ renderAField(formField, index){
           }
       }
       this.sendInputMessage(sendValue,null,applicationPathConfig.videoPlayer.form.currentTimeSlider.id);
-      this.sliderValue=sliderValue;
-
     }
+
     onPlaying(){
         this.setToCanPause();
 
@@ -631,7 +609,21 @@ renderAField(formField, index){
     }
     onTimeUpdate(){
         this.updateCurrentTime();
-        this.sendCurrentTime();
+        var duration=this.videoPlayer.duration;
+        var currentTime=this.videoPlayer.currentTime;
+        if(!duration){
+          return;
+        }
+        var nowTime=(new Date()).getTime();
+        var sliderValue={
+                    value:Math.floor(currentTime*100/duration),
+                    sentTime:nowTime
+                  };
+        if(this.sliderValue && (sliderValue.sentTime-this.sliderValue.sentTime)<2000 && (sliderValue.value-this.sliderValue.value)<5){
+              return;
+        }
+        this.sendPlayHeadPosition(currentTime,duration);
+        this.sliderValue=sliderValue;
     }
     onVolumeChange(){
 

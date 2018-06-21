@@ -252,7 +252,7 @@ export default class ContactForm extends Component {
                                           label:applicationPathConfig.about.contact.messageForm.cancelButton.label,
                                           type:applicationPathConfig.about.contact.messageForm.cancelButton.type,
                                           icon:"cancel",
-                                          groupId:"footer",
+                                          viewId:"footer",
                                           operations:{
                                                 onInput: value=>{
                                                       this.disconnectGlobalInput();
@@ -262,7 +262,7 @@ export default class ContactForm extends Component {
                                                 label:applicationPathConfig.about.contact.messageForm.sendButton.label,
                                                 type:applicationPathConfig.about.contact.messageForm.sendButton.type,
                                                 icon:"send",
-                                                groupId:"footer",
+                                                viewId:"footer",
                                                 operations:{
                                                       onInput: value=>{
                                                             this.sendMessageToUs();

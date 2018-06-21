@@ -5,7 +5,8 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"Universal Device Controller App",
+    title:"Game Controller Example",
+    appSubtitle:"Game Controller",
     menu:{
         link:"/global-input-app/game-example",
         linkText:"Game Example",
@@ -13,66 +14,53 @@ const gameExampleConfig={
         bookmark:"gameExample"
     },
     content:[
-    "Use Mobile to control applications running on Big Screen devices, IoT devices and  computers without developing separate mobile applications. ",
-    "Here is an example for using the Global Input App as the controller for a video game running on a computer. The video application just need to declaratively define the UI elements displayed on the mobile screen and the callback interface for user interactions.",
-    "Click the button below to start"],
+    "An example of using the Global Input App as the controller for a video game running on another device. The application declares a set of UI elements and their callbacks functions to receive UI events from the Global Input App.",
+    "The application customise the UI elements and the layout structure to suit different application needs.",
+    {type:"line", content:["This demonstrate how to use ",{
+      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
+    }, " WebSocket JavaScript library  to introduce mobile control to the applications running on Big Screen devices, IoT devices and  the web applications without doing any any mobile applicaiton development."]}],
 
     advert:{
             duration:10000,
             items:[{
-              title:"Universal Input App for Applications",
-              content:["Allows Users to Use Mobile to Control Service Applications without Doing Mobile Development",
-                      "Defines Mobile UI Interface Elements Declatively and the Callbacks to Support the Globabl Input App"],
+              title:"Universal Device Input App",
+              content:["Brings Mobile Control to the Applications without Mobile Development",
+                      "One Mobile Application Solution for all Applications",
+                      "Solution for Application Running on IoT, Smart TV, Office Equipments, and Web Applications"],
               className: "animateLeftRight"
             },{
-              title:"Allow Users to Use the Mobile as Remote Control",
-              content:["Defines Buttons and the Callbacks to Allow Users to Have Remote Control on the Mobile",
-                      "Single App for All Applications with Encrypted Data Storage and Encrypted Data Transfer"],
-              className: "animateAppearFromSmallToBig"
-            },{
-              title:"Integrated Desktop and Mobile Application Developments",
-              content:["Mobile Control for Applications Running on Smart TV, Desktip, IoT, and Web Applications.",
-                      "Scan to Operate, Secure Communications, Support the Automations."],
+              title:"Open Source Solution for Multi-Device Corporate Environments.",
+              content:["Secure Platform for Device Applications to Communicate with Each Other",
+                      "Automation with Encrypted Storage and Encrypted Data Tranfer "],
               className: "animateWithRotate"
             }]
 
     },
 
     form:{
-        title:{
-                  type:"view",
-                  style:{width:"100%",backgroundColor:"green"},
-                  content:{
-                              type:"text",
-                              content:"Device Control Example",
-                              style:{color:"white"}
-                        }
-
-        },
-
+        title:"Device Control Example",
         upButton:{
-          label:"Up",
+
           type:"button",
           viewId:"row1",
           id:"upButton",
           icon:"up"
         },
         leftButton:{
-          label:"left",
+
           type:"button",
           viewId:"row2",
           id:"leftButton",
           icon:"left"
         },
         rightButton:{
-          label:"Right",
+
           type:"button",
           viewId:"row2",
           id:"rightButton",
           icon:"right"
         },
-        downButton:{
-          label:"Down",
+        downButton:{          
           type:"button",
           viewId:"row3",
           id:"downButton",
@@ -80,10 +68,9 @@ const gameExampleConfig={
         },
         backButton:{
           label:"Disconnect",
-          type:"button",
           icon:"disconnect",
+          type:"button",
           viewId:"footer",
-          buttonText:"Disconnect"
         },
         startPauseButton:{
           label:"Start",
@@ -91,7 +78,7 @@ const gameExampleConfig={
           viewId:"footer",
           value:0,
           id:"startPauseButton",
-          options:[{value:START_PAUSE_BUTTON_STATUS.CAN_START,container:{label:"Start"},icon:"play"},{value:START_PAUSE_BUTTON_STATUS.CAN_PAUSE,container:{label:"Pause"},icon:"pause"}]
+          options:[{value:START_PAUSE_BUTTON_STATUS.CAN_START,label:"Start",icon:"play"},{value:START_PAUSE_BUTTON_STATUS.CAN_PAUSE,label:"Pause",icon:"pause"}]
         },
         newGameButton:{
             label:"New Game",
@@ -102,19 +89,19 @@ const gameExampleConfig={
             buttonText:"New Game"
         },
         speedUp:{
-          label:"+",
+          iconText:"+",
           type:"button",
           viewId:"row4",
           id:"speedUp",
-          buttonText:"Speed Up",
+          label:"Speed Up",
 
         },
         speedDown:{
-          label:"-",
+          iconText:"-",
           type:"button",
           viewId:"row4",
           id:"speedDown",
-          buttonText:"Speed Down",
+          label:"Speed Down",
         },
         speedText:{
           id:"speedText",
@@ -128,18 +115,17 @@ const gameExampleConfig={
     },
 
     connecting:{
-        title:"Video Player",
+        title:"Video Game Controller Example",
         content:"Loading..."
     },
     connected:{
-      title:"Video Player",
+      title:"Video Game Controller Example",
       content:"Scan the QR Code below with the Global Input App on your mobile"
     },
     senderConnected:{
-        title:"Video Player",
-        content:"Please use the player controller displayed in the Global Input App to Control the video"
+        title:"Video Game Controller Example",
+        content:"Please use the controller displayed in the Global Input App to control the game."
     },
-
     startButton:"Start",
     cancelButton:"Back",
     finishButton:"Back"

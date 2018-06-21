@@ -8,63 +8,41 @@ const  homeTextConfig={
   advert:{
       duration:5000,
       items:[{
-        title:"Encrypted Data Storage in Your Devices",
-        content:["Owns Your Data and Encryptions",
-                "Manage Encryption Keys In Your Device",
-                "Share with Password Encrypted QR Codes"],
-        className: "animateLeftRight"
+        title:"Encrypted Data Storage in Your Device",
+        content:["Stays Encrypted Even in Memory",
+                "Decrypt Only When Needed"],
       },{
-        title:"Nothing Stored Outside Your Device",
-        content:["Your Data Stay Encrypted In Your Device",
-                 "Stay Encrypted Even in Memory",
-                 "Decrypted Only Where It is Needed"],
-        className:"animateWithRotate"
+        title:"Own Your Data and Encryption",
+        content:["Create, Manage Encryption Keys",
+                "Export, Share, Import Encryption Keys"],
       },{
-        title:"Open Source Solution",
-        content:["Password Management, Encrypted Storage & Transfer",
-                 "Device Control, Second Screen, All in One Solution",
-                 "Extend Your Existing Applications into Mobile Devices"],
-        className:"animateSideSlide"
+        title:"Create Encrypted QR Codes",
+        content:["Encrypt Content with Encryption Keys",
+                "Backup and Share Credentials"],
       },{
-        title:"Data Transfer Between Your Devices",
-        content:["Data Transfer via the End-To-End Encryption",
-                "Encrypted Data Transfer via Open Source WebSocket Server"],
-        className: "animateAppearFromSmallToBig"
+        title:"Scan to Decrypt the Content",
+        content:["Transfer Encrypted Content via QR Code",
+                "Share Encryption Keys Securely"],
       },{
-        title:"Secure Sign In on Public Big Screen",
-        content:["Sign In Securely While Everybody Is Watching",
-                  "Use Your Mobile to Automate Your Sign In"],
-        className:"animateSideSlide"
+        title:"End-to-End Encrypted Data Transfer",
+        content:["Transfer Content Between Devices",
+                "Scan to Start the Data Transfer"],
       },{
-          title:"Encrypted QR Codes",
-          content:["Transfer Data encrypted Without Using Network",
-                    "Use Papers or Images",
-                    "Store and Transfer Encrypted Content"],
-          className: "animateLeftRight"
+        title:"No Subscription, No Database on the Cloud",
+        content:["Everything Stored Encrypted in Your Device",
+                "Share Content Between Your Devices"],
       },{
-          title:"Personalize Encryption Keys",
-          content:["Create, Manage and Share Encryption Keys",
-                  "Select Encrypt Key to Control Access to Data",
-                  "Scan to Import Password-Encrypted Encryption Keys"],
-          className:"animateWithRotate"
+        title:"Automate Sign In & Forms",
+        content:["Store and Manage Credentials",
+                "Transfer to Other Device Applications When Needed"],
       },{
-        title:"Encrypted Storage & Data Transfer",
-        content:["Removed the Reliance on the Security in the Storages, Networks, Servers ...",
-                "Data Transfer with the End-To-End Encryption",
-                "Secure Data Transfer between Your Devices"],
-        className: "animateLeftRight"
+        title:"Single Mobile App",
+        content:["Mobile Input & Control for Device and Web Applications",
+                "Second Screen Experience for Media Applications"],
       },{
-          title:"Export Data Encrypted",
-          content:["Export Encryptions Keys as Password Encrypted QR Codes",
-                  "Export Data Encrypted with Your Encryption Key"],
-          className: "animateAppearFromSmallToBig"
-      },{
-        title:"Own Your Own Data",
-        content:["Best Privacy Policy Because No Subscription",
-                 "No Data Collection and No Database Server",
-                 "Everything is Stored in Your Device"],
-
-        className:"animateWithRotate"
+        title:"Implementing Mobile Control",
+        content:["Enabling IoT, Smart TV and Web Applications",
+                 "Single Mobile App Solution for Multiple Devices"],
       }],
 
 

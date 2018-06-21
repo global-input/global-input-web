@@ -5,7 +5,7 @@ const contentTransferConfig={
       backLink:"/?scrollTo=contentTransfer",
       bookmark:"contentTransfer"
     },
-    title:"Live Content Transfer",
+    title:"Encrypted Content Transfer",
     appSubtitle:"Content Transfer",
     content:["Transfer content live between your Global Input App instance and a computer using the end-to-end encryption.",
               {type:"line", content:["This also shows how to use ",{

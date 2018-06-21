@@ -6,7 +6,7 @@ import React, {Component} from 'react'
 import {images} from  "../../configs";
 
 import {DisplayStaticContent} from "../../components";
-
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import {styles} from "./styles";
 
@@ -44,7 +44,18 @@ export  default class PageAdvert extends Component {
 
 
     getStateFromProps(props){
-        return {index:0};
+      var advertComponents=[];
+
+      this.props.advert.items.forEach((advertItem, index)=>{
+            advertComponents.push(
+              <div key={index} style={styles.advertItemContainer}>
+                  <div style={styles.advertTitle}>{advertItem.title}</div>
+                  <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
+              </div>
+            );
+      });
+
+        return {index:0,advertComponents};
     }
 
     stopSiwtchContentThread(props){
@@ -61,7 +72,7 @@ export  default class PageAdvert extends Component {
 
     nextContent(){
 
-          if(this.starterThread && this.isInViewport()){
+          if(this.starterThread){
             var index=this.state.index;
             index++;
             if(index>=this.props.advert.items.length){
@@ -133,12 +144,12 @@ renderImage(){
   if(this.props.image){
     if(this.props.mobileImage && styles.isMobile()){
       return(
-        <img src={this.props.mobileImage} style={styles.appImage}/>
+        <img src={this.props.mobileImage}/>
       );
     }
     else{
       return(
-        <img src={this.props.image} style={styles.appImage}/>
+        <img src={this.props.image}/>
       );
     }
 
@@ -147,6 +158,28 @@ renderImage(){
       return null;
   }
 
+}
+renderAnimation(){
+
+  /*
+  var advertItem=this.props.advert.items[this.state.index];
+  <div style={styles.advertTitle}>{advertItem.title}</div>
+  <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
+  */
+  var advertcompoent=this.state.advertComponents[this.state.index];
+  return(
+    <div style={styles.advertContainer}>
+          <CSSTransitionGroup
+              transitionName="advertAnimation"
+
+              transitionEnterTimeout={2000}
+              transitionLeaveTimeout={1000}>
+              {advertcompoent}
+
+          </CSSTransitionGroup>
+    </div>
+
+  );
 }
 render() {
 
@@ -163,10 +196,7 @@ render() {
     return (
                       <div style={pageDescriptionSection} id="advertSection">
                               <div style={pageDescription}>
-                                  <div className={advertItem.className}>
-                                        <div style={styles.advertTitle}>{advertItem.title}</div>
-                                        <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
-                                  </div>
+                                  {this.renderAnimation()}
                                   {this.renderInstall()}
                               </div>
                             {this.renderImage()}

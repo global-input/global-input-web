@@ -184,3 +184,22 @@
   animation: sideSlide 1s forwards;
   margin-bottom:5px;
 }
+
+
+.advertAnimation-enter {
+  opacity: 0.01;
+}
+
+.advertAnimation-enter.advertAnimation-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.advertAnimation-leave {
+  opacity: 1;
+}
+
+.advertAnimation-leave.advertAnimation-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

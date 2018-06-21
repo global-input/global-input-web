@@ -75,8 +75,9 @@ const styles={
       pageDescriptionSection:{
               display:"flex",
               flexDirection: "row",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
+              justifyContent: "space-between",
+              alignItems: "flex-begin",
+
               margin:0,
               backgroundColor: "#4880ED",
               paddingTop:10,
@@ -84,6 +85,7 @@ const styles={
               paddingRight:0,
               paddingBottom:0,
               width:"100%",
+
 
       },
 
@@ -131,13 +133,25 @@ const styles={
         marginTop:70,
         marginRight:20,
         paddingBottom:30,
-        flex:1
+        flex:1,
+        
       },
       installContainer:{
-         marginTop:40,
-         paddingLeft:50
-      }
 
+
+      },
+      advertItemContainer:{
+          position:"absolute",
+          lef:10,
+          top:40
+      },
+      advertContainer:{
+        position:"relative",
+        minHeight:300,
+        width:"100%",
+        overflow:"scroll"
+
+      }
 
 
 
@@ -147,7 +161,6 @@ const styles={
 
 styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSection,{
   flexDirection:"column",
-  //alignItems:"flex-end"
 
 });
 
