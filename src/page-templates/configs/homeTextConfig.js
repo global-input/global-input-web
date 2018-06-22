@@ -8,9 +8,9 @@ const  homeTextConfig={
   advert:{
       duration:5000,
       items:[{
-        title:"Encrypted Data Storage in Your Device",
-        content:["Stays Encrypted Even in Memory",
-                "Decrypt Only When Needed"],
+        title:"Store Content Encrypted in Your Device",
+        content:["Content Stays Encrypted Even in Memory",
+                "Decrypted Only When Needed"],
       },{
         title:"Own Your Data and Encryption",
         content:["Create, Manage Encryption Keys",

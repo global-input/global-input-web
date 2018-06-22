@@ -167,8 +167,13 @@ renderAnimation(){
   <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
   */
   var advertcompoent=this.state.advertComponents[this.state.index];
+  var advertContainer=styles.advertContainer;
+  if(styles.isMobile()){
+    advertContainer=styles.advertContainerMobile;
+  }
+
   return(
-    <div style={styles.advertContainer}>
+    <div style={advertContainer}>
           <CSSTransitionGroup
               transitionName="advertAnimation"
 

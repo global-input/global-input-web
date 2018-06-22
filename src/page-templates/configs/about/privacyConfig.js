@@ -28,7 +28,7 @@ const privacyConfig={
   content:["The Global Input App works on it own independently and stores the data encrypted in the device's local storage.  So there is no subscription, no external services, no cloud, no usage collection by the app, not even network communication is required until the end-to-end encrypted data transfer between devices are initiated. In this case, only the webSocket proxy server stands in the middle transferring the encrypted data between your devices.",
             "The app password is for decrypting the password-encrypted encryption key, so there is no way of getting back the access to the app if the password is forgotten.",
             "This also means that it is users' own responsibility to backup the encrypted form data regularly, and export the active encryption key that is used to encrypt the form data and put it in a safe place.",
-            "An end-to-end encrypted data transfer between devices goes through via a WebSocket server. The WebSocket server collects the IP addresses and unique app IDs for the purpose of maintaining the server. The data in the form fields are not visible to the WebSocket server, because they are encrypted with the end-to-end encryption."],
+            "An end-to-end encrypted data transfer between devices goes through via a WebSocket server. The WebSocket server collects the IP addresses and unique app IDs for the purpose of maintaining the server. The data in the form fields are not visible to the WebSocket server, because they are encrypted using the end-to-end encryption."],
 
 };
 export default privacyConfig;

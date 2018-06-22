@@ -6,9 +6,9 @@ const formDataTransferConfig={
      backLink:"/?scrollTo=formDataTransfer",
      bookmark:"formDataTransfer"
   },
-  content:["Transfer form data from one device to another.",
-            "The data stay encrypted in your device and will not be stored anywhere else, and decrypted only where it is needed",
-            "You can transfer any form data on-demand between your devices via the end-to-end encryption, so no need for typing your app password on computers.",
+  content:["Global Input App manages the encrypted content into custom fields, forms and folders.",
+           "The data is decrypted only when it is needed, and can be transferred to another device using the end-to-end encryption.",
+                       
             {type:"line", content:["This is also an example of how to use ",{
               type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
             }, " WebSocket JavaScript library  to declaratively define form fields to receive form data from the Global Input App"]}],

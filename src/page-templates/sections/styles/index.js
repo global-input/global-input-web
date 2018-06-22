@@ -80,7 +80,7 @@ const styles={
 
               margin:0,
               backgroundColor: "#4880ED",
-              paddingTop:10,
+              paddingTop:30,
               paddingLeft:20,
               paddingRight:0,
               paddingBottom:0,
@@ -130,11 +130,11 @@ const styles={
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        marginTop:70,
+        marginTop:50,
         marginRight:20,
-        paddingBottom:30,
+        paddingBottom:0,
         flex:1,
-        
+
       },
       installContainer:{
 
@@ -143,13 +143,13 @@ const styles={
       advertItemContainer:{
           position:"absolute",
           lef:10,
-          top:40
+          top:20
       },
       advertContainer:{
         position:"relative",
-        minHeight:300,
+        minHeight:220,
         width:"100%",
-        overflow:"scroll"
+        overflow:"scroll",
 
       }
 
@@ -158,6 +158,10 @@ const styles={
 
 };
 
+styles.advertContainerMobile=Object.assign({},styles.advertContainer,{
+  minHeight:320,
+
+});
 
 styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSection,{
   flexDirection:"column",
@@ -165,7 +169,7 @@ styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSecti
 });
 
 styles.pageDescriptionWithImage=Object.assign({},styles.pageDescription,{
-        //minHeight:400,
+
 
 });
 
