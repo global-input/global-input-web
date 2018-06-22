@@ -1,50 +1,60 @@
 const formDataTransferConfig={
   title:"Transfer Form Data",
+  appSubtitle:"Transfer Form Data",
   menu:{
      link:"/global-input-app/formd-data-transfer",
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer",
      bookmark:"formDataTransfer"
   },
-  content:["Global Input App manages the encrypted content into custom fields, forms and folders.",
-           "The data is decrypted only when it is needed, and can be transferred to another device using the end-to-end encryption.",
-                       
-            {type:"line", content:["This is also an example of how to use ",{
-              type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-            }, " WebSocket JavaScript library  to declaratively define form fields to receive form data from the Global Input App"]}],
+  content:["Global Input App manages the encrypted content into the custom fields, forms and folders to help the users to search and locate the data and send the selected data to an application running on another device.",
+            {type:"line", content:["The app allows a device (i.e. Smart TV) or a web application to use the ",{
+              type:"a", content:"global-input-message", href:"https://github.com/global-input/global-input-message"
+            }, " JavaScript library  to define a form and specify the type of the data that the application needs. This enables the Global Input App user to locate the data that the application needs and send it over to the application. This can speed up the form operations such as Sign In, Subscription, and online application forms etc.",
+              "The app scans the QR code displayed by the application to obtains the encryption key for the end-to-end encryption and other communication parameters necessary for establishing the communication."]}],
 
   advert:{
                     duration:10000,
                     items:[{
-                      title:"Transfer Form Data From Your Mobile to Your Computer",
-                      content:["Manage Form (Key-Value) Data on Your Mobile and Transfer On-Demand to Your Computer",
-                              "Transfer Encrypted Data Between the Global Input App and the JavaScript Code in the Page."],
-                      className: "animateLeftRight"
-                    },{
-                      title:"Transfer Form Data From Your Mobile to Your Computer",
-                      content:["Save Form (Key-Value) Data in Your Mobile, Encrypted with Your Encryption Key.",
-                               "On-Demand Transfer to Your Computer: Typing Master Password On Computers Are Not Required."],
-                      className: "animateAppearFromSmallToBig"
-                    },{
-                      title:"Transfer Form Data From Your Mobile to Your Computer",
-                      content:["Save Form (Key-Value) Data in Your Mobile, Encrypted with Your Encryption Key.",
-                               "Use End-To-End Encryption to Transfer Data On-Demand From Your Mobile to Your Computer."],
-                      className:"animateWithRotate"
-                    }]
+                      title:"Store Content Encrypted in Your Device",
+                      content:["Content Stays Encrypted Even in Memory",
+                              "Decrypted Only When Needed."],
+
+                      },{
+                        title:"Own Your Data and Encryption",
+                        content:["Create, Manage Encryption Keys",
+                                "Export, Share, Import Encryption Keys"],
+
+                        },{
+                          title:"End-to-End Encrypted Data Transfer",
+                          content:["Transfer Content Between Devices",
+                                  "Scan to Start the Data Transfer"],
+
+                          },{
+                            title:"No Subscription, No Database on the Cloud",
+                            content:["Everything Stored Encrypted in Your Device",
+                                    "Share Content Between Your Devices"],
+
+                            },{
+                              title:"Automate Sign In & Forms",
+                              content:["Store and Manage Your Credentials",
+                                      "Transfer to Other Device Applications When Needed"],
+
+                              }]
   },
 
 
    compose:{
-     title:"Transfer Form Data",
-     content:"Create the form to receive data from the Global Input App:",
+     title:"Building Form for Receiving Data",
+     content:["Press the \"Next\" button to continue."],
      footer:["Both the \"Form Id\" and \"Folder\" are optional. The value of the \"Form Id\" will assist the Global Input App to find the matching records for auto-filling operation. It is required for identifying the record uniquely in the app if it is saved for later use.",
              "The value of the \"Folder\" is also required if the data is saved for later use, so that the form data can be organized into folders in the app."]
 
    },
    newField:{
-      title:"Add a New Field to the Form",
-      content:"Specify the name of the new field to add to the form:",
-      example:["Examples: Mobile, Address, Account Number, Post Code ..."],
+      title:"Adding New Field",
+      content:["Specify the name of the new field that you would like to add to the form:",
+              "Examples: Mobile, Address, Account Number, Post Code ..."],
       fieldLabel:"Name of the new field",
       errorMessages:{
         missingid:"Please provide the name of the new field to add.",
@@ -74,7 +84,7 @@ const formDataTransferConfig={
     },
     startButton:"Start",
     cancelButton:"Cancel",
-    finishButton:"Cancel",
+    finishButton:"Back",
     nextButton:"Next",
     backButton:"Back",
     addNewFieldButton:"Add New Field",

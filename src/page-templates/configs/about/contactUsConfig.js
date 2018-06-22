@@ -107,7 +107,7 @@ const contactUsConfig={
     },
     messageForm:{
         id:"iterativesolution@mymessages",
-        title:"Sending Messages",
+        title:"Sending a Message",
         label:"My Messages",
         first_name:{
                       id:"first_name",

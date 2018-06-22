@@ -353,7 +353,8 @@ export default class FormDataTransfer extends Component {
     }
     renderConnecting(){
        return(
-           <PageWithHeader advert={applicationPathConfig.formData.advert}>
+           <PageWithHeader advert={applicationPathConfig.formData.advert}
+             appSubtitle={applicationPathConfig.formData.appSubtitle}>
                 <div style={styles.content}>
                   <DisplayLoading title={applicationPathConfig.formData.connecting.title}
                     content={applicationPathConfig.formData.connecting.content}/>
@@ -444,15 +445,15 @@ renderAField(formField, index){
 
 
 renderDeleteFieldButton(){
+  var disabled=true;
   if(this.state.action.selectedFieldId){
+    disabled=false;
+  }
           return(
             <TextButton label={applicationPathConfig.formData.deleteButton}
-              onPress={this.deleteField.bind(this)}/>
+              onPress={this.deleteField.bind(this)} disabled={disabled}/>
           );
-  }
-  else{
-    return null;
-  }
+
 }
 
 renderComposeForm(){
@@ -463,11 +464,13 @@ renderComposeForm(){
 
     return (
       <PageWithHeader advert={applicationPathConfig.formData.advert}
-
-         sectionHeaderContent={applicationPathConfig.formData.compose.content}
-         sectionFooterContent={applicationPathConfig.formData.compose.footer}>
+         sectionFooterContent={applicationPathConfig.formData.compose.footer}
+         appSubtitle={applicationPathConfig.formData.appSubtitle}>
             <div style={styles.content}>
+
                 <div style={styles.formContainer}>
+                  <DisplayTextImage title={applicationPathConfig.formData.compose.title}
+                  content={applicationPathConfig.formData.compose.content}/>
                         <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                         <InputWithLabel fieldId="formId"
                           onChange={this.setFormId.bind(this)}
@@ -511,16 +514,19 @@ renderAddNewField(){
   }
 
   return (
-  <PageWithHeader advert={applicationPathConfig.formData.advert}>
+  <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}>
     <div style={styles.content}>
-        <DisplayTextImage title={applicationPathConfig.formData.newField.title}
-            content={applicationPathConfig.formData.newField.content}/>
+
+      <DisplayTextImage title={applicationPathConfig.formData.newField.title}
+      content={applicationPathConfig.formData.newField.content}/>
 
         <div style={styles.formContainer}>
-                      <InputWithLabel fieldId="newfieldid"
+
+                    <InputWithLabel fieldId="newfieldid"
                         onChange={this.setNewFieldLabel.bind(this)}
                         value={newFieldLabel}
                         label={applicationPathConfig.formData.newField.fieldLabel}/>
+
                         <TextRadioButtons selections={this.FORM_FIELD_TYPES} selected={selected} onChange={selectedItem=>{
                                   if(selectedItem===this.FORM_FIELD_TYPES[1]){
                                         this.setNewFieldNLines(5);
@@ -529,8 +535,8 @@ renderAddNewField(){
                                         this.setNewFieldNLines(null);
                                   }
                           }}/>
-
                           <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+
                           <div style={styles.buttonContainer}>
                               <TextButton label={applicationPathConfig.formData.backButton}
                                onPress={this.toComposeForm.bind(this)}/>
@@ -540,8 +546,7 @@ renderAddNewField(){
                           </div>
 
         </div>
-        <DisplayTextImage
-            content={applicationPathConfig.formData.newField.example}/>
+
   </div>
     </PageWithHeader>
 
@@ -556,7 +561,7 @@ renderAddNewField(){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
 
       return(
-        <PageWithHeader advert={applicationPathConfig.formData.advert}>
+        <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}>
             <div style={styles.content}>
               <DisplayQRCode
                 content={applicationPathConfig.formData.connected.content}
@@ -574,28 +579,25 @@ renderAddNewField(){
       var action=this.state.action;
       var fields=this.getFields(action);
       var selectedFieldId=action.selectedFieldId;
-      if(!selectedFieldId){
-        return null;
-      }
-      var matchedFields=fields.filter(f=>f.id===selectedFieldId);
-      if(!matchedFields.length){
-        return null;
-      }
-      var matchedField=matchedFields[0];
 
+      var matchingfieldId=null;
 
-      if(matchedField.value){
+      if(selectedFieldId){
+            var matchedFields=fields.filter(f=>f.id===selectedFieldId);
+            if(matchedFields.length){
+                var matchedField=matchedFields[0];
+                if(matchedField.value){
+                    matchingfieldId=matchedField.id;
+                }
+            }
+      }
         return (
           <ClipboardButton
-              fieldId={matchedField.id}
+              fieldId={matchingfieldId}
               label={applicationPathConfig.formData.copyButton}
               message={applicationPathConfig.formData.clipboard.copied}
               setMessage={this.setMessage.bind(this)}/>
         );
-      }
-      else{
-        return null;
-      }
     }
     renderSenderConnected(){
       var action=this.state.action;
@@ -604,7 +606,8 @@ renderAddNewField(){
           return(
               <PageWithHeader advert={applicationPathConfig.formData.advert}
 
-                sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}>
+                sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}
+                appSubtitle={applicationPathConfig.formData.appSubtitle}>
                 <div style={styles.content}>
 
                       <div style={styles.formContainer}>
@@ -612,9 +615,10 @@ renderAddNewField(){
                             {fields.map(this.renderAField.bind(this))}
                             <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
                               <div style={styles.buttonContainer}>
+                                <TextButton label={applicationPathConfig.formData.finishButton}
+                                  onPress={this.disconnectGlobalInput.bind(this)}/>
                                   {this.renderCopyButton()}
-                                  <TextButton label={applicationPathConfig.formData.finishButton}
-                                    onPress={this.disconnectGlobalInput.bind(this)}/>
+
                               </div>
                       </div>
               </div>

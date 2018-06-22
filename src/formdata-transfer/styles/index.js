@@ -4,7 +4,10 @@ export const styles={
     flexDirection:"column",
     justifyContent:"center",
     alignItems:"center",
-    width:"100%"
+    width:"100%",
+    padding:5,
+    paddingTop:10,
+
   },
   selectionContainer:{
     display:"flex",
@@ -20,8 +23,9 @@ export const styles={
   buttonContainer:{
       display:"flex",
       flexDirection:"row",
-      justifyContent:"center",
+      justifyContent:"space-between",
       alignItems:"center",
+      flexWrap:"wrap",
       width:"100%",
       marginTop:20,
       marginBottom:10
@@ -51,8 +55,9 @@ export const styles={
 
   },
   formContainer:{
-    minWidth:400,
+    width:"100%",
     padding:50,
+    
   },
   fieldrow:{
       display:"flex",

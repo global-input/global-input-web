@@ -8,7 +8,8 @@ const styles={
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
-        alignItems:"flex-start"
+        alignItems:"flex-start",
+
       },
       appImage:{
         marginTop:20
@@ -24,8 +25,14 @@ const styles={
       },
 
       qrCodeContainer:{
-        paddingTop:10,
-        paddingBottom:10
+        padding:5,
+        display:"flex",
+        width:"100%",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center"
+
+
       },
       subHeader:{
           width:"100%",

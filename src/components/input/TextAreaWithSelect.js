@@ -14,8 +14,8 @@ export default class TextAreaWithSelect extends Component{
                              fieldId={this.props.fieldId}
                              value={this.props.value}
                              label={this.props.label}/>
-                      <input style={styles.radioButton}
-                              type="radio" checked={this.props.fieldSelected}
+                           <input style={styles.checkboxButton}
+                              type="checkbox" checked={this.props.fieldSelected}
                                  onClick={()=>{
                                    if(this.props.fieldSelected){
                                        this.props.setSelectedField(null);
