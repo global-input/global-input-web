@@ -9,7 +9,10 @@ export const styles={
     justifyContent:"center",
     alignItems:"center",
     width:"100%",
-    paddingTop:50
+    padding:5,
+    paddingTop:10,
+    
+
   },
   itemSection:{
      marginTop:10,

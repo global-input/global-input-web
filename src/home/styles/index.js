@@ -43,7 +43,9 @@ export var styles={
       justifyContent:"flex-start",
       alignItems:"center",
       backgroundColor:"#dddddd",
-      
+      width:"100%"
+
+
   },
  itemSection:{
     marginTop:10,
@@ -52,6 +54,7 @@ export var styles={
     paddingRight:20,
     paddingBottom:0,
     backgroundColor:"white",
+    width:"100%"
 
  }
 

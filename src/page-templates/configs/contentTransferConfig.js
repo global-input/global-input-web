@@ -5,32 +5,25 @@ const contentTransferConfig={
       backLink:"/?scrollTo=contentTransfer",
       bookmark:"contentTransfer"
     },
-    title:"Live Content Transfer",
+    title:"Encrypted Content Transfer",
     appSubtitle:"Content Transfer",
-    content:["Transfer content live between your Global Input App instance and a computer using the end-to-end encryption.",
-              {type:"line", content:["This also shows how to use ",{
+    content:["You can use the Global Input App to transfer content between your devices using the end-to-end encryption. You can use the app to transfer content to other Global Input App instance or vice versa.",
+             "Here, you can use the app to transfer content to a JavaScript code in this page. This allows you to transfer content between your mobile and your computer.",
+              {type:"line", content:["This is also also an example of how to use ",{
                 type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-              }, " WebSocket JavaScript library  to enable an application to transfer content to/from the Global Input App"]}],
+              }, " WebSocket JavaScript library to introduce the mobile input or control to a JavaScript application."]}],
 
     advert:{
-            duration:10000,
+            duration:5000,
             items:[{
-              title:"Live Data Transfer from One Device to Another",
-              content:["The End-to-End Encryption Between the Global Input App and the JavaScript Code On the Page",
-                      "The Open Source Solution to Bring Mobile Device to Your Application"],
-              className: "animateLeftRight"
-            },{
-              title:"Open Source Solution",
-              content:["Password Management, Encrypted Storage & Transfer",
-                       "Device Control, Second Screen, All in One Solution",
-                       "Extend Your Existing Applications into Mobile Devices"],
-              className:"animateSideSlide"
-            },{
-              title:"Data Transfer Between Your Devices",
-              content:["Data Transfer via the End-To-End Encryption",
-                      "Encrypted Data Transfer via Open Source WebSocket Server"],
-              className: "animateAppearFromSmallToBig"
-            }]
+              title:"End-to-End Encrypted Data Transfer",
+              content:["Transfer Content Between Devices",
+                      "Scan to Start the Data Transfer"],
+              },{
+              title:"Sinle Mobile Solution",
+              content:["Password Management, Encrypted Storage & Data Transfer",
+                       "Mobile Input & Control for Device and Web Applications"],
+               }]
 
     },
 
@@ -42,11 +35,11 @@ const contentTransferConfig={
     },
     connected:{
         title:"Encrypted Content Transfer",
-        content:"Scan the QR Code below with the Global Input App on your mobile"
+        content:"Scan the QR Code below with your Global Input App"
     },
     senderConnected:{
         title:"Encrypted Content Transfer",
-        content:"You can now type content on your mobile or on your computer, the content will appear on both.",
+        content:"You can now type the content on your mobile or on your computer, the content will appear on both.",
     },
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"

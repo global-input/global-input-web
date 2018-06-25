@@ -9,6 +9,10 @@ export const styles={
     paddingLeft:10,
     paddingRight:10,
   },
+  inputContainer:{
+      paddingTop:10,
+
+  },
 
   buttonContainer:{
       display:"flex",

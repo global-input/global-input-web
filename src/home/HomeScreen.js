@@ -72,8 +72,7 @@ render() {
 
     return (
 
-      <PageWithHeader image={images.globalInputApp}
-          mobileImage={images.globalInputAppMobile}
+      <PageWithHeader image={images.globalInputApp}        
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
 
@@ -111,7 +110,7 @@ render() {
               <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
-                       content={applicationPathConfig.videoPlayer.content} image={images.transferForm}
+                       content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
                        buttonLabel={applicationPathConfig.videoPlayer.startButton}
                       buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
               </div>
@@ -120,7 +119,7 @@ render() {
               <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
-                       content={applicationPathConfig.gameExample.content} image={images.transferForm}
+                       content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
                        buttonLabel={applicationPathConfig.gameExample.startButton}
                       buttonLink={applicationPathConfig.gameExample.menu.link}/>
               </div>

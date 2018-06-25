@@ -60,8 +60,8 @@ componentWillReceiveProps(nextProps){
 
  initGame(canvas){
    this.canvas=canvas;
-   canvas.width=480;
-   canvas.height=270;
+   // canvas.width=480;
+   // canvas.height=270;
    this.canvasContext=canvas.getContext("2d");
    this.initGameState();
  }
@@ -231,9 +231,7 @@ onLeftButtonPressed(){
                                 dataType:"control",
                                 form:{
                                   title:applicationPathConfig.gameExample.form.title,
-                                  style:{
-                                        textAlign: "center"
-                                  },
+
                                   fields:[{
                                                     id:   applicationPathConfig.gameExample.form.upButton.id,
                                                     type: applicationPathConfig.gameExample.form.upButton.type,
@@ -283,10 +281,17 @@ onLeftButtonPressed(){
                                               },{
                                                           id:   applicationPathConfig.gameExample.form.speedDown.id,
                                                           type: applicationPathConfig.gameExample.form.speedDown.type,
-                                                          label:{content:applicationPathConfig.gameExample.form.speedDown.label,
-                                                                style:{fontSize:36}},
+                                                          label:applicationPathConfig.gameExample.form.speedDown.label,
+                                                          iconText:{
+                                                              content:applicationPathConfig.gameExample.form.speedDown.iconText,
+                                                              style:{fontSize:36},
+                                                          },
+                                                          style:{
+                                                              borderColor:"green",
+                                                              paddingRight:10
+                                                          },
+
                                                           icon: applicationPathConfig.gameExample.form.speedDown.icon,
-                                                          container:{label: applicationPathConfig.gameExample.form.speedDown.buttonText},
                                                           viewId:applicationPathConfig.gameExample.form.speedDown.viewId,
                                                           operations:{
                                                                         onInput: value=>this.speedDown()
@@ -300,17 +305,19 @@ onLeftButtonPressed(){
                                               },{
                                                           id:   applicationPathConfig.gameExample.form.speedUp.id,
                                                           type: applicationPathConfig.gameExample.form.speedUp.type,
-                                                          label:{
-                                                                  content:applicationPathConfig.gameExample.form.speedUp.label,
-                                                                  style:{
-                                                                        fontSize:36,
-                                                                  }
-                                                                },
+                                                          label:applicationPathConfig.gameExample.form.speedUp.label,
+                                                          style:{
+                                                              borderColor:"green",
+                                                          },
+                                                          iconText:{
+                                                                content:applicationPathConfig.gameExample.form.speedUp.iconText,
+                                                                style:{
+                                                                      fontSize:36,
+                                                                }
+                                                          },
+                                                          label:applicationPathConfig.gameExample.form.speedUp.label,
                                                           icon: applicationPathConfig.gameExample.form.speedUp.icon,
                                                           viewId:applicationPathConfig.gameExample.form.speedUp.viewId,
-                                                          container:{
-                                                                    label:applicationPathConfig.gameExample.form.speedUp.buttonText,
-                                                           },
                                                           operations:{
                                                                         onInput: value=>this.speedUp()
 
@@ -357,9 +364,6 @@ onLeftButtonPressed(){
                                                     }
                                               }],
                                         views:{
-                                               style:{
-                                                  justifyContent:"flex-end"
-                                               },
                                                 viewIds:{
                                                   footer:{
                                                         style:{
@@ -459,7 +463,8 @@ onLeftButtonPressed(){
     renderConnecting(){
 
              return(
-                <PageWithHeader advert={applicationPathConfig.gameExample.advert}>
+                <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+                  appSubtitle={applicationPathConfig.gameExample.appSubtitle}>
                     <div style={styles.content}>
                       <DisplayLoading title={applicationPathConfig.gameExample.connecting.title}
                         content={applicationPathConfig.gameExample.connecting.content}/>
@@ -577,7 +582,8 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
 
       return(
-        <PageWithHeader advert={applicationPathConfig.gameExample.advert}>
+        <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+          appSubtitle={applicationPathConfig.gameExample.appSubtitle}>
           <div style={styles.content}>
               <DisplayQRCode
 
@@ -619,7 +625,9 @@ renderAField(formField, index){
 
     renderSenderConnected(){
           return(
-            <PageWithHeader advert={applicationPathConfig.gameExample.advert}>
+            <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+              sectionHeaderContent={applicationPathConfig.gameExample.senderConnected.content}
+              appSubtitle={applicationPathConfig.gameExample.appSubtitle}>
                 <div style={styles.content}>
                       <GameArea initGame={this.initGame.bind(this)}/>
                   </div>

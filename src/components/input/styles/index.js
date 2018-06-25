@@ -14,18 +14,24 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"flex-start",
   },
-  radioButton:{
+  checkboxButton:{
     marginLeft:10,
     marginTop:10
   },
   button:{
-      marginLeft:20,
-      marginRight:20,
+      minWidth:100,
+      minHeight:50,
+      
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"center",
+      alignItems:"center"
+
   },
   selectionContainer:{
     display:"flex",
     flexDirection:"row",
-    justifyContent:"flex-start",
+    justifyContent:"space-between",
     alignItems:"center",
     marginBottom:20
   },

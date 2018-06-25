@@ -3,16 +3,15 @@ const chromeExtensionConfig={
   menu:{
      link:"/global-input-app/formd-data-transfer",
      linkText:"Form Data Transfer",
-     bookmark:"chromeExtension"      
+     bookmark:"chromeExtension"
    },
-   content:["The Global Input App running on your mobile can work together with the Global Input Chrome extension on your computer to allow you safely and conveniently sign in to the websites and web applications via your mobile.",
-            "When you are vising a websites, you can click on the extension to activate the Global Input App extension and display a QR Code on your computer screen. When you scan the QR code with the Global Input App, you can transfer the data to the extension via the end-to-end encryption.",
-            "The Chrome extension may directly fills the form wih the content it has received if it can locate a recognisable form, otherwise it will display a form in its window so that you do copy and paste operations.",
-            "Click the install button below to install the Chrome extension"],
+   content:[{type:"line", content:[{content:"Global Input App allows you to use your mobile as a Sign Device with its encrypted storage and encrypted data transfer.  If the web application, or the website that you are visiting does not yet support the Global Input App, you can install the "},{type:"a",content:"Global Input Chrome Extension",href:"https://github.com/global-input/chrome-extension"},{type:"span", content:" to the Chrome browser on your computer. The extension acts as a go-between in receiving the data from your Global Input App and filling the form in the web pages."}]},
+   "You can scan the QR code, which is displayed in the extension popup window, with your Global Input App to connect to the extension. Then, you will be able to send the data stored in the app to the extension, which will forward the received data to the form in the page."
+ ],
     install:{
-               link:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp",
+               link:"https://github.com/global-input/chrome-extension",
             },
-    startButton:"Install"
+    startButton:"Install Chrome Extension"
 
 }
 export default chromeExtensionConfig;

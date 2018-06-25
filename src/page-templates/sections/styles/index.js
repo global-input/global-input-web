@@ -8,7 +8,8 @@ const styles={
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
-        alignItems:"flex-start"
+        alignItems:"flex-start",
+
       },
       appImage:{
         marginTop:20
@@ -24,8 +25,14 @@ const styles={
       },
 
       qrCodeContainer:{
-        paddingTop:10,
-        paddingBottom:10
+        padding:5,
+        display:"flex",
+        width:"100%",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center"
+
+
       },
       subHeader:{
           width:"100%",
@@ -75,15 +82,17 @@ const styles={
       pageDescriptionSection:{
               display:"flex",
               flexDirection: "row",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
+              justifyContent: "space-between",
+              alignItems: "flex-begin",
+
               margin:0,
               backgroundColor: "#4880ED",
-              paddingTop:10,
+              paddingTop:30,
               paddingLeft:20,
               paddingRight:0,
               paddingBottom:0,
               width:"100%",
+
 
       },
 
@@ -128,31 +137,54 @@ const styles={
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        marginTop:70,
+        marginTop:50,
         marginRight:20,
-        paddingBottom:30,
-        flex:1
+        paddingBottom:0,
+        flex:1,
+
       },
       installContainer:{
-         marginTop:40,
-         paddingLeft:50
+
+
+      },
+      advertItemContainer:{
+          position:"absolute",
+          lef:10,
+          top:20
+      },
+      advertContainer:{
+        position:"relative",
+        minHeight:220,
+        width:"100%",
+        overflow:"scroll",
+
       }
 
 
 
 
-
 };
+  styles.advertTitleMobile=Object.assign({},styles.advertTitle,{
+  fontSize: 18,
 
+});
+
+styles.advertContentMobile=Object.assign({},styles.advertContent,{
+fontSize: 12,
+});
+
+styles.advertContainerMobile=Object.assign({},styles.advertContainer,{
+  minHeight:120,
+
+});
 
 styles.pageDescriptionSectionMobile=Object.assign({},styles.pageDescriptionSection,{
   flexDirection:"column",
-  //alignItems:"flex-end"
 
 });
 
 styles.pageDescriptionWithImage=Object.assign({},styles.pageDescription,{
-        //minHeight:400,
+
 
 });
 

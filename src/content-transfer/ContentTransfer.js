@@ -255,15 +255,17 @@ export default class ContentTransfer extends Component {
                appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
               <div style={styles.content}>
                   <DisplayStaticContent content={applicationPathConfig.contentTransfer.senderConnected.content}/>
+                  <div style={styles.inputContainer}>
+                    <TextAreaWithLabel
+                              rows={10} cols={70}
+                              onChange={this.onFieldValueChangged.bind(this)}
+                              fieldIndex={0}
+                              fieldId={contentField.id}
+                              value={contentField.value}
+                              label={applicationPathConfig.contentTransfer.contentField.label}/>
+                              <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                  </div>
 
-                 <TextAreaWithLabel
-                           rows={10} cols={70}
-                           onChange={this.onFieldValueChangged.bind(this)}
-                           fieldIndex={0}
-                           fieldId={contentField.id}
-                           value={contentField.value}
-                           label={applicationPathConfig.contentTransfer.contentField.label}/>
-                           <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
                         <div style={styles.buttonContainer}>
                             {this.renderCopyButton(contentField)}
                             <TextButton label={applicationPathConfig.contentTransfer.finishButton}

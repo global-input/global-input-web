@@ -15,8 +15,7 @@ const images={
   automateProcess:require("../images/automate-process.png"),
   documentBackground:require("../images/document-background.png"),
   appIcon:require("../images/globalInput-100.png"),
-  globalInputApp:require("../images/global-input-app.png"),
-  globalInputAppMobile:require("../images/global-input-app-mobile.png"),
+  globalInputApp:require("../images/global-input-app.png"),  
   contentTransfer:require("../images/content-transfer.png"),
   encryptedQRCode:require("../images/encrypted-qr-code.png"),
   showSecret:require("../images/show-icon.png"),
@@ -33,6 +32,11 @@ const images={
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
   privacy:require("../images/privacy.png"),
-  
+  videoPlayerAdvert:require("../images/video-player-advert.png"),
+  gameAdvert:require("../images/game-advert.png"),
+
+
+
+
 }
 export default images;
