@@ -35,7 +35,7 @@ const contentTransferConfig={
     },
     connected:{
         title:"Encrypted Content Transfer",
-        content:"Scan the QR Code below with the Global Input App on your mobile"
+        content:"Scan the QR Code below with your Global Input App"
     },
     senderConnected:{
         title:"Encrypted Content Transfer",

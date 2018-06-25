@@ -67,7 +67,7 @@ const formDataTransferConfig={
    },
    connected:{
           title:"Transfer Form Data",
-          content:"Scan the QR Code below with the Global Input App on your mobile"
+          content:"Scan the QR Code below with your Global Input App"
    },
    senderConnected:{
      title:"Transfer Form Data",

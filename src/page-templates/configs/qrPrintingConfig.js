@@ -38,12 +38,12 @@ const qrPrintingConfig={
     },
     printed:{
         title:"QR Code",
-        content:"Scan the QR Code below with the Global Input App"
+        content:"Scan the QR Code below with your Global Input App"
     },
 
     connected:{
       title:"Encrypted QR Code",
-      content:"Scan the QR Code below with the Global Input App on your mobile"
+      content:"Scan the QR Code below with your Global Input App"
     },
     senderConnected:{
         title:"Encrypted QR Code",

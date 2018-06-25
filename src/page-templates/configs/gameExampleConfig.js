@@ -5,8 +5,8 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"Game Controller Example",
-    appSubtitle:"Game Controller",
+    title:"A Mobile Solution for Device Applications",
+    appSubtitle:"Device Applications",
     menu:{
         link:"/global-input-app/game-example",
         linkText:"Game Example",
@@ -14,25 +14,28 @@ const gameExampleConfig={
         bookmark:"gameExample"
     },
     content:[
-    "An example of using the Global Input App as the controller for a video game running on another device. The application declares a set of UI elements and their callbacks functions to receive UI events from the Global Input App.",
-    "The application customise the UI elements and the layout structure to suit different application needs.",
-    {type:"line", content:["This demonstrate how to use ",{
+    {type:"line",content:["The Global Input App and ",{
       type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }, " WebSocket JavaScript library  to introduce mobile control to the applications running on Big Screen devices, IoT devices and  the web applications without doing any any mobile applicaiton development."]}],
+    }, " JavaScript library provides a unique solution in introducing mobile input and mobile control to device applications. Existing IoT, Smart TV, and web applications can be extended to have the mobile input and control functions in an add-on manner without affecting the existing business logic and architecture."]},
+    {type:"line", content:["Here an example of game control is provided to show how to use ",{
+      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
+    }, " JavaScript library to introduce mobile control to an application running on Big Screen devices without doing mobile application development."]}],
 
     advert:{
-            duration:10000,
+            duration:5000,
             items:[{
               title:"Universal Device Input App",
-              content:["Brings Mobile Control to the Applications without Mobile Development",
-                      "One Mobile Application Solution for all Applications",
-                      "Solution for Application Running on IoT, Smart TV, Office Equipments, and Web Applications"],
+              content:["Mobile Control without Mobile Development",
+                      "Single Mobule Application for Multiple Device Applications"],
               className: "animateLeftRight"
             },{
-              title:"Open Source Solution for Multi-Device Corporate Environments.",
-              content:["Secure Platform for Device Applications to Communicate with Each Other",
-                      "Automation with Encrypted Storage and Encrypted Data Tranfer "],
-              className: "animateWithRotate"
+              title:"Single Mobile App Solution",
+              content:["Mobile Input & Control for Device and Web Applications",
+                      "Second Screen Experience for Media Applications"],
+            },{
+              title:"Mobile Input & Mobile Control without Mobile Development",
+              content:["Enabling IoT, Smart TV and Web Applications",
+                       "Single Mobile App Solution for Multiple Devices"],
             }]
 
     },
@@ -40,7 +43,6 @@ const gameExampleConfig={
     form:{
         title:"Device Control Example",
         upButton:{
-
           type:"button",
           viewId:"row1",
           id:"upButton",
@@ -60,7 +62,7 @@ const gameExampleConfig={
           id:"rightButton",
           icon:"right"
         },
-        downButton:{          
+        downButton:{
           type:"button",
           viewId:"row3",
           id:"downButton",
@@ -120,11 +122,11 @@ const gameExampleConfig={
     },
     connected:{
       title:"Video Game Controller Example",
-      content:"Scan the QR Code below with the Global Input App on your mobile"
+      content:"Scan the QR Code below with your Global Input App"
     },
     senderConnected:{
         title:"Video Game Controller Example",
-        content:"Please use the controller displayed in the Global Input App to control the game."
+        content:"Please use the controller displayed in your Global Input App to control the game."
     },
     startButton:"Start",
     cancelButton:"Back",

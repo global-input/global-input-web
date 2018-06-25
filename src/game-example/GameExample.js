@@ -60,8 +60,8 @@ componentWillReceiveProps(nextProps){
 
  initGame(canvas){
    this.canvas=canvas;
-   canvas.width=480;
-   canvas.height=270;
+   // canvas.width=480;
+   // canvas.height=270;
    this.canvasContext=canvas.getContext("2d");
    this.initGameState();
  }

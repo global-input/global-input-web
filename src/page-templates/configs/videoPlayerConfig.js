@@ -5,7 +5,8 @@ const PLAY_PAUSE_BUTTON_STATUS={
 
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"Video Player Control Example",
+    title:"A Mobile Solution for Media Applications",
+    appSubtitle:"Media Applications",
 
     menu:{
         link:"/global-input-app/video-player",
@@ -14,31 +15,24 @@ const videoPlayerConfig={
         bookmark:"videoPlayer"
     },
     content:[
-    "An example of using the Global Input App to control a video player. It can be extended to a much more complicated application including a second screen experience application.",
-    "This demonstrate all the business logic is implemented within the applications and the applications only needs to define the UI to be displayed on mobile and the callback interface. The data transfer between the devices uses the end-to-end encryption.",
-    {type:"line", content:["This demonstrate how to use ",{
+    "Global Input App provides a unique solution for media applications in implementing the mobile input, mobile control and second screen eperience functions.",
+    {type:"line", content:["The Global Input App and the ",{
       type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }, " WebSocket JavaScript library  to implement business logic within the media application itself and declatively specify the UI elements for Global Input App to interact with the media application using the end-to-end encryption."]}],
+    }," JavaScript library allow a media application to implement mobile input, mobile control and the second screen experience in a add-on manner without affecting the existing application logic and architecture. ",
+    "The media application can also take advantage of the encrypted data storage to store user data securely in user's device without involving user privacy. The user has a complete control over his/her data when the application needs the user data to create persionalized media experience.",]},
+    "Here an example is provided to show how to declaratively define a set of UI elements to control a media player via a mobile."],
 
     advert:{
-            duration:10000,
+            duration:5000,
             items:[{
-              title:"Universal Input App for Applications",
-              content:["Allows Users to Use Mobile to Control Service Applications without Doing Mobile Development",
-                      "Defines Mobile UI Interface Elements Declatively and the Callbacks to Support the Globabl Input App"],
-              className: "animateLeftRight"
+              title:"A Unique Mobile Solution for Media Applications",
+              content:["Mobile Input & Mobile Control",
+                      "Second Screen User Experience"]
             },{
-              title:"Allow Users to Use the Mobile as Remote Control",
-              content:["Defines Buttons and the Callbacks to Allow Users to Have Remote Control on the Mobile",
-                      "Single App for All Applications with Encrypted Data Storage and Encrypted Data Transfer"],
-              className: "animateAppearFromSmallToBig"
-            },{
-              title:"Integrated Desktop and Mobile Application Developments",
-              content:["Mobile Control for Applications Running on Smart TV, Desktip, IoT, and Web Applications.",
-                      "Scan to Operate, Secure Communications, Support the Automations."],
-              className: "animateWithRotate"
+              title:"A Single Mobile App Solution for Multiple Media Applications",
+              content:["User Subscription, User Sign In via Mobile Device",
+                      "Mobile Input, Mobile Control & Second Screen User Experience"]
             }]
-
     },
     form:{
         title:"Video Player",
@@ -140,14 +134,14 @@ const videoPlayerConfig={
     },
     connected:{
       title:"Video Player",
-      content:"Scan the QR Code below with the Global Input App on your mobile"
+      content:"Scan the QR Code below with your Global Input App"
     },
     senderConnected:{
         title:"Video Player",
-        content:"Please use the player controller displayed in the Global Input App to Control the video"
+        content:"You can use your Global Input App to Control the video player."
     },
 
-    startButton:"Start",
+    startButton:"Start the Demo",
     cancelButton:"Back",
     finishButton:"Back"
 }

@@ -47,7 +47,7 @@ export default class VideoPlayer extends Component {
     }
     updateCurrentTime(){
       var currentTime=this.videoPlayer.currentTime;
-      
+
 
       if(Math.round(currentTime)!==Math.round(this.state.currentTime)){
             this.setState(Object.assign({}, this.state,{currentTime}));
@@ -273,7 +273,7 @@ export default class VideoPlayer extends Component {
 
     renderConnecting(){
              return(
-                <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
+                <PageWithHeader advert={applicationPathConfig.videoPlayer.advert} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}>
                       <div style={styles.content}>
                         <DisplayLoading title={applicationPathConfig.videoPlayer.connecting.title}
                           content={applicationPathConfig.videoPlayer.connecting.content}/>
@@ -390,7 +390,7 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData();
 
       return(
-        <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}>
+        <PageWithHeader advert={applicationPathConfig.videoPlayer.advert} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}>
             <div style={styles.content}>
               <DisplayQRCode
                 content={applicationPathConfig.videoPlayer.connected.content}
@@ -659,6 +659,7 @@ renderAField(formField, index){
           return(
 
             <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}
+              appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
                sectionHeaderContent={applicationPathConfig.videoPlayer.senderConnected.content}>
               <div style={styles.content}>
               <video width="640" height="360"  id="videoplayer" autoPlay={false}

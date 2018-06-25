@@ -9,11 +9,42 @@ const contactUsConfig={
   advert:{
       duration:5000,
       items:[{
-        title:"Use Mobile to Operate on Business Applications",
-        content:["Easy to Enable Applications to Support the Global Input App",
-                "Data Stored in the App to Automate the Processes in the Business Applications"],
-        className:"animateAppearFromSmallToBig"
-      }]
+        title:"Store Content Encrypted in Your Device",
+        content:["Content Stays Encrypted Even in Memory",
+                "Decrypted Only When Needed"],
+      },{
+        title:"Own Your Data and Encryption",
+        content:["Create, Manage Encryption Keys",
+                "Export, Share, Import Encryption Keys"],
+      },{
+        title:"Create Encrypted QR Codes",
+        content:["Encrypt Content with Encryption Keys",
+                "Backup and Share Credentials"],
+      },{
+        title:"Scan to Decrypt the Content",
+        content:["Transfer Encrypted Content via QR Code",
+                "Share Encryption Keys Securely"],
+      },{
+        title:"End-to-End Encrypted Data Transfer",
+        content:["Transfer Content Between Devices",
+                "Scan to Start the Data Transfer"],
+      },{
+        title:"No Subscription, No Database on the Cloud",
+        content:["Everything Stored Encrypted in Your Device",
+                "Share Content Between Your Devices"],
+      },{
+        title:"Automate Sign In & Forms",
+        content:["Store and Manage Credentials",
+                "Transfer to Other Device Applications When Needed"],
+      },{
+        title:"Single Mobile App",
+        content:["Mobile Input & Control for Device and Web Applications",
+                "Second Screen Experience for Media Applications"],
+      },{
+        title:"Implementing Mobile Control",
+        content:["Enabling IoT, Smart TV and Web Applications",
+                 "Single Mobile App Solution for Multiple Devices"],
+      }],
   },
   pageContent:{
           address:{
@@ -33,7 +64,7 @@ const contactUsConfig={
           }
   },
   introduction:{
-    content:["Alternatively, you may use the Global Input App to operate on this page to send information to us.",
+    content:["Alternatively, you may use the Global Input App to operate on this page to save our contact information in your Global Input App and send a message to us.",
                       "Click the following button to start"],
      startButton:"Start"
   },
@@ -43,7 +74,7 @@ const contactUsConfig={
       },
       connected:{
           title:"Contact Data Transfer",
-          content:"Scan the QR Code below with the Global Input App on your mobile",
+          content:"Scan the QR Code with your Global Input App.",
           backButton:"Back"
       },
       senderConnected:{

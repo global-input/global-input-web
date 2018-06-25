@@ -1,13 +1,13 @@
 const webSocketServerConfig={
-  title:"WebSocket Server",
+  title:"Global Input WebSocket Server",
   menu:{
      link:"/global-input-app/developers/examples/proxyRepository",
      linkText:"WebSocket Server",
      bookmark:"websocketserver"
    },
-   content:["The global-input-node WebSocket server (Global Input WebSocket Server) is a WebSocket Server, which is implemented to support the data transfer between applications that use the global-input-message JavaScript library to transfer data via the end-to-end encryption. The global-input-message JavaScript library is available at: ",
-            {type:"a",content:"https://github.com/global-input/global-input-message",href:"https://github.com/global-input/global-input-message"},
-            "The WebSocket server uses API key values to assign the WebSocket workloads to one of the serving nodes (it can be the same node). The WebSocket server looks up the API key value contained in the request from its configuration to decide which WebSocket server node should serve the request. Hence, a WebSocket client application needs to be pre-configured to use one of the accepted API key values in order to be able to connect to the WebSocket server."],
+   content:[{type:"line", content: ["The ",{type:"a", content:"global-input-node", href:"https://github.com/global-input/global-input-node"},"  is a Global Input WebSocket Server, which is used by the ", {type:"a",content:"global-input-message",href:"https://github.com/global-input/global-input-message"}," JavaScript library to transfer the end-to-end encrypted data between device applications."]},
+            {type:"line", content: ["A ",  {type:"a", content:"receiver application",href:"https://github.com/global-input/global-input-message#receiver-application"}," uses a QR Code to share the URL of the WebSocket server and the API key required for connecrting to the WebSocket server. A ",{type:"a", content:"calling application", href:"https://github.com/global-input/global-input-message#calling-application"}," scans the QR code to obtain these communication parameters as well as the encryption key required for the end-to-end encryption."]}
+          ],
     install:{
                link:"https://github.com/global-input/global-input-node",
             },

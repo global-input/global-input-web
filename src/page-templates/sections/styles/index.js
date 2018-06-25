@@ -164,9 +164,17 @@ const styles={
 
 
 };
+  styles.advertTitleMobile=Object.assign({},styles.advertTitle,{
+  fontSize: 18,
+
+});
+
+styles.advertContentMobile=Object.assign({},styles.advertContent,{
+fontSize: 12,
+});
 
 styles.advertContainerMobile=Object.assign({},styles.advertContainer,{
-  minHeight:320,
+  minHeight:120,
 
 });
 

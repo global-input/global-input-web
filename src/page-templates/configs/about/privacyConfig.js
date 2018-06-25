@@ -6,29 +6,26 @@ const privacyConfig={
     link:"/global-input-app/privacy",
     linkText:"Privacy"
   },
+  content:["Global Input App's privacy policy is simple: you own your data and the encryption that encrypts your data. The app does not to store your data or your details outside your device's storage, and your data stays encrypted even in memory, decrypted only when needed.  There is no subscription, and there is no database on server.",
+          "Your app password is not stored anywhere, it is used only as an encryption key for encrypting/decrypting the \"active\" encryption key, which is, in turn, encrypts/decrypts the rest of the data in the app. So there is no way to recover your password if you forgot it. You create, manage and share encryption keys in the app. You are responsible for exporting the encrypted data and store it for the backup purposes. You also need to backup your \"active\" encryption key in a separate place in case you lose your phone.",
+          {type:"line", content:["Global Input App transfers data between your devices using the end-to-end encryption. You can select any stored data item in the app to send over to an application. The encrypted data travels through a ",{type:"a", content:"WebSocket server", href:"https://github.com/global-input/global-input-node"},". Because the encryption key is shared only with the ", {type:"a", content:"calling application", href:"https://github.com/global-input/global-input-message#calling-application"}," via a QR code, the messages are safe even if the WebSocket server is compromised. You can download and install your own ", {type:"a", content:"WebSocket server from the github", href:"https://github.com/global-input/global-input-node"}]}],
   advert:{
       duration:5000,
       items:[{
-        title:"The Privacy Policy of the Global Input App",
-        content:["All Your Data Are Stored Encrypted Inside Your Device Only, and Can Only Decrypted By You.",
-                  "No Data Stored Outside Your Device,  No Subscruption, No User Details, no User User Profiles Outside Your Device."],
-        className: "animateLeftRight"
+        title:"Store Content Encrypted in Your Device",
+        content:["Nothing Stored Outside Your Decvice",
+                  "No Subscription, No Database On the Server"],
       },{
-        title:"Own Your Own Data In Your Device",
-        content:["Own Your Data in Your Device, and Own Your Encryption that Encrypts Your Data in Your Device",
-                "The Policy of this App is Not to Store any User Data Outside Your Devices."],
-        className:"animateWithRotate"
+        title:"Your Data Stays Encrypted in Your Device",
+        content:["Stays Encrypted Even in Memory",
+                  "Decrypted Only When Needed"],
       },{
-        title:"Your Data in Your Pocket Not On the Cloud",
-        content:["Your Data Stays In Your Devices, Encrypted with Your Encryption Key.",
-                "Take Back Control of Your Data by Storing Your Data In Your Device Only."],
-        className: "animateAppearFromSmallToBig"
+        title:"Own Your Data and Encryption",
+        content:["Create, Manage Encryption Keys",
+                "Export, Share, Import Encryption Keys"],
       }]
   },
-  content:["The Global Input App works on it own independently and stores the data encrypted in the device's local storage.  So there is no subscription, no external services, no cloud, no usage collection by the app, not even network communication is required until the end-to-end encrypted data transfer between devices are initiated. In this case, only the webSocket proxy server stands in the middle transferring the encrypted data between your devices.",
-            "The app password is for decrypting the password-encrypted encryption key, so there is no way of getting back the access to the app if the password is forgotten.",
-            "This also means that it is users' own responsibility to backup the encrypted form data regularly, and export the active encryption key that is used to encrypt the form data and put it in a safe place.",
-            "An end-to-end encrypted data transfer between devices goes through via a WebSocket server. The WebSocket server collects the IP addresses and unique app IDs for the purpose of maintaining the server. The data in the form fields are not visible to the WebSocket server, because they are encrypted using the end-to-end encryption."],
+
 
 };
 export default privacyConfig;

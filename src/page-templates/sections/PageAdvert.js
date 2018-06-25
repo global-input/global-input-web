@@ -44,18 +44,7 @@ export  default class PageAdvert extends Component {
 
 
     getStateFromProps(props){
-      var advertComponents=[];
-
-      this.props.advert.items.forEach((advertItem, index)=>{
-            advertComponents.push(
-              <div key={index} style={styles.advertItemContainer}>
-                  <div style={styles.advertTitle}>{advertItem.title}</div>
-                  <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
-              </div>
-            );
-      });
-
-        return {index:0,advertComponents};
+        return {index:0};
     }
 
     stopSiwtchContentThread(props){
@@ -161,15 +150,18 @@ renderImage(){
 }
 renderAnimation(){
 
-  /*
+
   var advertItem=this.props.advert.items[this.state.index];
-  <div style={styles.advertTitle}>{advertItem.title}</div>
-  <DisplayStaticContent content={advertItem.content} lineStyle={styles.advertContent}/>
-  */
-  var advertcompoent=this.state.advertComponents[this.state.index];
+  var advertTitleStyle=styles.advertTitle;
+  var advertContentStyle=styles.advertContent;
+
+
   var advertContainer=styles.advertContainer;
   if(styles.isMobile()){
     advertContainer=styles.advertContainerMobile;
+      advertTitleStyle=styles.advertTitleMobile;
+      advertContentStyle=styles.advertContentMobile;
+
   }
 
   return(
@@ -179,7 +171,10 @@ renderAnimation(){
 
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={1000}>
-              {advertcompoent}
+              <div key={this.state.index} style={styles.advertItemContainer}>
+                  <div style={advertTitleStyle}>{advertItem.title}</div>
+                  <DisplayStaticContent content={advertItem.content} lineStyle={advertContentStyle}/>
+              </div>
 
           </CSSTransitionGroup>
     </div>

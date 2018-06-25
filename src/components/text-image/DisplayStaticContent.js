@@ -93,7 +93,7 @@ export  default class DisplayStaticContent extends Component {
             );
       }
 
-      else if(item.type==='span'){
+      else if((!item.type) || item.type==='span'){
                 if(item.className){
                   return (
                       <span key={key} className={item.className}>
