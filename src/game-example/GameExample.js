@@ -579,7 +579,7 @@ renderAField(formField, index){
 
     renderConnected(){
 
-      var qrCodeContent=this.state.action.connector.buildInputCodeData();
+      var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
         <PageWithHeader advert={applicationPathConfig.gameExample.advert}
