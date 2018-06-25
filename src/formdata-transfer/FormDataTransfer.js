@@ -475,7 +475,7 @@ renderComposeForm(){
                         <InputWithLabel fieldId="formId"
                           onChange={this.setFormId.bind(this)}
                           value={formid}
-                          label="Form Id"/>
+                          label="ID"/>
                         <InputWithLabel fieldId="folder"
                             onChange={this.setFormLabel.bind(this)}
                             value={formLabel}
@@ -558,7 +558,7 @@ renderAddNewField(){
 
     renderConnected(){
 
-      var qrCodeContent=this.state.action.connector.buildInputCodeData();
+      var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
         <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}>

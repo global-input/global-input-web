@@ -47,8 +47,8 @@ const formDataTransferConfig={
    compose:{
      title:"Building Form for Receiving Data",
      content:["Press the \"Next\" button to continue."],
-     footer:["Both the \"Form Id\" and \"Folder\" are optional. The value of the \"Form Id\" will assist the Global Input App to find the matching records for auto-filling operation. It is required for identifying the record uniquely in the app if it is saved for later use.",
-             "The value of the \"Folder\" is also required if the data is saved for later use, so that the form data can be organized into folders in the app."]
+     footer:["The \"ID\" field is optional. If it is filled in, it will help the Global Input App to filter the data for selection.",
+             "The \"Folder\" field is also optional. It will be used in saving the data in the Global Input App if you have choose to save the data in the app."]
 
    },
    newField:{

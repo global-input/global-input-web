@@ -64,6 +64,7 @@ export default class ContentTransfer extends Component {
     }
 
     createNewAction(){
+      
       return {
                 actType:this.ACT_TYPE.CONNECTING,
                 connector:null,
@@ -163,7 +164,7 @@ export default class ContentTransfer extends Component {
         }
 
         var state=this.getStateFromProps(this.props);
-        console.log(":::::"+JSON.stringify(state));
+
 
         state.action.connector=createMessageConnector();
         this.setState(state);

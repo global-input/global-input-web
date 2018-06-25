@@ -154,8 +154,10 @@ const styles={
       },
       advertContainer:{
         position:"relative",
-        minHeight:220,
+        minHeight:180,
         width:"100%",
+        
+
         overflow:"scroll",
 
       }

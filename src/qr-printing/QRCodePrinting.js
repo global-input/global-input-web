@@ -269,7 +269,7 @@ export default class QRCodePrinting extends Component {
 
     renderConnected(){
 
-      var qrCodeContent=this.state.action.connector.buildInputCodeData();
+      var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
       return(
        <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}
          appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
