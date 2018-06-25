@@ -37,7 +37,7 @@ var styles={
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor:"#EEEEEE",
-    borderBottomColor:'#888888',
+    borderBottomColor:'#CCCCCC',
     borderBottomStyle:"solid",
     shadowColor:"#888888",
     shadowOffset:{ width: 10, height: 10 },
@@ -61,13 +61,15 @@ var styles={
     fontSize: 20,
     color: "#4880ED",
     whiteSpace: "nowrap",
-    fontWeight: "lighter"
+    fontWeight: "lighter",
+    fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
   },
   appMobileTitle:{
-    fontSize: 16,
+    fontSize: 20,
     color: "#4880ED",
     whiteSpace: "nowrap",
-    fontWeight: "lighter"
+    fontWeight: 500,
+    fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
   },
   appVersion:{
     fontFamily: "GiorgioSans-Regular",
@@ -152,7 +154,7 @@ var styles={
         ret.color="#4880ED";
         ret.textAlign="left";
         ret.backgroundColor="#FFFFFF";
-        ret.borderBottomColor='#888888';
+        ret.borderBottomColor='#EEEEEE';
         ret.borderBottomStyle="solid";
         ret.borderBottomWidth=5;
 

@@ -144,13 +144,13 @@ const styles={
 
       },
       installContainer:{
-
+        paddingTop:5
 
       },
       advertItemContainer:{
           position:"absolute",
           lef:10,
-          top:20
+          top:10
       },
       advertContainer:{
         position:"relative",

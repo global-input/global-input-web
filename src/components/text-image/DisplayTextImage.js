@@ -44,34 +44,75 @@ export  default class DisplayTextImage extends Component {
      );
 
   }
-  renderImage(){
+  renderImage(isMobile){
 
     if(this.props.image){
+      if(isMobile){
+        return(
+          <div style={styles.mobileImageContainer}>
+              <img src={this.props.image} style={styles.image}/>
+          </div>
+        );
+      }
+      else{
         return(
           <div className="col-md-6">
               <img src={this.props.image} style={styles.image}/>
           </div>
         );
+      }
+
     }
   }
   render() {
+        if(styles.isMobile()){
+            return this.renderMobile();
+        }
+        else{
+          return this.renderDeskTop();
+        }
 
-          if(this.props.reverse){
-            return (
-                          <div className="row" >
-                              {this.renderImage()}
-                              {this.renderTextContent()}
+
+
+    }
+
+
+    renderDeskTop(){
+      if(this.props.reverse){
+        return (
+                      <div className="row" >
+                          {this.renderImage(false)}
+                          {this.renderTextContent()}
+                      </div>
+                );
+      }
+      else{
+        return (
+                      <div className="row" >
+                        {this.renderTextContent()}
+                        {this.renderImage(false)}
+                      </div>
+                );
+      }
+    }
+    renderMobile(){
+      var sectionHeadingStyle=styles.sectionHeading;
+      if(styles.isMobile()){
+        sectionHeadingStyle=styles.sectionHeadingMobile;
+      }
+        return (
+                      <div style={styles.mobileTextImageContainer}>
+
+                          <div style={sectionHeadingStyle}>
+                                  {this.props.title}
                           </div>
-                    );
-          }
-          else{
-            return (
-                          <div className="row" >
-                            {this.renderTextContent()}
-                            {this.renderImage()}
-                          </div>
-                    );
-          }
+                          {this.renderImage(true)}
+                            <DisplayStaticContent content={this.props.content}/>
+                            {this.props.children}
+                            {this.renderButton()}
+
+                      </div>
+                );
 
     }
 

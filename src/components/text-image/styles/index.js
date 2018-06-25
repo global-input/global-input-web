@@ -1,11 +1,16 @@
-export const styles={
+var styles={
+      mql:window.matchMedia(`(min-width: 800px)`),
+      isMobile(){
+          return !this.mql.matches;
+      },
      sectionHeading:{
-        fontFamily: "'Roboto', sans-serif",
+        fontFamily: "'Elysio-Light',Helvetica,Arial,sans-serif",
+
         fontWeight: 500,
         fontSize: 26,
         marginTop: 0,
         marginBottom: 15,
-        color: "#333"
+        color: "#4880ED"
      },
      buttonContainer:{
          display:"flex",
@@ -38,8 +43,29 @@ export const styles={
      image:{
        maxWidth: "100%",
        height: "auto"
+     },
+
+     mobileTextImageContainer:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center",
+     },
+     mobileImageContainer:{
+       display:"flex",
+       flexDirection:"row",
+       justifyContent:"center",
+       alignItems:"center",
+       width:"100%"
+
      }
 
 
 
 }
+
+styles.sectionHeadingMobile=Object.assign({},styles.sectionHeading,{
+        fontSize: 20,
+        paddingTop:10,
+});
+export {styles};

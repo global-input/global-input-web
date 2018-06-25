@@ -88,8 +88,12 @@ export  default class DisplayStaticContent extends Component {
             );
       }
       else if(item.type==='image'){
+            var imageSrc=item.src;
+            if(styles.isMobile() && item.mobile && item.mobile.src){
+              imageSrc=item.mobile.src;
+            }
             return (
-                <img style={this.props.imageStyle} src={item.src} key={key}/>
+                <img style={this.props.imageStyle} src={imageSrc} key={key}/>
             );
       }
 
