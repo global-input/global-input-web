@@ -22,7 +22,7 @@ const gameExampleConfig={
     }, " JavaScript library to introduce mobile control to an application running on Big Screen devices without doing mobile application development."]}],
 
     advert:{
-            duration:5000,
+            duration:8000,
             items:[{
               title:"Universal Device Input App",
               content:["Mobile Control without Mobile Development",

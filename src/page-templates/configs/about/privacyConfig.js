@@ -10,7 +10,7 @@ const privacyConfig={
           "Your app password is not stored anywhere, it is used only as an encryption key for encrypting/decrypting the \"active\" encryption key, which is, in turn, encrypts/decrypts the rest of the data in the app. So there is no way to recover your password if you forgot it. You create, manage and share encryption keys in the app. You are responsible for exporting the encrypted data and store it for the backup purposes. You also need to backup your \"active\" encryption key in a separate place in case you lose your phone.",
           {type:"line", content:["Global Input App transfers data between your devices using the end-to-end encryption. You can select any stored data item in the app to send over to an application. The encrypted data travels through a ",{type:"a", content:"WebSocket server", href:"https://github.com/global-input/global-input-node"},". Because the encryption key is shared only with the ", {type:"a", content:"calling application", href:"https://github.com/global-input/global-input-message#calling-application"}," via a QR code, the messages are safe even if the WebSocket server is compromised. You can download and install your own ", {type:"a", content:"WebSocket server from the github", href:"https://github.com/global-input/global-input-node"}]}],
   advert:{
-      duration:5000,
+      duration:8000,
       items:[{
         title:"Store Content Encrypted in Your Device",
         content:["Nothing Stored Outside Your Decvice",

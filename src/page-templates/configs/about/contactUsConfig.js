@@ -7,7 +7,7 @@ const contactUsConfig={
     linkText:"Contact Us"
   },
   advert:{
-      duration:5000,
+      duration:8000,
       items:[{
         title:"Store Content Encrypted in Your Device",
         content:["Content Stays Encrypted Even in Memory",

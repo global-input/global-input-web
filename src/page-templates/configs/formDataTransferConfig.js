@@ -10,11 +10,11 @@ const formDataTransferConfig={
   content:["Global Input App manages the encrypted content into the custom fields, forms and folders to help the users to search and locate the data and send the selected data to an application running on another device.",
             {type:"line", content:["The app allows a device (i.e. Smart TV) or a web application to use the ",{
               type:"a", content:"global-input-message", href:"https://github.com/global-input/global-input-message"
-            }, " JavaScript library  to define a form and specify the type of the data that the application needs. This enables the Global Input App user to locate the data that the application needs and send it over to the application. This can speed up the form operations such as Sign In, Subscription, and online application forms etc.",
-              "The app scans the QR code displayed by the application to obtains the encryption key for the end-to-end encryption and other communication parameters necessary for establishing the communication."]}],
+            }, " JavaScript library  to define a form and specify the type of the data that the application needs. This enables the Global Input App user to locate the data that the application needs and send it over to the application. This can speed up form operations such as Sign In, Subscription, and online application forms etc.",
+              "The app scans the QR code displayed by the application to obtain the encryption key for the end-to-end encryption and other communication parameters necessary for establishing the communication."]}],
 
   advert:{
-                    duration:10000,
+                    duration:8000,
                     items:[{
                       title:"Store Content Encrypted in Your Device",
                       content:["Content Stays Encrypted Even in Memory",

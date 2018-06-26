@@ -142,8 +142,7 @@ var styles={
       padding: "8px 16px",
       textDecoration: "none",
       fontSize: 17,
-      marginBottom: 0,
-      fontFamily:"Gobold Thin",
+      marginBottom: 0,      
       color: "#4880ED",
       whiteSpace:"nowrap",
       fontWeight:300

@@ -15,15 +15,15 @@ const videoPlayerConfig={
         bookmark:"videoPlayer"
     },
     content:[
-    "Global Input App provides a unique solution for media applications in implementing the mobile input, mobile control and second screen eperience functions.",
-    {type:"line", content:["The Global Input App and the ",{
+    "Global Input App provides a unique solution for media applications in implementing mobile input, mobile control and second screen eperience functions.",
+    {type:"line", content:["Media applications can use the ",{
       type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }," JavaScript library allow a media application to implement mobile input, mobile control and the second screen experience in a add-on manner without affecting the existing application logic and architecture. ",
-    "The media application can also take advantage of the encrypted data storage to store user data securely in user's device without involving user privacy. The user has a complete control over his/her data when the application needs the user data to create persionalized media experience.",]},
+    }," JavaScript library to implement the secure mobile operations in a add-on manner without affecting the existing logic and architecture. ",
+    "Application can ask the user to the user to store user data securely in user's own device without involving user privacy. The user has complete control over his/her data when the application needs the user data to create personalized media experience.",]},
     "Here an example is provided to show how to declaratively define a set of UI elements to control a media player via a mobile."],
 
     advert:{
-            duration:5000,
+            duration:8000,
             items:[{
               title:"A Unique Mobile Solution for Media Applications",
               content:["Mobile Input & Mobile Control",
