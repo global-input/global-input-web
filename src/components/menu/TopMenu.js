@@ -30,6 +30,9 @@ export  default class TopMenu extends Component {
   menuPressed(){
       this.setState(Object.assign({},this.state,{menuPressed:!this.state.menuPressed}));
   }
+  setMenuPressed(menuPressed){
+      this.setState(Object.assign({},this.state,{menuPressed}));
+  }
   hideMenu(){
       this.setState(Object.assign({},this.state,{menuPressed:false}));
   }
@@ -87,6 +90,7 @@ export  default class TopMenu extends Component {
   }
 
   renderMobile(){
+
     return(
     <div style={styles.topnavContainer}>
           <div style={styles.topnavmobile}>
@@ -96,17 +100,34 @@ export  default class TopMenu extends Component {
                          {this.renderMobileSubtitle()}
                  </div>
                  <div style={styles.mobileMenu}>
-                    <a style={styles.mobileMenuIcon} onClick={this.menuPressed.bind(this)}>&#9776;</a>
+                    {this.renderMenuItemSymbol()}
                 </div>
           </div>
           {this.renderMobileMenuItems()}
     </div>
   );
   }
+  renderMenuItemSymbol(){
+      if(this.state.menuPressed){
+        return(
+          <a style={styles.mobileMenuIcon} onClick={()=>{
+                this.setMenuPressed(false);
+            }}>&#9747;</a>
+        );
+      }
+      else{
+        return(
+          <a style={styles.mobileMenuIcon} onClick={()=>{
+              this.setMenuPressed(true);
+            }}>&#9776;</a>
+        );
+      }
+
+  }
   renderTransparentSection(){
       return(
             <a  onClick={this.hideMenu.bind(this)}>
-                <div style={styles.mobileMenuOverlay}>                  
+                <div style={styles.mobileMenuOverlay}>
                 </div>
             </a>
       );

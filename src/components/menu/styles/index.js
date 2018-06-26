@@ -61,14 +61,14 @@ var styles={
     fontSize: 20,
     color: "#4880ED",
     whiteSpace: "nowrap",
-    fontWeight: "lighter",
+    fontWeight: 300,
     fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
   },
   appMobileTitle:{
     fontSize: 20,
     color: "#4880ED",
     whiteSpace: "nowrap",
-    fontWeight: 500,
+    fontWeight: 300,
     fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
   },
   appVersion:{
@@ -111,7 +111,11 @@ var styles={
   },
   mobileMenuOverlay:{
       width:"100%",
-      height:1000
+      height:1000,
+      borderTopColor:'#EEEEEE',
+      borderTopStyle:"solid",
+      borderTopWidth:5,
+      boxShadow: "0 -5px 5px -5px #333"
   },
   menuItems:{
     position:"absolute",
@@ -142,7 +146,7 @@ var styles={
       fontFamily:"Gobold Thin",
       color: "#4880ED",
       whiteSpace:"nowrap",
-      fontWeight:100
+      fontWeight:300
     };
     if(this.isDesktop()){
         ret.borderTopRightRadius=10;

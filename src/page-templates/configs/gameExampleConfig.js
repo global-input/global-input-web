@@ -5,7 +5,7 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"A Mobile Solution for Device Applications",
+    title:"Device Applications Integration",
     appSubtitle:"Device Applications",
     menu:{
         link:"/global-input-app/game-example",

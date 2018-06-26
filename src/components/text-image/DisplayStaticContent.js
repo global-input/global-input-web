@@ -16,11 +16,12 @@ export  default class DisplayStaticContent extends Component {
         return this.renderItem(this.props.content,this.ITEM_TYPE.LINE);
   }
   getLineStyle(){
+
     if(this.props.lineStyle){
       return this.props.lineStyle;
     }
-    else{
-      return styles.lineStyle;
+    else{      
+        return styles.lineStyleMobile;
     }
   }
   getSpanStyle(item){

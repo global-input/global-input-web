@@ -32,13 +32,13 @@ var styles={
      lineStyle:{
        fontSize: 16,
        color: "#414242",
-       fontWeight: "lighter",
+       fontWeight: 300,
        marginBottom:10
      },
      spanStyle:{
        fontSize: 16,
        color: "#414242",
-       fontWeight: "lighter",
+       fontWeight: 300,
      },
      image:{
        maxWidth: "100%",
@@ -68,4 +68,8 @@ styles.sectionHeadingMobile=Object.assign({},styles.sectionHeading,{
         fontSize: 20,
         paddingTop:10,
 });
+styles.lineStyleMobile=Object.assign({},styles.lineStyle,{
+          fontWeight: 300,
+});
+
 export {styles};

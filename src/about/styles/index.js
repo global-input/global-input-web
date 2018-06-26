@@ -83,7 +83,7 @@ export var styles={
  linaddress:{
    fontSize: 16,
    color: "#414242",
-   fontWeight: "lighter",
+   fontWeight: 500,
    marginBottom:0,
 
  },
