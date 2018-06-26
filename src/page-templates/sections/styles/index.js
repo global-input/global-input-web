@@ -62,12 +62,12 @@ const styles={
         fontSize: 26,
         color: "#414242",
         textAlign: "center",
-        fontWeight: "lighter"
+        fontWeight: 300,
       },
       instruction:{
         fontSize: 14,
         color: "#414242",
-        fontWeight: "lighter"
+        fontWeight: 300,
       },
       buttonContainer:{
           display:"flex",
@@ -99,7 +99,7 @@ const styles={
       pageDescriptionLine:{
         fontSize: 16,
         color: "#414242",
-        fontWeight: "lighter",
+        fontWeight: 300,
         color:"white",
       },
 
@@ -113,14 +113,14 @@ const styles={
       advertTitle:{
         fontSize: 32,
         color: "#414242",
-        fontWeight: "lighter",
+        fontWeight: 300,
         color:"white",
         marginBottom:10
       },
       advertContent:{
         fontSize: 22,
         color: "#414242",
-        fontWeight: "lighter",
+        fontWeight: 300,
         color:"white"
       },
 
@@ -156,7 +156,7 @@ const styles={
         position:"relative",
         minHeight:180,
         width:"100%",
-        
+
 
         overflow:"scroll",
 

@@ -5,6 +5,7 @@ const styles={
           flexDirection:"column",
           justifyContent:"flex-start",
           alignItems:"flex-start",
+          paddingBottom:70
         },
         content:{
             display:"flex",

@@ -5,7 +5,7 @@ const PLAY_PAUSE_BUTTON_STATUS={
 
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"A Mobile Solution for Media Applications",
+    title:"Integration with Media Applications",
     appSubtitle:"Media Applications",
 
     menu:{
