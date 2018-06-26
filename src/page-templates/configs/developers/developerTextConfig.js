@@ -6,7 +6,7 @@ const developerTextConfig={
     linkText:"Developers"
   },
   advert:{
-      duration:5000,
+      duration:8000,
       items:[{
         title:"Single Mobile App",
         content:["Mobile Input & Control for Device and Web Applications",
