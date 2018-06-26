@@ -15,7 +15,7 @@ const qrPrintingConfig={
     }, " JavaScript library to implement a mobile control on a web application."]}],
 
     advert:{
-            duration:5000,
+            duration:8000,
             items:[{
               title:"Create Encrypted QR Codes",
               content:["Encrypt Content with Encryption Keys",

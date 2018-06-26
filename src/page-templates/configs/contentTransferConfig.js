@@ -7,14 +7,14 @@ const contentTransferConfig={
     },
     title:"Encrypted Content Transfer",
     appSubtitle:"Content Transfer",
-    content:["You can use the Global Input App to transfer content between your devices using the end-to-end encryption. You can use the app to transfer content to other Global Input App instance or vice versa.",
-             "Here, you can use the app to transfer content to a JavaScript code in this page. This allows you to transfer content between your mobile and your computer.",
-              {type:"line", content:["This is also also an example of how to use ",{
-                type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-              }, " WebSocket JavaScript library to introduce the mobile input or control to a JavaScript application."]}],
+    content:["You can use the Global Input App to transfer content between your devices using end-to-end encryption.",
+             "Global Input not only can transfer data to other app instances, but also to other device applications. For example, here you can use the app to transfer content to JavaScript code in this page.",
+              {type:"line", content:["This example shows how an app can transfer content to ",{
+                type:"a", content:"JavaScript code", href:"https://github.com/global-input/global-input-message"
+              }, "  in a webpage, thus allowing you to transfer content from your mobile to your computer and vice versa."]}],
 
     advert:{
-            duration:5000,
+            duration:8000,
             items:[{
               title:"End-to-End Encrypted Data Transfer",
               content:["Transfer Content Between Devices",
