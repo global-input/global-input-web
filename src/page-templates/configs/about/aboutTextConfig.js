@@ -13,8 +13,8 @@ const aboutTextConfig={
                 "Decrypted Only When Needed"],
       },{
         title:"Own Your Data and Encryption",
-        content:["Create, Manage Encryption Keys",
-                "Export, Share, Import Encryption Keys"],
+        content:["Create, Export, Share & Import Encryption Keys",
+                "Select Encryption Key to Encrypt Your Data"],
       },{
         title:"Create Encrypted QR Codes",
         content:["Encrypt Content with Encryption Keys",
