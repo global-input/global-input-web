@@ -1,6 +1,6 @@
 # global-input-web
 
-The global-input-web is a ReactJS web application, that contains a set example RectJS components that uses the [global-input-message](https://github.com/global-input/global-input-message) JavaScript library.
+The global-input-web is a ReactJS web application, that contains a set example ReactJS components that use the [global-input-message](https://github.com/global-input/global-input-message) JavaScript library.
 
 The [global-input-message](https://github.com/global-input/global-input-message) is a JavaScript library for transfering data between applications using the end-to-end encryption via the [Global Input WebSocket server](https://github.com/global-input/global-input-node). The JavaScript library is available at:
 
