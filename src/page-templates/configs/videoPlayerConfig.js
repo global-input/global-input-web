@@ -5,8 +5,8 @@ const PLAY_PAUSE_BUTTON_STATUS={
 
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"Integration with Media Applications",
-    appSubtitle:"Media Applications",
+    title:"Second Screen Input & Control",
+    appSubtitle:"Second Screen input & Control",
 
     menu:{
         link:"/global-input-app/video-player",
@@ -15,12 +15,8 @@ const videoPlayerConfig={
         bookmark:"videoPlayer"
     },
     content:[
-    "Global Input App provides a unique solution for media applications in implementing mobile input, mobile control and second screen eperience functions.",
-    {type:"line", content:["Media applications can use the ",{
-      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }," JavaScript library to implement the secure mobile operations in a add-on manner without affecting the existing logic and architecture. ",
-    "Application can ask the user to the user to store user data securely in user's own device without involving user privacy. The user has complete control over his/her data when the application needs the user data to create personalized media experience.",]},
-    "Here an example is provided to show how to declaratively define a set of UI elements to control a media player via a mobile."],
+    "Global Input App provides a unique solution for applications to achieve the second screen input & control, plus some user experience without affecting the existing logic and architecture of the application.  This is possible because the business logic for the second screen can be implemented within the application itself following its own functional flows and business logic. The applications declares the UI elements for the second screen and use the callback functions to receive mobile events. On top of this, Global Input App’s encrypted data storage allows user to store operational data to automate the input operations. This makes it possible for the application to implement personalized user experience without actually storing the user details and data in the application database, greatly simplifying the user privacy policy.",
+    "Here an simple example is provided to show how to implement declaratively define a set of UI elements for media player control."],
 
     advert:{
             duration:8000,
@@ -141,7 +137,7 @@ const videoPlayerConfig={
         content:"You can use your Global Input App to Control the video player."
     },
 
-    startButton:"Start the Demo",
+    startButton:"Start",
     cancelButton:"Back",
     finishButton:"Back"
 }

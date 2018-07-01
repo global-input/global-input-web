@@ -21,7 +21,7 @@ export const styles={
   button:{
       minWidth:100,
       minHeight:50,
-      
+
       display:"flex",
       flexDirection:"column",
       justifyContent:"center",
@@ -41,5 +41,10 @@ export const styles={
     fontSize: 14,
     color: "#333"
   },
+  help:{
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 12,
+    color: "#333"
+  }
 
 };

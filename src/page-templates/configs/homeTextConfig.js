@@ -5,6 +5,20 @@ const  homeTextConfig={
     link:"/",
     linkText:"Home"
   },
+
+  aboutText:[{
+              type:"line",
+              content:[
+                       {content:"Read More", type:"link",link:"/global-input-app/about"},
+                       " about Global Input App"
+                      ],
+              }
+          ],
+  install:[
+            {type:"a",href:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",content:{type:"image", src:images.appstore, mobile:{src:images.appstoreMobile}}},
+            {type:"a", href:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",content:{type:"image", src:images.playstore, mobile:{src:images.playstoreMobile}}}
+          ],
+
   advert:{
       duration:8000,
       items:[{
@@ -44,13 +58,6 @@ const  homeTextConfig={
         content:["Enabling IoT, Smart TV and Web Applications",
                  "Single Mobile App Solution for Multiple Devices"],
       }],
-
-
-      install:[
-                {type:"a",href:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",content:{type:"image", src:images.appstore, mobile:{src:images.appstoreMobile}}},
-                {type:"a", href:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",content:{type:"image", src:images.playstore, mobile:{src:images.playstoreMobile}}}
-              ]
-
   },
   content:[{
               type:"line",

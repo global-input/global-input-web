@@ -3,7 +3,7 @@ import contentTransferConfig from "./contentTransferConfig";
 import qrPrintingConfig from "./qrPrintingConfig";
 import formDataTransferConfig from "./formDataTransferConfig";
 import developerTextConfig from "./developers/developerTextConfig";
-import aboutTextConfig from "./about/aboutTextConfig";
+import aboutGlobalInputConfig from "./about/aboutGlobalInputConfig";
 import contactUsConfig from "./about/contactUsConfig";
 import privacyConfig from "./about/privacyConfig";
 import chromeExtensionConfig from "./chromeExtensionConfig";
@@ -20,7 +20,7 @@ const applicationPathConfig={
         homeTextConfig.menu,
         developerTextConfig.menu,
         privacyConfig.menu,
-        aboutTextConfig.menu,
+        aboutGlobalInputConfig.menu,
         contactUsConfig.menu,
 
     ],
@@ -31,7 +31,7 @@ const applicationPathConfig={
     chrome:         chromeExtensionConfig,
     developer:      developerTextConfig,
     about:          {
-                      home:aboutTextConfig,
+                      home:aboutGlobalInputConfig,
                       contact:contactUsConfig,
                       privacy:privacyConfig
                     },

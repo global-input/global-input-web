@@ -30,6 +30,16 @@ export const styles={
       marginTop:20,
       marginBottom:10
   },
+  narrowButtonContainer:{
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
+      flexWrap:"wrap",
+      width:"100%",
+      marginTop:20,
+      marginBottom:10
+  },
 
   qrCodeContainer:{
     marginLeft:"150px",
@@ -57,7 +67,7 @@ export const styles={
   formContainer:{
     width:"100%",
     padding:50,
-    
+
   },
   fieldrow:{
       display:"flex",

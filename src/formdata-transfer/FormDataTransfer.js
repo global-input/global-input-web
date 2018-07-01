@@ -11,7 +11,7 @@ import {config} from "../configs";
 
 
 import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayTextImage} from "../components";
+  TextRadioButtons,NotificationMessage,DisplayTextImage,DisplayStaticContent} from "../components";
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
@@ -21,7 +21,8 @@ export default class FormDataTransfer extends Component {
       ADD_NEW_FIELD:3,
       CONNECTING:4,
       CONNECTED:5,
-      SENDER_CONNECTED:6
+      SENDER_CONNECTED:6,
+      DISCONNECTED:7
   }
   FORM_FIELD_TYPES=[
     {label:"Single-line"},
@@ -274,6 +275,8 @@ export default class FormDataTransfer extends Component {
       action.actType=this.ACT_TYPE.COMPOSE_FORM;
       this.setState({action});
     }
+
+
     toAddNewField(){
       var action=this.state.action;
       action.actType=this.ACT_TYPE.ADD_NEW_FIELD;
@@ -288,6 +291,7 @@ export default class FormDataTransfer extends Component {
          this.setState({action});
     }
     onSenderDisconnected(sender,senders){
+        this.disconnectGlobalInput();
         console.log("Sender Disconnected");
    }
   onConnected(){
@@ -304,7 +308,18 @@ export default class FormDataTransfer extends Component {
               action.connector.disconnect();
               action.connector=null;
       }
-      this.setState(this.getStateFromProps(this.props));
+      action.actType=this.ACT_TYPE.DISCONNECTED;
+      this.setState({action});
+  }
+  restartToCompose(){
+    var action=this.state.action;
+    if(action.connector){
+            action.connector.disconnect();
+            action.connector=null;
+    }
+    action.actType=this.ACT_TYPE.COMPOSE_FORM;
+    this.setState({action});
+
   }
   isSenderConnected(){
     return this.state.action.actType===this.ACT_TYPE.SENDER_CONNECTED && this.state.action.connector;
@@ -345,6 +360,9 @@ export default class FormDataTransfer extends Component {
         else if(action.actType===this.ACT_TYPE.SENDER_CONNECTED && action.connector){
               return this.renderSenderConnected();
         }
+        else if(action.actType===this.ACT_TYPE.DISCONNECTED){
+                return this.renderDisconnected();
+        }
         else {
               return this.renderComposeForm();
         }
@@ -381,7 +399,8 @@ export default class FormDataTransfer extends Component {
 
     }
 
-renderAField(formField, index){
+
+renderAField(formField, index, readOnly){
   var label=formField.id;
     var multiline=false;
     var key=this.getMapItemKey(formField,index);
@@ -416,8 +435,10 @@ renderAField(formField, index){
                   fieldIndex={index}
                   fieldId={formField.id}
                   value={formField.value}
+                  readOnly={readOnly}
                   label={label}
                   fieldSelected={fieldSelected}
+
                   setSelectedField={this.setSelectedField.bind(this)}/>
        );
     }
@@ -431,6 +452,7 @@ renderAField(formField, index){
                       fieldIndex={index}
                       fieldId={formField.id}
                       value={formField.value}
+                      readOnly={readOnly}
                       label={label}
                       fieldSelected={fieldSelected}
                       setSelectedField={this.setSelectedField.bind(this)}/>
@@ -464,24 +486,38 @@ renderComposeForm(){
 
     return (
       <PageWithHeader advert={applicationPathConfig.formData.advert}
-         sectionFooterContent={applicationPathConfig.formData.compose.footer}
-         appSubtitle={applicationPathConfig.formData.appSubtitle}>
+         appSubtitle={applicationPathConfig.formData.appSubtitle}
+         sectionHeaderTitle={applicationPathConfig.formData.compose.title}
+         install={applicationPathConfig.home.install}
+         aboutText={applicationPathConfig.about.home.aboutText}>
             <div style={styles.content}>
 
                 <div style={styles.formContainer}>
-                  <DisplayTextImage title={applicationPathConfig.formData.compose.title}
-                  content={applicationPathConfig.formData.compose.content}/>
-                        <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
+
                         <InputWithLabel fieldId="formId"
                           onChange={this.setFormId.bind(this)}
                           value={formid}
-                          label="ID"/>
+                          label="ID" help={applicationPathConfig.formData.compose.idField.help}/>
+
+
+
                         <InputWithLabel fieldId="folder"
                             onChange={this.setFormLabel.bind(this)}
                             value={formLabel}
-                            label="Folder"/>
-                      {fields.map(this.renderAField.bind(this))}
+                            label="Folder"
+                            help={applicationPathConfig.formData.compose.folder.help}/>
+
+                            <DisplayStaticContent
+                            content={applicationPathConfig.formData.compose.fields.header}/>
+
+
+                          {fields.map((formField, index)=>this.renderAField(formField,index))}
+                      <DisplayStaticContent
+                      content={applicationPathConfig.formData.compose.fields.footer}/>
+
                       <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+
+
                       <div style={styles.buttonContainer}>
                           <TextButton label={applicationPathConfig.formData.backButton}
                            link={applicationPathConfig.formData.menu.backLink}/>
@@ -514,13 +550,18 @@ renderAddNewField(){
   }
 
   return (
-  <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}>
+    <PageWithHeader advert={applicationPathConfig.formData.advert}
+       appSubtitle={applicationPathConfig.formData.appSubtitle}
+       sectionHeaderTitle={applicationPathConfig.formData.compose.title}
+       install={applicationPathConfig.home.install}
+       aboutText={applicationPathConfig.about.home.aboutText}>
+
     <div style={styles.content}>
 
       <DisplayTextImage title={applicationPathConfig.formData.newField.title}
       content={applicationPathConfig.formData.newField.content}/>
 
-        <div style={styles.formContainer}>
+
 
                     <InputWithLabel fieldId="newfieldid"
                         onChange={this.setNewFieldLabel.bind(this)}
@@ -537,7 +578,7 @@ renderAddNewField(){
                           }}/>
                           <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
 
-                          <div style={styles.buttonContainer}>
+                          <div style={styles.narrowButtonContainer}>
                               <TextButton label={applicationPathConfig.formData.backButton}
                                onPress={this.toComposeForm.bind(this)}/>
 
@@ -545,7 +586,7 @@ renderAddNewField(){
                                 onPress={this.addNewField.bind(this)}/>
                           </div>
 
-        </div>
+
 
   </div>
     </PageWithHeader>
@@ -561,13 +602,15 @@ renderAddNewField(){
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
-        <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}>
+        <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}
+          install={applicationPathConfig.home.install}
+          aboutText={applicationPathConfig.about.home.aboutText}>
             <div style={styles.content}>
               <DisplayQRCode
                 content={applicationPathConfig.formData.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.formData.cancelButton}
-                onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+                onButtonPressed={this.restartToCompose.bind(this)}/>
             </div>
 
       </PageWithHeader>
@@ -599,6 +642,7 @@ renderAddNewField(){
               setMessage={this.setMessage.bind(this)}/>
         );
     }
+
     renderSenderConnected(){
       var action=this.state.action;
       var fields=this.getFields(action);
@@ -607,17 +651,22 @@ renderAddNewField(){
               <PageWithHeader advert={applicationPathConfig.formData.advert}
 
                 sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}
-                appSubtitle={applicationPathConfig.formData.appSubtitle}>
+                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.developer.aboutText}>
                 <div style={styles.content}>
 
                       <div style={styles.formContainer}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
-                            {fields.map(this.renderAField.bind(this))}
+                            {fields.map((formField, index)=>this.renderAField(formField,index))}
                             <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
                               <div style={styles.buttonContainer}>
-                                <TextButton label={applicationPathConfig.formData.finishButton}
-                                  onPress={this.disconnectGlobalInput.bind(this)}/>
+                                <TextButton label={applicationPathConfig.formData.restartButton}
+                                  onPress={this.restartToCompose.bind(this)}/>
+
+
+
                                   {this.renderCopyButton()}
+                                  <TextButton label={applicationPathConfig.formData.finishButton}
+                                    onPress={this.disconnectGlobalInput.bind(this)}/>
 
                               </div>
                       </div>
@@ -627,6 +676,32 @@ renderAddNewField(){
 
           );
 
+
+   }
+
+   renderDisconnected(){
+          var action=this.state.action;
+          var fields=this.getFields(action);
+
+         return(
+             <PageWithHeader advert={applicationPathConfig.formData.advert}
+               sectionHeaderContent={applicationPathConfig.formData.disConnected.content}
+               appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.developer.aboutText}>
+               <div style={styles.content}>
+                     <div style={styles.formContainer}>
+                           <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
+                           {fields.map((formField, index)=>this.renderAField(formField,index,true))}
+                             <div style={styles.buttonContainer}>
+                               <TextButton label={applicationPathConfig.formData.restartButton}
+                                 onPress={this.toComposeForm.bind(this)}/>
+                                 {this.renderCopyButton()}
+                             </div>
+                     </div>
+             </div>
+
+          </PageWithHeader>
+
+         );
 
    }
 

@@ -115,12 +115,23 @@ renderPageDescription(content, index){
   );
 }
 renderInstall(){
-    if(this.props.advert.install){
+    if(this.props.install){
       return(
           <div style={styles.installContainer}>
-              <DisplayStaticContent content={this.props.advert.install} lineStyle={styles.advertLine}
+
+              <DisplayStaticContent content={this.props.install} lineStyle={styles.advertLine}
               linkStyle={styles.imageLink}/>
           </div>
+      );
+    }
+    else{
+      return null;
+    }
+}
+renderAboutText(){
+    if(this.props.aboutText){
+      return(
+            <DisplayStaticContent content={this.props.aboutText} lineStyle={styles.advertLine} linkStyle={styles.link}/>
       );
     }
     else{
@@ -197,7 +208,10 @@ render() {
                       <div style={pageDescriptionSection} id="advertSection">
                               <div style={pageDescription}>
                                   {this.renderAnimation()}
-                                  {this.renderInstall()}
+                                  <div style={styles.fixedAdvertContainer}>
+                                      {this.renderAboutText()}
+                                      {this.renderInstall()}
+                                  </div>
                               </div>
                             {this.renderImage()}
 

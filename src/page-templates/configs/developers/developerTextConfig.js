@@ -5,6 +5,14 @@ const developerTextConfig={
     link:"/global-input-app/developers",
     linkText:"Developers"
   },
+  aboutText:[{
+              type:"line",
+              content:["Enable your web applications with ",
+                       {content:"global-input-message", type:"a",href:"https://github.com/global-input/global-input-message"},
+                       " JavaScript library"
+                      ],
+              }
+          ],
   advert:{
       duration:8000,
       items:[{

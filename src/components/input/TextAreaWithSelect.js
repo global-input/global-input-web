@@ -9,6 +9,7 @@ export default class TextAreaWithSelect extends Component{
                      <TextAreaWithLabel
                             rows={this.props.rows}
                             cols={this.props.cols}
+                            readOnly={this.props.readOnly}
                              onChange={this.props.onChange}
                              fieldIndex={this.props.fieldIndex}
                              fieldId={this.props.fieldId}

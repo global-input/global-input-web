@@ -36,7 +36,8 @@ export  default class PageWithHeader extends Component {
     }
     renderAdvert(){
       return(
-              <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}/>
+              <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}
+              install={this.props.install} aboutText={this.props.aboutText}/>
           );
 
 

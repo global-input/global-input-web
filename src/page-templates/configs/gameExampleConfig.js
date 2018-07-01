@@ -5,7 +5,7 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"Device Applications Integration",
+    title:"Mobile Input for Device Applications",
     appSubtitle:"Device Applications",
     menu:{
         link:"/global-input-app/game-example",
@@ -13,13 +13,9 @@ const gameExampleConfig={
         backLink:"/?scrollTo=gameExample",
         bookmark:"gameExample"
     },
-    content:[
-    {type:"line",content:["The Global Input App and ",{
-      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }, " JavaScript library provides a unique solution in introducing mobile input and mobile control to device applications. Existing IoT, Smart TV, and web applications can be extended to have the mobile input and control functions in an add-on manner without affecting the existing business logic and architecture."]},
-    {type:"line", content:["Here an example of game control is provided to show how to use ",{
-      type:"a", content:"the global-input-message", href:"https://github.com/global-input/global-input-message"
-    }, " JavaScript library to introduce mobile control to an application running on Big Screen devices without doing mobile application development."]}],
+    content:["The personal mobile device is becoming increasingly important in our daily lives and the ability to use these devices for business applications is becoming more widespread. However, the cost of developing a separate mobile application and the associated server-side integration for each business application is quite significant.",
+    "The Global Input App offers a single mobile app solution for multiple device and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and callback functions for receiving mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture. The communication between the Global Input App and the application is secured with end-to-end encryption.",
+    "Press the following “start” to see an example of mobile control on an JavaScript application."],
 
     advert:{
             duration:8000,

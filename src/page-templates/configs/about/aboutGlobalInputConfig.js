@@ -1,6 +1,18 @@
 import {images} from "../../../configs";
 const aboutGlobalInputConfig={
+  appTitle:"Global Input App",
+  appSubtitle:"About",
   title:"About Global Input App",
+  menu:{
+    link:"/global-input-app/about",
+    linkText:"About"
+  },
+  aboutText:["Please download & install Global Input App"
+          ],
+          aboutText:["Please download & install Global Input App"
+                  ],
+                  
+
   content:[
 
 
@@ -12,7 +24,47 @@ const aboutGlobalInputConfig={
     "As the mobile is becoming increasingly important in our working practice as well as our daily life, the ability to use mobile to operate on business applications are increasingly appealing to the business users.  However, the cost of developing a separate mobile application for each small and big business application is significant.   Global Input App offers a single app solution for multiple device and web applications. An application can simply define Mobile UI elements and callback functions for receiving mobile events within the application itself instead of developing a separate mobile app and figure out how they can communicate with other securely. This can be done in an add-on manner without affecting the business logic and system architecture.",
     "If an application requires users to fill a form, Global Input App can offer users to fill in the form using the data saved in their mobile to automate the operation. This automation makes subscription as easy and quick as Signing In. This means that the application does not need to save user details for a long time causing potential privacy issue. This allow users to truly own their data and the encryption that encrypts their data. Global Input App allows to create, export, import, share and manage encryption keys, and select any of them to encrypt data in the app. The data transfer between Global Input App and the application uses end-to-end encryption and the user has complete control over the data on their mobile.",
     "In the IT environment, IT support may need to share some credentials with staffs or customers securely. Sending encrypted file via email sounds secure, but may cause technical issues on some customers side. And also cannot control how the customers store the decrypted content after decryption. Global Input allows sharing confidential content with different Global Input instances by selecting different encryption key that is previously shared."
-]
+],
+advert:{
+    duration:8000,
+    items:[{
+      title:"Store Content Encrypted in Your Device",
+      content:["Content Stays Encrypted Even in Memory",
+              "Decrypted Only When Needed"],
+    },{
+      title:"Own Your Data and Encryption",
+      content:["Create, Export, Share & Import Encryption Keys",
+              "Select Encryption Key to Encrypt Your Data"],
+    },{
+      title:"Create Encrypted QR Codes",
+      content:["Encrypt Content with Encryption Keys",
+              "Backup and Share Credentials"],
+    },{
+      title:"Scan to Decrypt the Content",
+      content:["Transfer Encrypted Content via QR Code",
+              "Share Encryption Keys Securely"],
+    },{
+      title:"End-to-End Encrypted Data Transfer",
+      content:["Transfer Content Between Devices",
+              "Scan to Start the Data Transfer"],
+    },{
+      title:"No Subscription, No Database on the Cloud",
+      content:["Everything Stored Encrypted in Your Device",
+              "Share Content Between Your Devices"],
+    },{
+      title:"Automate Sign In & Forms",
+      content:["Store and Manage Credentials",
+              "Transfer to Other Device Applications When Needed"],
+    },{
+      title:"Single Mobile App",
+      content:["Mobile Input & Control for Device and Web Applications",
+              "Second Screen Experience for Media Applications"],
+    },{
+      title:"Implementing Mobile Control",
+      content:["Enabling IoT, Smart TV and Web Applications",
+               "Single Mobile App Solution for Multiple Devices"],
+    }],
+}
 
 };
 export default aboutGlobalInputConfig;

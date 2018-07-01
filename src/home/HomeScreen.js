@@ -72,9 +72,36 @@ render() {
 
     return (
 
-      <PageWithHeader image={images.globalInputApp}        
+      <PageWithHeader image={images.globalInputApp}
+          install={applicationPathConfig.home.install}
+          aboutText={applicationPathConfig.home.aboutText}
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
+
+          <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
+                   content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
+                   buttonLabel={applicationPathConfig.videoPlayer.startButton}
+                  buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
+          </div>
+
+
+          <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
+                   content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
+                   buttonLabel={applicationPathConfig.gameExample.startButton}
+                  buttonLink={applicationPathConfig.gameExample.menu.link}/>
+          </div>
+
+          <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.formData.title}
+                   content={applicationPathConfig.formData.content} image={images.transferForm}
+                   buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
+          </div>
+
 
 
          <div style={styles.content}>
@@ -85,6 +112,8 @@ render() {
                        content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
                        buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
               </div>
+
+
               <BookMark bookmark={applicationPathConfig.qrPrinting.menu.bookmark}/>
 
               <div style={styles.itemSection}>
@@ -92,12 +121,7 @@ render() {
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
               </div>
-              <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.formData.title}
-                       content={applicationPathConfig.formData.content} image={images.transferForm}
-                       buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
-              </div>
+
               <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
 
               <div style={styles.itemSection}>
@@ -107,22 +131,9 @@ render() {
                        buttonHRef={blockTextConfig.chrome.install.link}/>
               </div>
 
-              <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
-                       content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
-                       buttonLabel={applicationPathConfig.videoPlayer.startButton}
-                      buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
-              </div>
 
 
-              <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
-                       content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
-                       buttonLabel={applicationPathConfig.gameExample.startButton}
-                      buttonLink={applicationPathConfig.gameExample.menu.link}/>
-              </div>
+
 
 
 
