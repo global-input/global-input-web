@@ -77,6 +77,7 @@ render() {
           aboutText={applicationPathConfig.home.aboutText}
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
+          <div style={styles.content}>
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
           <div style={styles.itemSection}>
@@ -103,8 +104,17 @@ render() {
           </div>
 
 
+          <BookMark bookmark={applicationPathConfig.about.contact.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.about.contact.home.title} reverse={true}
+                   content={applicationPathConfig.about.contact.content} image={images.automateForm}
+                   buttonLabel={applicationPathConfig.about.contact.home.startButton} buttonLink={applicationPathConfig.about.contact.menu.link}/>
+          </div>
 
-         <div style={styles.content}>
+
+
+
+
               <BookMark bookmark={applicationPathConfig.contentTransfer.menu.bookmark}/>
 
               <div style={styles.itemSection}>
@@ -125,7 +135,7 @@ render() {
               <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
 
               <div style={styles.itemSection}>
-                    <DisplayTextImage title={blockTextConfig.chrome.title} reverse={true}
+                    <DisplayTextImage title={blockTextConfig.chrome.title}
                        content={blockTextConfig.chrome.content} image={images.chromeExtension}
                        buttonLabel={blockTextConfig.chrome.startButton}
                        buttonHRef={blockTextConfig.chrome.install.link}/>
