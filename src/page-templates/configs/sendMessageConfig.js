@@ -63,6 +63,7 @@ const sendMessageConfig={
         },
         senderConnected:{
             cancelButton:"Cancel",
+            content:"Please use your mobile to operate on the form.",
             nextButton:"Send Message to us",
 
         },
@@ -188,5 +189,6 @@ const sendMessageConfig={
                   title:"Message Sent",
                   content:"Message is sent successfully"
                 },
+        startButton:"Start",
 }
 export default sendMessageConfig;

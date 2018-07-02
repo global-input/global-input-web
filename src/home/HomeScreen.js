@@ -104,11 +104,11 @@ render() {
           </div>
 
 
-          <BookMark bookmark={applicationPathConfig.about.contact.menu.bookmark}/>
+          <BookMark bookmark={applicationPathConfig.sendMessage.menu.bookmark}/>
           <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.about.contact.home.title} reverse={true}
-                   content={applicationPathConfig.about.contact.content} image={images.automateForm}
-                   buttonLabel={applicationPathConfig.about.contact.home.startButton} buttonLink={applicationPathConfig.about.contact.menu.link}/>
+                <DisplayTextImage title={applicationPathConfig.sendMessage.title} reverse={true}
+                   content={applicationPathConfig.sendMessage.content} image={images.automateForm}
+                   buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
           </div>
 
 

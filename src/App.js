@@ -26,6 +26,8 @@ import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
 import {VideoPlayer} from "./video-player";
 import {GameExample} from "./game-example";
+import {MessageSender} from "./send-message";
+
 
 export default class App extends Component{
   render(){
@@ -45,6 +47,7 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
             <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={VideoPlayer}/>
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
+            <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
         </div>
 
 
