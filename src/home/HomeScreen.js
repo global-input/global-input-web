@@ -72,12 +72,49 @@ render() {
 
     return (
 
-      <PageWithHeader image={images.globalInputApp}        
+      <PageWithHeader image={images.globalInputApp}
+          install={applicationPathConfig.home.install}
+          aboutText={applicationPathConfig.home.aboutText}
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
+          <div style={styles.content}>
+
+          <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
+                   content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
+                   buttonLabel={applicationPathConfig.videoPlayer.startButton}
+                  buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
+          </div>
 
 
-         <div style={styles.content}>
+          <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
+                   content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
+                   buttonLabel={applicationPathConfig.gameExample.startButton}
+                  buttonLink={applicationPathConfig.gameExample.menu.link}/>
+          </div>
+
+          <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.formData.title}
+                   content={applicationPathConfig.formData.content} image={images.transferForm}
+                   buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
+          </div>
+
+
+          <BookMark bookmark={applicationPathConfig.about.contact.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.about.contact.home.title} reverse={true}
+                   content={applicationPathConfig.about.contact.content} image={images.automateForm}
+                   buttonLabel={applicationPathConfig.about.contact.home.startButton} buttonLink={applicationPathConfig.about.contact.menu.link}/>
+          </div>
+
+
+
+
+
               <BookMark bookmark={applicationPathConfig.contentTransfer.menu.bookmark}/>
 
               <div style={styles.itemSection}>
@@ -85,6 +122,8 @@ render() {
                        content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
                        buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
               </div>
+
+
               <BookMark bookmark={applicationPathConfig.qrPrinting.menu.bookmark}/>
 
               <div style={styles.itemSection}>
@@ -92,37 +131,19 @@ render() {
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
               </div>
-              <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.formData.title}
-                       content={applicationPathConfig.formData.content} image={images.transferForm}
-                       buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
-              </div>
+
               <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
 
               <div style={styles.itemSection}>
-                    <DisplayTextImage title={blockTextConfig.chrome.title} reverse={true}
+                    <DisplayTextImage title={blockTextConfig.chrome.title}
                        content={blockTextConfig.chrome.content} image={images.chromeExtension}
                        buttonLabel={blockTextConfig.chrome.startButton}
                        buttonHRef={blockTextConfig.chrome.install.link}/>
               </div>
 
-              <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
-                       content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
-                       buttonLabel={applicationPathConfig.videoPlayer.startButton}
-                      buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
-              </div>
 
 
-              <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
-                       content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
-                       buttonLabel={applicationPathConfig.gameExample.startButton}
-                      buttonLink={applicationPathConfig.gameExample.menu.link}/>
-              </div>
+
 
 
 

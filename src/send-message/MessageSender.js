@@ -16,9 +16,9 @@ import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSe
 
 import {SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
-export default class ContactForm extends Component {
+export default class MessageSender extends Component {
   ACT_TYPE={
-      START:0,
+
       CONNECTING:4,
       CONNECTED:5,
       SENDER_CONNECTED:6,
@@ -34,6 +34,9 @@ export default class ContactForm extends Component {
     }
     componentWillUnmount(){
         this.disconnectGlobalInput();
+    }
+    componentWillMount(){
+      this.connectGlobalInput();
     }
 
    componentWillReceiveProps(nextProps){
@@ -76,7 +79,7 @@ export default class ContactForm extends Component {
     }
     createNewContactFormAction(){
       var action= {
-                actType:this.ACT_TYPE.START,
+                actType:this.ACT_TYPE.CONNECTING,
                 connector:null,
                 connected:false,
                 senders:null,
@@ -390,9 +393,7 @@ sendMessageToUs(){
         else if(action.actType===this.ACT_TYPE.SENDER_CONNECTED && action.connector){
               return this.renderSenderConnected();
         }
-        else if(action.actType===this.ACT_TYPE.CONNECTING){
-              return this.renderConnecting();
-        }
+
         else if(action.actType===this.ACT_TYPE.SEND_MESSAGE_FORM){
               return this.renderSendMessageForm();
 
@@ -404,18 +405,10 @@ sendMessageToUs(){
               return this.renderMessageSent();
         }
         else{
-            return this.renderIntroView();
+              return this.renderConnecting();
         }
     }
-    renderIntroView(){
-      return(
-        <DisplayTextImage
-          content={applicationPathConfig.about.contact.introduction.content}
-          buttonLabel={applicationPathConfig.about.contact.introduction.startButton}
-          buttonOnPress={this.connectGlobalInput.bind(this)}/>
-      );
-
-    }
+    
     renderConnecting(){
        return(
                  <DisplayLoading title={applicationPathConfig.about.contact.connecting.title}

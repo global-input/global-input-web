@@ -1,17 +1,15 @@
 const formDataTransferConfig={
-  title:"Transfer Form Data",
-  appSubtitle:"Transfer Form Data",
+  title:"Sign-in Across Multiple Devices",
+  appSubtitle:"Sign-in Across Multiple Devices",
   menu:{
-     link:"/global-input-app/formd-data-transfer",
+     link:"/global-input-app/form-data-transfer",
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer",
      bookmark:"formDataTransfer"
   },
-  content:["Global Input App manages the encrypted content into the custom fields, forms and folders to help the users to search and locate the data and send the selected data to an application running on another device.",
-            {type:"line", content:["The app allows a device (i.e. Smart TV) or a web application to use the ",{
-              type:"a", content:"global-input-message", href:"https://github.com/global-input/global-input-message"
-            }, " JavaScript library  to define a form and specify the type of the data that the application needs. This enables the Global Input App user to locate the data that the application needs and send it over to the application. This can speed up form operations such as Sign In, Subscription, and online application forms etc.",
-              "The app scans the QR code displayed by the application to obtain the encryption key for the end-to-end encryption and other communication parameters necessary for establishing the communication."]}],
+  content:["In today’s corporate world, you may have to use many applications to accomplish your business tasks: JIRA, Confluence, Salesforce, Gitlab, Github, AWS, WordPress, and many others. From the security perspective, passwords for each application should be different, unrelated and difficult to guess so that if one is compromised, the rest are still safe. A common password manager may resolve this issue if we use a single personal device but in today's working environment, we may have to use multiple shared devices. Typing the master password on those shared devices may compromise the Password Manager itself.  This is especially true for example, if one has to login in on a web application loaded on a shared computer that is attached to a big screen in a conference room.",
+  "The Global Input App can act as a Password Manager on your personal mobile device. By adding the Global Input App extensions to your web application, your users can securely connect to your web application on their mobile device. Once connected, your users can sign-in securely with their encrypted credentials that are stored on their device by the Global Input App.",
+  "Global Input App manages the encrypted content into the custom fields, forms and folders to help the users to search and locate the data and send the selected data to an application running on another device. The application can define defines a form and use registered callback functions to receive mobile inputs. Application can also optional report back the data changes within the application to the application as well.  Press the following \“Start\” button to see how an JavaScript code can build an form to receive mobile input events over the form defined."],
 
   advert:{
                     duration:8000,
@@ -45,17 +43,26 @@ const formDataTransferConfig={
 
 
    compose:{
-     title:"Building Form for Receiving Data",
+     title:"Building Form for Receiving Data from Global Input App",
      content:["Press the \"Next\" button to continue."],
-     footer:["The \"ID\" field is optional. If it is filled in, it will help the Global Input App to filter the data for selection.",
-             "The \"Folder\" field is also optional. It will be used in saving the data in the Global Input App if you have choose to save the data in the app."]
-
+     idField:{
+       help:"The \"ID\" value is used for matching existing data entries in the app. If any matching data found, the app will display the \"Matched\" button, which, if pressed, will list the matched data entries that can be selected to fill in the form to automate the form filling."
+     },
+     folder:{
+       help:"The \"Folder\" value helps the Global Input App to orgnazed data with folders if saved."
+     },
+     fields:{
+       header:["Following lists the pre-defined fields. You do not need to populate the fields at this stage."],
+       footer:["To delete a fiel: select it and then click \"Delete\" button below.",
+       "To add a new field: click on the  \"Add New Field\" button below",
+       "Please click on \"Next\" button to receive data from your Global Input App if you are satisfied with the form above"]
+     }
    },
-   newField:{
-      title:"Adding New Field",
-      content:["Specify the name of the new field that you would like to add to the form:",
-              "Examples: Mobile, Address, Account Number, Post Code ..."],
+    newField:{
+      title:"Adding a new field to the form",
+      content:["Example names of the new field: Mobile, Address, Account Number, Post Code ..."],
       fieldLabel:"Name of the new field",
+
       errorMessages:{
         missingid:"Please provide the name of the new field to add.",
         exists:"The field with the same name already exists."
@@ -71,7 +78,12 @@ const formDataTransferConfig={
    },
    senderConnected:{
      title:"Transfer Form Data",
-      content:"You can now enter content or select the existing form data on your mobile. The data will be transferred live to the form below. Or you can enter content in the form below, the content will be transferred back live to your mobile.",
+      content:"You can now type content either in the form on your mobile or in the form below and they will be synchronized with each other as you type."                
+   },
+
+   disConnected:{
+     title:"Transfer Form Data",
+      content:["Your Global Input App is now disconnected"],
    },
 
 
@@ -83,8 +95,10 @@ const formDataTransferConfig={
       copied:"The content of the text field is copied into your clipboard"
     },
     startButton:"Start",
-    cancelButton:"Cancel",
-    finishButton:"Back",
+    cancelButton:"Back",
+    backButton:"Back",
+    restartButton:"Restart",
+    finishButton:"Finish",
     nextButton:"Next",
     backButton:"Back",
     addNewFieldButton:"Add New Field",

@@ -36,9 +36,6 @@ const images={
   privacy:require("../images/privacy.png"),
   videoPlayerAdvert:require("../images/video-player-advert.png"),
   gameAdvert:require("../images/game-advert.png"),
-
-
-
-
+  automateForm:require("../images/automate-form.png"),
 }
 export default images;

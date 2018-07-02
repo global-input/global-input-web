@@ -4,11 +4,19 @@ export const styles={
     flexDirection:"column",
     justifyContent:"center",
     alignItems:"center",
-    width:"100%",
-    padding:5,
-    paddingTop:10,
-
+    width:"100%"
   },
+  itemSection:{
+     marginTop:10,
+     paddingTop:10,
+     marginBottom:10,
+     paddingLeft:20,
+     paddingRight:20,
+     paddingBottom:0,
+     backgroundColor:"white",
+     width:"100%"
+  },
+
   selectionContainer:{
     display:"flex",
     flexDirection:"row",
@@ -23,19 +31,8 @@ export const styles={
   buttonContainer:{
       display:"flex",
       flexDirection:"row",
-      justifyContent:"space-between",
-      alignItems:"center",
-      flexWrap:"wrap",
-      width:"100%",
-      marginTop:20,
-      marginBottom:10
-  },
-  narrowButtonContainer:{
-      display:"flex",
-      flexDirection:"row",
       justifyContent:"center",
       alignItems:"center",
-      flexWrap:"wrap",
       width:"100%",
       marginTop:20,
       marginBottom:10
@@ -65,9 +62,8 @@ export const styles={
 
   },
   formContainer:{
-    width:"100%",
+    minWidth:400,
     padding:50,
-
   },
   fieldrow:{
       display:"flex",

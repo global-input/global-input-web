@@ -14,7 +14,7 @@ const styles={
       appImage:{
         marginTop:20
       },
-      link:{
+        link:{
           color:"white",
           textDecoration:"underline"
       },
@@ -65,8 +65,8 @@ const styles={
         fontWeight: 300,
       },
       instruction:{
-        fontSize: 14,
-        color: "#414242",
+        fontSize: 22,
+        color: "#4880ED",
         fontWeight: 300,
       },
       buttonContainer:{
@@ -143,8 +143,12 @@ const styles={
         flex:1,
 
       },
+      fixedAdvertContainer:{
+        paddingTop:5,
+        paddingBottom:10
+      },
       installContainer:{
-        paddingTop:5
+
 
       },
       advertItemContainer:{
@@ -160,6 +164,9 @@ const styles={
 
         overflow:"scroll",
 
+      },
+      advertLine:{
+        color:"white"
       }
 
 

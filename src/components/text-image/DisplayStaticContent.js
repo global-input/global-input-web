@@ -20,7 +20,7 @@ export  default class DisplayStaticContent extends Component {
     if(this.props.lineStyle){
       return this.props.lineStyle;
     }
-    else{      
+    else{
         return styles.lineStyleMobile;
     }
   }
@@ -72,6 +72,13 @@ export  default class DisplayStaticContent extends Component {
             </a>
         );
       }
+      else if(item.type==='link'){
+
+        return (
+          <Link to={item.link} style={this.props.linkStyle} key={key}>{this.renderItem(item.content, this.ITEM_TYPE.SPAN)}</Link>
+        );
+      }
+
       else if(item.type==='div'){
         return (
             <div className={item.className} key={key}>

@@ -5,13 +5,13 @@ const contentTransferConfig={
       backLink:"/?scrollTo=contentTransfer",
       bookmark:"contentTransfer"
     },
-    title:"Encrypted Content Transfer",
+    title:"Encrypted Content Storage & Transfer",
     appSubtitle:"Content Transfer",
-    content:["You can use the Global Input App to transfer content between your devices using end-to-end encryption.",
-             "Global Input not only can transfer data to other app instances, but also to other device applications. For example, here you can use the app to transfer content to JavaScript code in this page.",
-              {type:"line", content:["This example shows how an app can transfer content to ",{
-                type:"a", content:"JavaScript code", href:"https://github.com/global-input/global-input-message"
-              }, "  in a webpage, thus allowing you to transfer content from your mobile to your computer and vice versa."]}],
+    content:[
+             "Global Input App makes it possible for you to own your data and the encryption that encrypts your data by storing your data encrypted in your device only, and allowing you manage encryptions keys that encrypts your data. You can create, export, import, manage and share the encryption keys in the app, while the encryptions keys are encrypted with your login app password.  All your data stays encrypted and it is decrypted only when it is needed, and the app provides data transfer between your devices using the end-to-end encryption. Please download and run the app following the link on top of the page, and then press the “+” button on the \”Data\” tab to create  new data entries. While you are creating or editing a data entry, you can press the QR button, which displays a QR code. If you scan the QR code with another Global Input App instance, you will be able to enter content on both devices and the entered content will be synchronized with both devices as you type.",
+              {type:"line", content:["It is also possible to transfer content between your Global Input App and a JavaScript code using end-to-end encryption. Please press the following \”Start\” button to start the JavaScript code in the page. The code receives mobile input events via a callback function. The callback function is registered to the ",{
+                type:"a", content:"global-input-message", href:"https://github.com/global-input/global-input-message"
+              }, " JavaScript library, which implements the logic encryption/decryption and forwarding the messages via ",{type:"a",content:""}]}],
 
     advert:{
             duration:8000,

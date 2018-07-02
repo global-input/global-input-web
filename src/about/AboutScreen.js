@@ -22,7 +22,7 @@ import {DisplayTextImage} from "../components";
 
 
 
-import {PageWithHeader,blockTextConfig} from "../page-templates";
+import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 import {ContactForm} from "../contact-form";
 
@@ -72,12 +72,10 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.about.home.advert}  selected={blockTextConfig.about.home.menu}
-        
-
-
-
-        appTitle={blockTextConfig.about.home.appTitle} appSubtitle={blockTextConfig.about.home.appSubtitle}>
+      <PageWithHeader  advert={blockTextConfig.about.globalInputApp.advert}  selected={blockTextConfig.about.globalInputApp.menu}
+        appTitle={blockTextConfig.about.globalInputApp.appTitle} appSubtitle={blockTextConfig.about.globalInputApp.appSubtitle}
+        install={applicationPathConfig.home.install}
+        aboutText={blockTextConfig.about.globalInputApp.aboutText}>
          <div style={styles.content}>
                <div style={styles.itemSection}>
                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.title}

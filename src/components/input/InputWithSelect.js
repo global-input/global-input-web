@@ -5,6 +5,7 @@ export default class InputWithSelect extends Component{
 
   render(){
          return(
+
                <div style={styles.fieldrow}>
                      <InputWithLabel
                              type={this.props.type}
@@ -12,6 +13,7 @@ export default class InputWithSelect extends Component{
                              fieldIndex={this.props.fieldIndex}
                              fieldId={this.props.fieldId}
                              value={this.props.value}
+                             readOnly={this.props.readOnly}
                              label={this.props.label}/>
                         <input style={styles.checkboxButton}
                               type="checkbox" checked={this.props.fieldSelected}
@@ -26,5 +28,8 @@ export default class InputWithSelect extends Component{
                </div>
          );
   }
+
+
+
 
 }

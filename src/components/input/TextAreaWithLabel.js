@@ -8,6 +8,7 @@ export default class TextAreaWithLabel extends Component{
                    <textarea  className="form-control" id={this.props.fieldId}
                      rows={this.props.rows}
                      cols={this.props.cols}
+                     readOnly={this.props.readOnly}
                      onChange={(evt) => {
                      this.props.onChange(evt.target.value,this.props.fieldIndex);
                  }} value={this.props.value} required/>
