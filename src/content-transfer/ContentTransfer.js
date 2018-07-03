@@ -64,7 +64,7 @@ export default class ContentTransfer extends Component {
     }
 
     createNewAction(){
-      
+
       return {
                 actType:this.ACT_TYPE.CONNECTING,
                 connector:null,

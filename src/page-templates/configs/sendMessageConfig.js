@@ -7,7 +7,8 @@ const sendMessageConfig={
     },
     title:"Form Automation via Mobile",
     appSubtitle:"Form Automation via Mobile",
-    content:["An application may require user details in order to operate, so users may have to fill in a long form at the beginning. But the privacy laws may not permit the application to hold own to the user data for a long time. Global Input App allows the user to store his/her own user details in the app’s storage encrypted, and then push the data to the application when it is needed, in some case eliminating the need for the application to store the user details. For example, a media application may need to personalise the user experience using the user data, this data be can stored as part of the authentication in Global Input App, and the user may choose to send the data to the application to get the personalized experience, thus eliminating the need for the application to store the user data on the server. This makes the application’s privacy policy much simpler. Press the following \"Start\" button to see an example in action"
+    content:["An application may require user details in order to operate, so users may have to fill in a long form at the beginning. But the privacy laws may not permit the application to own the user data for a long time.",
+          "Global Input App allows the user to store his/her own user details in the app’s storage encrypted, and then push the data to the application when it is needed, in some cases eliminating the need for the application to store the user details. For example, a media application may need to personalise the user experience using the user data, this data be can stored as part of the authentication in Global Input App, and the user may choose to send the data to the application to get the personalized experience, thus eliminating the need for the application to store the user data on the server. This makes the application’s privacy policy much simpler. See how an application can define a form declaratively receive UI elements from the demo"
     ],
     advert:{
         duration:8000,
@@ -63,6 +64,7 @@ const sendMessageConfig={
         },
         senderConnected:{
             cancelButton:"Cancel",
+            content:"Please use your mobile to operate on the form.",
             nextButton:"Send Message to us",
 
         },
@@ -188,5 +190,7 @@ const sendMessageConfig={
                   title:"Message Sent",
                   content:"Message is sent successfully"
                 },
+        startButton:"Try It",
+        cancelButton:"Back"
 }
 export default sendMessageConfig;
