@@ -7,9 +7,8 @@ const formDataTransferConfig={
      backLink:"/?scrollTo=formDataTransfer",
      bookmark:"formDataTransfer"
   },
-  content:["In today’s corporate world, you may have to use many applications to accomplish your business tasks: JIRA, Confluence, Salesforce, Gitlab, Github, AWS, WordPress, and many others. From the security perspective, passwords for each application should be different, unrelated and difficult to guess so that if one is compromised, the rest are still safe. A common password manager may resolve this issue if we use a single personal device but in today's working environment, we may have to use multiple shared devices. Typing the master password on those shared devices may compromise the Password Manager itself.  This is especially true for example, if one has to login in on a web application loaded on a shared computer that is attached to a big screen in a conference room.",
-  "The Global Input App can act as a Password Manager on your personal mobile device. By adding the Global Input App extensions to your web application, your users can securely connect to your web application on their mobile device. Once connected, your users can sign-in securely with their encrypted credentials that are stored on their device by the Global Input App.",
-  "Global Input App manages the encrypted content into the custom fields, forms and folders to help the users to search and locate the data and send the selected data to an application running on another device. The application can define defines a form and use registered callback functions to receive mobile inputs. Application can also optional report back the data changes within the application to the application as well.  Press the following \“Start\” button to see how an JavaScript code can build an form to receive mobile input events over the form defined."],
+  content:["In today’s corporate world, you may have to use many applications to accomplish your business tasks: JIRA, Confluence, Salesforce, Gitlab, Github, AWS, WordPress, and many others. From the security perspective, passwords for each application should be different, unrelated and difficult to guess so that if one is compromised, the rest are still safe. A common password manager may resolve this issue if we use a single personal device but in today's working environment, we may have to use multiple shared devices. Typing the master password on those shared devices may compromise the Password Manager itself. This is especially true for example, if one has to login in on a web application loaded on a shared computer that is attached to a shared screen in a conference room.",
+  "The Global Input App can act as a Password Manager on your personal mobile device. By adding the Global Input App extensions to your web application, your users can securely connect to your web application on their mobile device. Once connected, your users can sign-in securely with their encrypted credentials that are stored on their device by the Global Input App."],
 
   advert:{
                     duration:8000,
@@ -78,7 +77,7 @@ const formDataTransferConfig={
    },
    senderConnected:{
      title:"Transfer Form Data",
-      content:"You can now type content either in the form on your mobile or in the form below and they will be synchronized with each other as you type."                
+      content:"You can now type content either in the form on your mobile or in the form below and they will be synchronized with each other as you type."
    },
 
    disConnected:{
@@ -94,7 +93,7 @@ const formDataTransferConfig={
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
     },
-    startButton:"Start",
+    startButton:"Try It",
     cancelButton:"Back",
     backButton:"Back",
     restartButton:"Restart",

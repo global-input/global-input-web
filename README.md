@@ -28,4 +28,23 @@ It is also the same default test web application when you install the [Global In
 or
 >```npm start```
 
-This React JS application is created with ```create-react-app```, and [the generated readme file is available here](https://github.com/global-input/global-input-web/blob/master/README-original.md)
+#### Example of Simple Content Transfer with Global Input App
+The RectJS component:   ```src/content-transfer/ContentTransfer.js```
+
+#### Example of Implementing Sign In via Mobile
+The RectJS component:   ```src/formdata-transfer/FormDataTransfer.js```
+
+
+#### Example of Extending a Video Player to Control via Mobile
+The RectJS component:   ```src/video-player/VideoPlayer.js```
+
+#### Example of Extending a Video Game to Control via Mobile
+The RectJS component:   ```src/game-example/GameExample.js```
+
+
+#### Example of Form Automation (Multi-Steps) via Mobile
+The RectJS component:   ```src/send-message/MessageSender.js```
+
+
+#### Example of Printing Encrypted QR Code
+The RectJS component:   ```src/qr-printing/QRCodePrinting.js```

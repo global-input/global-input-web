@@ -150,7 +150,7 @@ export default class MessageSender extends Component {
                                                 viewId:"footer",
                                                 operations:{
                                                       onInput: value=>{
-                                                            this.disconnectGlobalInput();
+                                                            this.connectGlobalInput();
                                                       }
                                                 }
                                     },{
@@ -259,7 +259,7 @@ export default class MessageSender extends Component {
                                           viewId:"footer",
                                           operations:{
                                                 onInput: value=>{
-                                                      this.disconnectGlobalInput();
+                                                      this.connectGlobalInput();
                                                 }
                                           }
                                   },{
@@ -535,13 +535,16 @@ renderAField(formField, index){
           aboutText={applicationPathConfig.about.home.aboutText}>
           <div style={styles.content}>
 
-              <DisplayQRCode
 
-                content={applicationPathConfig.sendMessage.connected.content}
-                qrCodeContent={qrCodeContent}
-                buttonLabel={applicationPathConfig.sendMessage.connected.backButton}
-                onButtonPressed={this.disconnectGlobalInput.bind(this)}/>
+
+                <DisplayQRCode
+                  content={applicationPathConfig.sendMessage.connected.content}
+                  qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
+                  buttonLabel={applicationPathConfig.sendMessage.cancelButton}
+                  link={applicationPathConfig.sendMessage.menu.backLink}/>
+
             </div>
+
       </PageWithHeader>
 
       );
@@ -623,7 +626,7 @@ renderAField(formField, index){
                              <div style={styles.buttonContainer}>
                                  {this.renderCopyButton()}
                                  <TextButton label={applicationPathConfig.about.contact.senderConnected.cancelButton}
-                                   onPress={this.disconnectGlobalInput.bind(this)}/>
+                                   onPress={this.connectGlobalInput.bind(this)}/>
 
                                  <TextButton label={applicationPathConfig.about.contact.messageForm.sendButton.label}
                                    onPress={this.sendMessageToUs.bind(this)}/>
@@ -642,8 +645,10 @@ renderAField(formField, index){
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
            aboutText={applicationPathConfig.developer.aboutText}>
+           <div style={styles.content}>
                 <DisplayLoading title={applicationPathConfig.about.contact.sendingMessage.title}
                   content={applicationPathConfig.about.contact.sendingMessage.content}/>
+          </div>
         </PageWithHeader>
      );
    }
@@ -653,9 +658,11 @@ renderAField(formField, index){
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
            aboutText={applicationPathConfig.developer.aboutText}>
+            <div style={styles.content}>
         <DisplayTextImage
           title={applicationPathConfig.about.contact.messageSent.title}
           content={applicationPathConfig.about.contact.messageSent.content}/>
+       </div>
       </PageWithHeader>
       );
    }

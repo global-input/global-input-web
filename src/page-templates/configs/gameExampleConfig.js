@@ -13,9 +13,7 @@ const gameExampleConfig={
         backLink:"/?scrollTo=gameExample",
         bookmark:"gameExample"
     },
-    content:["The personal mobile device is becoming increasingly important in our daily lives and the ability to use these devices for business applications is becoming more widespread. However, the cost of developing a separate mobile application and the associated server-side integration for each business application is quite significant.",
-    "The Global Input App offers a single mobile app solution for multiple device and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and callback functions for receiving mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture. The communication between the Global Input App and the application is secured with end-to-end encryption.",
-    "Press the following “start” to see an example of mobile control on an JavaScript application."],
+    content:["The Global Input App offers a single mobile app solution for multiple device and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and callback functions for receiving mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture."],
 
     advert:{
             duration:8000,
@@ -124,7 +122,7 @@ const gameExampleConfig={
         title:"Video Game Controller Example",
         content:"Please use the controller displayed in your Global Input App to control the game."
     },
-    startButton:"Start",
+    startButton:"Try It",
     cancelButton:"Back",
     finishButton:"Back"
 }
