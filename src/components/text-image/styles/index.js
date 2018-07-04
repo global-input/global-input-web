@@ -12,6 +12,18 @@ var styles={
         marginBottom: 15,
         color: "#4880ED"
      },
+
+     imageTitle:{
+       fontWeight: 500,
+       fontSize: 26,
+       marginTop: 10,
+       marginBottom: 5,
+       color: "#4880ED",
+       display:"flex",
+       flexDirection:"column",
+       justifyContent:"center",
+       alignItems:"center"
+     },
      buttonContainer:{
          display:"flex",
          flexDirection:"row",
@@ -40,6 +52,13 @@ var styles={
        color: "#414242",
        fontWeight: 300,
      },
+     imageContainer:{
+       display:"flex",
+       flexDirection:"column",
+       justifyContent:"center",
+       alignItems:"center",
+       width:"100%"
+     },
      image:{
        maxWidth: "100%",
        height: "auto"
@@ -53,7 +72,7 @@ var styles={
      },
      mobileImageContainer:{
        display:"flex",
-       flexDirection:"row",
+       flexDirection:"column",
        justifyContent:"center",
        alignItems:"center",
        width:"100%"
@@ -68,6 +87,12 @@ styles.sectionHeadingMobile=Object.assign({},styles.sectionHeading,{
         fontSize: 20,
         paddingTop:10,
 });
+styles.imageTitleMobile=Object.assign({},styles.imageTitle,{
+        fontSize: 20,
+});
+
+
+
 styles.lineStyleMobile=Object.assign({},styles.lineStyle,{
           fontWeight: 300,
 });

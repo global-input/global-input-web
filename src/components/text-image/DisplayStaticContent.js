@@ -65,6 +65,20 @@ export  default class DisplayStaticContent extends Component {
                   </div>
               }
       }
+      else if(item.type==='ul'){
+            if(typeof key==='undefined'){
+                return(
+                  <ul>
+                  </ul>
+                );
+            }
+            else{
+                return(
+                  <ul key={key}>
+                  </ul>
+                );
+            }
+      }
       else if(item.type==='a'){
         return (
             <a href={item.href} style={this.props.linkStyle} key={key}>

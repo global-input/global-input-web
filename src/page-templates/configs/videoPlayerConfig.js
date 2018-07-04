@@ -1,12 +1,17 @@
+
+import {images} from "../../configs";
 const PLAY_PAUSE_BUTTON_STATUS={
     CAN_PLAY:0,
     CAN_PAUSE:1
 }
 
+
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"Second Screen Input & Control",
+    title:"Second Screen Input & Control", 
     appSubtitle:"Second Screen input & Control",
+    imageTitle:["Extending Media Applications",
+                "to Mobile Devices"],
 
     menu:{
         link:"/global-input-app/video-player",

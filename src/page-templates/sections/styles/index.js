@@ -162,7 +162,7 @@ const styles={
         width:"100%",
 
 
-        overflow:"scroll",
+        overflow:"visible",
 
       },
       advertLine:{

@@ -71,6 +71,20 @@ const  homeTextConfig={
               },
               "It removes the need for the reliance on the security in the storages, networks, servers and cloud infrastructures or the reliance on the authorisation from security authorities.",
               "It stores all the data in your devices, and encrypts the data with the encryption keys that you also manage in the app. Your data is decrypted only at the point where needed and discards the decrypted data as soon as possible afterwards. The data transfer between your devices uses end-to-end encryption using the the encryption key generated on the fly. You can also use it to create and read encrypted QR codes, which are suitable if you prefer to use papers to store and transfer encrypted contents. You can use this app as a Universal Device Input App, an Authentication Device, a Password Manager, a Encrypted QR creator and reader and much more."
-          ]
+          ],
+  platform:{
+         title:"Global Input Platform",
+         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. Once connected, the platform provides the features to exchange content securely between the mobile device and the web application. The platform opens up a wide range of functions:"],
+         availableFunctions:[
+            "User authentication via mobile initiated by scanning QR codes for applications.",
+            "Second screen control of media applications.",
+            "Mobile input for IoT, Smart TV and web applications.",
+            "Form automation using mobile device.",
+            "Password management in User’s device.",
+            "Exchange of confidential information between web applications and staff mobile devices as well as between devices."
+         ],
+         content2:["Many of the above use cases are available as samples below."]
+
+  }
 };
 export default homeTextConfig;

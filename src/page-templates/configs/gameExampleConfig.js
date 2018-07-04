@@ -13,7 +13,9 @@ const gameExampleConfig={
         backLink:"/?scrollTo=gameExample",
         bookmark:"gameExample"
     },
-    content:["The Global Input App offers a single mobile app solution for multiple device and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and callback functions for receiving mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture."],
+    content:["Global Input App offers a single mobile app solution for multiple device and web applications.",
+             "Existing IoT, Smart TV, and web applications can be extended by defining mobile UI elements and callback functions for receiving mobile events without affecting the existing business logic and system architecture.",
+             "The mobile input and control logic can be implemented within the web application itself without developing a separate mobile app."],
 
     advert:{
             duration:8000,

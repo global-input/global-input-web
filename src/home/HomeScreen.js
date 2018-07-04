@@ -78,11 +78,19 @@ render() {
           advert={applicationPathConfig.home.advert}
           selected={applicationPathConfig.home.menu}>
           <div style={styles.content}>
+                <div style={styles.itemSection}>
+                  <DisplayTextImage title={applicationPathConfig.home.platform.title}
+                     content={applicationPathConfig.home.platform.content}/>
+                </div>
+
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
                    content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
+                   mobileImage={images.mobile.videoPlayerAdvert}
+
+
                    buttonLabel={applicationPathConfig.videoPlayer.startButton}
                   buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
           </div>
@@ -92,6 +100,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
                    content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
+                   mobileImage={images.mobile.gameAdvert}
                    buttonLabel={applicationPathConfig.gameExample.startButton}
                   buttonLink={applicationPathConfig.gameExample.menu.link}/>
           </div>
@@ -100,6 +109,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.formData.title}
                    content={applicationPathConfig.formData.content} image={images.transferForm}
+                   mobileImage={images.mobile.transferForm}
                    buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
           </div>
 
@@ -108,6 +118,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.sendMessage.title} reverse={true}
                    content={applicationPathConfig.sendMessage.content} image={images.automateForm}
+                   mobileImage={images.mobile.automateForm}
                    buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
           </div>
 
@@ -120,6 +131,7 @@ render() {
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.contentTransfer.title}
                        content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
+                       mobileImage={images.mobile.contentTransfer}
                        buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
               </div>
 
@@ -129,6 +141,7 @@ render() {
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.qrPrinting.title} reverse={true}
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
+                       mobileImage={images.mobile.encryptedQRCode}
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
               </div>
 
@@ -137,6 +150,7 @@ render() {
               <div style={styles.itemSection}>
                     <DisplayTextImage title={blockTextConfig.chrome.title}
                        content={blockTextConfig.chrome.content} image={images.chromeExtension}
+                       mobileImage={images.mobile.chromeExtension}
                        buttonLabel={blockTextConfig.chrome.startButton}
                        buttonHRef={blockTextConfig.chrome.install.link}/>
               </div>

@@ -7,8 +7,9 @@ const sendMessageConfig={
     },
     title:"Form Automation via Mobile",
     appSubtitle:"Form Automation via Mobile",
-    content:["An application may require user details in order to operate, so users may have to fill in a long form at the beginning. But the privacy laws may not permit the application to own the user data for a long time.",
-          "Global Input App allows the user to store his/her own user details in the app’s storage encrypted, and then push the data to the application when it is needed, in some cases eliminating the need for the application to store the user details. For example, a media application may need to personalise the user experience using the user data, this data be can stored as part of the authentication in Global Input App, and the user may choose to send the data to the application to get the personalized experience, thus eliminating the need for the application to store the user data on the server. This makes the application’s privacy policy much simpler. See how an application can define a form declaratively receive UI elements from the demo"
+    content:["Global Input App makes it possible for an application to provide users with options to save data in users’ personal device and send the data back to the application using end-to-end encryption.",
+            "The solution can simplify the implementation of user privacy policy. An application can choose not to save user details into its database or can choose to store them for a short period of time. User can push the data back from his/her device to the application when needed.",
+            "The solution can allow a media application to implement personalisation of user experience without storing user details and habits in its database."
     ],
     advert:{
         duration:8000,

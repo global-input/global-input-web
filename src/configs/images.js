@@ -37,5 +37,18 @@ const images={
   videoPlayerAdvert:require("../images/video-player-advert.png"),
   gameAdvert:require("../images/game-advert.png"),
   automateForm:require("../images/automate-form.png"),
+  titles:{
+        secondSecreenInput:require("../images/title-images/second-screen-input.png"),
+  },
+  mobile:{
+    videoPlayerAdvert:require("../images/mobile/video-player-advert.png"),
+    gameAdvert:require("../images/mobile/game-advert.png"),
+    transferForm:require("../images/mobile/transfer-form.png"),
+    automateForm:require("../images/mobile/automate-form.png"),
+    contentTransfer:require("../images/mobile/content-transfer.png"),
+    encryptedQRCode:require("../images/mobile/encrypted-qr-code.png"),
+    chromeExtension:require("../images/mobile/chrome-extension.png"),
+
+  }
 }
 export default images;
