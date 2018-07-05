@@ -32,6 +32,7 @@ export  default class DisplayStaticContent extends Component {
       return styles.spanStyle;
     }
   }
+
   renderItem(content,type,key){
         if(typeof content==='object'){
               return this.renderObject(content,type,key);
@@ -52,6 +53,20 @@ export  default class DisplayStaticContent extends Component {
               );
           }
     }
+    renderListItem(content, index){
+      if(typeof content==='object'){
+            return(
+              <li key={index} style={styles.listItemStyle}>{this.renderObject(content,this.ITEM_TYPE.SPAN)}</li>
+            );
+      }
+      else{
+          return(
+            <li key={index} style={styles.listItemStyle}>{content}</li>
+          );
+      }
+
+
+    }
     renderObject(item,type,key){
       if(Array.isArray(item)){
               if(typeof key==='undefined'){
@@ -69,12 +84,14 @@ export  default class DisplayStaticContent extends Component {
             if(typeof key==='undefined'){
                 return(
                   <ul>
+                    {item.content.map(this.renderListItem.bind(this))}
                   </ul>
                 );
             }
             else{
                 return(
                   <ul key={key}>
+                    {item.content.map(this.renderListItem.bind(this))}
                   </ul>
                 );
             }
@@ -100,7 +117,15 @@ export  default class DisplayStaticContent extends Component {
             </div>
         );
       }
+      else if(item.type==='sub'){
+        return(
+        <div style={this.props.linkStyle} key={key}>
+              <div style={styles.subtitle}>{item.title}</div>
+              {this.renderItem(item.content,this.ITEM_TYPE.LINE)}
+        </div>
+      );
 
+      }
 
       else if(item.type==='line'){
             return (

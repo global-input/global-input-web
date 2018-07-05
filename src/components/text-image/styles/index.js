@@ -12,6 +12,14 @@ var styles={
         marginBottom: 15,
         color: "#4880ED"
      },
+     subtitle:{
+       fontFamily: "'Elysio-Light',Helvetica,Arial,sans-serif",
+       fontWeight: 500,
+       fontSize: 20,
+       marginTop: 0,
+       
+       color: "#4880ED"
+     },
 
      imageTitle:{
        fontWeight: 500,
@@ -46,6 +54,11 @@ var styles={
        color: "#414242",
        fontWeight: 300,
        marginBottom:10
+     },
+     listItemStyle:{
+       fontSize: 16,
+       color: "#414242",
+       fontWeight: 300,
      },
      spanStyle:{
        fontSize: 16,

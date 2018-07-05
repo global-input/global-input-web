@@ -62,7 +62,7 @@ const qrPrintingConfig={
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
     },
-    startButton:"Start",
+    startButton:"Try It",
     cancelButton:"Back",
     printButton:"Print",
     finishButton:"Back"

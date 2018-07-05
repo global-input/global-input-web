@@ -8,10 +8,7 @@ const  homeTextConfig={
 
   aboutText:[{
               type:"line",
-              content:[
-                       {content:"Read More", type:"link",link:"/global-input-app/about"},
-                       " about Global Input App"
-                      ],
+              content:["Get Global Input App Free"],
               }
           ],
   install:[
@@ -74,16 +71,47 @@ const  homeTextConfig={
           ],
   platform:{
          title:"Global Input Platform",
-         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. Once connected, the platform provides the features to exchange content securely between the mobile device and the web application. The platform opens up a wide range of functions:"],
-         availableFunctions:[
-            "User authentication via mobile initiated by scanning QR codes for applications.",
-            "Second screen control of media applications.",
-            "Mobile input for IoT, Smart TV and web applications.",
-            "Form automation using mobile device.",
-            "Password management in User’s device.",
-            "Exchange of confidential information between web applications and staff mobile devices as well as between devices."
-         ],
-         content2:["Many of the above use cases are available as samples below."]
+         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. Once connected, the platform provides the features to exchange content securely between the mobile device and the web application. The platform opens up a wide range of functions:",
+            {type:"ul",content:[
+               "User authentication via mobile initiated by scanning QR codes for applications.",
+               "Second screen control of media applications.",
+               "Mobile input for IoT, Smart TV and web applications.",
+               "Form automation using mobile device.",
+               "Password management in User’s device.",
+               "Exchange of confidential information between web applications and staff mobile devices as well as between devices."
+            ]},
+            "Many of the above use cases are shown as samples below.",
+            {type:"sub",title:"Features",
+             content:[{
+               type:"ul",
+               content:[
+                 "Users only need to download a single app to use across multiple web applications.",
+                 "User mobile device can become password management tool.",
+                 "A separate mobile application is not required to be developed and deployed.",
+                 "Secure exchange of content from the mobile device to the web application.",
+                 "Content is stored securely on the mobile device.",
+                 "No content is stored on a remote server.",
+                 "No subscription.",
+                 "open-source."
+               ]
+             }
+
+             ]
+           },{
+             type:"sub",title:"How it works",
+             content:[
+                "Extend the Web Application with the Global Input library",
+                "User downloads the Global Input App onto their mobile device.",
+                "The Web Application displays a QR code.",
+                "The user scans the QR code with the Global Input App.",
+                "A secure connection is created between the web application and the Global Input App.",
+                "From here, a range of functions are available. For example, the web application can send declarative UI form information and register call back functions to receive data and actions from the user and respond to them, effectively extending the web application to the mobile device."
+             ]
+
+           }],
+
+
+
 
   }
 };

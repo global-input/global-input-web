@@ -103,10 +103,7 @@ render() {
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.phone.content} lineStyle={styles.linaddress}/>
 
-                                 <div style={styles.subtitle}>{blockTextConfig.about.contact.pageContent.phone.title}</div>
-                                <DisplayStaticContent
-                                   content={blockTextConfig.about.contact.pageContent.phone.content} lineStyle={styles.linaddress}/>
-
+                                 
 
 
                             </div>

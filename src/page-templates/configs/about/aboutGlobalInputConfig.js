@@ -9,10 +9,8 @@ const aboutGlobalInputConfig={
     backLink:"/?scrollTo=contactForm",
     bookmark:"contactForm"
   },
-  aboutText:["Please download & install Global Input App"
+  aboutText:["Get Global Input App Free"
           ],
-          aboutText:["Please download & install Global Input App"
-                  ],
 
 
   content:[

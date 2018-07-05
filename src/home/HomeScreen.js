@@ -10,7 +10,7 @@ import React, {Component} from 'react'
 
 import {images} from "../configs";
 
-import {DisplayTextImage,BookMark} from "../components";
+import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
 
 import {styles} from "./styles";
 
@@ -80,7 +80,7 @@ render() {
           <div style={styles.content}>
                 <div style={styles.itemSection}>
                   <DisplayTextImage title={applicationPathConfig.home.platform.title}
-                     content={applicationPathConfig.home.platform.content}/>
+                     content={applicationPathConfig.home.platform.content}/>                   
                 </div>
 
 

@@ -49,7 +49,7 @@ const formDataTransferConfig={
        help:"The \"ID\" value is used for matching existing data entries in the app. If any matching data found, the app will display the \"Matched\" button, which, if pressed, will list the matched data entries that can be selected to fill in the form to automate the form filling."
      },
      folder:{
-       help:"The \"Folder\" value helps the Global Input App to orgnazed data with folders if saved."
+       help:"The \"Folder\" value helps the Global Input App to organized data with folders if saved."
      },
      fields:{
        header:["Following lists the pre-defined fields. You do not need to populate the fields at this stage."],
