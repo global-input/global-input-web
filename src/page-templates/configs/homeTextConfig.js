@@ -1,4 +1,6 @@
 import {images} from "../../configs";
+import introductionToJSlibraryConfig from "./developers/introductionToJSlibraryConfig";
+import webSocketServerConfig from "./developers/webSocketServerConfig";
 const  homeTextConfig={
   title:"Global Input App ",
   menu:{
@@ -99,14 +101,16 @@ const  homeTextConfig={
              ]
            },{
              type:"sub",title:"How it works",
-             content:[
-                "Extend the Web Application with the Global Input library",
-                "User downloads the Global Input App onto their mobile device.",
-                "The Web Application displays a QR code.",
-                "The user scans the QR code with the Global Input App.",
-                "A secure connection is created between the web application and the Global Input App.",
-                "From here, a range of functions are available. For example, the web application can send declarative UI form information and register call back functions to receive data and actions from the user and respond to them, effectively extending the web application to the mobile device."
-             ]
+             content:["The Global Input platform consists of 3 main components:",{type:"ol",content:[
+               [{type:"link",content:"global-input-message", link:introductionToJSlibraryConfig.menu.link+"#"+introductionToJSlibraryConfig.menu.bookmark}," - a JS websocket library that enables WebSocket client applications to connect to each other with end-to-end encryption and exchange messages via the Global Input WebSocket server."],
+               [{type:"link",content:"global-input-node", link:webSocketServerConfig.menu.link+"#"+webSocketServerConfig.menu.bookmark}, " - a WebSocket server, responsible for transferring encrypted messages between the global-input-message library instances running on the client sides."],
+               "Global Input App - a mobile application that obtains connection information from a QR code and uses the global-input-message library to connect to the Websocket client application securely."
+             ]},
+             "An existing web application can be extended with the global-input-message library to connect to a Global Input WebSocket server. The web application displays a QR code, which contains information such as the URL of the WebSocket server, API key for connection, the encryption key for encryption, etc.",
+            "When a user scans the QR code with the Global Input App, an encrypted communication channel will be established between the web application and the Global Input App via the WebSocket server.",
+            "From here, a range of use-cases are available. For example, the web application can send declarative UI form information and register call back functions to receive data and actions from the user and respond to them, effectively extending the web application to the mobile device.",
+            "See below for sample applications.",
+            {content:["For a more detailed explanation, see the ",{type:"link",content:"developer page", link:introductionToJSlibraryConfig.menu.link}]}]
 
            }],
 

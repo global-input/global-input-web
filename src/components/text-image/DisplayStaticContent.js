@@ -55,9 +55,9 @@ export  default class DisplayStaticContent extends Component {
     }
     renderListItem(content, index){
       if(typeof content==='object'){
-            return(
-              <li key={index} style={styles.listItemStyle}>{this.renderObject(content,this.ITEM_TYPE.SPAN)}</li>
-            );
+          return(
+            <li key={index} style={styles.listItemStyle}>{this.renderObject(content,this.ITEM_TYPE.SPAN)}</li>
+          );
       }
       else{
           return(
@@ -96,9 +96,25 @@ export  default class DisplayStaticContent extends Component {
                 );
             }
       }
+      else if(item.type==='ol'){
+            if(typeof key==='undefined'){
+                return(
+                  <ol>
+                    {item.content.map(this.renderListItem.bind(this))}
+                  </ol>
+                );
+            }
+            else{
+                return(
+                  <ol key={key}>
+                    {item.content.map(this.renderListItem.bind(this))}
+                  </ol>
+                );
+            }
+      }
       else if(item.type==='a'){
         return (
-            <a href={item.href} style={this.props.linkStyle} key={key}>
+            <a href={item.href} style={this.props.linkStyle} key={key} target="_blank">
                   {this.renderItem(item.content, this.ITEM_TYPE.SPAN)}
             </a>
         );
@@ -145,20 +161,22 @@ export  default class DisplayStaticContent extends Component {
       }
 
       else if((!item.type) || item.type==='span'){
-                if(item.className){
-                  return (
-                      <span key={key} className={item.className}>
-                            {item.content}
-                      </span>
-                  );
-                }
-                else{
-                      return (
-                          <span key={key} style={this.getSpanStyle(item)}>
-                                {item.content}
-                          </span>
-                      );
-                }
+                  if(typeof item.content ==='object'){
+                    return (
+                        <span key={key} style={this.getSpanStyle(item)} className={item.className}>
+                              {this.renderObject(item.content)}
+                        </span>
+                    );
+                  }
+                  else{
+                    return (
+                        <span key={key} style={this.getSpanStyle(item)} className={item.className}>
+                              {item.content}
+                        </span>
+                    );
+                  }
+
+
 
       }
       else if(item.type==="splitSpan"){
