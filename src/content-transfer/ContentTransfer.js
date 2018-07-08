@@ -215,7 +215,9 @@ export default class ContentTransfer extends Component {
 
       return(
         <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
-          appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
+          appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}
+          install={applicationPathConfig.home.install}
+          aboutText={applicationPathConfig.about.home.aboutText}>
           <div style={styles.content}>
 
               <DisplayQRCode
@@ -224,6 +226,10 @@ export default class ContentTransfer extends Component {
                 buttonLabel={applicationPathConfig.contentTransfer.cancelButton}
                 link={applicationPathConfig.contentTransfer.menu.backLink}/>
           </div>
+          <div style={styles.content}>
+                <DisplayStaticContent content={applicationPathConfig.contentTransfer.connected.moreInfo}/>
+          </div>
+
       </PageWithHeader>
       );
 

@@ -1,5 +1,5 @@
 const qrPrintingConfig={
-    title:"Sharing/Exchanging Confidential Information",
+    title:"Sharing Encrypted Content Offline",
     appSubtitle:"Encrypted QR Codes",
     menu:{
         link:"/global-input-app/qr-printing",
@@ -8,7 +8,9 @@ const qrPrintingConfig={
          bookmark:"qrPrinting"
     },
     content:[
-    "You can create encrypted QR Codes and print them out. A Global Input App instance can decrypt the encrypted QR Code only if it contains the same encryption key that was used for creating the encrypted QR code. Hence, you can pre-share one of the encryption keys in the app with another Global Input instance to transfer content securely via QR codes."],
+    "Global Input App allows you to backup or share encrypted content using encrypted QR codes.",
+    "Encryption Keys can be pre-shared with another Global Input App instance for sharing encrypted content.",
+    "Encrypted keys can be backed up or shared using password protected QR codes."],
 
     advert:{
             duration:8000,
@@ -60,7 +62,7 @@ const qrPrintingConfig={
     clipboard:{
       copied:"The content of the text field is copied into your clipboard"
     },
-    startButton:"Start",
+    startButton:"Try It",
     cancelButton:"Back",
     printButton:"Print",
     finishButton:"Back"

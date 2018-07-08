@@ -1,13 +1,16 @@
+import {images} from "../../../configs";
 const webSocketServerConfig={
   title:"Global Input WebSocket Server",
   menu:{
      link:"/global-input-app/developers/examples/proxyRepository",
      linkText:"WebSocket Server",
-     bookmark:"websocketserver"
+     bookmark:"websocketserver",
+     url:function(){return this.link+"?scrollTo="+this.bookmark}
    },
-   content:[{type:"line", content: ["The ",{type:"a", content:"global-input-node", href:"https://github.com/global-input/global-input-node"},"  is a Global Input WebSocket Server, which is used by the ", {type:"a",content:"global-input-message",href:"https://github.com/global-input/global-input-message"}," JavaScript library to transfer the end-to-end encrypted data between device applications."]},
-            {type:"line", content: ["A ",  {type:"a", content:"receiver application",href:"https://github.com/global-input/global-input-message#receiver-application"}," uses a QR Code to share the URL of the WebSocket server and the API key required for connecting to the WebSocket server. A ",{type:"a", content:"calling application", href:"https://github.com/global-input/global-input-message#calling-application"}," scans the QR code to obtain these communication parameters as well as the encryption key required for the end-to-end encryption."]}
-          ],
+   content:["The Global Input WebSocket Server (global-input-node) is a WebSocket server, responsible for managing the connections from the  Global Input JavaScript library instances running on the client side. A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also the load balancing of the websocket connections is implemented via a Rest API call as shown in the following diagram.",
+   {type:"centerImage",src:images.developers.webSocketServer},
+   "When an application invokes the connect function on the Global Input JavaScript function, the library first obtains the URL of the actual serving WebSocket node via a Rest API call, and then establish the WebSocket connection to the actual serving node. This ways Global Input WebSocket can manage WebSocket server nodes, and do load balancing. You can install the Global Input WebSocket server from the github repository linked by the following button."
+    ],
     install:{
                link:"https://github.com/global-input/global-input-node",
             },

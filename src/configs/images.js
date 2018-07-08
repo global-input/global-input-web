@@ -29,7 +29,7 @@ const images={
   endToEndEncryption:require("../images/end-to-end-encryption.png"),
   websiteCode:require("../images/website-code.png"),
   jslibrary:require("../images/jslibrary.png"),
-  proxyRepo:require("../images/proxy-server.png"),
+
   aboutGlobalInputApp:require("../images/about-global-input.png"),
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
@@ -37,5 +37,26 @@ const images={
   videoPlayerAdvert:require("../images/video-player-advert.png"),
   gameAdvert:require("../images/game-advert.png"),
   automateForm:require("../images/automate-form.png"),
+  developers:{
+        globalInputPlatform:require("../images/developers/global-input-platform.png"),
+        globalInputDeviceSolution:require("../images/developers/global-input-device-solution.png"),
+        globaInputMessages:require("../images/developers/global-input-messages.png"),
+        webSocketServer:require("../images/developers/websocket-server.png"),
+
+  },
+
+  titles:{
+        secondSecreenInput:require("../images/title-images/second-screen-input.png"),
+  },
+  mobile:{
+    videoPlayerAdvert:require("../images/mobile/video-player-advert.png"),
+    gameAdvert:require("../images/mobile/game-advert.png"),
+    transferForm:require("../images/mobile/transfer-form.png"),
+    automateForm:require("../images/mobile/automate-form.png"),
+    contentTransfer:require("../images/mobile/content-transfer.png"),
+    encryptedQRCode:require("../images/mobile/encrypted-qr-code.png"),
+    chromeExtension:require("../images/mobile/chrome-extension.png"),
+
+  }
 }
 export default images;

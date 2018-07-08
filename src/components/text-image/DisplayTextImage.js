@@ -27,16 +27,33 @@ export  default class DisplayTextImage extends Component {
       }
   }
 
-  renderTextContent(){
+  renderTitle(isMobile){
+    if(isMobile && this.props.mobileImage){
+       return null;
+    }
+    if(typeof this.props.title ==='object'){
+      return(
+              <div style={styles.sectionHeading}>
+                      <img src={this.props.title.image} style={styles.image}/>
+              </div>
+            );
+    }
+    else{
+      return(
+              <div style={styles.sectionHeading}>
+                      {this.props.title}
+              </div>
+            );
+    }
+  }
+  renderDesktopTextContent(){
     var containerClass="col-md-12";
     if(this.props.image){
         containerClass="col-md-6";
     }
     return(
         <div className={containerClass}>
-          <div style={styles.sectionHeading}>
-                  {this.props.title}
-          </div>
+          {this.renderTitle(false)}
           <DisplayStaticContent content={this.props.content}/>
           {this.props.children}
           {this.renderButton()}
@@ -44,20 +61,50 @@ export  default class DisplayTextImage extends Component {
      );
 
   }
+
+  renderImageTitle(isMobile){
+    if(this.props.imageTitle){
+      var imageTitleStyle=styles.imageTitle;
+      if(isMobile){
+        imageTitleStyle=styles.imageTitleMobile;
+      }
+      return(
+
+        <div style={imageTitleStyle}>
+            <DisplayStaticContent content={this.props.imageTitle} lineStyle={imageTitleStyle}/>
+        </div>
+      );
+    }
+    else{
+      return null;
+    }
+
+
+
+  }
   renderImage(isMobile){
 
     if(this.props.image){
       if(isMobile){
+        var imageurl=this.props.image;
+        if(this.props.mobileImage){
+          imageurl=this.props.mobileImage;
+        }
+
         return(
           <div style={styles.mobileImageContainer}>
-              <img src={this.props.image} style={styles.image}/>
+              {this.renderImageTitle(isMobile)}
+              <img src={imageurl} style={styles.image}/>
           </div>
         );
       }
       else{
         return(
           <div className="col-md-6">
-              <img src={this.props.image} style={styles.image}/>
+              <div style={styles.imageContainer}>
+                  {this.renderImageTitle(isMobile)}
+                  <img src={this.props.image} style={styles.image}/>
+              </div>
           </div>
         );
       }
@@ -82,14 +129,14 @@ export  default class DisplayTextImage extends Component {
         return (
                       <div className="row" >
                           {this.renderImage(false)}
-                          {this.renderTextContent()}
+                          {this.renderDesktopTextContent()}
                       </div>
                 );
       }
       else{
         return (
                       <div className="row" >
-                        {this.renderTextContent()}
+                        {this.renderDesktopTextContent()}
                         {this.renderImage(false)}
                       </div>
                 );
@@ -102,11 +149,8 @@ export  default class DisplayTextImage extends Component {
       }
         return (
                       <div style={styles.mobileTextImageContainer}>
-
-                          <div style={sectionHeadingStyle}>
-                                  {this.props.title}
-                          </div>
-                          {this.renderImage(true)}
+                        {this.renderTitle(true)}
+                        {this.renderImage(true)}
                             <DisplayStaticContent content={this.props.content}/>
                             {this.props.children}
                             {this.renderButton()}

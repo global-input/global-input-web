@@ -93,7 +93,7 @@ const styles={
               paddingBottom:0,
               width:"100%",
 
-
+              
       },
 
       pageDescriptionLine:{
@@ -148,7 +148,7 @@ const styles={
         paddingBottom:10
       },
       installContainer:{
-
+        paddingTop:5
 
       },
       advertItemContainer:{
@@ -162,7 +162,7 @@ const styles={
         width:"100%",
 
 
-        overflow:"scroll",
+        overflow:"visible",
 
       },
       advertLine:{

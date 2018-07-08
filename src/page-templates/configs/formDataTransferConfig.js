@@ -1,14 +1,16 @@
 const formDataTransferConfig={
-  title:"Sign-in Across Multiple Devices",
-  appSubtitle:"Sign-in Across Multiple Devices",
+  title:"Sign In Across Multiple Devices",
+  appSubtitle:"Form Data Transfer",
   menu:{
      link:"/global-input-app/form-data-transfer",
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer",
-     bookmark:"formDataTransfer"
+     bookmark:"formDataTransfer",
+     
   },
-  content:["In today’s corporate world, you may have to use many applications to accomplish your business tasks: JIRA, Confluence, Salesforce, Gitlab, Github, AWS, WordPress, and many others. From the security perspective, passwords for each application should be different, unrelated and difficult to guess so that if one is compromised, the rest are still safe. A common password manager may resolve this issue if we use a single personal device but in today's working environment, we may have to use multiple shared devices. Typing the master password on those shared devices may compromise the Password Manager itself. This is especially true for example, if one has to login in on a web application loaded on a shared computer that is attached to a shared screen in a conference room.",
-  "The Global Input App can act as a Password Manager on your personal mobile device. By adding the Global Input App extensions to your web application, your users can securely connect to your web application on their mobile device. Once connected, your users can sign-in securely with their encrypted credentials that are stored on their device by the Global Input App."],
+  content:["Global Input App can act as a Password Manager on your personal mobile device for signing into the web applications with Global Input App extensions.",
+          "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",
+          "Global Input allows to login securely to a web application on a shared computer that is attached to a shared screen in a conference room."],
 
   advert:{
                     duration:8000,
@@ -48,7 +50,7 @@ const formDataTransferConfig={
        help:"The \"ID\" value is used for matching existing data entries in the app. If any matching data found, the app will display the \"Matched\" button, which, if pressed, will list the matched data entries that can be selected to fill in the form to automate the form filling."
      },
      folder:{
-       help:"The \"Folder\" value helps the Global Input App to orgnazed data with folders if saved."
+       help:"The \"Folder\" value helps the Global Input App to organized data with folders if saved."
      },
      fields:{
        header:["Following lists the pre-defined fields. You do not need to populate the fields at this stage."],

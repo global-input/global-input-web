@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {images} from "../configs";
 import {styles} from "./styles";
-import {DisplayTextImage,BookMark} from "../components";
-import {PageWithHeader,blockTextConfig} from "../page-templates";
+import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
+import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
-
+import DisplaySampleCode1 from "./DisplaySampleCode1";
+import DisplaySampleCode2 from "./DisplaySampleCode2";
+import DisplaySampleCode3 from "./DisplaySampleCode3";
+import DisplaySampleCode4 from "./DisplaySampleCode4";
 
 export  default class DevelopersScreen extends Component {
 
@@ -55,30 +58,51 @@ render() {
 
       <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
         appTitle={blockTextConfig.developers.home.appTitle}
+        install={applicationPathConfig.home.install}
+        aboutText={applicationPathConfig.home.aboutText}
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
+
+           <BookMark bookmark={blockTextConfig.developers.home.platform.bookmark}/>
            <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.jslibrary.menu.bookmark}/>
-                 <DisplayTextImage title={blockTextConfig.developers.jslibrary.title}
-                    content={blockTextConfig.developers.jslibrary.content} image={images.jslibrary}
-                    buttonLabel={blockTextConfig.developers.jslibrary.startButton}
-                    buttonHRef={blockTextConfig.developers.jslibrary.install.link}/>
+
+                 <DisplayTextImage title={blockTextConfig.developers.home.platform.title}
+                    content={blockTextConfig.developers.home.platform.content}/>
            </div>
+
+           <BookMark bookmark={blockTextConfig.developers.jslibrary.menu.bookmark}/>
            <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.websocketServer.menu.bookmark}/>
+
+                 <DisplayTextImage title={blockTextConfig.developers.jslibrary.title}
+                    buttonLabel={blockTextConfig.developers.jslibrary.startButton}
+                    buttonHRef={blockTextConfig.developers.jslibrary.install.link}>
+                    <DisplayStaticContent content={blockTextConfig.developers.jslibrary.content}
+                      sampleCode1={<DisplaySampleCode1/>}  sampleCode2={<DisplaySampleCode2/>}
+                      sampleCode3={<DisplaySampleCode3/>}
+                      sampleCode4={<DisplaySampleCode4/>}/>
+
+
+                </DisplayTextImage>
+
+
+
+           </div>
+
+           <div style={styles.itemSection}>
+                <BookMark bookmark={blockTextConfig.developers.websocketServer.menu.bookmark}/>
                  <DisplayTextImage title={blockTextConfig.developers.websocketServer.title} reverse={true}
-                    content={blockTextConfig.developers.websocketServer.content} image={images.proxyRepo}
+                    content={blockTextConfig.developers.websocketServer.content}
                     buttonLabel={blockTextConfig.developers.websocketServer.startButton}
                     buttonHRef={blockTextConfig.developers.websocketServer.install.link}/>
            </div>
-           <div style={styles.itemSection}>
-                  <BookMark bookmark={blockTextConfig.developers.websiteSourceCode.menu.bookmark}/>
-                 <DisplayTextImage title={blockTextConfig.developers.websiteSourceCode.title}
-                    content={blockTextConfig.developers.websiteSourceCode.content} image={images.websiteCode}
-                    buttonLabel={blockTextConfig.developers.websiteSourceCode.startButton}
-                    buttonHRef={blockTextConfig.developers.websiteSourceCode.install.link}/>
-           </div>
 
+
+           <BookMark bookmark={blockTextConfig.developers.home.howItWorks.bookmark}/>
+           <div style={styles.itemSection}>
+
+                 <DisplayTextImage title={blockTextConfig.developers.home.howItWorks.title}
+                    content={blockTextConfig.developers.home.howItWorks.content}/>
+           </div>
 
 
          </div>
