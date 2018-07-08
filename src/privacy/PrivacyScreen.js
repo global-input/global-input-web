@@ -16,7 +16,7 @@ import {DisplayTextImage} from "../components";
 
 
 
-import {PageWithHeader,blockTextConfig} from "../page-templates";
+import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 
 
@@ -69,8 +69,9 @@ render() {
 
       <PageWithHeader  advert={blockTextConfig.about.privacy.advert}  selected={blockTextConfig.about.privacy.menu}
         appTitle={blockTextConfig.about.privacy.appTitle}
-        
-            mobileImage={images.privacy}
+
+        install={applicationPathConfig.home.install}
+        aboutText={applicationPathConfig.home.aboutText}
 
         appSubtitle={blockTextConfig.about.privacy.appSubtitle}>
 

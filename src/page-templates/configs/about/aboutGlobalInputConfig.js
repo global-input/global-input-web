@@ -5,9 +5,7 @@ const aboutGlobalInputConfig={
   title:"About Global Input App",
   menu:{
     link:"/global-input-app/about",
-    linkText:"About",
-    backLink:"/?scrollTo=contactForm",
-    bookmark:"contactForm"
+    linkText:"About"    
   },
   aboutText:["Get Global Input App Free"
           ],

@@ -29,7 +29,7 @@ import {DisplayTextImage,DisplayStaticContent,BookMark} from "../components";
 
 
 
-import {PageWithHeader,blockTextConfig} from "../page-templates";
+import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 import {ContactForm} from "../contact-form";
 
@@ -85,7 +85,9 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.about.contact.advert}  selected={blockTextConfig.about.contact.menu}
-        appTitle={blockTextConfig.about.contact.appTitle} appSubtitle={blockTextConfig.about.contact.appSubtitle}>
+        appTitle={blockTextConfig.about.contact.appTitle} appSubtitle={blockTextConfig.about.contact.appSubtitle}
+        install={applicationPathConfig.home.install}
+        aboutText={applicationPathConfig.home.aboutText}>
          <div style={styles.content}>
 
                <div style={styles.itemSection}>
@@ -103,7 +105,7 @@ render() {
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.phone.content} lineStyle={styles.linaddress}/>
 
-                                 
+
 
 
                             </div>

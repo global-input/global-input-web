@@ -5,7 +5,8 @@ const formDataTransferConfig={
      link:"/global-input-app/form-data-transfer",
      linkText:"Form Data Transfer",
      backLink:"/?scrollTo=formDataTransfer",
-     bookmark:"formDataTransfer"
+     bookmark:"formDataTransfer",
+     
   },
   content:["Global Input App can act as a Password Manager on your personal mobile device for signing into the web applications with Global Input App extensions.",
           "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",

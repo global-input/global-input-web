@@ -17,7 +17,7 @@ var styles={
        fontWeight: 500,
        fontSize: 20,
        marginTop: 0,
-       
+
        color: "#4880ED"
      },
 
@@ -76,6 +76,12 @@ var styles={
        maxWidth: "100%",
        height: "auto"
      },
+     centerImageContainer:{
+       width:"100%",
+       display:"flex",
+       justifyContent:"center",
+       alignItems:"center"
+     },
 
      mobileTextImageContainer:{
         display:"flex",
@@ -90,7 +96,21 @@ var styles={
        alignItems:"center",
        width:"100%"
 
-     }
+     },
+     sourceCodeContainer:{
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        padding:10,      
+     },
+     sourceCodes:{
+      maxHeight: 500,
+      maxWidth:800,
+      background: "#D9DFE9",
+    	overflowY: "scroll",
+    }
 
 
 

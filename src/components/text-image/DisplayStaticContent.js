@@ -125,6 +125,25 @@ export  default class DisplayStaticContent extends Component {
           <Link to={item.link} style={this.props.linkStyle} key={key}>{this.renderItem(item.content, this.ITEM_TYPE.SPAN)}</Link>
         );
       }
+      else if(item.type==='scroll'){
+        return(
+        <a href={'#'+item.to} style={this.props.linkStyle} key={key} onClick={()=>{
+              var elmnt = document.getElementById(item.to);
+              elmnt.scrollIntoView()
+          }}>
+              {item.content}
+        </a>
+      );
+      }
+      else if(item.type==='component'){
+          var component=this.props[item.name];
+          if(component){
+              return component;
+          }
+          else{
+            return null;
+          }
+      }
 
       else if(item.type==='div'){
         return (
@@ -157,6 +176,18 @@ export  default class DisplayStaticContent extends Component {
             }
             return (
                 <img style={this.props.imageStyle} src={imageSrc} key={key}/>
+            );
+      }
+      else if(item.type==='centerImage'){
+            var imageSrc=item.src;
+            if(styles.isMobile() && item.mobile && item.mobile.src){
+              imageSrc=item.mobile.src;
+            }
+            return (
+              <div style={styles.centerImageContainer}>
+                  <img style={styles.image} src={imageSrc} key={key}/>
+              </div>
+
             );
       }
 
