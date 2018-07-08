@@ -80,7 +80,7 @@ const  homeTextConfig={
           ],
   platform:{
          title:"Global Input Platform",
-         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. Once connected, the platform provides the features to exchange content securely between the mobile device and the web application. The platform opens up a wide range of functions:",
+         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to exchange messages securely and provides a wide range of functions:",
             {type:"ul",content:[
                [{type:"scroll",content:"User authentication via mobile", to:formDataTransferConfig.menu.bookmark}," initiated by scanning QR codes for applications."],
                [{type:"scroll",content:"Second screen input & control",to:videoPlayerConfig.menu.bookmark}," for media applications."],
@@ -94,7 +94,7 @@ const  homeTextConfig={
              content:[{
                type:"ul",
                content:[
-                 "Users only need to download a single app to use across multiple web applications.",
+                 ["Users only need to download a single app to use across multiple web applications."],
                  "The mobile app can be used as a password management tool.",
                  "No need to develop mobile apps for extending device and web applications to have mobile input and control.",
                  "The mobile logic can be implemented within the application itself reusing the existing application logic.",
