@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {images} from "../configs";
+import {images,pagelinks} from "../configs";
 import {styles} from "./styles";
 import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
@@ -63,7 +63,7 @@ render() {
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
 
-           <BookMark bookmark={blockTextConfig.developers.home.platform.bookmark}/>
+           <BookMark bookmark={pagelinks.developers.platform.bookmark}/>
            <div style={styles.itemSection}>
 
                  <DisplayTextImage title={blockTextConfig.developers.home.platform.title}

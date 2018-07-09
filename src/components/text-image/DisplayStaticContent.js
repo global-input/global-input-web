@@ -75,9 +75,11 @@ export  default class DisplayStaticContent extends Component {
                 });
               }
               else{
+                return(
                   <div style={this.getLineStyle()} key={key}>
-                      {this.renderObject(item,type)}
+                      {this.renderObject(item)}
                   </div>
+                );
               }
       }
       else if(item.type==='ul'){

@@ -18,6 +18,7 @@ export  default class DisplaySampleCode1 extends Component {
                 fields:[{
                     type:"button",
                     label:"Start",
+
                     operations:{
                         onInput:function(){
                                   console.log("User pressed the Start button on mobile");

@@ -16,7 +16,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage} from "../components";
+import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle} from "../components";
 
 
 
@@ -80,6 +80,35 @@ render() {
                <div style={styles.itemSection}>
                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.title}
                         content={blockTextConfig.about.globalInputApp.content} />
+               </div>
+
+               <div style={styles.bigSection}>
+                    <DisplaySectionTitle title={blockTextConfig.about.globalInputApp.whyneeded.title}/>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
+                    </div>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
+                    </div>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
+                    </div>
+
+
+
                </div>
          </div>
 

@@ -53,7 +53,8 @@ var styles={
        fontSize: 16,
        color: "#414242",
        fontWeight: 300,
-       marginBottom:10
+       marginBottom:10,
+
      },
      listItemStyle:{
        fontSize: 16,
@@ -103,23 +104,42 @@ var styles={
         flexDirection:"column",
         justifyContent:"center",
         alignItems:"center",
-        padding:10,      
+        padding:10,
      },
      sourceCodes:{
       maxHeight: 500,
       maxWidth:800,
       background: "#D9DFE9",
     	overflowY: "scroll",
-    }
+    },
+
+
+    sectionTile:{
+       display:"flex",
+       flexDirection:"column",
+       justifyContent:"center",
+       alignItems:"center",
+       color: "white",
+       fontSize: 26,
+    },
+
 
 
 
 }
 
+styles.sectionTitleMobile=Object.assign({},styles.sectionTile,{
+    fontSize: 20,
+    paddingTop:10,
+
+});
+
+
 styles.sectionHeadingMobile=Object.assign({},styles.sectionHeading,{
         fontSize: 20,
         paddingTop:10,
 });
+
 styles.imageTitleMobile=Object.assign({},styles.imageTitle,{
         fontSize: 20,
 });

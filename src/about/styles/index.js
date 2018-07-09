@@ -56,6 +56,17 @@ export var styles={
     backgroundColor:"white",
     width:"100%"
  },
+ bigSection:{
+    marginTop:10,
+    paddingTop:10,
+    marginBottom:10,
+    paddingLeft:20,
+    paddingRight:20,
+    paddingBottom:0,
+    backgroundColor:"orange",
+    width:"100%"
+ },
+ 
 
 
  sectionHeading:{
