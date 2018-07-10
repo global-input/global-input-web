@@ -66,6 +66,7 @@ const contactUsConfig={
               content:"020 3290 6278"
           },
           email:{
+              type:"mailto",
               title:"Email",
               content:"info@iterativesolution.co.uk"
           }

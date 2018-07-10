@@ -532,7 +532,7 @@ renderAField(formField, index){
       return(
         <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle} install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.about.home.aboutText}>
+          aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
 
 
@@ -586,7 +586,7 @@ renderAField(formField, index){
             <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
               appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
                sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
-               aboutText={applicationPathConfig.developer.aboutText}>
+               aboutText={applicationPathConfig.home.aboutText}>
                <div style={styles.content}>
                       <div style={styles.formContainer}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
@@ -616,7 +616,7 @@ renderAField(formField, index){
            <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
              appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
               sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
-              aboutText={applicationPathConfig.developer.aboutText}>
+              aboutText={applicationPathConfig.home.aboutText}>
               <div style={styles.content}>
                      <div style={styles.formContainer}>
                            <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
@@ -644,7 +644,7 @@ renderAField(formField, index){
         <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
-           aboutText={applicationPathConfig.developer.aboutText}>
+           aboutText={applicationPathConfig.home.aboutText}>
            <div style={styles.content}>
                 <DisplayLoading title={applicationPathConfig.about.contact.sendingMessage.title}
                   content={applicationPathConfig.about.contact.sendingMessage.content}/>
@@ -657,7 +657,7 @@ renderAField(formField, index){
         <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
-           aboutText={applicationPathConfig.developer.aboutText}>
+           aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
         <DisplayTextImage
           title={applicationPathConfig.about.contact.messageSent.title}

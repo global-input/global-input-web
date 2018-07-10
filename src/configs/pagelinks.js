@@ -8,6 +8,10 @@ const pagelinks={
                   url:function(){return pagelinks.developers.link+"?scrollTo="+this.bookmark}
             }
       },
+      app:{
+            link:"/global-input-app/app",
+            link2:"/global-input-app/about",
+      },
       samples:{
             formData:{
               link:"/global-input-app/form-data-transfer",

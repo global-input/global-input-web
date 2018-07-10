@@ -217,7 +217,7 @@ export default class ContentTransfer extends Component {
         <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
           appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}
           install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.about.home.aboutText}>
+          aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
 
               <DisplayQRCode

@@ -74,12 +74,12 @@ render() {
 
       <PageWithHeader  advert={blockTextConfig.about.globalInputApp.advert}  selected={blockTextConfig.about.globalInputApp.menu}
         appTitle={blockTextConfig.about.globalInputApp.appTitle} appSubtitle={blockTextConfig.about.globalInputApp.appSubtitle}
-        install={applicationPathConfig.home.install}
-        aboutText={blockTextConfig.about.globalInputApp.aboutText}>
+        install={applicationPathConfig.home.install}>
          <div style={styles.content}>
                <div style={styles.itemSection}>
                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.title}
                         content={blockTextConfig.about.globalInputApp.content} />
+                      <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
                </div>
 
                <div style={styles.bigSection}>

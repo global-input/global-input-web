@@ -489,7 +489,7 @@ renderComposeForm(){
          appSubtitle={applicationPathConfig.formData.appSubtitle}
          sectionHeaderTitle={applicationPathConfig.formData.compose.title}
          install={applicationPathConfig.home.install}
-         aboutText={applicationPathConfig.about.home.aboutText}>
+         aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
 
                 <div style={styles.formContainer}>
@@ -554,7 +554,7 @@ renderAddNewField(){
        appSubtitle={applicationPathConfig.formData.appSubtitle}
        sectionHeaderTitle={applicationPathConfig.formData.compose.title}
        install={applicationPathConfig.home.install}
-       aboutText={applicationPathConfig.about.home.aboutText}>
+       aboutText={applicationPathConfig.home.aboutText}>
 
     <div style={styles.content}>
 
@@ -604,7 +604,7 @@ renderAddNewField(){
       return(
         <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}
           install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.about.home.aboutText}>
+          aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
               <DisplayQRCode
                 content={applicationPathConfig.formData.connected.content}
@@ -651,7 +651,7 @@ renderAddNewField(){
               <PageWithHeader advert={applicationPathConfig.formData.advert}
 
                 sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}
-                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.developer.aboutText}>
+                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                 <div style={styles.content}>
 
                       <div style={styles.formContainer}>
@@ -686,7 +686,7 @@ renderAddNewField(){
          return(
              <PageWithHeader advert={applicationPathConfig.formData.advert}
                sectionHeaderContent={applicationPathConfig.formData.disConnected.content}
-               appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.developer.aboutText}>
+               appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                <div style={styles.content}>
                      <div style={styles.formContainer}>
                            <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>

@@ -19,11 +19,10 @@ const applicationPathConfig={
     appTitle:homeTextConfig.title,
     menus:[
         homeTextConfig.menu,
+        aboutGlobalInputConfig.menu,
         developerTextConfig.menu,
         privacyConfig.menu,
-        aboutGlobalInputConfig.menu,
         contactUsConfig.menu,
-
     ],
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,

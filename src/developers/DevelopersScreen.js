@@ -56,8 +56,7 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
-        appTitle={blockTextConfig.developers.home.appTitle}
+      <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}        
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>

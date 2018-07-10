@@ -11,17 +11,18 @@ import qrPrintingConfig from "./qrPrintingConfig";
 import aboutGlobalInputConfig from "./about/aboutGlobalInputConfig";
 
 const  homeTextConfig={
-  title:"Global Input App ",
+  title:"Global Input",
   menu:{
     link:"/",
     linkText:"Home"
   },
 
-  aboutText:[{
-              type:"line",
-              content:["Get Global Input App Free"],
-              }
-          ],
+  aboutText:{
+              type:"link",
+              content:"Get Global Input App Free",
+              link:pagelinks.app.link,
+              className:"btn btn-primary buttonOnBlue"
+              },
   install:[
             {type:"a",href:pagelinks.appStore,content:{type:"image", src:images.appstore, mobile:{src:images.appstoreMobile}}},
               {type:"a", href:pagelinks.playStore,content:{type:"image", src:images.playstore, mobile:{src:images.playstoreMobile}}}

@@ -85,7 +85,7 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.about.contact.advert}  selected={blockTextConfig.about.contact.menu}
-        appTitle={blockTextConfig.about.contact.appTitle} appSubtitle={blockTextConfig.about.contact.appSubtitle}
+         appSubtitle={blockTextConfig.about.contact.appSubtitle}
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}>
          <div style={styles.content}>
@@ -105,7 +105,9 @@ render() {
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.phone.content} lineStyle={styles.linaddress}/>
 
-
+                                 <div style={styles.subtitle}>{blockTextConfig.about.contact.pageContent.email.title}</div>
+                                   <DisplayStaticContent
+                                      content={blockTextConfig.about.contact.pageContent.email} lineStyle={styles.linaddress}/>
 
 
                             </div>

@@ -2,15 +2,14 @@
 import {images,pagelinks} from "../../../configs";
 
 const aboutGlobalInputConfig={
-  appTitle:"Global Input App",
-  appSubtitle:"About",
-  title:"About Global Input App",
+  appTitle:"Global Input",
+  appSubtitle:"Global Input App",
+  title:"What is Global Input App",
   menu:{
-    link:"/global-input-app/about",
-    linkText:"About"
+    link:pagelinks.app.link,
+    link2:pagelinks.app.link2,
+    linkText:"App"
   },
-  aboutText:["Get Global Input App Free"
-          ],
 
 
   content:[
@@ -36,11 +35,11 @@ whyneeded:{
 
 
             ["The fastest way of trying this out is to to load the ",
-                  {type:"link",content:"demo web application",link:pagelinks.samples.formData.link},
+                  {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
                   " on your browser. Note that this does not require you to install the ",
                   {type:"link",content:"Chrome Extension",link:pagelinks.samples.chromeExtension.url()},". ",
                  ".  Click on the \”Next” button on the ",
-                   {type:"link",content:"demo web application",link:pagelinks.samples.formData.link},
+                   {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
                    ", and then scan the QR Code with your Global Input App on your mobile. You should now see a form on your mobile screen, so you can enter some authentication data there. You will notice the data is being transferred live to the form on your computer. Save the form data on your mobile before ending the session. The next time when you come back to the same form, you can can see that a “Matched” button has appeared on the bottom of your mobile screen. Pressing the button will list all the matched data saved in your mobile. Select the data by pressing the data item, you will be presented with the details of the data item. At that time, the fields will be displayed with “*” characters, this means that the value is not decrypted yet. If you press the “Select” button, the data will be decrypted and sent to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into you clipboard, and switch to the application you need and paste the content there."
                  ],
 
@@ -54,7 +53,7 @@ whyneeded:{
               "If you manage applications in a corporate environment, you may need to create accounts for other users and share the authentication details with them unless the application provides the user subscription mechanism.",
               "If the application supports the Global Input App, you just need to let the user scan the QR code displayed by the application and allow the user to use his/her mobile to enter his/her details directly into the application.",
               ["If the application does not yet support the Global Input App, you can load the ",
-                  {type:"link",content:"demo web application",link:pagelinks.samples.formData.link},
+                  {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
                   " on your computer and compose the form you need, and click on the \”Next\” button to display the QR code. You can ask the user to scan the QR code (you can send the QR code image or share it via a video link) to establish the end-to-end encrypted communication.  Now the user will be able to use his/her mobile to type in his/her details on the form displayed on your screen. Because the user never need to remember the password, you can ask the user to generate a strong password by pressing the \”Random\” button on the app. You can then click on the “Copy\” button to copy the form details into your clipboard and paste it into the application to continue the account creation process. On the user end, the user needs to press \”Save\” button to save the form details in his/her mobile. You can now press the “Finish” button to end the session. The app will ask the user to save the form details when the session is ended if the user has not saved the form data yet."]]
         },
         sharingAccounts:{
@@ -95,7 +94,7 @@ whyneeded:{
                       ]
                     },{
                       type:"sub", title:"Print QR Codes on Computer", content:[
-                        ["Please try the ",{type:"link",content:"demo web application",link:pagelinks.samples.qrPrinting.link}," to print out encrypted QR codes the password-protected QR codes."],
+                        ["Please try the ",{type:"link",content:"sample web application",link:pagelinks.samples.qrPrinting.link}," to print out encrypted QR codes the password-protected QR codes."],
                         "If you scan the QR code displayed there, a form will be displayed on your mobile screen that are for creating normal QR code, but you can send an encrypted content from your mobile. Press the \"Encrypt\" button on your bottom of your mobile screen to create an encrypted content and send it to the form displayed on your screen. Then you can press \”Print\” button to print the QR code. On the other hand, When you have connected to the QR code creation form, If you press the “Key” button, you will be able to create a password protected content for the selected encryption key and send it to the QR code creation form. When you press the \"Print\" button you can print out a password protected QR code for the selected encryption key. Try to scan the QR code with another phone to see it in action."
                       ]
                     }]

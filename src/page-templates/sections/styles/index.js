@@ -21,7 +21,8 @@ const styles={
       imageLink:{
         color:"white",
         textDecoration:"underline",
-        marginRight:20
+        marginRight:20,
+
       },
 
       qrCodeContainer:{
@@ -93,7 +94,7 @@ const styles={
               paddingBottom:0,
               width:"100%",
 
-              
+
       },
 
       pageDescriptionLine:{
