@@ -2,7 +2,7 @@ const pagelinks={
       appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
       playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
       developers:{
-            link:"/global-input-app/developers",
+            link:"/global-input-app/paltform",
             platform:{
                   bookmark:"globalInputPlatform",
                   url:function(){return pagelinks.developers.link+"?scrollTo="+this.bookmark}
@@ -11,6 +11,10 @@ const pagelinks={
       app:{
             link:"/global-input-app/app",
             link2:"/global-input-app/about",
+      },
+      githubs:{
+          jslibrary:"https://github.com/global-input/global-input-message",
+          webSocketServer:"https://github.com/global-input/global-input-node"
       },
       samples:{
             formData:{
@@ -29,6 +33,26 @@ const pagelinks={
                 backLink:"/?scrollTo=qrPrinting",
                 bookmark:"qrPrinting"
 
+            },
+            contentTransfer:{
+              link:"/global-input-app/content-transfer",
+              backLink:"/?scrollTo=contentTransfer",
+              bookmark:"contentTransfer"
+            },
+            sendMessage:{
+              link:"/global-input-app/send-message",
+              backLink:"/?scrollTo=sendMessage",
+              bookmark:"sendMessage"
+            },
+            mediaPlayer:{
+              link:"/global-input-app/video-player",
+              backLink:"/?scrollTo=videoPlayer",
+              bookmark:"videoPlayer"
+            },
+            gameControl:{
+              link:"/global-input-app/game-example",
+              backLink:"/?scrollTo=gameExample",
+              bookmark:"gameExample"
             }
 
 

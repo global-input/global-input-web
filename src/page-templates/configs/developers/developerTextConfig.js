@@ -4,10 +4,10 @@ import webSocketServerConfig from "../developers/webSocketServerConfig";
 import aboutGlobalInputConfig from "../about/aboutGlobalInputConfig";
 const developerTextConfig={
   appTitle:"Global Input App",
-  appSubtitle:"Developers",
+  appSubtitle:"Platform",
   menu:{
     link:pagelinks.developers.link,
-    linkText:"Developers"
+    linkText:"Platform"
   },
   platform:{
        title:"Global Input Platform",

@@ -70,8 +70,8 @@ const  homeTextConfig={
   },
 
   platform:{
-         title:"Global Input Platform",
-         content:["Global Input is an open-source platform for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to exchange messages securely and provides a wide range of functions:",
+         title:"Global Input Solution",
+         content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.developers.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
             {type:"ul",content:[
                [{type:"scroll",content:"User authentication via mobile", to:formDataTransferConfig.menu.bookmark}," initiated by scanning QR codes for applications."],
                [{type:"scroll",content:"Second screen input & control",to:videoPlayerConfig.menu.bookmark}," for media applications."],
@@ -86,14 +86,14 @@ const  homeTextConfig={
                type:"ul",
                content:[
                  ["Users only need to install a ",{type:"link", content:"single app",link:aboutGlobalInputConfig.menu.link}," to use across multiple web applications."],
-                 [{type:"link", content:"The mobile",link:aboutGlobalInputConfig.menu.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
+                 [{type:"link", content:"The mobile app",link:aboutGlobalInputConfig.menu.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
                  "No need to develop separate mobile apps for extending device and web applications to have mobile input and control.",
-                 "The mobile logic can be implemented within the application itself reusing the existing application logic.",
+                 "The logic in the mobile input and control can be implemented within the application itself reusing the existing application logic.",
                  "Content can be transferred between the mobile device to the web application.",
                  "Content is stored and managed by users securely on the mobile device.",
-                 "No content is stored on a remote server.",
+                 "No data is stored on a remote server.",
                  "No subscription, no user details needs to be saved outside users’ device.",
-                 "Library is completely open-source. "
+                 "Library is completely open-source."
                ]
              }
 
@@ -101,7 +101,7 @@ const  homeTextConfig={
            },
 
 
-           {content:["Please have a look at the following use cases in action, and then visit the ",{type:"link", content:"the developer page",link:developerTextConfig.menu.link}," for more information."]}
+           {content:["Please  ",{type:"link", content:"install the app",link:aboutGlobalInputConfig.menu.link}, ", and have a look at the following use cases in action, and then visit the ",{type:"link", content:"platform page",link:developerTextConfig.menu.link}," for more information."]}
           ],
 
 

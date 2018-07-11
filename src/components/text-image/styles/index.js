@@ -106,12 +106,7 @@ var styles={
         alignItems:"center",
         padding:10,
      },
-     sourceCodes:{
-      maxHeight: 500,
-      maxWidth:800,
-      background: "#D9DFE9",
-    	overflowY: "scroll",
-    },
+     
 
 
     sectionTile:{

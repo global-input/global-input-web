@@ -55,19 +55,19 @@ const contactUsConfig={
   },
   pageContent:{
           address:{
-              title:"Address",
+              title:"Address:",
               content:["Iterative Solution Limited",
                       "10 Greycoat",
                       "London",
                        "SW1P 1SB"]
           },
           phone:{
-              title:"Phone",
-              content:"020 3290 6278"
+              title:"Phone:",
+              content:"+44 (0) 20 3290 6278"
           },
           email:{
               type:"mailto",
-              title:"Email",
+              title:"Email:",
               content:"info@iterativesolution.co.uk"
           }
   },

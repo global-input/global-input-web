@@ -107,6 +107,26 @@ render() {
                          content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
                     </div>
 
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.gameControl.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.gameControl.content} />
+                    </div>
+
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.content} />
+                    </div>
 
 
                </div>

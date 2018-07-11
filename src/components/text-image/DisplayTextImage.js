@@ -31,10 +31,17 @@ export  default class DisplayTextImage extends Component {
     if(isMobile && this.props.mobileImage){
        return null;
     }
-    if(typeof this.props.title ==='object'){
+    if(typeof this.props.title ==='object' && this.props.title.image){
       return(
               <div style={styles.sectionHeading}>
                       <img src={this.props.title.image} style={styles.image}/>
+              </div>
+            );
+    }
+    if(typeof this.props.title ==='object'){
+      return(
+              <div style={styles.sectionHeading}>
+                      <DisplayStaticContent content={this.props.title} lineStyle={styles.sectionHeading}/>
               </div>
             );
     }

@@ -1,3 +1,4 @@
+import {pagelinks} from "../../configs";
 const START_PAUSE_BUTTON_STATUS={
     CAN_START:0,
     CAN_PAUSE:1
@@ -8,10 +9,10 @@ const gameExampleConfig={
     title:"Mobile Input for Device Applications",
     appSubtitle:"Device Applications",
     menu:{
-        link:"/global-input-app/game-example",
+        link:pagelinks.samples.gameControl.link,
         linkText:"Game Example",
-        backLink:"/?scrollTo=gameExample",
-        bookmark:"gameExample"
+        backLink:pagelinks.samples.gameControl.backLink,
+        bookmark:pagelinks.samples.gameControl.bookmark
     },
     content:["Global Input App offers a single mobile app solution for multiple device and web applications.",
              "Existing IoT, Smart TV, and web applications can be extended by defining mobile UI elements and callback functions for receiving mobile events without affecting the existing business logic and system architecture.",

@@ -16,6 +16,9 @@ export const styles={
      backgroundColor:"white",
      width:"100%"
   },
+  fieldTitle:{
+    fontWeight:500
+  },
 
   selectionContainer:{
     display:"flex",

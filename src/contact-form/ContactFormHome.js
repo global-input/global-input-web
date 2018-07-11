@@ -97,15 +97,15 @@ render() {
                             <div style={styles.addressContainer}>
                                 <div style={styles.sectionHeading}>{blockTextConfig.about.contact.title}</div>
                                 <img src={images.contactUs} className="img-responsive"/>
-                                <div style={styles.subtitle}>{blockTextConfig.about.contact.pageContent.address.title}</div>
+                                <div style={styles.fieldTitle}>{blockTextConfig.about.contact.pageContent.address.title}</div>
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.address.content} lineStyle={styles.linaddress}/>
 
-                                 <div style={styles.subtitle}>{blockTextConfig.about.contact.pageContent.phone.title}</div>
+                                 <div style={styles.fieldTitle}>{blockTextConfig.about.contact.pageContent.phone.title}</div>
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.phone.content} lineStyle={styles.linaddress}/>
 
-                                 <div style={styles.subtitle}>{blockTextConfig.about.contact.pageContent.email.title}</div>
+                                 <div style={styles.fieldTitle}>{blockTextConfig.about.contact.pageContent.email.title}</div>
                                    <DisplayStaticContent
                                       content={blockTextConfig.about.contact.pageContent.email} lineStyle={styles.linaddress}/>
 

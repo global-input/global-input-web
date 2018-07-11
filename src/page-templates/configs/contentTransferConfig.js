@@ -1,9 +1,10 @@
+import {pagelinks} from "../../configs";
 const contentTransferConfig={
    menu:{
-      link:"/global-input-app/content-transfer",
+      link:pagelinks.samples.contentTransfer.link,
       linkText:"Content Transfer",
-      backLink:"/?scrollTo=contentTransfer",
-      bookmark:"contentTransfer"
+      backLink:pagelinks.samples.contentTransfer.backLink,
+      bookmark:pagelinks.samples.contentTransfer.bookmark
     },
     title:"Encrypted Content Storage & Transfer",
     appSubtitle:"Content Transfer",

@@ -1,5 +1,6 @@
 
-import {images} from "../../configs";
+import {images,pagelinks} from "../../configs";
+
 const PLAY_PAUSE_BUTTON_STATUS={
     CAN_PLAY:0,
     CAN_PAUSE:1
@@ -8,16 +9,16 @@ const PLAY_PAUSE_BUTTON_STATUS={
 
 const videoPlayerConfig={
     PLAY_PAUSE_BUTTON_STATUS,
-    title:"Second Screen Input & Control", 
+    title:"Second Screen Input & Control",
     appSubtitle:"Second Screen input & Control",
     imageTitle:["Extending Media Applications",
                 "to Mobile Devices"],
 
     menu:{
-        link:"/global-input-app/video-player",
+        link:pagelinks.samples.mediaPlayer.link,
         linkText:"Video Player",
-        backLink:"/?scrollTo=videoPlayer",
-        bookmark:"videoPlayer"
+        backLink:pagelinks.samples.mediaPlayer.backLink,
+        bookmark:pagelinks.samples.mediaPlayer.bookmark
     },
     content:[
     "Global Input App provides a unique solution to achieve second screen input & control without affecting the existing logic and architecture of the application.",
