@@ -186,20 +186,20 @@
 }
 
 
-.advertAnimation-enter {
+.scrollingTextAnimation-enter {
   opacity: 0.01;
 }
 
-.advertAnimation-enter.advertAnimation-enter-active {
+.scrollingTextAnimation-enter.scrollingTextAnimation-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
 
-.advertAnimation-leave {
+.scrollingTextAnimation-leave {
   opacity: 1;
 }
 
-.advertAnimation-leave.advertAnimation-leave-active {
+.scrollingTextAnimation-leave.scrollingTextAnimation-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }

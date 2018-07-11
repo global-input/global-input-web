@@ -84,7 +84,7 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.about.contact.advert}  selected={blockTextConfig.about.contact.menu}
+      <PageWithHeader  scrollingText={blockTextConfig.about.contact.scrollingText}  selected={blockTextConfig.about.contact.menu}
          appSubtitle={blockTextConfig.about.contact.appSubtitle}
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}>

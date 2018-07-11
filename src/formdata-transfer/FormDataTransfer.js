@@ -371,7 +371,7 @@ export default class FormDataTransfer extends Component {
     }
     renderConnecting(){
        return(
-           <PageWithHeader advert={applicationPathConfig.formData.advert}
+           <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
              appSubtitle={applicationPathConfig.formData.appSubtitle}>
                 <div style={styles.content}>
                   <DisplayLoading title={applicationPathConfig.formData.connecting.title}
@@ -485,7 +485,7 @@ renderComposeForm(){
 
 
     return (
-      <PageWithHeader advert={applicationPathConfig.formData.advert}
+      <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
          appSubtitle={applicationPathConfig.formData.appSubtitle}
          sectionHeaderTitle={applicationPathConfig.formData.compose.title}
          install={applicationPathConfig.home.install}
@@ -550,7 +550,7 @@ renderAddNewField(){
   }
 
   return (
-    <PageWithHeader advert={applicationPathConfig.formData.advert}
+    <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
        appSubtitle={applicationPathConfig.formData.appSubtitle}
        sectionHeaderTitle={applicationPathConfig.formData.compose.title}
        install={applicationPathConfig.home.install}
@@ -602,7 +602,7 @@ renderAddNewField(){
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
-        <PageWithHeader advert={applicationPathConfig.formData.advert} appSubtitle={applicationPathConfig.formData.appSubtitle}
+        <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText} appSubtitle={applicationPathConfig.formData.appSubtitle}
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
@@ -648,7 +648,7 @@ renderAddNewField(){
       var fields=this.getFields(action);
 
           return(
-              <PageWithHeader advert={applicationPathConfig.formData.advert}
+              <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
 
                 sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}
                 appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
@@ -684,7 +684,7 @@ renderAddNewField(){
           var fields=this.getFields(action);
 
          return(
-             <PageWithHeader advert={applicationPathConfig.formData.advert}
+             <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
                sectionHeaderContent={applicationPathConfig.formData.disConnected.content}
                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                <div style={styles.content}>

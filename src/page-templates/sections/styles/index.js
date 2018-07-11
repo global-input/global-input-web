@@ -111,14 +111,14 @@ const styles={
           animation: 'appearWithTransparency 1s forwards'
       },
 
-      advertTitle:{
+      scrollingTextTitle:{
         fontSize: 32,
         color: "#414242",
         fontWeight: 300,
         color:"white",
         marginBottom:10
       },
-      advertContent:{
+      scrollingTextContent:{
         fontSize: 22,
         color: "#414242",
         fontWeight: 300,
@@ -144,7 +144,7 @@ const styles={
         flex:1,
 
       },
-      fixedAdvertContainer:{
+      fixedScrollingTextContainer:{
         paddingTop:5,
         paddingBottom:10
       },
@@ -152,12 +152,12 @@ const styles={
         paddingTop:5
 
       },
-      advertItemContainer:{
+      scrollingTextItemContainer:{
           position:"absolute",
           lef:10,
           top:10
       },
-      advertContainer:{
+      scrollingTextContainer:{
         position:"relative",
         minHeight:180,
         width:"100%",
@@ -166,7 +166,7 @@ const styles={
         overflow:"visible",
 
       },
-      advertLine:{
+      scrollingTextLine:{
         color:"white"
       }
 
@@ -174,16 +174,16 @@ const styles={
 
 
 };
-  styles.advertTitleMobile=Object.assign({},styles.advertTitle,{
+  styles.scrollingTextTitleMobile=Object.assign({},styles.scrollingTextTitle,{
   fontSize: 18,
 
 });
 
-styles.advertContentMobile=Object.assign({},styles.advertContent,{
+styles.scrollingTextContentMobile=Object.assign({},styles.scrollingTextContent,{
 fontSize: 12,
 });
 
-styles.advertContainerMobile=Object.assign({},styles.advertContainer,{
+styles.scrollingTextContainerMobile=Object.assign({},styles.scrollingTextContainer,{
   minHeight:120,
 
 });

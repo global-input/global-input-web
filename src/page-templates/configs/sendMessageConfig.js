@@ -12,7 +12,7 @@ const sendMessageConfig={
             "The solution can simplify the implementation of user privacy policy. An application can choose not to save user details into its database or can choose to store them for a short period of time. User can push the data back from his/her device to the application when needed.",
             "The solution can allow a media application to implement personalisation of user experience without storing user details and habits in its database."
     ],
-    advert:{
+    scrollingText:{
         duration:8000,
         items:[{
           title:"Store Content Encrypted in Your Device",

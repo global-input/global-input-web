@@ -11,7 +11,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 import {styles} from "./styles";
 
 
-export  default class PageAdvert extends Component {
+export  default class PageScrollingText extends Component {
 
     constructor(props){
       super(props);
@@ -35,7 +35,7 @@ export  default class PageAdvert extends Component {
 
 
     componentWillReceiveProps(nextProps){
-        if(this.props.advert!=nextProps.advert){
+        if(this.props.scrollingText!=nextProps.scrollingText){
             this.setState(this.getStateFromProps(nextProps))
             this.stopSiwtchContentThread(nextProps);
             this.startSiwtchContentThread(nextProps);
@@ -54,8 +54,8 @@ export  default class PageAdvert extends Component {
       }
     }
     startSiwtchContentThread(props){
-          if(props.advert.items && props.advert.items.length && props.advert.items.length>1){
-                this.starterThread=setInterval(this.nextContent.bind(this),this.props.advert.duration);
+          if(props.scrollingText.items && props.scrollingText.items.length && props.scrollingText.items.length>1){
+                this.starterThread=setInterval(this.nextContent.bind(this),this.props.scrollingText.duration);
           }
     }
 
@@ -64,7 +64,7 @@ export  default class PageAdvert extends Component {
           if(this.starterThread){
             var index=this.state.index;
             index++;
-            if(index>=this.props.advert.items.length){
+            if(index>=this.props.scrollingText.items.length){
                 index=0;
             }
             this.setState(Object.assign({}, this.state,{index}));
@@ -78,17 +78,17 @@ export  default class PageAdvert extends Component {
     }
 
   isInViewport() {
-      var advertSection=document.getElementById("advertSection");
-      if(advertSection){
-                var top = advertSection.offsetTop;
-           var left = advertSection.offsetLeft;
-           var width = advertSection.offsetWidth;
-           var height = advertSection.offsetHeight;
+      var scrollingTextSection=document.getElementById("scrollingTextSection");
+      if(scrollingTextSection){
+                var top = scrollingTextSection.offsetTop;
+           var left = scrollingTextSection.offsetLeft;
+           var width = scrollingTextSection.offsetWidth;
+           var height = scrollingTextSection.offsetHeight;
 
-           while(advertSection.offsetParent) {
-             advertSection = advertSection.offsetParent;
-             top += advertSection.offsetTop;
-             left += advertSection.offsetLeft;
+           while(scrollingTextSection.offsetParent) {
+             scrollingTextSection = scrollingTextSection.offsetParent;
+             top += scrollingTextSection.offsetTop;
+             left += scrollingTextSection.offsetLeft;
            }
 
            return (
@@ -118,7 +118,7 @@ renderPageDescription(content, index){
 renderAboutText(){
     if(this.props.aboutText){
       return(
-            <DisplayStaticContent content={this.props.aboutText} lineStyle={styles.advertLine} linkStyle={styles.link}/>
+            <DisplayStaticContent content={this.props.aboutText} lineStyle={styles.scrollingTextLine} linkStyle={styles.link}/>
       );
     }
     else{
@@ -149,29 +149,29 @@ renderImage(){
 renderAnimation(){
 
 
-  var advertItem=this.props.advert.items[this.state.index];
-  var advertTitleStyle=styles.advertTitle;
-  var advertContentStyle=styles.advertContent;
+  var scrollingTextItem=this.props.scrollingText.items[this.state.index];
+  var scrollingTextTitleStyle=styles.scrollingTextTitle;
+  var scrollingTextContentStyle=styles.scrollingTextContent;
 
 
-  var advertContainer=styles.advertContainer;
+  var scrollingTextContainer=styles.scrollingTextContainer;
   if(styles.isMobile()){
-    advertContainer=styles.advertContainerMobile;
-      advertTitleStyle=styles.advertTitleMobile;
-      advertContentStyle=styles.advertContentMobile;
+    scrollingTextContainer=styles.scrollingTextContainerMobile;
+      scrollingTextTitleStyle=styles.scrollingTextTitleMobile;
+      scrollingTextContentStyle=styles.scrollingTextContentMobile;
 
   }
 
   return(
-    <div style={advertContainer}>
+    <div style={scrollingTextContainer}>
           <CSSTransitionGroup
-              transitionName="advertAnimation"
+              transitionName="scrollingTextAnimation"
 
               transitionEnterTimeout={2000}
               transitionLeaveTimeout={1000}>
-              <div key={this.state.index} style={styles.advertItemContainer}>
-                  <div style={advertTitleStyle}>{advertItem.title}</div>
-                  <DisplayStaticContent content={advertItem.content} lineStyle={advertContentStyle}/>
+              <div key={this.state.index} style={styles.scrollingTextItemContainer}>
+                  <div style={scrollingTextTitleStyle}>{scrollingTextItem.title}</div>
+                  <DisplayStaticContent content={scrollingTextItem.content} lineStyle={scrollingTextContentStyle}/>
               </div>
 
           </CSSTransitionGroup>
@@ -189,15 +189,15 @@ render() {
      if(this.props.image){
          pageDescription=styles.pageDescriptionWithImage;
      }
-    var advertItem=this.props.advert.items[this.state.index];
+    var scrollingTextItem=this.props.scrollingText.items[this.state.index];
 
     return (
-                      <div style={pageDescriptionSection} id="advertSection">
+                      <div style={pageDescriptionSection} id="scrollingTextSection">
                               <div style={pageDescription}>
                                   {this.renderAnimation()}
-                                  <div style={styles.fixedAdvertContainer}>
+                                  <div style={styles.fixedScrollingTextContainer}>
                                       {this.renderAboutText()}
-                                      
+
                                   </div>
                               </div>
                             {this.renderImage()}

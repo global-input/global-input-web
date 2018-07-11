@@ -8,7 +8,7 @@ import {styles} from "./styles";
 
 import {TopMenu} from "../components";
 
-import PageAdvert from "./sections/PageAdvert";
+import PageScrollingText from "./sections/PageScrollingText";
 import SectionHeader from "./sections/SectionHeader";
 import StaticSectionFooter from "./sections/StaticSectionFooter";
 import applicationPathConfig from "./configs/applicationPathConfig";
@@ -35,11 +35,11 @@ export  default class PageWithHeaderNoPrint extends Component {
         return null;
       }
   }
-  renderAdvert(){
+  renderBlueHeaderBar(){
 
         return(
 
-            <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}/>
+            <PageScrollingText image={this.props.image} scrollingText={this.props.scrollingText} mobileImage={this.props.mobileImage}/>
 
 
         );
@@ -58,8 +58,8 @@ export  default class PageWithHeaderNoPrint extends Component {
         </div>
 
           <div style={styles.content}>
-                <div className="noprint fillAllWidth">                
-                      {this.renderAdvert()}
+                <div className="noprint fillAllWidth">
+                      {this.renderBlueHeaderBar()}
                       {this.renderSectionHeader()}
                 </div>
                 {this.props.children}

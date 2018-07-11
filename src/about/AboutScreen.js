@@ -72,7 +72,7 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.about.globalInputApp.advert}  selected={blockTextConfig.about.globalInputApp.menu}
+      <PageWithHeader  scrollingText={blockTextConfig.about.globalInputApp.scrollingText}  selected={blockTextConfig.about.globalInputApp.menu}
         appTitle={blockTextConfig.about.globalInputApp.appTitle} appSubtitle={blockTextConfig.about.globalInputApp.appSubtitle}
         install={applicationPathConfig.home.install}>
          <div style={styles.content}>

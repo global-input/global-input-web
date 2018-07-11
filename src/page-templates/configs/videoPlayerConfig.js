@@ -25,7 +25,7 @@ const videoPlayerConfig={
     "This is achieved by building the second screen functionality on top of the existing functional flows and business logic.",
     "The applications declares the UI elements for the second screen and uses callback functions to receive the mobile events."],
 
-    advert:{
+    scrollingText:{
             duration:8000,
             items:[{
               title:"A Unique Mobile Solution for Media Applications",

@@ -2,10 +2,10 @@ import {images,pagelinks} from "../../../configs";
 const introductionToJSlibraryConfig={
   title:"Global Input JavaScript Library",
   menu:{
-     link:"/global-input-app/developers/examples/jslibrary",
+     link:pagelinks.jslibrary.link,
      linkText:"JavaScript Library",
-     bookmark:"globalinputmessage",
-     url:function(){return this.link+"?scrollTo="+this.bookmark}
+     bookmark:pagelinks.jslibrary.bookmark,
+     url:pagelinks.jslibrary.url,
    },
    content:["The Global Input JavaScript library allows device and web applications to connect to the Global Input platform to have mobile input and mobile control functions without developing a separate mobile app. This is like bringing the mobile device environment into the existing device and web application runtime, and can be explained with the following diagram:",
             {type:"centerImage",src:images.developers.globalInputDeviceSolution},
@@ -14,9 +14,9 @@ const introductionToJSlibraryConfig={
     {type:"component", name:"sampleCode1"},
     "In the above sample code, The \”fields\” attribute is an array of mobile elements that are used by the application. The \”onInput\” function will be called when the user has pressed the \”Start\” button. The looks of the button can be customised, for example, if you would like to the border of the button displayed as \”green\” color:",
     {type:"component", name:"sampleCode2"},
-    "As you can see from the above sample, you can set the tile of the form being displayed on the mobile screen. If you would like to change the color of the title to \“green\”:",
+    "As you can see from the above example code, you can set the title of the form being displayed on the mobile screen. If you would like to change the color of the title to \“green\”:",
     {type:"component", name:"sampleCode3"},
-    "If you would like to display a text field named “Content”, and a button “Start” to receive mobile input events. You use the following configuration:",
+    "If you would like to display a text field named “Content”, and a button “Start” to receive mobile input events. You can use the following configuration:",
     {type:"component", name:"sampleCode4"},
     ["Please visit the ", {type:"a", content:"Global Input JS (global-input-message) Library on GitHub", href:pagelinks.githubs.jslibrary}," for information on how to install the JavaScript library and how to use it."]
 

@@ -463,7 +463,7 @@ onLeftButtonPressed(){
     renderConnecting(){
 
              return(
-                <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+                <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
                   appSubtitle={applicationPathConfig.gameExample.appSubtitle}>
                     <div style={styles.content}>
                       <DisplayLoading title={applicationPathConfig.gameExample.connecting.title}
@@ -582,7 +582,7 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
-        <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+        <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
           appSubtitle={applicationPathConfig.gameExample.appSubtitle}
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
@@ -627,7 +627,7 @@ renderAField(formField, index){
 
     renderSenderConnected(){
           return(
-            <PageWithHeader advert={applicationPathConfig.gameExample.advert}
+            <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
               sectionHeaderContent={applicationPathConfig.gameExample.senderConnected.content}
               appSubtitle={applicationPathConfig.gameExample.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                 <div style={styles.content}>

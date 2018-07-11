@@ -75,20 +75,20 @@ render() {
       <PageWithHeader image={images.globalInputApp}
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}
-          advert={applicationPathConfig.home.advert}
+          scrollingText={applicationPathConfig.home.scrollingText}
           selected={applicationPathConfig.home.menu}>
           <div style={styles.content}>
                 <div style={styles.itemSection}>
                   <DisplayTextImage title={applicationPathConfig.home.platform.title}
-                     content={applicationPathConfig.home.platform.content}/>                   
+                     content={applicationPathConfig.home.platform.content}/>
                 </div>
 
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
-                   content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerAdvert}
-                   mobileImage={images.mobile.videoPlayerAdvert}
+                   content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerScrollingText}
+                   mobileImage={images.mobile.videoPlayerScrollingTexts}
 
 
                    buttonLabel={applicationPathConfig.videoPlayer.startButton}
@@ -99,8 +99,8 @@ render() {
           <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
-                   content={applicationPathConfig.gameExample.content} image={images.gameAdvert}
-                   mobileImage={images.mobile.gameAdvert}
+                   content={applicationPathConfig.gameExample.content} image={images.gameScrollingText}
+                   mobileImage={images.mobile.gameScrollingText}
                    buttonLabel={applicationPathConfig.gameExample.startButton}
                   buttonLink={applicationPathConfig.gameExample.menu.link}/>
           </div>

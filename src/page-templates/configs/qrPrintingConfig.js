@@ -13,7 +13,7 @@ const qrPrintingConfig={
     "Encryption Keys can be pre-shared with another Global Input App instance for sharing encrypted content.",
     "Encrypted keys can be backed up or shared using password protected QR codes."],
 
-    advert:{
+    scrollingText:{
             duration:8000,
             items:[{
               title:"Create Encrypted QR Codes",
