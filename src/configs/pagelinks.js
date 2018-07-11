@@ -23,6 +23,10 @@ const pagelinks={
       app:{
             link:"/global-input-app/app",
             link2:"/global-input-app/about",
+            reasons:{
+                bookmark:"reasonsWhyApp",
+                url:function(){return pagelinks.app.link+"?scrollTo="+this.bookmark},
+            }
       },
       githubs:{
           jslibrary:"https://github.com/global-input/global-input-message",
