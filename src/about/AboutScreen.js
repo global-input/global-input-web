@@ -7,7 +7,7 @@ import React, {Component} from 'react'
 
 
 
-import {images} from "../configs";
+import {images,pagelinks} from "../configs";
 
 
 
@@ -16,7 +16,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle} from "../components";
+import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle,BookMark} from "../components";
 
 
 
@@ -83,6 +83,7 @@ render() {
                </div>
 
                <div style={styles.bigSection}>
+                    <BookMark bookmark={pagelinks.app.reasons.bookmark}/>
                     <DisplaySectionTitle title={blockTextConfig.about.globalInputApp.whyneeded.title}/>
                     <div style={styles.itemSection}>
                       <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}

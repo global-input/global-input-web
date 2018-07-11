@@ -1,14 +1,7 @@
 import {images,pagelinks} from "../../configs";
-import introductionToJSlibraryConfig from "./developers/introductionToJSlibraryConfig";
-import webSocketServerConfig from "./developers/webSocketServerConfig";
-import developerTextConfig from "./developers/developerTextConfig";
-import  formDataTransferConfig from "./formDataTransferConfig";
-import videoPlayerConfig from "./videoPlayerConfig";
-import gameExampleConfig from "./gameExampleConfig";
-import sendMessageConfig from "./sendMessageConfig";
-import chromeExtensionConfig from "./chromeExtensionConfig";
-import qrPrintingConfig from "./qrPrintingConfig";
-import aboutGlobalInputConfig from "./about/aboutGlobalInputConfig";
+
+
+
 
 const  homeTextConfig={
   title:"Global Input",
@@ -73,20 +66,20 @@ const  homeTextConfig={
          title:"Global Input Solution",
          content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.platform.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
             {type:"ul",content:[
-               [{type:"scroll",content:"User authentication via mobile", to:formDataTransferConfig.menu.bookmark}," initiated by scanning QR codes for applications."],
-               [{type:"scroll",content:"Second screen input & control",to:videoPlayerConfig.menu.bookmark}," for media applications."],
-               [{type:"scroll",content:"Mobile input & control",to:gameExampleConfig.menu.bookmark}," for IoT, Smart TV and web applications."],
-               [{type:"scroll",content:"Form automation",to:sendMessageConfig.menu.bookmark}," using mobile device."],
-               [{type:"scroll",content:"Password management",to:chromeExtensionConfig.menu.bookmark}," in user’s device."],
-               [{type:"scroll",content:"Backup and transfer",to:qrPrintingConfig.menu.bookmark}," confidential information."]
+               [{type:"scroll",content:"User authentication via mobile", to:pagelinks.samples.formData.bookmark}," initiated by scanning QR codes for applications."],
+               [{type:"scroll",content:"Second screen input & control",to:pagelinks.samples.mediaPlayer.bookmark}," for media applications."],
+               [{type:"scroll",content:"Mobile input & control",to:pagelinks.samples.gameControl.bookmark}," for IoT, Smart TV and web applications."],
+               [{type:"scroll",content:"Form automation",to:pagelinks.samples.sendMessage.bookmark}," using mobile device."],
+               [{type:"scroll",content:"Password management",to:pagelinks.samples.chromeExtension.bookmark}," in user’s device."],
+               [{type:"scroll",content:"Backup and transfer",to:pagelinks.samples.qrPrinting.bookmark}," confidential information."]
             ]},
 
             {type:"sub",title:"Features",
              content:[{
                type:"ul",
                content:[
-                 ["Users only need to install a ",{type:"link", content:"single app",link:aboutGlobalInputConfig.menu.link}," to use across multiple web applications."],
-                 [{type:"link", content:"The mobile app",link:aboutGlobalInputConfig.menu.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
+                 ["Users only need to install a ",{type:"link", content:"single app",link:pagelinks.app.link}," to use across multiple web applications."],
+                 [{type:"link", content:"The mobile app",link:pagelinks.app.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
                  "No need to develop separate mobile apps for extending device and web applications to have mobile input and control.",
                  "The logic in the mobile input and control can be implemented within the application itself reusing the existing application logic.",
                  "Content can be transferred between the mobile device to the web application.",
@@ -101,7 +94,7 @@ const  homeTextConfig={
            },
 
 
-           {content:["Please  ",{type:"link", content:"install the app",link:aboutGlobalInputConfig.menu.link}, ", and have a look at the following use cases in action, and then visit the ",{type:"link", content:"platform page",link:developerTextConfig.menu.link}," for more information."]}
+           {content:["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. Visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link}," for technical information. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment."]}
           ],
 
 
