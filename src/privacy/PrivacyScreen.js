@@ -67,8 +67,8 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.about.privacy.advert}  selected={blockTextConfig.about.privacy.menu}
-        
+      <PageWithHeader  scrollingText={blockTextConfig.about.privacy.scrollingText}  selected={blockTextConfig.about.privacy.menu}
+
 
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}

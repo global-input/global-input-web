@@ -56,13 +56,13 @@ render() {
 
     return (
 
-      <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
+      <PageWithHeader  scrollingText={blockTextConfig.developers.home.scrollingText}  selected={blockTextConfig.developers.home.menu}
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
 
-           <BookMark bookmark={pagelinks.developers.platform.bookmark}/>
+           <BookMark bookmark={pagelinks.platform.platform.bookmark}/>
            <div style={styles.itemSection}>
 
                  <DisplayTextImage title={blockTextConfig.developers.home.platform.title}

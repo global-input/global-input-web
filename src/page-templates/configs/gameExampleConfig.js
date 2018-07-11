@@ -18,7 +18,7 @@ const gameExampleConfig={
              "Existing IoT, Smart TV, and web applications can be extended by defining mobile UI elements and callback functions for receiving mobile events without affecting the existing business logic and system architecture.",
              "The mobile input and control logic can be implemented within the web application itself without developing a separate mobile app."],
 
-    advert:{
+    scrollingText:{
             duration:8000,
             items:[{
               title:"Universal Device Input App",

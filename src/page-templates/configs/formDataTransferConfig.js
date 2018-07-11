@@ -12,7 +12,7 @@ const formDataTransferConfig={
           "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",
           "Global Input allows to login securely to a web application on a shared computer that is attached to a shared screen in a conference room."],
 
-  advert:{
+  scrollingText:{
                     duration:8000,
                     items:[{
                       title:"Store Content Encrypted in Your Device",
@@ -47,10 +47,10 @@ const formDataTransferConfig={
      title:"Building Form for Receiving Data from Global Input App",
      content:["Press the \"Next\" button to continue."],
      idField:{
-       help:"The \"ID\" value is used for matching existing data entries in the app. If any matching data found, the app will display the \"Matched\" button, which, if pressed, will list the matched data entries that can be selected to fill in the form to automate the form filling."
+       help:"The \"ID\" value is used for matching existing data items in the app. If any matching data items are found, the app will display the \"Matched\" button, which, if pressed, will list the matched data entries that can be selected to fill in the form to automate the form filling."
      },
      folder:{
-       help:"The \"Folder\" value helps the Global Input App to organized data with folders if saved."
+       help:"The \"Folder\" value helps the Global Input App to organise data with folders if saved."
      },
      fields:{
        header:["Following lists the pre-defined fields. You do not need to populate the fields at this stage."],

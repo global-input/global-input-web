@@ -13,7 +13,7 @@ const contentTransferConfig={
              "This can be a useful tool for IT support team. A Global Input App instance can establish an encrypted communication with another instance, and then a data item can be created/edited collaboratively using both devices.",
              "The app can also connect to a JavaScript code to transfer data securely, create/edit content collaboratively. You may find it useful if you would like to type or copy some content from computer to your mobile securely or vice versa."],
 
-    advert:{
+    scrollingText:{
             duration:8000,
             items:[{
               title:"End-to-End Encrypted Data Transfer",

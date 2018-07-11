@@ -193,7 +193,7 @@ export default class ContentTransfer extends Component {
 
     renderConnecting(){
        return(
-           <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
+           <PageWithHeader scrollingText={applicationPathConfig.contentTransfer.scrollingText}
              appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
              <div style={styles.content}>
                  <DisplayLoading title={applicationPathConfig.contentTransfer.connecting.title}
@@ -214,7 +214,7 @@ export default class ContentTransfer extends Component {
 
 
       return(
-        <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
+        <PageWithHeader scrollingText={applicationPathConfig.contentTransfer.scrollingText}
           appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
@@ -258,7 +258,7 @@ export default class ContentTransfer extends Component {
       var contentField=this.getField(this.CONTENT_FIELD_INDEX);
 
           return(
-            <PageWithHeader advert={applicationPathConfig.contentTransfer.advert}
+            <PageWithHeader scrollingText={applicationPathConfig.contentTransfer.scrollingText}
                appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}>
               <div style={styles.content}>
                   <DisplayStaticContent content={applicationPathConfig.contentTransfer.senderConnected.content}/>

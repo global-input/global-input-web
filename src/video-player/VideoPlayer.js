@@ -273,7 +273,7 @@ export default class VideoPlayer extends Component {
 
     renderConnecting(){
              return(
-                <PageWithHeader advert={applicationPathConfig.videoPlayer.advert} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}>
+                <PageWithHeader scrollingText={applicationPathConfig.videoPlayer.scrollingText} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}>
                       <div style={styles.content}>
                         <DisplayLoading title={applicationPathConfig.videoPlayer.connecting.title}
                           content={applicationPathConfig.videoPlayer.connecting.content}/>
@@ -390,7 +390,7 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
-        <PageWithHeader advert={applicationPathConfig.videoPlayer.advert} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
+        <PageWithHeader scrollingText={applicationPathConfig.videoPlayer.scrollingText} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
@@ -660,7 +660,7 @@ renderAField(formField, index){
 
           return(
 
-            <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}
+            <PageWithHeader scrollingText={applicationPathConfig.videoPlayer.scrollingText}
               appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
                sectionHeaderContent={applicationPathConfig.videoPlayer.senderConnected.content}
                aboutText={applicationPathConfig.home.aboutText}>

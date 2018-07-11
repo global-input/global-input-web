@@ -34,8 +34,8 @@ const images={
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
   privacy:require("../images/privacy.png"),
-  videoPlayerAdvert:require("../images/video-player-advert.png"),
-  gameAdvert:require("../images/game-advert.png"),
+  videoPlayerScrollingText:require("../images/video-player.png"),
+  gameScrollingText:require("../images/game.png"),
   automateForm:require("../images/automate-form.png"),
   developers:{
         globalInputPlatform:require("../images/developers/global-input-platform.png"),
@@ -49,8 +49,8 @@ const images={
         secondSecreenInput:require("../images/title-images/second-screen-input.png"),
   },
   mobile:{
-    videoPlayerAdvert:require("../images/mobile/video-player-advert.png"),
-    gameAdvert:require("../images/mobile/game-advert.png"),
+    videoPlayerScrollingText:require("../images/mobile/video-player.png"),
+    gameScrollingText:require("../images/mobile/game.png"),
     transferForm:require("../images/mobile/transfer-form.png"),
     automateForm:require("../images/mobile/automate-form.png"),
     contentTransfer:require("../images/mobile/content-transfer.png"),

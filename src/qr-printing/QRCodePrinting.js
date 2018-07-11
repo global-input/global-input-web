@@ -250,7 +250,7 @@ export default class QRCodePrinting extends Component {
 
     renderConnecting(){
    return(
-       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}
+       <PageWithHeader scrollingText={applicationPathConfig.qrPrinting.scrollingText}
          appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
          <div style={styles.content}>
            <DisplayLoading
@@ -271,7 +271,7 @@ export default class QRCodePrinting extends Component {
 
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
       return(
-       <PageWithHeader advert={applicationPathConfig.qrPrinting.advert}
+       <PageWithHeader scrollingText={applicationPathConfig.qrPrinting.scrollingText}
          appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
          <div style={styles.content}>
              <DisplayQRCode
@@ -300,7 +300,7 @@ export default class QRCodePrinting extends Component {
 
           return(
 
-            <PageWithHeaderNoPrint advert={applicationPathConfig.qrPrinting.advert}
+            <PageWithHeaderNoPrint scrollingText={applicationPathConfig.qrPrinting.scrollingText}
               appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
                   <div style={styles.content}>
                     <div className="noprint">

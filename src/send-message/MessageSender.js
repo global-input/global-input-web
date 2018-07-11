@@ -412,7 +412,7 @@ sendMessageToUs(){
 
     renderConnecting(){
        return(
-         <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+         <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
            appSubtitle={applicationPathConfig.sendMessage.appSubtitle}>
            <div style={styles.content}>
                <DisplayLoading title={applicationPathConfig.sendMessage.connecting.title}
@@ -530,7 +530,7 @@ renderAField(formField, index){
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
 
       return(
-        <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+        <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle} install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
@@ -583,7 +583,7 @@ renderAField(formField, index){
       var fields=this.getFields(action);
 
           return(
-            <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+            <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
               appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
                sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
                aboutText={applicationPathConfig.home.aboutText}>
@@ -613,7 +613,7 @@ renderAField(formField, index){
      var fields=this.getFields(action);
 
          return(
-           <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+           <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
              appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
               sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
               aboutText={applicationPathConfig.home.aboutText}>
@@ -641,7 +641,7 @@ renderAField(formField, index){
    renderSendingMessage(){
 
       return(
-        <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+        <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
            aboutText={applicationPathConfig.home.aboutText}>
@@ -654,7 +654,7 @@ renderAField(formField, index){
    }
    renderMessageSent(){
       return(
-        <PageWithHeader advert={applicationPathConfig.sendMessage.advert}
+        <PageWithHeader scrollingText={applicationPathConfig.sendMessage.scrollingText}
           appSubtitle={applicationPathConfig.sendMessage.appSubtitle}
            sectionHeaderContent={applicationPathConfig.sendMessage.senderConnected.content}
            aboutText={applicationPathConfig.home.aboutText}>

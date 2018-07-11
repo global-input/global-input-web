@@ -1,3 +1,5 @@
+import {pagelinks} from "../../../configs";
+
 const privacyConfig={
   appTitle:"Global Input App",
   appSubtitle:"Privacy Policy",
@@ -6,10 +8,11 @@ const privacyConfig={
     link:"/global-input-app/privacy",
     linkText:"Privacy"
   },
-  content:["Global Input App's privacy policy is simple: you own your data and the encryption that encrypts your data. The app does not to store your data or your details outside your device's storage, and your data stays encrypted even in memory, decrypted only when needed.  There is no subscription, and there is no database on server.",
-          "Your app password is not stored anywhere, it is used only as an encryption key for encrypting/decrypting the \"active\" encryption key, which, in turn, encrypts/decrypts the rest of the data in the app. So there is no way to recover your password if you forget it. You create, manage and share encryption keys in the app. You are responsible for exporting the encrypted data and storing it for backup purposes. You also need to backup your \"active\" encryption key in a separate place in case you lose your phone.",
-          {type:"line", content:["Global Input App transfers data between your devices using end-to-end encryption. You can select any stored data item in the app to send over to an application. The encrypted data travels through a ",{type:"a", content:"WebSocket server", href:"https://github.com/global-input/global-input-node"},". Because the encryption key is shared only with the ", {type:"a", content:"calling application", href:"https://github.com/global-input/global-input-message#calling-application"}," via a QR code, the messages are safe even if the WebSocket server is compromised. You can download and install your own ", {type:"a", content:"WebSocket server from github", href:"https://github.com/global-input/global-input-node"}]}],
-  advert:{
+  content:[[{type:"link",content:"Global Input App", link:pagelinks.app.link},"'s privacy policy is simple: you own your data and the encryption that encrypts your data. The app does not store your data or your details outside your device's storage, and your data stays encrypted even in memory, decrypted only when needed. There is no subscription, and there is no database on server."],
+          "Your app password is not stored anywhere, it is used only as an encryption key for encrypting/decrypting the encryption keys, which, in turn, encrypts/decrypts the data in the app. So there is no way to recover your password if you forget it. You are responsible for exporting and backing up the encrypted data in the app and the encryption keys.",
+          [{type:"link",content:"Global Input App", link:pagelinks.app.link}," is part of the ",{type:"link",content:"Global Input Platform", link:pagelinks.platform.link},", enabling you to select data in the app and push it to another application using the end-to-end encryption. The Global Input WebSocker server will not be able to decrypt the messages transferred between your app and your  connected applications."],
+          [{type:"link",content:"Global Input Platform", link:pagelinks.platform.link}," also provides an option for the device and web applications not to store your data in the application databases, instead allowing you to take control of your data and stored it in your app, so that you you can push the data back to the application when it is needed."]],
+  scrollingText:{
       duration:8000,
       items:[{
         title:"Store Content Encrypted in Your Device",

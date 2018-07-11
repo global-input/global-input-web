@@ -28,7 +28,7 @@ const  homeTextConfig={
               {type:"a", href:pagelinks.playStore,content:{type:"image", src:images.playstore, mobile:{src:images.playstoreMobile}}}
           ],
 
-  advert:{
+  scrollingText:{
       duration:8000,
       items:[{
         title:"Store Content Encrypted in Your Device",
@@ -71,7 +71,7 @@ const  homeTextConfig={
 
   platform:{
          title:"Global Input Solution",
-         content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.developers.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
+         content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.platform.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
             {type:"ul",content:[
                [{type:"scroll",content:"User authentication via mobile", to:formDataTransferConfig.menu.bookmark}," initiated by scanning QR codes for applications."],
                [{type:"scroll",content:"Second screen input & control",to:videoPlayerConfig.menu.bookmark}," for media applications."],

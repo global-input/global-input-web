@@ -7,7 +7,7 @@ import {images} from "../configs";
 import {styles} from "./styles";
 
 import {TopMenu} from "../components";
-import PageAdvert from "./sections/PageAdvert";
+import PageScrollingText from "./sections/PageScrollingText";
 import SectionHeader from "./sections/SectionHeader";
 import StaticSectionFooter from "./sections/StaticSectionFooter";
 import applicationPathConfig from "./configs/applicationPathConfig";
@@ -34,9 +34,9 @@ export  default class PageWithHeader extends Component {
           return null;
         }
     }
-    renderAdvert(){
+    renderBlueHeaderBar(){
       return(
-              <PageAdvert image={this.props.image} advert={this.props.advert} mobileImage={this.props.mobileImage}
+              <PageScrollingText image={this.props.image} scrollingText={this.props.scrollingText} mobileImage={this.props.mobileImage}
               install={this.props.install} aboutText={this.props.aboutText}/>
           );
 
@@ -54,7 +54,7 @@ export  default class PageWithHeader extends Component {
               appSubtitle={this.props.appSubtitle}/>
 
             <div style={styles.content}>
-              {this.renderAdvert()}
+              {this.renderBlueHeaderBar()}
                   {this.renderSectionHeader()}
                   {this.props.children}
                   {this.renderSectionFooter()}

@@ -1,12 +1,24 @@
 const pagelinks={
       appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
       playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
-      developers:{
-            link:"/global-input-app/paltform",
+      platform:{
+            link:"/global-input-app/platform",
             platform:{
                   bookmark:"globalInputPlatform",
-                  url:function(){return pagelinks.developers.link+"?scrollTo="+this.bookmark}
+                  url:function(){return pagelinks.platform.link+"?scrollTo="+this.bookmark}
             }
+      },
+      jslibrary:{
+        link:"/global-input-app/developers/examples/jslibrary",
+        bookmark:"globalinputmessage",
+        url:function(){return this.link+"?scrollTo="+this.bookmark}
+      },
+      webSocketServer:{
+        link:"/global-input-app/developers/examples/proxyRepository",
+        linkText:"WebSocket Server",
+        bookmark:"websocketserver",
+        url:function(){return this.link+"?scrollTo="+this.bookmark}
+
       },
       app:{
             link:"/global-input-app/app",
