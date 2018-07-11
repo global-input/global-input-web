@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {images} from "../configs";
+import {images,pagelinks} from "../configs";
 import {styles} from "./styles";
 import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
@@ -57,13 +57,12 @@ render() {
     return (
 
       <PageWithHeader  advert={blockTextConfig.developers.home.advert}  selected={blockTextConfig.developers.home.menu}
-        appTitle={blockTextConfig.developers.home.appTitle}
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
          <div style={styles.content}>
 
-           <BookMark bookmark={blockTextConfig.developers.home.platform.bookmark}/>
+           <BookMark bookmark={pagelinks.developers.platform.bookmark}/>
            <div style={styles.itemSection}>
 
                  <DisplayTextImage title={blockTextConfig.developers.home.platform.title}
@@ -73,9 +72,7 @@ render() {
            <BookMark bookmark={blockTextConfig.developers.jslibrary.menu.bookmark}/>
            <div style={styles.itemSection}>
 
-                 <DisplayTextImage title={blockTextConfig.developers.jslibrary.title}
-                    buttonLabel={blockTextConfig.developers.jslibrary.startButton}
-                    buttonHRef={blockTextConfig.developers.jslibrary.install.link}>
+                 <DisplayTextImage title={blockTextConfig.developers.jslibrary.title}>
                     <DisplayStaticContent content={blockTextConfig.developers.jslibrary.content}
                       sampleCode1={<DisplaySampleCode1/>}  sampleCode2={<DisplaySampleCode2/>}
                       sampleCode3={<DisplaySampleCode3/>}
@@ -91,9 +88,7 @@ render() {
            <div style={styles.itemSection}>
                 <BookMark bookmark={blockTextConfig.developers.websocketServer.menu.bookmark}/>
                  <DisplayTextImage title={blockTextConfig.developers.websocketServer.title} reverse={true}
-                    content={blockTextConfig.developers.websocketServer.content}
-                    buttonLabel={blockTextConfig.developers.websocketServer.startButton}
-                    buttonHRef={blockTextConfig.developers.websocketServer.install.link}/>
+                    content={blockTextConfig.developers.websocketServer.content}/>
            </div>
 
 

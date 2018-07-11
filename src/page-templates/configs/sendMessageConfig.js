@@ -1,9 +1,10 @@
+import {pagelinks} from "../../configs";
 const sendMessageConfig={
    menu:{
-      link:"/global-input-app/send-message",
+      link:pagelinks.samples.sendMessage.link,
       linkText:"Send Message",
-      backLink:"/?scrollTo=sendMessage",
-      bookmark:"sendMessage"
+      backLink:pagelinks.samples.sendMessage.backLink,
+      bookmark:pagelinks.samples.sendMessage.bookmark,
     },
     title:"Form Automation via Mobile",
     appSubtitle:"Form Automation via Mobile",

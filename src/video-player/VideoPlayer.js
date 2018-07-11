@@ -392,7 +392,7 @@ renderAField(formField, index){
       return(
         <PageWithHeader advert={applicationPathConfig.videoPlayer.advert} appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
           install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.about.home.aboutText}>
+          aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
               <DisplayQRCode
                 content={applicationPathConfig.videoPlayer.connected.content}
@@ -663,7 +663,7 @@ renderAField(formField, index){
             <PageWithHeader advert={applicationPathConfig.videoPlayer.advert}
               appSubtitle={applicationPathConfig.videoPlayer.appSubtitle}
                sectionHeaderContent={applicationPathConfig.videoPlayer.senderConnected.content}
-               aboutText={applicationPathConfig.developer.aboutText}>
+               aboutText={applicationPathConfig.home.aboutText}>
               <div style={styles.content}>
               <video width="640" height="360"  id="videoplayer" autoPlay={false}
                   ref={videoPlayer=>this.videoPlayer=videoPlayer}

@@ -1,4 +1,4 @@
-import {images} from "../../../configs";
+import {images,pagelinks} from "../../../configs";
 const introductionToJSlibraryConfig={
   title:"Global Input JavaScript Library",
   menu:{
@@ -18,13 +18,8 @@ const introductionToJSlibraryConfig={
     {type:"component", name:"sampleCode3"},
     "If you would like to display a text field named “Content”, and a button “Start” to receive mobile input events. You use the following configuration:",
     {type:"component", name:"sampleCode4"},
-    "Please click on the following button to visit the Github source code repository for information about how to download and use the JavaScript library."
+    ["Please visit the ", {type:"a", content:"Global Input JS (global-input-message) Library on GitHub", href:pagelinks.githubs.jslibrary}," for information on how to install the JavaScript library and how to use it."]
 
     ],
-    install:{
-               link:"https://github.com/global-input/global-input-message",
-            },
-    startButton:"GitHub Repository"
-
 }
 export default introductionToJSlibraryConfig;

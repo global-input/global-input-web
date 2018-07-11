@@ -1,16 +1,15 @@
-import {images} from "../../../configs";
+import {images, pagelinks} from "../../../configs";
 import introductionToJSlibraryConfig from "../developers/introductionToJSlibraryConfig";
 import webSocketServerConfig from "../developers/webSocketServerConfig";
 import aboutGlobalInputConfig from "../about/aboutGlobalInputConfig";
 const developerTextConfig={
   appTitle:"Global Input App",
-  appSubtitle:"Developers",
+  appSubtitle:"Platform",
   menu:{
-    link:"/global-input-app/developers",
-    linkText:"Developers"
+    link:pagelinks.developers.link,
+    linkText:"Platform"
   },
   platform:{
-      bookmark:"globalInputPlatform",
        title:"Global Input Platform",
        content:["Global Input platform is an open-source platform, which allows device and web applications to be extended to have mobile input and mobile control functionalities without developing separate mobile apps. An application can declaratively specify mobile user interface components and the callback functions to receive mobile input events. The platform is responsible for sending and receiving messages using end-to-end encryption etc. It consists of following components:",
         {type:"ul", content:[

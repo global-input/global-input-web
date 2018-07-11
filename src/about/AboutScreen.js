@@ -16,7 +16,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage} from "../components";
+import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle} from "../components";
 
 
 
@@ -74,12 +74,61 @@ render() {
 
       <PageWithHeader  advert={blockTextConfig.about.globalInputApp.advert}  selected={blockTextConfig.about.globalInputApp.menu}
         appTitle={blockTextConfig.about.globalInputApp.appTitle} appSubtitle={blockTextConfig.about.globalInputApp.appSubtitle}
-        install={applicationPathConfig.home.install}
-        aboutText={blockTextConfig.about.globalInputApp.aboutText}>
+        install={applicationPathConfig.home.install}>
          <div style={styles.content}>
                <div style={styles.itemSection}>
                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.title}
                         content={blockTextConfig.about.globalInputApp.content} />
+                      <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
+               </div>
+
+               <div style={styles.bigSection}>
+                    <DisplaySectionTitle title={blockTextConfig.about.globalInputApp.whyneeded.title}/>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
+                    </div>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
+                    </div>
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.content} />
+                    </div>
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.gameControl.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.gameControl.content} />
+                    </div>
+
+
+                    <div style={styles.itemSection}>
+                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.title}
+                         content={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.content} />
+                    </div>
+
+
                </div>
          </div>
 

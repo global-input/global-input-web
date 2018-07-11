@@ -1,8 +1,7 @@
+import {pagelinks} from "../../configs";
 const chromeExtensionConfig={
   title:"Chrome Extension",
-  menu:{
-     link:"/global-input-app/formd-data-transfer",
-     linkText:"Form Data Transfer",
+  menu:{          
      bookmark:"chromeExtension"
    },
    content:["Global Input App allows you to use your mobile as a sign-in device with its encrypted storage and encrypted data transfer.",

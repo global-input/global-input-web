@@ -585,7 +585,7 @@ renderAField(formField, index){
         <PageWithHeader advert={applicationPathConfig.gameExample.advert}
           appSubtitle={applicationPathConfig.gameExample.appSubtitle}
           install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.about.home.aboutText}>
+          aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
               <DisplayQRCode
 
@@ -629,7 +629,7 @@ renderAField(formField, index){
           return(
             <PageWithHeader advert={applicationPathConfig.gameExample.advert}
               sectionHeaderContent={applicationPathConfig.gameExample.senderConnected.content}
-              appSubtitle={applicationPathConfig.gameExample.appSubtitle} aboutText={applicationPathConfig.developer.aboutText}>
+              appSubtitle={applicationPathConfig.gameExample.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                 <div style={styles.content}>
                       <GameArea initGame={this.initGame.bind(this)}/>
                   </div>

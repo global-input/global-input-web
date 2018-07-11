@@ -18,12 +18,11 @@ import videoPlayerConfig from "./videoPlayerConfig";
 const applicationPathConfig={
     appTitle:homeTextConfig.title,
     menus:[
-        homeTextConfig.menu,
+        homeTextConfig.menu,        
         developerTextConfig.menu,
-        privacyConfig.menu,
         aboutGlobalInputConfig.menu,
+        privacyConfig.menu,
         contactUsConfig.menu,
-
     ],
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,

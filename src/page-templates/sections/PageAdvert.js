@@ -114,20 +114,7 @@ renderPageDescription(content, index){
         </div>
   );
 }
-renderInstall(){
-    if(this.props.install){
-      return(
-          <div style={styles.installContainer}>
 
-              <DisplayStaticContent content={this.props.install} lineStyle={styles.advertLine}
-              linkStyle={styles.imageLink}/>
-          </div>
-      );
-    }
-    else{
-      return null;
-    }
-}
 renderAboutText(){
     if(this.props.aboutText){
       return(
@@ -210,7 +197,7 @@ render() {
                                   {this.renderAnimation()}
                                   <div style={styles.fixedAdvertContainer}>
                                       {this.renderAboutText()}
-                                      {this.renderInstall()}
+                                      
                                   </div>
                               </div>
                             {this.renderImage()}

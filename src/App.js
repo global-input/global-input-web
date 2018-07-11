@@ -43,7 +43,9 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
             <Route  path={applicationPathConfig.developer.menu.link}  component={DevelopersScreen}/>
             <Route  path={applicationPathConfig.about.home.menu.link}  component={AboutScreen}/>
+            <Route  path={applicationPathConfig.about.home.menu.link2}  component={AboutScreen}/>
             <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
+
             <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
             <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={VideoPlayer}/>
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>

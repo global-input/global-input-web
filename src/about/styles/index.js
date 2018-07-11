@@ -52,10 +52,21 @@ export var styles={
     marginBottom:10,
     paddingLeft:20,
     paddingRight:20,
-    paddingBottom:0,
+    paddingBottom:10,
     backgroundColor:"white",
     width:"100%"
  },
+ bigSection:{
+    marginTop:10,
+    paddingTop:10,
+    marginBottom:10,
+    paddingLeft:20,
+    paddingRight:20,
+    paddingBottom:0,
+    backgroundColor: "#4880ED",
+    width:"100%"
+ },
+
 
 
  sectionHeading:{
@@ -90,7 +101,14 @@ export var styles={
  contactFormContainer:{
     width:500
 
- }
+ },
+ imageLink:{
+
+   textDecoration:"underline",
+   marginRight:20,
+   marginBottom:10,
+   border:"1ox"
+ },
 
 
 };

@@ -75,9 +75,11 @@ export  default class DisplayStaticContent extends Component {
                 });
               }
               else{
+                return(
                   <div style={this.getLineStyle()} key={key}>
-                      {this.renderObject(item,type)}
+                      {this.renderObject(item)}
                   </div>
+                );
               }
       }
       else if(item.type==='ul'){
@@ -119,10 +121,16 @@ export  default class DisplayStaticContent extends Component {
             </a>
         );
       }
-      else if(item.type==='link'){
-
+      else if(item.type==='mailto'){
         return (
-          <Link to={item.link} style={this.props.linkStyle} key={key}>{this.renderItem(item.content, this.ITEM_TYPE.SPAN)}</Link>
+            <a href={"mailto:"+item.content} style={this.props.linkStyle} key={key}>
+                  {item.content}
+            </a>
+        );
+      }
+      else if(item.type==='link'){
+        return (
+          <Link to={item.link} className={item.className} style={this.props.linkStyle} key={key}>{this.renderItem(item.content, this.ITEM_TYPE.SPAN)}</Link>
         );
       }
       else if(item.type==='scroll'){

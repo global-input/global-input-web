@@ -1,12 +1,12 @@
+import {pagelinks} from "../../configs";
 const formDataTransferConfig={
   title:"Sign In Across Multiple Devices",
   appSubtitle:"Form Data Transfer",
   menu:{
-     link:"/global-input-app/form-data-transfer",
+     link:pagelinks.samples.formData.link,
      linkText:"Form Data Transfer",
-     backLink:"/?scrollTo=formDataTransfer",
-     bookmark:"formDataTransfer",
-     
+     backLink:pagelinks.samples.formData.backLink,
+     bookmark:pagelinks.samples.formData.bookmark,
   },
   content:["Global Input App can act as a Password Manager on your personal mobile device for signing into the web applications with Global Input App extensions.",
           "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",
