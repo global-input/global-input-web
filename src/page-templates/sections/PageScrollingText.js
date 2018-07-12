@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 
 
 import {images} from  "../../configs";
+import scrollingTextArrays from "../configs/scrollingTextArrays";
 
 import {DisplayStaticContent} from "../../components";
 import { CSSTransitionGroup } from 'react-transition-group'
@@ -54,9 +55,9 @@ export  default class PageScrollingText extends Component {
       }
     }
     startSiwtchContentThread(props){
-          if(props.scrollingText.items && props.scrollingText.items.length && props.scrollingText.items.length>1){
-                this.starterThread=setInterval(this.nextContent.bind(this),this.props.scrollingText.duration);
-          }
+          //if(props.scrollingText.items && props.scrollingText.items.length && props.scrollingText.items.length>1){
+                this.starterThread=setInterval(this.nextContent.bind(this),scrollingTextArrays.duration);
+        //  }
     }
 
     nextContent(){
@@ -64,7 +65,7 @@ export  default class PageScrollingText extends Component {
           if(this.starterThread){
             var index=this.state.index;
             index++;
-            if(index>=this.props.scrollingText.items.length){
+            if(index>=scrollingTextArrays.items.length){
                 index=0;
             }
             this.setState(Object.assign({}, this.state,{index}));
@@ -149,7 +150,7 @@ renderImage(){
 renderAnimation(){
 
 
-  var scrollingTextItem=this.props.scrollingText.items[this.state.index];
+  var scrollingTextItem=scrollingTextArrays.items[this.state.index];
   var scrollingTextTitleStyle=styles.scrollingTextTitle;
   var scrollingTextContentStyle=styles.scrollingTextContent;
 
@@ -189,7 +190,7 @@ render() {
      if(this.props.image){
          pageDescription=styles.pageDescriptionWithImage;
      }
-    var scrollingTextItem=this.props.scrollingText.items[this.state.index];
+    var scrollingTextItem= scrollingTextArrays.items[this.state.index];
 
     return (
                       <div style={pageDescriptionSection} id="scrollingTextSection">
