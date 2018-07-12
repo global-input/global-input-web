@@ -272,7 +272,8 @@ export default class QRCodePrinting extends Component {
       var qrCodeContent=this.state.action.connector.buildInputCodeData({securityGroup:config.securityGroup});
       return(
        <PageWithHeader scrollingText={applicationPathConfig.qrPrinting.scrollingText}
-         appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}>
+         appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}
+         aboutText={applicationPathConfig.home.aboutText}>
          <div style={styles.content}>
              <DisplayQRCode
 

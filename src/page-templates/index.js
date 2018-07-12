@@ -16,4 +16,5 @@ import DisplayQRCode from "./sections/DisplayQRCode";
 
 import applicationPathConfig from "./configs/applicationPathConfig";
 import blockTextConfig from "./configs/blockTextConfig";
-export {DisplayLoading,PageWithHeader,PageWithHeaderNoPrint,SectionHeader,DisplayQRCode,applicationPathConfig,blockTextConfig};
+import scrollingTextArrays from "./configs/scrollingTextArrays";
+export {DisplayLoading,PageWithHeader,PageWithHeaderNoPrint,SectionHeader,DisplayQRCode,applicationPathConfig,blockTextConfig,scrollingTextArrays};

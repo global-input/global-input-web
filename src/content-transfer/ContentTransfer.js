@@ -216,7 +216,7 @@ export default class ContentTransfer extends Component {
       return(
         <PageWithHeader scrollingText={applicationPathConfig.contentTransfer.scrollingText}
           appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}
-          install={applicationPathConfig.home.install}
+          
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
 

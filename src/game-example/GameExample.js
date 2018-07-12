@@ -583,8 +583,7 @@ renderAField(formField, index){
 
       return(
         <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
-          appSubtitle={applicationPathConfig.gameExample.appSubtitle}
-          install={applicationPathConfig.home.install}
+          appSubtitle={applicationPathConfig.gameExample.appSubtitle}          
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
               <DisplayQRCode

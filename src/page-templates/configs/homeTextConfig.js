@@ -22,44 +22,35 @@ const  homeTextConfig={
           ],
 
   scrollingText:{
-      duration:8000,
-      items:[{
-        title:"Store Content Encrypted in Your Device",
-        content:["Content Stays Encrypted Even in Memory",
-                "Decrypted Only When Needed"],
-      },{
-        title:"Own Your Data and Encryption",
-        content:["Create, Manage Encryption Keys",
-                "Export, Share, Import Encryption Keys"],
-      },{
-        title:"Create Encrypted QR Codes",
-        content:["Encrypt Content with Encryption Keys",
-                "Backup and Share Credentials"],
-      },{
-        title:"Scan to Decrypt the Content",
-        content:["Transfer Encrypted Content via QR Code",
-                "Share Encryption Keys Securely"],
-      },{
-        title:"End-to-End Encrypted Data Transfer",
-        content:["Transfer Content Between Devices",
-                "Scan to Start the Data Transfer"],
-      },{
-        title:"No Subscription, No Database on the Cloud",
-        content:["Everything Stored Encrypted in Your Device",
-                "Share Content Between Your Devices"],
-      },{
-        title:"Automate Sign In & Forms",
-        content:["Store and Manage Credentials",
-                "Transfer to Other Device Applications When Needed"],
-      },{
-        title:"Single Mobile App",
-        content:["Mobile Input & Control for Device and Web Applications",
-                "Second Screen Experience for Media Applications"],
-      },{
-        title:"Implementing Mobile Control",
-        content:["Enabling IoT, Smart TV and Web Applications",
-                 "Single Mobile App Solution for Multiple Devices"],
-      }],
+
+                    duration:8000,
+                    items:[{
+                      title:"Store Content Encrypted in Your Device",
+                      content:["Content Stays Encrypted Even in Memory",
+                              "Decrypted Only When Needed."],
+
+                      },{
+                        title:"Own Your Data and Encryption",
+                        content:["Create, Manage Encryption Keys",
+                                "Export, Share, Import Encryption Keys"],
+
+                        },{
+                          title:"End-to-End Encrypted Data Transfer",
+                          content:["Transfer Content Between Devices",
+                                  "Scan to Start the Data Transfer"],
+
+                          },{
+                            title:"No Subscription, No Database on the Cloud",
+                            content:["Everything Stored Encrypted in Your Device",
+                                    "Share Content Between Your Devices"],
+
+                            },{
+                              title:"Automate Sign In & Forms",
+                              content:["Store and Manage Your Credentials",
+                                      "Transfer to Other Device Applications When Needed"],
+
+                              }]
+
   },
 
   platform:{
@@ -94,7 +85,8 @@ const  homeTextConfig={
            },
 
 
-           {content:["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. Visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link}," for technical information. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment."]}
+           ["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment. If you are interested in how it works and would like to extend your web applications to allow users to use their mobile to operate on them, please visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link},"."]
+
           ],
 
 
