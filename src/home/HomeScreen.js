@@ -88,7 +88,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
                    content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerScrollingText}
-                   mobileImage={images.mobile.videoPlayerScrollingTexts}
+                   mobileImage={images.mobile.videoPlayerScrollingText}
 
 
                    buttonLabel={applicationPathConfig.videoPlayer.startButton}

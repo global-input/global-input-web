@@ -7,12 +7,12 @@ import {createMessageConnector} from "global-input-message";
 
 
 
-import {config,images} from "../configs";
+import {config,images,pagelinks} from "../configs";
 
 import "whatwg-fetch";
 
 import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
+  TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage,BookMark} from "../components";
 
 import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
@@ -412,7 +412,6 @@ renderAField(formField, index){
       this.stopSkipTimers();
       if(this.videoPlayer){
           this.videoPlayer.play();
-          this.videoPlayer.playbackRate=1;
       }
 
 
@@ -459,6 +458,9 @@ renderAField(formField, index){
       this.stopSkipTimers();
       this.videoPlayer.playbackRate++;
       this.sendPlayStatusMessage("Playing","x "+this.videoPlayer.playbackRate);
+      if(this.videoPlayer){
+          this.videoPlayer.play();
+      }
     }
     rewind(){
       console.log("rewinding");
@@ -516,7 +518,9 @@ renderAField(formField, index){
       this.setToCanPlay("Player Error");
     }
     onLoadedData(){
-
+      if(this.videoPlayer){
+        this.videoPlayer.scrollIntoView();
+      }
     }
     onLoadedMetadata(){
       var duration=this.videoPlayer.duration;
@@ -657,6 +661,17 @@ renderAField(formField, index){
         return result.match(/^([0-9]+:)?[0-9]*\:[0-9]*$/) ? result : '00:00';
     }
     renderSenderConnected(){
+      var w = window.innerWidth-50;
+      var h = window.innerHeight-50;
+
+      var videoHeight=h-50;
+      var videoWidth=16*videoHeight/9;
+      if(videoWidth>w){
+          videoWidth=w-50;
+          videoHeight=9*videoWidth/16;
+      }
+
+
 
           return(
 
@@ -665,36 +680,37 @@ renderAField(formField, index){
                sectionHeaderContent={applicationPathConfig.videoPlayer.senderConnected.content}
                aboutText={applicationPathConfig.home.aboutText}>
               <div style={styles.content}>
-              <video width="640" height="360"  id="videoplayer" autoPlay={false}
-                  ref={videoPlayer=>this.videoPlayer=videoPlayer}
-                  onAbort={this.onAbort.bind(this)}
-                  onCanPlay={this.onCanPlay.bind(this)}
-                  onCanPlay={this.onCanPlayThrough.bind(this)}
-                  onCanPlay={this.onCanPlayThrough.bind(this)}
-                  onDurationChange={this.onDurationChange.bind(this)}
-                  onEncrypted={this.onEncrypted.bind(this)}
-                  onEnded={this.onEnded.bind(this)}
-                  onError={this.onError.bind(this)}
-                  onLoadedData={this.onLoadedData.bind(this)}
-                  onLoadedMetadata={this.onLoadedMetadata.bind(this)}
-                  onLoadStart={this.onLoadStart.bind(this)}
-                  onPause={this.onPause.bind(this)}
-                  onPlay={this.onPlay.bind(this)}
-                  onPlaying={this.onPlaying.bind(this)}
-                  onProgress={this.onProgress.bind(this)}
-                  onRateChange={this.onRateChange.bind(this)}
-                  onSeeked={this.onSeeked.bind(this)}
-                  onSeeking={this.onSeeking.bind(this)}
-                  onStalled={this.onStalled.bind(this)}
-                  onSuspend={this.onSuspend.bind(this)}
-                  onTimeUpdate={this.onTimeUpdate.bind(this)}
-                  onVolumeChange={this.onVolumeChange.bind(this)}
-                  onWaiting={this.onWaiting.bind(this)}
-                  controls>
-                    <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"/>
-                    <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"/>
-                    <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"/>
-                </video>
+
+                    <video width={videoWidth} height={videoHeight}  id="videoplayer" autoPlay={false}
+                        ref={videoPlayer=>this.videoPlayer=videoPlayer}
+                        onAbort={this.onAbort.bind(this)}
+                        onCanPlay={this.onCanPlay.bind(this)}
+                        onCanPlay={this.onCanPlayThrough.bind(this)}
+                        onCanPlay={this.onCanPlayThrough.bind(this)}
+                        onDurationChange={this.onDurationChange.bind(this)}
+                        onEncrypted={this.onEncrypted.bind(this)}
+                        onEnded={this.onEnded.bind(this)}
+                        onError={this.onError.bind(this)}
+                        onLoadedData={this.onLoadedData.bind(this)}
+                        onLoadedMetadata={this.onLoadedMetadata.bind(this)}
+                        onLoadStart={this.onLoadStart.bind(this)}
+                        onPause={this.onPause.bind(this)}
+                        onPlay={this.onPlay.bind(this)}
+                        onPlaying={this.onPlaying.bind(this)}
+                        onProgress={this.onProgress.bind(this)}
+                        onRateChange={this.onRateChange.bind(this)}
+                        onSeeked={this.onSeeked.bind(this)}
+                        onSeeking={this.onSeeking.bind(this)}
+                        onStalled={this.onStalled.bind(this)}
+                        onSuspend={this.onSuspend.bind(this)}
+                        onTimeUpdate={this.onTimeUpdate.bind(this)}
+                        onVolumeChange={this.onVolumeChange.bind(this)}
+                        onWaiting={this.onWaiting.bind(this)}
+                        controls>
+                          <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"/>
+                          <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"/>
+                          <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"/>
+                      </video>
                 {this.renderCurrentTime()}
 
               </div>
