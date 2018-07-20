@@ -105,22 +105,24 @@ render() {
                   buttonLink={applicationPathConfig.gameExample.menu.link}/>
           </div>
 
+          <BookMark bookmark={applicationPathConfig.sendMessage.menu.bookmark}/>
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.sendMessage.title}
+                   content={applicationPathConfig.sendMessage.content} image={images.automateForm}
+                   mobileImage={images.mobile.automateForm}
+                   buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
+          </div>
+
           <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
           <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.formData.title}
+                <DisplayTextImage title={applicationPathConfig.formData.title} reverse={true}
                    content={applicationPathConfig.formData.content} image={images.transferForm}
                    mobileImage={images.mobile.transferForm}
                    buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
           </div>
 
 
-          <BookMark bookmark={applicationPathConfig.sendMessage.menu.bookmark}/>
-          <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.sendMessage.title} reverse={true}
-                   content={applicationPathConfig.sendMessage.content} image={images.automateForm}
-                   mobileImage={images.mobile.automateForm}
-                   buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
-          </div>
+
 
 
 
@@ -150,9 +152,7 @@ render() {
               <div style={styles.itemSection}>
                     <DisplayTextImage title={blockTextConfig.chrome.title}
                        content={blockTextConfig.chrome.content} image={images.chromeExtension}
-                       mobileImage={images.mobile.chromeExtension}
-                       buttonLabel={blockTextConfig.chrome.startButton}
-                       buttonHRef={blockTextConfig.chrome.install.link}/>
+                       mobileImage={images.mobile.chromeExtension}/>
               </div>
 
 
