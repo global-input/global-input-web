@@ -14,7 +14,7 @@ import {config,images} from "../configs";
 import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
   TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
 
-import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,PageWithoutHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 
 
@@ -583,7 +583,7 @@ renderAField(formField, index){
 
       return(
         <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
-          appSubtitle={applicationPathConfig.gameExample.appSubtitle}          
+          appSubtitle={applicationPathConfig.gameExample.appSubtitle}
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
               <DisplayQRCode
@@ -626,13 +626,12 @@ renderAField(formField, index){
 
     renderSenderConnected(){
           return(
-            <PageWithHeader scrollingText={applicationPathConfig.gameExample.scrollingText}
-              sectionHeaderContent={applicationPathConfig.gameExample.senderConnected.content}
-              appSubtitle={applicationPathConfig.gameExample.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
+            <PageWithoutHeader
+              appSubtitle={applicationPathConfig.gameExample.appSubtitle} >
                 <div style={styles.content}>
                       <GameArea initGame={this.initGame.bind(this)}/>
                   </div>
-             </PageWithHeader>
+             </PageWithoutHeader>
           );
 
    }

@@ -13,6 +13,11 @@ const styles={
             justifyContent:"flex-start",
             alignItems:"flex-start",
             width:"100%",
+        },
+        headerBlankBar:{
+            height:68,
+            border:"1px solid red",
+            width:"100%"
         }
 };
 

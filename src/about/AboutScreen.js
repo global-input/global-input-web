@@ -16,7 +16,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle,BookMark} from "../components";
+import {DisplayTextImage,DisplayStaticContent,DisplaySectionTitle,BookMark,TextViewPad} from "../components";
 
 
 
@@ -82,56 +82,56 @@ render() {
                       <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
                </div>
 
-               <div style={styles.bigSection}>
-                    <BookMark bookmark={pagelinks.app.reasons.bookmark}/>
-                    <DisplaySectionTitle title={blockTextConfig.about.globalInputApp.whyneeded.title}/>
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
-                    </div>
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
-                    </div>
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.content} />
-                    </div>
 
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.content} />
-                    </div>
-
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
-                    </div>
-
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.content} />
-                    </div>
-
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.content} />
-                    </div>
-
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.gameControl.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.gameControl.content} />
-                    </div>
-
-
-                    <div style={styles.itemSection}>
-                      <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.title}
-                         content={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.content} />
-                    </div>
-
-
-               </div>
          </div>
+         <TextViewPad bookmark={pagelinks.app.reasons.bookmark} title={blockTextConfig.about.globalInputApp.whyneeded.title}>
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
+           </div>
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
+           </div>
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.content} />
+           </div>
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.content} />
+           </div>
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
+           </div>
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.content} />
+           </div>
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.content} />
+           </div>
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.gameControl.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.gameControl.content} />
+           </div>
+
+
+           <div style={styles.itemSection}>
+             <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.title}
+                content={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.content} />
+           </div>
+
+         </TextViewPad>
+
+
 
       </PageWithHeader>
             );

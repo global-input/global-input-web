@@ -106,7 +106,7 @@ var styles={
         alignItems:"center",
         padding:10,
      },
-     
+
 
 
     sectionTile:{
@@ -116,7 +116,37 @@ var styles={
        alignItems:"center",
        color: "white",
        fontSize: 26,
+
     },
+    textPadContainer:{
+      paddingLeft:20,
+      paddingTop:10,
+      paddingRight:20,
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      backgroundColor:"#dddddd"
+    },
+    textPad:{
+
+      marginBottom:10,
+      paddingLeft:20,
+      paddingRight:20,
+      paddingBottom:10,
+      paddingTop:10,
+
+      backgroundColor: "#4880ED",
+      width:"100%",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center",
+
+    },
+    padContent:{
+
+    }
 
 
 
@@ -128,6 +158,12 @@ styles.sectionTitleMobile=Object.assign({},styles.sectionTile,{
     paddingTop:10,
 
 });
+styles.textPadContainerMobile=Object.assign({},styles.textPadContainer,{
+  paddingLeft:0,
+  paddingRight:0,
+
+});
+
 
 
 styles.sectionHeadingMobile=Object.assign({},styles.sectionHeading,{

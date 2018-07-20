@@ -7,9 +7,9 @@ export default class GameArea extends Component {
       this.props.initGame(this.canvas);
   }
   render(){
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    
+    var w = window.innerWidth-50;
+    var h = window.innerHeight-50;
+
 
     return(
         <canvas style={styles.canvas} width={w} height={h} ref={canvas=>{

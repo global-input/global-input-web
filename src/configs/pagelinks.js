@@ -63,7 +63,8 @@ const pagelinks={
             mediaPlayer:{
               link:"/global-input-app/video-player",
               backLink:"/?scrollTo=videoPlayer",
-              bookmark:"videoPlayer"
+              bookmark:"videoPlayer",
+              playerBookMark:"videoPlayer",
             },
             gameControl:{
               link:"/global-input-app/game-example",

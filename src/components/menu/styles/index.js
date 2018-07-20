@@ -142,7 +142,7 @@ var styles={
       padding: "8px 16px",
       textDecoration: "none",
       fontSize: 17,
-      marginBottom: 0,      
+      marginBottom: 0,
       color: "#4880ED",
       whiteSpace:"nowrap",
       fontWeight:300
@@ -193,8 +193,7 @@ var styles={
     marginLeft:20,
     marginBottom:4
   },
-  bookmark:{
-    height:50
+  bookmark:{    
   }
 
 };
