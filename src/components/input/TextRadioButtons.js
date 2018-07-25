@@ -14,18 +14,20 @@ export default class TextRadioButtons extends Component{
     var key=index+"_"+item.label;
     return(
             <div style={styles.selectionContainer} key={key}>
+                 <div style={styles.label}>{item.label}
+                 </div>
+                 <input type="radio" checked={selected} onChange={()=>{}} onClick={()=>{
+                     this.props.onChange(item);
+                   }}/>
 
-                 <div style={styles.label}>{item.label}</div>
-                <input type="radio" checked={selected} onChange={()=>{}} onClick={()=>{
-                    this.props.onChange(item);
-                  }}/>
+
             </div>
         );
   }
 
   render(){
     return(
-      <div>
+      <div style={styles.radioButtonContainer}>
           {this.props.selections.map(this.renderItem.bind(this))}
       </div>
     );

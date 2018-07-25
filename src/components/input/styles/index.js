@@ -28,23 +28,35 @@ export const styles={
       alignItems:"center"
 
   },
+  radioButtonContainer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flext-start",
+    alignItems:"flext-start",
+
+  },
   selectionContainer:{
     display:"flex",
     flexDirection:"row",
     justifyContent:"space-between",
     alignItems:"center",
-    marginBottom:20
+    marginBottom:20,
+
   },
   label:{
-    minWidth:100,
-    fontFamily: "'Roboto', sans-serif",
     fontSize: 14,
-    color: "#333"
+    color: "#4880ED",
+    minWidth:100,
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"flex-start",
+    alignItems:"center"
   },
   help:{
     fontFamily: "'Roboto', sans-serif",
     fontSize: 12,
-    color: "#333"
+    color: "#4880ED",
+
   }
 
 };

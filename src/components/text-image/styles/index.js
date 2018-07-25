@@ -20,7 +20,7 @@ var styles={
 
        color: "#4880ED"
      },
-
+     
      imageTitle:{
        fontWeight: 500,
        fontSize: 26,

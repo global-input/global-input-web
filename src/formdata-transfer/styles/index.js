@@ -5,8 +5,21 @@ export const styles={
     justifyContent:"center",
     alignItems:"center",
     width:"100%",
-    padding:5,
-    paddingTop:10,
+    padding:0,
+
+
+  },
+  title:{
+    fontFamily: "'Elysio-Light',Helvetica,Arial,sans-serif",
+
+    fontWeight: 500,
+    fontSize: 26,
+    marginTop: 0,
+    marginBottom: 15,
+    color: "#4880ED",
+    paddingLeft:10,
+    paddingRight:10,
+    paddingTop:20
 
   },
   selectionContainer:{
@@ -26,7 +39,7 @@ export const styles={
       justifyContent:"space-between",
       alignItems:"center",
       flexWrap:"wrap",
-      width:"100%",
+      maxWidth:800,
       marginTop:20,
       marginBottom:10
   },
@@ -65,9 +78,41 @@ export const styles={
 
   },
   formContainer:{
-    width:"100%",
-    padding:50,
+    maxWidth:700,
+    padding:0,
+    boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.22)",
+    MozBoxShadow: "0px 0px 15px rgba(0, 0, 0, 0.22)",
+    WebkitBoxShadow:"0px 0px 15px rgba(0, 0, 0, 0.22)",
+    color: "#4880ED",
+  },
+  formHeader:{
+    minHeight:50
+  },
+  blueHeader:{
+      backgroundColor: "#4880ED",
+      color:"white",
+      padding:10,
+      width:"100%",
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
+  },
+  fieldRow:{
+      paddingTop:10
+  },
+  formContent:{
+      padding:15
 
+  },
+  footer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"flex-start",
+    maxWidth:800,
+    marginTop:20,
+    marginBottom:10
   },
   fieldrow:{
       display:"flex",
@@ -86,5 +131,11 @@ export const styles={
     justifyContent:"flex-end",
     alignItems:"center",
     marginBottom:5
-  }
+  },
+  help:{
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 12,
+    color: "#4880ED",
+  },
+
 };
