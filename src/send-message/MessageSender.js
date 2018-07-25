@@ -85,6 +85,7 @@ export default class MessageSender extends Component {
                 connected:false,
                 senders:null,
                 selectedFieldId:null,
+                show:true,
                 options:{
                             url:config.url,
                             apikey:config.apikey,
@@ -186,6 +187,7 @@ export default class MessageSender extends Component {
                 connected:this.state.action.connected,
                 senders:this.state.action.senders,
                 selectedFieldId:null,
+                show:true,
                 options:{
                             url:this.state.action.options.url,
                             apikey:this.state.action.options.apikey,

@@ -15,7 +15,7 @@ import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextBut
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
-export default class FormDataTransfer extends Component {
+export default class FormComposer extends Component {
   ACT_TYPE={
       COMPOSE_FORM:2,
       ADD_NEW_FIELD:3,

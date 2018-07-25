@@ -107,7 +107,7 @@ const gameExampleConfig={
           type:"info",
           value:{
               type:"text",
-              content:"5"
+              content:"30"
           },
           viewId:"row4"
         }

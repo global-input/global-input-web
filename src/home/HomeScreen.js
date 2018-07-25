@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import {config} from "../configs";
 
 
 
@@ -89,6 +89,7 @@ render() {
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
                    content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerScrollingText}
                    mobileImage={images.mobile.videoPlayerScrollingText}
+                   video={config.videos.videoPlayer()}
 
 
                    buttonLabel={applicationPathConfig.videoPlayer.startButton}
@@ -100,6 +101,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
                    content={applicationPathConfig.gameExample.content} image={images.gameScrollingText}
+                   video={config.videos.game()}
                    mobileImage={images.mobile.gameScrollingText}
                    buttonLabel={applicationPathConfig.gameExample.startButton}
                   buttonLink={applicationPathConfig.gameExample.menu.link}/>
@@ -109,6 +111,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.sendMessage.title}
                    content={applicationPathConfig.sendMessage.content} image={images.automateForm}
+                   video={config.videos.sendMessage()}
                    mobileImage={images.mobile.automateForm}
                    buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
           </div>

@@ -9,7 +9,7 @@ export default class GameComponent{
             this.x = x;
             this.y = y;
             this.gravity = 0;
-            this.moveSpeed = 5;
+            this.moveSpeed = 30;
             this.container=container;
             this.color=color;
      }
