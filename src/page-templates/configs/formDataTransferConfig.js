@@ -12,7 +12,7 @@ const formDataTransferConfig={
           "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",
           "Global Input allows to login securely to a web application on a shared computer that is attached to a shared screen in a conference room."],
 
-  
+
 
 
    compose:{
@@ -57,6 +57,7 @@ const formDataTransferConfig={
    disConnected:{
      title:"Transfer Form Data",
       content:["Your Global Input App is now disconnected"],
+      shorttitle:"Disconnected"
    },
 
 

@@ -37,6 +37,9 @@ const pagelinks={
               link:"/global-input-app/form-data-transfer",
               backLink:"/?scrollTo=formDataTransfer",
               bookmark:"formDataTransfer",
+              buildURL:function(req){
+                    return this.link+"?formData="+req.formData;
+              }
             },
             chromeExtension:{
               link:"/",

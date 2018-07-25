@@ -11,17 +11,21 @@ export default class InputWithLabel extends Component{
                    max={this.props.max}
                    step={this.props.step}
                    readOnly={this.props.readOnly}
-                   
+
                    onChange={(evt) => {
                      this.props.onChange(evt.target.value,this.props.fieldIndex);
                  }} value={this.props.value} required/>
-                 <label htmlFor={this.props.fieldId} className="form-control-placeholder">{this.props.label}</label>
+                 <label htmlFor={this.props.fieldId} className="form-control-placeholder">
+                    <span style={styles.label}>{this.props.label}</span>
+
+                 </label>
                  {this.renderHelp()}
            </div>
          );
   }
   renderHelp(){
       if(this.props.help){
+
         return(
           <div style={styles.help}>{this.props.help}</div>
           );

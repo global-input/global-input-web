@@ -7,7 +7,7 @@ import {
 import {styles} from "./styles";
 import {TextButton} from "../index";
 import DisplayStaticContent from "./DisplayStaticContent";
-
+import DisplayVideo from "./DisplayVideo";
 
 
 export  default class DisplayTextImage extends Component {
@@ -89,9 +89,21 @@ export  default class DisplayTextImage extends Component {
 
 
   }
+  renderVideo(isMobile){
+          return(
+          <div className="col-md-6">
+              <div style={styles.imageContainer}>
+                <DisplayVideo video={this.props.video}
+                  defaultImage={this.props.image}/>
+              </div>
+          </div>
+        );
+  }
   renderImage(isMobile){
-
-    if(this.props.image){
+    if(this.props.video){
+        return this.renderVideo(isMobile);
+    }
+    else if(this.props.image){
       if(isMobile){
         var imageurl=this.props.image;
         if(this.props.mobileImage){
@@ -106,14 +118,17 @@ export  default class DisplayTextImage extends Component {
         );
       }
       else{
-        return(
-          <div className="col-md-6">
-              <div style={styles.imageContainer}>
-                  {this.renderImageTitle(isMobile)}
-                  <img src={this.props.image} style={styles.image}/>
-              </div>
-          </div>
-        );
+
+          return(
+            <div className="col-md-6">
+                <div style={styles.imageContainer}>
+                    {this.renderImageTitle(isMobile)}
+                    <img src={this.props.image} style={styles.image}/>
+                </div>
+            </div>
+          );
+
+
       }
 
     }

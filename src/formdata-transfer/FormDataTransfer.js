@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 
 
 
-import {createMessageConnector} from "global-input-message";
+import {createMessageConnector,encrypt,decrypt} from "global-input-message";
 
 
 
 
-import {config} from "../configs";
+import {config,pagelinks} from "../configs";
 
 
 import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
@@ -28,12 +28,115 @@ export default class FormDataTransfer extends Component {
     {label:"Single-line"},
     {label:"Multi-line"}
   ]
+  formDataParamKey="TDwtv0dV6u"
 
 
   constructor(props){
       super(props);
       this.state=this.getStateFromProps(this.props);
+      this.onWindowResize=this.onWindowResize.bind(this);
     }
+    componentDidMount() {
+        window.addEventListener("resize", this.onWindowResize);
+        this.processQueryParameters(this.props);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.onWindowResize);
+    }
+    onWindowResize(){
+      this.forceUpdate();
+    }
+
+    getQueryParam(query,variable) {
+           if(!query){
+             return null;
+           }
+           query=query.substring(1);
+           var vars = query.split('&');
+           for (var i = 0; i < vars.length; i++) {
+               var pair = vars[i].split('=');
+               if (decodeURIComponent(pair[0]) === variable) {
+                   return decodeURIComponent(pair[1]);
+               }
+           }
+ }
+ processQueryParameters(props){
+        if(props && props.location && props.location.search){
+                var formDataString=this.getQueryParam(props.location.search, "formData");
+                if(formDataString){
+                  try{
+                      var formData=JSON.parse(decrypt(formDataString,this.formDataParamKey));
+                      this.connectWithForm(formData);
+                      return;
+                    }
+                    catch(e){
+                      console.error(e+" while processing the formDataString");
+                    }
+                }
+        }
+        this.addDefaultFields();
+ }
+ addDefaultFields(){
+   var action=this.state.action;
+   this.addTextField(action,{
+       id:"username",
+       label:"Username"
+   });
+   this.addTextField(action,{
+       id:"password",
+       label:"Password"
+   });
+   this.getFields(action).push(
+     {
+       label:"Finish",
+       type:"button",
+       icon:"ok",
+       buttonText:"Finish",
+       operations:{
+           onInput:()=>{
+               this.disconnectGlobalInput();
+            }
+        }
+      }
+   );
+   this.setState({action});
+
+ }
+ connectWithForm(formData){
+   var action=this.state.action;
+   action.options.initData.form.id=formData.id;
+   action.options.initData.form.title=formData.title;
+   action.options.initData.form.label=formData.label;
+   formData.fields.forEach(f=>{
+      if((!f.type) ||f.type==='text'){
+        this.addTextField(action,{
+            id:f.id,
+            label:f.label,
+            type:f.type,
+            value:f.value
+        });
+      }
+   });
+
+   this.getFields(action).push(
+     {
+       label:"Finish",
+       type:"button",
+       icon:"ok",
+       buttonText:"Finish",
+       operations:{
+           onInput:()=>{
+               this.disconnectGlobalInput();
+            }
+        }
+      }
+   );
+   action.actType=this.ACT_TYPE.CONNECTING;
+   action.connector=createMessageConnector();
+   this.setState({action});
+   action.connector.connect(action.options);
+ }
+
     componentWillUnmount(){
         this.disconnectGlobalInput();
     }
@@ -51,6 +154,10 @@ export default class FormDataTransfer extends Component {
       var action=this.state.action;
       return action.options.initData.form.id;
     }
+    getFormTitle(){
+      var action=this.state.action;
+      return action.options.initData.form.title;
+    }
     getFormLabel(){
       var action=this.state.action;
       return action.options.initData.form.label;
@@ -58,6 +165,12 @@ export default class FormDataTransfer extends Component {
     setFormId(formid){
       var action=this.state.action;
       action.options.initData.form.id=formid;
+      action.selectedFieldId=null;
+      this.setState({action});
+    }
+    setFormTitle(formTitle){
+      var action=this.state.action;
+      action.options.initData.form.title=formTitle;
       action.selectedFieldId=null;
       this.setState({action});
     }
@@ -175,9 +288,9 @@ export default class FormDataTransfer extends Component {
                                 action:"input",
                                 dataType:"form",
                                 form:{
-                                  id:"###username###@"+window.location.host,
+                                  id:"###username###@members",
                                   title:applicationPathConfig.formData.senderConnected.title,
-                                  label:window.location.host,
+                                  label:"members",
                                   fields:[]
                                 }
                           },
@@ -189,27 +302,7 @@ export default class FormDataTransfer extends Component {
                           }
                         }
                   };
-                  this.addTextField(action,{
-                      id:"username",
-                      label:"Username"
-                  });
-                  this.addTextField(action,{
-                      id:"password",
-                      label:"Password"
-                  });
-                  this.getFields(action).push(
-                    {
-                      label:"Finish",
-                      type:"button",
-                      icon:"ok",
-                      buttonText:"Finish",
-                      operations:{
-                          onInput:()=>{
-                              this.disconnectGlobalInput();
-                           }
-                       }
-                     }
-                  );
+
                   return action;
 
     }
@@ -268,6 +361,11 @@ export default class FormDataTransfer extends Component {
 
           action.actType=this.ACT_TYPE.COMPOSE_FORM;
           action.selectedFieldId=null;
+          action.newField={
+              label:"",
+              id:"",
+              nLines:null
+          };
           this.setState({action});
     }
     toComposeForm(){
@@ -484,59 +582,89 @@ renderComposeForm(){
     var formLabel=this.getFormLabel();
     var fields=this.getFields(this.state.action);
 
+    var formTitle=this.getFormTitle();
 
     return (
       <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
          appSubtitle={applicationPathConfig.formData.appSubtitle}
-         sectionHeaderTitle={applicationPathConfig.formData.compose.title}
-         install={applicationPathConfig.home.install}
          aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
 
+              <div style={styles.title}>{applicationPathConfig.formData.compose.title}</div>
+
                 <div style={styles.formContainer}>
-
-                        <InputWithLabel fieldId="formId"
-                          onChange={this.setFormId.bind(this)}
-                          value={formid}
-                          label="ID" help={applicationPathConfig.formData.compose.idField.help}/>
-
-
-
-                        <InputWithLabel fieldId="folder"
-                            onChange={this.setFormLabel.bind(this)}
-                            value={formLabel}
-                            label="Folder"
-                            help={applicationPathConfig.formData.compose.folder.help}/>
-
-                            <DisplayStaticContent
-                            content={applicationPathConfig.formData.compose.fields.header}/>
+                    <div style={styles.formHeader}></div>
+                    <div style={styles.formContent}>
+                      <InputWithLabel fieldId="formTitle"
+                        onChange={this.setFormTitle.bind(this)}
+                        value={formTitle}
+                        label="Form Title"/>
 
 
-                          {fields.map((formField, index)=>this.renderAField(formField,index))}
-                      <DisplayStaticContent
-                      content={applicationPathConfig.formData.compose.fields.footer}/>
-
-                      <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
 
 
-                      <div style={styles.buttonContainer}>
-                          <TextButton label={applicationPathConfig.formData.backButton}
-                           link={applicationPathConfig.formData.menu.backLink}/>
+                          <InputWithLabel fieldId="formId"
+                            onChange={this.setFormId.bind(this)}
+                            value={formid}
+                            label="ID" help={applicationPathConfig.formData.compose.idField.help} helpStyle={styles.help}
+                            />
 
-                         {this.renderDeleteFieldButton()}
-                         <TextButton label={applicationPathConfig.formData.addNewFieldButton}
-                            onPress={this.toAddNewField.bind(this)}/>
-                          {this.renderCopyButton()}
-                        <TextButton label={applicationPathConfig.formData.nextButton}
-                               onPress={this.connectGlobalInput.bind(this)}/>
-                      </div>
+
+
+                          <InputWithLabel fieldId="folder"
+                              onChange={this.setFormLabel.bind(this)}
+                              value={formLabel}
+                              label="Folder"
+                              help={applicationPathConfig.formData.compose.folder.help}/>
+
+                              <DisplayStaticContent
+                              content={applicationPathConfig.formData.compose.fields.header}/>
+
+
+                            {fields.map((formField, index)=>this.renderAField(formField,index))}
+                    </div>
 
               </div>
+
+              <div style={styles.buttonContainer}>
+                  <TextButton label={applicationPathConfig.formData.backButton}
+                   link={applicationPathConfig.formData.menu.backLink}/>
+
+                 {this.renderDeleteFieldButton()}
+                 <TextButton label={applicationPathConfig.formData.addNewFieldButton}
+                    onPress={this.toAddNewField.bind(this)}/>
+                  {this.renderCopyButton()}
+                <TextButton label={applicationPathConfig.formData.nextButton}
+                       onPress={this.toFormQrCode.bind(this)}/>
+              </div>
+              <div style={styles.footer}>
+                  <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
+                  <DisplayStaticContent content={applicationPathConfig.formData.compose.fields.footer}
+                    lineStyle={styles.help}/>
+              </div>
+
+
+
+
               </div>
           </PageWithHeader>
 
 
 
+    );
+}
+
+toFormQrCode(){
+  this.connectGlobalInput();
+}
+displayBookmarkableLink(){
+    var action=this.state.action;
+    var form=action.options.initData.form;
+    var formData=encrypt(JSON.stringify(form),this.formDataParamKey);
+
+    var url=pagelinks.samples.formData.buildURL({formData})
+    return(
+        <a href={url}  target="_blank">Load As BookMarkable</a>
     );
 }
 
@@ -553,21 +681,28 @@ renderAddNewField(){
   return (
     <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
        appSubtitle={applicationPathConfig.formData.appSubtitle}
-       sectionHeaderTitle={applicationPathConfig.formData.compose.title}
-       install={applicationPathConfig.home.install}
+
        aboutText={applicationPathConfig.home.aboutText}>
 
     <div style={styles.content}>
+      <div style={styles.title}>{applicationPathConfig.formData.compose.title}</div>
 
-      <DisplayTextImage title={applicationPathConfig.formData.newField.title}
-      content={applicationPathConfig.formData.newField.content}/>
+      <div style={styles.formContainer}>
+        <div style={styles.formHeader}>
+        <div style={styles.blueHeader}>
+              {applicationPathConfig.formData.newField.title}
+        </div>
 
+        </div>
+          <div style={styles.formContent}>
 
+                <div style={styles.fieldRow}>
+                  <InputWithLabel fieldId="newfieldid"
+                      onChange={this.setNewFieldLabel.bind(this)}
+                      value={newFieldLabel}
+                      label={applicationPathConfig.formData.newField.fieldLabel}/>
+                </div>
 
-                    <InputWithLabel fieldId="newfieldid"
-                        onChange={this.setNewFieldLabel.bind(this)}
-                        value={newFieldLabel}
-                        label={applicationPathConfig.formData.newField.fieldLabel}/>
 
                         <TextRadioButtons selections={this.FORM_FIELD_TYPES} selected={selected} onChange={selectedItem=>{
                                   if(selectedItem===this.FORM_FIELD_TYPES[1]){
@@ -586,7 +721,8 @@ renderAddNewField(){
                               <TextButton label={applicationPathConfig.formData.addButton}
                                 onPress={this.addNewField.bind(this)}/>
                           </div>
-
+                </div>
+          </div>
 
 
   </div>
@@ -612,7 +748,9 @@ renderAddNewField(){
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.formData.cancelButton}
                 onButtonPressed={this.restartToCompose.bind(this)}/>
+              {this.displayBookmarkableLink()}
             </div>
+
 
       </PageWithHeader>
       );
@@ -651,11 +789,18 @@ renderAddNewField(){
           return(
               <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
 
-                sectionHeaderContent={applicationPathConfig.formData.senderConnected.content}
+
                 appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                 <div style={styles.content}>
 
+                            <div style={styles.title}>{applicationPathConfig.formData.senderConnected.content}</div>
                       <div style={styles.formContainer}>
+                        <div style={styles.formHeader}>
+                               <div style={styles.blueHeader}>
+                                     {applicationPathConfig.formData.newField.title}
+                               </div>
+                        </div>
+                        <div style={styles.formContent}>
                             <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
                             {fields.map((formField, index)=>this.renderAField(formField,index))}
                             <NotificationMessage message={this.state.message} setMessage={this.setMessage.bind(this)}/>
@@ -670,6 +815,7 @@ renderAddNewField(){
                                     onPress={this.disconnectGlobalInput.bind(this)}/>
 
                               </div>
+                          </div>
                       </div>
               </div>
 
@@ -686,18 +832,26 @@ renderAddNewField(){
 
          return(
              <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
-               sectionHeaderContent={applicationPathConfig.formData.disConnected.content}
+
                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                <div style={styles.content}>
+                    <div style={styles.title}>{applicationPathConfig.formData.disConnected.content}</div>
                      <div style={styles.formContainer}>
+                       <div style={styles.formHeader}>
+                              <div style={styles.blueHeader}>
+                                    {applicationPathConfig.formData.disConnected.shorttitle}
+                              </div>
+                       </div>
+                       <div style={styles.formContent}>
                            <ShowHideButton setShow={this.setShow.bind(this)} show={this.state.action.show}/>
-                           {fields.map((formField, index)=>this.renderAField(formField,index,true))}
+                           {fields.map((formField, index)=>this.renderAField(formField,index,false))}
                              <div style={styles.buttonContainer}>
                                <TextButton label={applicationPathConfig.formData.restartButton}
                                  onPress={this.toComposeForm.bind(this)}/>
                                  {this.renderCopyButton()}
                              </div>
                      </div>
+                   </div>
              </div>
 
           </PageWithHeader>
