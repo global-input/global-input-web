@@ -618,10 +618,12 @@ renderComposeForm(){
                               help={applicationPathConfig.formData.compose.folder.help}/>
 
                               <DisplayStaticContent
-                              content={applicationPathConfig.formData.compose.fields.header}/>
-
+                              content={applicationPathConfig.formData.compose.fields.header}
+                              lineStyle={styles.help}/>
+                            <div style={styles.fieldRow}>
 
                             {fields.map((formField, index)=>this.renderAField(formField,index))}
+                          </div>
                     </div>
 
               </div>
@@ -664,7 +666,7 @@ displayBookmarkableLink(){
 
     var url=pagelinks.samples.formData.buildURL({formData})
     return(
-        <a href={url}  target="_blank">Load As BookMarkable</a>
+        <a href={url}  target="_blank">{applicationPathConfig.formData.cloneButton}</a>
     );
 }
 
@@ -700,7 +702,8 @@ renderAddNewField(){
                   <InputWithLabel fieldId="newfieldid"
                       onChange={this.setNewFieldLabel.bind(this)}
                       value={newFieldLabel}
-                      label={applicationPathConfig.formData.newField.fieldLabel}/>
+                      label={applicationPathConfig.formData.newField.fieldLabel}
+                      onKeyEnter={this.addNewField.bind(this)}/>
                 </div>
 
 

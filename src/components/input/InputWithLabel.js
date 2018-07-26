@@ -11,7 +11,11 @@ export default class InputWithLabel extends Component{
                    max={this.props.max}
                    step={this.props.step}
                    readOnly={this.props.readOnly}
-
+                   onKeyUp={evt=>{
+                     if(this.props.onKeyEnter && evt && evt.keyCode===13){
+                        this.props.onKeyEnter();
+                     }
+                   }}
                    onChange={(evt) => {
                      this.props.onChange(evt.target.value,this.props.fieldIndex);
                  }} value={this.props.value} required/>

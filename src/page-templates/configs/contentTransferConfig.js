@@ -6,7 +6,7 @@ const contentTransferConfig={
       backLink:pagelinks.samples.contentTransfer.backLink,
       bookmark:pagelinks.samples.contentTransfer.bookmark
     },
-    title:"Encrypted Content Storage & Transfer",
+    title:"Copy And Paste Content Securely Between Devices",
     appSubtitle:"Content Transfer",
     content:[
              "Global Input App implements an encrypted storage in your device and data transfer between your devices using end-to-end encryption.",

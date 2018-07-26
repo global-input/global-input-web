@@ -124,6 +124,13 @@ render() {
                    buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
           </div>
 
+          <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
+
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={blockTextConfig.chrome.title}
+                   content={blockTextConfig.chrome.content} image={images.chromeExtension}
+                   mobileImage={images.mobile.chromeExtension}/>
+          </div>
 
 
 
@@ -131,31 +138,28 @@ render() {
 
 
 
-              <BookMark bookmark={applicationPathConfig.contentTransfer.menu.bookmark}/>
 
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.contentTransfer.title}
-                       content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
-                       mobileImage={images.mobile.contentTransfer}
-                       buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
-              </div>
+          <BookMark bookmark={applicationPathConfig.contentTransfer.menu.bookmark}/>
+
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={applicationPathConfig.contentTransfer.title}
+
+                   content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
+                   mobileImage={images.mobile.contentTransfer}
+                   buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
+          </div>
+
 
 
               <BookMark bookmark={applicationPathConfig.qrPrinting.menu.bookmark}/>
 
               <div style={styles.itemSection}>
-                    <DisplayTextImage title={applicationPathConfig.qrPrinting.title} reverse={true}
+                    <DisplayTextImage title={applicationPathConfig.qrPrinting.title}
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
                        mobileImage={images.mobile.encryptedQRCode}
+                       reverse={true}
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
-              </div>
 
-              <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
-
-              <div style={styles.itemSection}>
-                    <DisplayTextImage title={blockTextConfig.chrome.title}
-                       content={blockTextConfig.chrome.content} image={images.chromeExtension}
-                       mobileImage={images.mobile.chromeExtension}/>
               </div>
 
 

@@ -1,6 +1,6 @@
 import {pagelinks} from "../../configs";
 const formDataTransferConfig={
-  title:"Sign In Across Multiple Devices",
+  title:"Encrypted Data Storage and Encrypted Transfer",
   appSubtitle:"Form Data Transfer",
   menu:{
      link:pagelinks.samples.formData.link,
@@ -8,11 +8,10 @@ const formDataTransferConfig={
      backLink:pagelinks.samples.formData.backLink,
      bookmark:pagelinks.samples.formData.bookmark,
   },
-  content:["Global Input App can act as a Password Manager on your personal mobile device for signing into the web applications with Global Input App extensions.",
-          "Credentials are stored encrypted in your device’s storage only, and decrypted only when it is needed and pushed to the connected application using end-to-end encryption.",
-          "Global Input allows to login securely to a web application on a shared computer that is attached to a shared screen in a conference room."],
-
-
+  content:[
+           "Global Input App implements an encrypted storage in your device and data transfer between your devices using end-to-end encryption.",
+           "This can be a useful tool for IT support team. A Global Input App instance can establish an encrypted communication with another instance, and then a data item can be created/edited collaboratively using both devices.",
+           "Here you can compose a form that you would like a user to use his/her mobile to fill in the form with you colloboratively and save it on his/her mobile for later use. On your end, you can use the form data to carry out operations such as user account creation etc."],
 
 
    compose:{
@@ -71,7 +70,7 @@ const formDataTransferConfig={
     startButton:"Try It",
     cancelButton:"Back",
     backButton:"Back",
-    restartButton:"Restart",
+    restartButton:"Back",
     finishButton:"Finish",
     nextButton:"Next",
     backButton:"Back",
@@ -80,6 +79,7 @@ const formDataTransferConfig={
     unselectButton:"Unselect",
     deleteButton:"Delete",
     copyButton:"Copy",
-    backButton:"Back"
+    backButton:"Back",
+    cloneButton:"Clone This Page As Bookmarkable"
 }
 export default formDataTransferConfig;
