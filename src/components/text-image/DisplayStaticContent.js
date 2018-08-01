@@ -5,6 +5,7 @@ import {
 
 
 import {styles} from "./styles";
+import DisplayVideo from "./DisplayVideo";
 
 export  default class DisplayStaticContent extends Component {
   ITEM_TYPE={
@@ -198,6 +199,15 @@ export  default class DisplayStaticContent extends Component {
 
             );
       }
+      else if(item.type==='video'){
+        return (
+          <div style={styles.centerImageContainer}>
+              <DisplayVideo  video={item.video} defaultImage={item.poster} key={key}/>
+          </div>
+
+        );
+      }
+
 
       else if((!item.type) || item.type==='span'){
                   if(typeof item.content ==='object'){

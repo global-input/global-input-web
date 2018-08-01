@@ -1,16 +1,9 @@
 import React, {Component} from 'react'
-import {config} from "../configs";
+import {config,images} from "../configs";
 
 
 
-
-
-
-
-
-import {images} from "../configs";
-
-import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
+import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo} from "../components";
 
 import {styles} from "./styles";
 
@@ -72,15 +65,17 @@ render() {
 
     return (
 
-      <PageWithHeader image={images.globalInputApp}
+      <PageWithHeader
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}
           scrollingText={applicationPathConfig.home.scrollingText}
           selected={applicationPathConfig.home.menu}>
           <div style={styles.content}>
+
                 <div style={styles.itemSection}>
+
                   <DisplayTextImage title={applicationPathConfig.home.platform.title}
-                     content={applicationPathConfig.home.platform.content}/>
+                     content={applicationPathConfig.home.platform.content}/>                     
                 </div>
 
 
@@ -120,6 +115,7 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.formData.title} reverse={true}
                    content={applicationPathConfig.formData.content} image={images.transferForm}
+                   video={config.videos.formTransfer()}
                    mobileImage={images.mobile.transferForm}
                    buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
           </div>
@@ -129,13 +125,9 @@ render() {
           <div style={styles.itemSection}>
                 <DisplayTextImage title={blockTextConfig.chrome.title}
                    content={blockTextConfig.chrome.content} image={images.chromeExtension}
-                   mobileImage={images.mobile.chromeExtension}/>
+                   mobileImage={images.mobile.chromeExtension}
+                   video={config.videos.signin()}/>
           </div>
-
-
-
-
-
 
 
 
@@ -143,7 +135,8 @@ render() {
 
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.contentTransfer.title}
-
+                video={config.videos.copyAndPaste()}
+ reverse={true}
                    content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
                    mobileImage={images.mobile.contentTransfer}
                    buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
@@ -156,8 +149,9 @@ render() {
               <div style={styles.itemSection}>
                     <DisplayTextImage title={applicationPathConfig.qrPrinting.title}
                        content={applicationPathConfig.qrPrinting.content} image={images.encryptedQRCode}
+                       video={config.videos.qrPrinting()}
                        mobileImage={images.mobile.encryptedQRCode}
-                       reverse={true}
+
                        buttonLabel={applicationPathConfig.qrPrinting.startButton} buttonLink={applicationPathConfig.qrPrinting.menu.link}/>
 
               </div>

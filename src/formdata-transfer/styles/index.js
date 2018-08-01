@@ -1,4 +1,8 @@
-export const styles={
+var styles={
+  mql:window.matchMedia(`(min-width: 800px)`),
+  isMobile(){
+      return !this.mql.matches;
+  },
   content:{
     display:"flex",
     flexDirection:"column",
@@ -114,11 +118,15 @@ export const styles={
     marginTop:20,
     marginBottom:10
   },
-  fieldrow:{
+  fieldgroup:{
       display:"flex",
-      flexDirection:"row",
+      flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"flex-start",
+      paddingTop:10,
+      width:"100%",
+      border:"1px solid red"
+
   },
   radioButton:{
     marginLeft:10,
@@ -139,3 +147,9 @@ export const styles={
   },
 
 };
+
+styles.formContainerDesktop=Object.assign({},styles.formContainer,{
+          minWidth: 600,
+});
+
+export {styles};

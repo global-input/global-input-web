@@ -24,7 +24,7 @@ const formDataTransferConfig={
        help:"The \"Folder\" value helps the Global Input App to organise data into folders if saved into the app"
      },
      fields:{
-       header:["Following lists the pre-defined fields. You do not need to populate the fields at this stage."],
+       header:["Form Fields:"],
        footer:["To delete a field: please select the field by clicking on the checkbox on the right hand side of the field and then click \"Delete\" button below to delete the field.",
        "To add a new field: click on the  \"Add New Field\" button below",
        "Please click on \"Next\" button to receive data from your Global Input App if you are satisfied with the form above"]
