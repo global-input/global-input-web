@@ -555,6 +555,7 @@ renderAField(formField, index, readOnly){
                       label={label}
                       fieldSelected={fieldSelected}
                       setSelectedField={this.setSelectedField.bind(this)}/>
+
        );
     }
 
@@ -583,7 +584,10 @@ renderComposeForm(){
     var fields=this.getFields(this.state.action);
 
     var formTitle=this.getFormTitle();
-
+    var formContainerStyle=styles.formContainer;
+    if(!styles.isMobile()){
+      formContainerStyle=styles.formContainerDesktop
+    }
     return (
       <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
          appSubtitle={applicationPathConfig.formData.appSubtitle}
@@ -592,7 +596,7 @@ renderComposeForm(){
 
               <div style={styles.title}>{applicationPathConfig.formData.compose.title}</div>
 
-                <div style={styles.formContainer}>
+                <div style={formContainerStyle}>
                     <div style={styles.formHeader}></div>
                     <div style={styles.formContent}>
                       <InputWithLabel fieldId="formTitle"
@@ -620,10 +624,12 @@ renderComposeForm(){
                               <DisplayStaticContent
                               content={applicationPathConfig.formData.compose.fields.header}
                               lineStyle={styles.help}/>
-                            <div style={styles.fieldRow}>
 
-                            {fields.map((formField, index)=>this.renderAField(formField,index))}
-                          </div>
+
+
+                                {fields.map((formField, index)=>this.renderAField(formField,index))}
+
+
                     </div>
 
               </div>
@@ -788,7 +794,10 @@ renderAddNewField(){
     renderSenderConnected(){
       var action=this.state.action;
       var fields=this.getFields(action);
-
+      var formContainerStyle=styles.formContainer;
+      if(!styles.isMobile()){
+        formContainerStyle=styles.formContainerDesktop
+      }
           return(
               <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
 
@@ -797,7 +806,7 @@ renderAddNewField(){
                 <div style={styles.content}>
 
                             <div style={styles.title}>{applicationPathConfig.formData.senderConnected.content}</div>
-                      <div style={styles.formContainer}>
+                      <div style={formContainerStyle}>
                         <div style={styles.formHeader}>
                                <div style={styles.blueHeader}>
                                      {applicationPathConfig.formData.newField.title}
@@ -832,14 +841,17 @@ renderAddNewField(){
    renderDisconnected(){
           var action=this.state.action;
           var fields=this.getFields(action);
-
+          var formContainerStyle=styles.formContainer;
+          if(!styles.isMobile()){
+            formContainerStyle=styles.formContainerDesktop
+          }
          return(
              <PageWithHeader scrollingText={applicationPathConfig.formData.scrollingText}
 
                appSubtitle={applicationPathConfig.formData.appSubtitle} aboutText={applicationPathConfig.home.aboutText}>
                <div style={styles.content}>
                     <div style={styles.title}>{applicationPathConfig.formData.disConnected.content}</div>
-                     <div style={styles.formContainer}>
+                     <div style={formContainerStyle}>
                        <div style={styles.formHeader}>
                               <div style={styles.blueHeader}>
                                     {applicationPathConfig.formData.disConnected.shorttitle}

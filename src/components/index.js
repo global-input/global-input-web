@@ -3,6 +3,7 @@ import TopMenu from "./menu/TopMenu";
 import BookMark from "./menu/BookMark";
 
 import DisplayTextImage from "./text-image/DisplayTextImage";
+import DisplayVideo from "./text-image/DisplayVideo";
 import NotificationMessage from "./text-image/NotificationMessage";
 import DisplayStaticContent from "./text-image/DisplayStaticContent";
 import DisplaySourceCode from "./text-image/DisplaySourceCode";
@@ -18,6 +19,6 @@ import ClipboardButton from "./input/ClipboardButton";
 import TextRadioButtons from "./input/TextRadioButtons";
 import TextSelectOptions from "./input/TextSelectOptions";
 
-export {TopMenu,DisplayTextImage,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
+export {TopMenu,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
         ShowHideButton,
         InputWithLabel,InputWithSelect,TextSelectOptions,TextAreaWithSelect,TextAreaWithLabel,TextButton,ClipboardButton,TextRadioButtons,NotificationMessage,BookMark};
