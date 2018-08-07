@@ -52,7 +52,7 @@ whyneeded:{
 
         },
         creatingAccounts:{
-            title:"Support Tool to Creating Accounts",
+            title:"Support Tool for Creating Accounts",
             content:[
               "If you manage applications in a corporate environment, you may need to create accounts for other users and share the authentication details with them unless the application provides the subscription mechanism.",
               "If the application supports the Global Input App, you just need to ask the user scan the QR code displayed by the application and then the user will be able to use his/her mobile to enter his/her details directly into the application.",
