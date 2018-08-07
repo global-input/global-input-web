@@ -73,9 +73,12 @@ render() {
           <div style={styles.content}>
 
                 <div style={styles.itemSection}>
+                  <DisplayVideo video={config.videos.globalInputHome()}
+                      defaultImage={images.globalInputApp}/>
+                    
 
                   <DisplayTextImage title={applicationPathConfig.home.platform.title}
-                     content={applicationPathConfig.home.platform.content}/>                     
+                     content={applicationPathConfig.home.platform.content}/>
                 </div>
 
 
