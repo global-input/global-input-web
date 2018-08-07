@@ -55,11 +55,7 @@ const  homeTextConfig={
 
   platform:{
          title:"Global Input Solution",
-         content:[
-           ["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.platform.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption."],
-           {type:"video", video:config.videos.globalInputHome(), poster:images.globalInputApp},
-
-           ["The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
+         content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.platform.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
             {type:"ul",content:[
                [{type:"scroll",content:"User authentication via mobile", to:pagelinks.samples.formData.bookmark}," initiated by scanning QR codes for applications."],
                [{type:"scroll",content:"Second screen input & control",to:pagelinks.samples.mediaPlayer.bookmark}," for media applications."],
@@ -69,7 +65,27 @@ const  homeTextConfig={
                [{type:"scroll",content:"Backup and transfer",to:pagelinks.samples.qrPrinting.bookmark}," confidential information."]
             ]},
 
-            
+            {type:"sub",title:"Features",
+             content:[{
+               type:"ul",
+               content:[
+                 ["Users only need to install a ",{type:"link", content:"single app",link:pagelinks.app.link}," to use across multiple web applications."],
+                 [{type:"link", content:"The mobile app",link:pagelinks.app.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
+                 "No need to develop separate mobile apps for extending device and web applications to have mobile input and control.",
+                 "The logic in the mobile input and control can be implemented within the application itself reusing the existing application logic.",
+                 "Content can be transferred between the mobile device to the web application.",
+                 "Content is stored and managed by users securely on the mobile device.",
+                 "No data is stored on a remote server.",
+                 "No subscription, no user details needs to be saved outside users’ device.",
+                 "Library is completely open-source."
+               ]
+             }
+
+             ]
+           },
+
+
+
 
 
            ["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment. If you are interested in how it works and would like to extend your web applications to allow users to use their mobile to operate on them, please visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link},"."]

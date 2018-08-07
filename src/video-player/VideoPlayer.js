@@ -682,6 +682,7 @@ renderAField(formField, index){
               <div style={styles.content}>
 
                     <video width={videoWidth} height={videoHeight}  id="videoplayer" autoPlay={false}
+                        muted={true}
                         ref={videoPlayer=>this.videoPlayer=videoPlayer}
                         onAbort={this.onAbort.bind(this)}
                         onCanPlay={this.onCanPlay.bind(this)}
