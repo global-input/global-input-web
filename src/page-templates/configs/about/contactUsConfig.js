@@ -57,9 +57,11 @@ const contactUsConfig={
           address:{
               title:"Address:",
               content:["Iterative Solution Limited",
-                      "10 Greycoat",
+                      "Kemp House",
+                      "152 - 160",
+                      "City Road",
                       "London",
-                       "SW1P 1SB"]
+                      "EC1V 2NX"]
           },
           phone:{
               title:"Phone:",
@@ -108,7 +110,7 @@ const contactUsConfig={
                   type:"text",
                   nLines:5,
                   label:"Address",
-                  value:"Iterative Solution Limited \n 10 Greycoat \n London SW1P 1SB",
+                  value:"Iterative Solution Limited \n Kemp House \n 152 - 160 \n City Road \n London EC1V 2NX",
                   fieldIndex:1
               },
       phone:{

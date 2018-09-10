@@ -61,7 +61,8 @@ export var styles={
     backgroundColor:"white",
     width:"100%"
 
- }
+ },
+ 
 
 
 };

@@ -686,8 +686,7 @@ renderAField(formField, index){
                         ref={videoPlayer=>this.videoPlayer=videoPlayer}
                         onAbort={this.onAbort.bind(this)}
                         onCanPlay={this.onCanPlay.bind(this)}
-                        onCanPlay={this.onCanPlayThrough.bind(this)}
-                        onCanPlay={this.onCanPlayThrough.bind(this)}
+                        onCanPlayThrough={this.onCanPlayThrough.bind(this)}
                         onDurationChange={this.onDurationChange.bind(this)}
                         onEncrypted={this.onEncrypted.bind(this)}
                         onEnded={this.onEnded.bind(this)}
