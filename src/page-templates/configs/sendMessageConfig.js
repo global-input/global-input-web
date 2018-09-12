@@ -88,7 +88,7 @@ const sendMessageConfig={
                     type:"text",
                     nLines:5,
                     label:"Address",
-                    value:"Iterative Solution Limited \n 10 Greycoat \n London SW1P 1SB",
+                    value:"Iterative Solution Limited \n Kemp House \n \n 152-160 \n City Road\n London EC1V 2NX",
                     fieldIndex:1
                 },
         phone:{

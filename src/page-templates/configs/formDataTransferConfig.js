@@ -80,6 +80,6 @@ const formDataTransferConfig={
     deleteButton:"Delete",
     copyButton:"Copy",
     backButton:"Back",
-    cloneButton:"Clone This Page As Bookmarkable"
+    cloneButton:"Load As Bookmarkable"
 }
 export default formDataTransferConfig;

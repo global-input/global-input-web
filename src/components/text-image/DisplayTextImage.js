@@ -94,7 +94,8 @@ export  default class DisplayTextImage extends Component {
           <div className="col-md-6">
               <div style={styles.imageContainer}>
                 <DisplayVideo video={this.props.video}
-                  defaultImage={this.props.image}/>
+                  defaultImage={this.props.image} autoPlay={true}
+                  loop={true}/>
               </div>
           </div>
         );

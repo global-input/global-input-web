@@ -1,13 +1,14 @@
 import config from "./prod";
 config.videos={
    base:"https://globalinput.co.uk/videos",
-   game:function(){return this.base+"/game.mp4";},
-   videoPlayer:function(){return this.base+"/play-video.mp4";},
-   sendMessage:function(){return this.base+"/send-message.mp4";},
-   formTransfer:function(){return this.base+"/transfer-form-data.mp4";},
-   signin:function(){return this.base+"/sign-in.mp4";},
+   location:"http://media.iterativesolution.co.uk/video",
+   game:function(){return this.location+"/globabl_input_game_control.mp4";},
+   videoPlayer:function(){return this.location+"/glbal_input_media_player.mp4";},
+   sendMessage:function(){return this.location+"/globbal_input_send_message.mp4";},
+   formTransfer:function(){return this.location+"/global_input_transfer_form_2.mp4";},
+   signin:function(){return this.location+"/global_input_sign_in_2.mp4";},
    copyAndPaste:function(){return this.base+"/copy-and-paste.mp4";},
-   qrPrinting:function(){return this.base+"/qr-printing.mp4";},
-   globalInputHome:function(){return this.base+"/global_input_home.mp4";},
+   qrPrinting:function(){return this.location+"/gloal_input_print_qr_2.mp4";},
+   globalInputHome:function(){return this.location+"/global_input_home_3.mp4";},
 }
 export default config;

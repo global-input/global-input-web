@@ -18,6 +18,7 @@ const images={
   documentBackground:require("../images/document-background.png"),
   appIcon:require("../images/globalInput-100.png"),
   globalInputApp:require("../images/global-input-app.png"),
+  globalInputHome:require("../images/global_input_home.png"),
   contentTransfer:require("../images/content-transfer.png"),
   encryptedQRCode:require("../images/encrypted-qr-code.png"),
   showSecret:require("../images/show-icon.png"),
