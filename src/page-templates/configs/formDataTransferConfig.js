@@ -1,7 +1,7 @@
 import {pagelinks} from "../../configs";
 const formDataTransferConfig={
-  title:"Encrypted Data Storage and Encrypted Transfer",
-  appSubtitle:"Form Data Transfer",
+  title:"Secure Transfer Form Data",
+  appSubtitle:"Secure Form Data Transfer",
   menu:{
      link:pagelinks.samples.formData.link,
      linkText:"Form Data Transfer",
@@ -9,9 +9,11 @@ const formDataTransferConfig={
      bookmark:pagelinks.samples.formData.bookmark,
   },
   content:[
-           "Global Input App implements an encrypted storage in your device and data transfer between your devices using end-to-end encryption.",
-           "This can be a useful tool for IT support team. A Global Input App instance can establish an encrypted communication with another instance, and then a data item can be created/edited collaboratively using both devices.",
-           "Here you can compose a form that you would like a user to use his/her mobile to fill in the form with you colloboratively and save it on his/her mobile for later use. On your end, you can use the form data to carry out operations such as user account creation etc."],
+           "Transfers form data securely to your users' mobile for editing collaboratively.",
+
+           "Allows your users to automate sign in, subscription, account update and other form operations.",
+           "Allows your users to have their master copy of their data and reuse them over multiple applications.",
+           "Edit securely your data stored in your mobile app using your computer or vice versa."],
 
 
    compose:{

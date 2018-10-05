@@ -6,12 +6,12 @@ const contentTransferConfig={
       backLink:pagelinks.samples.contentTransfer.backLink,
       bookmark:pagelinks.samples.contentTransfer.bookmark
     },
-    title:"Copy And Paste Content Securely Between Devices",
+    title:"Copy And Paste Securely Across Devices",
     appSubtitle:"Content Transfer",
     content:[
-             "Global Input App implements an encrypted storage in your device and data transfer between your devices using end-to-end encryption.",
-             "This can be a useful tool for IT support team. A Global Input App instance can establish an encrypted communication with another instance, and then a data item can be created/edited collaboratively using both devices.",
-             "The app can also connect to a JavaScript code to transfer data securely, create/edit content collaboratively. You may find it useful if you would like to type or copy some content from computer to your mobile securely or vice versa."],
+             "Copy and paste securely a text content from your mobile to any computer or vice versa.",
+             "Transfer content between applications using end-to-end encryption.",
+             "Use your mobile as an intermediate device to transfer content between computers securely."],
 
     scrollingText:{
             duration:8000,

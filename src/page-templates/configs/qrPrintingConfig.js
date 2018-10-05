@@ -1,6 +1,6 @@
 import {pagelinks} from "../../configs";
 const qrPrintingConfig={
-    title:"Sharing Encrypted Content Offline",
+    title:"Print & Scan Encrypted QR Codes",
     appSubtitle:"Encrypted QR Codes",
     menu:{
         link:pagelinks.samples.qrPrinting.link,
@@ -9,9 +9,8 @@ const qrPrintingConfig={
          bookmark:pagelinks.samples.qrPrinting.bookmark
     },
     content:[
-    "Global Input App allows you to backup or share encrypted content using encrypted QR codes.",
-    "Encryption Keys can be pre-shared with another Global Input App instance for sharing encrypted content.",
-    "Encrypted keys can be backed up or shared using password protected QR codes."],
+    "Print and scan encrypted QR Codes to share or backup content securely.",
+    "Print & Scan Encryption Keys as Password-Protected QR Codes"],
 
     scrollingText:{
             duration:8000,

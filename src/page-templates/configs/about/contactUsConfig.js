@@ -1,9 +1,10 @@
+import {pagelinks} from "../../../configs";
 const contactUsConfig={
   title:"Contact us",
   appTitle:"Global Input App",
   appSubtitle:"Contact Us",
   menu:{
-    link:"/global-input-app/contact-us",
+    link:pagelinks.contactUs.link,
     linkText:"Contact Us"
   },
   home:{

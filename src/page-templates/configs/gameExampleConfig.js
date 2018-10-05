@@ -6,7 +6,7 @@ const START_PAUSE_BUTTON_STATUS={
 
 const gameExampleConfig={
     START_PAUSE_BUTTON_STATUS,
-    title:"Mobile Input for Device Applications",
+    title:"Mobile Input & Control",
     appSubtitle:"Device Applications",
     menu:{
         link:pagelinks.samples.gameControl.link,
@@ -14,9 +14,8 @@ const gameExampleConfig={
         backLink:pagelinks.samples.gameControl.backLink,
         bookmark:pagelinks.samples.gameControl.bookmark
     },
-    content:["Global Input App offers a single mobile app solution for multiple device and web applications.",
-             "Existing IoT, Smart TV, and web applications can be extended by defining mobile UI elements and callback functions for receiving mobile events without affecting the existing business logic and system architecture.",
-             "The mobile input and control logic can be implemented within the web application itself without developing a separate mobile app."],
+    content:["Enable web and device applications to have mobile input & control without the need to develop a separate mobile app.",
+             "Straightforward implementation: include the open-source library, declare the UI elements for the mobile app and callback functions to receive mobile events."],
 
     scrollingText:{
             duration:8000,

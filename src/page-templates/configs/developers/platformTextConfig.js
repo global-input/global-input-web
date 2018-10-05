@@ -1,10 +1,10 @@
 import {images, pagelinks} from "../../../configs";
-const developerTextConfig={
+const platformTextConfig={
   appTitle:"Global Input App",
   appSubtitle:"Platform",
   menu:{
     link:pagelinks.platform.link,
-    linkText:"Platform"
+    linkText:"Help"
   },
   platform:{
        title:"Global Input Platform",
@@ -15,7 +15,42 @@ const developerTextConfig={
           {type:"link",content:"Global Input App", link:pagelinks.app.link}
         ]},
         "The Global Input JavaScript library and the Global Input WebSocket server implements the end-to-end encryption and the message transporting logic transparently. A client application passes the unencrypted messages to the Global Input JavaScript library, without worrying about the encryption and the delivery of the messages. The library encrypts the message content and forwards them to the destination. On the receiving end, the JavaScript library receives the encrypted messages, decrypt them and forward the decrypted messages to the callback function that the application has provided when connected to the library. Because of the communication is secured with the end-to-end encryption, it is like Global Input App is connected directly to the Device via cable as shown in the following picture.",
-        {type:"centerImage",src:images.developers.globalInputPlatform}
+        {type:"centerImage",src:images.developers.globalInputPlatform},
+        "The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:",
+        {type:"ul",content:[
+          [{type:"link",content:"User authentication via mobile", link:pagelinks.samples.formData.url()}," initiated by scanning QR codes for applications."],
+[{type:"link",content:"Second screen input & control",link:pagelinks.samples.mediaPlayer.url()}," for media applications."],
+[{type:"link",content:"Mobile input & control",link:pagelinks.samples.gameControl.url()}," for IoT, Smart TV and web applications."],
+[{type:"link",content:"Form automation",link:pagelinks.samples.sendMessage.url()}," using mobile device."],
+[{type:"link",content:"Password management",link:pagelinks.samples.chromeExtension.url()}," in user’s device."],
+[{type:"link",content:"Backup and transfer",link:pagelinks.samples.qrPrinting.url()}," confidential information."]
+                           ]
+        },
+
+{type:"sub",title:"Features",
+                     content:[{
+                       type:"ul",
+                       content:[
+                         ["Users only need to install a ",{type:"link", content:"single app",link:pagelinks.app.link}," to use across multiple web applications."],
+                         [{type:"link", content:"The mobile app",link:pagelinks.app.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
+                         "No need to develop separate mobile apps for extending device and web applications to have mobile input and control.",
+                         "The logic in the mobile input and control can be implemented within the application itself reusing the existing application logic.",
+                         "Content can be transferred between the mobile device to the web application.",
+                         "Content is stored and managed by users securely on the mobile device.",
+                         "No data is stored on a remote server.",
+                         "No subscription, no user details needs to be saved outside users’ device.",
+                         "Library is completely open-source."
+                       ]
+                     }
+
+                     ]
+    },
+
+
+    ["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment. If you are interested in how it works and would like to extend your web applications to allow users to use their mobile to operate on them, please visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link},"."]
+
+
+
       ]
   },
  howItWorks:{
@@ -61,4 +96,4 @@ const developerTextConfig={
 
 
 };
-export default developerTextConfig;
+export default platformTextConfig;

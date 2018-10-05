@@ -6,14 +6,14 @@ import {images,config,pagelinks} from "../../configs";
 const  homeTextConfig={
   title:"Global Input",
   menu:{
-    link:"/",
+    link:pagelinks.home.link,
     linkText:"Home"
   },
 
   aboutText:{
               type:"link",
               content:"Get Global Input App Free",
-              link:pagelinks.app.link,
+              link:pagelinks.app.url(),
               className:"btn btn-primary buttonOnBlue"
               },
   install:[
@@ -52,49 +52,20 @@ const  homeTextConfig={
                               }]
 
   },
+  globalInputApp:{
+    content:["Global Input App is a mobile app, which uses extensions to provide services for business applications to have mobile input and mobile control, portable encrypted data storage and encryption key management etc. The security mechanisms that this solution can provide to the business applications are:",
+    {type:"ul", content:["A secure user authentication mechanism without introducing complicated process.",
+    "A secure mechanism to store customer data into the customer’s device so that user can have complete control over his/her data.",
+    "A secure mechanism for securing the customer data in the application database on the cloud by saving the master encryption key in the mobile app and managing access via the encryption keys hierarchy."]},
 
-  platform:{
-         title:"Global Input Solution",
-         content:[["Global Input Solution provides an ",{type:"link",content:"open-source platform", link:pagelinks.platform.platform.url()}," for connecting a camera enabled mobile device to a web application using end-to-end encryption. The platform enables the mobile device and the web application to transfer data securely and provides a wide range of functions:"],
-            {type:"ul",content:[
-               [{type:"scroll",content:"User authentication via mobile", to:pagelinks.samples.formData.bookmark}," initiated by scanning QR codes for applications."],
-               [{type:"scroll",content:"Second screen input & control",to:pagelinks.samples.mediaPlayer.bookmark}," for media applications."],
-               [{type:"scroll",content:"Mobile input & control",to:pagelinks.samples.gameControl.bookmark}," for IoT, Smart TV and web applications."],
-               [{type:"scroll",content:"Form automation",to:pagelinks.samples.sendMessage.bookmark}," using mobile device."],
-               [{type:"scroll",content:"Password management",to:pagelinks.samples.chromeExtension.bookmark}," in user’s device."],
-               [{type:"scroll",content:"Backup and transfer",to:pagelinks.samples.qrPrinting.bookmark}," confidential information."]
-            ]},
+    ["For end-user functionalities, have a look at ",{type:"a", href:pagelinks.video.introduction,content:"the short introduction video"}," to see how you can use it in your workplace environment."]]
+  },
+  help:{
 
-            {type:"sub",title:"Features",
-             content:[{
-               type:"ul",
-               content:[
-                 ["Users only need to install a ",{type:"link", content:"single app",link:pagelinks.app.link}," to use across multiple web applications."],
-                 [{type:"link", content:"The mobile app",link:pagelinks.app.link}," on its own provides password management and secure data transfer across mobile devices and computers."],
-                 "No need to develop separate mobile apps for extending device and web applications to have mobile input and control.",
-                 "The logic in the mobile input and control can be implemented within the application itself reusing the existing application logic.",
-                 "Content can be transferred between the mobile device to the web application.",
-                 "Content is stored and managed by users securely on the mobile device.",
-                 "No data is stored on a remote server.",
-                 "No subscription, no user details needs to be saved outside users’ device.",
-                 "Library is completely open-source."
-               ]
-             }
-
-             ]
-           },
-
-
-
-
-
-           ["Please  ",{type:"link", content:"install the app",link:pagelinks.app.link}, " and explore the following use cases in action. You may find ",{type:"link", content:"many reasons",link:pagelinks.app.reasons.url()}," why the app can become an essential tool in a corporate environment. If you are interested in how it works and would like to extend your web applications to allow users to use their mobile to operate on them, please visit the ",{type:"link", content:"platform page",link:pagelinks.platform.link},"."]
-
-          ],
-
-
-
+    content:[
+      "Global Input App provides an entirely free and open-source solution to resolve security issues faced daily by your business applications and in your workplace environment. You can integrate the Global Input App solution into your business mobile app and business applications for free, as long as you can acknowledge and help us to spread the word. We aim to generate revenue by providing consultancy and develop business applications that span across multiple devices in your workplace."]
 
   }
+
 };
 export default homeTextConfig;

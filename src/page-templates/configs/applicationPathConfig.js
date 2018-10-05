@@ -2,7 +2,7 @@ import homeTextConfig from "./homeTextConfig";
 import contentTransferConfig from "./contentTransferConfig";
 import qrPrintingConfig from "./qrPrintingConfig";
 import formDataTransferConfig from "./formDataTransferConfig";
-import developerTextConfig from "./developers/developerTextConfig";
+import platformTextConfig from "./developers/platformTextConfig";
 import aboutGlobalInputConfig from "./about/aboutGlobalInputConfig";
 import contactUsConfig from "./about/contactUsConfig";
 import privacyConfig from "./about/privacyConfig";
@@ -18,9 +18,8 @@ import videoPlayerConfig from "./videoPlayerConfig";
 const applicationPathConfig={
     appTitle:homeTextConfig.title,
     menus:[
-        homeTextConfig.menu,        
-        developerTextConfig.menu,
-        aboutGlobalInputConfig.menu,
+        homeTextConfig.menu,
+        platformTextConfig.menu,        
         privacyConfig.menu,
         contactUsConfig.menu,
     ],
@@ -29,7 +28,7 @@ const applicationPathConfig={
     qrPrinting:     qrPrintingConfig,
     formData:       formDataTransferConfig,
     chrome:         chromeExtensionConfig,
-    developer:      developerTextConfig,
+    platform:      platformTextConfig,
     about:          {
                       home:aboutGlobalInputConfig,
                       contact:contactUsConfig,
