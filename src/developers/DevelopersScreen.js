@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {images,pagelinks} from "../configs";
+import {genericUtil} from "../util";
 import {styles} from "./styles";
-import {DisplayTextImage,BookMark,DisplayStaticContent} from "../components";
+import {DisplayTextImage,BookMark,DisplayStaticContent,TextViewPad} from "../components";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 import DisplaySampleCode1 from "./DisplaySampleCode1";
@@ -17,31 +18,8 @@ export  default class DevelopersScreen extends Component {
     }
      componentDidMount() {
          window.addEventListener("resize", this.onWindowResize);
-         this.processQueryParameters(this.props);
-     }
-     getQueryParam(query,variable) {
-            if(!query){
-              return null;
-            }
-            query=query.substring(1);
-            var vars = query.split('&');
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split('=');
-                if (decodeURIComponent(pair[0]) === variable) {
-                    return decodeURIComponent(pair[1]);
-                }
-            }
-  }
-     processQueryParameters(props){
-            if(props && props.location && props.location.search){
-                    var scrollTo=this.getQueryParam(props.location.search, "scrollTo");
-                    setTimeout(function(){
-                          var elmnt = document.getElementById(scrollTo);
-                          elmnt.scrollIntoView()
-                    },200);
-            }
-     }
-
+         genericUtil.processQueryParameters(this.props);
+     }     
      componentWillUnmount() {
          window.removeEventListener("resize", this.onWindowResize);
      }
@@ -60,7 +38,55 @@ render() {
         install={applicationPathConfig.home.install}
         aboutText={applicationPathConfig.home.aboutText}
         appSubtitle={blockTextConfig.developers.home.appSubtitle}>
+        <BookMark bookmark={pagelinks.platform.bookmark}/>
          <div style={styles.content}>
+
+           <TextViewPad bookmark={pagelinks.app.reasons.bookmark} title={blockTextConfig.about.globalInputApp.whyneeded.title}>
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
+             </div>
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
+             </div>
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.content} />
+             </div>
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.sharingAccounts.content} />
+             </div>
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.offlineSharing.content} />
+             </div>
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.contentTransfer.content} />
+             </div>
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.formAutomation.content} />
+             </div>
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.gameControl.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.gameControl.content} />
+             </div>
+
+
+             <div style={styles.itemSection}>
+               <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.title}
+                  content={blockTextConfig.about.globalInputApp.whyneeded.mediaPlayerControl.content} />
+             </div>
+
+           </TextViewPad>
 
            <BookMark bookmark={pagelinks.platform.platform.bookmark}/>
            <div style={styles.itemSection}>

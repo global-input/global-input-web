@@ -62,7 +62,24 @@ export var styles={
     width:"100%"
 
  },
- 
+ installSection:{
+   width:"100%",
+   display:"flex",
+   flexDirection:"row",
+   justifyContent:"center",
+   alignItems:"center",
+   paddingBottom:25
+
+ },
+ imageLink:{
+
+   textDecoration:"underline",
+   marginRight:20,
+   marginBottom:10,
+   
+ },
+
+
 
 
 };

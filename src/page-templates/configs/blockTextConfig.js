@@ -1,5 +1,5 @@
 import chromeExtensionConfig from "./chromeExtensionConfig";
-import developerTextConfig from "./developers/developerTextConfig";
+import platformTextConfig from "./developers/platformTextConfig";
 import websiteSourceCodeConfig from "./developers/websiteSourceCodeConfig";
 import introductionToJSlibraryConfig from "./developers/introductionToJSlibraryConfig";
 import webSocketServerConfig from "./developers/webSocketServerConfig";
@@ -10,13 +10,13 @@ import privacyConfig from "./about/privacyConfig";
 const blockTextConfig={
       chrome:chromeExtensionConfig,
       developers:{
-             home:developerTextConfig,
+             home:platformTextConfig,
              websiteSourceCode:websiteSourceCodeConfig,
              jslibrary:introductionToJSlibraryConfig,
              websocketServer:webSocketServerConfig
 
          },
-      about:{            
+      about:{
             globalInputApp:aboutGlobalInputConfig,
             contact:contactUsConfig,
             privacy:privacyConfig

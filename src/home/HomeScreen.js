@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {config,images} from "../configs";
-
+import {config,images,pagelinks} from "../configs";
+import {genericUtil} from "../util";
 
 
 import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo} from "../components";
@@ -8,6 +8,7 @@ import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo} from "../co
 import {styles} from "./styles";
 
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
+
 
 
 
@@ -19,30 +20,10 @@ export  default class HomeScreen extends Component {
     }
      componentDidMount() {
          window.addEventListener("resize", this.onWindowResize);
-         this.processQueryParameters(this.props);
+
+         genericUtil.processQueryParameters(this.props);
      }
-     getQueryParam(query,variable) {
-            if(!query){
-              return null;
-            }
-            query=query.substring(1);
-            var vars = query.split('&');
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split('=');
-                if (decodeURIComponent(pair[0]) === variable) {
-                    return decodeURIComponent(pair[1]);
-                }
-            }
-  }
-     processQueryParameters(props){
-            if(props && props.location && props.location.search){
-                    var scrollTo=this.getQueryParam(props.location.search, "scrollTo");
-                    setTimeout(function(){
-                          var elmnt = document.getElementById(scrollTo);
-                          elmnt.scrollIntoView()
-                    },200);
-            }
-     }
+     
 
      componentWillUnmount() {
          window.removeEventListener("resize", this.onWindowResize);
@@ -67,7 +48,6 @@ render() {
 
       <PageWithHeader
           install={applicationPathConfig.home.install}
-          aboutText={applicationPathConfig.home.aboutText}
           scrollingText={applicationPathConfig.home.scrollingText}
           selected={applicationPathConfig.home.menu}>
           <div style={styles.content}>
@@ -80,10 +60,16 @@ render() {
                       defaultImage={images.globalInputHome}/>
 
 
+                    <BookMark bookmark={pagelinks.app.bookmark}/>
+                  <DisplayTextImage
+                     content={applicationPathConfig.home.globalInputApp.content}/>
+                   <div style={styles.installSection}>
+                      <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
+                   </div>
 
-                  <DisplayTextImage title={applicationPathConfig.home.platform.title}
-                     content={applicationPathConfig.home.platform.content}/>
+                   <DisplayStaticContent content={applicationPathConfig.home.help.content}/>
                 </div>
+
 
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>

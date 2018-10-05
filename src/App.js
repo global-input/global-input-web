@@ -9,7 +9,7 @@ import "./css/loader.css";
 import "./css/print.css";
 import "./css/input.css";
 import "./css/simpleAnimate.css";
-
+import {pagelinks} from "./configs";
 
 import {HomeScreen} from "./home";
 import {DevelopersScreen} from "./developers";
@@ -37,13 +37,16 @@ export default class App extends Component{
       <Router>
 
         <div className="topContainer">
-            <Route  path={applicationPathConfig.home.menu.link} exact component={HomeScreen}/>
+            <Route  path={pagelinks.home.link} exact component={HomeScreen}/>
+            <Route  path={pagelinks.app.link}  component={HomeScreen}/>
+            <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
+
             <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransfer}/>
             <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
-            <Route  path={applicationPathConfig.developer.menu.link}  component={DevelopersScreen}/>
-            <Route  path={applicationPathConfig.about.home.menu.link}  component={AboutScreen}/>
-            <Route  path={applicationPathConfig.about.home.menu.link2}  component={AboutScreen}/>
+            <Route  path={applicationPathConfig.platform.menu.link}  component={DevelopersScreen}/>
+
+
             <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
 
             <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>

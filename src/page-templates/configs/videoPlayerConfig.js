@@ -20,11 +20,10 @@ const videoPlayerConfig={
         backLink:pagelinks.samples.mediaPlayer.backLink,
         bookmark:pagelinks.samples.mediaPlayer.bookmark
     },
-    
+
     content:[
-    "Global Input App provides a unique solution to achieve second screen input & control without affecting the existing logic and architecture of the application.",
-    "This is achieved by building the second screen functionality on top of the existing functional flows and business logic.",
-    "The applications declares the UI elements for the second screen and uses callback functions to receive the mobile events."],
+    "Enable web and device applications to have second screen input & control without developing a separate mobile app for them.",
+    "Straightforward implementation: include the open-source library, declare the UI elements for the second screen app and callback functions to receive mobile events."],
 
     scrollingText:{
             duration:8000,

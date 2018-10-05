@@ -6,11 +6,17 @@ const sendMessageConfig={
       backLink:pagelinks.samples.sendMessage.backLink,
       bookmark:pagelinks.samples.sendMessage.bookmark,
     },
-    title:"Form Automation via Mobile",
+    title:"Customers to Have Complete Control of thier Data",
     appSubtitle:"Form Automation via Mobile",
-    content:["Global Input App makes it possible for an application to provide users with options to save data in users’ personal device and send the data back to the application using end-to-end encryption.",
-            "The solution can simplify the implementation of user privacy policy. An application can choose not to save user details into its database or can choose to store them for a short period of time. User can push the data back from his/her device to the application when needed.",
-            "The solution can allow a media application to implement personalisation of user experience without storing user details and habits in its database."
+    content:["Allows business applications to store user data into users’ mobile devices and request them when needed. The sequence of actions:",
+            {
+              type:"ol",
+              content:["Application requests the user data from the mobile app.",
+              "The user inspects the select data pushes it to the application securely.",
+              "Mobile app presents the user with an option to save the modified data back to the mobile app if it is changed either by the user or by the application."
+            ],
+          },
+        "Allows applications to implement personalised user experience without storing user habits or user data."
     ],
     scrollingText:{
         duration:8000,

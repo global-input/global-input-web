@@ -20,10 +20,11 @@ const aboutGlobalInputConfig={
 
 ],
 whyneeded:{
-        title:"Reasons Why You Need Global Input App and How to Use It",
+        title:"How to Use the Global Input App",
+
         ownYourData:{
             title:"Personal Notebook with Encryption",
-            content:["The Global Input App is like a personal notebook with encryption in your device, feeling safe because you are not storing anything outside your device. The app is implemented with the purpose of minimum reliance on the security of the software systems. All your data stays encrypted and decrypted only when it is needed. The data will be decrypted and revealed only when you press the \"Show\" button or \"Edit\" button in the app.",
+            content:["Global Input App allows you to store confidential information in your mobile device with encryption. It does not store anything outside your device.  All your data stays encrypted and decrypted only when it is needed. Hence, it minimises the reliance on the security of the software systems.",
             "It stores all the data only in your device’s storage, and encrypts the data with the encryption key that you also manage in the app. This means you own your data and the encryption keys that encrypt your data. You can create, export, import, manage and share the encryption keys in the app. The encryptions keys, on the other hand, are encrypted with your login app password."
           ]
         },
@@ -113,9 +114,16 @@ whyneeded:{
             ]
         },
         formAutomation:{
-            title:"Form Automation",
-            content:["In some applications, some process may make sense only when it is attached to a user data. For example when a user has placed a message for the service provider, the user data should be attached to it. In order to avoid repeatedly filing the user information, a subscription & login mechanism can be implemented. ",
-            "Global Input App provides an alternative solution for this, allowing the application to present the user with an option to save the the data into the app. And in the next use, user can select the saved data and send it back to the application. This means the application can have the option not to save the user data in the application databases, avoiding the complexities brought by the extra work in complying with the privacy policy etc.",
+            title:"Form Operations & Protecting User Data",
+            content:["In the light of current climate of frequent breach of customer data and the tightening up of the privacy policy to force the companies to take more responsibility to keep the user data safe, it might be worth to consider the option of not storing the user data when developing an application. In this context, an application may delegate the responsibility of storing and managing the user data to a trusted third-party service provider. In this approach, the application obtains an access token to access the user data from the service provider as part of the user login process.",
+            "Global Input App provides a different approach that goes further by not storing user data at all anywhere in the cloud. In this approach, the users manage their own data in their own mobile devices. The user data is encrypted with some random and dynamic encryption keys that are, in turn, encrypted with user password. The data stays safe in the users’ own mobile device and decrypted only when it is needed. This gives the users complete control over their data and may give them some confidence over the security of their personal data.",
+            "The Global Input App allows a user to inspect and push the selected data to an application when requested. At the end of a session, the user is presented with an option to save the data into the mobile app for future use if the data is modified during the session. This means that a user can carry around a central storage in a mobile device to store and manager his/her personal data for a wide range of applications.",
+            ["For example, a website can provide a contact form for its customers to leave a message. In order to identify the user and respond to the user’s message, the application requires the user to provide his/her personal data such as names, email address, telephone number etc. In order to allow the user to reuse the form data next time when he/she needs to leave a message again, the Global Input App presents the user with an option to save the form data for future use. The data can be pushed back to the application next time when the application needs it. You can try it out ",{type:"link",link:pagelinks.samples.sendMessage.backLink, content:"this approach in action"}," or watch the ",{type:"a",href:pagelinks.video.introduction,content:"introductory video"}],
+            "The data stored in the mobile app can be any data. For example, it can be a set of parameters representing the user’s viewing habit in a media application. The parameters are re-calculated after each session and present the user with an option to save them back into the mobile app. The media application can request the data on-demand as part of the login process so that the user can push it from the mobile app to the application to enjoy the personalized user experience. This may make some users happy if they worried about safety of their viewing habit.",
+            "The same approach is used to automate the subscription, sign in and any other operations in the applications running on the big screen devices. The application can request the necessary data using the end-to-end encrypted communication. The user can then inspect the selected data and then push it to the application. Please visit the Global Input App website for the more information on this.",
+
+
+
             {type:"sub", title:"See It in Action", content:[
                   ["Load the ",{type:"link",content:"sample web application",link:pagelinks.samples.sendMessage.link}, " in a browser on your computer, and scan the QR Code with your Global Input App."],
                   "A form will be displayed on your mobile titled with “Our Contact Details”, you can now press the the “Save” button to save our details into your app. You can view/edit the data item you have saved on the \“Data\” tab.",
