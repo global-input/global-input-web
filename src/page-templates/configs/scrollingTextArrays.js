@@ -2,29 +2,30 @@ const scrollingTextArrays={
   duration:8000,
   items:[
     {
-                    title:"Personal Data Storage in Your Device",
-                    content:["No Subscription, Everything Stored In Your Device",
-                             "Encrypted With Managed Encryption Keys"]
+      title:"Secure Authentication Solution for Business Applications",
+      content:["Content Stored Encrypted in Your Device",
+              "Select & Push Credentials from Your Mobile to the Applications"],
 
-    },{
+      },{
                 title:"Minimum Reliance on the Systems Security",
                 content:["Content Stays Encrypted Even in Memory",
                         "Decrypted Only When Needed"]
     },{
-                  title:"Password Management for Business",
-                  content:["Sign In Across Multiple Devices & Shared Workstations",
-                           "Sign In on Shared Screen and in Public"]
+      title:"Own Your Data and Encryption",
+      content:["Create, Manage and Share Encryption Keys",
+              "Use Encryption Keys to Manage Access to the Data"],
 
-    },{
-                  title:"Support Tools for Creating Accounts",
-                  content:["Allows User to Fill in Forms",
-                          "Data Transfer with End-to-End Encryption"]
+      },{
+        title:"Secure Data Transfer Between Devices",
+        content:["Share Encryption Key via QR Codes to Start Transfer",
+                "Push Content Securely from Mobile App to Business Applications"],
 
-    },{
-                title:"Support Tool for Sharing Account",
-                content:["Share Credentials Details Securely",
-                         "Mobile-to-Mobile Data Transfer with Encryption"]
-    },{
+        },{
+          title:"Allowing Users to Have Complete Control of their Data",
+          content:["Request User Data On Demand When Needed",
+                  "Allowing the User to Inspect and Push the Data to the Business Application"],
+
+          },{
                   title:"Offline Encrypted Communication",
                   content:["Share or Backup with Encrypted QR codes",
                         "Share Encryption Keys with Password-Protected QR Codes"]

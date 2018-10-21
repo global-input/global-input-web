@@ -150,7 +150,7 @@ everyinterval(n) {
 }
 speedUp(){
   this.myGamePiece.moveSpeed++;
-  applicationPathConfig.gameExample.form.speedText.id
+  //applicationPathConfig.gameExample.form.speedText.id
   this.sendMoveSpeed(this.myGamePiece.moveSpeed)
 }
 speedDown(){
