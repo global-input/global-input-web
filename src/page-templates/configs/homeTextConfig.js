@@ -25,40 +25,37 @@ const  homeTextConfig={
 
                     duration:8000,
                     items:[{
-                      title:"Store Content Encrypted in Your Device",
-                      content:["Content Stays Encrypted Even in Memory",
-                              "Decrypted Only When Needed."],
+                      title:"Secure Authentication Solution for Business Applications",
+                      content:["Content Stored Encrypted in Your Device",
+                              "Select & Push Credentials from Your Mobile to the Applications"],
 
                       },{
                         title:"Own Your Data and Encryption",
-                        content:["Create, Manage Encryption Keys",
-                                "Export, Share, Import Encryption Keys"],
+                        content:["Create, Manage and Share Encryption Keys",
+                                "Use Encryption Keys to Manage Access to the Data"],
 
                         },{
-                          title:"End-to-End Encrypted Data Transfer",
-                          content:["Transfer Content Between Devices",
-                                  "Scan to Start the Data Transfer"],
+                          title:"Secure Data Transfer Between Devices",
+                          content:["Share Encryption Key via QR Codes to Start Transfer",
+                                  "Push Content Securely from Mobile App to Business Applications"],
 
                           },{
-                            title:"No Subscription, No Database on the Cloud",
-                            content:["Everything Stored Encrypted in Your Device",
-                                    "Share Content Between Your Devices"],
+                            title:"Allowing Users to Have Complete Control of their Data",
+                            content:["Request User Data On Demand When Needed",
+                                    "Allowing the User to Inspect and Push the Data to the Business Application"],
 
                             },{
-                              title:"Automate Sign In & Forms",
-                              content:["Store and Manage Your Credentials",
-                                      "Transfer to Other Device Applications When Needed"],
+                              title:"Allowing Business Applications to Store Encryption Keys",
+                              content:["Use Encryption Keys for Encrypting Customer Data",
+                                      "Use Encryption Key Hiearchy to Control Access to the Customer Data"],
 
                               }]
 
   },
   globalInputApp:{
-    content:["Global Input App is a mobile app, which uses extensions to provide services for business applications to have mobile input and mobile control, portable encrypted data storage and encryption key management etc. The security mechanisms that this solution can provide to the business applications are:",
-    {type:"ul", content:["A secure user authentication mechanism without introducing complicated process.",
-    "A secure mechanism to store customer data into the customer’s device so that user can have complete control over his/her data.",
-    "A secure mechanism for securing the customer data in the application database on the cloud by saving the master encryption key in the mobile app and managing access via the encryption keys hierarchy."]},
-
-    ["For end-user functionalities, have a look at ",{type:"a", href:pagelinks.video.introduction,content:"the short introduction video"}," to see how you can use it in your workplace environment."]]
+    content:[
+      ["Global Input App is a mobile app with extensions, providing services to business applications to have mobile input and mobile control, portable encrypted data storage and encryption key management etc. Please read ", {type:"a", href:config.docs.security,content:"this article"}," to find out how businesses can use these services to implement ",{type:"a", href:config.docs.security,content:"an enterprise security strategy"},"."],    
+    ["Please watch ",{type:"a", href:pagelinks.video.introduction,content:"this introduction video"}," for end-user functionalities."]]
   },
   help:{
 
