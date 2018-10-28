@@ -45,6 +45,12 @@ const images={
         webSocketServer:require("../images/developers/websocket-server.png"),
 
   },
+  privacy:{
+      dataprocessor:require("../images/privacy/data-processor.png"),
+      encryptionHeiarchy:require("../images/privacy/encryption-hierachy.png"),
+      authenticationChain:require("../images/privacy/authentication-chain.png"),
+
+  },
 
   titles:{
         secondSecreenInput:require("../images/title-images/second-screen-input.png"),

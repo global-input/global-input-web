@@ -21,7 +21,7 @@ import {QRCodePrinting} from "./qr-printing";
 import {FormDataTransfer} from "./formdata-transfer";
 
 import {applicationPathConfig} from "./page-templates";
-import {AboutScreen} from "./about";
+
 import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
 import {VideoPlayer} from "./video-player";

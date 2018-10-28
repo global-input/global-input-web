@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-import {images} from "../configs";
+import {images,pagelinks} from "../configs";
 
 
 
@@ -10,7 +10,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage} from "../components";
+import {DisplayTextImage,TextViewPad} from "../components";
 
 
 
@@ -76,10 +76,30 @@ render() {
         appSubtitle={blockTextConfig.about.privacy.appSubtitle}>
 
          <div style={styles.content}>
-           <div style={styles.itemSection}>
-                 <DisplayTextImage title={blockTextConfig.about.privacy.title} reverse={true}
-                    content={blockTextConfig.about.privacy.content} />
-           </div>
+
+           <TextViewPad bookmark={pagelinks.privacy.bookmark} title={blockTextConfig.about.privacy.title}>
+              <div style={styles.itemSection}>
+
+               <DisplayTextImage title={blockTextConfig.about.privacy.encryption.title}
+                  content={blockTextConfig.about.privacy.encryption.content} />
+              </div>
+
+
+              <div style={styles.itemSection}>
+
+               <DisplayTextImage title={blockTextConfig.about.privacy.encryptionKeysHiearchy.title}
+                  content={blockTextConfig.about.privacy.encryptionKeysHiearchy.content} />
+              </div>
+
+              <div style={styles.itemSection}>
+
+               <DisplayTextImage title={blockTextConfig.about.privacy.authentication.title}
+                  content={blockTextConfig.about.privacy.authentication.content} />
+              </div>
+
+          </TextViewPad>
+
+
          </div>
       </PageWithHeader>
             );
