@@ -54,13 +54,14 @@ const  homeTextConfig={
   },
   globalInputApp:{
     content:[
-      ["Global Input App is a mobile app with extensions, providing services to business applications to have mobile input and mobile control, portable encrypted data storage and encryption key management etc. Please read ", {type:"a", href:config.docs.security,content:"this article"}," to find out how businesses can use these services to implement ",{type:"a", href:config.docs.security,content:"an enterprise security strategy"},"."],    
-    ["Please watch ",{type:"a", href:pagelinks.video.introduction,content:"this introduction video"}," for end-user functionalities."]]
+    ["Global Input App is a mobile app with extensions, enabling applications running on other devices to have mobile input, mobile control, portable encrypted data storage and portable encryption key management functionalities. This mechanism leads to a set of exciting usages where a smartphone can be used to operate on various applications running on other devices. Please read ", {type:"a", href:config.docs.smartphoneoperateonapplications,content:"this article"}," to learn more about this topic. You may see Global Input App in action from ",{type:"a", href:pagelinks.video.introduction,content:"this introduction video"}, "."]
+    ]
   },
   help:{
 
-    content:[
-      "Global Input App provides an entirely free and open-source solution to resolve security issues faced daily by your business applications and in your workplace environment. You can integrate the Global Input App solution into your business mobile app and business applications for free, as long as you can acknowledge and help us to spread the word. We aim to generate revenue by providing consultancy and develop business applications that span across multiple devices in your workplace."]
+    content:[[
+      "Global Input App also provides ", {type:"a", href:config.docs.smartphoneoperateonapplications,content:"a free and open-source security mechanism"}," to resolve security issues faced daily by your business applications and in your workplace environment. You can integrate the Global Input App solution into your business mobile app and business applications for free. We provide consultancy to develop GDPR compliant business applications that span across multiple devices. "]
+    ]
 
   }
 

@@ -43,6 +43,11 @@ const pagelinks={
                 url:function(){return pagelinks.app.link+"?scrollTo="+this.bookmark},
             },
       },
+      privacy:{
+          bookmark:"privacy",
+          
+
+      },
       githubs:{
           jslibrary:"https://github.com/global-input/global-input-message",
           webSocketServer:"https://github.com/global-input/global-input-node"
