@@ -44,8 +44,9 @@ const pagelinks={
             },
       },
       privacy:{
+          link:"/global-input-app/privacy",
           bookmark:"privacy",
-          
+          url:function(){return this.link+"?scrollTo="+this.bookmark},
 
       },
       githubs:{

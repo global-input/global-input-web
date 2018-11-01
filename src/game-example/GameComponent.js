@@ -15,7 +15,7 @@ export default class GameComponent{
      }
      update() {
             var ctx = this.container.canvasContext;
-            if (this.type == "text") {
+            if (this.type === "text") {
                    ctx.font = this.width + " " + this.height;
                    ctx.fillStyle = this.color;
                    ctx.fillText(this.text, this.x, this.y);

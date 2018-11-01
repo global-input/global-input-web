@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {styles} from "./styles";
 import TextButton from "./TextButton";
 export default class ClipboardButton extends Component{
   render(){

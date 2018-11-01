@@ -16,6 +16,7 @@ const privacyConfig={
   encryption:{
       title:"Encryption",
       content:[
+
           {
               type:"ul",
               content:[
@@ -36,6 +37,7 @@ const privacyConfig={
   encryptionKeysHiearchy:{
       title:"Protection of Encryption Keys",
       content:[
+        "Portable Encryption Keys Management: GDPR requires applications to encrypt the customer data, but it is challenging to manage and protect the encryption keys. The Global Input App solution provides a portable encryption keys management, which allows applications to use the master encryption key received from the mobile app to encrypt the encryption key sets. The key set contains the encryption keys that are used for encryption the data that the user is allowed to access. This mechanism will assign personal responsibility for processing personal data.",
            {
             type:"ul",
             content:[

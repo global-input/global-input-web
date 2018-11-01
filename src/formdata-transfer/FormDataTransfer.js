@@ -11,7 +11,7 @@ import {config,pagelinks} from "../configs";
 
 
 import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayTextImage,DisplayStaticContent} from "../components";
+  TextRadioButtons,NotificationMessage,DisplayStaticContent} from "../components";
 
 import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
@@ -40,7 +40,9 @@ export default class FormDataTransfer extends Component {
         window.addEventListener("resize", this.onWindowResize);
         this.processQueryParameters(this.props);
     }
-    componentWillUnmount() {
+
+    componentWillUnmount(){
+        this.disconnectGlobalInput();
         window.removeEventListener("resize", this.onWindowResize);
     }
     onWindowResize(){
@@ -137,9 +139,7 @@ export default class FormDataTransfer extends Component {
    action.connector.connect(action.options);
  }
 
-    componentWillUnmount(){
-        this.disconnectGlobalInput();
-    }
+
    componentWillReceiveProps(nextProps){
         //this.setState(this.getStateFromProps(nextProps))
     }
@@ -672,7 +672,7 @@ displayBookmarkableLink(){
 
     var url=pagelinks.samples.formData.buildURL({formData})
     return(
-        <a href={url}  target="_blank">{applicationPathConfig.formData.cloneButton}</a>
+        <a href={url} rel="noopener noreferrer" target="_blank">{applicationPathConfig.formData.cloneButton}</a>
     );
 }
 

@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 
 
 
-import {images} from  "../../configs";
+
 import scrollingTextArrays from "../configs/scrollingTextArrays";
 
 import {DisplayStaticContent} from "../../components";
@@ -36,7 +36,7 @@ export  default class PageScrollingText extends Component {
 
 
     componentWillReceiveProps(nextProps){
-        if(this.props.scrollingText!=nextProps.scrollingText){
+        if(this.props.scrollingText!==nextProps.scrollingText){
             this.setState(this.getStateFromProps(nextProps))
             this.stopSiwtchContentThread(nextProps);
             this.startSiwtchContentThread(nextProps);
@@ -132,12 +132,12 @@ renderImage(){
   if(this.props.image){
     if(this.props.mobileImage && styles.isMobile()){
       return(
-        <img src={this.props.mobileImage}/>
+        <img src={this.props.mobileImage} alt={this.props.mobileImage}/>
       );
     }
     else{
       return(
-        <img src={this.props.image}/>
+        <img src={this.props.image} alt={this.props.image}/>
       );
     }
 
@@ -190,7 +190,7 @@ render() {
      if(this.props.image){
          pageDescription=styles.pageDescriptionWithImage;
      }
-    var scrollingTextItem= scrollingTextArrays.items[this.state.index];
+
 
     return (
                       <div style={pageDescriptionSection} id="scrollingTextSection">

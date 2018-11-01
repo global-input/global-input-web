@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-import {images,pagelinks} from "../configs";
+import {pagelinks} from "../configs";
 
 
 

@@ -1,4 +1,3 @@
-import {images} from  "../../configs";
 export var styles={
 
   demoContainer:{
@@ -54,7 +53,7 @@ export var styles={
     paddingBottom:0,
     backgroundColor:"white",
  },
- 
+
 
 
 };

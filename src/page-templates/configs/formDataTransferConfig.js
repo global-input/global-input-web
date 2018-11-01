@@ -9,11 +9,8 @@ const formDataTransferConfig={
      bookmark:pagelinks.samples.formData.bookmark,
   },
   content:[
-           "Transfers form data securely to your users' mobile for editing collaboratively.",
-
-           "Allows your users to automate sign in, subscription, account update and other form operations.",
-           "Allows your users to have their master copy of their data and reuse them over multiple applications.",
-           "Edit securely your data stored in your mobile app using your computer or vice versa."],
+    "Sharing Confidential information with colleges or customers when setting up a user account in IT support environment.  Sending password protected zip file is flawed because that IT support cannot ensure the security on the receiving end. For example, a user may leave the unzip file unprotected etc.  This end-to-end security solution ensures the confidential information will not be compromised during the entire process.",
+           "Transfers form data securely to your users' mobile for editing collaboratively."],
 
 
    compose:{
@@ -71,11 +68,9 @@ const formDataTransferConfig={
     },
     startButton:"Try It",
     cancelButton:"Back",
-    backButton:"Back",
     restartButton:"Back",
     finishButton:"Finish",
-    nextButton:"Next",
-    backButton:"Back",
+    nextButton:"Next",    
     addNewFieldButton:"Add New Field",
     addButton:"Add",
     unselectButton:"Unselect",

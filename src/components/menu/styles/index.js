@@ -1,4 +1,3 @@
-import {config} from "../../../configs";
 
 var styles={
   mql:window.matchMedia(`(min-width: 800px)`),
@@ -17,8 +16,7 @@ var styles={
   isNarrowMobile:function(){
       return !this.narrowMobile.matches;
   },
-  topnavContainer:{
-    width:"100%",
+  topnavContainer:{    
     display:"flex",
     flexDirection: "column",
     width:"100%",
@@ -193,7 +191,7 @@ var styles={
     marginLeft:20,
     marginBottom:4
   },
-  bookmark:{    
+  bookmark:{
   }
 
 };

@@ -1,14 +1,6 @@
 import React, {Component} from 'react'
-import {
-  Link
-} from 'react-router-dom'
-
 
 import {styles} from "./styles";
-import {TextButton} from "../index";
-import DisplayStaticContent from "./DisplayStaticContent";
-
-
 
 export  default class DisplayVideo extends Component {
   ACT_TYPE={
@@ -105,9 +97,13 @@ isElementInViewport (el) {
       }
 }
 
+
 onAbort(){
-  this.stopThread();
+    console.log("onAbort");
+   this.setState({type:this.ACT_TYPE.ERROR})
+   this.stopThread();
 }
+
 onCanPlay(){
   this.videoCanPlay=true;
 }
@@ -123,11 +119,7 @@ onCanPlay(){
    getStateFromProps(props){
            return {type:this.ACT_TYPE.LOADING};
    }
-   onAbort(){
-       console.log("onAbort");
-      this.setState({type:this.ACT_TYPE.ERROR})
-      this.stopThread();
-   }
+
    onError(){
      console.log("onError");
      this.setState({type:this.ACT_TYPE.ERROR})
@@ -147,7 +139,7 @@ onCanPlay(){
 
   renderImage(){
     return (
-      <img src={this.props.defaultImage} title="Your browser does not support the <video> tag" style={styles.image}/>
+      <img src={this.props.defaultImage} alt={this.props.defaultImage} title="Your browser does not support the <video> tag" style={styles.image}/>
     );
   }
   render(){
@@ -168,7 +160,7 @@ onCanPlay(){
             );
           }
           else{
-            return(<img src={this.props.defaultImage} style={styles.image}/>);
+            return(<img src={this.props.defaultImage} alt={this.props.defaultImage} style={styles.image}/>);
           }
 
     }

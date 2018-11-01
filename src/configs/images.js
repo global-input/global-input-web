@@ -34,7 +34,6 @@ const images={
   aboutGlobalInputApp:require("../images/about-global-input.png"),
   aboutUsInputApp:require("../images/about-us.png"),
   contactUs:require("../images/contact-us.png"),
-  privacy:require("../images/privacy.png"),
   videoPlayerScrollingText:require("../images/video-player.png"),
   gameScrollingText:require("../images/game.png"),
   automateForm:require("../images/automate-form.png"),
@@ -43,7 +42,6 @@ const images={
         globalInputDeviceSolution:require("../images/developers/global-input-device-solution.png"),
         globaInputMessages:require("../images/developers/global-input-messages.png"),
         webSocketServer:require("../images/developers/websocket-server.png"),
-
   },
   privacy:{
       dataprocessor:require("../images/privacy/data-processor.png"),
@@ -51,6 +49,7 @@ const images={
       authenticationChain:require("../images/privacy/authentication-chain.png"),
 
   },
+
 
   titles:{
         secondSecreenInput:require("../images/title-images/second-screen-input.png"),

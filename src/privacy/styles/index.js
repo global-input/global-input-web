@@ -1,4 +1,3 @@
-import {images} from  "../../configs";
 export var styles={
 
   demoContainer:{

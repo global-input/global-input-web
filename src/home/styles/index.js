@@ -1,4 +1,3 @@
-import {images} from  "../../configs";
 export var styles={
 
   demoContainer:{
@@ -76,7 +75,7 @@ export var styles={
    textDecoration:"underline",
    marginRight:20,
    marginBottom:10,
-   
+
  },
 
 

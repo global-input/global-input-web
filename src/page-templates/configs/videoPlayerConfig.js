@@ -1,5 +1,5 @@
 
-import {images,pagelinks} from "../../configs";
+import {pagelinks} from "../../configs";
 
 const PLAY_PAUSE_BUTTON_STATUS={
     CAN_PLAY:0,

@@ -8,15 +8,9 @@ const sendMessageConfig={
     },
     title:"Customers to Have Complete Control of thier Data",
     appSubtitle:"Form Automation via Mobile",
-    content:["Allows business applications to store user data into users’ mobile devices and request them when needed. The sequence of actions:",
-            {
-              type:"ol",
-              content:["Application requests the user data from the mobile app.",
-              "The user inspects the select data pushes it to the application securely.",
-              "Mobile app presents the user with an option to save the modified data back to the mobile app if it is changed either by the user or by the application."
-            ],
-          },
-        "Allows applications to implement personalised user experience without storing user habits or user data."
+    content:["Storing Personal data in smartphones: This gives users complete control over their data and applications can request the data from the user via the mobile app and the user can push it securely to the application. With this mechanism, applications can have the option of not storing the user data while implementing some functionalities that require personal data.",
+
+
     ],
     scrollingText:{
         duration:8000,
