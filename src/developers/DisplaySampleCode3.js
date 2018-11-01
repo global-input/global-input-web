@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {images} from "../configs";
-import {styles} from "./styles";
 import {DisplaySourceCode} from "../components";
 
 

@@ -6,12 +6,6 @@ import React, {Component} from 'react'
 
 
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter
-} from 'react-router-dom'
 
 
 import {images} from "../configs";
@@ -23,7 +17,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayTextImage,DisplayStaticContent,BookMark} from "../components";
+import {DisplayStaticContent,BookMark} from "../components";
 
 
 
@@ -51,7 +45,7 @@ export  default class ContactFormHome extends Component {
             var vars = query.split('&');
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split('=');
-                if (decodeURIComponent(pair[0]) == variable) {
+                if (decodeURIComponent(pair[0]) === variable) {
                     return decodeURIComponent(pair[1]);
                 }
             }
@@ -96,7 +90,7 @@ render() {
                         <div className="col-md-6">
                             <div style={styles.addressContainer}>
                                 <div style={styles.sectionHeading}>{blockTextConfig.about.contact.title}</div>
-                                <img src={images.contactUs} className="img-responsive"/>
+                                <img src={images.contactUs} alt={images.contactUs} className="img-responsive"/>
                                 <div style={styles.fieldTitle}>{blockTextConfig.about.contact.pageContent.address.title}</div>
                                 <DisplayStaticContent
                                    content={blockTextConfig.about.contact.pageContent.address.content} lineStyle={styles.linaddress}/>

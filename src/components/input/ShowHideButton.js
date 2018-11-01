@@ -30,10 +30,10 @@ export default class ShowHideButton extends Component{
 
       return(
         <div style={styles.alignRight}>
-              <a onClick={()=>{
+              <a href="#b" onClick={()=>{
                     this.props.setShow(!this.props.show);
                 }} onMouseOut={this.mouseOut.bind(this)} onMouseOver={this.mouseOver.bind(this)}>
-                    <img src={image}/>
+                    <img src={image} alt={image}/>
               </a>
         </div>
       );

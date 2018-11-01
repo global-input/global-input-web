@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import QRCode from "qrcode.react";
 import {styles} from "./styles";
-import SectionHeader from "./SectionHeader";
 import {TextButton} from "../../components";
 
 export  default class DisplayQRCode extends Component {

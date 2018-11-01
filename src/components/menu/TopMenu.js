@@ -77,7 +77,7 @@ export  default class TopMenu extends Component {
     return (
               <div style={styles.topnavContainer}>
                    <div style={styles.topnav}>
-                        <img src={this.props.appLogo} style={styles.logo}/>
+                        <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
                         <div style={styles.appTitleContainer}>
                                 <div style={styles.appDesktopTitle}>{this.props.appTitle}</div>
                                 {this.renderDesktopSubtitle()}
@@ -94,7 +94,7 @@ export  default class TopMenu extends Component {
     return(
     <div style={styles.topnavContainer}>
           <div style={styles.topnavmobile}>
-                 <img src={this.props.appLogo} style={styles.logo}/>
+                 <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
                  <div style={styles.appTitleContainer}>
                          <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
                          {this.renderMobileSubtitle()}
@@ -110,14 +110,14 @@ export  default class TopMenu extends Component {
   renderMenuItemSymbol(){
       if(this.state.menuPressed){
         return(
-          <a style={styles.mobileMenuIcon} onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b" onClick={()=>{
                 this.setMenuPressed(false);
             }}>&#9747;</a>
         );
       }
       else{
         return(
-          <a style={styles.mobileMenuIcon} onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b"  onClick={()=>{
               this.setMenuPressed(true);
             }}>&#9776;</a>
         );
@@ -126,7 +126,7 @@ export  default class TopMenu extends Component {
   }
   renderTransparentSection(){
       return(
-            <a  onClick={this.hideMenu.bind(this)}>
+            <a  onClick={this.hideMenu.bind(this)} href="#b" >
                 <div style={styles.mobileMenuOverlay}>
                 </div>
             </a>

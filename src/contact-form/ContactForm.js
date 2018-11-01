@@ -7,14 +7,14 @@ import {createMessageConnector} from "global-input-message";
 
 
 
-import {config,images} from "../configs";
+import {config} from "../configs";
 
 import "whatwg-fetch";
 
-import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
+import {ShowHideButton,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
+  NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
 
-import {SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class ContactForm extends Component {
   ACT_TYPE={
@@ -423,6 +423,7 @@ sendMessageToUs(){
       );
     }
 
+
     getMapItemKey(item,index){
         if(item.id){
               return item.id;
@@ -439,22 +440,7 @@ sendMessageToUs(){
 
 
     }
-    getMapItemKey(item,index){
-        if(item.id){
-              return item.id;
-        }
-        else if(item.label){
-              return index+"_"+item.label;
-        }
-        else if(item.value){
-                  return index+"_"+item.value;
-        }
-        else{
-              return index;
-        }
 
-
-    }
 renderAField(formField, index){
 
   var label=formField.id;

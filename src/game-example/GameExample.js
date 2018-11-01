@@ -7,14 +7,14 @@ import {createMessageConnector} from "global-input-message";
 
 
 
-import {config,images} from "../configs";
+import {config} from "../configs";
 
 
 
-import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
+import {InputWithSelect,TextAreaWithSelect,
+  DisplayStaticContent} from "../components";
 
-import {PageWithHeader,PageWithoutHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,PageWithoutHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 
 
@@ -122,7 +122,7 @@ isGameStarted(){
     }
     this.clearGame();
     this.frameNo += 1;
-    if (this.frameNo == 1 || this.everyinterval(150)) {
+    if (this.frameNo === 1 || this.everyinterval(150)) {
         x = this.canvas.width;
         minHeight = 20;
         maxHeight = 200;
@@ -145,7 +145,7 @@ isGameStarted(){
 }
 
 everyinterval(n) {
-    if ((this.frameNo / n) % 1 == 0) {return true;}
+    if ((this.frameNo / n) % 1 === 0) {return true;}
     return false;
 }
 speedUp(){
@@ -315,7 +315,7 @@ onLeftButtonPressed(){
                                                                       fontSize:36,
                                                                 }
                                                           },
-                                                          label:applicationPathConfig.gameExample.form.speedUp.label,
+
                                                           icon: applicationPathConfig.gameExample.form.speedUp.icon,
                                                           viewId:applicationPathConfig.gameExample.form.speedUp.viewId,
                                                           operations:{
@@ -476,6 +476,7 @@ onLeftButtonPressed(){
     }
 
 
+  
     getMapItemKey(item,index){
         if(item.id){
               return item.id;
@@ -492,22 +493,7 @@ onLeftButtonPressed(){
 
 
     }
-    getMapItemKey(item,index){
-        if(item.id){
-              return item.id;
-        }
-        else if(item.label){
-              return index+"_"+item.label;
-        }
-        else if(item.value){
-                  return index+"_"+item.value;
-        }
-        else{
-              return index;
-        }
 
-
-    }
 renderAField(formField, index){
 
   var label=formField.id;

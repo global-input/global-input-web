@@ -23,7 +23,7 @@ export  default class HomeScreen extends Component {
 
          genericUtil.processQueryParameters(this.props);
      }
-     
+
 
      componentWillUnmount() {
          window.removeEventListener("resize", this.onWindowResize);
@@ -63,11 +63,12 @@ render() {
                     <BookMark bookmark={pagelinks.app.bookmark}/>
                   <DisplayTextImage
                      content={applicationPathConfig.home.globalInputApp.content}/>
+                   
                    <div style={styles.installSection}>
                       <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
                    </div>
 
-                   <DisplayStaticContent content={applicationPathConfig.home.help.content}/>
+
                 </div>
 
 

@@ -117,7 +117,7 @@ export  default class DisplayStaticContent extends Component {
       }
       else if(item.type==='a'){
         return (
-            <a href={item.href} style={this.props.linkStyle} key={key} target="_blank">
+            <a href={item.href} style={this.props.linkStyle} key={key} rel="noopener noreferrer" target="_blank">
                   {this.renderItem(item.content, this.ITEM_TYPE.SPAN)}
             </a>
         );
@@ -179,22 +179,27 @@ export  default class DisplayStaticContent extends Component {
             );
       }
       else if(item.type==='image'){
-            var imageSrc=item.src;
+            let imageSrc=item.src;
             if(styles.isMobile() && item.mobile && item.mobile.src){
               imageSrc=item.mobile.src;
             }
+            var imageStyle=styles.image;
+            if(this.props.imageStyle){
+              imageStyle=this.props.imageStyle;
+            }
+
             return (
-                <img style={this.props.imageStyle} src={imageSrc} key={key}/>
+                <img style={imageStyle} alt={imageSrc} src={imageSrc} key={key}/>
             );
       }
       else if(item.type==='centerImage'){
-            var imageSrc=item.src;
+            let imageSrc=item.src;
             if(styles.isMobile() && item.mobile && item.mobile.src){
               imageSrc=item.mobile.src;
             }
             return (
               <div style={styles.centerImageContainer}>
-                  <img style={styles.image} src={imageSrc} key={key}/>
+                  <img style={styles.image} alt={imageSrc} src={imageSrc} key={key}/>
               </div>
 
             );

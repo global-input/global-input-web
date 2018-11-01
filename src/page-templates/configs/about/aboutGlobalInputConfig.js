@@ -1,5 +1,5 @@
 
-import {images,pagelinks} from "../../../configs";
+import {pagelinks} from "../../../configs";
 
 const aboutGlobalInputConfig={
   appTitle:"Global Input",
@@ -35,17 +35,17 @@ whyneeded:{
 
             "And most importantly, you may have to login to these applications on the shared workstations, or on computers attached to the big screens in a conference room or in a shared screen environment. Often you have to login to multiple business applications when everybody is watching on your screen and on your typing on the computer keyboard. If you use a common password manager, you may have to type your master password on the computer, that may lead to the breach of the password manager itself, bringing risks to all the passwords stored in the password manager.",
 
-            "Global Input App resolve this issue by allowing you to  push a selected data from your mobile device to the target application you are signing in. You just need to scan the QR code displayed, and select the authentication data stored in your app and press the \”Select\” button. The data will then be decrypted and transferred to the target application using end-to-end encryption. You can now set a random password for each application, and you do not need to memorize them. As the result you can use your mobile as a sign in device for signing in to the applications on the shared computers. Most importantly, you can now sign in to the application even if people are watching over both your mobile and computer screen.",
+            "Global Input App resolve this issue by allowing you to  push a selected data from your mobile device to the target application you are signing in. You just need to scan the QR code displayed, and select the authentication data stored in your app and press the ”Select” button. The data will then be decrypted and transferred to the target application using end-to-end encryption. You can now set a random password for each application, and you do not need to memorize them. As the result you can use your mobile as a sign in device for signing in to the applications on the shared computers. Most importantly, you can now sign in to the application even if people are watching over both your mobile and computer screen.",
 
 
             ["The fastest way of trying this out is to load the ",
                   {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
                   " on your browser. Note that this does not require you to install the ",
                   {type:"link",content:"Chrome Extension",link:pagelinks.samples.chromeExtension.url()},". ",
-                 ". Click on the \”Next” button on the ",
+                 ". Click on the ”Next” button on the ",
                    {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
                    ", and then scan the QR Code with your Global Input App on your mobile. The same form being displayed on your computer screen should be displayed on your mobile as well. This allows you to use your mobile to enter content in the form on your computer. You can save the form data into your app and end the session. ",
-                   "Now If you reload the page and go through the process again, you will notice that a button named “Matched” has appeared on the bottom of your mobile screen. This means that one or more data items in your app matches the form displayed by the application. If you press the button, a list of matched data items will be presented to you. Normally there will vbe only one item in the list. If you select the data item, you will be presented with the detail page of the data item. You will notice that the value of the fields is being displayed with “*” characters, which means that the value is not decrypted yet.  You can press the \”Show\” button to decrypt and reveal its content, or you can press the “Select” button straightaway to decrypt the data and send it to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into you clipboard, and switch to the application you need and paste the content there."
+                   "Now If you reload the page and go through the process again, you will notice that a button named “Matched” has appeared on the bottom of your mobile screen. This means that one or more data items in your app matches the form displayed by the application. If you press the button, a list of matched data items will be presented to you. Normally there will vbe only one item in the list. If you select the data item, you will be presented with the detail page of the data item. You will notice that the value of the fields is being displayed with “*” characters, which means that the value is not decrypted yet.  You can press the ”Show” button to decrypt and reveal its content, or you can press the “Select” button straightaway to decrypt the data and send it to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into you clipboard, and switch to the application you need and paste the content there."
                  ],
 
 
@@ -59,8 +59,9 @@ whyneeded:{
               "If the application supports the Global Input App, you just need to ask the user scan the QR code displayed by the application and then the user will be able to use his/her mobile to enter his/her details directly into the application.",
               ["If the application does not yet support the Global Input App, you can load the ",
                   {type:"link",content:"sample web application",link:pagelinks.samples.formData.link},
-                  " on your computer and compose the form you need, and click on the \”Next\” button to display the QR code. You can ask the user to scan the QR code (you can send the QR code image or share it via a video link). When connected, the user should be  able to use his/her mobile to type in his/her details on the form displayed on your screen. Knowing that the user never need to remember the password, you can ask the user to generate a strong password by pressing the \”Random\” button on the app. You can then click on the “Copy\” button to copy the form details into your clipboard and paste it into the application to continue the account creation process. On the user end, user can press \”Save\” button to save the data in his/her mobile. Otherwise,  when you press the “Finish” button to end the session,  the app will ask the user to save the form data giving the user another chance to save the data."]]
+                  " on your computer and compose the form you need, and click on the ”Next” button to display the QR code. You can ask the user to scan the QR code (you can send the QR code image or share it via a video link). When connected, the user should be  able to use his/her mobile to type in his/her details on the form displayed on your screen. Knowing that the user never need to remember the password, you can ask the user to generate a strong password by pressing the ”Random” button on the app. You can then click on the “Copy” button to copy the form details into your clipboard and paste it into the application to continue the account creation process. On the user end, user can press ”Save” button to save the data in his/her mobile. Otherwise,  when you press the “Finish” button to end the session,  the app will ask the user to save the form data giving the user another chance to save the data."]]
         },
+
         sharingAccounts:{
             title:"Support Tool for Sharing Accounts",
             content:["In a corporate environment, you may need to share an account with some of your colleagues to accomplish some tasks. Global Input App allows you to share data securely using end-to-end encryption.",
@@ -86,7 +87,7 @@ whyneeded:{
                       ]
                     },{
                       type:"sub", title:"Export Encryption Keys", content:[
-                        "Press to select the encryption key you would like to share on the \“Keys\” tab. Then press the \“QR Code\” button on the bottom of your mobile screen to go into the Export Encryption form, there you can enter a password to encrypt the encryption key that you would like to export. When you press the \“Encrypt\” button, a QR code will be displayed on your mobile screen."
+                        "Press to select the encryption key you would like to share on the “Keys” tab. Then press the “QR Code” button on the bottom of your mobile screen to go into the Export Encryption form, there you can enter a password to encrypt the encryption key that you would like to export. When you press the “Encrypt” button, a QR code will be displayed on your mobile screen."
                       ]
                     },{
                       type:"sub", title:"Import Encryption Keys", content:[
@@ -95,12 +96,12 @@ whyneeded:{
                       ]
                     },{
                       type:"sub", title:"Encrypted QR codes", content:[
-                        "Now if you press the \“+\” button on the \“Encrypt\” tab of of your Global Input App, you can enter a content to encrypt and and the select the encryption key you have just shared/imported. When you press the encrypt button, a QR code will be displayed on your mobile screen. If you scan it with your new mobile, you will see the decrypted content on your mobile screen, and you can press the \”Copy\” button to copy the content into your clipboard."
+                        "Now if you press the “+” button on the “Encrypt” tab of of your Global Input App, you can enter a content to encrypt and and the select the encryption key you have just shared/imported. When you press the encrypt button, a QR code will be displayed on your mobile screen. If you scan it with your new mobile, you will see the decrypted content on your mobile screen, and you can press the ”Copy” button to copy the content into your clipboard."
                       ]
                     },{
                       type:"sub", title:"Print QR Codes on Computer", content:[
                         ["Load the ",{type:"link",content:"sample web application",link:pagelinks.samples.qrPrinting.link}," with your browser running on your computer."],
-                        "If you scan the QR code displayed there, a form will be displayed on your mobile screen that is for creating normal QR code. You can now send an encrypted content from your mobile to the content field of your form on your computer. Press the \"Encrypt\" button on your bottom of your mobile screen to create an encrypted content and send it to the form displayed on your screen. Then you can press \”Print\” button to print the QR code.",
+                        "If you scan the QR code displayed there, a form will be displayed on your mobile screen that is for creating normal QR code. You can now send an encrypted content from your mobile to the content field of your form on your computer. Press the \"Encrypt\" button on your bottom of your mobile screen to create an encrypted content and send it to the form displayed on your screen. Then you can press ”Print” button to print the QR code.",
                         "In order to print out the QR code for an encryption key, you can press the “Key” button, you will be able to create a password protected content for the selected encryption key and send it to the QR code creation form. When you press the \"Print\" button you can print out a password protected QR code for the selected encryption key. Try to scan the QR code with another phone to see it in action."
                       ]
                     }]
@@ -126,8 +127,8 @@ whyneeded:{
 
             {type:"sub", title:"See It in Action", content:[
                   ["Load the ",{type:"link",content:"sample web application",link:pagelinks.samples.sendMessage.link}, " in a browser on your computer, and scan the QR Code with your Global Input App."],
-                  "A form will be displayed on your mobile titled with “Our Contact Details”, you can now press the the “Save” button to save our details into your app. You can view/edit the data item you have saved on the \“Data\” tab.",
-                  "If you can now scroll to the bottom of the form, and press the \“Continue\” button there, a new form for sending a message to us will be displayed. If you fill in your details and a message content, and then press the \“Send Now\”, a message will be sent to us. Now you need to save the form data you have just entered into your app. If you reload the page and go through the steps again, you will notice that a button named \“Matched\” is displayed on the bottom of your mobile screen. This means that at least one data item matching the form exists in your app. Press on it to see the list and select the row to display its details. The data details will be displayed with \“*\” characters. This means that the data is not decrypted yet. You can press \“Show\” button to decrypt and show its details or press the \“Select\” button to send the data item straight away to the form being displayed on your computer. Now you can just need to place a new message and press the \“Send Now\” button.",
+                  "A form will be displayed on your mobile titled with “Our Contact Details”, you can now press the the “Save” button to save our details into your app. You can view/edit the data item you have saved on the “Data” tab.",
+                  "If you can now scroll to the bottom of the form, and press the “Continue” button there, a new form for sending a message to us will be displayed. If you fill in your details and a message content, and then press the “Send Now”, a message will be sent to us. Now you need to save the form data you have just entered into your app. If you reload the page and go through the steps again, you will notice that a button named “Matched” is displayed on the bottom of your mobile screen. This means that at least one data item matching the form exists in your app. Press on it to see the list and select the row to display its details. The data details will be displayed with “*” characters. This means that the data is not decrypted yet. You can press “Show” button to decrypt and show its details or press the “Select” button to send the data item straight away to the form being displayed on your computer. Now you can just need to place a new message and press the “Send Now” button.",
 
             ]},
             {

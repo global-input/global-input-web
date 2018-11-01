@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {styles} from "./styles";
+
 
 export default class TextAreaWithLabel extends Component{
   render(){

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {images,pagelinks} from "../configs";
+import {pagelinks} from "../configs";
 import {genericUtil} from "../util";
 import {styles} from "./styles";
 import {DisplayTextImage,BookMark,DisplayStaticContent,TextViewPad} from "../components";
@@ -19,7 +19,7 @@ export  default class DevelopersScreen extends Component {
      componentDidMount() {
          window.addEventListener("resize", this.onWindowResize);
          genericUtil.processQueryParameters(this.props);
-     }     
+     }
      componentWillUnmount() {
          window.removeEventListener("resize", this.onWindowResize);
      }

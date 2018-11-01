@@ -7,14 +7,14 @@ import {createMessageConnector} from "global-input-message";
 
 
 
-import {config,images,pagelinks} from "../configs";
+import {config} from "../configs";
 
 import "whatwg-fetch";
 
-import {LoadingIcon,ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
-  TextRadioButtons,NotificationMessage,DisplayStaticContent,DisplayTextImage,BookMark} from "../components";
+import {InputWithSelect,TextAreaWithSelect,
+  DisplayStaticContent} from "../components";
 
-import {PageWithHeader,SectionHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class VideoPlayer extends Component {
   ACT_TYPE={
@@ -284,6 +284,7 @@ export default class VideoPlayer extends Component {
 
     }
 
+
     getMapItemKey(item,index){
         if(item.id){
               return item.id;
@@ -300,22 +301,7 @@ export default class VideoPlayer extends Component {
 
 
     }
-    getMapItemKey(item,index){
-        if(item.id){
-              return item.id;
-        }
-        else if(item.label){
-              return index+"_"+item.label;
-        }
-        else if(item.value){
-                  return index+"_"+item.value;
-        }
-        else{
-              return index;
-        }
 
-
-    }
 renderAField(formField, index){
 
   var label=formField.id;
@@ -530,9 +516,7 @@ renderAField(formField, index){
       }
       this.sendPlayHeadPosition(currentTime,duration);
     }
-    onLoadStart(){
 
-    }
     onLoadStart(){
 
     }
@@ -658,7 +642,7 @@ renderAField(formField, index){
         var seconds = Math.floor(timestamp) % 60;
         var secondsString = seconds.toString().length < 2 ? '0' + seconds : seconds;
         var result = (hours > 0) ? (hours.toString() + ':' + minutesString + ':' + secondsString) : (minutesString + ':' + secondsString);
-        return result.match(/^([0-9]+:)?[0-9]*\:[0-9]*$/) ? result : '00:00';
+        return result.match(/^([0-9]+:)?[0-9]*:[0-9]*$/) ? result : '00:00';
     }
     renderSenderConnected(){
       var w = window.innerWidth-50;

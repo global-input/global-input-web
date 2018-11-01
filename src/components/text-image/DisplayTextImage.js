@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import {
-  Link
-} from 'react-router-dom'
 
 
 import {styles} from "./styles";
@@ -34,7 +31,7 @@ export  default class DisplayTextImage extends Component {
     if(typeof this.props.title ==='object' && this.props.title.image){
       return(
               <div style={styles.sectionHeading}>
-                      <img src={this.props.title.image} style={styles.image}/>
+                      <img src={this.props.title.image} style={styles.image} alt={this.props.title.image}/>
               </div>
             );
     }
@@ -114,7 +111,7 @@ export  default class DisplayTextImage extends Component {
         return(
           <div style={styles.mobileImageContainer}>
               {this.renderImageTitle(isMobile)}
-              <img src={imageurl} style={styles.image}/>
+              <img src={imageurl} style={styles.image} alt={imageurl}/>
           </div>
         );
       }
@@ -124,7 +121,7 @@ export  default class DisplayTextImage extends Component {
             <div className="col-md-6">
                 <div style={styles.imageContainer}>
                     {this.renderImageTitle(isMobile)}
-                    <img src={this.props.image} style={styles.image}/>
+                    <img src={this.props.image} style={styles.image} alt={this.props.image}/>
                 </div>
             </div>
           );
@@ -166,10 +163,7 @@ export  default class DisplayTextImage extends Component {
       }
     }
     renderMobile(){
-      var sectionHeadingStyle=styles.sectionHeading;
-      if(styles.isMobile()){
-        sectionHeadingStyle=styles.sectionHeadingMobile;
-      }
+      
         return (
                       <div style={styles.mobileTextImageContainer}>
                         {this.renderTitle(true)}

@@ -99,7 +99,6 @@ const styles={
 
       pageDescriptionLine:{
         fontSize: 16,
-        color: "#414242",
         fontWeight: 300,
         color:"white",
       },
@@ -113,14 +112,12 @@ const styles={
 
       scrollingTextTitle:{
         fontSize: 32,
-        color: "#414242",
         fontWeight: 300,
         color:"white",
         marginBottom:10
       },
       scrollingTextContent:{
-        fontSize: 22,
-        color: "#414242",
+        fontSize: 22,        
         fontWeight: 300,
         color:"white"
       },
