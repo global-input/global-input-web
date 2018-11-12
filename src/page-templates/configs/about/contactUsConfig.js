@@ -79,6 +79,15 @@ const contactUsConfig={
                       "Click the following button to start"],
      startButton:"Start"
   },
+  community:{
+        title:"Join Us on Gitter",
+        content:"You are welcome to join our Global Input App community to learn about this technology and contribute to the work we are doing."
+  },
+  whatsapp:{
+        title:"Join Us on WhatsApp",
+        content:"You can join our converstaion on whatsup group"
+  },
+
   connecting:{
         title:"Contact Data Transfer",
         content:"Connecting..."

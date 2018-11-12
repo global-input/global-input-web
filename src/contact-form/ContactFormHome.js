@@ -8,7 +8,7 @@ import React, {Component} from 'react'
 
 
 
-import {images} from "../configs";
+import {images, pagelinks} from "../configs";
 
 
 
@@ -17,7 +17,7 @@ import {styles} from "./styles";
 
 
 
-import {DisplayStaticContent,BookMark} from "../components";
+import {DisplayStaticContent,BookMark,DisplayTextImage,TextButton} from "../components";
 
 
 
@@ -85,6 +85,26 @@ render() {
          <div style={styles.content}>
 
                <div style={styles.itemSection}>
+
+                 <DisplayTextImage title={blockTextConfig.about.contact.community.title}
+                    image={images.others.shareKnwoledge}>
+                    {blockTextConfig.about.contact.community.content}
+                    <TextButton label={applicationPathConfig.home.community.button.content}
+                      href={pagelinks.community.gitter}/>
+                  </DisplayTextImage>
+               </div>
+               <div style={styles.itemSection}>
+                 <DisplayTextImage title={blockTextConfig.about.contact.whatsapp.title} reverse={true}
+                    image={images.others.whatsapp}>
+                    {blockTextConfig.about.contact.whatsapp.content}
+                    <TextButton label={applicationPathConfig.home.community.button.content}
+                      href={pagelinks.community.whatsapp}/>
+                  </DisplayTextImage>
+               </div>
+               <div style={styles.itemSection}>
+
+
+
 
                   <div className="row top-margin-md">
                         <div className="col-md-6">

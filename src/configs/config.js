@@ -13,6 +13,6 @@ config.videos={
 }
 config.docs={
     security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/?lipi=urn%3Ali%3Apage%3Ad_flagship3_inshare%3B7%2FQdFEI5TSuBvNX7Fmbu1A%3D%3D",
-    smartphoneoperateonapplications:"https://www.linkedin.com/pulse/using-smartphones-operate-applications-running-other-devices-dilshat/"
+    smartphoneoperateonapplications:"https://www.linkedin.com/pulse/using-smartphones-operate-applications-running-other-devices-dilshat/",    
 }
 export default config;

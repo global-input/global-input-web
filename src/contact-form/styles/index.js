@@ -1,20 +1,33 @@
 export const styles={
   content:{
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"center",
-    alignItems:"center",
-    width:"100%"
+    paddingLeft:20,
+    paddingTop:10,
+    paddingRight:20,
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      backgroundColor:"#dddddd",
+      width:"100%"
+  },
+  sectionHeading:{
+     fontFamily: "'Elysio-Light',Helvetica,Arial,sans-serif",
+
+     fontWeight: 500,
+     fontSize: 26,
+     marginTop: 0,
+     marginBottom: 15,
+     color: "#4880ED"
   },
   itemSection:{
-     marginTop:10,
-     paddingTop:10,
-     marginBottom:10,
-     paddingLeft:20,
-     paddingRight:20,
-     paddingBottom:0,
-     backgroundColor:"white",
-     width:"100%"
+    marginTop:10,
+    marginBottom:10,
+    paddingLeft:10,
+    paddingRight:10,
+    paddingBottom:0,
+
+    backgroundColor:"white",
+    width:"100%"
   },
   fieldTitle:{
     fontWeight:500

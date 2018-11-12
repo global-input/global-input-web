@@ -49,6 +49,10 @@ const pagelinks={
           url:function(){return this.link+"?scrollTo="+this.bookmark},
 
       },
+      community:{
+        gitter:"https://gitter.im/globalinput/globalinputapp",
+        whatsapp:"https://chat.whatsapp.com/DTYPz6fY7atGjwLk3TQp7e"
+      },
       githubs:{
           jslibrary:"https://github.com/global-input/global-input-message",
           webSocketServer:"https://github.com/global-input/global-input-node"
