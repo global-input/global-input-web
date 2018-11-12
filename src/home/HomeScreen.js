@@ -70,15 +70,7 @@ render() {
 
 
                 </div>
-                <div style={styles.itemSection}>
-                      <div style={styles.joinCommunityTitle}>
-                        {applicationPathConfig.home.community.title}
-                      </div>
-                      <DisplayStaticContent content={applicationPathConfig.home.community.content}/>
-                      <TextButton label={applicationPathConfig.home.community.button.content}
-                        href={pagelinks.community.gitter}/>
-                        
-                </div>
+                
 
 
 
