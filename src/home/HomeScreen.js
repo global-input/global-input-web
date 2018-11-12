@@ -3,7 +3,7 @@ import {config,images,pagelinks} from "../configs";
 import {genericUtil} from "../util";
 
 
-import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo} from "../components";
+import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo,TextButton} from "../components";
 
 import {styles} from "./styles";
 
@@ -63,13 +63,18 @@ render() {
                     <BookMark bookmark={pagelinks.app.bookmark}/>
                   <DisplayTextImage
                      content={applicationPathConfig.home.globalInputApp.content}/>
-                   
+
                    <div style={styles.installSection}>
                       <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
                    </div>
 
 
                 </div>
+                
+
+
+
+
 
 
 

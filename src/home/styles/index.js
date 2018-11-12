@@ -61,6 +61,29 @@ export var styles={
     width:"100%"
 
  },
+
+ 
+ joinCommunityTitle:{
+
+   fontFamily: "'Roboto', sans-serif",
+   textTransform: "none",
+   fontWeight: 300,
+   color: "rgb(72, 128, 237)",
+   lineHeight: 1.5,
+   fontWeight: 500,
+   fontSize: 36,
+   display:"flex",
+   flexDirection:"row",
+   justifyContent:"center",
+   alignItems:"center",
+ },
+ joinCommunityButtonContainer:{
+   display:"flex",
+   flexDirection:"row",
+   justifyContent:"center",
+   alignItems:"center",
+ },
+
  installSection:{
    width:"100%",
    display:"flex",

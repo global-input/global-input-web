@@ -63,6 +63,10 @@ const images={
     encryptedQRCode:require("../images/mobile/encrypted-qr-code.png"),
     chromeExtension:require("../images/mobile/chrome-extension.png"),
 
+  },
+  others:{
+    shareKnwoledge:require("../images/others/share-knowledge.png"),
+    whatsapp:require("../images/others/whatsappgroup.png")
   }
 }
 export default images;

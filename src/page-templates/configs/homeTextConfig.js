@@ -71,6 +71,13 @@ const  homeTextConfig={
 
       ]
 
+  },
+  community:{
+      title:"Join the Global Input App Community on Gitter",
+      content:["Global Input App is a free open-source solution to enhance existing applications running on computers, SmartTV, IoT and other devices to have mobile input, mobile control and portable encrypted storage functionalities. You are welcome to join our Global Input App community to learn about this technology and contribute to the  work we are doing. Start by chatting now."],
+      button:{
+            content:"CHAT NOW"
+      }
   }
 
 
