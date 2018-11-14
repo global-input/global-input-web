@@ -146,8 +146,9 @@ onCanPlay(){
           if(this.state.type===this.ACT_TYPE.LOADING){
             return(
                  <video width="100%"  controls={true} loop={this.props.loop} poster={this.props.defaultImage}
-                   muted={this.props.muted} autoPlay={false}
-                 onAbort={this.onAbort.bind(this)}
+                   muted={this.props.muted}
+                   autoPlay={false}
+                   onAbort={this.onAbort.bind(this)}
                  onError={this.onError.bind(this)}
                  onCanPlay={this.onCanPlay.bind(this)}
                  onPause={this.onPause.bind(this)}
