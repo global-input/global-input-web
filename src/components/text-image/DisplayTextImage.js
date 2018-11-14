@@ -92,7 +92,7 @@ export  default class DisplayTextImage extends Component {
               <div style={styles.imageContainer}>
                 <DisplayVideo video={this.props.video}
                   defaultImage={this.props.image} autoPlay={true}
-                  loop={true}/>
+                  loop={true} muted={true}/>
               </div>
           </div>
         );
@@ -163,7 +163,7 @@ export  default class DisplayTextImage extends Component {
       }
     }
     renderMobile(){
-      
+
         return (
                       <div style={styles.mobileTextImageContainer}>
                         {this.renderTitle(true)}

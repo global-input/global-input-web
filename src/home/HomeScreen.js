@@ -57,7 +57,7 @@ render() {
 
                   <DisplayVideo video={config.videos.globalInputHome()}
                       autoPlay={true}
-                      defaultImage={images.globalInputHome}/>
+                      defaultImage={images.globalInputHome} muted={true}/>
 
 
                     <BookMark bookmark={pagelinks.app.bookmark}/>
@@ -70,7 +70,7 @@ render() {
 
 
                 </div>
-                
+
 
 
 

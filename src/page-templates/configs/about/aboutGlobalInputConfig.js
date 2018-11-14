@@ -12,13 +12,7 @@ const aboutGlobalInputConfig={
   },
 
 
-  content:[
-    "Global Input App provides a single app solution for encrypted data storage (which includes password manager), data transfer between devices using end-to-end encryption, encrypted QR Code creator & scanner, mobile input & control for smart TV, media device, IoT and web applications.  Your data stays encrypted and is only decrypted when it is needed.  There is no subscription and no database on the server to store your data or your details. Everything is stored in your device's storage, encrypted with an encryption key, which in turn, is encrypted with your app login password.  You can manage and share encryption keys and use encrypted QR codes to backup or share confidential contents.",
-    ["Global Input App is part of the ",{type:"link",content:"Global Input Platform", link:pagelinks.platform.platform.url()},". The platform provides a unique solution to device and web applications for implementing mobile input and control, and second screen experience without the need for separate app development. An application can declaratively specify mobile UI (User Interface) elements and the callback functions for receiving mobile events to implement mobile logic within the application itself. The applications can also take advantage of the encrypted data storage by asking users to store data in the app's storage to automate form operations such as sign in, subscription and other form filling operation."],
-
-    ["Global Input App is a free app, created by Dilshat Hewzulla (", {type:"mailto", content:"dilshat@iterativesolution.co.uk"},") to resolve some common issues faced in the business environment. The app is available in ",{type:"a",content:"App Store",href:pagelinks.appStore}," for iOS and in ",{type:"a",content:"Play Store",href:pagelinks.playStore}," for Android."],
-
-],
+  
 whyneeded:{
         title:"How to Use the Global Input App",
 
