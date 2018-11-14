@@ -207,7 +207,7 @@ export  default class DisplayStaticContent extends Component {
       else if(item.type==='video'){
         return (
           <div style={styles.centerImageContainer}>
-              <DisplayVideo  video={item.video} defaultImage={item.poster} key={key}/>
+              <DisplayVideo  video={item.video} defaultImage={item.poster} key={key} muted={true}/>
           </div>
 
         );

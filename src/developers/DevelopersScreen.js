@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {pagelinks} from "../configs";
+import {pagelinks,config, images} from "../configs";
 import {genericUtil} from "../util";
 import {styles} from "./styles";
-import {DisplayTextImage,BookMark,DisplayStaticContent,TextViewPad} from "../components";
+import {DisplayTextImage,BookMark,DisplayStaticContent,TextViewPad,DisplayVideo} from "../components";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 import DisplaySampleCode1 from "./DisplaySampleCode1";
@@ -41,14 +41,20 @@ render() {
         <BookMark bookmark={pagelinks.platform.bookmark}/>
          <div style={styles.content}>
 
+
            <TextViewPad bookmark={pagelinks.app.reasons.bookmark} title={blockTextConfig.about.globalInputApp.whyneeded.title}>
              <div style={styles.itemSection}>
                <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.title}
                   content={blockTextConfig.about.globalInputApp.whyneeded.ownYourData.content} />
              </div>
              <div style={styles.itemSection}>
+
                <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
                   content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
+                  <DisplayVideo video={config.videos.tutorialPart1()}
+                      autoPlay={true} muted={false}
+                      defaultImage={images.others.signIn}/>
+
              </div>
              <div style={styles.itemSection}>
                <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.creatingAccounts.title}

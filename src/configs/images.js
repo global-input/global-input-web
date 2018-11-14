@@ -66,7 +66,8 @@ const images={
   },
   others:{
     shareKnwoledge:require("../images/others/share-knowledge.png"),
-    whatsapp:require("../images/others/whatsappgroup.png")
+    whatsapp:require("../images/others/whatsappgroup.png"),
+    signIn:require("../images/others/sign-in.png"),
   }
 }
 export default images;
