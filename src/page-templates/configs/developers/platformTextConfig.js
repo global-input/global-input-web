@@ -4,6 +4,7 @@ const platformTextConfig={
   appSubtitle:"Platform",
   menu:{
     link:pagelinks.platform.link,
+    
     linkText:"Help"
   },
   platform:{

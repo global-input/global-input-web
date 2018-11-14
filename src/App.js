@@ -44,12 +44,18 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransfer}/>
             <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
-            <Route  path={applicationPathConfig.platform.menu.link}  component={DevelopersScreen}/>
+            <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
+            <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
+            <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
+
+
+           <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
+
 
 
             <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
 
-            <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
+
             <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={VideoPlayer}/>
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
             <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>

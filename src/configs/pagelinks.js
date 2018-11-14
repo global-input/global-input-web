@@ -10,6 +10,7 @@ const pagelinks={
       platform:{
             link:"/global-input-app/help",
             link2:"/global-input-app/platform",
+            link3:"/global-input-app/developers",
             bookmark:"top",
             url:function(){return this.link+"?scrollTo="+this.bookmark},
             platform:{
