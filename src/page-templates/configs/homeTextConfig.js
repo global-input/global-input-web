@@ -54,20 +54,31 @@ const  homeTextConfig={
   },
   globalInputApp:{
     content:[
-        "Global Input App is a mobile app with extensions, enabling applications running on other devices to have mobile input, mobile control, portable encrypted data storage and portable encryption key management functionalities. This mechanism provides applications with:",
+       "Global Input App provides a straightforward solution for:",
+       {
+         type:"ul",
+         content:[
+            "Using smartphones to operate on applications on other devices: scan a QR code to connect to an application and carry out various operations on the application.",
+            "Using smartphones to sign in: scan a QR code to attach to the form on an application and push the credentials to identify himself/herself.  It can even be extended to digital ID card protected with biometric authentication.",
+            "Using smartphones to store and share personal data: scan a QR code to download or share personal information.  One application of this is to implement the digital business card mechanism, and another is to auto-fill forms on the applications, for example, subscription and account update etc.",
+            "An innovative way of implementing the GDPR compliance.",
+            "Using smartphones to implement a business security strategy."
+         ]
+       },
+        "Global Input App is a mobile app with extensions, enabling applications running on other devices to have mobile input, mobile control, portable encrypted data storage and portable encryption key management functionalities.  You may read the following two articles to learn more about the idea behind the solution:",
         {
             type:"ul",
             content:[
                 {type:"a",         href:config.docs.smartphoneoperateonapplications,content:"a solution for using smartphones to operate on applications running on other devices without developing a separate mobile app."},
-                {type:"a",         href:config.docs.security,content:"an innovative security strategy to resolve many common security issues faced daily by businesses."},
-                {type:"link",         link:pagelinks.privacy.url(),content:"a GDPR compliant solution to secure customer data and to give users complete control over their data."}
-
-
+                {type:"a",         href:config.docs.security,content:"an innovative security strategy to resolve many common security issues faced daily by businesses."}
               ]
 
          },
-         ["You may have a look at the demo of Global Input App in ",
-         {type:"a", href:pagelinks.video.introduction,content:"this video"}, " or you can install the mobile app on your smartphone and try it out on the applications listed on this page."]
+         ["You may watch ",
+         {type:"a", href:pagelinks.video.introduction,content:"this video"}, " to have an overview of the Global Input App, and then install the mobile app on your smartphone and watch the video on ",
+         {type:"link", content:"the help page", link:pagelinks.platform.url()},
+         "."
+         ]
 
       ]
 
