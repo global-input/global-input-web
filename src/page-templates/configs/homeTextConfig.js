@@ -58,12 +58,14 @@ const  homeTextConfig={
        {
          type:"ul",
          content:[
-            "Using smartphones to operate on applications on other devices: scan a QR code to connect to an application and carry out various operations on the application.",
-            "Using smartphones to sign in: scan a QR code to attach to the form on an application and push the credentials to identify himself/herself.  It can even be extended to digital ID card protected with biometric authentication.",
-            "Using smartphones to store and share personal data: scan a QR code to download or share personal information.  One application of this is to implement the digital business card mechanism, and another is to auto-fill forms on the applications, for example, subscription and account update etc.",
-            "An innovative way of implementing the GDPR compliance.",
-            "Using smartphones to implement a business security strategy."
-         ]
+            "Using smartphones to operate on other devices(Computers, IoT devices, Smart TVs and company facilities): scan a QR code to connect to an application on a device to carry out various operations.",
+            "Using smartphones to sign in: scan a QR code to attach to the form on an application and push the credentials to carry out the sign in operation.",
+            "Using smartphones as digital ID cards protected with biometric authentication: Scan a QR code to carry out a secure identification process. This provides a secure, convenient, flexible, powerful and simple solution for accessing company facilities.",
+            "Using smartphones as digital business cards: scan a QR Code to share business contact information.",
+            "Using smartphones to subscribe to a service: scan a QR Codes to subscribe to a service.",
+            "Using smartphones to encrypt and decrypt data: Scan QR Codes to provide the key and initiate the encryption/decryption processes.",
+            "A business security strategy: QR Code based authentication, authorisation, identification, business operations, sharing confidential informations, encryption and other security operations.",
+            "Using smartphones to implement a GDPR compliance solution: Allow the user to have complete control over their data via thier mobile. Applications can request the personal data when needed from a user and the user can push the data to the application."]
        },
         "Global Input App is a mobile app with extensions, enabling applications running on other devices to have mobile input, mobile control, portable encrypted data storage and portable encryption key management functionalities.  You may read the following two articles to learn more about the idea behind the solution:",
         {
