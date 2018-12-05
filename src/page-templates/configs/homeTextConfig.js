@@ -67,7 +67,7 @@ const  homeTextConfig={
             "A business security strategy: QR Code based authentication, authorisation, identification, business operations, sharing confidential informations, encryption and other security operations.",
             "Using smartphones to implement a GDPR compliance solution: Allow the user to have complete control over their data via thier mobile. Applications can request the personal data when needed from a user and the user can push the data to the application."]
        },
-        "Global Input App is a mobile app with extensions, enabling applications running on other devices to have mobile input, mobile control, portable encrypted data storage and portable encryption key management functionalities.  You may read the following two articles to learn more about the idea behind the solution:",
+        "You may read the following two articles listed below to understand the idea behind the solution:",
         {
             type:"ul",
             content:[
@@ -76,10 +76,10 @@ const  homeTextConfig={
               ]
 
          },
-         ["You may watch ",
-         {type:"a", href:pagelinks.video.introduction,content:"this video"}, " to have an overview of the Global Input App, and then install the mobile app on your smartphone and watch the video on ",
+         [
+         {type:"a", href:pagelinks.video.introduction,content:"This video"}, " gives an overview of the Global Input App, you may also visit ",
          {type:"link", content:"the help page", link:pagelinks.platform.url()},
-         "."
+         " to find out more information on how to use the app and how to implement the various solutions."
          ]
 
       ]

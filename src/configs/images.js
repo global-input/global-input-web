@@ -46,6 +46,7 @@ const images={
   privacy:{
       dataprocessor:require("../images/privacy/data-processor.png"),
       encryptionHeiarchy:require("../images/privacy/encryption-hierachy.png"),
+      encryptionHeiarchy2:require("../images/privacy/encryption-hierachy2.png"),
       authenticationChain:require("../images/privacy/authentication-chain.png"),
 
   },
