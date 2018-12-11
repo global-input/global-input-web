@@ -47,7 +47,7 @@ const privacyConfig={
             ]
           },{
               type:"image",
-              src:images.privacy.encryptionHeiarchy,
+              src:images.privacy.encryptionHeiarchy2,
          }
 
     ]
