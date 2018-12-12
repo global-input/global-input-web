@@ -38,6 +38,7 @@ export default class App extends Component{
 
         <div className="topContainer">
             <Route  path={pagelinks.home.link} exact component={HomeScreen}/>
+            <Route  path={pagelinks.home.link2} exact component={HomeScreen}/>
             <Route  path={pagelinks.app.link}  component={HomeScreen}/>
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
