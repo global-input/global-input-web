@@ -5,7 +5,8 @@ const pagelinks={
           introduction:"https://www.youtube.com/watch?v=HzeTY1TA4V8"
       },
       home:{
-          link:"/"
+          link:"/",
+          link2:"/index.html"
       },
       platform:{
             link:"/global-input-app/help",
