@@ -75,8 +75,18 @@ render() {
 
         appSubtitle={blockTextConfig.about.privacy.appSubtitle}>
 
-         <div style={styles.content}>
 
+         <div style={styles.content}>
+           <TextViewPad title={blockTextConfig.about.privacy.ourPrivacy.title}>
+                  <div style={styles.itemSection}>
+
+                    <DisplayTextImage
+                       content={blockTextConfig.about.privacy.ourPrivacy.content} />
+
+
+                  </div>
+
+           </TextViewPad>
            <TextViewPad bookmark={pagelinks.privacy.bookmark} title={blockTextConfig.about.privacy.title}>
               <div style={styles.itemSection}>
 
