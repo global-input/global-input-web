@@ -2,7 +2,9 @@ const pagelinks={
       appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
       playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
       video:{
-          introduction:"https://www.youtube.com/watch?v=HzeTY1TA4V8"
+          introduction:"https://www.youtube.com/watch?v=HzeTY1TA4V8",
+          authenticationDemo:"https://www.youtube.com/watch?v=jLIIrlEoQXM",
+          tutorialVideo:"https://www.youtube.com/watch?v=7-vavraSj-s"
       },
       home:{
           link:"/",

@@ -6,7 +6,7 @@ const sendMessageConfig={
       backLink:pagelinks.samples.sendMessage.backLink,
       bookmark:pagelinks.samples.sendMessage.bookmark,
     },
-    title:"Customers to Have Complete Control of thier Data",
+    title:"Form Operation",
     appSubtitle:"Form Automation via Mobile",
     content:["Storing Personal data in smartphones: This gives users complete control over their data and applications can request the data from the user via the mobile app and the user can push it securely to the application. With this mechanism, applications can have the option of not storing the user data while implementing some functionalities that require personal data.",
 
