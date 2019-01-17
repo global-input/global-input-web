@@ -90,10 +90,19 @@ render() {
                   buttonLink={applicationPathConfig.videoPlayer.menu.link}/>
           </div>
 
+          <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
+
+          <div style={styles.itemSection}>
+                <DisplayTextImage title={blockTextConfig.chrome.title}
+                   content={blockTextConfig.chrome.content} image={images.chromeExtension}
+                   mobileImage={images.mobile.chromeExtension} reverse={true}
+                   video={config.videos.signin()}/>
+          </div>
+
 
           <BookMark bookmark={applicationPathConfig.gameExample.menu.bookmark}/>
           <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.gameExample.title}  reverse={true}
+                <DisplayTextImage title={applicationPathConfig.gameExample.title}
                    content={applicationPathConfig.gameExample.content} image={images.gameScrollingText}
                    video={config.videos.game()}
                    mobileImage={images.mobile.gameScrollingText}
@@ -106,27 +115,20 @@ render() {
                 <DisplayTextImage title={applicationPathConfig.sendMessage.title}
                    content={applicationPathConfig.sendMessage.content} image={images.automateForm}
                    video={config.videos.sendMessage()}
-                   mobileImage={images.mobile.automateForm}
+                   mobileImage={images.mobile.automateForm} reverse={true}
                    buttonLabel={applicationPathConfig.sendMessage.startButton} buttonLink={applicationPathConfig.sendMessage.menu.link}/>
           </div>
 
           <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
           <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.formData.title} reverse={true}
+                <DisplayTextImage title={applicationPathConfig.formData.title} 
                    content={applicationPathConfig.formData.content} image={images.transferForm}
                    video={config.videos.formTransfer()}
                    mobileImage={images.mobile.transferForm}
                    buttonLabel={applicationPathConfig.formData.startButton} buttonLink={applicationPathConfig.formData.menu.link}/>
           </div>
 
-          <BookMark bookmark={applicationPathConfig.chrome.menu.bookmark}/>
 
-          <div style={styles.itemSection}>
-                <DisplayTextImage title={blockTextConfig.chrome.title}
-                   content={blockTextConfig.chrome.content} image={images.chromeExtension}
-                   mobileImage={images.mobile.chromeExtension}
-                   video={config.videos.signin()}/>
-          </div>
 
 
 

@@ -54,18 +54,15 @@ const  homeTextConfig={
   },
   globalInputApp:{
     content:[
-       "Global Input App provides a straightforward solution for:",
+       "Global Input App is a mobile app solution enabling device-to-device communication secured with the end-to-end encryption, with encrypted QR codes and encrypted storage. The following are examples of use cases Global Input App solution:",
        {
          type:"ul",
          content:[
-            "Using smartphones to operate on other devices(Computers, IoT devices, Smart TVs and company facilities): scan a QR code to connect to an application on a device to carry out various operations.",
-            "Using smartphones to sign in: scan a QR code to attach to the form on an application and push the credentials to carry out the sign in operation.",
-            "Using smartphones as digital ID cards protected with biometric authentication: Scan a QR code to carry out a secure identification process. This provides a secure, convenient, flexible, powerful and simple solution for accessing company facilities.",
-            "Using smartphones as digital business cards: scan a QR Code to share business contact information.",
-            "Using smartphones to subscribe to a service: scan a QR Codes to subscribe to a service.",
-            "Using smartphones to encrypt and decrypt data: Scan QR Codes to provide the key and initiate the encryption/decryption processes.",
-            "A business security strategy: QR Code based authentication, authorisation, identification, business operations, sharing confidential informations, encryption and other security operations.",
-            "Using smartphones to implement a GDPR compliance solution: Allow the user to have complete control over their data via thier mobile. Applications can request the personal data when needed from a user and the user can push the data to the application."]
+            "Authentication Device: Push the credentials securely from smartphones to the applications via an end-to-end encrypted secure channel.",
+            "Mobile Input & Control: using smartphones to operate on other devices(Computers, IoT devices, Smart TVs and company facilities).",
+            "Smartphones Digital ID cards: smart digital card protected with biometric authentication to access  company facilities.",
+            "Digital Signer: Signing a message with your smartphone.",
+            "GDPR Compliance Solution: Allowing users to have complete control of their data. Applications can request the personal data when needed from a user and the user can push the data to the application."]
        },
         "You may read the following two articles listed below to understand the idea behind the solution:",
         {
@@ -80,7 +77,8 @@ const  homeTextConfig={
          {type:"a", href:pagelinks.video.introduction,content:"This video"}, " gives an overview of the Global Input App, you may also visit ",
          {type:"link", content:"the help page", link:pagelinks.platform.url()},
          " to find out more information on how to use the app and how to implement the various solutions."
-         ]
+       ],
+       ["The end-users can watch ",{type:"a", href:pagelinks.video.authenticationDemo,content:" this demo video"}, " and ",{type:"a", href:pagelinks.video.tutorialVideo,content:" this tutorial video"},"."]
 
       ]
 
