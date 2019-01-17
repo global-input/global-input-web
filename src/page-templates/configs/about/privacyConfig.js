@@ -8,6 +8,11 @@ const privacyConfig={
     link:"/global-input-app/privacy",
     linkText:"Privacy"
   },
+  ourPrivacy:{
+      title:"Privacy Policy",
+      content:"Our privacy policy guarantees that we do not collect your data or track your activities. That applies to this website, and all the Global Input App software components including the mobile app, its Chrome Extensions, Wordpress Plugins and the Global Input App software libraries.  All of your data are stored in your device encrypted with an encryption key that you can manage in your app and you will be always presented with an option whenever you need to decrypt and push any of the data to a target application.  The core of our privacy policy is to allow you to get back control of your data so that your data can only be decrypted and accessed with your permission when an application needs it."
+
+  },
   content:[[{type:"link",content:"Global Input App", link:pagelinks.app.link},"'s privacy policy is simple: you own your data and the encryption that encrypts your data. The app does not store your data or your details outside your device's storage, and your data stays encrypted even in memory, decrypted only when needed. There is no subscription, and there is no database on server."],
           "Your app password is not stored anywhere, it is used only as an encryption key for encrypting/decrypting the encryption keys, which, in turn, encrypts/decrypts the data in the app. So there is no way to recover your password if you forget it. You are responsible for exporting and backing up the encrypted data in the app and the encryption keys.",
           [{type:"link",content:"Global Input App", link:pagelinks.app.link}," is part of the ",{type:"link",content:"Global Input Platform", link:pagelinks.platform.link},", enabling you to select data in the app and push it to another application using the end-to-end encryption. The Global Input WebSocker server will not be able to decrypt the messages transferred between your app and your  connected applications."],
