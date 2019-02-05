@@ -3966,9 +3966,10 @@ glob@^7.1.2, glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-input-message@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.6.3.tgz#678085b9b61a82336010179595fb718c92ca4b71"
+global-input-message@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/global-input-message/-/global-input-message-1.6.4.tgz#837e06f22d2a13e20bb52986824b72d9fb90a411"
+  integrity sha512-bALFlQCsPFBAppI3kJ0preWFKWtLi2sQDeeEcSYqDXQwgjQ6Fg+FLo1GMSqBXd6W4qSLnyxf5pErxBQtfugUNw==
   dependencies:
     crypto-js "^3.1.9-1"
     socket.io-client "^2.2.0"
@@ -7548,6 +7549,11 @@ react-error-overlay@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.2.tgz#888957b884d4b25b083a82ad550f7aad96585394"
 
+react-is@^16.7.0:
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
+  integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
+
 react-markdown@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-2.5.1.tgz#f7a6c26a3a5faf5d4c2098155d9775e826fd56ee"
@@ -7632,6 +7638,16 @@ react-scripts@^2.1.3:
     workbox-webpack-plugin "3.6.3"
   optionalDependencies:
     fsevents "1.2.4"
+
+react-test-renderer@^16.7.0:
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.7.0.tgz#1ca96c2b450ab47c36ba92cd8c03fcefc52ea01c"
+  integrity sha512-tFbhSjknSQ6+ttzmuGdv+SjQfmvGcq3PFKyPItohwhhOBmRoTf1We3Mlt3rJtIn85mjPXOkKV+TaKK4irvk9Yg==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    react-is "^16.7.0"
+    scheduler "^0.12.0"
 
 react-transition-group@1.x:
   version "1.2.1"
@@ -8114,6 +8130,14 @@ schedule@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/schedule/-/schedule-0.3.0.tgz#1be2ab2fc2e768536269ce7326efb478d6c045e8"
   dependencies:
+    object-assign "^4.1.1"
+
+scheduler@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.12.0.tgz#8ab17699939c0aedc5a196a657743c496538647b"
+  integrity sha512-t7MBR28Akcp4Jm+QoR63XgAi9YgCUmgvDHqf5otgAj4QvdoBE4ImCX0ffehefePPG+aitiYHp0g/mW6s4Tp+dw==
+  dependencies:
+    loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
 schema-utils@^0.4.4, schema-utils@^0.4.5:

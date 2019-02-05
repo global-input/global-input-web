@@ -15,11 +15,11 @@ export  default class TopMenu extends Component {
   }
   componentWillMount(){
 
-    styles.addMediaListener(this.mediaQueryChanged);
+
 
   }
   componentWillUnmount() {
-    styles.removeMediaListener(this.mediaQueryChanged);
+    
   }
   mediaQueryChanged(){
       this.forceUpdate();

@@ -1,0 +1,8 @@
+{
+    "env": {        
+        "tester": "bit.envs/testers/jest@0.0.35"
+    },
+    "dependencies": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
+}

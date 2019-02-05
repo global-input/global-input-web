@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import {styles} from "./styles";
 import DisplaySectionTitle from "./DisplaySectionTitle";
-import BookMark from "../menu/BookMark";
+import BookMark from "../bookmark/BookMark";
 
 export  default class TextViewPad extends Component {
       renderPadTitle(){

@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
-import {images} from "../../configs";
+
 import {styles} from "./styles";
+
+
+
+const images={
+  showSecret:require("./images/show-icon.png"),
+  hideSecret:require("./images/hide-icon.png"),
+  showSecretOver:require("./images/show-icon-over.png"),
+  hideSecretOver:require("./images/hide-icon-over.png"),
+};
+
 
 export default class ShowHideButton extends Component{
   constructor(props){

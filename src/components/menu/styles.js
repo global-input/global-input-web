@@ -16,7 +16,7 @@ var styles={
   isNarrowMobile:function(){
       return !this.narrowMobile.matches;
   },
-  topnavContainer:{    
+  topnavContainer:{
     display:"flex",
     flexDirection: "column",
     width:"100%",
@@ -191,9 +191,7 @@ var styles={
     marginLeft:20,
     marginBottom:4
   },
-  bookmark:{
-  }
-
+  
 };
 styles.topnav=Object.assign({},styles.topnavmobile,{
       justifyContent: "flex-start",

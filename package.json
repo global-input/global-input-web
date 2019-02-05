@@ -2,6 +2,7 @@
   "name": "global-input-web",
   "version": "2.2.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.1.3",
     "eslint-config-react-app": "^2.1.0",
@@ -16,14 +17,16 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "react-scripts": "^2.1.3"
+    "react-scripts": "^2.1.3",
+    "react-test-renderer": "^16.7.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "npx react-scripts start",
+    "build": "npx react-scripts build",
+    "test": "npx react-scripts test --env=jsdom",
+    "eject": "npx react-scripts eject"
   },
+
   "browserslist": [
     ">0.2%",
     "not dead",
