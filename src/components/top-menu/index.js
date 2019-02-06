@@ -1,2 +1,2 @@
 import TopMenu from "./TopMenu";
-export {TopMenu};
+export default TopMenu;

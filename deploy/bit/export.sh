@@ -1,0 +1,1 @@
+bit export globalinput.web

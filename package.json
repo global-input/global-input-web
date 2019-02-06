@@ -26,7 +26,6 @@
     "test": "npx react-scripts test --env=jsdom",
     "eject": "npx react-scripts eject"
   },
-
   "browserslist": [
     ">0.2%",
     "not dead",

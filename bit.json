@@ -1,5 +1,6 @@
 {
-    "env": {        
+    "env": {
+        "compiler": "bit.envs/compilers/react@0.0.14",
         "tester": "bit.envs/testers/jest@0.0.35"
     },
     "dependencies": {},

@@ -1,12 +1,40 @@
 import React, {Component} from 'react'
 
-import {
-  Link
-} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import {styles} from "./styles";
 
+class MenuItem extends Component{
+  constructor(props){
+    super(props);
+    this.state={hover:false}
+  }
+  onHover(){
+    this.setState({hover: true})
+  }
+  offHover(){
+    this.setState({hover: false})
+  }
+  render(){
 
+    var link=this.props.menu.link;
+    if(!link){
+      link="/";
+    }
+    var linkText=this.props.menu.linkText;
+    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
+
+
+
+        return(<Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
+              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)}>
+                {linkText}
+              </Link>);
+
+
+
+  }
+}
 export  default class TopMenu extends Component {
   constructor(props){
       super(props);
@@ -19,7 +47,7 @@ export  default class TopMenu extends Component {
 
   }
   componentWillUnmount() {
-    
+
   }
   mediaQueryChanged(){
       this.forceUpdate();
@@ -157,41 +185,4 @@ export  default class TopMenu extends Component {
       }
   }
 
-}
-
-
-
-
-class MenuItem extends Component{
-  constructor(props){
-    super(props);
-    this.state={hover:false}
-  }
-  onHover(){
-    this.setState({hover: true})
-  }
-  offHover(){
-    this.setState({hover: false})
-  }
-  render(){
-
-    var link=this.props.menu.link;
-    if(!link){
-      link="/";
-    }
-    var linkText=this.props.menu.linkText;
-    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
-
-
-
-        return(
-          <Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
-            onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)}>
-                {linkText}
-          </Link>
-        );
-
-
-
-  }
 }
