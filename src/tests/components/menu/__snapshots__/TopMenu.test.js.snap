@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test building menu 1`] = `
+exports[`Test by snapshot 1`] = `
 <div
   style={
     Object {
@@ -73,6 +73,7 @@ exports[`Test building menu 1`] = `
       style={Object {}}
     >
       <a
+        data-testid="mobile-to-open-menu"
         href="#b"
         onClick={[Function]}
         style={

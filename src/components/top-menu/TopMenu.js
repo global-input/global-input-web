@@ -27,7 +27,7 @@ class MenuItem extends Component{
 
 
         return(<Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
-              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)}>
+              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)} data-testid="top-menu-item">
                 {linkText}
               </Link>);
 
@@ -138,14 +138,14 @@ export  default class TopMenu extends Component {
   renderMenuItemSymbol(){
       if(this.state.menuPressed){
         return(
-          <a style={styles.mobileMenuIcon} href="#b" onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={()=>{
                 this.setMenuPressed(false);
             }}>&#9747;</a>
         );
       }
       else{
         return(
-          <a style={styles.mobileMenuIcon} href="#b"  onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b"  data-testid="mobile-to-open-menu" onClick={()=>{
               this.setMenuPressed(true);
             }}>&#9776;</a>
         );
