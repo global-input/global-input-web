@@ -59,7 +59,7 @@ var MenuItem = function (_Component) {
       return _react2.default.createElement(
         _reactRouterDom.Link,
         { to: link, style: _styles.styles.menuItem(isSelected, this.state.hover),
-          onMouseEnter: this.onHover.bind(this), onMouseLeave: this.offHover.bind(this) },
+          onMouseEnter: this.onHover.bind(this), onMouseLeave: this.offHover.bind(this), 'data-testid': 'top-menu-item' },
         linkText
       );
     }
@@ -210,7 +210,7 @@ var TopMenu = function (_Component2) {
       if (this.state.menuPressed) {
         return _react2.default.createElement(
           'a',
-          { style: _styles.styles.mobileMenuIcon, href: '#b', onClick: function onClick() {
+          { style: _styles.styles.mobileMenuIcon, href: '#b', 'data-testid': 'mobile-to-close-menu', onClick: function onClick() {
               _this3.setMenuPressed(false);
             } },
           '\u2613'
@@ -218,7 +218,7 @@ var TopMenu = function (_Component2) {
       } else {
         return _react2.default.createElement(
           'a',
-          { style: _styles.styles.mobileMenuIcon, href: '#b', onClick: function onClick() {
+          { style: _styles.styles.mobileMenuIcon, href: '#b', 'data-testid': 'mobile-to-open-menu', onClick: function onClick() {
               _this3.setMenuPressed(true);
             } },
           '\u2630'
@@ -251,8 +251,9 @@ var TopMenu = function (_Component2) {
   }, {
     key: 'render',
     value: function render() {
-
-      if (_styles.styles.isDesktop()) {
+      if (!this.props.menus) {
+        return null;
+      } else if (_styles.styles.isDesktop()) {
         return this.renderDeskTop();
       } else {
         return this.renderMobile();

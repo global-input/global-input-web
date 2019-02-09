@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import QRCode from "qrcode.react";
 import {styles} from "./styles";
-import {TextButton} from "../../components";
+
 
 export  default class DisplayQRCode extends Component {
 
     render(){
-      var {content,size,level}=this.props;
+      var {code,size,level}=this.props;
       if(!size){
             var w = window.innerWidth-50;
             var h = window.innerHeight-50;
@@ -27,18 +27,19 @@ export  default class DisplayQRCode extends Component {
       if(!level){
         level="H";
       }
+      if(!code){
+        code="";
+      }
       return(
           <div style={styles.container}>
                       <div style={styles.qrCodeContainer}>
                               <QRCode
-                                        value={content}
+                                        value={code}
                                         level={level}
                                         size={size}
                                        />
                       </div>
-
-
-                  {this.renderButton()}
+                      <div style={styles.label}>{this.props.label}</div>
           </div>
         );
 

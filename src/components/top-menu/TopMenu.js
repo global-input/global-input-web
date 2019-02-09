@@ -176,9 +176,11 @@ export  default class TopMenu extends Component {
 
   }
   render() {
-
-      if(styles.isDesktop()){
-        return this.renderDeskTop();
+      if(!this.props.menus){
+         return null;
+      }
+      else if(styles.isDesktop()){
+         return this.renderDeskTop();
       }
       else{
         return this.renderMobile();
