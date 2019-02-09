@@ -14,7 +14,7 @@ import {config} from "../configs";
 import {InputWithSelect,TextAreaWithSelect,
   DisplayStaticContent} from "../components";
 
-import {PageWithHeader,PageWithoutHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,PageWithoutHeader,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 
 
@@ -476,7 +476,7 @@ onLeftButtonPressed(){
     }
 
 
-  
+
     getMapItemKey(item,index){
         if(item.id){
               return item.id;
@@ -572,7 +572,7 @@ renderAField(formField, index){
           appSubtitle={applicationPathConfig.gameExample.appSubtitle}
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
-              <DisplayQRCode
+              <QRCodeScreen
 
                 content={applicationPathConfig.gameExample.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}

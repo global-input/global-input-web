@@ -13,7 +13,7 @@ import {config,pagelinks} from "../configs";
 import {ShowHideButton,InputWithLabel,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
   TextRadioButtons,NotificationMessage,DisplayStaticContent} from "../components";
 
-import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class FormDataTransfer extends Component {
   ACT_TYPE={
@@ -752,7 +752,7 @@ renderAddNewField(){
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
-              <DisplayQRCode
+              <QRCodeScreen
                 content={applicationPathConfig.formData.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.formData.cancelButton}

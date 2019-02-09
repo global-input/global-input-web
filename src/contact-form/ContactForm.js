@@ -14,7 +14,7 @@ import "whatwg-fetch";
 import {ShowHideButton,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardButton,
   NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
 
-import {DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class ContactForm extends Component {
   ACT_TYPE={
@@ -516,7 +516,7 @@ renderAField(formField, index){
 
       return(
 
-              <DisplayQRCode
+              <QRCodeScreen
 
                 content={applicationPathConfig.about.contact.connected.content}
                 qrCodeContent={qrCodeContent}

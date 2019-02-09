@@ -14,7 +14,7 @@ import "whatwg-fetch";
 import {InputWithSelect,TextAreaWithSelect,
   DisplayStaticContent} from "../components";
 
-import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class VideoPlayer extends Component {
   ACT_TYPE={
@@ -380,7 +380,7 @@ renderAField(formField, index){
           install={applicationPathConfig.home.install}
           aboutText={applicationPathConfig.home.aboutText}>
             <div style={styles.content}>
-              <DisplayQRCode
+              <QRCodeScreen
                 content={applicationPathConfig.videoPlayer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.videoPlayer.cancelButton}

@@ -7,7 +7,7 @@ import {createMessageConnector} from "global-input-message";
 
 import {config} from "../configs";
 
-import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {ClipboardButton,TextAreaWithLabel,NotificationMessage,TextButton,DisplayStaticContent} from "../components";
 
 import {styles} from "./styles";
@@ -216,11 +216,11 @@ export default class ContentTransfer extends Component {
       return(
         <PageWithHeader scrollingText={applicationPathConfig.contentTransfer.scrollingText}
           appSubtitle={applicationPathConfig.contentTransfer.appSubtitle}
-          
+
           aboutText={applicationPathConfig.home.aboutText}>
           <div style={styles.content}>
 
-              <DisplayQRCode
+              <QRCodeScreen
                 content={applicationPathConfig.contentTransfer.connected.content}
                 qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                 buttonLabel={applicationPathConfig.contentTransfer.cancelButton}
