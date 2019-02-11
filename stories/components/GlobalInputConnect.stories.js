@@ -37,7 +37,7 @@ var mobileConfig={
                     onSenderConnected:(sender, senders)=>{
                         console.log("Sender conntected");
                     },
-                    onSenderDisconnected(sender,senders)={
+                    onSenderDisconnected:(sender,senders)=>{
                         console.log("Sender disconntected");
                     }
 
