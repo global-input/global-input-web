@@ -3,7 +3,7 @@ import QRCode from "qrcode.react";
 import {styles} from "./styles";
 import {TextButton} from "../../components";
 
-export  default class DisplayQRCode extends Component {
+export  default class QRCodeScreen extends Component {
 
 
     renderButton(){

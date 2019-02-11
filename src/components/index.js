@@ -1,7 +1,5 @@
 
-import TopMenu from "./menu/TopMenu";
-import BookMark from "./menu/BookMark";
-
+import BookMark from "./bookmark/BookMark";
 import DisplayTextImage from "./text-image/DisplayTextImage";
 import DisplayVideo from "./text-image/DisplayVideo";
 import NotificationMessage from "./text-image/NotificationMessage";
@@ -18,7 +16,10 @@ import TextButton         from "./input/TextButton";
 import ClipboardButton from "./input/ClipboardButton";
 import TextRadioButtons from "./input/TextRadioButtons";
 import TextSelectOptions from "./input/TextSelectOptions";
+import TopMenu from "./top-menu";
+import DisplayQRCode from "./display-qrcode";
+import GlobalInputConnect from "./global-input-connect";
 
-export {TopMenu,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
+export {GlobalInputConnect,TopMenu,DisplayQRCode,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
         ShowHideButton,
         InputWithLabel,InputWithSelect,TextSelectOptions,TextAreaWithSelect,TextAreaWithLabel,TextButton,ClipboardButton,TextRadioButtons,NotificationMessage,BookMark};

@@ -15,7 +15,7 @@ import {ShowHideButton,InputWithSelect,TextAreaWithSelect,TextButton,ClipboardBu
   NotificationMessage,DisplayStaticContent,DisplayTextImage} from "../components";
 
 
-import {PageWithHeader,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 import {styles} from "./styles";
 export default class MessageSender extends Component {
   ACT_TYPE={
@@ -426,7 +426,7 @@ sendMessageToUs(){
       );
     }
 
-    
+
     getMapItemKey(item,index){
         if(item.id){
               return item.id;
@@ -525,7 +525,7 @@ renderAField(formField, index){
 
 
 
-                <DisplayQRCode
+                <QRCodeScreen
                   content={applicationPathConfig.sendMessage.connected.content}
                   qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
                   buttonLabel={applicationPathConfig.sendMessage.cancelButton}

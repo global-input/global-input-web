@@ -1,12 +1,40 @@
 import React, {Component} from 'react'
 
-import {
-  Link
-} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import {styles} from "./styles";
 
+class MenuItem extends Component{
+  constructor(props){
+    super(props);
+    this.state={hover:false}
+  }
+  onHover(){
+    this.setState({hover: true})
+  }
+  offHover(){
+    this.setState({hover: false})
+  }
+  render(){
 
+    var link=this.props.menu.link;
+    if(!link){
+      link="/";
+    }
+    var linkText=this.props.menu.linkText;
+    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
+
+
+
+        return(<Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
+              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)} data-testid="top-menu-item">
+                {linkText}
+              </Link>);
+
+
+
+  }
+}
 export  default class TopMenu extends Component {
   constructor(props){
       super(props);
@@ -15,11 +43,11 @@ export  default class TopMenu extends Component {
   }
   componentWillMount(){
 
-    styles.addMediaListener(this.mediaQueryChanged);
+
 
   }
   componentWillUnmount() {
-    styles.removeMediaListener(this.mediaQueryChanged);
+
   }
   mediaQueryChanged(){
       this.forceUpdate();
@@ -110,14 +138,14 @@ export  default class TopMenu extends Component {
   renderMenuItemSymbol(){
       if(this.state.menuPressed){
         return(
-          <a style={styles.mobileMenuIcon} href="#b" onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={()=>{
                 this.setMenuPressed(false);
             }}>&#9747;</a>
         );
       }
       else{
         return(
-          <a style={styles.mobileMenuIcon} href="#b"  onClick={()=>{
+          <a style={styles.mobileMenuIcon} href="#b"  data-testid="mobile-to-open-menu" onClick={()=>{
               this.setMenuPressed(true);
             }}>&#9776;</a>
         );
@@ -148,50 +176,15 @@ export  default class TopMenu extends Component {
 
   }
   render() {
-
-      if(styles.isDesktop()){
-        return this.renderDeskTop();
+      if(!this.props.menus){
+         return null;
+      }
+      else if(styles.isDesktop()){
+         return this.renderDeskTop();
       }
       else{
         return this.renderMobile();
       }
   }
 
-}
-
-
-
-
-class MenuItem extends Component{
-  constructor(props){
-    super(props);
-    this.state={hover:false}
-  }
-  onHover(){
-    this.setState({hover: true})
-  }
-  offHover(){
-    this.setState({hover: false})
-  }
-  render(){
-
-    var link=this.props.menu.link;
-    if(!link){
-      link="/";
-    }
-    var linkText=this.props.menu.linkText;
-    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
-
-
-
-        return(
-          <Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
-            onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)}>
-                {linkText}
-          </Link>
-        );
-
-
-
-  }
 }

@@ -53,8 +53,12 @@ export  default class PageWithHeaderNoPrint extends Component {
       return(
         <div style={styles.container}>
           <div className="noprint">
-          <TopMenu  menus={applicationPathConfig.menus} selected={this.props.selected} appLogo={images.appIcon} appTitle={appTitle}
-            appSubtitle={this.props.appSubtitle}/>
+              <TopMenu
+                menus={applicationPathConfig.menus}
+                selected={this.props.selected}
+                appLogo={images.appIcon}
+                appTitle={appTitle}
+                appSubtitle={this.props.appSubtitle}/>
         </div>
 
           <div style={styles.content}>

@@ -13,7 +13,7 @@ import {TextSelectOptions,InputWithLabel,NotificationMessage,TextButton, Display
 
 import {styles} from "./styles";
 
-import {PageWithHeader,PageWithHeaderNoPrint,DisplayLoading,DisplayQRCode,applicationPathConfig} from "../page-templates";
+import {PageWithHeader,PageWithHeaderNoPrint,DisplayLoading,QRCodeScreen,applicationPathConfig} from "../page-templates";
 
 export default class QRCodePrinting extends Component {
   ACT_TYPE={
@@ -275,7 +275,7 @@ export default class QRCodePrinting extends Component {
          appSubtitle={applicationPathConfig.qrPrinting.appSubtitle}
          aboutText={applicationPathConfig.home.aboutText}>
          <div style={styles.content}>
-             <DisplayQRCode
+             <QRCodeScreen
 
                content={applicationPathConfig.qrPrinting.connected.content}
                qrCodeContent={qrCodeContent} qrsize={this.state.action.qrsize}
@@ -309,7 +309,7 @@ export default class QRCodePrinting extends Component {
                     </div>
                     <div className="printOnly">
 
-                          <DisplayQRCode title={applicationPathConfig.qrPrinting.printed.title}
+                          <QRCodeScreen title={applicationPathConfig.qrPrinting.printed.title}
                             content={applicationPathConfig.qrPrinting.printed.content}
                             qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize.value}/>
 
@@ -317,7 +317,7 @@ export default class QRCodePrinting extends Component {
                     </div>
                     <div className="noprint">
                                 <div style={styles.formContainer}>
-                                  <DisplayQRCode qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize.value}/>
+                                  <QRCodeScreen qrCodeContent={qrcodeContent} qrCodeLevel={qrcodeLevel} qrsize={qrcodeSize.value}/>
 
                                     <InputWithLabel type="text"
                                          onChange={this.onFieldValueChangged.bind(this)}
