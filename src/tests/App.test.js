@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "./tests/setup";
-import App from './App';
+import "./setup";
+import App from '../App';
 
 it('renders without crashing', () => {
 

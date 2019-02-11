@@ -8,6 +8,3 @@ module.exports = {
 
   // ...
 };
-
-
-console.log("ddddddd");

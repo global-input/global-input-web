@@ -9,7 +9,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 
-import {DisplayQRCode} from '../../components';
+import {DisplayQRCode} from '../../src/components';
 
 
 
