@@ -45,5 +45,44 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "globalinput.web/global-input-connect@0.0.4": {
+        "files": [
+            {
+                "relativePath": "src/components/global-input-connect/GlobalInputConnect.js",
+                "test": false,
+                "name": "GlobalInputConnect.js"
+            },
+            {
+                "relativePath": "src/components/global-input-connect/index.js",
+                "test": false,
+                "name": "index.js"
+            }
+        ],
+        "mainFile": "src/components/global-input-connect/index.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
+    "globalinput.web/auto-play-video@0.0.5": {
+        "files": [
+            {
+                "relativePath": "src/components/auto-play-video/AutoPlayVideo.js",
+                "test": false,
+                "name": "AutoPlayVideo.js"
+            },
+            {
+                "relativePath": "src/components/auto-play-video/index.js",
+                "test": false,
+                "name": "index.js"
+            },
+            {
+                "relativePath": "src/components/auto-play-video/styles.js",
+                "test": false,
+                "name": "styles.js"
+            }
+        ],
+        "mainFile": "src/components/auto-play-video/index.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "version": "14.0.0"
 }

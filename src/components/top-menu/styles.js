@@ -5,6 +5,7 @@ var styles={
   addMediaListener:function(listener){
     this.mql.addListener(listener);
     this.narrowMobile.addListener(listener);
+    
   },
   removeMediaListener:function(listener){
     this.mql.removeListener(listener);
@@ -191,7 +192,7 @@ var styles={
     marginLeft:20,
     marginBottom:4
   },
-  
+
 };
 styles.topnav=Object.assign({},styles.topnavmobile,{
       justifyContent: "flex-start",
