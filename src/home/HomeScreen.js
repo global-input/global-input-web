@@ -3,13 +3,19 @@ import {config,images,pagelinks} from "../configs";
 import {genericUtil} from "../util";
 
 
-import {DisplayTextImage,BookMark,DisplayStaticContent,DisplayVideo,TextButton} from "../components";
+import {TopMenu,DisplayTextImage,BookMark,DisplayStaticContent,AutoPlayVideo,TextButton} from "../components";
+
 
 import {styles} from "./styles";
 
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
+import HeaderSection from "./header-section";
+import TopHeader from "./top-header";
 
+import AuthenticationDeviceSection from "./authentication-device";
+import MobileInputControlSection from "./mobile-input-control";
+import SecondScreenSection from "./second-screen";
 
 
 export  default class HomeScreen extends Component {
@@ -29,6 +35,7 @@ export  default class HomeScreen extends Component {
          window.removeEventListener("resize", this.onWindowResize);
      }
      onWindowResize(){
+
        this.forceUpdate();
      }
 
@@ -40,27 +47,40 @@ renderPageDescription(content, index){
   );
 }
 
+renderHeaderItems(item,index){
+    return(
+      <li key={index}>
+        {item}
+      </li>
+    );
+
+}
 render() {
-
-
 
     return (
 
-      <PageWithHeader
-          install={applicationPathConfig.home.install}
-          scrollingText={applicationPathConfig.home.scrollingText}
-          selected={applicationPathConfig.home.menu}>
           <div style={styles.content}>
+            <TopHeader menus={applicationPathConfig.menus} selected={this.props.selected}/>
+            <HeaderSection/>
+          <div style={styles.cardContainer}>
+            <AuthenticationDeviceSection/>
+            <MobileInputControlSection/>
+            <SecondScreenSection/>
+          </div>
+            {config.videos.globalInputHome}
 
                 <div style={styles.itemSection}>
+                        <AutoPlayVideo video={config.videos.globalInputHome()}
+                        posterImage={images.globalInputHome} muted={true}/>
+                </div>
 
 
-                  <DisplayVideo video={config.videos.globalInputHome()}
-                      autoPlay={true}
-                      defaultImage={images.globalInputHome} muted={true}/>
 
 
-                    <BookMark bookmark={pagelinks.app.bookmark}/>
+
+
+                    <div style={styles.itemSection}>
+                      <BookMark bookmark={pagelinks.app.bookmark}/>
                   <DisplayTextImage
                      content={applicationPathConfig.home.globalInputApp.content}/>
 
@@ -121,7 +141,7 @@ render() {
 
           <BookMark bookmark={applicationPathConfig.formData.menu.bookmark}/>
           <div style={styles.itemSection}>
-                <DisplayTextImage title={applicationPathConfig.formData.title} 
+                <DisplayTextImage title={applicationPathConfig.formData.title}
                    content={applicationPathConfig.formData.content} image={images.transferForm}
                    video={config.videos.formTransfer()}
                    mobileImage={images.mobile.transferForm}
@@ -169,7 +189,7 @@ render() {
 
 
 
-      </PageWithHeader>
+
             );
   }
 }

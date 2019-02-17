@@ -55,6 +55,9 @@ export  default class DisplayTextImage extends Component {
     if(this.props.image){
         containerClass="col-md-6";
     }
+    if(this.props.contentTextClass){
+        containerClass=this.props.contentTextClass;
+    }
     return(
         <div className={containerClass}>
           {this.renderTitle(false)}
@@ -98,6 +101,7 @@ export  default class DisplayTextImage extends Component {
         );
   }
   renderImage(isMobile){
+
     if(this.props.video){
         return this.renderVideo(isMobile);
     }
@@ -116,9 +120,12 @@ export  default class DisplayTextImage extends Component {
         );
       }
       else{
-
+          var imgContainerClass="col-md-6";
+          if(this.props.imgContainerClass){
+            imgContainerClass=this.props.imgContainerClass;            
+          }
           return(
-            <div className="col-md-6">
+            <div className={imgContainerClass}>
                 <div style={styles.imageContainer}>
                     {this.renderImageTitle(isMobile)}
                     <img src={this.props.image} style={styles.image} alt={this.props.image}/>

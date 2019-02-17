@@ -4,7 +4,7 @@ import {images,config,pagelinks} from "../../configs";
 
 
 const  homeTextConfig={
-  title:"Global Input",
+  title:"Global Input App Solution",
   menu:{
     link:pagelinks.home.link,
     linkText:"Home"
