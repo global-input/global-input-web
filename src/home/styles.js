@@ -27,24 +27,17 @@ export var styles={
       justifyContent:"flex-start",
       alignItems:"center",
       backgroundColor:"#5291CD",
-      width:"100%"
+      width:"100%",
   },
-  cardContainer:{
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"space-evenly",
-      alignItems:"center",
-      width:"100%"
- },
+
  itemSection:{
-    marginTop:10,
+    marginTop:20,
     marginBottom:10,
-    paddingLeft:10,
-    paddingRight:10,
-    paddingBottom:0,
+    padding:10,
 
     backgroundColor:"white",
-    width:"100%"
+    width:"95%",
+    borderRadius:25,
 
  },
 

@@ -5,7 +5,7 @@ var styles={
   addMediaListener:function(listener){
     this.mql.addListener(listener);
     this.narrowMobile.addListener(listener);
-    
+
   },
   removeMediaListener:function(listener){
     this.mql.removeListener(listener);
@@ -58,14 +58,14 @@ var styles={
 
   appDesktopTitle:{
     fontSize: 20,
-    color: "#4880ED",
+    color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
     fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
   },
   appMobileTitle:{
     fontSize: 20,
-    color: "#4880ED",
+    color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
     fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
@@ -73,7 +73,7 @@ var styles={
   appVersion:{
     fontFamily: "GiorgioSans-Regular",
     fontSize: 12,
-    color: "#4880ED",
+    color: "#5291CD",
     marginLeft:10
   },
   subtitleDesktopContaier:{
@@ -81,7 +81,7 @@ var styles={
       flexDirection:"row",
       justifyContent:"flex-end",
       fontFamily: "GiorgioSans-Regular",
-      color: "#4880ED",
+      color: "#5291CD",
       fontSize: 12,
   },
   subtitleMobileContaier:{
@@ -89,7 +89,7 @@ var styles={
     flexDirection:"row",
     justifyContent:"flex-end",
     fontFamily: "GiorgioSans-Regular",
-    color: "#4880ED",
+    color: "#5291CD",
     fontSize: 12,
   },
   userinfo:{
@@ -105,7 +105,7 @@ var styles={
   mobileMenuIcon:{
     fontWeight: 'normal',
     fontSize:40,
-    color: "#4880ED",
+    color: "#5291CD",
     fontStyle: 'normal',
   },
   mobileMenuOverlay:{
@@ -142,7 +142,7 @@ var styles={
       textDecoration: "none",
       fontSize: 17,
       marginBottom: 0,
-      color: "#4880ED",
+      color: "#5291CD",
       whiteSpace:"nowrap",
       fontWeight:300
     };
@@ -150,10 +150,10 @@ var styles={
         ret.borderTopRightRadius=10;
         ret.borderTopLeftRadius=10;
         ret.marginBottom=10;
-        ret.color="#4880ED";
+        ret.color="#5291CD";
     }
     else{
-        ret.color="#4880ED";
+        ret.color="#5291CD";
         ret.textAlign="left";
         ret.backgroundColor="#FFFFFF";
         ret.borderBottomColor='#EEEEEE';

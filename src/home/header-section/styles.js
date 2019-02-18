@@ -31,6 +31,7 @@ export var styles={
       mobile:{
         maxWidth: "100%",
         height: "auto",
+        marginTop:30
       },
       get:styleWithNarrow
   },
@@ -46,7 +47,8 @@ export var styles={
               alignItems:"flex-start",
               color:"white",
               width:"100%",
-              zIndex:50
+              zIndex:50,
+              marginBottom:30
       },
       mobile:{
 
@@ -80,9 +82,17 @@ export var styles={
 
   },
   listContent:{
+    desktop:{
       marginLeft:30,
       color:"white",
-      fontSize:"20",
+      fontSize:"2vw",
+    },
+    mobile:{
+      marginLeft:30,
+      color:"white",
+      fontSize:"3vw",
+    },
+    get:styleWithNarrow
 
   },
 
@@ -97,7 +107,17 @@ export var styles={
 
   },
   appDescription:{
-      paddingBottom:10
+      desktop:{
+        paddingBottom:10,
+        fontSize:"2vw",
+      },
+      mobile:{
+        paddingBottom:10,
+        fontSize:"3vw",
+      },
+      get:styleWithNarrow
+
+
   },
   appDownload:{
       display:"flex",

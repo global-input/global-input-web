@@ -129,6 +129,11 @@ export  default class GlobalInputConnect extends Component {
       }
 
   }
+  sendInputMessage(message, fieldIndex, fieldId){
+    if(this.connector){
+       this.connector.sendInputMessage(message,fieldIndex, fieldId);
+    }
+  }
   render(){
     if(this.state.renderType===this.RENDER_TYPE.ERROR){
         return this.renderError();
@@ -168,6 +173,9 @@ export  default class GlobalInputConnect extends Component {
         }
         else if(this.props.senderConnectedMessage){
             return (<div>{this.props.senderConnectedMessage}</div>);
+        }
+        else if(this.props.children){
+             return this.props.children;
         }
         else{
           return null;

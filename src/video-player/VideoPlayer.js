@@ -9,7 +9,7 @@ import {createMessageConnector} from "global-input-message";
 
 import {config} from "../configs";
 
-import "whatwg-fetch";
+
 
 import {InputWithSelect,TextAreaWithSelect,
   DisplayStaticContent} from "../components";

@@ -1,16 +1,14 @@
 
 import React from 'react';
-import {applicationPathConfig} from "../../page-templates";
-import {images} from "../../configs";
-import {TopMenu} from "../../components";
+import {applicationPathConfig} from "../page-templates";
+import {images} from "../configs";
+import {TopMenu} from "../components";
 
 const textContent={
     title:"Global Input App Solution"
 }
 
-
-
-export  default class TopHeader extends React.Component {
+export  default class TopHeaderSection extends React.Component {
 
     render(){
       return(<TopMenu
