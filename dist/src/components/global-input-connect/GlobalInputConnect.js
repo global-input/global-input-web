@@ -176,6 +176,13 @@ var GlobalInputConnect = function (_Component) {
       }
     }
   }, {
+    key: "sendInputMessage",
+    value: function sendInputMessage(message, fieldIndex, fieldId) {
+      if (this.connector) {
+        this.connector.sendInputMessage(message, fieldIndex, fieldId);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.state.renderType === this.RENDER_TYPE.ERROR) {
@@ -220,6 +227,8 @@ var GlobalInputConnect = function (_Component) {
           null,
           this.props.senderConnectedMessage
         );
+      } else if (this.props.children) {
+        return this.props.children;
       } else {
         return null;
       }
@@ -235,6 +244,8 @@ var GlobalInputConnect = function (_Component) {
           null,
           this.props.senderDisconnectedMessage
         );
+      } else if (this.props.children) {
+        return this.props.children;
       } else {
         return null;
       }

@@ -1,6 +1,13 @@
 import React from "react";
-import GlobalInputConnect from "../../components/global-input-connect";
+
+import GlobalInputConnect from '../../components/global-input-connect';
+
 import {styles} from "./styles";
+
+const textContent={
+    title:"Media Control App Example",
+    githuburl:"https://github.com/global-input/media-player-control-example/"
+}
 export default class MediaPlayerControlExample extends React.Component{
 
   constructor(props){
@@ -16,7 +23,11 @@ export default class MediaPlayerControlExample extends React.Component{
                   globalInputConnect:null,
                   sendMessage:(message, fieldid)=>{
                         if(this.mobile.globalInputConnect){
+
                               this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
+                        }
+                        else{
+
                         }
                   },
                   config:{
@@ -34,7 +45,7 @@ export default class MediaPlayerControlExample extends React.Component{
                   },
                   addField: field=>this.mobile.config.initData.form.fields.push(field)
             };
-            const videoTitle={
+            const videoTitleField={
                   id:"videoTitle",
                   type:"info",
                   value:{
@@ -45,9 +56,9 @@ export default class MediaPlayerControlExample extends React.Component{
                                       marginTop:20,
                             }
                   },
-                  viewId:"videoTitle",
+                  viewId:"row1",
             };
-            this.mobile.addField(videoTitle);
+            this.mobile.addField(videoTitleField);
 
             const buildPlayerStatusValue= (title, message) => {
                   var statusValue={
@@ -80,99 +91,110 @@ export default class MediaPlayerControlExample extends React.Component{
                 }
                 return statusValue;
           };
-          const playerStatus={
+          const playerStatusField={
                   id:"playerStatus",
                   type:"info",
                   value:buildPlayerStatusValue(),
-                  viewId:"playerStatus"
+                  viewId:"row2"
           };
-          this.mobile.addField(playerStatus);
+          this.mobile.addField(playerStatusField);
 
           this.mobile.setPlayerStatus=(title, message)=>{
                 const playStatusValue=buildPlayerStatusValue(title,message);
-                this.mobile.sendMessage(playStatusValue,playerStatus.id);
+                this.mobile.sendMessage(playStatusValue,playerStatusField.id);
           };
 
-          const currentTime={
+          const currentTimeField={
                     id:"currentTime",
                     type:"range",
                     value:0,
                     minimumValue:0,
                     maximumValue:100,
                     step:1,
+                    viewId:"row3",
                     operations:{onInput:value=>this.onSliderChanged(value)}
           };
-          this.mobile.addField(currentTime);
+          this.mobile.addField(currentTimeField);
 
           this.mobile.setCurrentTime=(currentTime, duration)=>{
+
                     if(!duration){
+
                           return;
                     }
-                    const sliderValue={
-                          value:Math.floor(currentTime*100/duration),
-                          labels:{
-                                      value:  this.buildTimeString(currentTime),
-                                      minimumValue: this.buildTimeString(0),
-                                      maximumValue: this.buildTimeString(duration)
-                                  }
+                    var data={
+                          sliderValue:{
+                                value:Math.floor(currentTime*100/duration),
+                                labels:{
+                                            value:  this.buildTimeString(currentTime),
+                                            minimumValue: this.buildTimeString(0),
+                                            maximumValue: this.buildTimeString(duration)
+                                        }
+                          },
+                          timestamp:(new Date()).getTime()
                     };
-                    this.mobile.sendMessage(sliderValue,currentTime.id);
+
+
+                    if((!this.cache) || (data.timestamp-this.cache.timestamp)>2000 && Math.abs(data.sliderValue.value-this.cache.sliderValue.value)>=5){
+                        this.cache=data;
+                        this.mobile.sendMessage(data.sliderValue,currentTimeField.id);
+                    }
           };
 
-         const rwButton={
+         const rwButtonField={
                   id:   "rwButton",
                   type: "button",
                   label:"RW",
                   icon: "rw",
-                  viewId:"rwButton",
+                  viewId:"row4",
                   operations:{onInput: value=>this.rewind()}
          };
-         this.mobile.addField(rwButton);
+         this.mobile.addField(rwButtonField);
 
-         const playPauseButton={
+         const playPauseButtonField={
                   id:   "playPauseButton",
                   type: "button",
                   value: 0,
                   label:"Play",
                   icon: "play",
                   options:[{value:0,label:"Play",icon:"play"},{value:1,label:"Pause",icon:"pause"}],
-                  viewId:"row1",
+                  viewId:"row4",
                   operations:{onInput: value=>value?this.pauseVideo():this.playVideo()}
           };
-          this.mobile.addField(playPauseButton);
-          this.mobile.showPlayButton = () => this.mobile.sendMessage(0,playPauseButton.id);
-          this.mobile.showPauseButton= () => this.mobile.sendMessage(1,playPauseButton.id);
+          this.mobile.addField(playPauseButtonField);
+          this.mobile.showPlayButton = () => this.mobile.sendMessage(0,playPauseButtonField.id);
+          this.mobile.showPauseButton= () => this.mobile.sendMessage(1,playPauseButtonField.id);
 
 
-        const ffButton={
+        const ffButtonField={
               id:   "ffButton",
               type: "button",
               label:"FF",
               icon: "ff",
-              viewId:"row1",
+              viewId:"row4",
               operations:{onInput: value=>this.fastForward()}
         };
-        this.mobile.addField(ffButton);
+        this.mobile.addField(ffButtonField);
 
-        const skipToBeginButton={
+        const skipToBeginButtonField={
             id:   "skipToBeginButton",
             type: "button",
             label:"Begin",
             icon: "skip-to-begin",
-            viewId:"row2",
+            viewId:"row5",
             operations:{onInput: value=>this.skipToBegin()}
         };
-        this.mobile.addField(skipToBeginButton);
+        this.mobile.addField(skipToBeginButtonField);
 
-        const skipToEndButton={
+        const skipToEndButtonField={
               id:   "skipToEndButton",
               type: "button",
               label:"End",
               icon: "skip-to-end",
-              viewId:"row2",
+              viewId:"row5",
               operations:{onInput: value=>this.skipToEnd()}
         };
-        this.mobile.addField(skipToEndButton);
+        this.mobile.addField(skipToEndButtonField);
   }
 
 
@@ -273,6 +295,14 @@ export default class MediaPlayerControlExample extends React.Component{
         }
 
     return(
+      <div style={styles.container}>
+
+        <div style={styles.title}>
+            {textContent.title}
+        </div>
+        <div style={styles.githuburl}>
+            <a href={textContent.githuburl} target="_blank">{textContent.githuburl}</a>
+        </div>
 
       <GlobalInputConnect mobileConfig={this.mobile.config}
         ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
@@ -310,9 +340,16 @@ export default class MediaPlayerControlExample extends React.Component{
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"/>
                     <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"/>
                 </video>
-                {this.renderCurrentTime()}
+
+
+
+
+
         </GlobalInputConnect>
-      
+        {this.renderCurrentTime()}
+
+
+      </div>
 
     );
 
@@ -423,24 +460,15 @@ export default class MediaPlayerControlExample extends React.Component{
 
   }
   onTimeUpdate(){
-      var currentTime=this.videoPlayer.currentTime;
+      let currentTime=this.videoPlayer.currentTime;
+      let duration=this.videoPlayer.duration;
+      if(!duration){
+            return;
+      }
       if(Math.round(currentTime)!==Math.round(this.state.currentTime)){
           this.setCurrentTime(currentTime);
       }
-      var duration=this.videoPlayer.duration;
-      var currentTime=this.videoPlayer.currentTime;
-      if(!duration){
-        return;
-      }
-      var nowTime=(new Date()).getTime();
-      var sliderValue={
-                  value:Math.floor(currentTime*100/duration),
-                  sentTime:nowTime
-                };
-      if(this.sliderValue && (sliderValue.sentTime-this.sliderValue.sentTime)<2000 && (sliderValue.value-this.sliderValue.value)<5){
-            return;
-      }
-      this.sliderValue=sliderValue;
+
       this.mobile.setCurrentTime(currentTime,duration);
   }
   onVolumeChange(){
@@ -454,10 +482,10 @@ export default class MediaPlayerControlExample extends React.Component{
     if(this.videoPlayer){
       var currentTimeString=this.buildTimeString(this.state.currentTime);
       var durationString=this.buildTimeString(this.videoPlayer.duration);
-      return(<div>{currentTimeString}/{durationString}</div>);
+      return(<div style={styles.playHeadInfo}>{currentTimeString}/{durationString}</div>);
     }
     else{
-      return null;
+        return null;
     }
 
   }

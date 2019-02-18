@@ -189,6 +189,9 @@ export  default class GlobalInputConnect extends Component {
         else if(this.props.senderDisconnectedMessage){
             return (<div>{this.props.senderDisconnectedMessage}</div>);
         }
+        else if(this.props.children){
+             return this.props.children;
+        }
         else{
           return null;
         }
