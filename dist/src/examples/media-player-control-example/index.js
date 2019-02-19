@@ -28,7 +28,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var textContent = {
-    title: "Media Control App Example"
+    title: "Media Control App Example",
+    githuburl: "https://github.com/global-input/media-player-control-example/"
 };
 
 var MediaPlayerControlExample = function (_React$Component) {
@@ -363,6 +364,15 @@ var MediaPlayerControlExample = function (_React$Component) {
                     textContent.title
                 ),
                 _react2.default.createElement(
+                    "div",
+                    { style: _styles.styles.githuburl },
+                    _react2.default.createElement(
+                        "a",
+                        { href: textContent.githuburl, target: "_blank" },
+                        textContent.githuburl
+                    )
+                ),
+                _react2.default.createElement(
                     _globalInputConnect2.default,
                     { mobileConfig: this.mobile.config,
                         ref: function ref(globalInputConnect) {
@@ -404,9 +414,9 @@ var MediaPlayerControlExample = function (_React$Component) {
                         _react2.default.createElement("source", { src: "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4", type: "video/mp4" }),
                         _react2.default.createElement("source", { src: "http://clips.vorwaerts-gmbh.de/VfE.webm", type: "video/webm" }),
                         _react2.default.createElement("source", { src: "http://clips.vorwaerts-gmbh.de/VfE.ogv", type: "video/ogg" })
-                    ),
-                    this.renderCurrentTime()
-                )
+                    )
+                ),
+                this.renderCurrentTime()
             );
         }
     }, {
@@ -558,7 +568,7 @@ var MediaPlayerControlExample = function (_React$Component) {
                 var durationString = this.buildTimeString(this.videoPlayer.duration);
                 return _react2.default.createElement(
                     "div",
-                    null,
+                    { style: _styles.styles.playHeadInfo },
                     currentTimeString,
                     "/",
                     durationString

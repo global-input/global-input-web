@@ -7,7 +7,7 @@ var styles = exports.styles = {
     container: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         windows: "100%",
         minHeight: window.innerHeight * 2 / 3
@@ -20,8 +20,23 @@ var styles = exports.styles = {
         justifyContent: "flex-start",
         fontSize: "2vw",
         color: "#5291CD",
-        marginBottom: "2vw",
-        marginLeft: "20vw"
+        marginBottom: "20",
+        marginLeft: "4vw"
+    },
+    playHeadInfo: {
+        fontSize: 20,
+        color: "#5291CD"
+    },
+    githuburl: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        fontSize: "20",
+        color: "#5291CD",
+        width: "100%",
+        marginLeft: "10vw",
+        marginBottom: 10
     }
 
 };

@@ -84,7 +84,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "globalinput.web/media-player-control-example@0.0.2": {
+    "globalinput.web/media-player-control-example@0.0.3": {
         "files": [
             {
                 "relativePath": "src/examples/media-player-control-example/index.js",
@@ -98,6 +98,23 @@
             }
         ],
         "mainFile": "src/examples/media-player-control-example/index.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
+    "globalinput.web/clipboard-copy-button@0.0.1": {
+        "files": [
+            {
+                "relativePath": "src/components/clipboard-copy-button/index.js",
+                "test": false,
+                "name": "index.js"
+            },
+            {
+                "relativePath": "src/components/clipboard-copy-button/styles.js",
+                "test": false,
+                "name": "styles.js"
+            }
+        ],
+        "mainFile": "src/components/clipboard-copy-button/index.js",
         "origin": "AUTHORED",
         "exported": true
     },
