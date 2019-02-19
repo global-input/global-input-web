@@ -6,9 +6,8 @@ import ClipboardCopyButton from '../../components/clipboard-copy-button';
 import {styles} from "./styles";
 
 const textContent={
-    title:"Content Transfer Example",
-    textareaLabel:"Content",
-    githuburl:"https://github.com/global-input/media-player-control-example/"
+    title:"Content Transfer Example",    
+    githuburl:"https://github.com/global-input/content-transfer-example"
 }
 export default class ContentTransferExample extends React.Component{
 

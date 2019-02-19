@@ -59,9 +59,8 @@ var MediaPlayerControlExample = function (_React$Component) {
                 globalInputConnect: null,
                 sendMessage: function sendMessage(message, fieldid) {
                     if (_this2.mobile.globalInputConnect) {
-
                         _this2.mobile.globalInputConnect.sendInputMessage(message, null, fieldid);
-                    } else {}
+                    }
                 },
                 config: {
                     url: props.url,

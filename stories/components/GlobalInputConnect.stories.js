@@ -98,7 +98,7 @@ storiesOf('GlobalInputConnect', module)
   .add('without initData', () => <GlobalInputConnect mobileConfig={{}}/>)
   .add('without form', () => <GlobalInputConnect mobileConfig={{initData:{}}}/>)
   .add('without fields', () => <GlobalInputConnect mobileConfig={{initData:{form:{}}}}/>)
-  .add('GlobalInputConnect',()=>(<GlobalInputConnect
+  .add('testing messages',()=>(<GlobalInputConnect
     mobileConfig={mobileConfig}
     connectingMessage="Connecting...."
     connectedMessage="Scan with Global Input App"

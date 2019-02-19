@@ -50,7 +50,7 @@ var GlobalInputConnect = function (_Component) {
         dataType: "form",
         form: {
           id: "test@globalinput.co.uk",
-          title: "GlobalInputConnect is invoked without parameters",
+          title: "GlobalInputConnect is invoked without the required parameters",
           label: "globalinputtest",
           fields: []
         }
