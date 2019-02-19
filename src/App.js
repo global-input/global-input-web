@@ -17,6 +17,11 @@ import {DevelopersScreen} from "./developers";
 
 
 import {ContentTransfer} from "./content-transfer";
+import ContentTransferScreen from "./content-transfer-screen";
+
+
+
+
 import {QRCodePrinting} from "./qr-printing";
 import {FormDataTransfer} from "./formdata-transfer";
 
@@ -24,7 +29,7 @@ import {applicationPathConfig} from "./page-templates";
 
 import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
-import {VideoPlayer} from "./video-player";
+import MediaPlayerScreen from "./media-player-screen";
 import {GameExample} from "./game-example";
 import {MessageSender} from "./send-message";
 
@@ -42,7 +47,7 @@ export default class App extends Component{
             <Route  path={pagelinks.app.link}  component={HomeScreen}/>
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
-            <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransfer}/>
+            <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransferScreen}/>
             <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
@@ -56,8 +61,8 @@ export default class App extends Component{
 
             <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
 
+          <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
-            <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={VideoPlayer}/>
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
             <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
         </div>

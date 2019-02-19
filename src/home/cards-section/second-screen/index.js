@@ -1,7 +1,7 @@
 import React from "react";
-import {styles} from "./styles";
-import {LinkItem} from '../../components';
-import {pagelinks} from "../../configs";
+import {styles} from "../styles";
+import {LinkItem} from '../../../components';
+import {pagelinks} from "../../../configs";
 var textContent={
     title:"Second Screen Experience",
     description:"A simple and innovative solution to introduce the Second Screen Experience to the existing Smart TV applications.",
@@ -38,9 +38,9 @@ export default class SecondScreenSection extends React.Component{
 
   render(){
       return(
-        <div style={styles.card}>
-            <div style={styles.title}>{textContent.title}</div>
-            <div style={styles.content}>
+        <div style={styles.card.get()}>
+            <div style={styles.title.get()}>{textContent.title}</div>
+            <div style={styles.content.get()}>
               <div style={styles.description}>
                   {textContent.description}
               </div>

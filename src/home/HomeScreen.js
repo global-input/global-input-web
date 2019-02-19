@@ -11,11 +11,8 @@ import {styles} from "./styles";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
 
 import HeaderSection from "./header-section";
-import TopHeader from "./top-header";
-
-import AuthenticationDeviceSection from "./authentication-device";
-import MobileInputControlSection from "./mobile-input-control";
-import SecondScreenSection from "./second-screen";
+import TopHeaderSection from "../top-header-section";
+import CardSection from "./cards-section";
 
 
 export  default class HomeScreen extends Component {
@@ -60,38 +57,15 @@ render() {
     return (
 
           <div style={styles.content}>
-            <TopHeader menus={applicationPathConfig.menus} selected={this.props.selected}/>
+            <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
             <HeaderSection/>
-          <div style={styles.cardContainer}>
-            <AuthenticationDeviceSection/>
-            <MobileInputControlSection/>
-            <SecondScreenSection/>
-          </div>
-            {config.videos.globalInputHome}
-
+            <BookMark bookmark={pagelinks.app.bookmark}/>
+            <CardSection/>
                 <div style={styles.itemSection}>
+
                         <AutoPlayVideo video={config.videos.globalInputHome()}
                         posterImage={images.globalInputHome} muted={true}/>
                 </div>
-
-
-
-
-
-
-                    <div style={styles.itemSection}>
-                      <BookMark bookmark={pagelinks.app.bookmark}/>
-                  <DisplayTextImage
-                     content={applicationPathConfig.home.globalInputApp.content}/>
-
-                   <div style={styles.installSection}>
-                      <DisplayStaticContent content={applicationPathConfig.home.install} linkStyle={styles.imageLink}/>
-                   </div>
-
-
-                </div>
-
-
 
 
 

@@ -40,13 +40,13 @@ render() {
               <img src={images.header} style={styles.rightImage.get()}/>
               <div style={styles.headerSection.get()}>
                     <div style={styles.title.get()}>{headerTextContent.title}</div>
-                  <div style={styles.listContent}>
+                  <div style={styles.listContent.get()}>
                    <ul>
                       {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
                   </ul>
                   </div>
                   <div style={styles.appSelection.get()}>
-                      <div style={styles.appDescription}>
+                      <div style={styles.appDescription.get()}>
                           {headerTextContent.app.content}
                       </div>
                       <div style={styles.appDownload}>

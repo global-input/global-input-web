@@ -1,7 +1,7 @@
 import React from "react";
-import {styles} from "./styles";
-import {LinkItem} from '../../components';
-import "./styles.css";
+import {styles} from "../styles";
+import {LinkItem} from '../../../components';
+
 var textContent={
     title:"Mobile Authentication",
     authentication:{
@@ -48,9 +48,9 @@ export default class AuthenticationDeviceSection extends React.Component{
 
   render(){
       return(
-        <div style={styles.card}>
-            <div style={styles.title}>{textContent.title}</div>
-            <div style={styles.content}>
+        <div style={styles.card.get()}>
+            <div style={styles.title.get()}>{textContent.title}</div>
+            <div style={styles.content.get()}>
                       <LinkItem href={textContent.authentication.demo.url}
                         image={images.video.icon}
                         imageHover={images.video.hover}

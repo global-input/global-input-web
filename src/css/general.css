@@ -93,4 +93,11 @@ padding-left: 10px;
   width: 100%;
 
 }
+a {
+  color:#5291CD
+}
+a:hover{
+  text-decoration: none;
+}
+
 .buttonOnBlue { text-decoration: none !important; border:1px solid white;}
