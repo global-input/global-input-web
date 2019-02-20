@@ -18,6 +18,7 @@ import {DevelopersScreen} from "./developers";
 
 import {ContentTransfer} from "./content-transfer";
 import ContentTransferScreen from "./content-transfer-screen";
+import GameControlScreen from "./game-game-control-screen";
 
 
 
@@ -63,7 +64,7 @@ export default class App extends Component{
 
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
-            <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
+            <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameControlScreen}/>
             <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
         </div>
 
