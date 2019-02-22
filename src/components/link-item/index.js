@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {styles} from './styles';
 export default class LinkItem extends React.Component{
 
     constructor(props){
@@ -15,31 +16,40 @@ export default class LinkItem extends React.Component{
       this.setState({hover:false});
     }
     render(){
-      let image=this.props.image;
-      if(this.state.hover){
-            image=this.props.imageHover;
-      }
+
+
+
       if(this.props.to){
         return(
           <Link to={this.props.to} onMouseOver= {this.onMouseOver.bind(this)}
-          onMouseOut = {this.onMouseOut.bind(this)}>
-              <img  style={this.props.imageStyle}
-                    src={image}/>
+          onMouseOut = {this.onMouseOut.bind(this)} style={this.state.hover?this.props.textStyle.hover:this.props.textStyle.default}>
+              <img  style={styles.image}
+                    src={this.props.image}/>
               {this.props.children}
           </Link>
         );
       }
       else{
 
+          if(this.props.textStyle){
+            return(
+              <a href={this.props.href} onMouseOver= {this.onMouseOver.bind(this)}
+              onMouseOut = {this.onMouseOut.bind(this)} target="_blank"
+              style={this.state.hover?this.props.textStyle.hover:this.props.textStyle.default}>
+                  <img src={this.props.image} style={styles.image}/>
 
-          return(
-            <a href={this.props.href} onMouseOver= {this.onMouseOver.bind(this)}
-            onMouseOut = {this.onMouseOut.bind(this)} target="_blank">
-                <img  style={this.props.imageStyle}
-                      src={image}/>
-                {this.props.children}
-            </a>
-          );
+                  {this.props.children}
+
+
+              </a>
+            );
+          }
+          else{
+            return (
+              <div>error</div>
+            )
+          }
+
       }
     }
 

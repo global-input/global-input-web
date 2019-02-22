@@ -1,22 +1,4 @@
-
-let screeMedia={
-  narrawScreen:null,
-  narrow:function(){
-      if(!this.narrawScreen){
-        this.narrawScreen=window.matchMedia(`(min-width: 800px)`)
-      }
-      return this.narrawScreen.matches;
-  },
-};
-var styleWithNarrow=function(){
-  if(screeMedia.narrow()){
-       return this.desktop;
-  }
-  else{
-    return this.mobile;
-  }
-}
-
+import {styleWithNarrow} from "../../styles";
 
 export var styles={
 
@@ -116,8 +98,23 @@ export var styles={
         fontSize:"3vw",
       },
       get:styleWithNarrow
+  },
+  watchVideoText:{
+      default:{
+          color:"white",
 
+          fontSize:20,
+          marginLeft:80,
+          whiteSpace:"nowrap"
 
+      },
+      hover:{
+        color:"white",
+        boxShadow:"0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19)",
+        fontSize:20,
+        marginLeft:80,
+        whiteSpace:"nowrap"
+      }
   },
   appDownload:{
       display:"flex",

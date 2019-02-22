@@ -11,13 +11,15 @@ import "./css/input.css";
 import "./css/simpleAnimate.css";
 import {pagelinks} from "./configs";
 
-import {HomeScreen} from "./home";
+import HomeScreen from "./home";
 import {DevelopersScreen} from "./developers";
 
 
 
-import {ContentTransfer} from "./content-transfer";
+
 import ContentTransferScreen from "./content-transfer-screen";
+import GameControlScreen from "./game-game-control-screen";
+import SecondScreenHowItWorks from "./second-screen-how-it-works";
 
 
 
@@ -30,11 +32,13 @@ import {applicationPathConfig} from "./page-templates";
 import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
 import MediaPlayerScreen from "./media-player-screen";
-import {GameExample} from "./game-example";
+
 import {MessageSender} from "./send-message";
 
 
 export default class App extends Component{
+
+
   render(){
 
     return (
@@ -63,8 +67,10 @@ export default class App extends Component{
 
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
-            <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameExample}/>
+            <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameControlScreen}/>
             <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
+
+            <Route path={SecondScreenHowItWorks.pagePath} component={SecondScreenHowItWorks}/>
         </div>
 
 
