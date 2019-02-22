@@ -1,12 +1,26 @@
 import React, {Component} from 'react'
+import {LinkItem} from '../../components';
 import {styles} from "./styles";
 import headerTextContent from "./headerTextContent";
 
 
+var textContent={
+
+    introduction:{
+      demo:{
+        linkText:"Intro Video",
+        url:"https://www.youtube.com/watch?v=HzeTY1TA4V8"
+      },
+    },
+
+
+};
+
 var images={
   header:require('./global-input-app.png'),
   appStore:require('./app-store.png'),
-  playStore:require('./play-store.png')
+  playStore:require('./play-store.png'),
+  watchVideo:require('./watch-video-icon.png'),
 }
 
 
@@ -47,7 +61,11 @@ render() {
                   </div>
                   <div style={styles.appSelection.get()}>
                       <div style={styles.appDescription.get()}>
-                          {headerTextContent.app.content}
+                          {headerTextContent.app.content}                          
+                          <LinkItem href={textContent.introduction.demo.url}
+                            image={images.watchVideo} textStyle={styles.watchVideoText}>
+                                {textContent.introduction.demo.linkText}
+                          </LinkItem>
                       </div>
                       <div style={styles.appDownload}>
                           <img src={images.appStore} style={styles.appStoreImage}/>

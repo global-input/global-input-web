@@ -26,7 +26,7 @@ export var styles={
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-      backgroundColor:"#5291CD",
+      backgroundColor:"#5291CD", //#4880ED
       width:"100%",
   },
 

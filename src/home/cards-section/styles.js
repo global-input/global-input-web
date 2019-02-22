@@ -91,17 +91,22 @@ export var styles={
      flexDirection:"column",
      justifyContent:"flex-start",
      alignItems:"flex-start",
-     paddingLeft:30,
+     paddingLeft:20,
+     paddingRight:20,
      paddingTop:20,
      fontSize:"1.3vw",
+     width:"100%"
    },
    mobile:{
      display:"flex",
      flexDirection:"column",
      justifyContent:"flex-start",
      alignItems:"flex-start",
-     paddingLeft:30,
+     paddingRight:20,
+     paddingLeft:20,
      paddingTop:20,
+     width:"100%",
+
      fontSize:"4vw",
    },
    get:styleWithNarrow
@@ -113,7 +118,29 @@ export var styles={
  iconStyle:{
    marginRight: 10
  },
+ linkText:{
+     default:{
+         color:"#888888",
+         fontSize:20,
+         width:"100%",
+         whiteSpace:"nowrap",
+
+     },
+     hover:{
+       color:"blue",
+       boxShadow:"0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19)",
+       fontSize:20,
+       whiteSpace:"nowrap",
+       width:"100%"
+     }
+ }
 
 
 
 };
+export var images={
+    watchVideo:require('./images/watch-video-icon.png'),
+    paper:require('./images/paper.png'),
+    extension:require('./images/extension-icon.png'),
+    demo:require('./images/demo-icon.png'),
+}

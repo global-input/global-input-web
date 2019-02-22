@@ -1,17 +1,17 @@
 import React from "react";
-import {styles} from "../styles";
-import {LinkItem} from '../../../components';
-
+import {styles, images} from "./styles";
+import {LinkItem} from '../../components';
+import {pagelinks} from "../../configs";
 var textContent={
     title:"Mobile Authentication",
     authentication:{
             demo:{
               url:"https://www.youtube.com/watch?v=jLIIrlEoQXM",
-              linkText:"Watch demo"
+              linkText:"Watch demo video"
             },
             tutorial:{
               url:"https://www.youtube.com/watch?v=7-vavraSj-s",
-              linkText:"Watch tutorial"
+              linkText:"Watch tutorial video"
             },
             whitepaper:{
               url:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/",
@@ -27,24 +27,10 @@ var textContent={
 
 };
 
-var images={
-    video:{
-        icon:require('./play-icon.png'),
-        hover:require('./play-icon-hover.png')
-    },
-    paper:{
-        icon:require('./paper.png'),
-        hover:require('./paper-hover.png')
-    },
-    extension:{
-      icon:require('./extension-icon.png'),
-      hover:require('./extension-hover.png')
-    }
-
-}
 
 
-export default class AuthenticationDeviceSection extends React.Component{
+
+export default class AuthenticationDeviceCard extends React.Component{
 
   render(){
       return(
@@ -52,29 +38,27 @@ export default class AuthenticationDeviceSection extends React.Component{
             <div style={styles.title.get()}>{textContent.title}</div>
             <div style={styles.content.get()}>
                       <LinkItem href={textContent.authentication.demo.url}
-                        image={images.video.icon}
-                        imageHover={images.video.hover}
-                        imageStyle={styles.iconStyle}>
+                        textStyle={styles.linkText}
+                        image={images.watchVideo}>
                             {textContent.authentication.demo.linkText}
                       </LinkItem>
+
                       <LinkItem href={textContent.authentication.tutorial.url}
-                        image={images.video.icon}
-                        imageHover={images.video.hover}
-                        imageStyle={styles.iconStyle}>
+                        image={images.watchVideo} textStyle={styles.linkText}>
+
                             {textContent.authentication.tutorial.linkText}
                       </LinkItem>
+
                       <LinkItem href={textContent.authentication.whitepaper.url}
-                        image={images.paper.icon}
-                        imageHover={images.paper.hover}
-                        imageStyle={styles.iconStyle}>
+                        image={images.paper}  textStyle={styles.linkText}>
                             {textContent.authentication.whitepaper.linkText}
                       </LinkItem>
+
                       <LinkItem href={textContent.authentication.chromeExtension.url}
-                        image={images.extension.icon}
-                        imageHover={images.extension.hover}
-                        imageStyle={styles.iconStyle}>
+                        image={images.extension}  textStyle={styles.linkText}>
                             {textContent.authentication.chromeExtension.linkText}
                       </LinkItem>
+
             </div>
         </div>);
 
