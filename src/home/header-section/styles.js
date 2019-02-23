@@ -1,9 +1,9 @@
-import {styleWithNarrow} from "../../styles";
+import {styleMatchingScreenSize} from "../../styles";
 
 export var styles={
 
   rightImage:{
-     desktop:{
+     default:{
             position:"absolute",
             right:0,
             maxWidth: "60%",
@@ -11,18 +11,20 @@ export var styles={
             marginRight:10,
           },
       mobile:{
+        position:"static",
         maxWidth: "100%",
         height: "auto",
         marginTop:30
       },
-      get:styleWithNarrow
+      get:styleMatchingScreenSize
   },
 
 
   headerSection:{
-      desktop:{
+      get:styleMatchingScreenSize,
+      default:{
               height:530,
-              paddingTop:80,
+              marginTop:"5vw",
               display:"flex",
               flexDirection:"column",
               justifyContent:"center",
@@ -30,74 +32,73 @@ export var styles={
               color:"white",
               width:"100%",
               zIndex:50,
-              marginBottom:30
+              marginBottom:30              
       },
       mobile:{
-
-        paddingBottom:50,
-        display:"flex",
-        flexDirection:"column",
         justifyContent:"flex-start",
-        alignItems:"flex-start",
-        color:"white",
-        width:"100%",
-        zIndex:100,
+      }
 
-      },
-      get:styleWithNarrow
   },
 
 
   title:{
-    desktop:{
-      color:"white",
+    default:{
       fontSize:"3vw",
       marginLeft:10,
     },
     mobile:{
-      color:"white",
-      fontSize:30,
+      fontSize:"6vw",
       marginLeft:30,
     },
-    get:styleWithNarrow
-
+    get:styleMatchingScreenSize
 
   },
   listContent:{
-    desktop:{
+    default:{
       marginLeft:30,
-      color:"white",
       fontSize:"2vw",
     },
-    mobile:{
-      marginLeft:30,
-      color:"white",
-      fontSize:"3vw",
+    smallScreen:{
+      fontSize:"4vw",
     },
-    get:styleWithNarrow
+    mobile:{
+      fontSize:"5vw",
+      marginLeft:10,
+    },
+    bigScreen:{
+      fontSize:26,
+    },
+    get:styleMatchingScreenSize
 
   },
 
   appSelection:{
-    desktop:{
+    default:{
           maxWidth: "50%",
         },
     mobile:{
       maxWidth: "100%",
     },
-    get:styleWithNarrow
+    get:styleMatchingScreenSize
 
   },
   appDescription:{
-      desktop:{
+      default:{
         paddingBottom:10,
         fontSize:"2vw",
       },
-      mobile:{
-        paddingBottom:10,
-        fontSize:"3vw",
+      smallScreen:{
+        fontSize:"4vw",
       },
-      get:styleWithNarrow
+      mobile:{
+        fontSize:"4.5vw",
+        marginLeft:10,
+        marginRight:10
+      },
+      bigScreen:{
+        fontSize:26,
+      },
+      get:styleMatchingScreenSize
   },
   watchVideoText:{
       default:{

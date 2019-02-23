@@ -1,4 +1,4 @@
-import {styleWithNarrow} from "../styles";
+import {styleMatchingScreenSize} from "../styles";
 export const styles={
   title:{
     desktop:{
@@ -11,7 +11,7 @@ export const styles={
       fontSize:"5vw",
       marginLeft:30,
     },
-    get:styleWithNarrow
+    get:styleMatchingScreenSize
   },
   subtitle:{
     desktop:{
@@ -24,7 +24,7 @@ export const styles={
       fontSize:"4vw",
       marginLeft:30,
     },
-    get:styleWithNarrow
+    get:styleMatchingScreenSize
   },
   description:{
     desktop:{
@@ -39,7 +39,7 @@ export const styles={
       fontSize:"3vw",
       marginLeft:30,
     },
-    get:styleWithNarrow
+    get:styleMatchingScreenSize
   },
 
 
@@ -54,7 +54,7 @@ export const styles={
       alignItems:    "flex-start",
       backgroundColor:"#5291CD",
       width:"100%",
-
+      minHeight:window.innerHeight
   },
   itemSection:{
      marginTop:20,
