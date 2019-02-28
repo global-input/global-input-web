@@ -35,15 +35,18 @@ export var styles={
     color: "white",
     lineHeight: 1.5
   },
+  
   content:{
-      paddingLeft:20,
-      paddingTop:10,
-      paddingRight:20,
-      display:"flex",
+      paddingLeft:  20,
+      paddingTop:   100,
+      paddingRight: 20,
+      display:      "flex",
       flexDirection:"column",
       justifyContent:"flex-start",
-      alignItems:"center",
-      backgroundColor:"#dddddd"
+      alignItems:    "flex-start",
+      backgroundColor:"#5291CD",
+      width:"100%",
+      minHeight:window.innerHeight
   },
  itemSection:{
     marginTop:10,

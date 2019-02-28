@@ -43,11 +43,7 @@ export default class AuthenticationDeviceCard extends React.Component{
                             {textContent.authentication.demo.linkText}
                       </LinkItem>
 
-                      <LinkItem href={textContent.authentication.tutorial.url}
-                        image={images.watchVideo} textStyle={styles.linkText}>
-
-                            {textContent.authentication.tutorial.linkText}
-                      </LinkItem>
+                      
 
                       <LinkItem href={textContent.authentication.whitepaper.url}
                         image={images.paper}  textStyle={styles.linkText}>

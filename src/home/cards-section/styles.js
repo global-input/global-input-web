@@ -11,7 +11,7 @@ export var styles={
       flexDirection:"row",
       justifyContent:"space-evenly",
       alignItems:"center",
-      width:"100%"
+      width:"100%",
     },
     mobile:{
       flexDirection:"column",
@@ -27,6 +27,7 @@ export var styles={
         alignItems:"flex-start",
         backgroundColor:"#FFFFFF",
         width:"30%",
+        minHeight:300,
         paddingBottom:25,
         borderRadius:25,
         paddingTop:30

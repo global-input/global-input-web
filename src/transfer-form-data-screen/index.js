@@ -2,16 +2,16 @@ import React from 'react';
 import TopHeaderSection from "../top-header-section";
 import {styles} from "./styles";
 import {applicationPathConfig} from "../page-templates";
-import ContentTransferExample from "../examples/content-transfer-example";
-export default class ContentTransferScreen extends React.Component{
-  static pagePath="/global-input-app/content-transfer"
+import TransferFormDataExample from "../examples/transfer-form-data-example";
+export default class TransferFormDataScreen extends React.Component{
+  static pagePath="/global-input-app/transfer-form-data"
   render(){
     return(
       <React.Fragment>
         <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
         <div style={styles.content}>
             <div style={styles.itemSection}>
-                <ContentTransferExample/>
+                <TransferFormDataExample/>
             </div>
         </div>
       </React.Fragment>

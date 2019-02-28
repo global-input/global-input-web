@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {LinkItem} from '../../components';
 import {styles} from "./styles";
-import headerTextContent from "./headerTextContent";
+
 
 
 var textContent={
@@ -15,6 +15,22 @@ var textContent={
 
 
 };
+const headerTextContent={
+    title:"A Unified & Simple Solution",
+    items:["Mobile Input & Mobile Control",
+           "Second Screen",
+           "Mobile Authentication",
+           "GDPR Compliance",
+           "Data Encryption & Protection",
+           "Secure Content Transfer Between Devices"
+         ],
+    app:{
+      content:"Provided by the Global Input App, which is a free and open-source mobile app with extensions.",
+      appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
+      playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
+    }
+}
+
 
 var images={
   header:require('./global-input-app.png'),
@@ -61,7 +77,7 @@ render() {
                   </div>
                   <div style={styles.appSelection.get()}>
                       <div style={styles.appDescription.get()}>
-                          {headerTextContent.app.content}                          
+                          {headerTextContent.app.content}
                           <LinkItem href={textContent.introduction.demo.url}
                             image={images.watchVideo} textStyle={styles.watchVideoText}>
                                 {textContent.introduction.demo.linkText}

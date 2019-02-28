@@ -9,6 +9,7 @@ import DisplaySampleCode1 from "./DisplaySampleCode1";
 import DisplaySampleCode2 from "./DisplaySampleCode2";
 import DisplaySampleCode3 from "./DisplaySampleCode3";
 import DisplaySampleCode4 from "./DisplaySampleCode4";
+import TopHeaderSection from "../top-header-section";
 
 export  default class DevelopersScreen extends Component {
 
@@ -33,13 +34,12 @@ render() {
 
 
     return (
+      <div style={styles.content}>
+        <TopHeaderSection menus={applicationPathConfig.menus} selected={blockTextConfig.developers.home.menu}/>
 
-      <PageWithHeader  scrollingText={blockTextConfig.developers.home.scrollingText}  selected={blockTextConfig.developers.home.menu}
-        install={applicationPathConfig.home.install}
-        aboutText={applicationPathConfig.home.aboutText}
-        appSubtitle={blockTextConfig.developers.home.appSubtitle}>
+
         <BookMark bookmark={pagelinks.platform.bookmark}/>
-         <div style={styles.content}>
+
 
 
            <TextViewPad bookmark={pagelinks.app.reasons.bookmark} title={blockTextConfig.about.globalInputApp.whyneeded.title}>
@@ -51,9 +51,6 @@ render() {
 
                <DisplayTextImage title={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.title}
                   content={blockTextConfig.about.globalInputApp.whyneeded.signInDevice.content} />
-                  <DisplayVideo video={config.videos.tutorialPart1()}
-                      autoPlay={true} muted={false}
-                      defaultImage={images.others.signIn}/>
 
              </div>
              <div style={styles.itemSection}>
@@ -132,8 +129,9 @@ render() {
            </div>
 
 
-         </div>
-      </PageWithHeader>
+
+
+    </div>
             );
   }
 }

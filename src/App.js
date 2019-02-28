@@ -20,6 +20,7 @@ import {DevelopersScreen} from "./developers";
 import ContentTransferScreen from "./content-transfer-screen";
 import GameControlScreen from "./game-game-control-screen";
 import SecondScreenHowItWorks from "./second-screen-how-it-works";
+import TransferFormDataScreen from "./transfer-form-data-screen";
 
 
 
@@ -51,7 +52,7 @@ export default class App extends Component{
             <Route  path={pagelinks.app.link}  component={HomeScreen}/>
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
-            <Route  path={applicationPathConfig.contentTransfer.menu.link}  component={ContentTransferScreen}/>
+            <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
             <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
             <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
@@ -71,6 +72,7 @@ export default class App extends Component{
             <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
 
             <Route path={SecondScreenHowItWorks.pagePath} component={SecondScreenHowItWorks}/>
+            <Route path={TransferFormDataScreen.pagePath} component={TransferFormDataScreen}/>
         </div>
 
 

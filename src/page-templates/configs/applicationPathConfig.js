@@ -19,7 +19,7 @@ const applicationPathConfig={
     appTitle:homeTextConfig.title,
     menus:[
         homeTextConfig.menu,
-        platformTextConfig.menu,        
+        //platformTextConfig.menu,        
         privacyConfig.menu,
         contactUsConfig.menu,
     ],
