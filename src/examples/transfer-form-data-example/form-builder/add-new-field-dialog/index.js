@@ -1,6 +1,7 @@
 import React from 'react';
 import {styles} from './styles';
-import InputWithLabel from '../../../components/input-with-label';
+import InputWithLabel from '../../../../components/input-with-label';
+import TextButton from '../../../../components/text-button';
 export default class AddNewFieldDialog extends React.Component{
 
   constructor(props){
@@ -20,8 +21,12 @@ export default class AddNewFieldDialog extends React.Component{
   }
   onAddNewField(){
     var data={
-      label:this.state.label
+      label:this.state.label,
+      nLines:1
     };
+    if(this.state.multiline){
+      data.nLines=5;
+    }
     this.props.onAddNewField(data);
   }
   render(){
@@ -32,25 +37,25 @@ export default class AddNewFieldDialog extends React.Component{
                       <div style={styles.content}>
                       <div>Enter the name of the new field </div>
                           <div>
-                          <InputWithLabel label="Name of the field" id="newFieldLabel" style={styles.formLabel}
-                            labelStyle={styles.label} onChange={this.setFormLabel.bind(this)}
+                          <InputWithLabel label="Name of the field" id="newFieldLabel"
+                            onChange={this.setFormLabel.bind(this)}
                             value={this.state.label}/>
                           </div>
                           <div style={styles.multiline.container}>
                             <div style={styles.multiline.item}>
-                              <input type="radio" name="multiline" checked={this.state.multiline?true:false} onChange={evt=>this.setMultiline(true)}/>
-                              <span style={styles.text}>Single-line</span>
+                              <input type="radio" name="multiline" checked={this.state.multiline?false:true} onChange={evt=>this.setMultiline(false)}/>
+                              <span style={styles.multiline.text}>Single-line</span>
                             </div>
                             <div style={styles.multiline.item}>
-                              <input type="radio" name="multiline" checked={this.state.multiline?false:true} onChange={evt=>this.setMultiline(false)}/>
-                              <span style={styles.text}>Multi-line</span>
+                              <input type="radio" name="multiline" checked={this.state.multiline?true:false} onChange={evt=>this.setMultiline(true)}/>
+                              <span style={styles.multiline.text}>Multi-line</span>
                             </div>
                           </div>
                       </div>
 
                      <div style={styles.footer}>
-                          <button style={styles.button} onClick={this.onCancel.bind(this)}>Cancel</button>
-                          <button style={styles.button} onClick={this.onAddNewField.bind(this)}>Add</button>
+                          <TextButton onClick={this.onCancel.bind(this)} label="Cancel"/>
+                          <TextButton onClick={this.onAddNewField.bind(this)} label="Add"/>
                      </div>
               </div>
 

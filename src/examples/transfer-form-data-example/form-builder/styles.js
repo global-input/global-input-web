@@ -8,6 +8,11 @@ export const styles={
         minHeight:window.innerHeight*2/3
 
     },
+    help:{
+        width:"100%",
+        fontSize:"1vw",
+        color:"#5291CD",
+    },
 
     title:{
       display:"flex",
@@ -35,6 +40,14 @@ export const styles={
       marginBottom:10
     },
 
+
+
+    footer:{
+      marginTop:10,
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"space-around"
+    },
 
 
 

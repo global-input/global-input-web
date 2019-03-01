@@ -11,7 +11,7 @@ export default class TransferFormDataScreen extends React.Component{
         <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
         <div style={styles.content}>
             <div style={styles.itemSection}>
-                <TransferFormDataExample/>
+                <TransferFormDataExample {...this.props}/>
             </div>
         </div>
       </React.Fragment>

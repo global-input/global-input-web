@@ -27,7 +27,8 @@ export const styles={
       display:"flex",
       flexDirection:"row",
       justifyContent:"center",
-      fontSize:"2vw"
+      fontSize:"2vw",
+      color:"#5291CD",
     },
     content:{
       marginTop:"1vw",
@@ -35,6 +36,7 @@ export const styles={
       flexDirection:"column",
       justifyContent:"center",
       fontSize:"1vw",
+      color:"#5291CD",
       flex:1
     },
     footer:{
@@ -55,18 +57,23 @@ export const styles={
     multiline:{
         container:{
             marginTop:"10",
-            border:"1px solid red",
             display:"flex",
             flexDirection:"column",
-            width:"auto"
+            width:"auto",
+            paddingRight:"2vw",
+
         },
         item:{
-          display:"flex",
-          flexDirection:"row",
+            display:"flex",
+            flexDirection:"row",
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"flex-start",
+            alignItems:"center"
         },
         text:{
-            paddingLeft:20,
-            border:"1px solid red"
+            paddingLeft:10,
+
         }
     }
 

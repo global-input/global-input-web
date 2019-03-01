@@ -21,15 +21,21 @@
   "devDependencies": {
     "react-scripts": "^2.1.5",
     "react-test-renderer": "^16.8.3",
-    "react-testing-library": "^6.0.0"
+    "react-testing-library": "^6.0.0",
+    "@storybook/react": "^4.1.13",
+    "@storybook/addon-actions": "^4.1.13",
+    "@storybook/addon-links": "^4.1.13",
+    "@storybook/addons": "^4.1.13",
+    "@babel/core": "^7.3.4",
+    "babel-loader": "^8.0.5"
   },
   "scripts": {
     "start": "npx react-scripts start",
     "build": "npx react-scripts build",
     "test": "npx react-scripts test --env=jsdom",
     "eject": "npx react-scripts eject",
-    "storybook": "npx start-storybook -p 9009 -s public",
-    "build-storybook": "npx build-storybook -s public"
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "jest": {
     "setupFiles": [
