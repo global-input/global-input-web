@@ -14,6 +14,7 @@ import HeaderSection from "./header-section";
 import TopHeaderSection from "../top-header-section";
 import CardSection from "./cards-section";
 import MediaPlayerScreen from "../media-player-screen";
+import ContentTransferScreen from "../content-transfer-screen";
 
 
 export  default class HomeScreen extends Component {
@@ -135,7 +136,7 @@ render() {
  reverse={true}
                    content={applicationPathConfig.contentTransfer.content} image={images.contentTransfer}
                    mobileImage={images.mobile.contentTransfer}
-                   buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={applicationPathConfig.contentTransfer.menu.link}/>
+                   buttonLabel={applicationPathConfig.contentTransfer.startButton} buttonLink={ContentTransferScreen.pagePath}/>
           </div>
 
 

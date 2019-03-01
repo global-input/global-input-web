@@ -5,7 +5,7 @@ import {styles,images} from "./styles";
 import {applicationPathConfig} from "../page-templates";
 import LinkItem from "../components/link-item";
 const textContent={
-    title:"Second Screen Experience Solution",
+    title:"Second Screen Solution",
     subtitle:"How It Works",
     content:["The Global Input App implements a device-to-device communication, which is secured with the end-to-end encryption. On top of this secure communication mechanism, it provides Smart TV applications with the ability to specify second screen user interface elements without the need for separate server-side or mobile-side business logic.",
   "A media application can be extended by including a software library, which uses an encrypted QR code to communicate one-time-use encryption key along with other communication channel parameters to the Global Input App for establishing the secure device-to-device communication.",

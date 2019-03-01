@@ -81,8 +81,11 @@ var ClipboardCopyButton = function (_React$Component) {
               if (!copyElement) {
                 _this3.setNotificationMessage(textContent.copyFieldNotFound);
               } else {
+                var type = copyElement.type;
+                copyElement.type = "text";
                 copyElement.select();
                 document.execCommand("Copy");
+                copyElement.type = type;
                 _this3.setNotificationMessage(textContent.copied);
               }
             }

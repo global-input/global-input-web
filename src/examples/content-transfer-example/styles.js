@@ -41,10 +41,7 @@ export const styles={
         }
 
     },
-    copyButton:{
-      color:"#5291CD",
-      borderRadius:8,
-    },
+    
     topControl:{
       display:"flex",
       flexDirection:"row",
@@ -57,6 +54,7 @@ export const styles={
     globalConnect:{
         marginTop:20,
         position:"absolute"
-    }
+    },
+
 
 };

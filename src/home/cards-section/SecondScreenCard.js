@@ -5,8 +5,8 @@ import {pagelinks} from "../../configs";
 import SecondScreenHowItWorks from "../../second-screen-how-it-works";
 import MediaPlayerScreen from "../../media-player-screen";
 var textContent={
-    title:"Second Screen Experience",
-    description:"A simple and innovative solution to introduce the Second Screen Experience to the existing Smart TV applications.",
+    title:"Second Screen",
+    description:"A simple and innovative solution to introduce the Second Screen to the existing Smart TV applications.",
     demo:{
         linkText:"Player Control Example",
     },
