@@ -26,7 +26,7 @@ import TransferFormDataScreen from "./transfer-form-data-screen";
 
 
 import {QRCodePrinting} from "./qr-printing";
-import {FormDataTransfer} from "./formdata-transfer";
+
 
 import {applicationPathConfig} from "./page-templates";
 
@@ -54,7 +54,7 @@ export default class App extends Component{
 
             <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
             <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
-            <Route  path={applicationPathConfig.formData.menu.link}  component={FormDataTransfer}/>
+            
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
