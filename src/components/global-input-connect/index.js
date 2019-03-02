@@ -80,14 +80,23 @@ export  default class GlobalInputConnect extends Component {
           catch(error){
             console.error(error);
           }
-
-          this.setState(this.buildSenderDisconnectedState(sender,senders));
+          if(this.props.reconnectOnDisconnect){
+              this.setRenderType(this.RENDER_TYPE.CONNECTING, "");
+              this.connectGlobalInputApp();
+          }
+          else{
+              this.setState(this.buildSenderDisconnectedState(sender,senders));
+          }
     }
+    console.log("****:"+JSON.stringify(this.mobileConfig));
 
 
     return {
         renderType:this.RENDER_TYPE.CONNECTING
     }
+  }
+  setRenderType(renderType,message){
+      this.setState(Object.assign({},this.state,{renderType,message}));
   }
 
   buildConnectedState(){
@@ -145,7 +154,7 @@ export  default class GlobalInputConnect extends Component {
       return this.renderSenderConnected();
     }
     else if(this.state.renderType===this.RENDER_TYPE.SENDER_DISCONNECTED){
-      return this.renderSenderDisconnected();
+          return this.renderSenderDisconnected();
     }
     else{
         return this.renderConnecting();
