@@ -1,60 +1,62 @@
 export const styles={
-    container:{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"flex-start",
-        alignItems:"center",
-        windows:"100%",
-        minHeight:window.innerHeight*2/3
+  row:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"flex-start",
 
-    },
+    marginBottom:"20",
+    marginLeft:"4vw"
+  },
+  label:{
+    fontSize:"1vw",
+    color:"#5291CD",
+    minWidth:200
+  },
+  fieldValue:{
+    fontSize:"1vw",
+    color:"#5291CD",
+  },
+  fieldContainer:{
 
-    title:{
-      display:"flex",
-      flexDirection:"row",
-      width:"100%",
-      justifyContent:"flex-start",
-      fontSize:"2vw",
-      color:"#5291CD",
-      marginBottom:"20",
-      marginLeft:"4vw"
-    },
+  },
+  form:{
+    minWidth:"90%",
+    borderRadius:25
+  },
+  buttons:{
+    marginTop:10,
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around"
+  },
+  title:{
+    display:"flex",
+    flexDirection:"row",
+    width:"100%",
+    justifyContent:"flex-start",
+    fontSize:"2vw",
+    color:"#5291CD",
+    marginBottom:"20",
+    marginLeft:"4vw"
+  },
+  connectionMessage:{
+    fontSize:"1vw",
+    color:"#5291CD",
+  },
+  note:{
+    fontSize:10,
+    color:"#5291CD",
+  },
+  help:{
+    fontSize:"2vw",
+    color:"#5291CD",
+    display:"flex",
+    flexDirection:"row",
+    width:"100%",
+    height:"100%",
+    justifyContent:"center",
+    alignItems:"center",
 
-    githuburl:{
-        fontSize:"20",
-        color:"#5291CD",
-    },
-    areaContainer:{
-      display:"flex",
-      flexDirection:"column",
-      justifyContent:"flex-start",
-      alignItems:"center",
-      width:"100%",
-    },
-    textArea:{
-        get:()=>{
+  }
 
-          return{
-            width:"80%",
-            height:window.innerHeight*2/3
-          }
-        }
-
-    },
-
-    topControl:{
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"space-between",
-      alignItems:"flex-start",
-      width:"80%",
-      marginLeft:"10vw",
-      marginBottom:10
-    },
-    globalConnect:{
-        marginTop:20,
-        position:"absolute"
-    },
-
-
-};
+}

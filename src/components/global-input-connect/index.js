@@ -143,6 +143,17 @@ export  default class GlobalInputConnect extends Component {
        this.connector.sendInputMessage(message,fieldIndex, fieldId);
     }
   }
+  changeInitData(initData){
+    if(this.connector){
+       this.connector.sendInitData(initData);
+    }
+    else{
+        console.log("sendInitData is called when disconnected:");
+    }
+  }
+
+
+
   render(){
     if(this.state.renderType===this.RENDER_TYPE.ERROR){
         return this.renderError();

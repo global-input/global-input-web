@@ -1,43 +1,186 @@
 import React from 'react';
 
 import GlobalInputConnect from '../../components/global-input-connect';
+import InputWithLabel from '../../components/input-with-label';
 import {styles} from './styles';
 
 
 
 const textContent={
-    title:"Send Message Example",
-    githuburl:"https://github.com/global-input/content-transfer-example",
-    help:"Press press the 'Save' button on your mobile to save our details and press the 'Continue' button to continue"
+    title:"Send Message Example (Workflow example)",
+    githuburl:"https://github.com/global-input/send-message-example",
 }
 
 export default class SendMessageExample extends React.Component{
 
+
+  getStyles(){
+      return styles;
+  }
+
+  initWorkflowState(props){
+    this.workflow={
+      steps:{
+        transferContact:{
+              render:this.renderBusinessContact.bind(this),
+              buildState:state=>{
+                return{step:"transferContact", connected:false};
+              }
+        },
+        messageForm:{
+              render:this.renderMessageForm.bind(this),
+              buildState:state=>{
+                    return{
+                          step:"messageForm",
+                          firstName:"",
+                          lastName:"",
+                          email:"",
+                          phone:"",
+                          message:"",
+                          connected:true
+                    };
+              }
+        },
+        sendingMessage:{
+              render:this.renderSending.bind(this),
+              buildState:state => Object.assign({}, state,{step:"sendingMessage",connected:false})
+        },
+        messageSent:{
+              render:this.renderMessageSent.bind(this),
+              buildState:state => Object.assign({}, state,{step:"messageSent",connected:false})
+        },
+        error:{
+              render:this.renderErrorMessage.bind(this),
+              buildState:(state, errorMessage)=>Object.assign({}, state,{step:"error",connected:false, error:errorMessage})
+        }
+      },
+      render(name, styles){
+          var matched=this.steps[name];
+          if(matched){
+              return matched.render(styles);
+          }
+          else{
+            return null;
+          }
+      }
+
+     };
+   }
+
+   renderBusinessContact(styles){
+          return(<div style={styles.help}>
+             Press the 'Continue' button on your mobile to continue
+           </div>
+         );
+   }
+  renderMessageForm(styles){
+    return(
+      <React.Fragment>
+            <div style={styles.fieldContainer}>
+              <InputWithLabel label="First Name" id="first_name" type="text"
+                 value={this.state.firstName}
+                 onChange={value=>{
+                   this.setFirstName(value);
+                   this.mobile.setFirstName(value);
+                 }
+                 }/>
+            </div>
+
+            <div style={styles.fieldContainer}>
+              <InputWithLabel label="Last Name" id="last_name" type="text"
+                 value={this.state.lastName}
+                 onChange={value=>{
+                   this.setLastName(value);
+                   this.mobile.setLastName(value);
+                 }
+                 }/>
+            </div>
+
+            <div style={styles.fieldContainer}>
+              <InputWithLabel label="Email" id="email" type="text"
+                 value={this.state.email}
+                 onChange={value=>{
+                   this.setEmail(value);
+                   this.mobile.setEmail(value);
+                 }
+                 }/>
+            </div>
+
+            <div style={styles.fieldContainer}>
+              <InputWithLabel label="Phone" id="phone" type="text"
+                 value={this.state.phone}
+                 onChange={value=>{
+                   this.setPhone(value);
+                   this.mobile.setPhone(value);
+                 }
+                 }/>
+            </div>
+
+            <div style={styles.fieldContainer}>
+              <InputWithLabel label="Message" id="message" type="textarea"
+                 value={this.state.message}
+                 onChange={value=>{
+                   this.setMessage(value);
+                 }
+                 }/>
+            </div>
+            <div style={styles.help}>Operate on your mobile to send message</div>
+
+
+      </React.Fragment>
+      );
+  }
+
+  renderSending(styles){
+    return(<div style={styles.help}>
+            Sending...
+          </div>
+        );
+  }
+  renderMessageSent(styles){
+    return(<div style={styles.details}>
+              <div style={styles.title}>Message Sent...</div>
+                <div style={styles.row}>
+                  <div style={styles.label}>First Name:</div>
+                  <div styles={styles.fieldValue}>{this.state.firstName}</div>
+                </div>
+                <div style={styles.row}>
+                  <div style={styles.label}>Last Name:</div>
+                  <div styles={styles.fieldValue}>{this.state.lastName}</div>
+                </div>
+                <div style={styles.row}>
+                  <div style={styles.label}>Email:</div>
+                  <div styles={styles.fieldValue}>{this.state.email}</div>
+                </div>
+                <div style={styles.row}>
+                  <div style={styles.label}>Phone:</div>
+                  <div styles={styles.fieldValue}>{this.state.phone}</div>
+                </div>
+                <div style={styles.row}>
+                  <div style={styles.label}>Message:</div>
+                  <div styles={styles.fieldValue}>{this.state.message}</div>
+                </div>
+
+          </div>
+        );
+  }
+  renderErrorMessage(styles){
+    return(<div style={styles.help}>
+            {this.state.error}
+          </div>
+        );
+  }
+
   constructor(props){
       super(props);
-      this.state=this.buildInitialState();
-      this.messageTimeoutHandler=null;
       this.initMobileData(props);
-  }
-  componentWillUnmount(){
-    if(this.messageTimeoutHandler){
-      clearTimeout(this.messageTimeoutHandler);
-      this.messageTimeoutHandler=null;
-    }
-  }
-  buildInitialState(){
-    let state={
-
-    }
-    return state;
+      this.initWorkflowState();
+      this.state=this.workflow.steps.transferContact.buildState();
   }
 
-  onSenderConnected(){
-      this.setState(Object.assign({},{connected:true}));
-  }
-  toMessageForm(){
 
-  }
+
+
   initMobileData(props){
             this.mobile={
                   globalInputConnect:null,
@@ -50,6 +193,20 @@ export default class SendMessageExample extends React.Component{
 
                         }
                   },
+                  changeInitData: initData=>{
+                        this.mobile.config.initData=initData;
+                        if(this.mobile.globalInputConnect){
+                          this.mobile.globalInputConnect.changeInitData(initData);
+                        }
+                        else{
+                          console.error("sendInitData is called when disconnected");
+                        }
+                  },
+                  disconnect:()=>{
+                    if(this.mobile.globalInputConnect){
+                      this.mobile.globalInputConnect.disconnectGlobaInputApp();
+                    }
+                  },
                   config:{
                                 url:props.url,
                                 apikey:props.apikey,
@@ -58,13 +215,20 @@ export default class SendMessageExample extends React.Component{
                                     action:"input",
                                     dataType:"form",
                                     form:{
-                                      id:"###company_name###@contacts",
+                                      id:"###company_name###@iterative",
                                       title:"Our Contact Details",
                                       label:"contacts",
                                       fields:[]
                                     }
                                 },
-                                onSenderConnected:()=>this.onSenderConnected.bind(this)
+                                onSenderConnected:()=>()=>{
+                                        this.setState(Object.assign({},{connected:true}));
+                                },
+                                onSenderDisconnect:()=>{
+                                    this.mobile.disconnect();
+                                    this.initMobileData();
+                                    this.setState(this.workflow.steps.transferContact.buildState());
+                                }
                   },
                   addField: field=>this.mobile.config.initData.form.fields.push(field)
             };
@@ -117,8 +281,9 @@ export default class SendMessageExample extends React.Component{
                 icon:"cancel",
                 viewId:"footer",
                 operations:{
-                    onInput: value=>{
-                       this.mobile.disconnectGlobaInputApp();
+                    onInput: ()=>{
+                          this.mobile.disconnect();
+
                     }
                 }
             }
@@ -129,41 +294,148 @@ export default class SendMessageExample extends React.Component{
                 icon:"continue",
                 viewId:"footer",
                 operations:{
-                    onInput:this.toMessageForm.bind(this)
+                    onInput:this.initForMessageSenderForm.bind(this)
 
                 }
             }
             this.mobile.addField(nextButton);
-
   }
 
-  mobileConfigForMessageSender(){
-      this.mobile.config.initData={
-                action:"input",
-                dataType:"form",
-                form:{
-                    id:"iterativesolution@mymessages",
-                    title:"Sending a Message",
-                    label:"Messages",
-                    fields:[]
+  initForMessageSenderForm(){
+    var initData={
+              action:"input",
+              dataType:"form",
+              form:{
+                  id:"###email###@me",
+                  title:"Sending a Message",
+                  label:"contacts",
+                  fields:[]
+              }
+    };
+    const first_name={
+            id:"first_name",
+            type:"text",
+            label:"First Name",
+            value:"",
+            operations:{
+                onInput:fistName=>this.setFirstName(fistName)
+            }
+    };
+    initData.form.fields.push(first_name);
+    this.mobile.setFirstName=value=>{
+        this.mobile.sendMessage(value,first_name.id);
+    }
+
+
+    const last_name={
+            id:"last_name",
+            type:"text",
+            label:"Last Name",
+            value:"",
+            operations:{
+                onInput:lastName=>this.setLastName(lastName)
+            }
+    };
+    initData.form.fields.push(last_name);
+    this.mobile.setLastName=value=>{
+        this.mobile.sendMessage(value,last_name.id);
+    }
+
+
+    const email={
+            id:"email",
+            type:"text",
+            label:"Email",
+            value:"",
+            operations:{
+                onInput:email=>this.setEmail(email)
+            }
+    };
+    initData.form.fields.push(email);
+
+    this.mobile.setEmail=value=>{
+        this.mobile.sendMessage(value,email.id);
+    }
+
+
+    const phone={
+            id:"phone",
+            type:"text",
+            label:"Phone",
+            value:"",
+            operations:{
+                onInput:phone=>this.setPhone(phone)
+            }
+    };
+    initData.form.fields.push(phone);
+
+    this.mobile.setPhone=value=>{
+        this.mobile.sendMessage(value,phone.id);
+    }
+
+    const message={
+            type:"text",
+            label:"Message",
+            value:"",
+            nLines:5,
+            operations:{
+                onInput:message=>this.setMessage(message)
+            }
+    };
+    initData.form.fields.push(message);
+
+
+
+
+    const cancelButton={
+            label:"Cancel",
+            type:"button",
+            viewId:"footer",
+            operations:{
+                onInput:()=>{
+                      this.mobile.disconnect();
+
                 }
-      };
-      var first_name={
-              id:"first_name",
-              type:"text",
-              label:"First Name",
-              value:""
-      };
+            }
+    };
+    initData.form.fields.push(cancelButton);
 
-
-
-
+    const sendButton={
+            label:"Send",
+            type:"button",
+            viewId:"footer",
+            operations:{
+                onInput:this.sendMessage.bind(this)
+            }
+    };
+    initData.form.fields.push(sendButton);
+    this.mobile.changeInitData(initData);
+    this.setState(this.workflow.steps.messageForm.buildState());
   }
+
+
+
+  setFirstName(firstName){
+    this.setState(Object.assign({}, this.state,{firstName}));
+  }
+  setLastName(lastName){
+    this.setState(Object.assign({}, this.state,{lastName}));
+  }
+  setEmail(email){
+    this.setState(Object.assign({}, this.state,{email}));
+  }
+  setPhone(phone){
+    this.setState(Object.assign({}, this.state,{phone}));
+  }
+  setMessage(message){
+    this.setState(Object.assign({}, this.state,{message}));
+  }
+
 
 
 
   render(){
-
+    const styles=this.getStyles();
     return(
       <div style={styles.container}>
 
@@ -176,23 +448,34 @@ export default class SendMessageExample extends React.Component{
               </span>
         </div>
         <GlobalInputConnect mobileConfig={this.mobile.config}
-          ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
-          connectingMessage="Connecting...."
-          connectedMessage="Scan with Global Input App" reconnectOnDisconnect={true}>
-            <div style={styles.help}>
-                {textContent.help}
-            </div>
-
+              ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
+              connectingMessage="Connecting...."
+              connectedMessage="Scan with Global Input App" reconnectOnDisconnect={true}>
+              {this.workflow.render(this.state.step, styles)}
           </GlobalInputConnect>
 
 
 
       </div>
     );
-
   }
 
-
-
+  sendMessage(){
+        this.mobile.disconnect();
+        this.setState(this.workflow.steps.sendingMessage.buildState(this.state));
+        if(this.props.sendMessage){
+            this.props.sendMessage(this.state).then(()=>{
+                this.setState(this.workflow.steps.messageSent.buildState());
+            }).catch(error=>{
+                console.error(error);
+                this.setState(this.workflow.steps.error.buildState(this.state,"Error:"+error));
+            });
+        }
+        else{
+            setTimeout(()=>{
+                this.setState(this.workflow.steps.messageSent.buildState(this.state));
+            },1000);
+        }
+  }
 
 }
