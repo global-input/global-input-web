@@ -67,7 +67,7 @@ export default class SecureFormTransfer extends React.Component{
                                 securityGroup:props.securityGroup,
                                 initData:{
                                     action:"input",
-                                    dataType:"control",
+                                    dataType:"form",
                                     form:{
                                       title:this.props.form.title,
                                       id:this.props.form.id,

@@ -119,13 +119,23 @@ var GlobalInputConnect = function (_Component) {
         } catch (error) {
           console.error(error);
         }
-
-        _this2.setState(_this2.buildSenderDisconnectedState(sender, senders));
+        if (_this2.props.reconnectOnDisconnect) {
+          _this2.setRenderType(_this2.RENDER_TYPE.CONNECTING, "");
+          _this2.connectGlobalInputApp();
+        } else {
+          _this2.setState(_this2.buildSenderDisconnectedState(sender, senders));
+        }
       };
+      console.log("****:" + JSON.stringify(this.mobileConfig));
 
       return {
         renderType: this.RENDER_TYPE.CONNECTING
       };
+    }
+  }, {
+    key: "setRenderType",
+    value: function setRenderType(renderType, message) {
+      this.setState(Object.assign({}, this.state, { renderType: renderType, message: message }));
     }
   }, {
     key: "buildConnectedState",
@@ -180,6 +190,15 @@ var GlobalInputConnect = function (_Component) {
     value: function sendInputMessage(message, fieldIndex, fieldId) {
       if (this.connector) {
         this.connector.sendInputMessage(message, fieldIndex, fieldId);
+      }
+    }
+  }, {
+    key: "changeInitData",
+    value: function changeInitData(initData) {
+      if (this.connector) {
+        this.connector.sendInitData(initData);
+      } else {
+        console.log("sendInitData is called when disconnected:");
       }
     }
   }, {
