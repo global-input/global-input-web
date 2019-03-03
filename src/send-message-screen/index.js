@@ -5,7 +5,7 @@ import {applicationPathConfig} from "../page-templates";
 import SendMessageExample from "../examples/send-message-example";
 import "whatwg-fetch";
 export default class SendMessageScreen extends React.Component{
-  static pagePath="/global-input-app/message-sender"
+  static pagePath="/global-input-app/send-message"  
   apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
 
   render(){

@@ -34,7 +34,7 @@ import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
 import MediaPlayerScreen from "./media-player-screen";
 
-import {MessageSender} from "./send-message";
+
 
 
 export default class App extends Component{
@@ -69,7 +69,7 @@ export default class App extends Component{
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameControlScreen}/>
-            <Route  path={applicationPathConfig.sendMessage.menu.link}  component={MessageSender}/>
+            
 
             <Route path={SecondScreenHowItWorks.pagePath} component={SecondScreenHowItWorks}/>
             <Route path={TransferFormDataScreen.pagePath} component={TransferFormDataScreen}/>
