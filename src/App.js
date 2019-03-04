@@ -25,7 +25,7 @@ import SendMessageScreen from './send-message-screen';
 import QRPrintingScreen from './qr-printing-screen';
 
 
-import {QRCodePrinting} from "./qr-printing";
+
 
 
 import {applicationPathConfig} from "./page-templates";
@@ -53,7 +53,7 @@ export default class App extends Component{
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
             <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
-            <Route  path={applicationPathConfig.qrPrinting.menu.link}  component={QRCodePrinting}/>
+            
 
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>

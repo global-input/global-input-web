@@ -5,9 +5,9 @@ import {styles} from "./styles";
 import QRCodeprintingExample from "../examples/qr-code-printing-example";
 
 export default class QRPrintingScreen extends React.Component{
-  static pagePath="/global-input-app/qr-print-screen"
+  static pagePath="/global-input-app/qr-printing"
   render(){
-    
+
     return(
       <React.Fragment>
         <div className="noprint">
