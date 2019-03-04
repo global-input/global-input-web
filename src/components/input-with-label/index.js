@@ -58,6 +58,9 @@ export default class InputWithLabel extends Component{
             type={this.props.type}
             style={styles.field}
             readOnly={this.props.readOnly}
+            min={this.props.min}
+            max={this.props.max}
+            step={this.props.step}            
             onChange={(evt) => {
                 if(this.props.onChange){
                    this.props.onChange(evt.target.value,this.props.id);

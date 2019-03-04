@@ -92,6 +92,9 @@ var InputWithLabel = function (_Component) {
           type: this.props.type,
           style: styles.field,
           readOnly: this.props.readOnly,
+          min: this.props.min,
+          max: this.props.max,
+          step: this.props.step,
           onChange: function onChange(evt) {
             if (_this2.props.onChange) {
               _this2.props.onChange(evt.target.value, _this2.props.id);

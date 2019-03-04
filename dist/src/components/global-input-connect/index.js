@@ -77,6 +77,28 @@ var GlobalInputConnect = function (_Component) {
       this.setState(this.buildConnectedState());
     }
   }, {
+    key: "onSenderDisconnected",
+    value: function onSenderDisconnected(sender, senders) {
+      if (!this.props.MultiSenders) {
+        this.disconnectGlobaInputApp();
+      }
+      try {
+        if (this.props.mobileConfig.onSenderDisconnected) {
+          this.props.mobileConfig.onSenderDisconnected(sender, senders);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      if (this.props.reconnectOnDisconnect) {
+
+        this.setRenderType(this.RENDER_TYPE.CONNECTING, "");
+        this.connectGlobalInputApp();
+      } else {
+        this.setState(this.buildSenderDisconnectedState(sender, senders));
+      }
+    }
+  }, {
     key: "buildConnectingState",
     value: function buildConnectingState(props) {
       var _this2 = this;
@@ -108,25 +130,7 @@ var GlobalInputConnect = function (_Component) {
         }
         _this2.setState(_this2.buildSenderConnectedState(sender, senders));
       };
-      this.mobileConfig.onSenderDisconnected = function (sender, senders) {
-        if (!_this2.props.MultiSenders) {
-          _this2.disconnectGlobaInputApp();
-        }
-        try {
-          if (_this2.props.mobileConfig.onSenderDisconnected) {
-            _this2.props.mobileConfig.onSenderDisconnected(sender, senders);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        if (_this2.props.reconnectOnDisconnect) {
-          _this2.setRenderType(_this2.RENDER_TYPE.CONNECTING, "");
-          _this2.connectGlobalInputApp();
-        } else {
-          _this2.setState(_this2.buildSenderDisconnectedState(sender, senders));
-        }
-      };
-      console.log("****:" + JSON.stringify(this.mobileConfig));
+      this.mobileConfig.onSenderDisconnected = this.onSenderDisconnected.bind(this);
 
       return {
         renderType: this.RENDER_TYPE.CONNECTING
@@ -171,8 +175,11 @@ var GlobalInputConnect = function (_Component) {
   }, {
     key: "disconnectGlobaInputApp",
     value: function disconnectGlobaInputApp() {
-      this.connector.disconnect();
-      this.connector = null;
+      if (this.connector) {
+        this.connector.disconnect();
+        this.connector = null;
+        this.onSenderDisconnected();
+      }
     }
   }, {
     key: "connectGlobalInputApp",
