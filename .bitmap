@@ -69,18 +69,6 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "globalinput.web/input-with-label@0.0.1": {
-        "files": [
-            {
-                "relativePath": "src/components/input-with-label/index.js",
-                "test": false,
-                "name": "index.js"
-            }
-        ],
-        "mainFile": "src/components/input-with-label/index.js",
-        "origin": "AUTHORED",
-        "exported": true
-    },
     "globalinput.web/text-button@0.0.1": {
         "files": [
             {
@@ -93,31 +81,19 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "globalinput.web/selectable-input@0.0.1": {
+    "globalinput.web/input-with-label@0.0.2": {
         "files": [
             {
-                "relativePath": "src/components/selectable-input/index.js",
+                "relativePath": "src/components/input-with-label/index.js",
                 "test": false,
                 "name": "index.js"
             }
         ],
-        "mainFile": "src/components/selectable-input/index.js",
+        "mainFile": "src/components/input-with-label/index.js",
         "origin": "AUTHORED",
         "exported": true
     },
-    "globalinput.web/input-with-copy@0.0.1": {
-        "files": [
-            {
-                "relativePath": "src/components/input-with-copy/index.js",
-                "test": false,
-                "name": "index.js"
-            }
-        ],
-        "mainFile": "src/components/input-with-copy/index.js",
-        "origin": "AUTHORED",
-        "exported": true
-    },
-    "globalinput.web/global-input-connect@0.0.9": {
+    "globalinput.web/global-input-connect@0.0.10": {
         "files": [
             {
                 "relativePath": "src/components/global-input-connect/index.js",
@@ -129,7 +105,31 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "globalinput.web/media-player-control-example@0.0.6": {
+    "globalinput.web/selectable-input@0.0.2": {
+        "files": [
+            {
+                "relativePath": "src/components/selectable-input/index.js",
+                "test": false,
+                "name": "index.js"
+            }
+        ],
+        "mainFile": "src/components/selectable-input/index.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
+    "globalinput.web/input-with-copy@0.0.2": {
+        "files": [
+            {
+                "relativePath": "src/components/input-with-copy/index.js",
+                "test": false,
+                "name": "index.js"
+            }
+        ],
+        "mainFile": "src/components/input-with-copy/index.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
+    "globalinput.web/media-player-control-example@0.0.7": {
         "files": [
             {
                 "relativePath": "src/examples/media-player-control-example/index.js",

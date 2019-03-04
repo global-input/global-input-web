@@ -38,6 +38,28 @@ export  default class GlobalInputConnect extends Component {
   onGlobalInputConnected(){
     this.setState(this.buildConnectedState());
   }
+  onSenderDisconnected(sender,senders){
+    if(!this.props.MultiSenders){
+        this.disconnectGlobaInputApp();
+    }
+    try{
+        if(this.props.mobileConfig.onSenderDisconnected){
+          this.props.mobileConfig.onSenderDisconnected(sender, senders);
+        }
+    }
+    catch(error){
+      console.error(error);
+    }
+
+    if(this.props.reconnectOnDisconnect){
+
+        this.setRenderType(this.RENDER_TYPE.CONNECTING, "");
+        this.connectGlobalInputApp();
+    }
+    else{
+        this.setState(this.buildSenderDisconnectedState(sender,senders));
+    }
+  }
   buildConnectingState(props){
     if(!props.mobileConfig){
       return {
@@ -68,28 +90,7 @@ export  default class GlobalInputConnect extends Component {
           }
           this.setState(this.buildSenderConnectedState(sender,senders));
     }
-    this.mobileConfig.onSenderDisconnected=(sender, senders)=>{
-          if(!this.props.MultiSenders){
-              this.disconnectGlobaInputApp();
-          }
-          try{
-              if(this.props.mobileConfig.onSenderDisconnected){
-                this.props.mobileConfig.onSenderDisconnected(sender, senders);
-              }
-          }
-          catch(error){
-            console.error(error);
-          }
-          if(this.props.reconnectOnDisconnect){
-              this.setRenderType(this.RENDER_TYPE.CONNECTING, "");
-              this.connectGlobalInputApp();
-          }
-          else{
-              this.setState(this.buildSenderDisconnectedState(sender,senders));
-          }
-    }
-    console.log("****:"+JSON.stringify(this.mobileConfig));
-
+    this.mobileConfig.onSenderDisconnected=this.onSenderDisconnected.bind(this)
 
     return {
         renderType:this.RENDER_TYPE.CONNECTING
@@ -125,8 +126,12 @@ export  default class GlobalInputConnect extends Component {
     this.connectGlobalInputApp();
   }
   disconnectGlobaInputApp(){
-    this.connector.disconnect();
-    this.connector=null;
+    if(this.connector){
+      this.connector.disconnect();
+      this.connector=null;
+      this.onSenderDisconnected();      
+    }
+
   }
   connectGlobalInputApp(){
       if(this.connector){
@@ -143,6 +148,7 @@ export  default class GlobalInputConnect extends Component {
        this.connector.sendInputMessage(message,fieldIndex, fieldId);
     }
   }
+
   changeInitData(initData){
     if(this.connector){
        this.connector.sendInitData(initData);
@@ -215,7 +221,6 @@ export  default class GlobalInputConnect extends Component {
         else{
           return null;
         }
-
   }
   renderConnected(){
           console.log("[["+this.state.code+"]]");

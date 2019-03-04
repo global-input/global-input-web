@@ -22,7 +22,7 @@ import GameControlScreen from "./game-game-control-screen";
 import SecondScreenHowItWorks from "./second-screen-how-it-works";
 import TransferFormDataScreen from "./transfer-form-data-screen";
 import SendMessageScreen from './send-message-screen';
-
+import QRPrintingScreen from './qr-printing-screen';
 
 
 import {QRCodePrinting} from "./qr-printing";
@@ -69,13 +69,14 @@ export default class App extends Component{
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
             <Route  path={applicationPathConfig.gameExample.menu.link}  component={GameControlScreen}/>
-            
+
 
             <Route path={SecondScreenHowItWorks.pagePath} component={SecondScreenHowItWorks}/>
             <Route path={TransferFormDataScreen.pagePath} component={TransferFormDataScreen}/>
 
 
             <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
+            <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
 
         </div>
 
