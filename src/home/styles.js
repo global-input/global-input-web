@@ -19,6 +19,7 @@ export var styles={
     lineHeight: 1.5
   },
   content:{
+
     paddingLeft:20,
     paddingTop:10,
     paddingRight:20,
@@ -27,7 +28,8 @@ export var styles={
       justifyContent:"flex-start",
       alignItems:"center",
       backgroundColor:"#5291CD", //#4880ED
-      width:"100%",
+      width:"100%"
+
   },
 
  itemSection:{

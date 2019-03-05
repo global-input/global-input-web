@@ -16,13 +16,13 @@ var textContent={
 
 };
 const headerTextContent={
-    title:"A Unified & Simple Solution",
-    items:["Mobile Input & Mobile Control",
-           "Second Screen",
+    title:"Global Input App",
+    subtitle:"A Unified & Simple Solution",
+    items:[
+            "Mobile Input & Control",           
            "Mobile Authentication",
-           "GDPR Compliance",
-           "Data Encryption & Protection",
-           "Secure Content Transfer Between Devices"
+           "Data Encryption",
+           "Secure Content Transfer"
          ],
     app:{
       content:"Provided by the Global Input App, which is a free and open-source mobile app with extensions.",
@@ -70,6 +70,7 @@ render() {
               <img src={images.header} style={styles.rightImage.get()}/>
               <div style={styles.headerSection.get()}>
                     <div style={styles.title.get()}>{headerTextContent.title}</div>
+                    <div style={styles.subtitle.get()}>{headerTextContent.subtitle}</div>
                   <div style={styles.listContent.get()}>
                    <ul>
                       {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
@@ -77,7 +78,7 @@ render() {
                   </div>
                   <div style={styles.appSelection.get()}>
                       <div style={styles.appDescription.get()}>
-                          {headerTextContent.app.content}
+
                           <LinkItem href={textContent.introduction.demo.url}
                             image={images.watchVideo} textStyle={styles.watchVideoText}>
                                 {textContent.introduction.demo.linkText}

@@ -26,7 +26,7 @@ export  default class TopMenu extends Component {
   componentWillUnmount() {
       window.removeEventListener("resize", this.onWindowResize);
   }
-  
+
 
 
   menuPressed(){
@@ -45,7 +45,7 @@ export  default class TopMenu extends Component {
   }
 
   renderDesktopMenuItems(){
-    return(<div style={styles.menuItems}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>
+    return(<div style={styles.menuItemsDesktop}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>
         );
 
   }
@@ -80,7 +80,9 @@ export  default class TopMenu extends Component {
     return (
               <div style={styles.topnavContainer}>
                    <div style={styles.topnav}>
+                        <a href="/">
                         <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
+                        </a>
                         <div style={styles.appTitleContainer}>
                                 <div style={styles.appDesktopTitle}>{this.props.appTitle}</div>
                                 {this.renderDesktopSubtitle()}
@@ -97,14 +99,17 @@ export  default class TopMenu extends Component {
     return(
     <div style={styles.topnavContainer}>
           <div style={styles.topnavmobile}>
-                 <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
-                 <div style={styles.appTitleContainer}>
+            <div style={styles.mobileMenu}>
+               {this.renderMenuItemSymbol()}
+            </div>
+            <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
+
+           <div style={styles.appTitleContainer}>
                          <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
                          {this.renderMobileSubtitle()}
-                 </div>
-                 <div style={styles.mobileMenu}>
-                    {this.renderMenuItemSymbol()}
-                </div>
+          </div>
+
+
           </div>
           {this.renderMobileMenuItems()}
     </div>

@@ -10,6 +10,15 @@ export var styles={
             height: "auto",
             marginRight:10,
           },
+
+        desktop:{
+                 position:"absolute",
+                 right:0,
+                 maxWidth: "55%",
+                 height: "auto",
+                 marginRight:10,
+               },
+
       mobile:{
         position:"static",
         maxWidth: "100%",
@@ -32,7 +41,7 @@ export var styles={
               color:"white",
               width:"100%",
               zIndex:50,
-              marginBottom:30              
+              marginBottom:30
       },
       mobile:{
         justifyContent:"flex-start",
@@ -43,8 +52,8 @@ export var styles={
 
   title:{
     default:{
-      fontSize:"3vw",
-      marginLeft:10,
+      fontSize:40,
+      marginLeft:70,
     },
     mobile:{
       fontSize:"6vw",
@@ -53,20 +62,32 @@ export var styles={
     get:styleMatchingScreenSize
 
   },
+  subtitle:{
+    default:{
+      fontSize:20,
+      marginLeft:70,
+    },
+    mobile:{
+      fontSize:20,
+      marginLeft:30,
+    },
+    get:styleMatchingScreenSize
+  },
   listContent:{
     default:{
       marginLeft:30,
-      fontSize:"2vw",
+      fontSize:14,
+      marginTop:20
     },
     smallScreen:{
-      fontSize:"4vw",
+      fontSize:14,
     },
     mobile:{
-      fontSize:"5vw",
+      fontSize:14,
       marginLeft:10,
     },
     bigScreen:{
-      fontSize:26,
+      fontSize:14,
     },
     get:styleMatchingScreenSize
 

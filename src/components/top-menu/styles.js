@@ -1,4 +1,4 @@
-
+var fontFamily="Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif";
 var styles={
   mql:window.matchMedia(`(min-width: 800px)`),
   narrowMobile:window.matchMedia(`(min-width: 350px)`),
@@ -57,21 +57,21 @@ var styles={
   },
 
   appDesktopTitle:{
-    fontSize: 20,
+    fontSize: 15,
     color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
-    fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
+    fontFamily:fontFamily
   },
   appMobileTitle:{
-    fontSize: 20,
+    fontSize: 15,
     color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
-    fontFamily:"Elysio-Light, Helvetica, Arial, sans-serif"
+    fontFamily:fontFamily
   },
   appVersion:{
-    fontFamily: "GiorgioSans-Regular",
+    fontFamily: fontFamily,
     fontSize: 12,
     color: "#5291CD",
     marginLeft:10
@@ -80,7 +80,7 @@ var styles={
       display:"flex",
       flexDirection:"row",
       justifyContent:"flex-end",
-      fontFamily: "GiorgioSans-Regular",
+      fontFamily: fontFamily,
       color: "#5291CD",
       fontSize: 12,
   },
@@ -88,7 +88,7 @@ var styles={
     display:"flex",
     flexDirection:"row",
     justifyContent:"flex-end",
-    fontFamily: "GiorgioSans-Regular",
+    fontFamily: fontFamily,
     color: "#5291CD",
     fontSize: 12,
   },
@@ -100,7 +100,8 @@ var styles={
     color: "#80ccff",
   },
   mobileMenu:{
-
+    
+    marginLeft:20
   },
   mobileMenuIcon:{
     fontWeight: 'normal',
@@ -116,12 +117,16 @@ var styles={
       borderTopWidth:5,
       boxShadow: "0 -5px 5px -5px #333"
   },
-  menuItems:{
-    position:"absolute",
+  menuItemsDesktop:{
     display:"flex",
     flexDirection:"row",
     right:0,
-    top:24
+    top:24,
+    width:"100%",
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"flex-end",
+    paddingRight:"10vw"
   },
   menuItemsMobile:{
     display:"flex",
@@ -140,7 +145,7 @@ var styles={
       textAlign: "center",
       padding: "8px 16px",
       textDecoration: "none",
-      fontSize: 17,
+      fontSize: 15,
       marginBottom: 0,
       color: "#5291CD",
       whiteSpace:"nowrap",

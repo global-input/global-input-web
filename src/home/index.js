@@ -38,22 +38,6 @@ export  default class HomeScreen extends Component {
        this.forceUpdate();
      }
 
-renderPageDescription(content, index){
-  return(
-        <div style={styles.appContent} key={index}>
-             {content}
-        </div>
-  );
-}
-
-renderHeaderItems(item,index){
-    return(
-      <li key={index}>
-        {item}
-      </li>
-    );
-
-}
 render() {
 
     return (
