@@ -11,20 +11,21 @@ import "./css/input.css";
 import "./css/simpleAnimate.css";
 import {pagelinks} from "./configs";
 
-import HomeScreen from "./home";
+
 import {DevelopersScreen} from "./developers";
 
 
 
+import HomeScreen from "./screens/home-screen";
+import ContentTransferScreen from "./screens/content-transfer-screen";
+import GameControlScreen from "./screens/game-game-control-screen";
+import SecondScreenHowItWorks from "./screens/second-screen-how-it-works";
+import TransferFormDataScreen from "./screens/transfer-form-data-screen";
+import SendMessageScreen from './screens/send-message-screen';
+import QRPrintingScreen from './screens/qr-printing-screen';
+import MediaPlayerScreen from "./screens/media-player-screen";
 
-import ContentTransferScreen from "./content-transfer-screen";
-import GameControlScreen from "./game-game-control-screen";
-import SecondScreenHowItWorks from "./second-screen-how-it-works";
-import TransferFormDataScreen from "./transfer-form-data-screen";
-import SendMessageScreen from './send-message-screen';
-import QRPrintingScreen from './qr-printing-screen';
-
-
+import ReadMoreScreen from "./screens/read-more-screen";
 
 
 
@@ -32,7 +33,7 @@ import {applicationPathConfig} from "./page-templates";
 
 import {PrivacyScreen} from "./privacy";
 import {ContactFormHome} from "./contact-form";
-import MediaPlayerScreen from "./media-player-screen";
+
 
 
 
@@ -53,7 +54,7 @@ export default class App extends Component{
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
             <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
-            
+
 
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
@@ -77,6 +78,8 @@ export default class App extends Component{
 
             <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
             <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
+
+            <Route path={ReadMoreScreen.pagePath} component={ReadMoreScreen}/>
 
         </div>
 

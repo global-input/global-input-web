@@ -1,5 +1,5 @@
 var fontFamily="Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif";
-var styles={
+export const styles={
   mql:window.matchMedia(`(min-width: 800px)`),
   narrowMobile:window.matchMedia(`(min-width: 350px)`),
   addMediaListener:function(listener){
@@ -26,30 +26,21 @@ var styles={
     position:"fixed",
     zIndex:100,
     top:0,
-    left:0
+    left:0,
+
   },
-  topnavmobile: {
+
+  topnav:{
     paddingRight:30,
+    position:"static",
     paddingTop:10,
     width:"100%",
     display:"flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor:"#EEEEEE",
-    borderBottomColor:'#CCCCCC',
-    borderBottomStyle:"solid",
-    shadowColor:"#888888",
-    shadowOffset:{ width: 10, height: 10 },
-    shadowOpacity: 0.75,
-    shadowRadius: 5,
-    elevation: 10,
+    backgroundColor:"white",
     alignItems: "center",
-
   },
-
-
-
-
   appTitleContainer:{
     marginLeft:10,
     paddingTop:5,
@@ -100,7 +91,7 @@ var styles={
     color: "#80ccff",
   },
   mobileMenu:{
-    
+
     marginLeft:20
   },
   mobileMenuIcon:{
@@ -199,9 +190,3 @@ var styles={
   },
 
 };
-styles.topnav=Object.assign({},styles.topnavmobile,{
-      justifyContent: "flex-start",
-});
-
-
-export {styles};

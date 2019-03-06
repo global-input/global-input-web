@@ -98,7 +98,7 @@ export  default class TopMenu extends Component {
 
     return(
     <div style={styles.topnavContainer}>
-          <div style={styles.topnavmobile}>
+          <div style={styles.topnav}>
             <div style={styles.mobileMenu}>
                {this.renderMenuItemSymbol()}
             </div>
