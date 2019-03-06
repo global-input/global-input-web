@@ -9,8 +9,8 @@ firstHalf:{
     backgroundImage: "url("+images.path39+")",
     backgroundRepeat: 'no-repeat',
     backgroundSize: "cover",
+
     
-    border:"1px solid red",
     display:"flex",
     flexDirection:"column",
     justifyContent:"flex-start",
