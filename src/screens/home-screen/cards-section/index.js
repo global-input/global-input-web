@@ -8,7 +8,7 @@ export default class CardSection extends React.Component{
 
     render(){
       return(
-            <div style={styles.cardContainer.get()}>
+            <div style={styles.cardContainer.get()}>              
               <AuthenticationDeviceSection/>
               <MobileInputControlSection/>
               <SecondScreenSection/>

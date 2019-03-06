@@ -1,89 +1,76 @@
 
 let screeMedia={
-  screen800:null,
-  screen1440:null,
-  screen600:null,
-  biggerThan800:function(){
-      if(!this.screen800){
-        this.screen800=window.matchMedia(`(min-width: 800px)`)
+      screenmedias:[],
+      biggerThan:function(width){
+          var matched=this.screenmedias.filter(s=>s.width===width);
+          if(matched.length){
+              return matched[0].media.matches;
+          }
+          const scm={
+                width,
+                media:window.matchMedia(`(min-width: ${width}px)`)
+          };
+          this.screenmedias.push(scm);
+          return scm.media.matches;
+      },
+  getScreenStyle:function(defaultStyle,specificStyle, target, name){
+      if(!target.computedStyles){
+        target.computedStyles=[];
       }
-      return this.screen800.matches;
-  },
-  biggerThan1440:function(){
-      if(!this.screen1440){
-        this.screen1440=window.matchMedia(`(min-width: 1440px)`)
+      var cStyle=target.computedStyles[name];
+      if(cStyle){
+          return cStyle;
       }
-      return this.screen1440.matches;
-  },
-  biggerThan600:function(){
-      if(!this.screen600){
-        this.screen600=window.matchMedia(`(min-width: 600px)`)
+      if(specificStyle){
+            if(defaultStyle){
+                cStyle=Object.assign({},defaultStyle,specificStyle);
+            }
+            else{
+                cStyle=specificStyle;
+            }
       }
-      return this.screen600.matches;
-  },
-
-
-
+      else{
+          cStyle=defaultStyle;
+      }
+      target.computedStyles[name]=cStyle;
+      return cStyle;
+  }
 };
 export function styleMatchingScreenSize(){
-  var that=this;  
-  var createScreenStyle=function(specStyle){
-      var st={};
-      if(that.default){
-            st=Object.assign(st,that.default);
-      }
-      if(specStyle){
-            st=Object.assign(st,specStyle);
-      }
-      return st;
-  };
-  if(!this.processed){
-      this.processed=true;
-      if(this.desktop){
-        this.desktop=createScreenStyle(this.desktop);
-      }
-      else{
-          if(this.default){
-              this.desktop=this.default;
-          }
-          else{
-            this.desktop=this.mobile;
-          }
-      }
-      if(this.mobile){
-        this.mobile=createScreenStyle(this.mobile);
-      }
-      else{
-          if(this.default){
-              this.mobile=this.default;
-          }
-          else{
-            this.mobile=this.desktop;
-          }
-      }
-      if(this.bigScreen){
-          this.bigScreen=createScreenStyle(this.bigScreen);
-      }
-      else{
-        this.bigScreen=this.desktop;
-      }
-      if(this.smallScreen){
-          this.smallScreen=createScreenStyle(this.smallScreen);
-      }
-      else{
-        this.smallScreen=this.mobile;
-      }
-  }
-  if(screeMedia.biggerThan1440()){
-      return this.bigScreen;
-  }
-  else if(screeMedia.biggerThan800()){
-          return this.desktop;
-  }
-  else if(screeMedia.biggerThan600()){
-          return this.smallScreen;
-  }
-  else{
-    return this.mobile;
-  }
+        if(this.bigScreen){
+
+            if(screeMedia.biggerThan(1440)){
+                console.log("bigger than 1440");
+                return screeMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen");
+            }
+        }
+        if(this.screen1245){
+            if(screeMedia.biggerThan(1245)){
+              return screeMedia.getScreenStyle(this.default,this.screen1245,this,"screen1245");
+            }
+        }
+        if(this.screen1080){
+            if(screeMedia.biggerThan(1080)){
+              return screeMedia.getScreenStyle(this.default,this.screen1080,this,"screen1080");
+            }
+        }
+        if(this.smallScreen){
+            if(screeMedia.biggerThan(800)){
+              return screeMedia.getScreenStyle(this.default,this.smallScreen,this,"smallScreen");
+            }
+        }
+        if(this.desktop){
+            if(screeMedia.biggerThan(600)){
+              return screeMedia.getScreenStyle(this.default,this.desktop,this,"desktop");
+            }
+        }
+        if(this.mobile){
+            if(screeMedia.biggerThan(600)){
+              return this.default;
+            }
+            else{
+              return screeMedia.getScreenStyle(this.default,this.mobile,this,"mobile");              
+            }
+        }
+        return this.default;
 }

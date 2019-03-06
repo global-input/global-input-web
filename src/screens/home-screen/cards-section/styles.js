@@ -28,8 +28,9 @@ export var styles={
         backgroundColor:"#FFFFFF",
         width:"30%",
         minHeight:300,
+
         paddingBottom:25,
-        borderRadius:25,
+        borderRadius:5,
         paddingTop:30
       },
       mobile:{

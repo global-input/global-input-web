@@ -1,20 +1,46 @@
 
+import {styleMatchingScreenSize} from "../../styles";
 const images={
-    path39:require("./path-39.svg"),
+    screen1440:require("./headbackground-1440.svg"),
+    screen1080:require("./headbackground-1080.svg"),
+    screen1245:require("./headbackground-1245.svg"),
+    screen800:require("./headbackground-800.svg"),
+    screen600:require("./headbackground-600.svg"),
+    headbackground:require("./headbackground.svg"),
+
+
+
 }
 export var styles={
 
 firstHalf:{
+    get:styleMatchingScreenSize,
+    default:{
+      backgroundImage: "url("+images.headbackground+")",
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: "cover",
+      width:"100%",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"flex-start"
+    },
+    desktop:{
+      backgroundImage: "url("+images.screen600+")",
+    },
+    smallScreen:{
+      backgroundImage: "url("+images.screen800+")",
+    },
+    screen1080:{
+      backgroundImage: "url("+images.screen1080+")",
+    },
+    screen1245:{
+      backgroundImage: "url("+images.screen1245+")",
+    },
+    bigScreen:{
+      backgroundImage: "url("+images.screen1440+")"
+    }
 
-    backgroundImage: "url("+images.path39+")",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: "cover",
-
-    
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"flex-start",
-    alignItems:"flex-start"
 
 },
   title:{

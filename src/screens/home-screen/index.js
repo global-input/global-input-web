@@ -17,9 +17,6 @@ import MediaPlayerScreen from "../../screens/media-player-screen";
 import ContentTransferScreen from "../../screens/content-transfer-screen";
 import HowItWorks from "./how-it-works";
 
-const img={
-    path39:require("./path-39.svg")
-};
 
 export  default class HomeScreen extends Component {
 
@@ -42,16 +39,17 @@ export  default class HomeScreen extends Component {
      }
 
 render() {
-
+    var firstHalf=styles.firstHalf.get();
+    console.log(firstHalf.backgroundImage);
     return (
 
           <div style={styles.content}>
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
 
-            <div style={styles.firstHalf}>
+            <div style={styles.firstHalf.get()}>
 
                 <HeaderSection/>
-                
+
                 <CardSection/>
                 <HowItWorks/>
                 <BookMark bookmark={pagelinks.app.bookmark}/>
