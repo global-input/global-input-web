@@ -13,8 +13,8 @@ import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../../page-t
 import HeaderSection from "./header-section";
 import TopHeaderSection from "../../top-header-section";
 import CardSection from "./cards-section";
-import MediaPlayerScreen from "../../screens/media-player-screen";
-import ContentTransferScreen from "../../screens/content-transfer-screen";
+import MediaPlayerScreen from "../../screens/examples/media-player-screen";
+import ContentTransferScreen from "../../screens/examples/content-transfer-screen";
 import HowItWorks from "./how-it-works";
 
 
@@ -39,16 +39,14 @@ export  default class HomeScreen extends Component {
      }
 
 render() {
-    var firstHalf=styles.firstHalf.get();
-    console.log(firstHalf.backgroundImage);
-    return (
 
+    return (
           <div style={styles.content}>
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
 
             <div style={styles.firstHalf.get()}>
 
-                <HeaderSection/>
+                <HeaderSection history={this.props.history}/>
 
                 <CardSection/>
                 <HowItWorks/>

@@ -1,8 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 import {LinkItem} from '../../../components';
+import TextButton from '../../../components/text-button';
 import {styles} from "./styles";
-
-
+import TopHeaderSection from "../../get-app-screen";
+import GetAppScreen from '../../get-app-screen';
 
 var textContent={
 
@@ -34,8 +36,7 @@ const headerTextContent={
 
 var images={
   header:require('./Group-52.png'),
-  appStore:require('./app-store.png'),
-  playStore:require('./play-store.png'),
+
   watchVideo:require('./watch-video-icon.png'),
 }
 
@@ -55,6 +56,9 @@ export  default class HeaderSection extends Component {
      onWindowResize(){
        this.forceUpdate();
      }
+     toGetGIAApp(){
+       this.props.history.push(TopHeaderSection.pagePath, null);
+     }
     renderHeaderItems(item,index){
         return(
           <li key={index}>
@@ -72,23 +76,24 @@ render() {
                     <div style={styles.title.get()}>{headerTextContent.title}</div>
                     <div style={styles.subtitle.get()}>{headerTextContent.subtitle}</div>
                   <div style={styles.listContent.get()}>
-                   <ul>
+                   <ul className="listmenu">
                       {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
                   </ul>
                   </div>
                   <div style={styles.appSelection.get()}>
                       <div style={styles.appDescription.get()}>
-
                           <LinkItem href={textContent.introduction.demo.url}
                             image={images.watchVideo} textStyle={styles.watchVideoText}>
                                 {textContent.introduction.demo.linkText}
                           </LinkItem>
-                      </div>
-                      <div style={styles.appDownload}>
-                          <img src={images.appStore} style={styles.appStoreImage}/>
+                          <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
+                                  {GetAppScreen.menu.linkText}
+                          </Link>
 
-                          <img src={images.playStore} style={styles.appStoreImage}/>
+
+
                       </div>
+
 
 
 

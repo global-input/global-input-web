@@ -1,6 +1,6 @@
 
 import {pagelinks} from "../../../configs";
-import TransferFormDataScreen from "../../../screens/transfer-form-data-screen";
+import TransferFormDataScreen from "../../../screens/examples/transfer-form-data-screen";
 const aboutGlobalInputConfig={
   appTitle:"Global Input",
   appSubtitle:"Global Input App",

@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../styles";
+import {styleMatchingScreenSize} from "../../../utils/screenMedia";
 
 const images={
     path50:require("./path-50.svg"),
@@ -12,33 +12,46 @@ headerContainer:{
   width:"100%",
   position:"relative",
   top:49,
-  paddingBottom:200  
+  paddingBottom:200
 },
   rightImage:{
      default:{
             position:"absolute",
             top:100,
             paddingRight:50,
-            maxWidth: "60%",
             height: "auto",
             marginRight:10,
+          },
+          bigScreen:{
+            right:0
+          },
+          screen1245:{
+            right:0
+          },
+          screen1080:{
+            right:0,
+            top:30,
+            width:"40vw",
+
 
           },
+          smallScreen:{
+            right:0,
+            top:40,
+            width:"35vw",
 
-        desktop:{
-                 position:"absolute",
-                 right:0,
-                 maxWidth: "55%",
-                 height: "auto",
-                 marginRight:10,
-               },
+          },
+          desktop:{
+            right:0,
+            top:40,
+            width:"45vw"            
+          },
+          mobile:{
+            position:"static",
 
-      mobile:{
-        position:"static",
-        maxWidth: "100%",
-        height: "auto",
-        marginTop:30
-      },
+            height: "auto",
+            marginTop:30
+          },
       get:styleMatchingScreenSize
   },
 
@@ -121,6 +134,9 @@ headerContainer:{
       default:{
         paddingBottom:10,
         fontSize:"2vw",
+        display:"flex",
+        flexDirection:"row",
+        marginTop:20
       },
       smallScreen:{
         fontSize:"4vw",

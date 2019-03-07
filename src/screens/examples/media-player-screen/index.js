@@ -1,10 +1,11 @@
 import React from 'react';
-import TopHeaderSection from "../../top-header-section";
+import TopHeaderSection from "../../../top-header-section";
 import {styles} from "./styles";
-import {applicationPathConfig} from "../../page-templates";
-import MediaPlayerControlExample from "../../examples/media-player-control-example";
+import {applicationPathConfig} from "../../../page-templates";
+import MediaPlayerControlExample from "../../../examples/media-player-control-example";
 export default class MediaPlayerScreen extends React.Component{
   static pagePath="/global-input-app/video-player"
+  static linkText="Video Player"
   render(){
     return(
       <React.Fragment>

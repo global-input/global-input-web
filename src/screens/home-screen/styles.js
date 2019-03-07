@@ -1,5 +1,5 @@
 
-import {styleMatchingScreenSize} from "../../styles";
+import {styleMatchingScreenSize} from "../../utils/screenMedia";
 const images={
     screen1440:require("./headbackground-1440.svg"),
     screen1080:require("./headbackground-1080.svg"),
@@ -23,7 +23,8 @@ firstHalf:{
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
-      alignItems:"flex-start"
+      alignItems:"flex-start",
+      backgroundColor:"#A9C8E6", //#4880ED
     },
     desktop:{
       backgroundImage: "url("+images.screen600+")",
@@ -63,7 +64,7 @@ firstHalf:{
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-     backgroundColor:"#A9C8E6", //#4880ED
+      backgroundColor:"#A9C8E6", //#4880ED
       width:"100%",
 
   },

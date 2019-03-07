@@ -1,5 +1,5 @@
 
-import {styleMatchingScreenSize} from "../../../styles";
+import {styleMatchingScreenSize} from "../../../utils/screenMedia";
 
 
 

@@ -13,15 +13,16 @@ import sendMessageConfig from "./sendMessageConfig";
 
 import videoPlayerConfig from "./videoPlayerConfig";
 
-
+import GetAppScreen from "../../screens/get-app-screen";
 
 const applicationPathConfig={
     appTitle:homeTextConfig.title,
     menus:[
         homeTextConfig.menu,
-        //platformTextConfig.menu,        
+        //platformTextConfig.menu,
         privacyConfig.menu,
         contactUsConfig.menu,
+        GetAppScreen.menu
     ],
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,

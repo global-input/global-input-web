@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../styles";
+import {styleMatchingScreenSize} from "../../utils/screenMedia";
 export const styles={
   title:{
     desktop:{

@@ -3,7 +3,7 @@ import {styles, images} from "./styles";
 import {LinkItem} from '../../../components';
 import {pagelinks} from "../../../configs";
 import SecondScreenHowItWorks from "../../../screens/second-screen-how-it-works";
-import MediaPlayerScreen from "../../../screens/media-player-screen";
+import MediaPlayerScreen from "../../../screens/examples/media-player-screen";
 var textContent={
     title:"Second Screen",
     description:"A simple and innovative solution to introduce the Second Screen to the existing Smart TV applications.",

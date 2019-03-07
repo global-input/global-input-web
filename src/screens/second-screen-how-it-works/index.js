@@ -1,6 +1,6 @@
 import React from 'react';
 import TopHeaderSection from "../../top-header-section";
-import MediaPlayerScreen from "../../screens/media-player-screen";
+import MediaPlayerScreen from "../../screens/examples/media-player-screen";
 import {styles,images} from "./styles";
 import {applicationPathConfig} from "../../page-templates";
 import LinkItem from "../../components/link-item";

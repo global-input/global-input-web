@@ -17,17 +17,18 @@ import {DevelopersScreen} from "./developers";
 
 
 import HomeScreen from "./screens/home-screen";
-import ContentTransferScreen from "./screens/content-transfer-screen";
-import GameControlScreen from "./screens/game-game-control-screen";
+import ContentTransferScreen from "./screens/examples/content-transfer-screen";
+import GameControlScreen from "./screens/examples/game-game-control-screen";
 import SecondScreenHowItWorks from "./screens/second-screen-how-it-works";
-import TransferFormDataScreen from "./screens/transfer-form-data-screen";
-import SendMessageScreen from './screens/send-message-screen';
-import QRPrintingScreen from './screens/qr-printing-screen';
-import MediaPlayerScreen from "./screens/media-player-screen";
+import TransferFormDataScreen from "./screens/examples/transfer-form-data-screen";
+import SendMessageScreen from './screens/examples/send-message-screen';
 
-import ReadMoreScreen from "./screens/read-more-screen";
+import QRPrintingScreen from './screens/examples/qr-printing-screen';
+import MediaPlayerScreen from "./screens/examples/media-player-screen";
 
+import LearnMoreScreen from "./screens/learn-more-screen";
 
+import GetAppScreen from './screens/get-app-screen';
 
 import {applicationPathConfig} from "./page-templates";
 
@@ -79,7 +80,8 @@ export default class App extends Component{
             <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
             <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
 
-            <Route path={ReadMoreScreen.pagePath} component={ReadMoreScreen}/>
+            <Route path={LearnMoreScreen.pagePath} component={LearnMoreScreen}/>
+            <Route path={GetAppScreen.pagePath} component={GetAppScreen}/>
 
         </div>
 
