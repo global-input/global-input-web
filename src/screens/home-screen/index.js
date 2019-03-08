@@ -40,7 +40,7 @@ export  default class HomeScreen extends Component {
      }
 
 render() {
-this.processScrollTo(this.props);
+
     return (
           <div style={styles.content}>
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
@@ -62,7 +62,7 @@ this.processScrollTo(this.props);
 
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
-          
+
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
                    content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerScrollingText}
@@ -156,22 +156,5 @@ this.processScrollTo(this.props);
 
             );
   }
-  processScrollTo(props){
-
-    var scrollTo=props.scrollTo;
-    if(scrollTo){
-      setTimeout(function(){
-            var elmnt = document.getElementById(scrollTo);
-            if(elmnt){
-                elmnt.scrollIntoView();
-                window.scrollBy({top: -70,behavior: "smooth"});
-            }
-            else{
-              console.log("not found")
-            }
-
-      },500);
-    }
-
-  }
+  
 }
