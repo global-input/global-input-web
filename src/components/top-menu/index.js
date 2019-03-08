@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 import {styles} from "./styles";
-
+import {screeMedia} from "./screenMedia";
 
 export  default class TopMenu extends Component {
   constructor(props){
@@ -26,7 +26,7 @@ export  default class TopMenu extends Component {
   componentWillUnmount() {
       window.removeEventListener("resize", this.onWindowResize);
   }
-  
+
 
 
   menuPressed(){
@@ -44,11 +44,7 @@ export  default class TopMenu extends Component {
       return(<MenuItem  menu={menu} selected={this.props.selected} key={key}/>);
   }
 
-  renderDesktopMenuItems(){
-    return(<div style={styles.menuItems}>{this.props.menus.map(this.renderMenuItem.bind(this))}</div>
-        );
 
-  }
 
 
 
@@ -80,7 +76,9 @@ export  default class TopMenu extends Component {
     return (
               <div style={styles.topnavContainer}>
                    <div style={styles.topnav}>
+                        <a href="/">
                         <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
+                        </a>
                         <div style={styles.appTitleContainer}>
                                 <div style={styles.appDesktopTitle}>{this.props.appTitle}</div>
                                 {this.renderDesktopSubtitle()}
@@ -92,24 +90,7 @@ export  default class TopMenu extends Component {
             );
   }
 
-  renderMobile(){
 
-    return(
-    <div style={styles.topnavContainer}>
-          <div style={styles.topnavmobile}>
-                 <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
-                 <div style={styles.appTitleContainer}>
-                         <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
-                         {this.renderMobileSubtitle()}
-                 </div>
-                 <div style={styles.mobileMenu}>
-                    {this.renderMenuItemSymbol()}
-                </div>
-          </div>
-          {this.renderMobileMenuItems()}
-    </div>
-  );
-  }
   renderMenuItemSymbol(){
       if(this.state.menuPressed){
         return(
@@ -143,7 +124,7 @@ export  default class TopMenu extends Component {
                {this.props.menus.map(this.renderMenuItem.bind(this))}
                {this.renderTransparentSection()}
 
-       </div>);
+          </div>);
        }
        else{
          return null;
@@ -154,12 +135,40 @@ export  default class TopMenu extends Component {
       if(!this.props.menus){
          return null;
       }
-      else if(styles.isDesktop()){
+      else if(screeMedia.biggerThan(600)){
          return this.renderDeskTop();
       }
       else{
         return this.renderMobile();
       }
+  }
+  renderDesktopMenuItems(){
+    return(<div style={styles.menuItemsDesktop}>
+                  {this.props.menus.map(this.renderMenuItem.bind(this))}
+        </div>
+        );
+
+  }
+  renderMobile(){
+
+    return(
+    <div style={styles.topnavContainer}>
+          <div style={styles.topnav}>
+            <div style={styles.mobileMenu}>
+               {this.renderMenuItemSymbol()}
+            </div>
+            <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
+
+           <div style={styles.appTitleContainer}>
+                         <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
+                         {this.renderMobileSubtitle()}
+          </div>
+
+
+          </div>
+          {this.renderMobileMenuItems()}
+    </div>
+  );
   }
 
 }
@@ -183,10 +192,20 @@ class MenuItem extends Component{
     }
     var linkText=this.props.menu.linkText;
     var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
+        var stname=null;
+        if(this.state.hover){
+            stname="hover";
+        }
+        else if(isSelected){
+            stname="selected";
+        }
+        let menuItemStyle=styles.menuItem;
+        if(this.props.menu.styles && this.props.menu.styles.menuItem){
+            menuItemStyle=this.props.menu.styles.menuItem;
+        }
 
 
-
-        return(<Link to={link} style={styles.menuItem(isSelected, this.state.hover)}
+        return(<Link to={link} style={menuItemStyle.get(stname)}
               onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)} data-testid="top-menu-item">
                 {linkText}
               </Link>);

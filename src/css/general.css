@@ -1,5 +1,5 @@
 .topContainer{
-font-family: sans-serif;
+font-family: 'Tisa Sans Pro',sans-serif;
    width:100%;
    display: flex;
    flex-direction: column;
@@ -8,7 +8,7 @@ font-family: sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Tisa Sans Pro','Roboto', sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 20px;
@@ -21,7 +21,7 @@ h2.section-heading {
 }
 h3.section-subheading {
 font-size: 17px;
-font-family: 'Roboto', sans-serif;
+font-family: 'Tisa Sans Pro','Roboto', sans-serif;
 text-transform: none;
 font-weight: 300;
 color: #6f7c82;
@@ -48,7 +48,7 @@ h2 {
   color: white;
   background-color: #617fde;
   border-color: #617fde;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Tisa Sans Pro','Roboto', sans-serif;
   text-transform: uppercase;
   font-weight: 400;
   border-radius: 50px;
@@ -64,7 +64,7 @@ margin-bottom: 50px;
 }
 
 .subheader {
-font-family: 'Roboto', sans-serif;
+font-family: 'Tisa Sans Pro','Roboto', sans-serif;
 font-weight: 500;
 font-size: 20px;
 color: #333;
@@ -101,3 +101,30 @@ a:hover{
 }
 
 .buttonOnBlue { text-decoration: none !important; border:1px solid white;}
+
+
+ul.listmenu {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+ul.listmenu li {
+  display: inline;
+  /* white-space: nowrap should be moved to child A because IE fails to wrap resulting list completely */
+}
+ul.listmenu li::before {
+  content: ' ';
+  /*
+  this content is important only for Crome in case the HTML will be minified with no whitespaces between </li><li>
+  */
+}
+ul.listmenu li::after {
+  content: ' ';
+  white-space: normal;
+  word-spacing: 1em; /* = nav@padding-right - this actually makes width */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='16'><rect fill='6052cd' x='0' y='0' width='10%' height='100%'/></svg>");
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+  background-position: left 5px top 2px;
+  opacity: 0.5;
+}

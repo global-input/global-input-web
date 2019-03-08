@@ -8,10 +8,11 @@ export default class TextButton extends Component{
       var styles={
             enabled:{
               backgroundColor:"#5291CD",
-              borderRadius:8,
-              border:"3px solid #2281ab",
+              borderRadius:5,
               margin:"5vw",
-              color:"white"
+              color:"white",
+              padding:10,
+              minWidth:150,
             },
             disabled:{
               backgroundColor:"#888888",

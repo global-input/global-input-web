@@ -11,29 +11,31 @@ import "./css/input.css";
 import "./css/simpleAnimate.css";
 import {pagelinks} from "./configs";
 
-import HomeScreen from "./home";
+
 import {DevelopersScreen} from "./developers";
 
 
 
+import HomeScreen from "./screens/home-screen";
+import ContentTransferScreen from "./screens/examples/content-transfer-screen";
+import GameControlScreen from "./screens/examples/game-game-control-screen";
+import SecondScreenHowItWorks from "./screens/second-screen-how-it-works";
+import TransferFormDataScreen from "./screens/examples/transfer-form-data-screen";
+import SendMessageScreen from './screens/examples/send-message-screen';
 
-import ContentTransferScreen from "./content-transfer-screen";
-import GameControlScreen from "./game-game-control-screen";
-import SecondScreenHowItWorks from "./second-screen-how-it-works";
-import TransferFormDataScreen from "./transfer-form-data-screen";
-import SendMessageScreen from './send-message-screen';
-import QRPrintingScreen from './qr-printing-screen';
+import QRPrintingScreen from './screens/examples/qr-printing-screen';
+import MediaPlayerScreen from "./screens/examples/media-player-screen";
 
+import LearnMoreScreen from "./screens/learn-more-screen";
 
-
-
+import GetAppScreen from './screens/get-app-screen';
 
 import {applicationPathConfig} from "./page-templates";
 
-import {PrivacyScreen} from "./privacy";
-import {ContactFormHome} from "./contact-form";
-import MediaPlayerScreen from "./media-player-screen";
+//import {PrivacyScreen} from "./privacy";
 
+import PrivacyScreen from './screens/privacy-screen';
+import ContactUsScreen from "./screens/contact-us-screen";
 
 
 
@@ -53,18 +55,18 @@ export default class App extends Component{
             <Route  path={pagelinks.app.link2}  component={HomeScreen}/>
 
             <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
-            
+
 
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
 
 
-           <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
 
 
 
-            <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
+
+
 
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
@@ -77,6 +79,13 @@ export default class App extends Component{
 
             <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
             <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
+
+            <Route path={LearnMoreScreen.pagePath} component={LearnMoreScreen}/>
+            <Route path={GetAppScreen.pagePath} component={GetAppScreen}/>
+            <Route path={PrivacyScreen.pagePath} component={PrivacyScreen}/>
+            <Route path={ContactUsScreen.pagePath} component={ContactUsScreen}/>
+
+
 
         </div>
 
