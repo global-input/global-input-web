@@ -31,7 +31,7 @@ const headerTextContent={
 
 
 var images={
-  header:require('./Group-52.png'),
+  header:require('./right-poster.png'),
 
   watchVideo:require('./watch-video-icon.png'),
 }

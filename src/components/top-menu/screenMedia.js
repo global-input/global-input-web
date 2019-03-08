@@ -77,7 +77,7 @@ export function styleMatchingScreenSize(namedState){
             }
         }
         if(this.narrowMobile){
-            if(!screeMedia.biggerThan(350)){
+            if(!screeMedia.biggerThan(361)){
               return screeMedia.getScreenStyle(this.default,this.narrowMobile,this,"narrowMobile",namedState);
             }
         }

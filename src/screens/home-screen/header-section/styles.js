@@ -48,9 +48,9 @@ headerContainer:{
           },
           mobile:{
             position:"static",
-
             height: "auto",
-            marginTop:30
+            marginTop:30,
+            width:450,
           },
       get:styleMatchingScreenSize
   },
@@ -137,7 +137,7 @@ headerContainer:{
         display:"flex",
         flexDirection:"row",
         marginTop:20,
-        marginLeft:50,        
+        marginLeft:50,
       },
       smallScreen:{
         fontSize:"4vw",
