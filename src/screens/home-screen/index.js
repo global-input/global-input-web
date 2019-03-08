@@ -16,7 +16,7 @@ import CardSection from "./cards-section";
 import MediaPlayerScreen from "../../screens/examples/media-player-screen";
 import ContentTransferScreen from "../../screens/examples/content-transfer-screen";
 import HowItWorks from "./how-it-works";
-
+import FooterSection from '../../footer-section';
 
 export  default class HomeScreen extends Component {
 
@@ -28,6 +28,7 @@ export  default class HomeScreen extends Component {
          window.addEventListener("resize", this.onWindowResize);
 
          genericUtil.processQueryParameters(this.props);
+
      }
 
 
@@ -39,7 +40,7 @@ export  default class HomeScreen extends Component {
      }
 
 render() {
-
+this.processScrollTo(this.props);
     return (
           <div style={styles.content}>
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
@@ -61,6 +62,7 @@ render() {
 
 
           <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
+          
           <div style={styles.itemSection}>
                 <DisplayTextImage title={applicationPathConfig.videoPlayer.title}
                    content={applicationPathConfig.videoPlayer.content} image={images.videoPlayerScrollingText}
@@ -144,7 +146,7 @@ render() {
 
 
 
-
+            <FooterSection/>
 
           </div>
 
@@ -153,5 +155,23 @@ render() {
 
 
             );
+  }
+  processScrollTo(props){
+
+    var scrollTo=props.scrollTo;
+    if(scrollTo){
+      setTimeout(function(){
+            var elmnt = document.getElementById(scrollTo);
+            if(elmnt){
+                elmnt.scrollIntoView();
+                window.scrollBy({top: -70,behavior: "smooth"});
+            }
+            else{
+              console.log("not found")
+            }
+
+      },500);
+    }
+
   }
 }

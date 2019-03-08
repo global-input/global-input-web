@@ -44,7 +44,14 @@ export  default class AutoPlayVideo extends Component {
           this.videoAutoPlayed=true;
           if(this.videoPlayer.paused){
             console.log("autoplayed");
-            this.videoPlayer.play();
+            try{
+                this.videoPlayer.play().catch(error=>{
+                  console.log("error:"+error);
+                });
+              }
+              catch(error){
+                console.error("caused exception in this.videoPlayer.play():"+error);
+              }
           }
           else{
                 console.log("stopping autoplay because it is may be played manually");
@@ -53,6 +60,7 @@ export  default class AutoPlayVideo extends Component {
 
       }
       else{
+        console.log("no in view");
         if(!this.videoAutoPlayed){
            return;
         }

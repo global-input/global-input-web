@@ -5,15 +5,11 @@ import TextButton from '../../../components/text-button';
 import {styles} from "./styles";
 import TopHeaderSection from "../../get-app-screen";
 import GetAppScreen from '../../get-app-screen';
+import LearnMoreScreen from '../../learn-more-screen';
 
 var textContent={
 
-    introduction:{
-      demo:{
-        linkText:"Intro Video",
-        url:"https://www.youtube.com/watch?v=HzeTY1TA4V8"
-      },
-    },
+
 
 
 };
@@ -82,10 +78,11 @@ render() {
                   </div>
                   <div style={styles.appSelection.get()}>
                       <div style={styles.appDescription.get()}>
-                          <LinkItem href={textContent.introduction.demo.url}
-                            image={images.watchVideo} textStyle={styles.watchVideoText}>
-                                {textContent.introduction.demo.linkText}
-                          </LinkItem>
+
+                        <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
+                                {LearnMoreScreen.menu.linkText}
+                        </Link>
+
                           <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
                                   {GetAppScreen.menu.linkText}
                           </Link>

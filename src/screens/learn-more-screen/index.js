@@ -5,11 +5,12 @@ import {styles,images} from './styles';
 import TopHeaderSection from "../../top-header-section";
 import AutoPlayVideo from "../../components/auto-play-video";
 import {exampleLinks} from '../examples';
-
+import {styleMatchingScreenSize} from "../../utils/screenMedia";
 const textContent={
     title:"Global Input App",
-    video:{
-        url:"https://media.iterativesolution.co.uk/video/short-part-intro.mp4"
+    videos:{
+        shortNoVoice:"https://media.iterativesolution.co.uk/video/short-part-intro.mp4",
+        full:"https://www.youtube.com/watch?v=HzeTY1TA4V8"
     },
     subtitle:"A Unified & Simple Solution for",
     items:["Mobile Input & Mobile Control",
@@ -40,7 +41,10 @@ const textContent={
     },
     encryptedStorage:{
         title:"Portable Encrypted Storage",
-        first:[""]
+        first:["Global Input App provides applications with encrypted storage on user mobiles. The data are encrypted with encryption keys that are in turn encrypted with a master encryption key generated from the user app password. In this encryption keys hiearchy, sits on the top is the app user password, which is not stored anywhere. Hence, on the start of each session, the user has to provide the password, which is used for encrypting/decrypting the encryption keys. The encryption keys, in turn, are used for encrypting/decrypting the data stored in the encrypted storage.",
+        "This means that even if somebody has physically got hold of the device, and bypassed the device security such as biometric authentication or device password authentication somehome, the data is still secure.",
+        "Also data will always stay encrypted until to the point of actual use and the decrypted data will be discarded immediately after the use, minimising the reliance on the system security.",
+        "Confidential data such as user crendentials, personal information, user preferences for personalized experiences etc. can be stored in the mobile storage securely. The connected application can send data to the user for storing for later use. When this happens, the user will be presented with an option of saving the data into the storage. Later when the application requires the data, he/she can select and inspect the selected data content and push it to the application on demand."]
 
     }
 
@@ -48,6 +52,40 @@ const textContent={
 
 export default class LearnMoreScreen extends React.Component{
   static pagePath="/global-input-app/learn-more"
+  static menu={
+        link:"/global-input-app/learn-more",
+        linkText:"Learn More",
+        styles:{
+                menuItem:{
+                  get:styleMatchingScreenSize,
+                  default:{
+                    float: "left",
+                    display: "block",
+                    textAlign: "center",
+                    textDecoration: "none",
+                    fontSize: 15,
+                    borderRadius:25,
+                    color: "#4281BD",
+                    backgroundColor:"white",
+                    whiteSpace:"nowrap",
+                    fontWeight:300,
+                    padding:10,
+                    maxHeight:40,
+                    marginLeft:20
+                  },
+
+                  selected:{
+                      color:"#002080",
+                      fontWeight:500
+                  },
+                  hover:{
+                      color:"#66ccff",
+                      fontWeight:300
+                  }
+
+                }
+          }
+   }
   constructor(props){
     super(props);
     this.onWindowResize=this.onWindowResize.bind(this);
@@ -65,13 +103,14 @@ export default class LearnMoreScreen extends React.Component{
       this.forceUpdate();
    }
    renderVideo(){
-     //return(<AutoPlayVideo video={textContent.video.url}/>);
-     return null;
+     return(<AutoPlayVideo video={textContent.videos.shortNoVoice} muted={true}/>);
+     //return null;
    }
   render(){
       return(
         <div style={styles.content}>
             <TopHeaderSection/>
+            <a href={textContent.videos.full} target="_blank">
             <div style={styles.tv.container.get()}>
                   <div styles={styles.tv.inner}>
                       <img src={images.computer} style={styles.tv.img}/>
@@ -80,6 +119,7 @@ export default class LearnMoreScreen extends React.Component{
                     </div>
                   </div>
             </div>
+            </a>
             <div style={styles.textContent}>
               <div style={styles.title.get()}>{textContent.title}</div>
               <div style={styles.subtitle.get()}>{textContent.subtitle}</div>

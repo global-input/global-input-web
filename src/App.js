@@ -32,10 +32,10 @@ import GetAppScreen from './screens/get-app-screen';
 
 import {applicationPathConfig} from "./page-templates";
 
-import {PrivacyScreen} from "./privacy";
-import {ContactFormHome} from "./contact-form";
+//import {PrivacyScreen} from "./privacy";
 
-
+import PrivacyScreen from './screens/privacy-screen';
+import ContactUsScreen from "./screens/contact-us-screen";
 
 
 
@@ -62,11 +62,11 @@ export default class App extends Component{
             <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
 
 
-           <Route  path={applicationPathConfig.about.contact.menu.link}  component={ContactFormHome}/>
 
 
 
-            <Route  path={applicationPathConfig.about.privacy.menu.link}  component={PrivacyScreen}/>
+
+
 
           <Route  path={applicationPathConfig.videoPlayer.menu.link}  component={MediaPlayerScreen}/>
 
@@ -82,6 +82,10 @@ export default class App extends Component{
 
             <Route path={LearnMoreScreen.pagePath} component={LearnMoreScreen}/>
             <Route path={GetAppScreen.pagePath} component={GetAppScreen}/>
+            <Route path={PrivacyScreen.pagePath} component={PrivacyScreen}/>
+            <Route path={ContactUsScreen.pagePath} component={ContactUsScreen}/>
+
+
 
         </div>
 

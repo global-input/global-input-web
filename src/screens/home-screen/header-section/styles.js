@@ -44,7 +44,7 @@ headerContainer:{
           desktop:{
             right:0,
             top:40,
-            width:"45vw"            
+            width:"45vw"
           },
           mobile:{
             position:"static",
@@ -136,7 +136,8 @@ headerContainer:{
         fontSize:"2vw",
         display:"flex",
         flexDirection:"row",
-        marginTop:20
+        marginTop:20,
+        marginLeft:50,        
       },
       smallScreen:{
         fontSize:"4vw",

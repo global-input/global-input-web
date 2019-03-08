@@ -22,22 +22,6 @@ export const styles={
       color:"#5291CD"
   },
 
-  cardContainer:{
-      get:styleMatchingScreenSize,
-      default:{
-        marginTop:200,
-        marginLeft:100,
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"flex-start",
-        alignItems:"center",
-        width:"100%",
-      },
-      mobile:{
-        flexDirection:"column",
-        justifyContent:"flex-start",
-      }
-   },
 
   rightImage:{
      default:{
@@ -62,72 +46,81 @@ export const styles={
           },
           get:styleMatchingScreenSize
   },
-  card:{
-       get:styleMatchingScreenSize,
-       default:{
-         display:"flex",
-         flexDirection:"column",
-         justifyContent:"flex-start",
-         alignItems:"flex-start",
-         backgroundColor:"#FFFFFF",
-         minWidth:350,
-         minHeight:300,
-         paddingBottom:25,
-         borderRadius:5,
-         paddingTop:80,
 
-       },
-       mobile:{
-         width:"100%",
-         marginBottom:30
-       },
-
-
-
-  },
   title:{
          default:{
-            fontSize:"2vw",
-            display:"flex",
-            flexDirection:"row",
-            width:"100%",
-            justifyContent:"center"
+            fontSize:"3vw",
+            color:"white",
+            paddingLeft:"7vw",
          },
          mobile:{
-           fontSize:"6vw",
+
          },
          get:styleMatchingScreenSize
   },
-  cardContent:{
+  smallp:{
+         default:{
+            fontSize:"16",
+            color:"white",
+            width:"40vw",
+            paddingLeft:20,
+         },
+         mobile:{
+            width:"100%",
+         },
+         get:styleMatchingScreenSize
+  },
+
+  description:{
     default:{
-      width:"100%",
-      display:"flex",
-      flexDirection:"column",
-      justifyContent:"flex-start",
-      alignItems:"flex-start",
-      paddingLeft:20,
-      paddingRight:20,
-      paddingTop:20,
-      fontSize:"1.3vw",
-
-
+       paddingLeft:"7vw",
+       width:"42vw",
+       marginTop:10,
+       minHeight:50
     },
     mobile:{
-       fontSize:"4vw",
+      fontSize:"6vw",
+
     },
     get:styleMatchingScreenSize
+  },
+  textContent:{
+    paddingTop:150,
+    width:"100%",
+  },
+  appStoreImage:{
+    marginLeft:20,
+    marginTop:20,
+  },
+  appStoreLink:{
+
+
 
   },
-  appDownload:{
+  nextLinkContainer:{
+     display:"flex",
+     flexDirection:"row",
+     justifyContent:"flex-start",
+     marginTop:20,
+     marginLeft:50
+  },
 
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"flex-end",
-    width:"100%",
-  }
-
-
+  nextContainer:{
+      marginTop:100,
+      marginLeft:20
+  },
+  subtitle:{
+         default:{
+            fontSize:30,
+            color:"white",
+            width:"40vw",
+            paddingLeft:20,
+         },
+         mobile:{
+            width:"100%",
+         },
+         get:styleMatchingScreenSize
+  },
 
 
 
