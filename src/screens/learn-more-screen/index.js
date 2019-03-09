@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {styles,images} from './styles';
 import TopHeaderSection from "../../top-header-section";
 import AutoPlayVideo from "../../components/auto-play-video";
-import {exampleLinks} from '../examples';
+import examples from '../examples';
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 const textContent={
     title:"Global Input App",
@@ -182,7 +182,7 @@ onInput:value => searchContent(value)
 
 
                   <div styles={styles.card.exampleContainer}>
-                    {exampleLinks.map(this.listExample.bind(this))}
+                    {examples.renderAllLinks()}                    
                   </div>
 
 
@@ -190,13 +190,7 @@ onInput:value => searchContent(value)
 
     );
   }
-  listExample(example, index){
 
-      return(
-          <Link to={example.link} key={index} style={styles.examplelink.get()}>{example.linkText}</Link>
-      );
-
-  }
 
   renderDeviceToDevice(){
     return(

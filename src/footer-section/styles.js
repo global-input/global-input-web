@@ -1,3 +1,4 @@
+import {styleMatchingScreenSize} from "../utils/screenMedia";
 export const images={
     backgroundimage:require('./background.svg'),
     whatsapp:require('./whatsapp.svg'),
@@ -15,7 +16,8 @@ export const styles={
       width:"100%",
       minHeight:300,
       color:"white",
-      
+      paddingLeft:50,
+      paddingBottom:50
     },
     titleContainer:{
       width:"100%",
@@ -37,12 +39,18 @@ export const styles={
       marginRight:100
     },
     contactContainer:{
-      width:"100%",
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"center",
-      marginTop:50,
-      marginBottom:100
+      get:styleMatchingScreenSize,
+      default:{
+              width:"100%",
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"center",
+              marginTop:50,
+              marginBottom:100
+      },
+      mobile:{
+            flexDirection:"column",
+      }
     },
     contact:{
         container:{

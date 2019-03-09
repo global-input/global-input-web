@@ -1,6 +1,10 @@
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 export const images={
     headerBackground:require("./images/top-background.svg"),
+    extensionIcon:require("./images/extension.svg"),
+    watchVideo:require("./images/watch-video-icon.png"),
+    whitePaperIcon:require("./images/white-paper-icon.png"),
+    wordpress:require("./images/wordpress.png"),
 }
 
 export const styles={
@@ -18,7 +22,22 @@ export const styles={
 
   },
 
-
+  textContent:{
+    paddingTop:150,
+    width:"100%",
+  },
+  linkText:{
+      default:{
+          color:"#FFFFFF",
+          whiteSpace:"nowrap",
+          marginBottom:20
+      },
+      hover:{
+        color:"#DDDDDD",
+        whiteSpace:"nowrap",
+        marginBottom:20
+      }
+  },
   title:{
          default:{
             fontSize:"3vw",
@@ -41,20 +60,17 @@ export const styles={
          },
          get:styleMatchingScreenSize
   },
-  description:{
-    default:{
-       fontSize:"2vw",
-       color:"white",
-       paddingLeft:"7vw",
-       width:"50%",
-       marginTop:10,
+  itemsContainer:{
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"flex-start",
+    paddingLeft:100,
+    paddingRight:20,
+    paddingTop:20,
+    fontSize:"1.3vw",
+    width:"100%",
 
-    },
-    mobile:{
-      fontSize:"6vw",
-
-    },
-    get:styleMatchingScreenSize
   },
   card:{
        get:styleMatchingScreenSize,

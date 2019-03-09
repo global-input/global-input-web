@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {config,images,pagelinks} from "../../configs";
+import {config,pagelinks, images} from "../../configs";
 import {genericUtil} from "../../util";
 
 
@@ -19,7 +19,8 @@ import HowItWorks from "./how-it-works";
 import FooterSection from '../../footer-section';
 
 export  default class HomeScreen extends Component {
-
+    static pagePath="/"
+    static pagePaths=["/index.html","/global-input-app/app","/global-input-app/about"]
     constructor(props){
       super(props);
       this.onWindowResize=this.onWindowResize.bind(this);
@@ -43,15 +44,21 @@ render() {
 
     return (
           <div style={styles.content}>
+
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
 
             <div style={styles.firstHalf.get()}>
 
                 <HeaderSection history={this.props.history}/>
 
+
+
                 <CardSection/>
+
                 <HowItWorks/>
+
                 <BookMark bookmark={pagelinks.app.bookmark}/>
+
             </div>
 
 
@@ -145,8 +152,8 @@ render() {
 
 
 
+<FooterSection/>
 
-            <FooterSection/>
 
           </div>
 
@@ -156,5 +163,5 @@ render() {
 
             );
   }
-  
+
 }

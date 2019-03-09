@@ -46,7 +46,7 @@ export default class LinkItem extends React.Component{
           }
           else{
             return (
-              <div>error</div>
+              <div>missing textStyle property in LinkIterm</div>
             )
           }
 

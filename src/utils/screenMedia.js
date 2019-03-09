@@ -1,4 +1,4 @@
-export let screeMedia={
+export let screenMedia={
       screenmedias:[],
       biggerThan:function(width){
           var matched=this.screenmedias.filter(s=>s.width===width);
@@ -51,46 +51,46 @@ export let screeMedia={
 export function styleMatchingScreenSize(namedState){
         if(this.bigScreen){
 
-            if(screeMedia.biggerThan(1440)){
+            if(screenMedia.biggerThan(1440)){
                 console.log("bigger than 1440");
-                return screeMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen",namedState);
+                return screenMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen",namedState);
             }
         }
         if(this.screen1245){
-            if(screeMedia.biggerThan(1245)){
-              return screeMedia.getScreenStyle(this.default,this.screen1245,this,"screen1245",namedState);
+            if(screenMedia.biggerThan(1245)){
+              return screenMedia.getScreenStyle(this.default,this.screen1245,this,"screen1245",namedState);
             }
         }
         if(this.screen1080){
-            if(screeMedia.biggerThan(1080)){
-              return screeMedia.getScreenStyle(this.default,this.screen1080,this,"screen1080",namedState);
+            if(screenMedia.biggerThan(1080)){
+              return screenMedia.getScreenStyle(this.default,this.screen1080,this,"screen1080",namedState);
             }
         }
         if(this.smallScreen){
-            if(screeMedia.biggerThan(800)){
-              return screeMedia.getScreenStyle(this.default,this.smallScreen,this,"smallScreen",namedState);
+            if(screenMedia.biggerThan(800)){
+              return screenMedia.getScreenStyle(this.default,this.smallScreen,this,"smallScreen",namedState);
             }
         }
         if(this.desktop){
-            if(screeMedia.biggerThan(600)){
-              return screeMedia.getScreenStyle(this.default,this.desktop,this,"desktop",namedState);
+            if(screenMedia.biggerThan(600)){
+              return screenMedia.getScreenStyle(this.default,this.desktop,this,"desktop",namedState);
             }
         }
         if(this.narrowMobile){
-            if(!screeMedia.biggerThan(361)){
-              return screeMedia.getScreenStyle(this.default,this.narrowMobile,this,"narrowMobile",namedState);
+            if(!screenMedia.biggerThan(361)){
+              return screenMedia.getScreenStyle(this.default,this.narrowMobile,this,"narrowMobile",namedState);
             }
         }
         if(this.mobile){
-            if(screeMedia.biggerThan(600)){
+            if(screenMedia.biggerThan(600)){
               return this.default;
             }
             else{
-              return screeMedia.getScreenStyle(this.default,this.mobile,this,"mobile",namedState);
+              return screenMedia.getScreenStyle(this.default,this.mobile,this,"mobile",namedState);
             }
         }
         if(namedState){
-            return screeMedia.getScreenStyle(this.default,this.default,this,"default",namedState);
+            return screenMedia.getScreenStyle(this.default,this.default,this,"default",namedState);
         }
         else{
             return this.default;

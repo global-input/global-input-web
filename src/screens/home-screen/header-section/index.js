@@ -2,17 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import {LinkItem} from '../../../components';
 import TextButton from '../../../components/text-button';
-import {styles} from "./styles";
+import {styles, images} from "./styles";
 import TopHeaderSection from "../../get-app-screen";
 import GetAppScreen from '../../get-app-screen';
 import LearnMoreScreen from '../../learn-more-screen';
+import {screenMedia} from "../../../utils/screenMedia";
 
-var textContent={
-
-
-
-
-};
 const headerTextContent={
     title:"Global Input App",
     subtitle:"A Unified & Simple Solution",
@@ -30,11 +25,7 @@ const headerTextContent={
 }
 
 
-var images={
-  header:require('./right-poster.png'),
 
-  watchVideo:require('./watch-video-icon.png'),
-}
 
 
 export  default class HeaderSection extends Component {
@@ -65,37 +56,48 @@ export  default class HeaderSection extends Component {
     }
 render() {
 
+  var postImage=images.rightPoster;
+  if(!screenMedia.biggerThan(600)){
+    postImage=images.rightPoster;
+  }
+  else if(!screenMedia.biggerThan(680)){
+    postImage=images.rightPoster200;
+  }
+  else if(!screenMedia.biggerThan(1100)){
+    postImage=images.rightPoster400;
+  }
+  else{
+      postImage=images.rightPoster;
+  }
+
+
+
+
     return (
           <div style={styles.headerContainer}>
-              <img src={images.header} style={styles.rightImage.get()}/>
+              <img src={postImage} style={styles.rightImage.get()}/>
               <div style={styles.headerSection.get()}>
                     <div style={styles.title.get()}>{headerTextContent.title}</div>
                     <div style={styles.subtitle.get()}>{headerTextContent.subtitle}</div>
-                  <div style={styles.listContent.get()}>
-                   <ul className="listmenu">
-                      {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
-                  </ul>
-                  </div>
-                  <div style={styles.appSelection.get()}>
-                      <div style={styles.appDescription.get()}>
+                    <div style={styles.listContent.get()}>
+                       <ul className="listmenu">
+                        {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
+                       </ul>
+                     </div>
+                     <div style={styles.appSelection.get()}>
+                        <div style={styles.appDescription.get()}>
 
-                        <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
-                                {LearnMoreScreen.menu.linkText}
-                        </Link>
+                            <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
+                                    {LearnMoreScreen.menu.linkText}
+                            </Link>
 
-                          <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
-                                  {GetAppScreen.menu.linkText}
-                          </Link>
-
-
-
-                      </div>
-
-
-
-
+                              <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
+                                      {GetAppScreen.menu.linkText}
+                              </Link>
+                        </div>
                   </div>
               </div>
+
           </div>
           );
   }
