@@ -1,9 +1,12 @@
 import {styleMatchingScreenSize} from "../../../utils/screenMedia";
 
-const images={
-    path50:require("./path-50.svg"),
-
-}
+export const images={
+    path50:require("./images/path-50.svg"),
+    rightPoster:require('./images/right-poster.png'),
+    rightPoster400:require('./images/right-poster-400.png'),
+    rightPoster200:require('./images/right-poster-200.png'),
+    watchVideo:require('./images/watch-video-icon.png'),
+};
 export var styles={
 headerContainer:{
   backgroundImage: "url("+images.path50+")",
@@ -11,46 +14,27 @@ headerContainer:{
   backgroundSize: "cover",
   width:"100%",
   position:"relative",
-  top:49,
-  paddingBottom:200
+  top:49,  
 },
   rightImage:{
      default:{
             position:"absolute",
-            top:100,
-            paddingRight:50,
-            height: "auto",
-            marginRight:10,
+            top:"2vw",
+            right:"5vw"
           },
-          bigScreen:{
-            right:0
-          },
-          screen1245:{
-            right:0
-          },
-          screen1080:{
-            right:0,
-            top:30,
-            width:"40vw",
 
+           screen1080:{
+             top:"1vw",
 
-          },
-          smallScreen:{
-            right:0,
-            top:40,
-            width:"35vw",
-
-          },
-          desktop:{
-            right:0,
-            top:40,
-            width:"45vw"
-          },
+           },
           mobile:{
             position:"static",
-
             height: "auto",
-            marginTop:30
+            marginTop:30,
+            width:"80%",
+            display:"block",
+            marginLeft: "auto",
+            marginRight: "auto"
           },
       get:styleMatchingScreenSize
   },
@@ -69,6 +53,7 @@ headerContainer:{
               width:"100%",
               zIndex:50,
               marginBottom:30,
+
       },
       mobile:{
         justifyContent:"flex-start",
@@ -102,9 +87,11 @@ headerContainer:{
   },
   listContent:{
     default:{
-      marginLeft:30,
       fontSize:14,
-      marginTop:20
+      marginTop:20,
+      width:"auto",
+      marginLeft:70,
+      marginBottom:30
     },
     smallScreen:{
       fontSize:14,
@@ -116,6 +103,7 @@ headerContainer:{
     bigScreen:{
       fontSize:14,
     },
+
     get:styleMatchingScreenSize
 
   },
@@ -137,7 +125,7 @@ headerContainer:{
         display:"flex",
         flexDirection:"row",
         marginTop:20,
-        marginLeft:50,        
+        marginLeft:50,
       },
       smallScreen:{
         fontSize:"4vw",

@@ -1,6 +1,6 @@
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 export const images={
-    headerBackground:require("./top-background.svg"),
+    headerBackground:require("./images/top-background.svg"),
 }
 
 export const styles={

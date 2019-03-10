@@ -42,7 +42,7 @@ export  default class FooterSection extends React.Component {
                   </a>
 
           </div>
-          <div style={styles.contactContainer}>
+          <div style={styles.contactContainer.get()}>
                 <div style={styles.contact.container}>
                       <div style={styles.contact.title}>{textContent.address.title}</div>
                       {textContent.address.content.map(this.readItems.bind(this))}

@@ -1,14 +1,12 @@
 
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 const images={
-    screen1440:require("./headbackground-1440.svg"),
-    screen1080:require("./headbackground-1080.svg"),
-    screen1245:require("./headbackground-1245.svg"),
-    screen800:require("./headbackground-800.svg"),
-    screen600:require("./headbackground-600.svg"),
-    headbackground:require("./headbackground.svg"),
-
-
+    screen1440:require("./images/headbackground-1440.svg"),
+    screen1080:require("./images/headbackground-1080.svg"),
+    screen1245:require("./images/headbackground-1245.svg"),
+    screen800:require("./images/headbackground-800.svg"),
+    screen600:require("./images/headbackground-600.svg"),
+    background:require("./images/headbackground.svg"),
 
 }
 export var styles={
@@ -16,7 +14,7 @@ export var styles={
 firstHalf:{
     get:styleMatchingScreenSize,
     default:{
-      backgroundImage: "url("+images.headbackground+")",
+      backgroundImage: "url("+images.screen1440+")",
       backgroundRepeat: 'no-repeat',
       backgroundSize: "cover",
       width:"100%",
@@ -28,6 +26,7 @@ firstHalf:{
     },
     desktop:{
       backgroundImage: "url("+images.screen600+")",
+      backgroundSize: "auto",
     },
     smallScreen:{
       backgroundImage: "url("+images.screen800+")",
@@ -40,6 +39,9 @@ firstHalf:{
     },
     bigScreen:{
       backgroundImage: "url("+images.screen1440+")"
+    },
+    mobile:{
+      backgroundImage: "url("+images.background+")"
     }
 
 
@@ -64,7 +66,7 @@ firstHalf:{
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-      backgroundColor:"#A9C8E6", //#4880ED
+    //  backgroundColor:"#A9C8E6", //#4880ED
       width:"100%",
 
   },
@@ -100,8 +102,20 @@ firstHalf:{
    marginBottom:10,
 
  },
+ features:{
+   container:{
+     color:"#5291CD",
+     border:"1px solid red",
+     width:"100%"
+   },
+   title:{
+     display:"flex",
+     flexDirection:"row",
+     justifyContent:"center",
+     fontSize:40
+   }
 
-
+ }
 
 
 };

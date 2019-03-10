@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {styles,images} from './styles';
 import TopHeaderSection from "../../top-header-section";
 import AutoPlayVideo from "../../components/auto-play-video";
-import {exampleLinks} from '../examples';
+import examples from '../examples';
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 const textContent={
     title:"Global Input App",
@@ -41,10 +41,12 @@ const textContent={
     },
     encryptedStorage:{
         title:"Portable Encrypted Storage",
-        first:["Global Input App provides applications with encrypted storage on user mobiles. The data are encrypted with encryption keys that are in turn encrypted with a master encryption key generated from the user app password. In this encryption keys hiearchy, sits on the top is the app user password, which is not stored anywhere. Hence, on the start of each session, the user has to provide the password, which is used for encrypting/decrypting the encryption keys. The encryption keys, in turn, are used for encrypting/decrypting the data stored in the encrypted storage.",
+        first:["The values of Global Input App solution become obvious when all of its features are combined together. One of these featuures is the portable encrypted storage. ",
+        "Confidential data such as user crendentials, personal information, user preferences for personalized experiences etc. can be stored in the mobile storage securely. The connected application can send data to the user for storing for later use. When this happens, the user will be presented with an option of saving the data into the storage. Later when the application requires the data, he/she can select and inspect the selected data content and push it to the application on demand.",
+
+        "The data in the mobile app are encrypted with encryption keys that are in turn encrypted with a master encryption key generated from the user app password. In this encryption keys hiearchy, sits on the top is the app user password, which is not stored anywhere. Hence, on the start of each session, the user has to provide the password, which is used for encrypting/decrypting the encryption keys. The encryption keys, in turn, are used for encrypting/decrypting the data stored in the encrypted storage.",
         "This means that even if somebody has physically got hold of the device, and bypassed the device security such as biometric authentication or device password authentication somehome, the data is still secure.",
-        "Also data will always stay encrypted until to the point of actual use and the decrypted data will be discarded immediately after the use, minimising the reliance on the system security.",
-        "Confidential data such as user crendentials, personal information, user preferences for personalized experiences etc. can be stored in the mobile storage securely. The connected application can send data to the user for storing for later use. When this happens, the user will be presented with an option of saving the data into the storage. Later when the application requires the data, he/she can select and inspect the selected data content and push it to the application on demand."]
+        "Also data will always stay encrypted until to the point of actual use and the decrypted data will be discarded immediately after the use, minimising the reliance on the system security."]
 
     }
 
@@ -182,7 +184,7 @@ onInput:value => searchContent(value)
 
 
                   <div styles={styles.card.exampleContainer}>
-                    {exampleLinks.map(this.listExample.bind(this))}
+                    {examples.renderAllLinks()}
                   </div>
 
 
@@ -190,13 +192,7 @@ onInput:value => searchContent(value)
 
     );
   }
-  listExample(example, index){
 
-      return(
-          <Link to={example.link} key={index} style={styles.examplelink.get()}>{example.linkText}</Link>
-      );
-
-  }
 
   renderDeviceToDevice(){
     return(

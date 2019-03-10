@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 import {styles} from "./styles";
-import {screeMedia} from "./screenMedia";
+import {screenMedia} from "./screenMedia";
 
 export  default class TopMenu extends Component {
   constructor(props){
@@ -135,7 +135,7 @@ export  default class TopMenu extends Component {
       if(!this.props.menus){
          return null;
       }
-      else if(screeMedia.biggerThan(600)){
+      else if(screenMedia.biggerThan(600)){
          return this.renderDeskTop();
       }
       else{

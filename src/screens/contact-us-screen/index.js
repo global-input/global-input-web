@@ -3,10 +3,33 @@ import HomeScreen from "../home-screen";
 export default class ContactUsScreen extends React.Component{
   static pagePath="/global-input-app/contact-us"
   render(){
+
     return(
-        <HomeScreen scrollTo="contactUs"/>
+        <HomeScreen/>
       );
   }
+  componentDidMount(){
+    this.processScrollTo();
+  }
+  componentDidUpdate(prevProps) {
+    this.processScrollTo();
+  }
 
+
+  processScrollTo(){
+      setTimeout(function(){
+            var elmnt = document.getElementById("contactUs");
+            if(elmnt){
+                elmnt.scrollIntoView();
+                window.scrollBy({top: -70,behavior: "smooth"});
+            }
+            else{
+              console.log("not found")
+            }
+
+      },500);
+
+
+  }
 
 }
