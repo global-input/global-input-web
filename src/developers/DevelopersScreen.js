@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {pagelinks,config, images} from "../configs";
-import {genericUtil} from "../util";
+import {genericUtil} from "../utils";
 import {styles} from "./styles";
 import {DisplayTextImage,BookMark,DisplayStaticContent,TextViewPad,DisplayVideo} from "../components";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../page-templates";
