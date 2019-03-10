@@ -13,6 +13,22 @@ const textContent={
       authentication:{
             title:"Authentication Device Solution",
             content:"The mechanism allows users to carry out operations such as subscription, sign in, and changung passwords in public view without making any effort to type/hide/remember passwords."
+      },
+      formoperation:{
+            title:"Form Operation",
+            content:"Automate the form filling operation by pushing the data from the mobile app mobile encrypted data storage.Allowing applications to give users complete control over their data."
+      },
+      secureTransfer:{
+            title:"Secure Transfer Form Data",
+            content:"This end-to-end security solution ensures the confidential information will not be compromised during the entire process.Transfers form data securely to your users’ mobile for editing collaboratively."
+      },
+      copyAndPaste:{
+            title:"Copy And Paste Securely Across Devices",
+            content:"Copy and paste securely a text content from your mobile to any computer or vice versa.Transfer content between applications using end-to-end encryption."
+      },
+      printQRCodes:{
+            title:"Print & Scan Encrypted QR Codes",
+            content:"Print and scan encrypted QR Codes to share or backup content securely.Print & Scan Encryption Keys as Password-Protected QR Codes"
       }
 }
 export default class FeaturesSection extends React.Component{
@@ -26,9 +42,30 @@ export default class FeaturesSection extends React.Component{
                     tryItNow={examples.renderMediaPlayerExampleLink}
                     readMore={screens.readMore.secondScreen}/>
                   <FeatureCard title={textContent.authentication.title} content={textContent.authentication.content}
-                    tryItNow={examples.renderMediaPlayerExampleLink}
-                    readMore={screens.readMore.secondScreen}/>
+                    tryItNow={examples.renderTransferFormDataExampleLink}
+                    readMore={screens.readMore.authenticationDevice}/>
                 </div>
+
+                <div style={styles.row.get()}>
+                  <FeatureCard title={textContent.formoperation.title} content={textContent.formoperation.content}
+                    tryItNow={examples.renderSendMessageScreen}
+                    readMore={screens.readMore.formOperation}/>
+
+                <FeatureCard title={textContent.secureTransfer.title} content={textContent.secureTransfer.content}
+                    tryItNow={examples.renderTransferFormDataExampleLink}
+                    readMore={screens.readMore.authenticationDevice}/>
+                </div>
+
+
+                <div style={styles.row.get()}>
+                  <FeatureCard title={textContent.copyAndPaste.title} content={textContent.copyAndPaste.content}
+                    tryItNow={examples.renderContentTransferScreen}
+                    readMore={screens.readMore.secondScreen}/>
+                  <FeatureCard title={textContent.printQRCodes.title} content={textContent.printQRCodes.content}
+                    tryItNow={examples.renderQRPrintingScreen}
+                    readMore={screens.readMore.authenticationDevice}/>
+                </div>
+
             </div>
       );
 

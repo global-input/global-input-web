@@ -150,7 +150,7 @@ export default class MobileControlScreen extends React.Component{
 
 
                       <div styles={styles.card.exampleContainer}>
-                        {examples.renderTransferFormDataExampleLink()}                        
+                        {examples.renderTransferFormDataExampleLink('Transfer Form Data Example')}                        
                       </div>
                   </div>
 

@@ -24,9 +24,9 @@ var examples={
               </React.Fragment>
             );
   },
-  renderTransferFormDataExampleLink(){
+  renderTransferFormDataExampleLink(linkText){
       return(
-        <Link to={TransferFormDataScreen.pagePath} style={styles.examplelink.get()}>Transfer Form Data Example</Link>
+        <Link to={TransferFormDataScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
       );
   },
   renderGameControlExampleLink(){
@@ -38,6 +38,21 @@ var examples={
       return(
         <Link to={MediaPlayerScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
       );
+  },
+  renderSendMessageScreen(linkText){
+    return(
+      <Link to={SendMessageScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+    );
+  },
+  renderContentTransferScreen(linkText){
+    return(
+      <Link to={ContentTransferScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+    );
+  },
+  renderQRPrintingScreen(linkText){
+    return(
+      <Link to={QRPrintingScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+    );
   },
   renderRoute:function(){
     return(
