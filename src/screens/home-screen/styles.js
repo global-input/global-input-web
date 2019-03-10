@@ -66,7 +66,7 @@ firstHalf:{
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-      backgroundColor:"#A9C8E6", //#4880ED
+    //  backgroundColor:"#A9C8E6", //#4880ED
       width:"100%",
 
   },
@@ -102,8 +102,20 @@ firstHalf:{
    marginBottom:10,
 
  },
+ features:{
+   container:{
+     color:"#5291CD",
+     border:"1px solid red",
+     width:"100%"
+   },
+   title:{
+     display:"flex",
+     flexDirection:"row",
+     justifyContent:"center",
+     fontSize:40
+   }
 
-
+ }
 
 
 };

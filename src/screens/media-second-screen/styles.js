@@ -1,11 +1,12 @@
 import {styleMatchingScreenSize} from "../../utils/screenMedia";
 export const images={
     headerBackground:require("./images/top-background.svg"),
+  
     computer:require("./images/computer.png")
 }
 
 export const styles={
-  
+
 
   content:{
       display:"flex",

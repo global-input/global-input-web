@@ -1,7 +1,7 @@
 import React from "react";
 import {styles, images} from "./styles";
 import {LinkItem} from '../../../components';
-import {pagelinks} from "../../../configs";
+
 var textContent={
     title:"Mobile Authentication",
     authentication:{

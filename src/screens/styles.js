@@ -1,6 +1,6 @@
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../utils/screenMedia";
 export const styles={
-      examplelink:{
+      readMorelink:{
         get:styleMatchingScreenSize,
         default:{
           float: "left",
@@ -9,13 +9,11 @@ export const styles={
           textDecoration: "none",
           fontSize: 15,
           borderRadius:25,
-          backgroundColor: "#4281BD",
-          color:"white",
+          color:"#4281BD",
           whiteSpace:"nowrap",
           padding:10,
           minWidth:120,
           marginLeft:20
-
         },
 
         selected:{

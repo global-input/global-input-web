@@ -14,8 +14,7 @@ headerContainer:{
   backgroundSize: "cover",
   width:"100%",
   position:"relative",
-  top:49,
-  paddingBottom:200,
+  top:49,  
 },
   rightImage:{
      default:{
@@ -92,7 +91,7 @@ headerContainer:{
       marginTop:20,
       width:"auto",
       marginLeft:70,
-      marginBottom:30     
+      marginBottom:30
     },
     smallScreen:{
       fontSize:14,

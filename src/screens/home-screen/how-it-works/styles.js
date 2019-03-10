@@ -17,7 +17,8 @@ export const styles={
             display:"flex",
             flexDirection:"column",
             justifyContent:"flex-start",
-            alignItems:"flex-start"
+            alignItems:"flex-start",
+
         },
         title:{
           marginTop:"5vw",
@@ -38,10 +39,11 @@ export const styles={
             justifyContent:"space-around",
             alignItems:"center",
             width:"100%",
-            marginTop:100
+            marginTop:100,
           },
           mobile:{
             flexDirection:"column",
+            marginTop:10,
           }
 
         },

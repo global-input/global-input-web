@@ -34,6 +34,11 @@ var examples={
         <Link to={GameControlScreen.pagePath} style={styles.examplelink.get()}>Game Control Example</Link>
       );
   },
+  renderMediaPlayerExampleLink(linkText){
+      return(
+        <Link to={MediaPlayerScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+      );
+  },
   renderRoute:function(){
     return(
       <React.Fragment>

@@ -51,8 +51,7 @@ export let screenMedia={
 export function styleMatchingScreenSize(namedState){
         if(this.bigScreen){
 
-            if(screenMedia.biggerThan(1440)){
-                console.log("bigger than 1440");
+            if(screenMedia.biggerThan(1440)){                
                 return screenMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen",namedState);
             }
         }
