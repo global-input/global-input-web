@@ -14,7 +14,8 @@ headerContainer:{
   backgroundSize: "cover",
   width:"100%",
   position:"relative",
-  top:49,  
+  top:49,
+
 },
   rightImage:{
      default:{
@@ -54,9 +55,20 @@ headerContainer:{
               zIndex:50,
               marginBottom:30,
 
+
+      },
+      desktop:{
+        height:330,
+
+      },
+      smallScreen:{
+        height:530,
       },
       mobile:{
         justifyContent:"flex-start",
+
+        height:"auto",
+        marginBottom:50,
       }
 
   },
@@ -68,8 +80,11 @@ headerContainer:{
       marginLeft:70,
     },
     mobile:{
-      fontSize:"6vw",
-      marginLeft:30,
+      fontSize:"8vw",
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto"
+
     },
     get:styleMatchingScreenSize
 
@@ -80,8 +95,10 @@ headerContainer:{
       marginLeft:70,
     },
     mobile:{
-      fontSize:20,
-      marginLeft:30,
+      fontSize:"4vw",
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto"
     },
     get:styleMatchingScreenSize
   },
@@ -99,6 +116,11 @@ headerContainer:{
     mobile:{
       fontSize:14,
       marginLeft:10,
+      width:"100%",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center"
     },
     bigScreen:{
       fontSize:14,
@@ -167,6 +189,15 @@ headerContainer:{
   },
   appStoreImage:{
     marginLeft:10
-  }
+  },
+  itemRow:{
+      display:"block",
+      marginBottom:5,
+      marginLeft:"auto",
+      marginRight:"auto",
+      minWidth:300,
+      
+  },
+
 
 };

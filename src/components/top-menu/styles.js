@@ -27,7 +27,7 @@ export const styles={
   appTitleContainer:{
     marginLeft:10,
     paddingTop:5,
-
+  
   },
 
   appDesktopTitle:{

@@ -25,8 +25,9 @@ export var styles={
         paddingTop:20,
         position:"relative"
       },
+
       mobile:{
-        width:"100%",
+        width:"90%",
         marginBottom:30
       },
  },
@@ -46,7 +47,12 @@ export var styles={
            flexDirection:"row",
            width:"100%",
            justifyContent:"center",
-
+        },
+        desktop:{
+          fontSize:"2.5vw",
+        },
+        smallScreen:{
+          fontSize:20,
         },
         mobile:{
           fontSize:"6vw",
@@ -66,8 +72,18 @@ export var styles={
      width:"100%",
      position:"relative"
    },
+   desktop:{
+     fontSize:"1.5vw",
+   },
+   smallScreen:{
+     fontSize:"1.4vw",
+   },
+   screen1080:{
+     fontSize:14,
+   },
+
    mobile:{
-      fontSize:"4vw",
+      fontSize:14,
    },
    get:styleMatchingScreenSize
  },
@@ -84,6 +100,6 @@ export var styles={
     color:"#A8A8A8"
  },
  arrow:{
-   
+
  }
 };

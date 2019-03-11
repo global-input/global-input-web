@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {config,pagelinks, images} from "../../configs";
-import {genericUtil} from "../../util";
+import {genericUtil} from "../../utils";
 
 
 import {TopMenu,DisplayTextImage,BookMark,DisplayStaticContent,AutoPlayVideo,TextButton} from "../../components";

@@ -54,11 +54,10 @@ export  default class HeaderSection extends Component {
         );
 
     }
-render() {
-
+renderPosterImage(){
   var postImage=images.rightPoster;
   if(!screenMedia.biggerThan(600)){
-    postImage=images.rightPoster;
+      return null;
   }
   else if(!screenMedia.biggerThan(680)){
     postImage=images.rightPoster200;
@@ -66,24 +65,67 @@ render() {
   else if(!screenMedia.biggerThan(1100)){
     postImage=images.rightPoster400;
   }
+
   else{
       postImage=images.rightPoster;
   }
+  return(<img src={postImage} style={styles.rightImage.get()}/>);
+
+
+}
+
+renderHeaderListItems(){
+  if(screenMedia.biggerThan(800)){
+    return(
+          <ul className="listmenu">
+            {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
+          </ul>
+    );
+  }
+  else{
+    return(
+      <div style={styles.listContent.get()}>
+        <ul className="listmenu" style={styles.itemRow}>
+          <li>
+            {headerTextContent.items[0]}
+          </li>
+          <li>
+            {headerTextContent.items[1]}
+          </li>
+        </ul>
+
+    <ul className="listmenu" style={styles.itemRow}>
+      <li>
+        {headerTextContent.items[2]}
+      </li>
+      <li>
+        {headerTextContent.items[3]}
+      </li>
+    </ul>
+    </div>
+  );
+
+  }
+
+
+}
+
+render() {
+
+
 
 
 
 
     return (
           <div style={styles.headerContainer}>
-              <img src={postImage} style={styles.rightImage.get()}/>
+              {this.renderPosterImage()}
               <div style={styles.headerSection.get()}>
                     <div style={styles.title.get()}>{headerTextContent.title}</div>
                     <div style={styles.subtitle.get()}>{headerTextContent.subtitle}</div>
-                    <div style={styles.listContent.get()}>
-                       <ul className="listmenu">
-                        {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
-                       </ul>
-                     </div>
+
+                       {this.renderHeaderListItems()}
+
                      <div style={styles.appSelection.get()}>
                         <div style={styles.appDescription.get()}>
 

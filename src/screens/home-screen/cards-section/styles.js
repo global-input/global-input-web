@@ -14,7 +14,8 @@ export const styles={
           justifyContent:"space-evenly",
           alignItems:"center",
           width:"100%",
-          marginTop:50
+          marginTop:50,
+
         },
         mobile:{
           flexDirection:"column",

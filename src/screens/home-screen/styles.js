@@ -7,6 +7,7 @@ const images={
     screen800:require("./images/headbackground-800.svg"),
     screen600:require("./images/headbackground-600.svg"),
     background:require("./images/headbackground.svg"),
+    backgroundMobile:require("./images/headbackground-mobile.svg"),
 
 }
 export var styles={
@@ -23,6 +24,7 @@ firstHalf:{
       justifyContent:"flex-start",
       alignItems:"flex-start",
       backgroundColor:"#A9C8E6", //#4880ED
+      backgroundColor:"white", //#4880ED
     },
     desktop:{
       backgroundImage: "url("+images.screen600+")",
@@ -30,6 +32,7 @@ firstHalf:{
     },
     smallScreen:{
       backgroundImage: "url("+images.screen800+")",
+
     },
     screen1080:{
       backgroundImage: "url("+images.screen1080+")",
@@ -41,7 +44,7 @@ firstHalf:{
       backgroundImage: "url("+images.screen1440+")"
     },
     mobile:{
-      backgroundImage: "url("+images.background+")"
+      backgroundImage: "url("+images.backgroundMobile+")"
     }
 
 

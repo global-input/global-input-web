@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {genericUtil} from "../../util";
+import {genericUtil} from "../../utils";
 
 
 import {TopMenu,BookMark} from "../../components";
@@ -52,6 +52,7 @@ render() {
             <div style={styles.firstHalf.get()}>
 
                 <HeaderSection history={this.props.history}/>
+                
 
                 <CardSection/>
                 <HowItWorks/>

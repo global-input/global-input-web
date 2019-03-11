@@ -20,6 +20,7 @@ export default class GetAppScreen extends React.Component{
   static menu={
         link:"/global-input-app/get-app",
         linkText:"Get GIA App Free",
+        button:images.downloadapp,
         styles:{
                 menuItem:{
                   get:styleMatchingScreenSize,
