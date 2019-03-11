@@ -13,7 +13,7 @@ import sendMessageConfig from "./sendMessageConfig";
 
 import videoPlayerConfig from "./videoPlayerConfig";
 
-import GetAppScreen from "../../screens/get-app-screen";
+import screens from "../../screens";
 
 const applicationPathConfig={
     appTitle:homeTextConfig.title,
@@ -22,7 +22,7 @@ const applicationPathConfig={
         //platformTextConfig.menu,
         privacyConfig.menu,
         contactUsConfig.menu,
-        GetAppScreen.menu
+        screens.menuItems.getApp
     ],
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,

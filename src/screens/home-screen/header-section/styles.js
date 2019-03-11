@@ -83,7 +83,8 @@ headerContainer:{
       fontSize:"8vw",
       display:"block",
       marginLeft:"auto",
-      marginRight:"auto"
+      marginRight:"auto",
+      marginTop:50
 
     },
     get:styleMatchingScreenSize
@@ -98,7 +99,8 @@ headerContainer:{
       fontSize:"4vw",
       display:"block",
       marginLeft:"auto",
-      marginRight:"auto"
+      marginRight:"auto",
+      marginBottom:20
     },
     get:styleMatchingScreenSize
   },
@@ -130,17 +132,8 @@ headerContainer:{
 
   },
 
-  appSelection:{
-    default:{
-          maxWidth: "50%",
-        },
-    mobile:{
-      maxWidth: "100%",
-    },
-    get:styleMatchingScreenSize
 
-  },
-  appDescription:{
+  buttonsContainer:{
       default:{
         paddingBottom:10,
         fontSize:"2vw",
@@ -154,8 +147,11 @@ headerContainer:{
       },
       mobile:{
         fontSize:"4.5vw",
-        marginLeft:10,
-        marginRight:10
+        flexDirection:"column",
+        width:"100%",
+        
+        width:"80%"
+
       },
       bigScreen:{
         fontSize:26,
@@ -196,7 +192,7 @@ headerContainer:{
       marginLeft:"auto",
       marginRight:"auto",
       minWidth:300,
-      
+
   },
 
 

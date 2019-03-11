@@ -233,10 +233,12 @@ class MenuItem extends Component{
         else if(isSelected){
             stname="selected";
         }
+
         let menuItemStyle=styles.menuItem;
         if(this.props.menu.styles && this.props.menu.styles.menuItem){
             menuItemStyle=this.props.menu.styles.menuItem;
         }
+
 
 
         return(<Link to={link} style={menuItemStyle.get(stname)}

@@ -7,6 +7,7 @@ import TopHeaderSection from "../../get-app-screen";
 import GetAppScreen from '../../get-app-screen';
 import LearnMoreScreen from '../../learn-more-screen';
 import {screenMedia} from "../../../utils/screenMedia";
+import screens from "../../../screens";
 
 const headerTextContent={
     title:"Global Input App",
@@ -126,18 +127,13 @@ render() {
 
                        {this.renderHeaderListItems()}
 
-                     <div style={styles.appSelection.get()}>
-                        <div style={styles.appDescription.get()}>
 
-                            <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
-                                    {LearnMoreScreen.menu.linkText}
-                            </Link>
+                        <div style={styles.buttonsContainer.get()}>
 
-                              <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
-                                      {GetAppScreen.menu.linkText}
-                              </Link>
+                        {screens.buttons.learnMoreWhite('Read More')}
+                        {screens.buttons.getAppScreen('Get GIA App Free')}
                         </div>
-                  </div>
+              
               </div>
 
           </div>
