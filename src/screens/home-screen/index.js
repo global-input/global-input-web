@@ -52,6 +52,7 @@ render() {
             <div style={styles.firstHalf.get()}>
 
                 <HeaderSection history={this.props.history}/>
+                
 
                 <CardSection/>
                 <HowItWorks/>

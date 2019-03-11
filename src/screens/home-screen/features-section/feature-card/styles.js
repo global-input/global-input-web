@@ -10,10 +10,20 @@ export var styles={
      alignItems:"flex-start",
      color:"#5291CD",
      width:"30%",
-     maxWidth:400,
      minHeight:200,
      position:"relative",
    },
+   smallScreen:{
+     width:"45%",
+   },
+   screen1080:{
+     width:"30%",
+   },
+   desktop:{
+     width:"45%",
+     minHeight:270,
+   },
+
    mobile:{
      width:"100%",
      maxWidth:"90%",

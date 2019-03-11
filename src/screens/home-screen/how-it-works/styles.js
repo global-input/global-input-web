@@ -6,6 +6,11 @@ export const images={
     three:require("./images/3.svg"),
     qrcode:require("./images/qrcode.svg"),
     mobile:require("./images/mobile.svg"),
+    small:{
+      one:require("./images/small/1.svg"),
+      two:require("./images/small/2.svg"),
+      three:require("./images/small/3.svg"),
+    }
 }
 
 
@@ -44,50 +49,78 @@ export const styles={
           mobile:{
             flexDirection:"column",
             marginTop:10,
+            justifyContent:"space-around",
+            height:"100%"
+
           }
 
         },
         extension:{
-          position:"static",
-          width:150,
-          height:150,
-          display:"flex",
-          flexDirection:"column",
-          justifyContent:"flex-start",
-          alignItems:"center",
-          paddingLeft:30,
-          backgroundImage: "url("+images.one+")",
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: "0px 20px",
+          get:styleMatchingScreenSize,
+          default:{
+            position:"static",
+            width:150,
+            height:150,
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"flex-start",
+            alignItems:"center",
+            paddingLeft:30,
+            backgroundImage: "url("+images.one+")",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: "0px 20px",
+          },
+          mobile:{
+            width:150,
+            
+            backgroundImage: "url("+images.small.one+")",
+          }
+
 
 
         },
         qrcode:{
-          position:"static",
-          width:150,
-          height:150,
-          display:"flex",
-          flexDirection:"column",
-          justifyContent:"flex-start",
-          alignItems:"center",
-          paddingLeft:30,
-          backgroundImage: "url("+images.two+")",
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: "0px -40px"
+          get:styleMatchingScreenSize,
+          default:{
+            position:"static",
+            width:150,
+            height:150,
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"flex-start",
+            alignItems:"center",
+            paddingLeft:30,
+            backgroundImage: "url("+images.two+")",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: "0px -40px"
+          },
+          mobile:{
+            width:150,
+            backgroundImage: "url("+images.small.two+")",
+          }
+
 
         },
         mobile:{
-          position:"static",
-          width:150,
-          height:150,
-          display:"flex",
-          flexDirection:"column",
-          justifyContent:"flex-start",
-          alignItems:"center",
-          paddingLeft:30,
-          backgroundImage: "url("+images.three+")",
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: "0px -40px"
+          get:styleMatchingScreenSize,
+          default:{
+            position:"static",
+            width:150,
+            height:150,
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"flex-start",
+            alignItems:"center",
+            paddingLeft:30,
+            backgroundImage: "url("+images.three+")",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: "0px -40px"
+          },
+          mobile:{
+            width:150,
+
+            backgroundImage: "url("+images.small.three+")",
+          }
 
         },
         itemName:{

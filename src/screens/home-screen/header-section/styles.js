@@ -14,7 +14,8 @@ headerContainer:{
   backgroundSize: "cover",
   width:"100%",
   position:"relative",
-  top:49,  
+  top:49,
+
 },
   rightImage:{
      default:{
@@ -54,9 +55,20 @@ headerContainer:{
               zIndex:50,
               marginBottom:30,
 
+
+      },
+      desktop:{
+        height:330,
+        
+      },
+      smallScreen:{
+        height:530,
       },
       mobile:{
         justifyContent:"flex-start",
+
+        height:"auto",
+        marginBottom:50,
       }
 
   },
