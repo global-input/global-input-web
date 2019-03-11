@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route,Link} from 'react-router-dom';
 
-import {styles} from './styles';
+import {styles, images} from './styles';
 import examples from "./examples";
 
 import HomeScreen from './home-screen';
@@ -52,6 +52,28 @@ const screens={
           formOperation:function(linkText){
                 return(<Link to={FormOperationScreen.pagePath} style={styles.readMorelink.get()}>{linkText}</Link>);
           }
+      },
+      buttons:{
+        learnMoreWhite:function(linkText){
+              return(<Link to={LearnMoreScreen.pagePath} style={styles.buttonLinks.get('white')}>{linkText}</Link>);
+        },
+        getAppScreen:function(linkText){
+          return(
+              <Link to={GetAppScreen.pagePath} style={styles.buttonLinks.get()}>
+                      {linkText}
+              </Link>
+          );
+        }
+      },
+      menuItems:{
+        getApp:{
+              link:GetAppScreen.pagePath,
+              linkText:"Get GIA App Free",
+              button:images.downloadapp,
+              styles:{
+                    menuItem: styles.menuItem
+              }
+           }
       }
 };
 export default screens;

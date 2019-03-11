@@ -25,6 +25,7 @@ export const styles={
         hover:{
             color:"#66ccff",
             fontWeight:300
-        }
+        },
+        
     }
 };

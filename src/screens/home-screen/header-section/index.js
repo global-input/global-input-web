@@ -7,6 +7,7 @@ import TopHeaderSection from "../../get-app-screen";
 import GetAppScreen from '../../get-app-screen';
 import LearnMoreScreen from '../../learn-more-screen';
 import {screenMedia} from "../../../utils/screenMedia";
+import screens from "../../../screens";
 
 const headerTextContent={
     title:"Global Input App",
@@ -77,15 +78,17 @@ renderPosterImage(){
 renderHeaderListItems(){
   if(screenMedia.biggerThan(800)){
     return(
-          <ul className="listmenu">
+      <div style={styles.listContent.get()}>
+          <ul className="listmenu" style={styles.itemRow.onerow.get()}>
             {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
           </ul>
+      </div>
     );
   }
   else{
     return(
       <div style={styles.listContent.get()}>
-        <ul className="listmenu" style={styles.itemRow}>
+        <ul className="listmenu" style={styles.itemRow.tworows}>
           <li>
             {headerTextContent.items[0]}
           </li>
@@ -94,7 +97,7 @@ renderHeaderListItems(){
           </li>
         </ul>
 
-    <ul className="listmenu" style={styles.itemRow}>
+    <ul className="listmenu" style={styles.itemRow.tworows}>
       <li>
         {headerTextContent.items[2]}
       </li>
@@ -126,18 +129,13 @@ render() {
 
                        {this.renderHeaderListItems()}
 
-                     <div style={styles.appSelection.get()}>
-                        <div style={styles.appDescription.get()}>
 
-                            <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
-                                    {LearnMoreScreen.menu.linkText}
-                            </Link>
+                        <div style={styles.buttonsContainer.get()}>
 
-                              <Link to={GetAppScreen.pagePath} style={GetAppScreen.menu.styles.menuItem.get()}>
-                                      {GetAppScreen.menu.linkText}
-                              </Link>
+                        {screens.buttons.learnMoreWhite('Read More')}
+                        {screens.buttons.getAppScreen('Get GIA App Free')}
                         </div>
-                  </div>
+
               </div>
 
           </div>

@@ -12,21 +12,26 @@ export var styles={
      width:"30%",
      minHeight:200,
      position:"relative",
-   },
-   smallScreen:{
-     width:"45%",
-   },
-   screen1080:{
-     width:"30%",
+
    },
    desktop:{
      width:"45%",
      minHeight:270,
    },
+   smallScreen:{
+     width:"45%",
+     minHeight:210,
+   },
+   screen1080:{
+     width:"40%",
+   },
+   screen1245:{width:"30%"},
+
 
    mobile:{
      width:"100%",
      maxWidth:"90%",
+
    }
 
  },
@@ -39,7 +44,8 @@ export var styles={
            justifyContent:"flex-start",
  },
  content:{
-
+   get:styleMatchingScreenSize,
+   default:{
      display:"flex",
      flexDirection:"column",
      justifyContent:"flex-start",
@@ -49,6 +55,8 @@ export var styles={
      fontSize:14,
      width:"100%",
      position:"relative"
+   }
+
 
  },
  line:{
@@ -56,12 +64,21 @@ export var styles={
    width:"100%"
  },
  footer:{
-    textAlign:"center",
-    width:"100%",
+   get:styleMatchingScreenSize,
+   default:{
+     textAlign:"center",
+     width:"100%",
 
-    position:"absolute",
-    bottom:30,
-    color:"#A8A8A8"
+     position:"absolute",
+     bottom:30,
+     color:"#A8A8A8"
+   },
+   mobile:{
+     position:"static",
+     marginBottom:50,
+     marginTop:5
+   }
+
  },
 
 };
