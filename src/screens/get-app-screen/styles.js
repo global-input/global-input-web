@@ -4,6 +4,7 @@ export const images={
     rightposter:require("./images/global-input-app.png"),
     appStore:require("./images/app-store.png"),
     playStore:require("./images/play-store.png"),
+    downloadapp:require("./images/download-app.svg"),
 }
 
 export const styles={

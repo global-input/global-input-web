@@ -7,8 +7,7 @@ import screens from '../../../screens';
 const textContent={
     authentication:{
         title:"Mobile Authentication",
-        content:["Authentication on shared devices in public view",
-        "No need to hide screen, keyboard even mobile screen when signing in on a shared device"],
+        content:["Authentication on shared devices in public view, No need to hide screen, keyboard even mobile screen when signing in on a shared device"],
     },
     mobileControl:{
         title:"Mobile Input & Control",

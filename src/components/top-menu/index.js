@@ -7,6 +7,9 @@ import {Link} from 'react-router-dom'
 import {styles} from "./styles";
 import {screenMedia} from "./screenMedia";
 
+const images={
+  menusymbol:require('./menu-symbol.svg')
+};
 export  default class TopMenu extends Component {
   constructor(props){
       super(props);
@@ -40,6 +43,13 @@ export  default class TopMenu extends Component {
   }
 
   renderMenuItem(menu,index){
+      var key=index+"_"+menu.label;
+      return(<MenuItem  menu={menu} selected={this.props.selected} key={key}/>);
+  }
+  renderMobileItem(menu,index){
+      if(menu.button){
+            return null;
+      }
       var key=index+"_"+menu.label;
       return(<MenuItem  menu={menu} selected={this.props.selected} key={key}/>);
   }
@@ -96,14 +106,23 @@ export  default class TopMenu extends Component {
         return(
           <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={()=>{
                 this.setMenuPressed(false);
-            }}>&#9747;</a>
+            }}>
+
+            &#9747;
+
+
+          </a>
         );
       }
       else{
         return(
           <a style={styles.mobileMenuIcon} href="#b"  data-testid="mobile-to-open-menu" onClick={()=>{
               this.setMenuPressed(true);
-            }}>&#9776;</a>
+            }}>
+
+            <img src={images.menusymbol}/>
+
+          </a>
         );
       }
 
@@ -121,7 +140,7 @@ export  default class TopMenu extends Component {
        if(this.state.menuPressed){
          return(
            <div style={styles.menuItemsMobile}>
-               {this.props.menus.map(this.renderMenuItem.bind(this))}
+               {this.props.menus.map(this.renderMobileItem.bind(this))}
                {this.renderTransparentSection()}
 
           </div>);
@@ -162,6 +181,7 @@ export  default class TopMenu extends Component {
            <div style={styles.appTitleContainer}>
                          <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
                          {this.renderMobileSubtitle()}
+                         {this.reanderMenuButton()}
           </div>
 
 
@@ -169,6 +189,20 @@ export  default class TopMenu extends Component {
           {this.renderMobileMenuItems()}
     </div>
   );
+  }
+  reanderMenuButton(){
+        var buttonMenus=this.props.menus.filter(m=>m.button);
+        if(!buttonMenus.length){
+          return null;
+        }
+
+          return(<Link to={buttonMenus[0].link}>
+                  <img src={buttonMenus[0].button}/>
+                </Link>);
+
+
+
+
   }
 
 }
