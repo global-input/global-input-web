@@ -110,7 +110,7 @@ headerContainer:{
       marginTop:20,
       width:"auto",
       marginLeft:70,
-      marginBottom:30
+      marginBottom:30,      
     },
     smallScreen:{
       fontSize:14,
@@ -149,7 +149,7 @@ headerContainer:{
         fontSize:"4.5vw",
         flexDirection:"column",
         width:"100%",
-        
+
         width:"80%"
 
       },
@@ -187,13 +187,25 @@ headerContainer:{
     marginLeft:10
   },
   itemRow:{
+    tworows:{
       display:"block",
       marginBottom:5,
       marginLeft:"auto",
       marginRight:"auto",
       minWidth:300,
+    },
+    onerow:{
+        get:styleMatchingScreenSize,
+        default:{
+
+        }
+
+    }
+
+
 
   },
+
 
 
 };

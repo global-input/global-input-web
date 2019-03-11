@@ -78,15 +78,17 @@ renderPosterImage(){
 renderHeaderListItems(){
   if(screenMedia.biggerThan(800)){
     return(
-          <ul className="listmenu">
+      <div style={styles.listContent.get()}>
+          <ul className="listmenu" style={styles.itemRow.onerow.get()}>
             {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
           </ul>
+      </div>
     );
   }
   else{
     return(
       <div style={styles.listContent.get()}>
-        <ul className="listmenu" style={styles.itemRow}>
+        <ul className="listmenu" style={styles.itemRow.tworows}>
           <li>
             {headerTextContent.items[0]}
           </li>
@@ -95,7 +97,7 @@ renderHeaderListItems(){
           </li>
         </ul>
 
-    <ul className="listmenu" style={styles.itemRow}>
+    <ul className="listmenu" style={styles.itemRow.tworows}>
       <li>
         {headerTextContent.items[2]}
       </li>
@@ -133,7 +135,7 @@ render() {
                         {screens.buttons.learnMoreWhite('Read More')}
                         {screens.buttons.getAppScreen('Get GIA App Free')}
                         </div>
-              
+
               </div>
 
           </div>
