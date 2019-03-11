@@ -14,17 +14,19 @@ export var styles={
      position:"relative",
 
    },
-   smallScreen:{
-     width:"45%",
-   },
-   screen1080:{
-     width:"30%",
-   },
    desktop:{
      width:"45%",
      minHeight:270,
-
    },
+   smallScreen:{
+     width:"45%",
+     minHeight:210,
+   },
+   screen1080:{
+     width:"40%",
+   },
+   screen1245:{width:"30%"},
+
 
    mobile:{
      width:"100%",
