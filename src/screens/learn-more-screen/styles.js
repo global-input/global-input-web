@@ -13,7 +13,7 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       color:"#A9C8E6", //#4880ED
-      width:"100%",
+      width:"90%",
 
       backgroundRepeat: 'no-repeat',
       backgroundSize: "cover",
@@ -35,16 +35,34 @@ export const styles={
       },
       mobile:{
         width:"auto",
+        alignItems:"center",
+
+        width:"90%"
       }
     },
     title:{
-         color:"#5291CD", //#4880ED
-         fontSize:30,
+        get:styleMatchingScreenSize,
+        default:{
+          color:"#5291CD", //#4880ED
+          fontSize:30,
+        },
+        mobile:{
+          fontSize:"6vw",
+        }
+
     },
     content:{
-      color:"#5291CD", //#4880ED
-      fontSize:16,
-      width:"90%"
+      get:styleMatchingScreenSize,
+      default:{
+        color:"#5291CD", //#4880ED
+        fontSize:16,
+
+      },
+      mobile:{
+        width:"90%",
+
+      }
+
     },
     paragraph:{
        marginBottom:10
@@ -59,7 +77,9 @@ export const styles={
       backgroundColor:'#E6F7FC',
       color:"#5291CD",
       padding:10,
-      overflow:"scroll"
+      overflow:"scroll",
+      marginTop:20,
+      marginBottom:20
     },
     mobile:{
       width:"90%",

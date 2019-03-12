@@ -14,10 +14,10 @@ export default class DeviceToDeviceCommunication extends React.Component{
   render(){
     return(
       <div style={styles.chapter.container.get()} id={DeviceToDeviceCommunication.menu.id}>
-          <div style={styles.chapter.title}>
+          <div style={styles.chapter.title.get()}>
                 {DeviceToDeviceCommunication.menu.title}
           </div>
-          <div style={styles.chapter.content}>
+          <div style={styles.chapter.content.get()}>
                 <div style={styles.chapter.paragraph}>
                 Global Input App provides applications with a device-to-device communication secured with end-to-end encryption supported by an <b>Encrypted QR Code</b>.
               </div>
