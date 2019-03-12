@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 export var styles={
    container:{
      color:"#5291CD",
@@ -18,7 +18,7 @@ export var styles={
        display:"flex",
        flexDirection:"row",
        justifyContent:"space-around",
-       
+
      },
      mobile:{
        flexDirection:"column",

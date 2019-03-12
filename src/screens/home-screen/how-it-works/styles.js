@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={
     extension:require("./images/extension.svg"),
     one:require("./images/1.svg"),
@@ -72,7 +72,7 @@ export const styles={
           },
           mobile:{
             width:150,
-            
+
             backgroundImage: "url("+images.small.one+")",
           }
 

@@ -2,14 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import {styles,images} from './styles';
 import TopHeaderSection from "../../top-header-section";
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
-import LearnMoreScreen from '../learn-more-screen';
+import {styleMatchingScreenSize} from "../../components/screen-media";
+import screens,{pagelinks} from '../../screens';
 const textContent={
     title:"Get GIA App Free",
     content:"Install this open-source mobile app for free on App Store or Play Store.",
     appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
     playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
-    chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
     next:{
       title:"Next Step"
     }
@@ -64,10 +63,10 @@ export default class GetAppScreen extends React.Component{
                   <div style={styles.subtitle.get()}>{textContent.next.title}</div>
 
                   <div style={styles.nextLinkContainer}>
-                    <a href={textContent.chromeStore} target="_blank" style={LearnMoreScreen.menu.styles.menuItem.get()}>Install Chrome Extension</a>
-                    <Link to={LearnMoreScreen.pagePath} style={LearnMoreScreen.menu.styles.menuItem.get()}>
-                            {LearnMoreScreen.menu.linkText}
-                    </Link>
+
+                    {pagelinks.renderChromeStoreLink('Install Chrome Extension')}
+                    {screens.buttons.learnMoreWhite('Learn More')}
+
                   </div>
 
                 </div>

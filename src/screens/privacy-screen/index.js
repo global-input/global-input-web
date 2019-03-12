@@ -5,7 +5,7 @@ import {styles,images} from './styles';
 import TopHeaderSection from "../../top-header-section";
 import AutoPlayVideo from "../../components/auto-play-video";
 import {exampleLinks} from '../examples';
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 const textContent={
     privacy:{
         title:"Privacy Policy",

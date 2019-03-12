@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={
   authentication:require('./images/authentication.svg'),
   mobileControl:require('./images/control.svg'),

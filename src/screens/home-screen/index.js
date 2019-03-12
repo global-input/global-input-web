@@ -18,7 +18,7 @@ import HowItWorks from "./how-it-works";
 import FooterSection from '../../footer-section';
 import CardSection from "./cards-section";
 import FeaturesSection from './features-section';
-import OldContent from './OldContent';
+
 
 export  default class HomeScreen extends Component {
     static pagePath="/"
@@ -50,28 +50,12 @@ render() {
             <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
 
             <div style={styles.firstHalf.get()}>
-
                 <HeaderSection history={this.props.history}/>
-                
-
                 <CardSection/>
                 <HowItWorks/>
             </div>
             <FeaturesSection/>
-
-
-
-
-
-
-
-          <BookMark bookmark={applicationPathConfig.videoPlayer.menu.bookmark}/>
-
-
-
-
-<FooterSection/>
-
+            <FooterSection/>
 
           </div>
 

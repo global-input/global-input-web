@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from './screenMedia';
+import {styleMatchingScreenSize} from '../screen-media';
 var fontFamily="Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif";
 export const styles={
   topnavContainer:{
@@ -10,7 +10,7 @@ export const styles={
     position:"fixed",
     zIndex:100,
     top:0,
-    left:0
+    left:0,
   },
 
   topnav:{
@@ -23,11 +23,16 @@ export const styles={
     justifyContent: "space-between",
     backgroundColor:"white",
     alignItems: "center",
+    borderBottomColor:'#EEEEEE',
+    borderBottomStyle:"solid",
+    borderBottomWidth:1,
+    boxShadow: "0 -5px 5px -5px #333"
+
   },
   appTitleContainer:{
     marginLeft:10,
     paddingTop:5,
-  
+
   },
 
   appDesktopTitle:{

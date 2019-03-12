@@ -1,5 +1,5 @@
 
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 const images={
     screen1440:require("./images/headbackground-1440.svg"),
     screen1080:require("./images/headbackground-1080.svg"),

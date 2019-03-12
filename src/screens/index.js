@@ -15,6 +15,16 @@ import MobileControlScreen from './mobile-control-screen';
 import MediaSecondScreen from './media-second-screen';
 
 import FormOperationScreen from './form-operation-screen';
+export const pagelinks={
+    chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
+    renderChromeStoreLink:function(linkText){
+        return(
+          <a href={this.chromeStore} target="_blank" style={styles.buttonLinks.get('white')}>{linkText}</a>
+        );
+    }
+
+
+};
 
 const screens={
       renderRoute:function(){
@@ -63,7 +73,9 @@ const screens={
                       {linkText}
               </Link>
           );
-        }
+        },
+
+
       },
       menuItems:{
         getApp:{

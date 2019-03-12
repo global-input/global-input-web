@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 
 export const images={
     path50:require("./images/path-50.svg"),
@@ -110,7 +110,7 @@ headerContainer:{
       marginTop:20,
       width:"auto",
       marginLeft:70,
-      marginBottom:30,      
+      marginBottom:30,
     },
     smallScreen:{
       fontSize:14,

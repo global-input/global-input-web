@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../../../components/screen-media";
 export var styles={
 
  card:{

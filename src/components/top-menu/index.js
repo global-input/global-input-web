@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 import {styles} from "./styles";
-import {screenMedia} from "./screenMedia";
+import {screenMedia} from "../screen-media";
 
 const images={
   menusymbol:require('./menu-symbol.svg')

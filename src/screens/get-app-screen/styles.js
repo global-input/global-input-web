@@ -1,9 +1,9 @@
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 export const images={
     headerBackground:require("./images/top-background.svg"),
     rightposter:require("./images/global-input-app.png"),
     appStore:require("./images/app-store.png"),
-    playStore:require("./images/play-store.png"),    
+    playStore:require("./images/play-store.png"),
 }
 
 export const styles={

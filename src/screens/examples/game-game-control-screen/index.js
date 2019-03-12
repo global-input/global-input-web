@@ -4,8 +4,7 @@ import {styles} from "./styles";
 import {applicationPathConfig} from "../../../page-templates";
 import GameControlExample from "../../../examples/game-control-example";
 export default class GameControlScreen extends React.Component{
-  static pagePath="/global-input-app/game-example"
-  static linkText="Game Control"
+  static pagePath="/global-input-app/game-example"  
   render(){
     return(
       <React.Fragment>

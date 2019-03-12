@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 export const styles={
       examplelink:{
         get:styleMatchingScreenSize,
@@ -26,6 +26,6 @@ export const styles={
             color:"#66ccff",
             fontWeight:300
         },
-        
+
     }
 };
