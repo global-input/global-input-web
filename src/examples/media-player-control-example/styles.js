@@ -1,12 +1,11 @@
 export const styles={
     container:{
+        paddingTop:80,
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
-        windows:"100%",
-        minHeight:window.innerHeight*2/3
-
+        width:"100%",
     },
     title:{
       display:"flex",
@@ -32,6 +31,33 @@ export const styles={
         width:"100%",
         marginLeft:"10vw",
         marginBottom:10
-    }
+    },
+    videoContainer:{
+        position:"relative"
+    },
+    barcodeContainer:{
+        position:"absolute",
+        top:50,
+        width:"100%",
+        height:"100%",
 
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+
+    barcode:{
+      backgroundColor:"white",
+      color:"#A9C8E6", //#4880ED
+      padding:20,
+    },
+    reconnectConnectainer:{
+      width:"100%"
+    },
+    reconnectButton:{
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto"
+    }
 };
