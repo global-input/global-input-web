@@ -6,7 +6,7 @@ import {styles, images} from "./styles";
 import TopHeaderSection from "../../get-app-screen";
 import GetAppScreen from '../../get-app-screen';
 import LearnMoreScreen from '../../learn-more-screen';
-import {screenMedia} from "../../../utils/screenMedia";
+import {screenMedia} from "../../../components/screen-media";
 import screens from "../../../screens";
 
 const headerTextContent={
@@ -57,13 +57,13 @@ export  default class HeaderSection extends Component {
     }
 renderPosterImage(){
   var postImage=images.rightPoster;
-  if(!screenMedia.biggerThan(600)){
+  if(!screenMedia.biggerThan(800)){
       return null;
   }
   else if(!screenMedia.biggerThan(680)){
     postImage=images.rightPoster200;
   }
-  else if(!screenMedia.biggerThan(1100)){
+  else if(!screenMedia.biggerThan(1258)){
     postImage=images.rightPoster400;
   }
 

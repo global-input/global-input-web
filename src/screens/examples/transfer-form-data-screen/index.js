@@ -5,7 +5,7 @@ import {applicationPathConfig} from "../../../page-templates";
 import TransferFormDataExample from "../../../examples/transfer-form-data-example";
 export default class TransferFormDataScreen extends React.Component{
   static pagePath="/global-input-app/form-data-transfer"
-  static linkText="Transfer Form"
+  
   render(){
     return(
       <React.Fragment>

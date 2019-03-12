@@ -12,18 +12,15 @@ import {styles} from './styles';
 
 
 var examples={
-  renderAllLinks:function(){
-        return (
-              <React.Fragment>
-                  <Link to={ContentTransferScreen.pagePath} style={styles.examplelink.get()}>{ContentTransferScreen.linkText}</Link>
-                  <Link to={GameControlScreen.pagePath} style={styles.examplelink.get()}>{GameControlScreen.linkText}</Link>
-                  <Link to={MediaPlayerScreen.pagePath} style={styles.examplelink.get()}>{MediaPlayerScreen.linkText}</Link>
-                  <Link to={QRPrintingScreen.pagePath} style={styles.examplelink.get()}>{QRPrintingScreen.linkText}</Link>
-                  <Link to={SendMessageScreen.pagePath} style={styles.examplelink.get()}>{SendMessageScreen.linkText}</Link>
-                  <Link to={TransferFormDataScreen.pagePath} style={styles.examplelink.get()}>{TransferFormDataScreen.linkText}</Link>
-              </React.Fragment>
-            );
-  },
+  allLinks:[
+          {path:ContentTransferScreen.pagePath,linkText:"Content Transfer"},
+          {path:GameControlScreen.pagePath,linkText:"Game Control"},
+          {path:MediaPlayerScreen.pagePath,linkText:"Media Player Control"},
+          {path:QRPrintingScreen.pagePath,linkText:"QR Code Printing"},
+          {path:SendMessageScreen.pagePath,linkText:"Send Message"},
+          {path:TransferFormDataScreen.pagePath,linkText:"Transfer Form Data"},
+        ],
+
   renderTransferFormDataExampleLink(linkText){
       return(
         <Link to={TransferFormDataScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>

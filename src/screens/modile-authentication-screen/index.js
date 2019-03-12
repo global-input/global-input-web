@@ -6,7 +6,7 @@ import TopHeaderSection from "../../top-header-section";
 import AutoPlayVideo from "../../components/auto-play-video";
 import {LinkItem} from '../../components';
 import examples from '../examples';
-import {styleMatchingScreenSize} from "../../utils/screenMedia";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 const textContent={
     title:"Mobile Inoput & Control",
     chromeExtension:{
@@ -150,7 +150,7 @@ export default class MobileControlScreen extends React.Component{
 
 
                       <div styles={styles.card.exampleContainer}>
-                        {examples.renderTransferFormDataExampleLink('Transfer Form Data Example')}                        
+                        {examples.renderTransferFormDataExampleLink('Transfer Form Data Example')}
                       </div>
                   </div>
 

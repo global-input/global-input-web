@@ -17,7 +17,13 @@ export let screenMedia={
       if(!target.computedStyles){
         target.computedStyles=[];
       }
-      var cStyle=target.computedStyles[name];
+      var cStyle=null;
+      if(namedState && target[namedState]){
+          cStyle=target.computedStyles[name+"_"+namedState];
+      }
+      else{
+        cStyle=target.computedStyles[name];
+      }
       if(cStyle){
           return cStyle;
       }
@@ -49,9 +55,10 @@ export let screenMedia={
   }
 };
 export function styleMatchingScreenSize(namedState){
+
         if(this.bigScreen){
 
-            if(screenMedia.biggerThan(1440)){                
+            if(screenMedia.biggerThan(1440)){
                 return screenMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen",namedState);
             }
         }
@@ -81,10 +88,7 @@ export function styleMatchingScreenSize(namedState){
             }
         }
         if(this.mobile){
-            if(screenMedia.biggerThan(600)){
-              return this.default;
-            }
-            else{
+            if(!screenMedia.biggerThan(600)){
               return screenMedia.getScreenStyle(this.default,this.mobile,this,"mobile",namedState);
             }
         }

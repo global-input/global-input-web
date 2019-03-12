@@ -4,8 +4,7 @@ import {styles} from "./styles";
 import {applicationPathConfig} from "../../../page-templates";
 import ContentTransferExample from "../../../examples/content-transfer-example";
 export default class ContentTransferScreen extends React.Component{
-  static pagePath="/global-input-app/content-transfer"
-  static linkText="Content Transfer"
+  static pagePath="/global-input-app/content-transfer"  
   render(){
     return(
       <React.Fragment>
