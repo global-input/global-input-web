@@ -9,10 +9,10 @@ import "./css/loader.css";//removed after test
 import "./css/print.css";//removed after test
 import "./css/input.css";//removed after test
 import "./css/simpleAnimate.css";//removed after test
-import {pagelinks} from "./configs";
+import {pagelinks} from "./configs";//to be removed
 
 
-import {DevelopersScreen} from "./developers";
+import {DevelopersScreen} from "./developers"; //to be removed
 
 import screens from "./screens";
 
