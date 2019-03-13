@@ -3,8 +3,7 @@ import TopHeaderSection from "../../../top-header-section";
 import {styles} from "./styles";
 
 import ContentTransferExample from "../../../examples/content-transfer-example";
-export default class ContentTransferScreen extends React.Component{
-  static pagePath="/global-input-app/content-transfer"
+export default class ContentTransferScreen extends React.Component{  
   render(){
     return(
       <React.Fragment>

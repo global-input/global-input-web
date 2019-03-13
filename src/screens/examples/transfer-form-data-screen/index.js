@@ -3,8 +3,7 @@ import TopHeaderSection from "../../../top-header-section";
 import {styles} from "./styles";
 
 import TransferFormDataExample from "../../../examples/transfer-form-data-example";
-export default class TransferFormDataScreen extends React.Component{
-  static pagePath="/global-input-app/form-data-transfer"
+export default class TransferFormDataScreen extends React.Component{  
 
   render(){
     return(

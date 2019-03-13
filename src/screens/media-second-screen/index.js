@@ -31,7 +31,7 @@ const textContent={
 }
 
 export default class MediaSecondScreen extends React.Component{
-  static pagePath="/global-input-app/media-second-screen"
+  
   static menu={
         link:"/global-input-app/learn-more",
         linkText:"Learn More",

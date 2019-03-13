@@ -29,7 +29,7 @@ const textContent={
 }
 
 export default class MobileControlScreen extends React.Component{
-  static pagePath="/global-input-app/mobile-control"
+
   constructor(props){
     super(props);
     this.onWindowResize=this.onWindowResize.bind(this);

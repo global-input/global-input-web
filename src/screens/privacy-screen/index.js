@@ -17,7 +17,7 @@ const textContent={
 
 }
 export default class PrivacyScreen extends React.Component{
-  static pagePath="/global-input-app/privacy"
+  
 
   constructor(props){
     super(props);

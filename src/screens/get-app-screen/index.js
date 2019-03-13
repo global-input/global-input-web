@@ -15,7 +15,7 @@ const textContent={
 
 }
 export default class GetAppScreen extends React.Component{
-  static pagePath="/global-input-app/get-app"
+  
   static menu={
         link:"/global-input-app/get-app",
         linkText:"Get GIA App Free",
