@@ -138,7 +138,7 @@ export default class FormBuilder extends React.Component{
         <div style={styles.footer}>
               <TextButton label="Delete Selected" onClick={this.onDeleteField.bind(this)} disabled={!this.hasSelectedField()}/>
               <TextButton label="Add New Field" onClick={this.showAddNewFieldDialog.bind(this)}/>
-              <TextButton label="Finish" onClick={this.onFinish.bind(this)}/>
+              <TextButton label="Next" onClick={this.onFinish.bind(this)}/>
         </div>
 
         {this.renderAddNewFieldDialog()}

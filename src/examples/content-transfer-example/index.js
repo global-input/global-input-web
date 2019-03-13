@@ -10,120 +10,121 @@ const textContent={
     githuburl:"https://github.com/global-input/content-transfer-example"
 }
 export default class ContentTransferExample extends React.Component{
-
   constructor(props){
-      super(props);
-      this.state={content:"", connected:false, notificationMessage:null};
-      this.messageTimeoutHandler=null;
-      this.initMobileData(props);
-  }
-  componentWillUnmount(){
-    if(this.messageTimeoutHandler){
-      clearTimeout(this.messageTimeoutHandler);
-      this.messageTimeoutHandler=null;
+        super(props);
+        this.state={content:"", connected:false, notificationMessage:null};
+        this.messageTimeoutHandler=null;
+        this.mobile.init(props);
     }
-  }
-  setContent(content){
-      this.setState(Object.assign({},{content}));
-      this.mobile.setContent(content);
-  }
-  setNotificationMessage(notificationMessage){
-    this.setState(Object.assign({},this.state,{notificationMessage}),()=>{
-      this.clipboardTimerHandler=setTimeout(()=>{
-            this.setState(Object.assign({},this.state,{notificationMessage:null}));
-      },2000);
-    });
-  }
-  onSenderConnected(){
-      this.setState(Object.assign({},{connected:true}));
-  }
-  initMobileData(props){
-            this.mobile={
-                  globalInputConnect:null,
-                  sendMessage:(message, fieldid)=>{
-                        if(this.mobile.globalInputConnect){
-
-                              this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
-                        }
-                        else{
-
-                        }
-                  },
-                  config:{
-                                url:props.url,
-                                apikey:props.apikey,
-                                securityGroup:props.securityGroup,
-                                initData:{
-                                    action:"input",
-                                    dataType:"control",
-                                    form:{
-                                      title:"Content Transfer",
-                                      fields:[]
-                                    }
-                                },
-                                onSenderConnected:()=>this.onSenderConnected.bind(this)
-                  },
-                  addField: field=>this.mobile.config.initData.form.fields.push(field)
-            };
-            const contentField={
-                    label:"Content",
-                    id:"content",
-                    value:"",
-                    nLines:10,
-                    operations:{
-                        onInput:value=>this.setContent(value)
-                    }
-            };
-            this.mobile.addField(contentField);
-            this.mobile.setContent=content=>{
-              this.mobile.sendMessage(content,contentField.id);
-            }
-  }
-
-
-  renderCopyButton(){
-    if(this.state.notificationMessage){
-
+    componentWillUnmount(){
+      if(this.messageTimeoutHandler){
+        clearTimeout(this.messageTimeoutHandler);
+        this.messageTimeoutHandler=null;
+      }
     }
-  }
-  render(){
-    return(
-      <div style={styles.container}>
+    setContent(content){
+        this.setState(Object.assign({},{content}));
+    }
+    setNotificationMessage(notificationMessage){
+      this.setState(Object.assign({},this.state,{notificationMessage}),()=>{
+        this.clipboardTimerHandler=setTimeout(()=>{
+              this.setState(Object.assign({},this.state,{notificationMessage:null}));
+        },2000);
+      });
+    }
+    onSenderConnected(){
+        this.setState(Object.assign({},{connected:true}));
+    }
 
-        <div style={styles.title}>
-            {textContent.title}
-        </div>
-        <div style={styles.topControl}>
-              <span style={styles.githuburl}>
-                  <a href={textContent.githuburl} target="_blank">{textContent.githuburl}</a>
-              </span>
-              <ClipboardCopyButton copyFieldId="contentField"/>
+    renderCopyButton(){
+      if(this.state.notificationMessage){
 
-        </div>
-        <div style={styles.areaContainer}>
-          <textarea  id="contentField" style={styles.textArea.get()}
-            onChange={(evt) => {
-                this.setContent(evt.target.value);
+      }
+    }
+    render(){
+      return(
+        <div style={styles.container}>
 
-          }} value={this.state.content}/>
-          <div style={styles.globalConnect}>
-                <GlobalInputConnect mobileConfig={this.mobile.config}
-                  ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
-                  connectingMessage="Connecting...."
-                  connectedMessage="Scan with Global Input App">
+          <div style={styles.title}>
+              {textContent.title}
+          </div>
+          <div style={styles.topControl}>
+                <span style={styles.githuburl}>
+                    <a href={textContent.githuburl} target="_blank">{textContent.githuburl}</a>
+                </span>
+                <ClipboardCopyButton copyFieldId="contentField"/>
 
-                  </GlobalInputConnect>
+          </div>
+          <div style={styles.areaContainer}>
+            <textarea  id="contentField" style={styles.textArea.get()}
+              onChange={(evt) => {
+                  this.setContent(evt.target.value);
+                  this.mobile.setContent(evt.target.value);
+
+            }} value={this.state.content}/>
+            <div style={styles.globalConnect}>
+                  <GlobalInputConnect mobileConfig={this.mobile.config}
+                    ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
+                    connectingMessage="Connecting...."
+                    connectedMessage="Scan with Global Input App">
+
+                    </GlobalInputConnect>
+            </div>
+
           </div>
 
+
+
         </div>
+      );
+
+    }
+
+    mobile={
+      globalInputConnect:null,
+          config:null,
+          disconnect:()=>{
+              if(this.mobile.globalInputConnect){
+                  this.mobile.globalInputConnect.disconnectGlobaInputApp();
+              }
+          },
+          init:(props)=>{
+                    this.mobile.config={
+                          url:props.url,
+                          apikey:props.apikey,
+                          securityGroup:props.securityGroup,
+                          initData:{
+                              action:"input",
+                              dataType:"control",
+                              form:{
+                                title:"Content Transfer",
+                                fields:[{
+                                  label:"Content",
+                                  id:"content",
+                                  value:"",
+                                  nLines:10,
+                                  operations:{
+                                      onInput:value=>this.setContent(value)
+                                  }
+                                }]
+                              }
+                          },
+                          onSenderConnected:()=>{
+                                  this.setState(Object.assign({},this.state,{connected:true}));
+                          },
+                          onSenderDisconnected:()=>{
+                              this.setState(Object.assign({}, this.state,{connected:false}));
+                          }
+                     };
+          },
+          setContent:content=>{
+            if(this.mobile.globalInputConnect){
+                  this.mobile.globalInputConnect.sendInputMessage(content,0);
+            }
+          }
 
 
-
-      </div>
-    );
-
-  }
-
+    }
 
 
 
