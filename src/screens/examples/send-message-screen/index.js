@@ -1,17 +1,17 @@
 import React from 'react';
 import TopHeaderSection from "../../../top-header-section";
 import {styles} from "./styles";
-import {applicationPathConfig} from "../../../page-templates";
+
 import SendMessageExample from "../../../examples/send-message-example";
 import "whatwg-fetch";
 export default class SendMessageScreen extends React.Component{
-  static pagePath="/global-input-app/send-message"  
+  static pagePath="/global-input-app/send-message"
   apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
 
   render(){
     return(
       <React.Fragment>
-        <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
+        <TopHeaderSection selected={this.props.selected}/>
         <div style={styles.content}>
             <div style={styles.itemSection}>
                 <SendMessageExample {...this.props}/>
