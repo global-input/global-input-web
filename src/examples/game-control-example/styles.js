@@ -1,14 +1,12 @@
 export const styles={
     container:{
+        paddingTop:80,
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
-        windows:"100%",
-        minHeight:window.innerHeight*2/3
-
+        width:"100%",
     },
-
     title:{
       display:"flex",
       flexDirection:"row",
@@ -19,51 +17,47 @@ export const styles={
       marginBottom:"20",
       marginLeft:"4vw"
     },
-
-    githuburl:{
-          display:"flex",
-          flexDirection:"column",
-          justifyContent:"flex-start",
-          alignItems:"flex-start",
-          fontSize:"20",
+    playHeadInfo:{
+          fontSize:20,
           color:"#5291CD",
-          width:"100%",
-          marginLeft:"10vw",
-          marginBottom:10
     },
-    areaContainer:{
-      display:"flex",
-      flexDirection:"column",
-      justifyContent:"flex-start",
-      alignItems:"center",
-      width:"100%",
+    githuburl:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"flex-start",
+        fontSize:"20",
+        color:"#5291CD",
+        width:"100%",
+        marginLeft:"10vw",
+        marginBottom:10
     },
-    textArea:{
-        get:()=>{
+    videoContainer:{
+        position:"relative"
+    },
+    barcodeContainer:{
+        position:"absolute",
+        top:50,
+        width:"100%",
+        height:"100%",
 
-          return{
-            width:"80%",
-            height:window.innerHeight*2/3
-          }
-        }
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
 
+    barcode:{
+      backgroundColor:"white",
+      color:"#A9C8E6", //#4880ED
+      padding:20,
     },
-    copyButton:{
-      color:"#5291CD",
-      borderRadius:8,
+    reconnectConnectainer:{
+      width:"100%"
     },
-    topControl:{
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"space-between",
-      alignItems:"flex-start",
-      width:"80%",
-      marginLeft:"10vw",
-      marginBottom:10
-    },
-    globalConnect:{
-        marginTop:20,
-        position:"absolute"
+    reconnectButton:{
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto"
     }
-
 };

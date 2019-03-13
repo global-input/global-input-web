@@ -16,14 +16,7 @@ import videoPlayerConfig from "./videoPlayerConfig";
 import screens from "../../screens";
 
 const applicationPathConfig={
-    appTitle:homeTextConfig.title,
-    menus:[
-        homeTextConfig.menu,
-        //platformTextConfig.menu,
-        privacyConfig.menu,
-        contactUsConfig.menu,
-        screens.menuItems.getApp
-    ],
+    appTitle:homeTextConfig.title,    
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,
     qrPrinting:     qrPrintingConfig,
