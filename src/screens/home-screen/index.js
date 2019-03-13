@@ -8,7 +8,7 @@ import {TopMenu,BookMark} from "../../components";
 
 import {styles} from "./styles";
 
-import {applicationPathConfig} from "../../page-templates";
+
 
 import HeaderSection from "./header-section";
 import TopHeaderSection from "../../top-header-section";
@@ -47,7 +47,7 @@ render() {
     return (
           <div style={styles.content}>
 
-            <TopHeaderSection menus={applicationPathConfig.menus} selected={this.props.selected}/>
+            <TopHeaderSection  selected={this.props.selected}/>
 
             <div style={styles.firstHalf.get()}>
                 <HeaderSection history={this.props.history}/>
