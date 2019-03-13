@@ -41,8 +41,8 @@ const textContent={
 
 }
 
-export default class MobileControlScreen extends React.Component{
-  
+export default class AboutMobileAuthentication extends React.Component{
+
   constructor(props){
     super(props);
     this.onWindowResize=this.onWindowResize.bind(this);

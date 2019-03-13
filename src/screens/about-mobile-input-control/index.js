@@ -28,7 +28,7 @@ const textContent={
 
 }
 
-export default class MobileControlScreen extends React.Component{
+export default class AboutMobileInputControl extends React.Component{
 
   constructor(props){
     super(props);

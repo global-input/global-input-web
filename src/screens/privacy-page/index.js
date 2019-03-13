@@ -16,8 +16,8 @@ const textContent={
     }
 
 }
-export default class PrivacyScreen extends React.Component{
-  
+export default class PrivacyPage extends React.Component{
+
 
   constructor(props){
     super(props);

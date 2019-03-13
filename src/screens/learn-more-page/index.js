@@ -15,8 +15,8 @@ import WatchIntroduction from "./watch-introduction";
 const sideMenus=[ClientSideOnlySolution.menu, DeviceToDeviceCommunication.menu,
   PortableEncryptedStorage.menu];
 
-export default class LearnMoreScreen extends React.Component{
-  
+export default class LearnMorePage extends React.Component{
+
 
   constructor(props){
     super(props);

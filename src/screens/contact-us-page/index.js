@@ -1,6 +1,6 @@
 import React from 'react';
-import HomeScreen from "../home-screen";
-export default class ContactUsScreen extends React.Component{  
+import HomeScreen from "../home-page";
+export default class ContactUsPage extends React.Component{
   render(){
 
     return(
