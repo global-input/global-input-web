@@ -14,7 +14,7 @@ export default class WatchIntroduction extends React.Component{
 
   render(){
     return(
-      <div style={styles.video}>
+      <div style={styles.video.get()}>
           <a href={videos.full} target="_blank">
             <img src={images.videoIcon}/>
           </a>

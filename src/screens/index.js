@@ -15,6 +15,8 @@ import MobileControlScreen from './mobile-control-screen';
 import MediaSecondScreen from './media-second-screen';
 
 import FormOperationScreen from './form-operation-screen';
+import SecureFormDataTrabsferScreen from "./secure-content-transfer-screen";
+import {config} from "../configs";
 export const pagelinks={
     chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
     renderChromeStoreLink:function(linkText){
@@ -30,62 +32,58 @@ const screens={
       renderRoute:function(){
         return(
           <React.Fragment>
-            <Route  path={HomeScreen.pagePath} exact component={HomeScreen}/>
+            {config.paths.home.paths.map((p,index)=><Route  key={index} path={p} exact component={HomeScreen}/>)}
             {examples.renderRoute()}
 
-            <Route path={LearnMoreScreen.pagePath} component={LearnMoreScreen}/>
-            <Route path={GetAppScreen.pagePath} component={GetAppScreen}/>
-            <Route path={PrivacyScreen.pagePath} component={PrivacyScreen}/>
-            <Route path={ContactUsScreen.pagePath} component={ContactUsScreen}/>
-            <Route path={MobileAuthenticationScreen.pagePath} component={MobileAuthenticationScreen}/>
-            <Route path={MobileControlScreen.pagePath} component={MobileControlScreen}/>
-            <Route path={MediaSecondScreen.pagePath} component={MediaSecondScreen}/>
-            <Route path={FormOperationScreen.pagePath} component={FormOperationScreen}/>
+            <Route path={config.paths.learnMore.path} component={LearnMoreScreen}/>
+            <Route path={config.paths.getAppScreen.path} component={GetAppScreen}/>
+            <Route path={config.paths.privacy.path} component={PrivacyScreen}/>
+            <Route path={config.paths.contactus.path} component={ContactUsScreen}/>
+            <Route path={config.paths.mobileAuthentication.path} component={MobileAuthenticationScreen}/>
+            <Route path={config.paths.mobileControl.path} component={MobileControlScreen}/>
+            <Route path={config.paths.secondScreen.path} component={MediaSecondScreen}/>
+            <Route path={config.paths.formOperation.path} component={FormOperationScreen}/>
+            <Route path={config.paths.secureTransfer.path} component={SecureFormDataTrabsferScreen}/>
 
           </React.Fragment>
         );
       },
-      paths:{
-          authentication:MobileAuthenticationScreen.pagePath,
-          mobileControl:MobileControlScreen.pagePath,
-          secondScreen:MediaSecondScreen.pagePath
+      allLinks:{
+          authentication:config.paths.mobileAuthentication.path,
+          mobileControl:config.paths.mobileControl.path,
+          secondScreen:config.paths.secondScreen.path
       },
       readMore:{
           secondScreen:function(linkText){
 
-                return(<Link to={MediaSecondScreen.pagePath} style={styles.readMorelink.get()}>{linkText}</Link>);
+                return(<Link to={config.paths.secondScreen.path} style={styles.readMorelink.get()}>{linkText}</Link>);
+          },
+          mobileControl:function(linkText){
+
+                return(<Link to={config.paths.mobileControl.path} style={styles.readMorelink.get()}>{linkText}</Link>);
           },
           authenticationDevice:function(linkText){
 
-                return(<Link to={MobileAuthenticationScreen.pagePath} style={styles.readMorelink.get()}>{linkText}</Link>);
+                return(<Link to={config.paths.mobileAuthentication.path} style={styles.readMorelink.get()}>{linkText}</Link>);
           },
           formOperation:function(linkText){
-                return(<Link to={FormOperationScreen.pagePath} style={styles.readMorelink.get()}>{linkText}</Link>);
+                return(<Link to={config.paths.formOperation.path} style={styles.readMorelink.get()}>{linkText}</Link>);
+          },
+          secureTransferFormData:function(linkText){
+                return(<Link to={config.paths.secureTransfer.path} style={styles.readMorelink.get()}>{linkText}</Link>);
           }
       },
       buttons:{
         learnMoreWhite:function(linkText){
-              return(<Link to={LearnMoreScreen.pagePath} style={styles.buttonLinks.get('white')}>{linkText}</Link>);
+              return(<Link to={config.paths.learnMore.path} style={styles.buttonLinks.get('white')}>{linkText}</Link>);
         },
         getAppScreen:function(linkText){
           return(
-              <Link to={GetAppScreen.pagePath} style={styles.buttonLinks.get()}>
+              <Link to={config.paths.getAppScreen.path} style={styles.buttonLinks.get()}>
                       {linkText}
               </Link>
           );
         },
-
-
       },
-      menuItems:{
-        getApp:{
-              link:GetAppScreen.pagePath,
-              linkText:"Get GIA App Free",
-              button:images.downloadapp,
-              styles:{
-                    menuItem: styles.menuItem
-              }
-           }
-      }
 };
 export default screens;

@@ -11,7 +11,7 @@ import {styles} from "./styles";
 
 import GlobalInputConnect from '../../components/global-input-connect';
 import GameComponent from "./GameComponent";
-import GameArea from "./GameArea";
+
 
 const textContent={
     title:"Game Control Example",
@@ -24,199 +24,31 @@ export default class GameControlExample extends Component {
 
     constructor(props){
         super(props);
-        this.initMobileData(props);
+        this.state={connected:false};
+        this.mobile.init(props); //Initialize the mobile configuration
+        this.mobile.uiForGameControl();
+    }
+    componentDidMount(){
+        this.initGame(this.canvas);
+        this.startGame();
+        setTimeout(()=>{
+              this.stopGame();
+        },5000);
     }
 
-    initMobileData(props){
-              this.mobile={
-                    globalInputConnect:null,
-                    sendMessage:(message, fieldid)=>{
-                          if(this.mobile.globalInputConnect){
-                                this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
-                          }
 
-                    },
-                    config:{
-                                  url:props.url,
-                                  apikey:props.apikey,
-                                  securityGroup:props.securityGroup,
-                                  initData:{
-                                      action:"input",
-                                      dataType:"control",
-                                      form:{
-                                        title:"Game Control",
-                                        fields:[],
-                                        views:{
-                                            viewIds:{
-                                                  footer:{
-                                                     style:{
-                                                          justifyContent:"space-between",
-                                                          width:"100%",
-                                                     }
-                                                  }
-                                            }
-
-                                        }
-                                      }
-                                  }
-                    },
-                    addField: field=>this.mobile.config.initData.form.fields.push(field)
-              };
-              const upButton={
-                        id:   "upButton",
-                        type: "button",
-                        icon: "up",
-                        viewId:"row1",
-                        operations:{onInput: value=> this.onUpButtonPressed()}
-              };
-              this.mobile.addField(upButton);
-
-              const leftButton={
-                        id:   "leftButton",
-                        type: "button",
-                        icon: "left",
-                        viewId:"row2",
-                        operations:{onInput: value=>this.onLeftButtonPressed()}
-              };
-              this.mobile.addField(leftButton);
-
-
-              const infoField={
-                        id:"infoField",
-                        type: "info",
-                        value:{
-                        type:"view",
-                        style:{
-                            minWidth:36,
-                            minHeight:36
-                            }
-                        },
-                        viewId:"row2"
-               };
-              this.mobile.addField(infoField);
-
-              const rightButton={
-                      id:   "rightButton",
-                      type: "button",
-                      icon: "right",
-                      viewId:"row2",
-                      operations:{onInput: value=>this.onRightButtonPressed()}
-               };
-              this.mobile.addField(rightButton);
-
-              const downButton={
-                        id:   "downButton",
-                        type: "button",
-                        icon: "down",
-                        viewId:"row3",
-                        operations:{onInput: value=>this.onDownButtonPressed()}
-               };
-              this.mobile.addField(downButton);
-
-
-              const speedDown={
-                        id:   "speedDown",
-                        type: "button",
-                        label:"Speed Down",
-                        iconText:{
-                            content:"-",
-                            style:{fontSize:36},
-                        },
-                        style:{
-                            borderColor:"green",
-                            paddingRight:10
-                        },
-                        viewId:"row4",
-                        operations:{onInput: value=>this.speedDown()}
-               };
-              this.mobile.addField(speedDown);
-
-              const speedText={
-                    id:"speedText",
-                    type:"info",
-                    value:{type:"text",content:"30"},
-                    viewId:"row4",
-              }
-              this.mobile.addField(speedText);
-
-
-              this.mobile.setMoveSpeed=speed=>{
-                   var speedValue={
-                     type:"text",
-                     content:speed
-                   };
-                   this.mobile.sendMessage(speedValue,speedText.id);
-              };
-
-
-
-              const speedUp={
-                    id:    "speedUp",
-                    type:  "button",
-                    label: "Speed Up",
-                    style:{borderColor:"green"},
-                    iconText:{
-                          content:"+",
-                          style:{
-                                fontSize:36,
-                          }
-                    },
-                    viewId:"row4",
-                    operations:{onInput: value=>this.speedUp()}
-              };
-              this.mobile.addField(speedUp);
-
-              const backButton={
-                    label:"Disconnect",
-                    type:"button",
-                    icon:"disconnect",
-                    viewId:"footer",
-                    operations:{onInput: value=>this.connectGlobalInput()},
-                    container:{label:""}
-              }
-              this.mobile.addField(backButton);
-
-              const startPauseButton={
-                    id:   "startPauseButton",
-                    type: "button",
-                    value:0,
-                    label:"Start",
-                    options:[{value:0,label:"Start",icon:"play"},{value:1,label:"Pause",icon:"pause"}],
-                    viewId:"footer",
-                    operations:{onInput: value => value?this.stopGame():this.resumeGame()}
-              };
-              this.mobile.addField(startPauseButton);
-
-              this.mobile.showPlayButton = () => this.mobile.sendMessage(0,startPauseButton.id);
-              this.mobile.showPauseButton= () => this.mobile.sendMessage(1,startPauseButton.id);
-
-
-              const newGameButton={
-                    id:  "newGrameButton",
-                    type: "button",
-                    label:"New Game",
-                    container:{label:"New Game"},
-                    icon: "reset",
-                    viewId:"footer",
-                    operations:{onInput: value=>this.startGame()}
-              };
-              this.mobile.addField(newGameButton);
-
-
-
-
-    }
 
     render(){
-          var w = window.innerWidth-50;
-          var h = window.innerHeight-50;
 
-          var videoHeight=h-50;
-          var videoWidth=16*videoHeight/9;
-          if(videoWidth>w){
-              videoWidth=w-50;
-              videoHeight=9*videoWidth/16;
-          }
+      var barcodeContainerStyle=styles.barcodeContainer;
+      if(this.state.connected){
+          barcodeContainerStyle=Object.assign({},barcodeContainerStyle,{display:"none"});
+      }
+
+      var width = window.innerWidth-50;
+      var height = window.innerHeight-50;
+
+
 
       return(
         <div style={styles.container}>
@@ -227,14 +59,19 @@ export default class GameControlExample extends Component {
         <div style={styles.githuburl}>
             <a href={textContent.githuburl} target="_blank">{textContent.githuburl}</a>
         </div>
+        <canvas style={styles.canvas} width={width}
+          height={height} ref={canvas=>this.canvas=canvas}/>
 
-        <GlobalInputConnect mobileConfig={this.mobile.config}
-          ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
-          connectingMessage="Connecting...."
-          connectedMessage="Scan with Global Input App">
-                <GameArea initGame={this.initGame.bind(this)}/>
-          </GlobalInputConnect>
-        </div>
+        <div style={barcodeContainerStyle}>
+            <div style={styles.barcode}>
+                  <GlobalInputConnect mobileConfig={this.mobile.config}
+                    ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
+                    connectingMessage="Connecting...."
+                    connectedMessage="Scan with Global Input App"
+                    reconnectOnDisconnect={true}/>
+            </div>
+          </div>
+      </div>
 
       );
 
@@ -376,8 +213,214 @@ export default class GameControlExample extends Component {
     }
     }
 
+    /****************************All the Mobile UI interfaces are defined below ***********/
+
+      mobile={
+            globalInputConnect:null,
+            config:null,
+            disconnect:()=>{
+                if(this.mobile.globalInputConnect){
+                    this.mobile.globalInputConnect.disconnectGlobaInputApp();
+                }
+            },
+            sendMessage:(message, fieldid)=>{
+                  if(this.mobile.globalInputConnect){
+                        this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
+                  }
+            },
+            addField:(field, form)=>{
+                  const findex=form.fields.length;
+                  var setMobileFieldFunction=value=>{
+                      if(this.mobile.globalInputConnect){
+                          this.mobile.globalInputConnect.sendInputMessage(value,findex);
+                      }
+                  };
+                  form.fields.push(field);
+                  return setMobileFieldFunction;
+            },
+            init:(props)=>{
+                  this.mobile.config={
+                        url:props.url,
+                        apikey:props.apikey,
+                        securityGroup:props.securityGroup,
+                        initData:null,
+                        onSenderConnected:()=>{
+
+                                this.setState(Object.assign({},this.state,{connected:true}));
+                        },
+                        onSenderDisconnected:()=>{
+                            this.setState(Object.assign({}, this.state,{connected:false}));
+                        }
+                   };
+            },
+            setInitData:initData=>{
+                  this.mobile.config.initData=initData;
+                  if(this.mobile.globalInputConnect){
+                          this.mobile.globalInputConnect.changeInitData(initData);
+                  }
+            },
+            uiForGameControl:videoSelection=>{
+
+                  var initData={
+                          action:"input",
+                          dataType:"control",
+                          form:{
+                                    title:"Game Control",
+                                    fields:[],
+                                    views:{
+                                        viewId:{
+                                          footer:{
+                                            style:{
+                                                justifyContent:"space-between",
+                                                width:"100%",
+                                            }
+                                          }
+                                        }
 
 
+                                    }
+                          }
+                 };
+
+                 const upButton={
+                       id:   "upButton",
+                       type: "button",
+                       icon: "up",
+                       viewId:"row1",
+                       operations:{onInput: value=> this.onUpButtonPressed()}
+                 };
+                this.mobile.addField(upButton,initData.form);
+
+                const leftButton={
+                    id:   "leftButton",
+                    type: "button",
+                    icon: "left",
+                    viewId:"row2",
+                    operations:{onInput: value=>this.onLeftButtonPressed()}
+                };
+                this.mobile.addField(leftButton,initData.form);
+
+
+                const infoField={
+                    id:"infoField",
+                    type: "info",
+                    value:{
+                    type:"view",
+                    style:{
+                        minWidth:36,
+                        minHeight:36
+                        }
+                    },
+                    viewId:"row2"
+                };
+
+                this.mobile.addField(infoField,initData.form);
+
+                const rightButton={
+                      id:   "rightButton",
+                      type: "button",
+                      icon: "right",
+                      viewId:"row2",
+                      operations:{onInput: value=>this.onRightButtonPressed()}
+                };
+                this.mobile.addField(rightButton,initData.form);
+
+                const downButton={
+                    id:   "downButton",
+                    type: "button",
+                    icon: "down",
+                    viewId:"row3",
+                    operations:{onInput: value=>this.onDownButtonPressed()}
+                };
+                this.mobile.addField(downButton,initData.form);
+
+                const speedDown={
+                      id:   "speedDown",
+                      type: "button",
+                      label:"Speed Down",
+                      iconText:{
+                          content:"-",
+                          style:{fontSize:36},
+                      },
+                      style:{
+                          borderColor:"green",
+                          paddingRight:10
+                      },
+                      viewId:"row4",
+                      operations:{onInput: value=>this.speedDown()}
+              };
+              this.mobile.addField(speedDown,initData.form);
+
+              const speedText={
+                    id:"speedText",
+                    type:"info",
+                    value:{type:"text",content:"30"},
+                    viewId:"row4",
+              };
+              const sendSpeedText=this.mobile.addField(speedText,initData.form);
+
+
+              this.mobile.setMoveSpeed=speed=>{
+                    var speedValue={
+                        type:"text",
+                        content:speed
+                    };
+                    sendSpeedText(speedValue);
+              };
+              const speedUp={
+                    id:    "speedUp",
+                    type:  "button",
+                    label: "Speed Up",
+                    style:{borderColor:"green"},
+                    iconText:{
+                        content:"+",
+                        style:{
+                          fontSize:36,
+                        }
+                    },
+                    viewId:"row4",
+                    operations:{onInput: value=>this.speedUp()}
+              };
+              this.mobile.addField(speedUp,initData.form);
+
+              const backButton={
+                  label:"Disconnect",
+                  type:"button",
+                  icon:"disconnect",
+                  viewId:"footer",
+                  operations:{onInput: value=>this.connectGlobalInput()},
+                  container:{label:""}
+              };
+              this.mobile.addField(backButton,initData.form);
+
+              const startPauseButton={
+                    id:   "startPauseButton",
+                    type: "button",
+                    value:0,
+                    label:"Start",
+                    options:[{value:0,label:"Start",icon:"play"},{value:1,label:"Pause",icon:"pause"}],
+                    viewId:"footer",
+                    operations:{onInput: value => value?this.stopGame():this.resumeGame()}
+              };
+              const changeStartPauseValue=this.mobile.addField(startPauseButton,initData.form);
+              this.mobile.showPlayButton = () => changeStartPauseValue(0);
+              this.mobile.showPauseButton= () => changeStartPauseValue(1);
+
+              const newGameButton={
+                    id:  "newGrameButton",
+                    type: "button",
+                    label:"New Game",
+                    container:{label:"New Game"},
+                    icon: "reset",
+                    viewId:"footer",
+                    operations:{onInput: value=>this.startGame()}
+              };
+              this.mobile.addField(newGameButton,initData.form);
+
+                this.mobile.setInitData(initData);
+
+            }
+      }
 
 
 }

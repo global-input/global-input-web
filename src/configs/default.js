@@ -16,6 +16,27 @@ var config={
     docs:{
       security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/?lipi=urn%3Ali%3Apage%3Ad_flagship3_inshare%3B7%2FQdFEI5TSuBvNX7Fmbu1A%3D%3D",
       smartphoneoperateonapplications:"https://medium.com/@hewzulla/using-smartphones-to-operate-on-applications-running-on-computers-and-other-devices-e397668149f8"
-    }
+    },
+    paths:{
+          examples:{
+              contentTransfer:{path:"/global-input-app/content-transfer",linkText:"Content Transfer"},
+
+              gameControl:{path:"/global-input-app/game-example",linkText:"Game Control"},
+              mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
+              qrPrinting:{path:"/global-input-app/qr-printing",linkText:"QR Code Printing"},
+              sendMessage:{path:"/global-input-app/send-message",linkText:"Send Message"},
+              transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"}
+          },
+          contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
+          formOperation:{path:"/global-input-app/form-operation",linkText:"Form Operation"},
+          getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
+          home:{path:"/",paths:["/","/index.html","/global-input-app/app","/global-input-app/about"],linkText:"Home"},
+          learnMore:{path:"/global-input-app/learn-more",linkText:"Learn More"},
+          secondScreen:{path:"/global-input-app/media-second-screen",linkText:"Second Screen"},
+          mobileControl:{path:"/global-input-app/mobile-control",linkText:"Mobile Input & Control"},
+          mobileAuthentication:{path:"/global-input-app/mobile-authentication",linkText:"Mobile Authentication"},
+          privacy:{path:"/global-input-app/privacy",linkText:"Privacy"},
+          secureTransfer:{path:"/global-input-app/secure-transfer",linkText:"Secure Content Transfer"}
+      }
 }
 export default config;

@@ -13,14 +13,16 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       color:"#A9C8E6", //#4880ED
-      width:"90%",
-
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: "cover",
+      width:"100%",
+      paddingTop:80,
       minHeight:window.innerHeight,
-
   },
   scrollContent:{
+    get:styleMatchingScreenSize,
+    default:{
+        width:"90%",
+        maxWidth:900
+    }
 
   },
   chapter:{

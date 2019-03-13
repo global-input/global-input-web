@@ -8,58 +8,61 @@ import QRPrintingScreen from './qr-printing-screen';
 import SendMessageScreen from './send-message-screen';
 import TransferFormDataScreen from './transfer-form-data-screen';
 import {styles} from './styles';
+import {config} from '../../configs';
 
 
 
 var examples={
-  allLinks:[
-          {path:ContentTransferScreen.pagePath,linkText:"Content Transfer"},
-          {path:GameControlScreen.pagePath,linkText:"Game Control"},
-          {path:MediaPlayerScreen.pagePath,linkText:"Media Player Control"},
-          {path:QRPrintingScreen.pagePath,linkText:"QR Code Printing"},
-          {path:SendMessageScreen.pagePath,linkText:"Send Message"},
-          {path:TransferFormDataScreen.pagePath,linkText:"Transfer Form Data"},
-        ],
+  allLinks:[config.paths.examples.contentTransfer,
+            config.paths.examples.gameControl,
+            config.paths.examples.mediaPlayer,
+            config.paths.examples.qrPrinting,
+            config.paths.examples.sendMessage,
+            config.paths.examples.transferForm],
+  links:{
+      transferFormData:TransferFormDataScreen.pagePath
+  },
 
   renderTransferFormDataExampleLink(linkText){
       return(
-        <Link to={TransferFormDataScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+        <Link to={config.paths.examples.transferForm.path} style={styles.examplelink.get()}>{linkText}</Link>
       );
   },
   renderGameControlExampleLink(){
       return(
-        <Link to={GameControlScreen.pagePath} style={styles.examplelink.get()}>Game Control Example</Link>
+        <Link to={config.paths.examples.gameControl.path} style={styles.examplelink.get()}>Game Control Example</Link>
       );
   },
   renderMediaPlayerExampleLink(linkText){
       return(
-        <Link to={MediaPlayerScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+        <Link to={config.paths.examples.mediaPlayer.path} style={styles.examplelink.get()}>{linkText}</Link>
       );
   },
   renderSendMessageScreen(linkText){
     return(
-      <Link to={SendMessageScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+      <Link to={config.paths.examples.sendMessage.path} style={styles.examplelink.get()}>{linkText}</Link>
     );
   },
   renderContentTransferScreen(linkText){
     return(
-      <Link to={ContentTransferScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+      <Link to={config.paths.examples.contentTransfer.path} style={styles.examplelink.get()}>{linkText}</Link>
     );
   },
   renderQRPrintingScreen(linkText){
     return(
-      <Link to={QRPrintingScreen.pagePath} style={styles.examplelink.get()}>{linkText}</Link>
+      <Link to={config.paths.examples.qrPrinting.path} style={styles.examplelink.get()}>{linkText}</Link>
     );
   },
   renderRoute:function(){
     return(
       <React.Fragment>
-        <Route  path={ContentTransferScreen.pagePath}  component={ContentTransferScreen}/>
-        <Route  path={MediaPlayerScreen.pagePath}  component={MediaPlayerScreen}/>
-        <Route  path={GameControlScreen.pagePath}  component={GameControlScreen}/>
-        <Route path={TransferFormDataScreen.pagePath} component={TransferFormDataScreen}/>
-        <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
-        <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
+        <Route  path={config.paths.examples.contentTransfer.path}  component={ContentTransferScreen}/>
+        <Route  path={config.paths.examples.mediaPlayer.path}  component={MediaPlayerScreen}/>
+        <Route  path={config.paths.examples.gameControl.path}  component={GameControlScreen}/>
+        <Route path={config.paths.examples.transferForm.path} component={TransferFormDataScreen}/>
+
+        <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>
+        <Route path={config.paths.examples.qrPrinting.path} component={QRPrintingScreen}/>
       </React.Fragment>
     );
 

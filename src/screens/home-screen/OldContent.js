@@ -11,7 +11,7 @@ import {styles} from "./styles";
 import {PageWithHeader,blockTextConfig,applicationPathConfig} from "../../page-templates";
 
 import HeaderSection from "./header-section";
-import TopHeaderSection from "../../top-header-section";
+
 
 
 

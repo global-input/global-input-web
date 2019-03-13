@@ -14,10 +14,10 @@ export default class ClientSideOnlySolution extends React.Component{
   render(){
     return(
       <div style={styles.chapter.container.get()} id={ClientSideOnlySolution.menu.id}>
-          <div style={styles.chapter.title}>
+          <div style={styles.chapter.title.get()}>
                 {ClientSideOnlySolution.menu.title}
           </div>
-          <div style={styles.chapter.content}>
+          <div style={styles.chapter.content.get()}>
                 <div style={styles.chapter.paragraph}>
                 Global Input App provides applications with a <b>client-side-only</b> solution that does not require any extra server-side implementation, no extra API to implement or call, not extra cloud storage, not extra subscriptions, and all business logics are implemented on the client side by including a <b>extension library</b>, passing JSON data and receiving even calls when the user press the button on the mobile.
               </div>
@@ -54,9 +54,10 @@ export default class ClientSideOnlySolution extends React.Component{
       return(
         <div style={styles.code.get()}>
         <pre>
-{`     type:  "button",
-     label: "Play",
-     onInput:value => playMovie()
+{`
+  type:  "button",
+  label: "Play",
+  onInput:value => playMovie()
 `}
             </pre>
        </div>
@@ -68,9 +69,9 @@ export default class ClientSideOnlySolution extends React.Component{
     <div style={styles.code.get()}>
           <pre>
 {`
-      type:  "text",
-      label: "Search",
-      onInput:value => searchContent(value)
+   type:  "text",
+   label: "Search",
+   onInput:value => searchContent(value)
 `}
           </pre>
     </div>
