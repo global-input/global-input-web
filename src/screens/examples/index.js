@@ -20,6 +20,9 @@ var examples={
           {path:SendMessageScreen.pagePath,linkText:"Send Message"},
           {path:TransferFormDataScreen.pagePath,linkText:"Transfer Form Data"},
         ],
+  links:{
+      transferFormData:TransferFormDataScreen.pagePath
+  },
 
   renderTransferFormDataExampleLink(linkText){
       return(
@@ -58,6 +61,7 @@ var examples={
         <Route  path={MediaPlayerScreen.pagePath}  component={MediaPlayerScreen}/>
         <Route  path={GameControlScreen.pagePath}  component={GameControlScreen}/>
         <Route path={TransferFormDataScreen.pagePath} component={TransferFormDataScreen}/>
+
         <Route path={SendMessageScreen.pagePath} component={SendMessageScreen}/>
         <Route path={QRPrintingScreen.pagePath} component={QRPrintingScreen}/>
       </React.Fragment>
