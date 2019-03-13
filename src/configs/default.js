@@ -28,15 +28,15 @@ var config={
               transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"}
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
-          formOperation:{path:"/global-input-app/form-operation",linkText:"Form Operation"},
+          formOperation:{path:"/global-input-app/about-form-operation",linkText:"Form Operation"},
           getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
           home:{path:"/",paths:["/","/index.html","/global-input-app/app","/global-input-app/about"],linkText:"Home"},
           learnMore:{path:"/global-input-app/learn-more",linkText:"Learn More"},
-          secondScreen:{path:"/global-input-app/media-second-screen",linkText:"Second Screen"},
-          mobileControl:{path:"/global-input-app/mobile-control",linkText:"Mobile Input & Control"},
-          mobileAuthentication:{path:"/global-input-app/mobile-authentication",linkText:"Mobile Authentication"},
+          secondScreen:{path:"/global-input-app/about-second-screen",linkText:"Second Screen"},
+          mobileControl:{path:"/global-input-app/about-mobile-control",linkText:"Mobile Input & Control"},
+          mobileAuthentication:{path:"/global-input-app/about-mobile-authentication",linkText:"Mobile Authentication"},
           privacy:{path:"/global-input-app/privacy",linkText:"Privacy"},
-          secureTransfer:{path:"/global-input-app/secure-transfer",linkText:"Secure Content Transfer"}
+          secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"}
       }
 }
 export default config;

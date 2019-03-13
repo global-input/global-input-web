@@ -4,18 +4,18 @@ import {Route,Link} from 'react-router-dom';
 import {styles, images} from './styles';
 import examples from "./examples";
 
-import HomeScreen from './home-screen';
+import HomeScreen from './home-page';
 
-import LearnMoreScreen from "./learn-more-screen";
-import GetAppScreen from './get-app-screen';
-import PrivacyScreen from './privacy-screen';
-import ContactUsScreen from "./contact-us-screen";
-import MobileAuthenticationScreen from "./modile-authentication-screen";
-import MobileControlScreen from './mobile-control-screen';
-import MediaSecondScreen from './media-second-screen';
+import LearnMorePage from "./learn-more-page";
+import GetAppPage from './get-app-page';
+import PrivacyPage from './privacy-page';
+import ContactUsPage from "./contact-us-page";
+import AboutMobileAuthentication from "./about-mobile-authentication";
+import AboutMobileInputControl from './about-mobile-input-control';
+import AboutSecondScreen from './about-second-screen';
 
-import FormOperationScreen from './form-operation-screen';
-import SecureFormDataTrabsferScreen from "./secure-content-transfer-screen";
+import AboutFormOperation from './about-form-operation';
+import SecureFormDataTrabsferScreen from "./about-secure-content-transfer";
 import {config} from "../configs";
 export const pagelinks={
     chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
@@ -35,14 +35,14 @@ const screens={
             {config.paths.home.paths.map((p,index)=><Route  key={index} path={p} exact component={HomeScreen}/>)}
             {examples.renderRoute()}
 
-            <Route path={config.paths.learnMore.path} component={LearnMoreScreen}/>
-            <Route path={config.paths.getAppScreen.path} component={GetAppScreen}/>
-            <Route path={config.paths.privacy.path} component={PrivacyScreen}/>
-            <Route path={config.paths.contactus.path} component={ContactUsScreen}/>
-            <Route path={config.paths.mobileAuthentication.path} component={MobileAuthenticationScreen}/>
-            <Route path={config.paths.mobileControl.path} component={MobileControlScreen}/>
-            <Route path={config.paths.secondScreen.path} component={MediaSecondScreen}/>
-            <Route path={config.paths.formOperation.path} component={FormOperationScreen}/>
+            <Route path={config.paths.learnMore.path} component={LearnMorePage}/>
+            <Route path={config.paths.getAppScreen.path} component={GetAppPage}/>
+            <Route path={config.paths.privacy.path} component={PrivacyPage}/>
+            <Route path={config.paths.contactus.path} component={ContactUsPage}/>
+            <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication}/>
+            <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl}/>
+            <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
+            <Route path={config.paths.formOperation.path} component={AboutFormOperation}/>
             <Route path={config.paths.secureTransfer.path} component={SecureFormDataTrabsferScreen}/>
 
           </React.Fragment>

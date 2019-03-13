@@ -24,8 +24,8 @@ const textContent={
     }
 }
 
-export default class FormOperationScreen extends React.Component{
-  
+export default class AboutFormOperation extends React.Component{
+
 
   constructor(props){
     super(props);

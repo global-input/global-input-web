@@ -30,8 +30,8 @@ const textContent={
     }
 }
 
-export default class MediaSecondScreen extends React.Component{
-  
+export default class AboutSecondScreen extends React.Component{
+
   static menu={
         link:"/global-input-app/learn-more",
         linkText:"Learn More",

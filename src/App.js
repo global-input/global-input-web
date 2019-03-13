@@ -29,11 +29,11 @@ export default class App extends Component{
 
         <div className="topContainer">
             {screens.renderRoute()}
-            /*******To be removed begin*********/
+            
             <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
             <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
-            /*******To be removed begin*********/
+
         </div>
 
 

@@ -137,10 +137,15 @@ export default class GameControlExample extends Component {
 
 
     clearGame() {
-         this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          if(this.canvas){
+              this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          }
+
     }
      updateGameArea() {
-
+       if(!this.canvas){
+         return;
+       }
       var x, height, gap, minHeight, maxHeight, minGap, maxGap;
       for (var i = 0; i < this.myObstacles.length; i += 1) {
           if (this.myGamePiece.crashWith(this.myObstacles[i])) {
@@ -259,7 +264,7 @@ export default class GameControlExample extends Component {
                           this.mobile.globalInputConnect.changeInitData(initData);
                   }
             },
-            uiForGameControl:videoSelection=>{
+            uiForGameControl:()=>{
 
                   var initData={
                           action:"input",

@@ -14,10 +14,6 @@ const textContent={
 export default class SendMessageExample extends React.Component{
 
 
-  getStyles(){
-      return styles;
-  }
-
   initWorkflowState(props){
     this.workflow={
       steps:{
@@ -121,6 +117,7 @@ export default class SendMessageExample extends React.Component{
                  value={this.state.message}
                  onChange={value=>{
                    this.setMessage(value);
+                   this.mobile.setMessageContent(value);
                  }
                  }/>
             </div>
@@ -173,132 +170,10 @@ export default class SendMessageExample extends React.Component{
 
   constructor(props){
       super(props);
-      this.initMobileData(props);
       this.initWorkflowState();
       this.state=this.workflow.steps.transferContact.buildState();
-  }
-
-
-
-
-  initMobileData(props){
-            this.mobile={
-                  globalInputConnect:null,
-                  sendMessage:(message, fieldid)=>{
-                        if(this.mobile.globalInputConnect){
-
-                              this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
-                        }
-                        else{
-
-                        }
-                  },
-                  changeInitData: initData=>{
-                        this.mobile.config.initData=initData;
-                        if(this.mobile.globalInputConnect){
-                          this.mobile.globalInputConnect.changeInitData(initData);
-                        }
-                        else{
-                          console.error("sendInitData is called when disconnected");
-                        }
-                  },
-                  disconnect:()=>{
-                    if(this.mobile.globalInputConnect){
-                      this.mobile.globalInputConnect.disconnectGlobaInputApp();
-                    }
-                  },
-                  config:{
-                                url:props.url,
-                                apikey:props.apikey,
-                                securityGroup:props.securityGroup,
-                                initData:{
-                                    action:"input",
-                                    dataType:"form",
-                                    form:{
-                                      id:"###company_name###@iterative",
-                                      title:"Our Contact Details",
-                                      label:"contacts",
-                                      fields:[]
-                                    }
-                                },
-                                onSenderConnected:()=>()=>{
-                                        this.setState(Object.assign({},{connected:true}));
-                                },
-                                onSenderDisconnect:()=>{
-                                    this.mobile.disconnect();
-                                    this.initMobileData();
-                                    this.setState(this.workflow.steps.transferContact.buildState());
-                                }
-                  },
-                  addField: field=>this.mobile.config.initData.form.fields.push(field)
-            };
-            var companyname={
-                    id:"company_name",
-                    type:"text",
-                    label:"Company Name",
-                    value:"Iterative Solution"
-
-            };
-            this.mobile.addField(companyname);
-
-            var companyAddress={
-                    id:"address",
-                    label:"Address",
-                    type:"text",
-                    nLines:5,
-                    value:"Iterative Solution Limited \n Kemp House \n \n 152-160 \n City Road\n London EC1V 2NX"
-            };
-            this.mobile.addField(companyAddress);
-
-
-            var phone={
-                    id:"phone",
-                    label:"Phone",
-                    type:"text",
-                    value:"020 3290 6278"
-            }
-            this.mobile.addField(phone);
-
-            var email={
-                    id:"email",
-                    label:"Email",
-                    type:"text",
-                    value:"info@iterativesolution.co.uk"
-            }
-            this.mobile.addField(email);
-
-            var info={
-                    type:"info",
-                    value:["Please press the \"Save\" button to save our contact info, and then press the \"Continue\" button below to send a message to us"],
-            }
-            this.mobile.addField(info);
-
-
-
-            var cancelButton={
-                type:"button",
-                label:"Cancel",
-                icon:"cancel",
-                viewId:"footer",
-                operations:{
-                    onInput: ()=>{
-                          this.mobile.disconnect();
-
-                    }
-                }
-            }
-            this.mobile.addField(cancelButton);
-            var nextButton={
-                type:"button",
-                label:"Continue",
-                icon:"continue",
-                viewId:"footer",
-                operations:{
-                    onInput:this.initForMessageSenderForm.bind(this)
-
-                }
-            }
-            this.mobile.addField(nextButton);
+      this.mobile.init(props);
+      this.mobile.uiForSaveCompanyContactInfo(props);
   }
 
   initForMessageSenderForm(){
@@ -435,7 +310,7 @@ export default class SendMessageExample extends React.Component{
 
 
   render(){
-    const styles=this.getStyles();
+
     return(
       <div style={styles.container}>
 
@@ -477,5 +352,203 @@ export default class SendMessageExample extends React.Component{
             },1000);
         }
   }
+  /****************************All the Mobile UI interfaces are defined below ***********/
+
+  mobile={
+        globalInputConnect:null,
+        config:null,
+        disconnect:()=>{
+            if(this.mobile.globalInputConnect){
+                this.mobile.globalInputConnect.disconnectGlobaInputApp();
+            }
+        },
+        sendMessage:(message, fieldid)=>{
+              if(this.mobile.globalInputConnect){
+                    this.mobile.globalInputConnect.sendInputMessage(message,null,fieldid);
+              }
+        },
+        addField:(field, form)=>{
+              const findex=form.fields.length;
+              var setMobileFieldFunction=value=>{
+                  if(this.mobile.globalInputConnect){
+                      this.mobile.globalInputConnect.sendInputMessage(value,findex);
+                  }
+              };
+              form.fields.push(field);
+              return setMobileFieldFunction;
+        },
+        init:(props)=>{
+              this.mobile.config={
+                    url:props.url,
+                    apikey:props.apikey,
+                    securityGroup:props.securityGroup,
+                    initData:null,
+                    onSenderConnected:()=>{
+
+                            this.setState(Object.assign({},this.state,{connected:true}));
+                    },
+                    onSenderDisconnected:()=>{
+                        this.setState(Object.assign({}, this.state,{connected:false}));
+                    }
+               };
+        },
+        setInitData:initData=>{
+              this.mobile.config.initData=initData;
+              if(this.mobile.globalInputConnect){
+                      this.mobile.globalInputConnect.changeInitData(initData);
+              }
+        },
+        uiForSaveCompanyContactInfo:props=>{
+                var initData={
+                      action:"input",
+                      dataType:"form",
+                      form:{
+                            id:"###company_name###@iterative",
+                            title:"Our Contact Details",
+                            label:"contacts",
+                            fields:[]
+                      }
+                };
+                var companyname={
+                      id:"company_name",
+                      type:"text",
+                      label:"Company Name",
+                      value:"Iterative Solution"
+
+                };
+                this.mobile.addField(companyname,initData.form);
+
+                var companyAddress={
+                      id:"address",
+                      label:"Address",
+                      type:"text",
+                      nLines:5,
+                      value:"Iterative Solution Limited \n Kemp House \n \n 152-160 \n City Road\n London EC1V 2NX"
+                };
+                this.mobile.addField(companyAddress,initData.form);
+
+                var phone={
+                      id:"phone",
+                      label:"Phone",
+                      type:"text",
+                      value:"020 3290 6278"
+                };
+                this.mobile.addField(phone,initData.form);
+
+
+                var email={
+                      id:"email",
+                      label:"Email",
+                      type:"text",
+                      value:"info@iterativesolution.co.uk"
+                };
+                this.mobile.addField(email,initData.form);
+
+                var info={
+                    type:"info",
+                    value:["Please press the \"Save\" button to save our contact info, and then press the \"Continue\" button below to send a message to us"],
+                };
+                this.mobile.addField(info,initData.form);
+
+                var cancelButton={
+                      type:"button",
+                      label:"Cancel",
+                      icon:"cancel",
+                      viewId:"footer",
+                      operations:{onInput: ()=>{this.mobile.disconnect();}}
+                 };
+                 this.mobile.addField(cancelButton,initData.form);
+
+                 var nextButton={
+                      type:"button",
+                      label:"Continue",
+                      icon:"continue",
+                      viewId:"footer",
+                      operations:{onInput:()=>{
+                          this.mobile.uiForSendMessage();
+                          this.setState(this.workflow.steps.messageForm.buildState());
+                      }}
+                  };
+                  this.mobile.addField(nextButton,initData.form);
+                  this.mobile.setInitData(initData);
+        },
+        uiForSendMessage:props=>{
+                var initData={
+                        action:"input",
+                        dataType:"form",
+                        form:{
+                              id:"###email###@me",
+                              title:"Sending a Message",
+                              label:"contacts",
+                              fields:[]
+                        }
+                  };
+                  const first_name={
+                        id:"first_name",
+                        type:"text",
+                        label:"First Name",
+                        value:"",
+                        operations:{onInput:fistName=>this.setFirstName(fistName)}
+                   };
+                   this.mobile.setFirstName=this.mobile.addField(first_name,initData.form);
+
+                   const last_name={
+                        id:"last_name",
+                        type:"text",
+                        label:"Last Name",
+                        value:"",
+                        operations:{onInput:lastName=>this.setLastName(lastName)}
+                   };
+                   this.mobile.setLastName=this.mobile.addField(last_name,initData.form);
+
+                   const email={
+                        id:"email",
+                        type:"text",
+                        label:"Email",
+                        value:"",
+                        operations:{onInput:email=>this.setEmail(email)}
+                  };
+                  this.mobile.setEmail=this.mobile.addField(email,initData.form);
+
+                  const phone={
+                        id:"phone",
+                        type:"text",
+                        label:"Phone",
+                        value:"",
+                        operations:{onInput:phone=>this.setPhone(phone)}
+                  };
+                  this.mobile.setPhone=this.mobile.addField(phone,initData.form);
+
+                  const messageField={
+                        type:"text",
+                        label:"Message",
+                        value:"",
+                        nLines:5,
+                        operations:{onInput:message=>this.setMessage(message)}
+                  };
+                  this.mobile.setMessageContent=this.mobile.addField(messageField,initData.form);
+                  const cancelButton={
+                        label:"Cancel",
+                        type:"button",
+                        viewId:"footer",
+                        operations:{onInput:()=>{this.mobile.disconnect();}
+                        }
+                  };
+                  this.mobile.addField(cancelButton,initData.form);
+
+                  const sendButton={
+                        label:"Send",
+                        type:"button",
+                        viewId:"footer",
+                        operations:{onInput:this.sendMessage.bind(this)}
+                  };
+                  this.mobile.addField(sendButton,initData.form);
+                  this.mobile.setInitData(initData);
+        }
+
+  }
+
+
+
 
 }

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {LinkItem} from '../../../components';
 import TextButton from '../../../components/text-button';
 import {styles, images} from "./styles";
-import TopHeaderSection from "../../get-app-screen";
+import TopHeaderSection from "../../get-app-page";
 import {screenMedia} from "../../../components/screen-media";
 import screens from "../../../screens";
 
