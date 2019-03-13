@@ -25,7 +25,7 @@ const textContent={
 }
 
 export default class FormOperationScreen extends React.Component{
-  static pagePath="/global-input-app/form-operation"
+  
 
   constructor(props){
     super(props);

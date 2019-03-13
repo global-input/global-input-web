@@ -33,11 +33,11 @@ whyneeded:{
 
 
             ["The fastest way of trying this out is to load the ",
-                  {type:"link",content:"sample web application",link:TransferFormDataScreen.pagePath},
+                  {type:"link",content:"sample web application",link:"/global-input-app/form-data-transfer"},
                   " on your browser. Note that this does not require you to install the ",
                   {type:"link",content:"Chrome Extension",link:pagelinks.samples.chromeExtension.url()},". ",
                  ". Click on the ”Next” button on the ",
-                   {type:"link",content:"sample web application",link:TransferFormDataScreen.pagePath},
+                   {type:"link",content:"sample web application",link:"/global-input-app/form-data-transfer"},
                    ", and then scan the QR Code with your Global Input App on your mobile. The same form being displayed on your computer screen should be displayed on your mobile as well. This allows you to use your mobile to enter content in the form on your computer. You can save the form data into your app and end the session. ",
                    "Now If you reload the page and go through the process again, you will notice that a button named “Matched” has appeared on the bottom of your mobile screen. This means that one or more data items in your app matches the form displayed by the application. If you press the button, a list of matched data items will be presented to you. Normally there will vbe only one item in the list. If you select the data item, you will be presented with the detail page of the data item. You will notice that the value of the fields is being displayed with “*” characters, which means that the value is not decrypted yet.  You can press the ”Show” button to decrypt and reveal its content, or you can press the “Select” button straightaway to decrypt the data and send it to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into you clipboard, and switch to the application you need and paste the content there."
                  ],
@@ -52,7 +52,7 @@ whyneeded:{
               "If you manage applications in a corporate environment, you may need to create accounts for other users and share the authentication details with them unless the application provides the subscription mechanism.",
               "If the application supports the Global Input App, you just need to ask the user scan the QR code displayed by the application and then the user will be able to use his/her mobile to enter his/her details directly into the application.",
               ["If the application does not yet support the Global Input App, you can load the ",
-                  {type:"link",content:"sample web application",link:TransferFormDataScreen.pagePath},
+                  {type:"link",content:"sample web application",link:"/global-input-app/form-data-transfer"},
                   " on your computer and compose the form you need, and click on the ”Next” button to display the QR code. You can ask the user to scan the QR code (you can send the QR code image or share it via a video link). When connected, the user should be  able to use his/her mobile to type in his/her details on the form displayed on your screen. Knowing that the user never need to remember the password, you can ask the user to generate a strong password by pressing the ”Random” button on the app. You can then click on the “Copy” button to copy the form details into your clipboard and paste it into the application to continue the account creation process. On the user end, user can press ”Save” button to save the data in his/her mobile. Otherwise,  when you press the “Finish” button to end the session,  the app will ask the user to save the form data giving the user another chance to save the data."]]
         },
 

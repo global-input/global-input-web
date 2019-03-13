@@ -16,7 +16,7 @@ const sideMenus=[ClientSideOnlySolution.menu, DeviceToDeviceCommunication.menu,
   PortableEncryptedStorage.menu];
 
 export default class LearnMoreScreen extends React.Component{
-  static pagePath="/global-input-app/learn-more"
+  
 
   constructor(props){
     super(props);

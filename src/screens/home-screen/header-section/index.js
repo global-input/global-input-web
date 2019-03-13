@@ -4,8 +4,6 @@ import {LinkItem} from '../../../components';
 import TextButton from '../../../components/text-button';
 import {styles, images} from "./styles";
 import TopHeaderSection from "../../get-app-screen";
-import GetAppScreen from '../../get-app-screen';
-import LearnMoreScreen from '../../learn-more-screen';
 import {screenMedia} from "../../../components/screen-media";
 import screens from "../../../screens";
 
@@ -44,9 +42,7 @@ export  default class HeaderSection extends Component {
      onWindowResize(){
        this.forceUpdate();
      }
-     toGetGIAApp(){
-       this.props.history.push(TopHeaderSection.pagePath, null);
-     }
+
     renderHeaderItems(item,index){
         return(
           <li key={index}>

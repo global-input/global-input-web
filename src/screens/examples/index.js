@@ -20,7 +20,7 @@ var examples={
             config.paths.examples.sendMessage,
             config.paths.examples.transferForm],
   links:{
-      transferFormData:TransferFormDataScreen.pagePath
+      transferFormData:config.paths.examples.transferForm
   },
 
   renderTransferFormDataExampleLink(linkText){

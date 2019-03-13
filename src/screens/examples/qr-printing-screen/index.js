@@ -4,8 +4,7 @@ import TopHeaderSection from "../../../top-header-section";
 import {styles} from "./styles";
 import QRCodeprintingExample from "../../../examples/qr-code-printing-example";
 
-export default class QRPrintingScreen extends React.Component{
-  static pagePath="/global-input-app/qr-printing"
+export default class QRPrintingScreen extends React.Component{  
   render(){
 
     return(

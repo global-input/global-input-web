@@ -21,8 +21,7 @@ import FeaturesSection from './features-section';
 
 
 export  default class HomeScreen extends Component {
-    static pagePath="/"
-    static pagePaths=["/index.html","/global-input-app/app","/global-input-app/about"]
+
     constructor(props){
       super(props);
       this.onWindowResize=this.onWindowResize.bind(this);
