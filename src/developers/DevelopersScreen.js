@@ -35,7 +35,7 @@ render() {
 
     return (
       <div style={styles.content}>
-        <TopHeaderSection menus={applicationPathConfig.menus} selected={blockTextConfig.developers.home.menu}/>
+        <TopHeaderSection  selected={blockTextConfig.developers.home.menu}/>
 
 
         <BookMark bookmark={pagelinks.platform.bookmark}/>
