@@ -28,19 +28,19 @@ export default class CardSection extends React.Component{
               <Card titleIcon={images.authentication}
                   title={textContent.authentication.title}
                   content={textContent.authentication.content}
-                  link={screens.paths.authentication}
+                  link={screens.allLinks.authentication}
                   />
 
                   <Card titleIcon={images.mobileControl}
                       title={textContent.mobileControl.title}
                       content={textContent.mobileControl.content}
-                      link={screens.paths.mobileControl}
+                      link={screens.allLinks.mobileControl}
                       />
 
                       <Card titleIcon={images.secondScreen}
                           title={textContent.secondScreen.title}
                           content={textContent.secondScreen.content}
-                          link={screens.paths.secondScreen}
+                          link={screens.allLinks.secondScreen}
                           />
 
           </div>

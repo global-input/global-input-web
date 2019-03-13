@@ -10,9 +10,9 @@ const textContent={
             content:"Enable big screen device applications to have second screen experience, mobile input & control without developing separate mobile app."
       },
 
-      authentication:{
-            title:"Authentication Device Solution",
-            content:"The mechanism allows users to carry out operations such as subscription, sign in, and changung passwords in public view without making any effort to type/hide/remember passwords."
+      mobileControl:{
+            title:"Mobile Input & Control",
+            content:"Enable IoT and web applications to have mobile input and control functionality without the need to develop separate mobile app."
       },
       formoperation:{
             title:"Form Operation",
@@ -41,9 +41,9 @@ export default class FeaturesSection extends React.Component{
                   <FeatureCard title={textContent.secondScreenInput.title} content={textContent.secondScreenInput.content}
                     tryItNow={examples.renderMediaPlayerExampleLink}
                     readMore={screens.readMore.secondScreen}/>
-                  <FeatureCard title={textContent.authentication.title} content={textContent.authentication.content}
-                    tryItNow={examples.renderTransferFormDataExampleLink}
-                    readMore={screens.readMore.authenticationDevice}/>
+                  <FeatureCard title={textContent.mobileControl.title} content={textContent.mobileControl.content}
+                    tryItNow={examples.renderGameControlExampleLink}
+                    readMore={screens.readMore.mobileControl}/>
                 </div>
 
                 <div style={styles.row.get()}>
@@ -53,7 +53,7 @@ export default class FeaturesSection extends React.Component{
 
                 <FeatureCard title={textContent.secureTransfer.title} content={textContent.secureTransfer.content}
                     tryItNow={examples.renderTransferFormDataExampleLink}
-                    readMore={screens.readMore.authenticationDevice}/>
+                    readMore={screens.readMore.secureTransferFormData}/>
                 </div>
 
 
