@@ -15,8 +15,8 @@ const textContent={
             content:"Enable IoT and web applications to have mobile input and control functionality without the need to develop separate mobile app."
       },
       formoperation:{
-            title:"Form Operation",
-            content:"Automate the form filling operation by pushing the data from the mobile app mobile encrypted data storage.Allowing applications to give users complete control over their data."
+            title:"Form Automations",
+            content:"Automate form operations using the data stored in the encrypted data storage provided by Global Input App. Allowing users have complete control over their personal data."
       },
       secureTransfer:{
             title:"Secure Transfer Form Data",
@@ -27,8 +27,8 @@ const textContent={
             content:"Copy and paste securely a text content from your mobile to any computer or vice versa.Transfer content between applications using end-to-end encryption."
       },
       printQRCodes:{
-            title:"Print & Scan Encrypted QR Codes",
-            content:"Print and scan encrypted QR Codes to share or backup content securely.Print & Scan Encryption Keys as Password-Protected QR Codes"
+            title:"Mobile Content Encryption",
+            content:"Encrypting content within the mobile device and push the encrypted content to applications. Encryption keys stays encrypted within the mobile device."
       }
 }
 export default class FeaturesSection extends React.Component{

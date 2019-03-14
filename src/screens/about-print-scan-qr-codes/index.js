@@ -11,7 +11,8 @@ export default class AboutPrintScanQRCodes extends React.Component{
   }
    componentDidMount() {
        window.addEventListener("resize", this.onWindowResize);
-       setTimeout(()=>this.processScrollTo('topContent'),500);
+
+       this.processScrollTo('topContent');
 
    }
 
@@ -36,19 +37,11 @@ export default class AboutPrintScanQRCodes extends React.Component{
         </div>);
   }
   processScrollTo(elementId){
-
             var elmnt = document.getElementById(elementId);
             if(elmnt){
                 window.scrollBy({top: -70,behavior: "smooth"});
                 elmnt.scrollIntoView();
-
             }
-            else{
-              console.log("not found")
-            }
-
-
-
 
   }
 }
