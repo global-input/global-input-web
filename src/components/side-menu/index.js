@@ -20,7 +20,7 @@ export default class SideMenu extends React.Component{
   }
   renderMenuItem(menu, index){
       return(
-          <div style={styles.menuItem}>
+          <div style={styles.menuItem} key={index}>
           <a onClick={()=>this.gotoContent(menu)}>  {menu.label}</a>
 
           </div>

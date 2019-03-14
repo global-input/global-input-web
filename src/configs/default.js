@@ -36,7 +36,9 @@ var config={
           mobileControl:{path:"/global-input-app/about-mobile-control",linkText:"Mobile Input & Control"},
           mobileAuthentication:{path:"/global-input-app/about-mobile-authentication",linkText:"Mobile Authentication"},
           privacy:{path:"/global-input-app/privacy",linkText:"Privacy"},
-          secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"}
+          secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"},
+          printScanQRCodes:{path:"/global-input-app/about-print-scan-qrcodes",linkText:"Print Scan QR Codes"},
+          copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
       }
 }
 export default config;

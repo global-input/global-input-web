@@ -7,6 +7,10 @@ export const styles={
         alignItems:"center",
         width:"100%",
     },
+    content:{
+        position:"relative",
+        
+    },
     title:{
       display:"flex",
       flexDirection:"row",
@@ -32,9 +36,7 @@ export const styles={
         marginLeft:"10vw",
         marginBottom:10
     },
-    videoContainer:{
-        position:"relative"
-    },
+
     barcodeContainer:{
         position:"absolute",
         top:50,
