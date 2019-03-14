@@ -20,7 +20,8 @@ var examples={
             config.paths.examples.sendMessage,
             config.paths.examples.transferForm],
   links:{
-      transferFormData:config.paths.examples.transferForm
+      transferFormData:config.paths.examples.transferForm.path,
+      qrPrinting:config.paths.examples.qrPrinting.path
   },
 
   renderTransferFormDataExampleLink(linkText){

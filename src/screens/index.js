@@ -4,7 +4,7 @@ import {Route,Link} from 'react-router-dom';
 import {styles, images} from './styles';
 import examples from "./examples";
 
-import HomeScreen from './home-page';
+import HomePage from './home-page';
 
 import LearnMorePage from "./learn-more-page";
 import GetAppPage from './get-app-page';
@@ -16,6 +16,7 @@ import AboutSecondScreen from './about-second-screen';
 
 import AboutFormOperation from './about-form-operation';
 import SecureFormDataTrabsferScreen from "./about-secure-content-transfer";
+import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
 import {config} from "../configs";
 export const pagelinks={
     chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
@@ -32,7 +33,7 @@ const screens={
       renderRoute:function(){
         return(
           <React.Fragment>
-            {config.paths.home.paths.map((p,index)=><Route  key={index} path={p} exact component={HomeScreen}/>)}
+            {config.paths.home.paths.map((p,index)=><Route  key={index} path={p} exact component={HomePage}/>)}
             {examples.renderRoute()}
 
             <Route path={config.paths.learnMore.path} component={LearnMorePage}/>
@@ -44,6 +45,8 @@ const screens={
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
             <Route path={config.paths.formOperation.path} component={AboutFormOperation}/>
             <Route path={config.paths.secureTransfer.path} component={SecureFormDataTrabsferScreen}/>
+            <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
+
 
           </React.Fragment>
         );
@@ -71,7 +74,12 @@ const screens={
           },
           secureTransferFormData:function(linkText){
                 return(<Link to={config.paths.secureTransfer.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          }
+          },
+          printScanQRCodes:function(linkText){
+                return(<Link to={config.paths.printScanQRCodes.path} style={styles.readMorelink.get()}>{linkText}</Link>);
+          },
+
+
       },
       buttons:{
         learnMoreWhite:function(linkText){

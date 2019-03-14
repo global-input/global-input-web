@@ -63,7 +63,7 @@ export default class FeaturesSection extends React.Component{
                     readMore={screens.readMore.secondScreen}/>
                   <FeatureCard title={textContent.printQRCodes.title} content={textContent.printQRCodes.content}
                     tryItNow={examples.renderQRPrintingScreen}
-                    readMore={screens.readMore.authenticationDevice}/>
+                    readMore={screens.readMore.printScanQRCodes}/>
                 </div>
 
             </div>

@@ -20,7 +20,7 @@ import CardSection from "./cards-section";
 import FeaturesSection from './features-section';
 
 
-export  default class HomeScreen extends Component {
+export  default class HomePage extends Component {
 
     constructor(props){
       super(props);

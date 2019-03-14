@@ -1,10 +1,10 @@
 import React from 'react';
-import HomeScreen from "../home-page";
+import HomePage from "../home-page";
 export default class ContactUsPage extends React.Component{
   render(){
 
     return(
-        <HomeScreen/>
+        <HomePage/>
       );
   }
   componentDidMount(){
