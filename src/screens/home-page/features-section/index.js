@@ -60,7 +60,7 @@ export default class FeaturesSection extends React.Component{
                 <div style={styles.row.get()}>
                   <FeatureCard title={textContent.copyAndPaste.title} content={textContent.copyAndPaste.content}
                     tryItNow={examples.renderContentTransferScreen}
-                    readMore={screens.readMore.secondScreen}/>
+                    readMore={screens.readMore.copyAndPaset}/>
                   <FeatureCard title={textContent.printQRCodes.title} content={textContent.printQRCodes.content}
                     tryItNow={examples.renderQRPrintingScreen}
                     readMore={screens.readMore.printScanQRCodes}/>

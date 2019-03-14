@@ -17,6 +17,7 @@ import AboutSecondScreen from './about-second-screen';
 import AboutFormOperation from './about-form-operation';
 import SecureFormDataTrabsferScreen from "./about-secure-content-transfer";
 import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
+import AboutCopyAndPaste from './about-copy-and-paste';
 import {config} from "../configs";
 export const pagelinks={
     chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
@@ -46,6 +47,7 @@ const screens={
             <Route path={config.paths.formOperation.path} component={AboutFormOperation}/>
             <Route path={config.paths.secureTransfer.path} component={SecureFormDataTrabsferScreen}/>
             <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
+            <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
 
 
           </React.Fragment>
@@ -77,6 +79,9 @@ const screens={
           },
           printScanQRCodes:function(linkText){
                 return(<Link to={config.paths.printScanQRCodes.path} style={styles.readMorelink.get()}>{linkText}</Link>);
+          },
+          copyAndPaset:function(linkText){
+                return(<Link to={config.paths.copyAndPaste.path} style={styles.readMorelink.get()}>{linkText}</Link>);
           },
 
 

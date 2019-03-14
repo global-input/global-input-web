@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {genericUtil} from "../../utils";
+
 
 
 import {TopMenu,BookMark} from "../../components";
@@ -28,10 +28,21 @@ export  default class HomePage extends Component {
     }
      componentDidMount() {
          window.addEventListener("resize", this.onWindowResize);
-
-         genericUtil.processQueryParameters(this.props);
-
+         this.scrollTo(this.props.scrollTo);
      }
+     scrollTo(elementId){
+          if(!elementId){
+            elementId="topContent";
+          }
+          var elmnt = document.getElementById(elementId);
+          if(elmnt){
+                   window.scrollBy({top: -70,behavior: "smooth"});
+                   elmnt.scrollIntoView();
+          }
+     }
+
+
+
 
 
      componentWillUnmount() {
@@ -44,7 +55,7 @@ export  default class HomePage extends Component {
 render() {
 
     return (
-          <div style={styles.content}>
+          <div style={styles.content} id="topContent">
 
             <TopHeaderSection  selected={this.props.selected}/>
 
