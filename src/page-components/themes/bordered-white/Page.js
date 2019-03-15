@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import AdjustableComponent from '../../../components/adjustable-component';
 import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
 
 
-export default class Page extends React.Component{
+export default class Page extends AdjustableComponent{
   static defaultProps={
       scrollTo:'topContent'
   }

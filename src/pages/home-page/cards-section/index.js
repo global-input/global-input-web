@@ -1,7 +1,14 @@
 import React from 'react';
-import {styles, images} from './styles';
-import Card from "./card";
+
+import IconHeaderCard from "../../../components/icon-header-card";
+import BacicsCardsContainer from '../../../page-components/bacics-cards-container';
 import pages from '../../../pages';
+
+const images={
+  authentication:require('./images/authentication.svg'),
+  mobileControl:require('./images/control.svg'),
+  secondScreen:require('./images/second-screen.svg'),
+}
 
 
 const textContent={
@@ -24,26 +31,25 @@ export default class CardSection extends React.Component{
 
     render(){
         return(
-          <div style={styles.cardContainer.get()}>
-              <Card titleIcon={images.authentication}
+          <BacicsCardsContainer>
+              <IconHeaderCard titleIcon={images.authentication}
                   title={textContent.authentication.title}
                   content={textContent.authentication.content}
                   link={pages.allLinks.authentication}
                   />
 
-                  <Card titleIcon={images.mobileControl}
+                  <IconHeaderCard titleIcon={images.mobileControl}
                       title={textContent.mobileControl.title}
                       content={textContent.mobileControl.content}
                       link={pages.allLinks.mobileControl}
                       />
 
-                      <Card titleIcon={images.secondScreen}
+                      <IconHeaderCard titleIcon={images.secondScreen}
                           title={textContent.secondScreen.title}
                           content={textContent.secondScreen.content}
                           link={pages.allLinks.secondScreen}
                           />
-
-          </div>
+          </BacicsCardsContainer>
         );
     }
 

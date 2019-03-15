@@ -1,8 +1,13 @@
 import React from 'react';
 import {styles, images} from './styles';
 import {Link} from 'react-router-dom';
+import AdjustableComponent from '../adjustable-component';
 
-export default class Card extends React.Component{
+export default class IconHeaderCard extends AdjustableComponent{
+  static defaultProps={
+        title:"",
+        content:[]
+  }
     render(){
 
         return(
@@ -15,7 +20,7 @@ export default class Card extends React.Component{
               <div style={styles.footer}>
 
                         <Link to={this.props.link}>
-                        READ MORE <img src={images.arrow} style={styles.arrow}/>                        
+                        READ MORE <img src={images.arrow} style={styles.arrow}/>
                         </Link>
 
               </div>
@@ -24,9 +29,4 @@ export default class Card extends React.Component{
     renderLine(content, index){
             return(<div style={styles.line} key={index}>{content}</div>);
     }
-}
-
-Card.defaultProps={
-      title:"",
-      content:[]
 }

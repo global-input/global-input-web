@@ -1,19 +1,8 @@
 import React, {Component} from 'react'
 
-
-
-
-import {TopMenu,BookMark} from "../../components";
-
-
-import {styles} from "./styles";
-
-
-
+import BasicLayout from "../../page-components/themes/basic-layout";
 import HeaderSection from "./header-section";
-import TopHeaderSection from "../../page-components/top-header-section";
-
-
+import {HomeHeaderBackground} from "../../page-components/header-backgrounds";
 import HowItWorks from "./how-it-works";
 import FooterSection from '../../page-components/footer-section';
 import CardSection from "./cards-section";
@@ -22,57 +11,18 @@ import FeaturesSection from './features-section';
 
 export  default class HomePage extends Component {
 
-    constructor(props){
-      super(props);
-      this.onWindowResize=this.onWindowResize.bind(this);
-    }
-     componentDidMount() {
-         window.addEventListener("resize", this.onWindowResize);
-         this.scrollTo(this.props.scrollTo);
-     }
-     scrollTo(elementId){
-          if(!elementId){
-            elementId="topContent";
-          }
-          var elmnt = document.getElementById(elementId);
-          if(elmnt){
-                   window.scrollBy({top: -70,behavior: "smooth"});
-                   elmnt.scrollIntoView();
-          }
-     }
-
-
-
-
-
-     componentWillUnmount() {
-         window.removeEventListener("resize", this.onWindowResize);
-     }
-     onWindowResize(){
-        this.forceUpdate();
-     }
-
 render() {
 
     return (
-          <div style={styles.content} id="topContent">
-
-            <TopHeaderSection  selected={this.props.selected}/>
-
-            <div style={styles.firstHalf.get()}>
+          <BasicLayout>
+            <HomeHeaderBackground>
                 <HeaderSection history={this.props.history}/>
                 <CardSection/>
                 <HowItWorks/>
-            </div>
+            </HomeHeaderBackground>
             <FeaturesSection/>
             <FooterSection/>
-
-          </div>
-
-
-
-
-
+          </BasicLayout>
             );
   }
 

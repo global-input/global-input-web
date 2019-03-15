@@ -16,7 +16,8 @@ import {config} from '../../configs';
 var examples={
   linkItems:{
       contentTransfer:{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
-      qrPrinting:{path:config.paths.examples.qrPrinting.path,linkText:"QR Code Printing Application"}
+      qrPrinting:{path:config.paths.examples.qrPrinting.path,linkText:"QR Code Printing Application"},
+      sendMessage:{path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"},
   },
 
   allLinks:[config.paths.examples.contentTransfer,

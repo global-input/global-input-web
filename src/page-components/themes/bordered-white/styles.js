@@ -69,7 +69,7 @@ export const styles={
         get:styleMatchingScreenSize,
         default:{
           marginBottom:10,
-          fontSize:20,
+          fontSize:16,
           display:"block"
         },
         mobile:{

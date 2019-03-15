@@ -1,11 +1,11 @@
 import React from 'react';
 import {styles, images} from './styles';
-import {screenMedia} from "../../../components/screen-media";
+import AdjustableComponent from "../../../components/adjustable-component";
 
-export default class HowItWorks extends React.Component{
+export default class HowItWorks extends AdjustableComponent{
 
   render(){
-    if(screenMedia.biggerThan(600)){
+    if(this.isScreenBiggerThan(600)){
         return(
             <div style={styles.container}>
                     <div style={styles.title}>How It Works</div>

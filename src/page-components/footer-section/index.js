@@ -2,7 +2,7 @@
 import React from 'react';
 
 import {styles,images} from './styles';
-
+import AdjustableComponent from '../../components/adjustable-component';
 const textContent={
     title:"Join Us!",
     community:{
@@ -27,7 +27,7 @@ const textContent={
     }
 }
 
-export  default class FooterSection extends React.Component {
+export  default class FooterSection extends AdjustableComponent {
 
     render(){
       return(<div style={styles.container}>
