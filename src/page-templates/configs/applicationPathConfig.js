@@ -13,10 +13,10 @@ import sendMessageConfig from "./sendMessageConfig";
 
 import videoPlayerConfig from "./videoPlayerConfig";
 
-import screens from "../../screens";
+import pages from "../../pages";
 
 const applicationPathConfig={
-    appTitle:homeTextConfig.title,    
+    appTitle:homeTextConfig.title,
     home:           homeTextConfig,
     contentTransfer:contentTransferConfig,
     qrPrinting:     qrPrintingConfig,
