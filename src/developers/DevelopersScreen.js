@@ -9,7 +9,7 @@ import DisplaySampleCode1 from "./DisplaySampleCode1";
 import DisplaySampleCode2 from "./DisplaySampleCode2";
 import DisplaySampleCode3 from "./DisplaySampleCode3";
 import DisplaySampleCode4 from "./DisplaySampleCode4";
-import TopHeaderSection from "../top-header-section";
+import TopHeaderSection from "../page-components/top-header-section";
 
 export  default class DevelopersScreen extends Component {
 

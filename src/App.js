@@ -9,34 +9,20 @@ import "./css/loader.css";//removed after test
 import "./css/print.css";//removed after test
 import "./css/input.css";//removed after test
 import "./css/simpleAnimate.css";//removed after test
-import {pagelinks} from "./configs";//to be removed
 
-
-import {DevelopersScreen} from "./developers"; //to be removed
-
-import screens from "./screens";
-
+import {DeveloperRoute} from "./developers"; //to be removed
+import pages from './pages';
 
 
 export default class App extends Component{
 
-
   render(){
-
     return (
-
       <Router>
-
-        <div className="topContainer">
-            {screens.renderRoute()}
-            
-            <Route  path={pagelinks.platform.link}  component={DevelopersScreen}/>
-            <Route  path={pagelinks.platform.link2}  component={DevelopersScreen}/>
-            <Route  path={pagelinks.platform.link3}  component={DevelopersScreen}/>
-
-        </div>
-
-
+          <React.Fragment>
+                <pages.Route/>
+                <DeveloperRoute/>
+          </React.Fragment>
       </Router>
       )
     }
