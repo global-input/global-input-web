@@ -1,16 +1,12 @@
 import React from 'react';
 import BorderedWhite from '../../page-components/themes/bordered-white';
-import MobileAuthenticationAndBeyon from './MobileAuthenticationAndBeyon';
+import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
 
-export default class AboutMobileAuthentication extends React.Component{
-
-  render(){
+const AboutMobileAuthentication=props=>{
         return(
           <BorderedWhite.Page>
-              <MobileAuthenticationAndBeyon theme={BorderedWhite}/>
+              <MobileAuthenticationAndBeyond theme={BorderedWhite}/>
           </BorderedWhite.Page>
         );
-
-  }
-
-}
+};
+export default AboutMobileAuthentication;

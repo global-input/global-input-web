@@ -14,7 +14,7 @@ var config={
       tutorialPart1:function(){return this.location+"/global_input_sign_in.mp4";}
     },
     docs:{
-      security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/",      
+      security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/",
       smartphoneoperateonapplications:"https://medium.com/@hewzulla/using-smartphones-to-operate-on-applications-running-on-computers-and-other-devices-e397668149f8"
     },
     paths:{
@@ -54,7 +54,8 @@ var config={
          wordpressPlugin:{
            url:"https://en-gb.wordpress.org/plugins/wp-globalinput-login/"
          },
-        authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"}
+        authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"},
+        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"}
       }
 }
 export default config;
