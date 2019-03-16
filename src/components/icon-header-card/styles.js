@@ -26,12 +26,12 @@ export var styles={
         position:"relative"
       },
       screen1080:{
-        
+
       },
 
       mobile:{
         width:"90%",
-        marginBottom:30
+        marginBottom:50
       },
  },
  icon:{

@@ -1,7 +1,8 @@
 import {styleMatchingScreenSize} from "../../components/screen-media";
 const images={
     simple:{
-        background:require("./images/simple/background.svg")
+        background:require("./images/simple/background.svg"),
+        mobile:require("./images/simple/background-mobile.svg")
     },
     home:{
       screen1440:require("./images/home/headbackground-1440.svg"),
@@ -16,12 +17,19 @@ const images={
 };
 export var styles={
       headerContainer:{
-        backgroundImage: "url("+images.simple.background+")",
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: "cover",
-        width:"100%",
-        position:"relative",
-        top:49,
+        get:styleMatchingScreenSize,
+        default:{
+          backgroundImage: "url("+images.simple.background+")",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: "cover",
+          width:"100%",
+          position:"relative",
+          top:49,
+        },
+        mobile:{
+          backgroundImage: "url("+images.simple.mobile+")",
+        }
+
       },
       homeHeaderContainer:{
             get:styleMatchingScreenSize,

@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import {styles} from "./styles";
 import AdjustableComponent from "../../components/adjustable-component";
 
-const SimpleHeaderBackground=props=>(<div style={styles.headerContainer}>{props.children}</div>);
+class SimpleHeaderBackground extends AdjustableComponent{
+  render(){
+      return (<div style={styles.headerContainer.get()}>{this.props.children}</div>);
+  }
+
+}
+
+
 
 class HomeHeaderBackground extends AdjustableComponent{
   render(){

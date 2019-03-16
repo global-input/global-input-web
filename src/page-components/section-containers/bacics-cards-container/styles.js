@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../components/screen-media";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const styles={
       cardContainer:{
         dilshat:true,
@@ -9,7 +9,7 @@ export const styles={
           justifyContent:"space-evenly",
           alignItems:"center",
           width:"100%",
-          marginTop:50,
+          marginTop:100,
         },
         mobile:{
           flexDirection:"column",

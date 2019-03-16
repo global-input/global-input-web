@@ -2,12 +2,12 @@ import React from 'react';
 
 
 
-import examples from "../examples";
+import {config}  from '../../configs';
 
 
 export default class CopyAndPaste extends React.Component{
 
-  exampleLinks=[examples.linkItems.contentTransfer];
+  exampleLinks=[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}];
 
   render(){
 

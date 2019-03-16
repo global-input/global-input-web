@@ -82,7 +82,11 @@ export const styles={
       },
         item:{
         marginBottom:10
-      }
+      },
+      code:{
+            border:"2px dashed #888888",
+            padding:10
+      },
   },
 
 

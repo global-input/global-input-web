@@ -1,7 +1,7 @@
 import React from 'react';
 
 import IconHeaderCard from "../../../components/icon-header-card";
-import BacicsCardsContainer from '../../../page-components/bacics-cards-container';
+import BacicsCardsContainer from '../../../page-components/section-containers/bacics-cards-container';
 import pages from '../../../pages';
 
 const images={

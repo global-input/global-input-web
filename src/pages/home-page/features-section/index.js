@@ -3,8 +3,10 @@ import {styles} from './styles';
 
 import TwoButtonsCard from "../../../page-components/two-buttons-card";
 import FeaturesContainer from "../../../page-components/section-containers/feature-container";
+import FeatureRow from "../../../page-components/section-containers/feature-row";
 
 import FeatureCard from './feature-card';
+
 
 import examples from '../../examples';
 import pages from '../../../pages';
@@ -48,42 +50,22 @@ export default class FeaturesSection extends React.Component{
     render(){
       return(
             <FeaturesContainer title="Try Our Features">
-              <div style={styles.row.get()}>
+              <FeatureRow>
 
-                <FeatureCard title={textContent.secondScreenInput.title} content={textContent.secondScreenInput.content}
-                  tryItNow={examples.renderMediaPlayerExampleLink}
-                  readMore={pages.readMore.secondScreen}/>
+                <TwoButtonsCard data={textContent.secondScreenInput}/>
+                <TwoButtonsCard data={textContent.mobileControl}/>
+              </FeatureRow>  
 
+              <FeatureRow>
+                  <TwoButtonsCard data={textContent.formoperation}/>
+                  <TwoButtonsCard data={textContent.secureTransfer}/>
+              </FeatureRow>
 
-                <FeatureCard title={textContent.mobileControl.title} content={textContent.mobileControl.content}
-                  tryItNow={examples.renderGameControlExampleLink}
-                  readMore={pages.readMore.mobileControl}/>
-              </div>
-
-              <div style={styles.row.get()}>
-                <FeatureCard title={textContent.formoperation.title} content={textContent.formoperation.content}
-                  tryItNow={examples.renderSendMessageScreen}
-                  readMore={pages.readMore.formOperation}/>
-
-              <FeatureCard title={textContent.secureTransfer.title} content={textContent.secureTransfer.content}
-                  tryItNow={examples.renderTransferFormDataExampleLink}
-                  readMore={pages.readMore.secureTransferFormData}/>
-              </div>
-
-
-              <div style={styles.row.get()}>
-                <FeatureCard title={textContent.copyAndPaste.title} content={textContent.copyAndPaste.content}
-                  tryItNow={examples.renderContentTransferScreen}
-                  readMore={pages.readMore.copyAndPaset}/>
-                <FeatureCard title={textContent.printQRCodes.title} content={textContent.printQRCodes.content}
-                  tryItNow={examples.renderQRPrintingScreen}
-                  readMore={pages.readMore.printScanQRCodes}/>
-              </div>
-
+              <FeatureRow>
+                        <TwoButtonsCard data={textContent.copyAndPaste}/>
+                        <TwoButtonsCard data={textContent.printQRCodes}/>
+              </FeatureRow>
             </FeaturesContainer>
-
-
-
 
       );
 
