@@ -69,7 +69,7 @@ export const styles={
         get:styleMatchingScreenSize,
         default:{
           marginBottom:10,
-          fontSize:20,
+          fontSize:16,
           display:"block"
         },
         mobile:{
@@ -82,7 +82,11 @@ export const styles={
       },
         item:{
         marginBottom:10
-      }
+      },
+      code:{
+            border:"2px dashed #888888",
+            padding:10
+      },
   },
 
 

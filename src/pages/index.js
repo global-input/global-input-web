@@ -62,6 +62,10 @@ class PageRoute extends React.Component{
 
 const pages={
       Route:PageRoute,
+      pageLinks:{
+            learnMore:config.paths.learnMore.path,
+            getApp:config.paths.getAppScreen.path
+      },
       allLinks:{
           authentication:config.paths.mobileAuthentication.path,
           mobileControl:config.paths.mobileControl.path,

@@ -12,16 +12,7 @@ const someLinks={
     List:props=>(<props.theme.ListLinks items={exampleLinks}/>),
     Link:props=>(<props.theme.Link to={examples.linkItems.qrPrinting.path}>{examples.linkItems.qrPrinting.linkText}</props.theme.Link>)
   },
-  WebSocketServer:props=>(<props.theme.A href={config.links.githuburt}>WebSocket Proxy Server</props.theme.A>)
+  WebSocketServer:props=>(<props.theme.A href={config.links.websocket.url}>WebSocket Proxy Server</props.theme.A>)
 };
 
 export default someLinks;
-
-
-/*
-WebSocket:props=>(<a style={styles.card.link} href={this.githuburt} target="_blank">WebSocket Proxy Server</a>)
-websocket:{
-  Link:WebSocketLink
-}
-
-*/

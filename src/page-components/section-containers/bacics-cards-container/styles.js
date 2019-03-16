@@ -1,12 +1,7 @@
 import {styleMatchingScreenSize} from "../../../components/screen-media";
-export const images={
-  authentication:require('./images/authentication.svg'),
-  mobileControl:require('./images/control.svg'),
-  secondScreen:require('./images/second-screen.svg'),
-}
-
 export const styles={
       cardContainer:{
+        dilshat:true,
         get:styleMatchingScreenSize,
         default:{
           display:"flex",
@@ -14,8 +9,7 @@ export const styles={
           justifyContent:"space-evenly",
           alignItems:"center",
           width:"100%",
-          marginTop:50,
-
+          marginTop:100,
         },
         mobile:{
           flexDirection:"column",

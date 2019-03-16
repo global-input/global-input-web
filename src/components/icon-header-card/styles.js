@@ -1,5 +1,5 @@
 
-import {styleMatchingScreenSize} from "../../../../components/screen-media";
+import {styleMatchingScreenSize} from "../screen-media";
 
 
 export const images={
@@ -25,10 +25,13 @@ export var styles={
         paddingTop:20,
         position:"relative"
       },
+      screen1080:{
+
+      },
 
       mobile:{
         width:"90%",
-        marginBottom:30
+        marginBottom:50
       },
  },
  icon:{

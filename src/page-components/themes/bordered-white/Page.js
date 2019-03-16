@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import AdjustableComponent from '../../../components/adjustable-component';
 import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
 
 
-export default class Page extends React.Component{
+export default class Page extends AdjustableComponent{
   static defaultProps={
       scrollTo:'topContent'
   }
@@ -48,6 +49,11 @@ export const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.c
 export const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
 
 
+export const CodeContent=props=>(<pre style={styles.card.code}>{props.children}</pre>);
+
+
+
+
 
 export class ListLinks extends React.Component {
 
@@ -57,13 +63,28 @@ export class ListLinks extends React.Component {
         </ul>);
   }
   renderItem(item, index){
-    return (
-            <li style={styles.card.item} key={index}>
-                  <Link to={item.path} style={styles.card.link}>{item.linkText}</Link>
-            </li>
-           );
+    if(item.path){
+      return (
+              <li style={styles.card.item} key={index}>
+                    <Link to={item.path} style={styles.card.link}>{item.linkText}</Link>
+              </li>
+             );
+      }
+      else if(item.href){
+              return(
+
+                <li style={styles.card.item} key={index}>
+                      <a href={item.href} style={styles.card.link} target="__blank">{item.linkText}</a>
+                </li>
+                );
+        }
+        else{
+          return (<li style={styles.card.item} key={index}>
+                Missing links
+          </li>);
+        }
   }
 }
 
 export const TextLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
-export const ALink=props=>(<a href={props.href} style={styles.card.link}>{props.children}</a>);
+export const ALink=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);

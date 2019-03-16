@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
-import {LinkItem} from '../../../components';
-import TextButton from '../../../components/text-button';
-import {styles, images} from "./styles";
-import {screenMedia} from "../../../components/screen-media";
-import pages from "../../../pages";
+
+import FourItemsList from '../../../page-components/four-items-list';
+import RightPoterImage from '../../../page-components/right-poster-image';
+import {SimpleHeaderBackground} from '../../../page-components/header-backgrounds';
+import TextTileSection from '../../../page-components/text-title-section';
+
+import ButtonsSection from './ButtonsSection';
+
+
 
 const headerTextContent={
     title:"Global Input App",
@@ -14,126 +17,29 @@ const headerTextContent={
            "Mobile Authentication",
            "Data Encryption",
            "Secure Content Transfer"
-         ],
-    app:{
-      content:"Provided by the Global Input App, which is a free and open-source mobile app with extensions.",
-      appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
-      playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
-    }
-}
-
-
-
-
+         ]
+};
+export const images={
+    
+    rightPoster:require('./images/right-poster.png'),
+    rightPoster400:require('./images/right-poster-400.png'),
+    rightPoster200:require('./images/right-poster-200.png')
+};
 
 export  default class HeaderSection extends Component {
-
-    constructor(props){
-      super(props);
-      this.onWindowResize=this.onWindowResize.bind(this);
-    }
-     componentDidMount() {
-         window.addEventListener("resize", this.onWindowResize);
-     }
-     componentWillUnmount() {
-         window.removeEventListener("resize", this.onWindowResize);
-     }
-     onWindowResize(){
-       this.forceUpdate();
-     }
-
-    renderHeaderItems(item,index){
-        return(
-          <li key={index}>
-            {item}
-          </li>
-        );
-
-    }
-renderPosterImage(){
-  var postImage=images.rightPoster;
-  if(!screenMedia.biggerThan(800)){
-      return null;
-  }
-  else if(!screenMedia.biggerThan(680)){
-    postImage=images.rightPoster200;
-  }
-  else if(!screenMedia.biggerThan(1258)){
-    postImage=images.rightPoster400;
-  }
-
-  else{
-      postImage=images.rightPoster;
-  }
-  return(<img src={postImage} style={styles.rightImage.get()}/>);
-
-
-}
-
-renderHeaderListItems(){
-  if(screenMedia.biggerThan(800)){
-    return(
-      <div style={styles.listContent.get()}>
-          <ul className="listmenu" style={styles.itemRow.onerow.get()}>
-            {headerTextContent.items.map(this.renderHeaderItems.bind(this))}
-          </ul>
-      </div>
-    );
-  }
-  else{
-    return(
-      <div style={styles.listContent.get()}>
-        <ul className="listmenu" style={styles.itemRow.tworows}>
-          <li>
-            {headerTextContent.items[0]}
-          </li>
-          <li>
-            {headerTextContent.items[1]}
-          </li>
-        </ul>
-
-    <ul className="listmenu" style={styles.itemRow.tworows}>
-      <li>
-        {headerTextContent.items[2]}
-      </li>
-      <li>
-        {headerTextContent.items[3]}
-      </li>
-    </ul>
-    </div>
-  );
-
-  }
-
-
-}
-
-render() {
-
-
-
-
-
-
+  render() {
     return (
-          <div style={styles.headerContainer}>
-              {this.renderPosterImage()}
-              <div style={styles.headerSection.get()}>
-                    <div style={styles.title.get()}>{headerTextContent.title}</div>
-                    <div style={styles.subtitle.get()}>{headerTextContent.subtitle}</div>
-
-                       {this.renderHeaderListItems()}
-
-
-                        <div style={styles.buttonsContainer.get()}>
-
-                        {pages.buttons.learnMoreWhite('Read More')}
-                        {pages.buttons.getAppScreen('Get GIA App Free')}
-                        </div>
-
-              </div>
-
-          </div>
+          <SimpleHeaderBackground>
+            <RightPoterImage
+                    image={images.rightPoster}
+                    image200={images.rightPoster200}
+                    image400={images.rightPoster400}/>
+                  <TextTileSection title={headerTextContent.title}
+                        subtitle={headerTextContent.subtitle}>
+                  <FourItemsList items={headerTextContent.items}/>
+                  <ButtonsSection/>
+                </TextTileSection>
+          </SimpleHeaderBackground>
           );
   }
 }

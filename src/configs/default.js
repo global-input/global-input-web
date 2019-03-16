@@ -14,7 +14,7 @@ var config={
       tutorialPart1:function(){return this.location+"/global_input_sign_in.mp4";}
     },
     docs:{
-      security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/?lipi=urn%3Ali%3Apage%3Ad_flagship3_inshare%3B7%2FQdFEI5TSuBvNX7Fmbu1A%3D%3D",
+      security:"https://www.linkedin.com/pulse/security-strategy-business-applications-dilshat-hewzulla/",
       smartphoneoperateonapplications:"https://medium.com/@hewzulla/using-smartphones-to-operate-on-applications-running-on-computers-and-other-devices-e397668149f8"
     },
     paths:{
@@ -41,7 +41,21 @@ var config={
           copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
       },
       links:{
-          githuburt:"https://github.com/global-input/global-input-node"
+          websocket:{
+              url:"https://github.com/global-input/global-input-node",
+          },
+          chromeExtension:{
+              url:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp",
+              websites:"https://github.com/global-input/chrome-extension/tree/master/application-controls"
+          },
+         tutorialP1:{
+              url:"https://www.youtube.com/watch?v=7-vavraSj-s"
+         },
+         wordpressPlugin:{
+           url:"https://en-gb.wordpress.org/plugins/wp-globalinput-login/"
+         },
+        authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"},
+        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"}
       }
 }
 export default config;
