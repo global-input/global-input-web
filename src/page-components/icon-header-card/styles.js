@@ -1,5 +1,5 @@
 
-import {styleMatchingScreenSize} from "../screen-media";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 
 
 export const images={

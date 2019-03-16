@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 
 import FourItemsList from '../../../page-components/four-items-list';
-import RightPoterImage from '../../../page-components/right-poster-image';
+import RightPosterImage from '../../../page-components/right-poster-image';
 import {SimpleHeaderBackground} from '../../../page-components/header-backgrounds';
-import TextTileSection from '../../../page-components/text-title-section';
+import TextTitleSection from '../../../page-components/text-title-section';
 
-import ButtonsSection from './ButtonsSection';
 
+import ButtonsContainer from '../../../page-components/buttons-container';
+import {pagesLinks} from "../../../links-components";
+
+
+
+const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 
 
 const headerTextContent={
@@ -20,26 +25,26 @@ const headerTextContent={
          ]
 };
 export const images={
-    
+
     rightPoster:require('./images/right-poster.png'),
     rightPoster400:require('./images/right-poster-400.png'),
     rightPoster200:require('./images/right-poster-200.png')
 };
 
-export  default class HeaderSection extends Component {
-  render() {
-    return (
-          <SimpleHeaderBackground>
-            <RightPoterImage
+const HeaderSection = props =>(
+      <SimpleHeaderBackground>
+            <RightPosterImage
                     image={images.rightPoster}
                     image200={images.rightPoster200}
                     image400={images.rightPoster400}/>
-                  <TextTileSection title={headerTextContent.title}
+            <TextTitleSection title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>
-                  <FourItemsList items={headerTextContent.items}/>
-                  <ButtonsSection/>
-                </TextTileSection>
-          </SimpleHeaderBackground>
+                          <FourItemsList items={headerTextContent.items}/>
+                          <ButtonsContainer>
+                              <LearnMoteWhiteButton>Read More</LearnMoteWhiteButton>
+                              <GetAppButton>Get GIA App Free</GetAppButton>
+                          </ButtonsContainer>
+            </TextTitleSection>
+    </SimpleHeaderBackground>
           );
-  }
-}
+export default HeaderSection;

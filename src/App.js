@@ -8,16 +8,13 @@ import {DeveloperRoute} from "./developers"; //to be removed
 import pages from './pages';
 
 
-export default class App extends Component{
-
-  render(){
-    return (
+const App=props=>(
       <Router>
           <React.Fragment>
                 <pages.Route/>
                 <DeveloperRoute/>
           </React.Fragment>
       </Router>
-      )
-    }
-}
+    );
+
+export default App;

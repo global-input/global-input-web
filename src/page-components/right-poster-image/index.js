@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {styles,screenMedia} from "./styles";
 import AdjustableComponent from "../../components/adjustable-component";
-export default class RightPoterImage extends AdjustableComponent{
+export default class RightPosterImage extends AdjustableComponent{
   render(){
     if(!this.isScreenBiggerThan(800)){
         return null;

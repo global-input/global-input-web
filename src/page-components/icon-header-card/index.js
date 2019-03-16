@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles, images} from './styles';
 import {Link} from 'react-router-dom';
-import AdjustableComponent from '../adjustable-component';
+import AdjustableComponent from '../../components/adjustable-component';
 
 export default class IconHeaderCard extends AdjustableComponent{
   static defaultProps={

@@ -26,11 +26,7 @@ var menus=[{
       }
     }];
 
-export  default class TopHeaderSection extends React.Component {
-
-    render(){
-      return(<TopMenu
+const TopHeaderSection=props => (<TopMenu
           menus={menus}
-          selected={this.props.selected} appLogo={images.appIcon}/>)
-    }
-}
+          selected={props.selected} appLogo={images.appIcon}/>);
+export default TopHeaderSection;

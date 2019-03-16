@@ -1,6 +1,6 @@
 import React from 'react';
 import {config} from '../configs';
-
+import {WhiteRoundButton,BlueRoundButton} from '../page-components/round-buttons';
 export const externalsLinks={
       listForinstallChromeExtension:[{href:config.links.chromeExtension.url, linkText:"Install Chrome Extension"}],
       InstallChromeExtension:props=>{
@@ -50,5 +50,21 @@ export const examplesLinks={
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.contentTransfer.path}>{props.children}</Link>);
       },
+      listForgameControlExample:[{path:config.paths.examples.gameControl.path, linkText:"Mobile Game Control Example"}],
+      MobileGameControlExample:props=>{
+                  const {ListLinks}=props.theme;
+                  return(<ListLinks items={examplesLinks.listForgameControlExample}/>);
+      }
 
-}
+};
+
+
+export const pagesLinks={
+          buttons:{
+                LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
+                GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>)
+          }
+
+
+
+};

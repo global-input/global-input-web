@@ -1,9 +1,8 @@
 import React from 'react';
 
-import IconHeaderCard from "../../../components/icon-header-card";
+import IconHeaderCard from "../../../page-components/icon-header-card";
 import BacicsCardsContainer from '../../../page-components/section-containers/bacics-cards-container';
-import pages from '../../../pages';
-
+import {config} from '../../../configs';
 const images={
   authentication:require('./images/authentication.svg'),
   mobileControl:require('./images/control.svg'),
@@ -27,31 +26,25 @@ const textContent={
 
 
 }
-export default class CardSection extends React.Component{
-
-    render(){
-        return(
+const CardSection= props =>(
           <BacicsCardsContainer>
               <IconHeaderCard titleIcon={images.authentication}
                   title={textContent.authentication.title}
                   content={textContent.authentication.content}
-                  link={pages.allLinks.authentication}
+                  link={config.paths.mobileAuthentication.path}
                   />
 
                   <IconHeaderCard titleIcon={images.mobileControl}
                       title={textContent.mobileControl.title}
                       content={textContent.mobileControl.content}
-                      link={pages.allLinks.mobileControl}
+                      link={config.paths.mobileControl.path}
                       />
 
                       <IconHeaderCard titleIcon={images.secondScreen}
                           title={textContent.secondScreen.title}
                           content={textContent.secondScreen.content}
-                          link={pages.allLinks.secondScreen}
+                          link={config.paths.secondScreen.path}
                           />
           </BacicsCardsContainer>
         );
-    }
-
-
-}
+export default CardSection;

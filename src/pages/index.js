@@ -33,9 +33,7 @@ export const pagelinks={
 
 
 
-class PageRoute extends React.Component{
-  render(){
-    return(
+const PageRoute=props=>(
       <React.Fragment>
         {config.paths.home.paths.map((p,index)=><Route  key={index} path={p} exact component={HomePage}/>)}
         {examples.renderRoute()}
@@ -52,13 +50,6 @@ class PageRoute extends React.Component{
         <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
       </React.Fragment>
     );
-  }
-
-}
-
-
-
-
 
 const pages={
       Route:PageRoute,

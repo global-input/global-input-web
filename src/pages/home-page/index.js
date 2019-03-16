@@ -9,14 +9,10 @@ import CardSection from "./cards-section";
 import FeaturesSection from './features-section';
 
 
-export  default class HomePage extends Component {
-
-render() {
-
-    return (
+const HomePage=props=> (
           <BasicLayout>
             <HomeHeaderBackground>
-                <HeaderSection history={this.props.history}/>
+                <HeaderSection history={props.history}/>
                 <CardSection/>
                 <HowItWorks/>
             </HomeHeaderBackground>
@@ -24,6 +20,5 @@ render() {
             <FooterSection/>
           </BasicLayout>
             );
-  }
 
-}
+  export default HomePage;
