@@ -1,1 +1,1 @@
-bit tag --all 
+bit tag --all
