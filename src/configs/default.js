@@ -20,7 +20,6 @@ var config={
     paths:{
           examples:{
               contentTransfer:{path:"/global-input-app/content-transfer",linkText:"Content Transfer"},
-
               gameControl:{path:"/global-input-app/game-example",linkText:"Game Control"},
               mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
               qrPrinting:{path:"/global-input-app/qr-printing",linkText:"QR Code Printing"},

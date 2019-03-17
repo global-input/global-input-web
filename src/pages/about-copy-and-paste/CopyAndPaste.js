@@ -2,12 +2,14 @@ import React from 'react';
 
 
 
-import {config}  from '../../configs';
 
+
+import {externalsLinks,examplesLinks} from '../../links-components';
+const {ContentTransferList} = examplesLinks;
 
 export default class CopyAndPaste extends React.Component{
 
-  exampleLinks=[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}];
+
 
   render(){
 
@@ -31,7 +33,7 @@ your mobile device to the shared computer with a USB cable, allowing you do copy
         <P>
 Try out the following the simple web application to copy and paste content from you mobile to computer or vice versa.
         </P>
-        <ListLinks items={this.exampleLinks}/>
+        <ContentTransferList {...this.props}/>
 
     </React.Fragment>
 

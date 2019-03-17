@@ -27,7 +27,7 @@ const textContent={
       formoperation:{
             title:"Mobile Form Automations",
             content:"Automate form operations using the data stored in the encrypted data storage provided by Global Input App. Allowing users have complete control over their personal data.",
-            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.mobileAuthentication.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.formOperation.path, label:"Read More"}]
       },
       secureTransfer:{
             title:"Form Data Sharing & Editing",

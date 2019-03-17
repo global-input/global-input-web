@@ -76,6 +76,22 @@ export const examplesLinks={
         const {ListLinks}=props.theme;
         return(<ListLinks items={examplesLinks.listForMediaPlayerExample}/>);
       },
+      listForContentTransferExample:[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}],
+      ContentTransferList:props=>{
+        const {ListLinks}=props.theme;
+        return(<ListLinks items={examplesLinks.listForContentTransferExample}/>);
+      },
+      listAllExamples:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
+          {path:config.paths.examples.gameControl.path, linkText:"Game Control Example"},
+          {path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
+          {path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"},
+          {path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"},
+          {path:config.paths.examples.qrPrinting.path, linkText:"QR Code Printing Application"}],
+      ListAllExamples:props=>{
+          const {ListLinks}=props.theme;
+          return(<ListLinks items={examplesLinks.listAllExamples}/>)
+        }
+
 
 
 };

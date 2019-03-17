@@ -12,6 +12,8 @@ import DeviceToDeviceCommunication from './DeviceToDeviceCommunication';
 import PortableEncryptedStorage from './PortableEncryptedStorage';
 
 import WatchIntroduction from "./watch-introduction";
+
+
 const sideMenus=[ClientSideOnlySolution.menu, DeviceToDeviceCommunication.menu,
   PortableEncryptedStorage.menu];
 
