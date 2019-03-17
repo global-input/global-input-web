@@ -1,5 +1,5 @@
 import React from 'react';
-import {styles} from './styles';
+
 
 import TwoButtonsCard from "../../../page-components/two-buttons-card";
 import FeaturesContainer from "../../../page-components/section-containers/feature-container";
@@ -54,7 +54,7 @@ export default class FeaturesSection extends React.Component{
 
                 <TwoButtonsCard data={textContent.secondScreenInput}/>
                 <TwoButtonsCard data={textContent.mobileControl}/>
-              </FeatureRow>  
+              </FeatureRow>
 
               <FeatureRow>
                   <TwoButtonsCard data={textContent.formoperation}/>

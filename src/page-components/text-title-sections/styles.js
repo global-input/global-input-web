@@ -2,7 +2,7 @@ import {styleMatchingScreenSize} from "../../components/screen-media";
 
 export var styles={
 
-  headerSection:{
+  homeTitleSection:{
       get:styleMatchingScreenSize,
       default:{
               height:530,
@@ -33,8 +33,17 @@ export var styles={
       }
 
   },
-
-
+  pageTitleSection:{
+    marginTop:"5vw",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"flex-start",
+    color:"white",
+    width:"100%",
+    zIndex:50,
+    marginBottom:30,
+ },
   title:{
     default:{
       fontSize:40,

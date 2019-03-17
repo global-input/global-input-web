@@ -35,4 +35,7 @@ buttonLinks:{
       width:"90%",
     }
 },
+  imageButton:{
+      margin:20,
+  }
 };

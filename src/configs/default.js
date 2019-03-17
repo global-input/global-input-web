@@ -55,7 +55,11 @@ var config={
            url:"https://en-gb.wordpress.org/plugins/wp-globalinput-login/"
          },
         authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"},
-        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"}
+        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"},
+        appdownload:{
+              appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
+              playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
+        }
       }
 }
 export default config;

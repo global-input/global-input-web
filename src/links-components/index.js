@@ -1,6 +1,12 @@
 import React from 'react';
 import {config} from '../configs';
-import {WhiteRoundButton,BlueRoundButton} from '../page-components/round-buttons';
+import {WhiteRoundButton,BlueRoundButton,ImageExternalLink} from '../page-components/round-buttons';
+import ButtonsContainer from '../page-components/buttons-container';
+
+const images={
+      appStore:require("./images/app-store.png"),
+      playStore:require("./images/play-store.png"),
+}
 export const externalsLinks={
       listForinstallChromeExtension:[{href:config.links.chromeExtension.url, linkText:"Install Chrome Extension"}],
       InstallChromeExtension:props=>{
@@ -38,6 +44,12 @@ export const externalsLinks={
         const {A}=props.theme;
         return(<A href={config.links.TransferFormGigHub.url}>{props.children}</A>);
       },
+      DownloadGIAButtons:props=>(
+        <ButtonsContainer>
+            <ImageExternalLink image={images.appStore} href={config.links.appdownload.appStore}/>
+            <ImageExternalLink image={images.playStore} href={config.links.appdownload.playStore}/>
+        </ButtonsContainer>
+      )
 
 };
 
@@ -72,7 +84,8 @@ export const examplesLinks={
 export const pagesLinks={
           buttons:{
                 LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
-                GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>)
+                GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>),
+                MobileAuthentication:props=>(<WhiteRoundButton to={config.paths.mobileAuthentication.path}>{props.children}</WhiteRoundButton>),
           }
 
 

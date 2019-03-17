@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import FourItemsList from '../../../page-components/four-items-list';
 import RightPosterImage from '../../../page-components/right-poster-image';
 import {SimpleHeaderBackground} from '../../../page-components/header-backgrounds';
-import TextTitleSection from '../../../page-components/text-title-section';
+import {HomeTitleSection} from '../../../page-components/text-title-sections';
 
 
 import ButtonsContainer from '../../../page-components/buttons-container';
@@ -37,14 +37,14 @@ const HeaderSection = props =>(
                     image={images.rightPoster}
                     image200={images.rightPoster200}
                     image400={images.rightPoster400}/>
-            <TextTitleSection title={headerTextContent.title}
+            <HomeTitleSection title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>
                           <FourItemsList items={headerTextContent.items}/>
                           <ButtonsContainer>
                               <LearnMoteWhiteButton>Read More</LearnMoteWhiteButton>
                               <GetAppButton>Get GIA App Free</GetAppButton>
                           </ButtonsContainer>
-            </TextTitleSection>
+            </HomeTitleSection>
     </SimpleHeaderBackground>
           );
 export default HeaderSection;
