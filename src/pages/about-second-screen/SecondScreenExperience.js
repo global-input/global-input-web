@@ -51,11 +51,7 @@ And then more sophisticated logic and control can be built iteratively.
 The mobile device integration leads to a unified solution to many other use cases such as
 Mobile Authentication, Subscription, Account Update, and Mobile Player Control, Programme search & browse etc.
 </P>
-
-
-
         </React.Fragment>
-
 );
 
 };
