@@ -109,29 +109,11 @@ export const withResponsiveComponent=(WrappedComponent, data)=>{
           }
           componentDidMount() {
                 window.addEventListener("resize", this.onWindowResize);
-                if(data && data.scrollTo){
-                      if(this.props.scrollTo){
-                            this.scrollTo(this.props.scrollTo);
-                      }
-                      else{
-                          this.scrollTo(data.scrollTo);
-                      }
-                }
-
           }
-          scrollTo(elementId){                        
-              var elmnt = document.getElementById(elementId);
-
-              if(elmnt){
-                       window.scrollBy({top: -70,behavior: "smooth"});
-                       elmnt.scrollIntoView();
-              }
-         }
          componentWillUnmount() {
              window.removeEventListener("resize", this.onWindowResize);
          }
          onWindowResize(){
-
             this.forceUpdate();
          }
          render() {
@@ -139,4 +121,24 @@ export const withResponsiveComponent=(WrappedComponent, data)=>{
          }
 
       }
+}
+
+
+export const withScrollToTop=(WrappedComponent, scrollTo)=>{
+      return class extends React.Component{
+          componentDidMount() {
+                  this.scrollTo(scrollTo);
+          }
+          scrollTo(elementId){
+              var elmnt = document.getElementById(elementId);
+
+              if(elmnt){
+                       window.scrollBy({top: -70,behavior: "smooth"});
+                       elmnt.scrollIntoView();
+              }
+         }
+         render() {
+                return <WrappedComponent  {...this.props}/>;
+         }
+      };
 }

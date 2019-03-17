@@ -10,9 +10,6 @@ import TransferFormDataScreen from './transfer-form-data-screen';
 
 import {config} from '../../configs';
 
-
-
-
 var examples={
 
   renderRoute:function(){

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
-import {styles, images} from './styles';
+
 import examples from "./examples";
 
-import HomePage from './home-page';
+import {HomePageWithScrollToTop as HomePage} from './home-page';
 
 import LearnMorePage from "./learn-more-page";
 import GetAppPage from './get-app-page';
@@ -19,6 +19,8 @@ import AboutMobileTransferFormData from "./about-secure-content-transfer";
 import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
 import AboutCopyAndPaste from './about-copy-and-paste';
 import {config} from "../configs";
+import {withScrollToTop} from '../components/screen-media';
+
 
 
 
@@ -41,7 +43,7 @@ const PageRoute=props=>(
     );
 
 const pages={
-      Route:PageRoute,      
+      Route:PageRoute,
 };
 
 
