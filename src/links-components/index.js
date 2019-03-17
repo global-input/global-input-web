@@ -62,25 +62,12 @@ export const examplesLinks={
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.contentTransfer.path}>{props.children}</Link>);
       },
-      listForgameControlExample:[{path:config.paths.examples.gameControl.path, linkText:"Mobile Game Control Example"}],
-      MobileGameControlExample:props=>{
-                  const {ListLinks}=props.theme;
-                  return(<ListLinks items={examplesLinks.listForgameControlExample}/>);
-      },
+
       SecondScreen:props=>{
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.mediaPlayer.path}>{props.children}</Link>);
       },
-      listForMediaPlayerExample:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"}],
-      SecondScreenList:props=>{
-        const {ListLinks}=props.theme;
-        return(<ListLinks items={examplesLinks.listForMediaPlayerExample}/>);
-      },
-      listForContentTransferExample:[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}],
-      ContentTransferList:props=>{
-        const {ListLinks}=props.theme;
-        return(<ListLinks items={examplesLinks.listForContentTransferExample}/>);
-      },
+
       listAllExamples:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
           {path:config.paths.examples.gameControl.path, linkText:"Game Control Example"},
           {path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
@@ -90,7 +77,27 @@ export const examplesLinks={
       ListAllExamples:props=>{
           const {ListLinks}=props.theme;
           return(<ListLinks items={examplesLinks.listAllExamples}/>)
-        }
+        },
+        listForContentTransferExample:[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}],
+        ContentTransferList:props=>{
+          const {ListLinks}=props.theme;
+          return(<ListLinks items={examplesLinks.listForContentTransferExample}/>);
+        },
+        listForMediaPlayerExample:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"}],
+        SecondScreenList:props=>{
+          const {ListLinks}=props.theme;
+          return(<ListLinks items={examplesLinks.listForMediaPlayerExample}/>);
+        },
+        listForgameControlExample:[{path:config.paths.examples.gameControl.path, linkText:"Mobile Game Control Example"}],
+        MobileGameControlExample:props=>{
+                    const {ListLinks}=props.theme;
+                    return(<ListLinks items={examplesLinks.listForgameControlExample}/>);
+        },
+        listForSendMessage:[{path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"}],
+        SendMessageListExample:props=>{
+                    const {ListLinks}=props.theme;
+                    return(<ListLinks items={examplesLinks.listForSendMessage}/>);
+        },
 
 
 
