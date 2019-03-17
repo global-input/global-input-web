@@ -49,7 +49,11 @@ export const externalsLinks={
             <ImageExternalLink image={images.appStore} href={config.links.appdownload.appStore}/>
             <ImageExternalLink image={images.playStore} href={config.links.appdownload.playStore}/>
         </ButtonsContainer>
-      )
+      ),
+      WebSocketServer:props=>{
+        const {A}=props.theme;
+        return(<A href={config.links.websocket.url}>{props.children}</A>);
+      },
 
 };
 
@@ -66,6 +70,10 @@ export const examplesLinks={
       SecondScreen:props=>{
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.mediaPlayer.path}>{props.children}</Link>);
+      },
+      QrcodePrinting:props=>{
+            const {Link}=props.theme;
+            return(<Link to={config.paths.examples.qrPrinting.path}>{props.children}</Link>);
       },
 
       listAllExamples:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
@@ -98,7 +106,16 @@ export const examplesLinks={
                     const {ListLinks}=props.theme;
                     return(<ListLinks items={examplesLinks.listForSendMessage}/>);
         },
-
+        listTransferFormDataExamples:[{path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"}],
+        TransferFormDataListExample:props=>{
+                  const {ListLinks}=props.theme;
+                  return(<ListLinks items={examplesLinks.listTransferFormDataExamples}/>);
+        },
+        listQRPrinting:[{path:config.paths.examples.qrPrinting.path, linkText:"QR Code Printing Application"}],
+        QRCodePrintingListExample:props=>{
+                  const {ListLinks}=props.theme;
+                  return(<ListLinks items={examplesLinks.listQRPrinting}/>);
+        },
 
 
 };

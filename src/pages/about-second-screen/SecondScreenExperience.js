@@ -1,10 +1,6 @@
 import React from 'react';
 
-
-import {config} from '../../configs';
 import {externalsLinks,examplesLinks} from '../../links-components';
-
-
 const {AuthenticationWhitePaper}=externalsLinks;
 const {TransferFormData,SecondScreen,SecondScreenList} = examplesLinks;
 
