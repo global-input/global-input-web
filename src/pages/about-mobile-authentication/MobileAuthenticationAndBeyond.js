@@ -11,7 +11,7 @@ const {TransferFormData,SecondScreen} = examplesLinks;
 
 const MobileAuthenticationAndBeyond = props =>{
 
-        const {P, Title, Code}=props.theme;
+        const {P, Title, Code,Concept}=props.theme;
 
         return(
 
@@ -41,14 +41,14 @@ const MobileAuthenticationAndBeyond = props =>{
 
               </P>
               <P>
-                The <b>Application Control Settings</b> on the Chrome extension window allows you to specify the IDs of the HTML elements on the current page
+                The <Concept>Application Control Settings</Concept> on the Chrome extension window allows you to specify the IDs of the HTML elements on the current page
                  that you would like to interact with and transfer content or operate on them using your mobile.
                 In this scenario, the Chrome Extension plays the role of the proxy between the application and GIA, allowing you to operate on the page
                 directly using your mobile. The Applications Control Settings that comes with the extension can be found <SupportedWebsites {...props}>here</SupportedWebsites>.
                 You can add new settings or remove the existing ones for the website you are visiting.
               </P>
               <P>
-                If the <b>Application Control Settings</b> is missing for a website, you cannot directly control the web page using your mobile, but you still can push
+                If the <Concept>Application Control Settings</Concept> is missing for a website, you cannot directly control the web page using your mobile, but you still can push
                  the selected data (filtered automatically using the domain of the website you are visiting) to the Chrome Extension, and then you can copy and paste the required content to
                  the web page currently loaded on your browser. In this mode, you can type both on your computer and on your mobile to enter content,
                  the content will be synced live with each other. This is convenient if you would like to transfer some content from a computer to your mobile or vice versa.

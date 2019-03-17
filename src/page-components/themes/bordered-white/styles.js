@@ -87,6 +87,12 @@ export const styles={
             border:"2px dashed #888888",
             padding:10
       },
+      concept:{
+      
+        borderBottomStyle:"dotted",
+        borderBottomColor:'black',
+        borderBottomWidth:1
+      }
   },
 
 

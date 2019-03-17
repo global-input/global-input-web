@@ -46,10 +46,6 @@ export const examplesLinks={
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.transferForm.path}>{props.children}</Link>);
       },
-      SecondScreen:props=>{
-            const {Link}=props.theme;
-            return(<Link to={config.paths.examples.mediaPlayer.path}>{props.children}</Link>);
-      },
       ContentTransfer:props=>{
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.contentTransfer.path}>{props.children}</Link>);
@@ -58,7 +54,17 @@ export const examplesLinks={
       MobileGameControlExample:props=>{
                   const {ListLinks}=props.theme;
                   return(<ListLinks items={examplesLinks.listForgameControlExample}/>);
-      }
+      },
+      SecondScreen:props=>{
+            const {Link}=props.theme;
+            return(<Link to={config.paths.examples.mediaPlayer.path}>{props.children}</Link>);
+      },
+      listForMediaPlayerExample:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"}],
+      SecondScreenList:props=>{
+        const {ListLinks}=props.theme;
+        return(<ListLinks items={examplesLinks.listForMediaPlayerExample}/>);
+      },
+
 
 };
 

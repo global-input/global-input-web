@@ -61,3 +61,5 @@ export class ListLinks extends React.Component {
 
 export const TextLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
 export const ALink=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);
+
+export const Concept=props=>(<span style={styles.card.concept}>{props.children}</span>);
