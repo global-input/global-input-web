@@ -30,6 +30,10 @@ export const externalsLinks={
         const {A}=props.theme;
         return(<A href={config.docs.security}>{props.children}</A>);
       },
+      MobileOperationWhitePaper:props=>{
+        const {A}=props.theme;
+        return(<A href={config.docs.smartphoneoperateonapplications}>{props.children}</A>);
+      },
       TransferFormDataGitHub:props=>{
         const {A}=props.theme;
         return(<A href={config.links.TransferFormGigHub.url}>{props.children}</A>);
