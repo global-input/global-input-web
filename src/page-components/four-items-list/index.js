@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {styles} from "./styles";
-import AdjustableComponent from "../../components/adjustable-component";
 
+import {withResponsiveComponent} from '../../components/screen-media';
 
 import  './styles.css';
-export  default class FourItemsList extends AdjustableComponent {
+class FourItemsList extends React.Component {
 
     renderHeaderItems(item,index){
         return(
@@ -15,7 +15,7 @@ export  default class FourItemsList extends AdjustableComponent {
     }
 
 render(){
-      if(this.isScreenBiggerThan(800)){
+      if(this.props.screenMedia && this.props.screenMedia.biggerThan(800)){
         return(
           <div style={styles.listContent.get()}>
               <ul className="listmenu" style={styles.itemRow.onerow.get()}>
@@ -51,3 +51,5 @@ render(){
    }
 
 }
+const ResponsiveFourItemsList=withResponsiveComponent(FourItemsList);
+export default ResponsiveFourItemsList;

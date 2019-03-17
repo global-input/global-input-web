@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {styles} from './styles';
-import AdjustableComponent from "../../components/adjustable-component";
 
-class BlueRoundButton extends AdjustableComponent{
+
+class BlueRoundButton extends React.Component{
   render(){
     if(this.props.to){
         return (<Link to={this.props.to} style={styles.buttonLinks.get()}>{this.props.children}</Link>);
@@ -16,7 +16,7 @@ class BlueRoundButton extends AdjustableComponent{
     }
   }
 };
-class WhiteRoundButton extends AdjustableComponent{
+class WhiteRoundButton extends React.Component{
   render(){
     if(this.props.to){
         return (<Link to={this.props.to} style={styles.buttonLinks.get('white')}>{this.props.children}</Link>);
