@@ -40,13 +40,13 @@ export const styles={
           marginTop:70
         },
         bigScreen:{
-          width:1200
-        },
-        screen1245:{
           width:1000
         },
+        screen1245:{
+          width:800
+        },
         desktop:{
-          width:"90%"
+          width:"80%"
         }
       },
       title:{
@@ -55,8 +55,7 @@ export const styles={
           fontSize:30,
           marginTop:20,
           display:"block",
-          marginLeft:"auto",
-          marginRight:"auto",
+
           marginBottom:50
         },
         mobile:{
@@ -67,7 +66,7 @@ export const styles={
         get:styleMatchingScreenSize,
         default:{
           marginBottom:10,
-          fontSize:16,
+          fontSize:14,
           display:"block",
           marginBottom:30
         },
