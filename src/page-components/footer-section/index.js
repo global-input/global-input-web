@@ -2,7 +2,8 @@
 import React from 'react';
 
 import {styles,images} from './styles';
-import AdjustableComponent from '../../components/adjustable-component';
+
+import {withResponsiveComponent} from '../../components/screen-media';
 const textContent={
     title:"Join Us!",
     community:{
@@ -27,7 +28,7 @@ const textContent={
     }
 }
 
-export  default class FooterSection extends AdjustableComponent {
+class FooterSection extends React.Component {
 
     render(){
       return(<div style={styles.container}>
@@ -73,3 +74,7 @@ export  default class FooterSection extends AdjustableComponent {
         return (<div style={styles.contact.item} key={index}>{content}</div>);
     }
 }
+
+const ResponsiveFooterSection=withResponsiveComponent(FooterSection);
+
+export default ResponsiveFooterSection;

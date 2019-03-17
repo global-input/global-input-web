@@ -1,49 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import AdjustableComponent from '../../../components/adjustable-component';
+
+import {withResponsiveComponent} from '../../../components/screen-media';
 import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
 
 
-export default class Page extends AdjustableComponent{
-  static defaultProps={
-      scrollTo:'topContent'
-  }
-  constructor(props){
-    super(props);
-    this.onWindowResize=this.onWindowResize.bind(this);
-  }
-   componentDidMount() {
-       window.addEventListener("resize", this.onWindowResize);
-       this.processScrollTo(this.props.scrollTo);
-   }
-   componentWillUnmount() {
-       window.removeEventListener("resize", this.onWindowResize);
-   }
-   onWindowResize(){
-      this.forceUpdate();
-   }
-
-  render(){
-        return(<div style={styles.container} id="topContent">
-            <TopHeaderSection selected={this.props.selected}/>
+const Page=props=>(<div style={styles.container} id="topContent">
+            <TopHeaderSection selected={props.selected}/>
             <div style={styles.content}>
                   <div style={styles.card.container.get()}>
-                        {this.props.children}
+                        {props.children}
                   </div>
             </div>
         </div>);
-  }
-  processScrollTo(elementId){
-        var elmnt = document.getElementById(elementId);
-        if(elmnt){
-                window.scrollBy({top: -70,behavior: "smooth"});
-                elmnt.scrollIntoView();
+const ResponsivePage=withResponsiveComponent(Page,{scrollTo:"topContent"});
+export default ResponsivePage;
 
-        }
-
-  }
-}
 
 export const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);
 export const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);

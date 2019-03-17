@@ -1,13 +1,12 @@
 import React from 'react';
 import {styles} from './styles';
-import AdjustableComponent from '../../../components/adjustable-component';
 
-export default class BacicsCardsContainer extends AdjustableComponent{
-    render(){
-        return(
+import {withResponsiveComponent} from '../../../components/screen-media';
+
+const BacicsCardsContainer=props=>(
           <div style={styles.cardContainer.get()}>
-              {this.props.children}
+              {props.children}
           </div>
         );
-    }
-}
+const ResponsiveBacicsCardsContainer=withResponsiveComponent(BacicsCardsContainer);
+export default ResponsiveBacicsCardsContainer;

@@ -1,15 +1,12 @@
 import React from 'react'
 
 import {styles} from "./styles";
-import TopHeaderSection from "../../../page-components/top-header-section";
+import TopHeaderSection from "../../top-header-section";
 
-export  default class BasicLayout extends React.Component {
-render() {
-    return (
+const BasicLayout=props=>(
             <div style={styles.content} id="topContent">
-                    <TopHeaderSection  selected={this.props.selected}/>
-                    {this.props.children}
+                    <TopHeaderSection  selected={props.selected}/>
+                    {props.children}
             </div>
             );
-  }
-}
+export default BasicLayout;

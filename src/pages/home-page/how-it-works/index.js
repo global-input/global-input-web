@@ -1,11 +1,11 @@
 import React from 'react';
 import {styles, images} from './styles';
-import AdjustableComponent from "../../../components/adjustable-component";
 
-export default class HowItWorks extends AdjustableComponent{
+import {withResponsiveComponent} from '../../../components/screen-media';
 
-  render(){
-    if(this.isScreenBiggerThan(600)){
+const HowItWorks=props=>{
+
+    if(props.screenMedia && props.screenMedia.biggerThan(600)){
         return(
             <div style={styles.container}>
                     <div style={styles.title}>How It Works</div>
@@ -33,5 +33,7 @@ export default class HowItWorks extends AdjustableComponent{
         return null;
       }
 
-  }
-}
+  };
+
+const ResponsiveHowItWorks=withResponsiveComponent(HowItWorks);
+export default ResponsiveHowItWorks;

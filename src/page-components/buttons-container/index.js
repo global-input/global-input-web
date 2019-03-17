@@ -1,8 +1,12 @@
 import React from 'react';
 import {styles} from './styles';
-import AdjustableComponent from '../../components/adjustable-component';
-export default class ButtonsContainer extends AdjustableComponent{
+import {withResponsiveComponent} from '../../components/screen-media';
+export class ButtonsContainer extends React.Component{
   render(){
     return (<div style={styles.buttonsContainer.get()}>{this.props.children}</div>)
   }
 }
+
+const ResponveButtonsContainer=withResponsiveComponent(ButtonsContainer);
+
+export default ResponveButtonsContainer;

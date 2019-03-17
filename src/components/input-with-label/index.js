@@ -1,95 +1,97 @@
 import React, {Component} from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import PropTypes from 'prop-types';
+
+import {styles} from './styles';
 
 
 export default class InputWithLabel extends Component{
-  getStyles(){
-      var styles={
-          container:{
-                display:"flex",
-                flexDirection:"column",
-                alignItems:"center",
-                width:"100%",
-          },
-          field:{
-                width:"100%",
-                fontSize:"1vw",
-                color:"#5291CD",
-          },
 
-
-          label:{
-                fontSize: "1vw",
-                color: "#4880ED",
-                minWidth:100,
-                display:"flex",
-                flexDirection:"row",
-                justifyContent:"flex-start",
-                alignItems:"center"
-          },
-          help:{
-            fontSize:10,
-            color:"#5291CD",
-            paddingLeft:"3vw",
-            paddingRight:"3vw"
-          }
-      }
-
-      return styles;
-
+  constructor(props){
+       super(props);
+       this.state={
+          focus: false
+        }
+  }
+  setFocus(focus) {
+      this.setState({focus});
   }
   render(){
-         var styles=this.getStyles();
+          var stylestatus={
+              label:"",
+              field:""
+          }
+          if(this.elem){
+              if((!this.state.focus) && (!this.elem.value)){
+                    stylestatus.label="placeholder"
+              }
+          }
+          else if((!this.state.focus) && (!this.props.value)){
+                stylestatus.label="placeholder"
+          }
+          if(this.props.readOnly){
+              stylestatus.field="readOnly"
+          }
          if(this.props.type==="textarea"){
-           return this.renderTextArea(styles);
+           return this.renderTextArea(stylestatus);
          }
          else{
-           return this.renderTextInput(styles);
+           return this.renderTextInput(stylestatus);
          }
 
 
   }
-  renderTextInput(styles){
+  renderTextInput(stylestatus){
+
     return(
-      <div className="form-group" style={styles.container}>
-            <input  className="form-control active"
+      <div style={styles.container}>
+        <label htmlFor={this.props.id}  onClick={this.labelClicked.bind(this)}>
+             <span style={styles.label.get(stylestatus.label)}>{this.props.label}</span>
+        </label>
+            <input
             id={this.props.id}
+            ref={elem=>this.elem}
             type={this.props.type}
-            style={styles.field}
+            style={styles.field.get(stylestatus.field)}
             readOnly={this.props.readOnly}
             min={this.props.min}
             max={this.props.max}
-            step={this.props.step}            
+            step={this.props.step}
+            onFocus={()=>this.setFocus(true)}
+            onBlur={()=>this.setFocus(false)}
             onChange={(evt) => {
                 if(this.props.onChange){
                    this.props.onChange(evt.target.value,this.props.id);
                 }
 
-             }} value={this.props.value} required/>
-          <label htmlFor={this.props.id} className="form-control-placeholder" onClick={this.labelClicked.bind(this)}>
-               <span style={styles.label}>{this.props.label}</span>
-            </label>
+             }} value={this.props.value}/>
+
           {this.renderHelp(styles)}
       </div>
     );
   }
-  renderTextArea(styles){
+  renderTextArea(stylestatus){
     return(
-      <div className="form-group" style={styles.container}>
-            <div style={styles.label}>{this.props.label}</div>
-              <textarea  className="form-control"
+      <div style={styles.container}>
+        <label htmlFor={this.props.id}  onClick={this.labelClicked.bind(this)}>
+             <span style={styles.arealabel.get(stylestatus.label)}>{this.props.label}</span>
+        </label>
+
+              <textarea
                 id={this.props.id}
                 type={this.props.type}
-                style={styles.field}
+                style={styles.field.get(stylestatus.field)}
                 readOnly={this.props.readOnly}
                 rows="6"
+                onFocus={()=>this.setFocus(true)}
+                onBlur={()=>this.setFocus(false)}
                 onChange={(evt) => {
                     if(this.props.onChange){
                        this.props.onChange(evt.target.value,this.props.id);
                     }
+                    console.log("value:::"+evt.target.value);
 
-                 }} value={this.props.value} required/>
+                 }} value={this.props.value}/>
       </div>
     );
   }

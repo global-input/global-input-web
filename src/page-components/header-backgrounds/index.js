@@ -1,21 +1,14 @@
 import React, {Component} from 'react';
 import {styles} from "./styles";
-import AdjustableComponent from "../../components/adjustable-component";
+import {withResponsiveComponent} from '../../components/screen-media';
 
-class SimpleHeaderBackground extends AdjustableComponent{
-  render(){
-      return (<div style={styles.headerContainer.get()}>{this.props.children}</div>);
-  }
+const _SimpleHeaderBackground=props=>(<div style={styles.headerContainer.get()}>{props.children}</div>);
 
-}
+const _HomeHeaderBackground =props=>(<div style={styles.homeHeaderContainer.get()}>{props.children}</div>);
 
 
+const SimpleHeaderBackground=withResponsiveComponent(_SimpleHeaderBackground);
 
-class HomeHeaderBackground extends AdjustableComponent{
-  render(){
-    return(<div style={styles.homeHeaderContainer.get()}>{this.props.children}</div>);
-  }
-}
-
+const HomeHeaderBackground=withResponsiveComponent(_HomeHeaderBackground);
 
 export  {SimpleHeaderBackground,HomeHeaderBackground};

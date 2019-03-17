@@ -10,6 +10,54 @@ import {screenMedia} from "../screen-media";
 const images={
   menusymbol:require('./menu-symbol.svg')
 };
+
+
+class MenuItem extends Component{
+  constructor(props){
+    super(props);
+    this.state={hover:false}
+  }
+  onHover(){
+    this.setState({hover: true})
+  }
+  offHover(){
+    this.setState({hover: false})
+  }
+  render(){
+
+    var link=this.props.menu.link;
+    if(!link){
+      link="/";
+    }
+    var linkText=this.props.menu.linkText;
+    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
+        var stname=null;
+        if(this.state.hover){
+            stname="hover";
+        }
+        else if(isSelected){
+            stname="selected";
+        }
+
+        let menuItemStyle=styles.menuItem;
+        if(this.props.menu.styles && this.props.menu.styles.menuItem){
+            menuItemStyle=this.props.menu.styles.menuItem;
+        }
+
+
+
+        return(<Link to={link} style={menuItemStyle.get(stname)}
+              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)} data-testid="top-menu-item">
+                {linkText}
+              </Link>);
+
+
+
+  }
+}
+
+
+
 export  default class TopMenu extends Component {
   constructor(props){
       super(props);
@@ -43,8 +91,7 @@ export  default class TopMenu extends Component {
   }
 
   renderMenuItem(menu,index){
-      var key=index+"_"+menu.label;
-      return(<MenuItem  menu={menu} selected={this.props.selected} key={key}/>);
+      return(<MenuItem  menu={menu} selected={this.props.selected} key={index}/>);
   }
   renderMobileItem(menu,index){
       if(menu.button){
@@ -205,48 +252,4 @@ export  default class TopMenu extends Component {
 
   }
 
-}
-
-class MenuItem extends Component{
-  constructor(props){
-    super(props);
-    this.state={hover:false}
-  }
-  onHover(){
-    this.setState({hover: true})
-  }
-  offHover(){
-    this.setState({hover: false})
-  }
-  render(){
-
-    var link=this.props.menu.link;
-    if(!link){
-      link="/";
-    }
-    var linkText=this.props.menu.linkText;
-    var isSelected=this.props.selected && this.props.menu.link===this.props.selected.link;
-        var stname=null;
-        if(this.state.hover){
-            stname="hover";
-        }
-        else if(isSelected){
-            stname="selected";
-        }
-
-        let menuItemStyle=styles.menuItem;
-        if(this.props.menu.styles && this.props.menu.styles.menuItem){
-            menuItemStyle=this.props.menu.styles.menuItem;
-        }
-
-
-
-        return(<Link to={link} style={menuItemStyle.get(stname)}
-              onMouseEnter={this.onHover.bind(this)} onMouseLeave={this.offHover.bind(this)} data-testid="top-menu-item">
-                {linkText}
-              </Link>);
-
-
-
-  }
 }

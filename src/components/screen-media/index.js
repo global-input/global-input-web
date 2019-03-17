@@ -1,3 +1,4 @@
+import React from 'react';
 export let screenMedia={
       screenmedias:[],
       biggerThan:function(width){
@@ -51,11 +52,10 @@ export let screenMedia={
           target.computedStyles[name]=cStyle;
           return cStyle;
       }
-
   }
 };
 export function styleMatchingScreenSize(namedState){
-    
+
         if(this.bigScreen){
 
             if(screenMedia.biggerThan(1440)){
@@ -99,4 +99,44 @@ export function styleMatchingScreenSize(namedState){
             return this.default;
         }
 
+}
+
+export const withResponsiveComponent=(WrappedComponent, data)=>{
+      return class extends React.Component{
+          constructor(props){
+                  super(props);
+                  this.onWindowResize=this.onWindowResize.bind(this);
+          }
+          componentDidMount() {
+                window.addEventListener("resize", this.onWindowResize);
+                if(data && data.scrollTo){
+                      if(this.props.scrollTo){
+                            this.scrollTo(this.props.scrollTo);
+                      }
+                      else{
+                          this.scrollTo(data.scrollTo);
+                      }
+                }
+
+          }
+          scrollTo(elementId){                        
+              var elmnt = document.getElementById(elementId);
+
+              if(elmnt){
+                       window.scrollBy({top: -70,behavior: "smooth"});
+                       elmnt.scrollIntoView();
+              }
+         }
+         componentWillUnmount() {
+             window.removeEventListener("resize", this.onWindowResize);
+         }
+         onWindowResize(){
+
+            this.forceUpdate();
+         }
+         render() {
+                return <WrappedComponent  screenMedia={screenMedia} {...this.props}/>;
+         }
+
+      }
 }

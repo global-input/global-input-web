@@ -1,10 +1,11 @@
 import React from 'react';
 import {styles} from './styles';
-import AdjustableComponent from "../../../components/adjustable-component";
-export default class FeatureRow extends AdjustableComponent {
-    render(){
-          return(<div style={styles.row.get()}>
-                    {this.props.children}
-        </div>);
-      }
-};
+
+import {withResponsiveComponent} from '../../../components/screen-media';
+
+
+const FeatureRow=props=>(<div style={styles.row.get()}>{props.children}</div>);
+
+const ResponsiveFeatureRow=withResponsiveComponent(FeatureRow);
+
+export default ResponsiveFeatureRow;

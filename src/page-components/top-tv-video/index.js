@@ -1,9 +1,10 @@
 import React from 'react';
 import AutoPlayVideo from "../../components/auto-play-video";
 import {styles, images} from './styles';
-import AdjustableComponent from '../../../components/adjustable-component';
-export default class TopTVVideo extends AdjustableComponent{
-    return(
+
+import {withResponsiveComponent} from '../../../components/screen-media';
+
+const TopTVVideo=props=>(
       <div style={styles.tv.container.get()}>
             <div styles={styles.tv.inner}>
                 <img src={images.computer} style={styles.tv.img}/>
@@ -13,4 +14,5 @@ export default class TopTVVideo extends AdjustableComponent{
             </div>
       </div>
     );
-  }
+const ResponsiveTopTVVideo=withResponsiveComponent(TopTVVideo);
+export default ResponsiveTopTVVideo;
