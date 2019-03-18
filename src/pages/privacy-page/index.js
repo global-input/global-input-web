@@ -9,7 +9,7 @@ const PrivacyPage=props=>(
         <BlueBackground.Page>
                   <Title>Privacy Policy</Title>
                   <P>
-                    Our privacy policy guarantees that we do not collect your data or track your activities. That applies to this website, and all the Global Input App software components including the mobile app, it’s Chrome Extensions, Wordpress Plugins and the Global Input App software libraries.
+                    Our privacy policy guarantees that we do not collect your data or track your activities. That applies to this website, and all the Global Input App software components including the mobile app, its Chrome Extensions, Wordpress Plugins and the Global Input App software libraries.
 
 
 
