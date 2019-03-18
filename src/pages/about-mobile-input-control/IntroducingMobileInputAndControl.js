@@ -12,12 +12,17 @@ const {MobileOperationWhitePaper} = externalsLinks;
 const IntroducingMobileInputAndControl=props=>{
 
 
-        const {P, Title, Code}=props.theme;
+        const {P, Title, Code,FirstSection,NextSection}=props.theme;
 
         return(
 
        <React.Fragment>
-              <Title>Introducing Mobile Input & Control</Title>
+         <FirstSection>
+                       <Title>Introducing Mobile Input & Control</Title>
+
+           </FirstSection>
+           <NextSection>
+
 <P>
 Global Input App provides device and web applications with a simple, unified and client-only solution for introducing mobile input and mobile control applications, leading to many useful use-cases that can be made available immediately.
 
@@ -74,7 +79,7 @@ Global Input App provides device and web applications with a simple, unified and
 
               </P>
 
-
+</NextSection>
         </React.Fragment>
 
       );

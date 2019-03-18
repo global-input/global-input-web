@@ -5,12 +5,14 @@ import BlueBackground from "../../page-components/themes/blue-background";
 
 
 
-import {PageTitleSection} from '../../page-components/text-title-sections';
+
 import {externalsLinks,pagesLinks} from '../../links-components';
 
 import ButtonsContainer from '../../page-components/buttons-container';
+import MiddlePageContainer from '../../page-components/section-containers/middle-page-container';
+import {PageTitleSection} from '../../page-components/text-title-sections';
 
-
+import AppLogo from '../../page-components/app-logo';
 const {Title,P,Page}=BlueBackground;
 
 const {DownloadGIAButtons} =externalsLinks;
@@ -23,20 +25,20 @@ export default class GetAppPage extends React.Component{
   render(){
       return(
         <Page>
-                <PageTitleSection title="1. Get GIA App Free"
-                                    subtitle="Install this open-source mobile app for free on App Store or Play Store.">
-                        <DownloadGIAButtons/>
 
-                </PageTitleSection>
+                        <MiddlePageContainer>
+                            <AppLogo/>
+                            <PageTitleSection title="Download Global Input App Now !" subtitle="Install this open-source mobile app for free on App Store or Play Store."/>
 
-                <PageTitleSection title="2. Try Authentication"
-                                    subtitle="You may try out the mobile authentication">
+
+
                         <ButtonsContainer>
-                          <MobileAuthentication>Mobile Authentication</MobileAuthentication>
+                            <DownloadGIAButtons/>
                         </ButtonsContainer>
+                        </MiddlePageContainer>
 
 
-                </PageTitleSection>
+
 
 
 

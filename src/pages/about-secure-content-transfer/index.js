@@ -1,6 +1,6 @@
 import React from 'react';
-import BorderedWhite from '../../page-components/themes/bordered-white';
 
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
 
 
 
@@ -12,9 +12,9 @@ export default class  AboutMobileTransferFormData extends React.Component{
 
   render(){
       return(
-        <BorderedWhite.Page>
-          <MobileTransferFormData theme={BorderedWhite}/>
-        </BorderedWhite.Page>
+        <LighBlueBackground.Page>
+          <MobileTransferFormData theme={LighBlueBackground}/>
+        </LighBlueBackground.Page>
       );
 
   }

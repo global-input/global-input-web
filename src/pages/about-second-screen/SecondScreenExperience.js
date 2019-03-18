@@ -7,12 +7,15 @@ const {TransferFormData,SecondScreen,SecondScreenList} = examplesLinks;
 
 const SecondScreenExperience = props =>{
 
-        const {P, Title, Code,Concept}=props.theme;
+        const {P, Title, Code,Concept,FirstSection,NextSection}=props.theme;
 
         return(
 
        <React.Fragment>
+         <FirstSection>
               <Title>GIA Solution for Second Screen Experience</Title>
+        </FirstSection>
+        <NextSection>
               <P>
   When a smart TV application is playing a video, it is always nice to have an option of second screen user interactions
   on the clips that are being played on the big screen.
@@ -47,6 +50,7 @@ And then more sophisticated logic and control can be built iteratively.
 The mobile device integration leads to a unified solution to many other use cases such as
 Mobile Authentication, Subscription, Account Update, and Mobile Player Control, Programme search & browse etc.
 </P>
+</NextSection>
         </React.Fragment>
 );
 

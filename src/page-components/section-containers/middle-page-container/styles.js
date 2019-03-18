@@ -5,6 +5,8 @@ export const styles={
           flexDirection:"column",
           justifyContent:"flex-start",
           alignItems:"center",
-          width:"100%"          
+          width:"100%",
+          marginTop:100,
+          minHeight:200,          
         }
 };

@@ -1,20 +1,22 @@
 import React from 'react';
 import {config} from '../configs';
-import {WhiteRoundButton,BlueRoundButton,ImageExternalLink} from '../page-components/round-buttons';
+import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,TransparentButton} from '../page-components/round-buttons';
 import ButtonsContainer from '../page-components/buttons-container';
 
 const images={
+      chrome:require("./images/chrome.png"),
       appStore:require("./images/app-store.png"),
       playStore:require("./images/play-store.png"),
+      payIcon:require("./images/play.svg"),
+      wordpress:require("./images/wordpress.png"),
 }
 export const externalsLinks={
-      listForinstallChromeExtension:[{href:config.links.chromeExtension.url, linkText:"Install Chrome Extension"}],
-      InstallChromeExtension:props=>{
-              const {ListLinks}=props.theme;
-              return(
-                  <ListLinks items={externalsLinks.listForinstallChromeExtension}/>
-              );
+
+      ChromeExtension:props=>{
+        const {A}=props.theme;
+        return(<A href={config.links.chromeExtension.url}>{props.children}</A>);
       },
+
       SupportedWebsites:props=>{
             const {A}=props.theme;
             return(<A href={config.links.chromeExtension.websites}>{props.children}</A>);
@@ -46,9 +48,17 @@ export const externalsLinks={
       },
       DownloadGIAButtons:props=>(
         <ButtonsContainer>
+            <ImageExternalLink image={images.chrome} href={config.links.chromeExtension.url}/>
             <ImageExternalLink image={images.appStore} href={config.links.appdownload.appStore}/>
             <ImageExternalLink image={images.playStore} href={config.links.appdownload.playStore}/>
         </ButtonsContainer>
+      ),
+
+      PlayTutorialVideoIcon:props=>(
+          <ImageExternalLink image={images.payIcon} href={config.links.tutorialP1.url}>Watch Tutorial</ImageExternalLink>
+      ),
+      PlayAuthenticationDemo:props=>(
+          <ImageExternalLink image={images.payIcon} href={config.links.authenticationDemo.url}>Watch Demo</ImageExternalLink>
       ),
       WebSocketServer:props=>{
         const {A}=props.theme;
@@ -118,6 +128,7 @@ export const examplesLinks={
         },
 
 
+
 };
 
 
@@ -126,6 +137,14 @@ export const pagesLinks={
                 LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
                 GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>),
                 MobileAuthentication:props=>(<WhiteRoundButton to={config.paths.mobileAuthentication.path}>{props.children}</WhiteRoundButton>),
+                TransferFormDataButton:props=>(<BlueRoundButton to={config.paths.examples.transferForm.path}>{props.children}</BlueRoundButton>),
+                AuthenticationButtons:props=>(
+                  <ButtonsContainer>
+                      <ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>
+                      <ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>
+                      <TransparentButton to={config.paths.documentationPage.path}>Documentation</TransparentButton>
+                  </ButtonsContainer>
+                ),
           }
 
 

@@ -38,6 +38,7 @@ var config={
           secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"},
           printScanQRCodes:{path:"/global-input-app/about-print-scan-qrcodes",linkText:"Print Scan QR Codes"},
           copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
+          documentationPage:{path:"/global-input-app/documentation",linkText:"Documentation"},
       },
       links:{
           websocket:{

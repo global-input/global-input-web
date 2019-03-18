@@ -6,10 +6,13 @@ const {SendMessageListExample} = examplesLinks;
 
 
 const MobileFormAutomation=props=>{
-    const {P,Title,ListLinks}=props.theme;
+    const {P,Title,ListLinks,Code,Concept,FirstSection,NextSection}=props.theme;
     return(
       <React.Fragment>
+        <FirstSection>
           <Title>Mobile Form Automation</Title>
+        </FirstSection>
+        <NextSection>
           <P>
             GIA solution provides applications with an option of allowing users to store their personal data in their mobile devices and push them on demand when they are needed by the applications. This might be an attractive option for some simple applications that require personal data occasionally.
           </P>
@@ -26,7 +29,7 @@ const MobileFormAutomation=props=>{
           <P>
             The availability of portable encrypted data storage for storing sensitive data may provide possibility of automating some form operations, such as subscription, job applications etc.
           </P>
-
+</NextSection> 
 
 
       </React.Fragment>

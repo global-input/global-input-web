@@ -18,8 +18,9 @@ import AboutFormOperation from './about-form-operation';
 import AboutMobileTransferFormData from "./about-secure-content-transfer";
 import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
 import AboutCopyAndPaste from './about-copy-and-paste';
+import DocumentationPage from './documentation-page';
 import {config} from "../configs";
-import {withScrollToTop} from '../components/screen-media';
+
 
 
 
@@ -39,6 +40,8 @@ const PageRoute=props=>(
         <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
         <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
         <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
+        <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
+
       </React.Fragment>
     );
 

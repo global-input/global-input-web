@@ -13,12 +13,15 @@ export default class CopyAndPaste extends React.Component{
 
   render(){
 
-    const {P, Title,ListLinks}=this.props.theme;
+    const {P, Title,ListLinks,FirstSection,NextSection}=this.props.theme;
 
         return(
 
        <React.Fragment>
+              <FirstSection>
               <Title>Copy And Paste Across Devices</Title>
+              </FirstSection>
+              <NextSection>
               <P>
 Global Input App allows users to carry out copy and paste operation across devices securely without subscribing to any services and without using any cloud or network storages.
 The connection is secured with the end-to-end ecnryption and initiated with the scanning of an Encrypted QR code.
@@ -34,7 +37,7 @@ your mobile device to the shared computer with a USB cable, allowing you do copy
 Try out the following the simple web application to copy and paste content from you mobile to computer or vice versa.
         </P>
         <ContentTransferList {...this.props}/>
-
+</NextSection>
     </React.Fragment>
 
 );

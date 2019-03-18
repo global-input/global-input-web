@@ -9,11 +9,14 @@ const {WebSocketServer} = externalsLinks;
 
 const ExportAppSettings=props => {
 
-        const {P, Title,Concept}=props.theme;
+        const {P, Title,FirstSection,Concept, Code,NextSection}=props.theme;
         return(
 
        <React.Fragment>
+         <FirstSection>
                <Title>Exporting App Settings </Title>
+        </FirstSection>
+           <NextSection>
               <P>
 Global Input App scans an Encrypted QR code being displayed by an application to obtain a one-time-use encryption key for end-to-end encryption
 and other communication channel parameters. This allows Global Input App securely connects
@@ -36,6 +39,7 @@ This is useful, when some business application prefers to restrict the Global In
 In this cases, the Global Input App instance that is not paired with the application would not be able to connect to the application even if he/she scans the QR code.
 
 </P>
+</NextSection>
     </React.Fragment>
 
 );

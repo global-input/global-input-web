@@ -3,11 +3,14 @@ import {externalsLinks,examplesLinks} from '../../links-components';
 const {QrcodePrinting,QRCodePrintingListExample} = examplesLinks;
 
 const ContentEncryption = props=>{
-        const {P, Title}=props.theme;
+        const {P, Title,FirstSection,Concept, Code,NextSection}=props.theme;
         return(
 
           <React.Fragment>
+              <FirstSection>
                  <Title>Mobile Content Encryption</Title>
+                 </FirstSection>
+                 <NextSection>
                  <P>
     Global Input App allows you to encrypt content using any of the encryption keys in your app.
     The encryption process is carried out inside your mobile app only and only the encrypted content will be sent to the application. And your encryption key will never leave your device.
@@ -33,6 +36,7 @@ const ContentEncryption = props=>{
                </P>
 
                <QRCodePrintingListExample {...props}/>
+               </NextSection>
 
        </React.Fragment>
   );

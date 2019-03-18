@@ -15,8 +15,6 @@ export var styles={
               width:"100%",
               zIndex:50,
               marginBottom:30,
-
-
       },
       desktop:{
         height:330,
@@ -34,16 +32,53 @@ export var styles={
 
   },
   pageTitleSection:{
-    marginTop:"5vw",
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"center",
-    alignItems:"flex-start",
-    color:"white",
-    width:"100%",
-    zIndex:50,
-    marginBottom:30,
+    container:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      color:"white",
+      width:"100%",
+
+
+
+    },
+    title:{
+      fontSize:30,
+      fontFamily:"Tisa Sans Pro"
+    },
+    subtitle:{
+      fontSize:14,
+      fontFamily:"Tisa Sans Pro"
+    }
+
  },
+
+
+ readMorePage:{
+   container:{
+     display:"flex",
+     flexDirection:"column",
+     justifyContent:"flex-start",
+     alignItems:"center",
+     color:"white",
+     width:"100%",
+
+
+
+   },
+   title:{
+     fontSize:30,
+     fontFamily:"Tisa Sans Pro"
+   },
+   subtitle:{
+     fontSize:14,
+     fontFamily:"Tisa Sans Pro"
+   }
+
+ },
+
+
   title:{
     default:{
       fontSize:40,

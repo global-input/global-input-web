@@ -7,11 +7,14 @@ const {WebSocketServer} = externalsLinks;
 
 
 const ExportEncryptionKeys= props=>{
-        const {P, Title,Concept}=props.theme;
+const {P, Title,FirstSection,Concept, Code,NextSection}=props.theme;
         return(
 
        <React.Fragment>
+         <FirstSection>
               <Title>Exporting Encryption Keys</Title>
+        </FirstSection>
+        <NextSection>
               <P>
 You need to backup/export your encryption keys in your Global Input App, so that you can recover them if your phone is lost or stolen.
               </P>
@@ -37,7 +40,7 @@ The next screen will present you with a list of encryption keys in your app. You
 Having provided the password, you can press the 'Encrypt' button. The app then uses the password you have provided to build a new encryption key and use it to encrypt the encryption key.
 The encrypted content will be pushed to <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting>. You can modify the label to give it a meaningful name, and then press the <Concept>Print</Concept> button on your mobile to instruct the application to print the QR Code.
 </P>
-
+</NextSection>      
     </React.Fragment>
 
 );

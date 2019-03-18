@@ -7,10 +7,13 @@ const {TransferFormDataListExample} = examplesLinks;
 
 const MobileTransferFormData=props=>{
 
-    const {P, Title, Code,Concept}=props.theme;
+    const {P, Title, Code,Concept,FirstSection,NextSection}=props.theme;
     return(
          <React.Fragment>
+           <FirstSection>
           <Title>Form Data Sharing and Editing Across Multiple Devices</Title>
+          </FirstSection>
+          <NextSection>
           <P>
             Transfering content between user mobile and applications securely and allowing user to save and load the data on-demand is an attractive option when it comes to personal data or other sensitive information.
           </P>
@@ -59,8 +62,9 @@ Confidential data such as user credentials, personal information, user preferenc
           <P>
             If you are interested, you can have a look at the following transfer form data example, and check out its sources code on the Github repository:
           </P>
+          </NextSection>
           <TransferFormDataListExample {...props}/>
-          
+
 
       </React.Fragment>
     );

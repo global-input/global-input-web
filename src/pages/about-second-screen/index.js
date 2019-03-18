@@ -1,12 +1,13 @@
 import React from 'react';
-import BorderedWhite from '../../page-components/themes/bordered-white';
+
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
 import SecondScreenExperience from './SecondScreenExperience';
 
 const AboutSecondScreenExperience=props=>{
         return(
-          <BorderedWhite.Page>
-              <SecondScreenExperience theme={BorderedWhite}/>
-          </BorderedWhite.Page>
+          <LighBlueBackground.Page>
+              <SecondScreenExperience theme={LighBlueBackground}/>
+          </LighBlueBackground.Page>
         );
 };
 export default AboutSecondScreenExperience;

@@ -20,7 +20,11 @@ buttonLinks:{
     white:{
       color:"#4281BD",
       backgroundColor:"white",
-
+    },
+    transparent:{
+      color:"#4281BD",
+      backgroundColor:"rgba(256, 256, 256, 0)",
+      heigth:30,      
     },
 
     selected:{
@@ -35,7 +39,17 @@ buttonLinks:{
       width:"90%",
     }
 },
+  imageLink:{
+      margin:20,
+  },
+  imageLinkText:{
+    fontSize:15,
+    color:'#8652CD'
+  },
   imageButton:{
       margin:20,
-  }
+      boxShadow: '3px 3px 3px #cccccc',
+      border:"1px solid #eeeeee",
+      borderRadius:8
+  },
 };

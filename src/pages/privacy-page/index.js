@@ -9,13 +9,18 @@ const PrivacyPage=props=>(
         <BlueBackground.Page>
                   <Title>Privacy Policy</Title>
                   <P>
-                    Our privacy policy guarantees that we do not collect any user data or track user activities. It applies to this website and all of the Global Input App software components.
+                    Our privacy policy guarantees that we do not collect your data or track your activities. That applies to this website, and all the Global Input App software components including the mobile app, it’s Chrome Extensions, Wordpress Plugins and the Global Input App software libraries.
+
+
+
                   </P>
                   <P>
-                    All of the data stored in the mobile app are encrypted with encryption keys, which are, in turn, are encrypted with your master encryption key.  Your master encryption key is not stored anywhere, and it is coming from your app password that you have to supply each time when you start your app.
-                    Your personal data stays encrypted in your device and you can decrypt and push the required data to an application on-demand.
-                    The purpose of our privacy policy is to allow you to get back control of your personal data so that your data can only be decrypted and delivered to an application securely with your permission only.
+                    All of the data stored in the mobile app are encrypted with encryption keys that you can manage in your app,and you will be always presented with an option whenever you need to decrypt and push any of the data to a target application.
+
+
+                  The core of our privacy policy is to allow you to get back control of your data so that your data can only be decrypted and accessed with your permission when an application needs it.
                   </P>
+
 
 
 

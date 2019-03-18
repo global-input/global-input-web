@@ -1,12 +1,12 @@
 import React from 'react';
-import BorderedWhite from '../../page-components/themes/bordered-white';
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
 import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
 
 const AboutMobileAuthentication=props=>{
         return(
-          <BorderedWhite.Page>
-              <MobileAuthenticationAndBeyond theme={BorderedWhite}/>
-          </BorderedWhite.Page>
+          <LighBlueBackground.Page>
+              <MobileAuthenticationAndBeyond theme={LighBlueBackground}/>
+          </LighBlueBackground.Page>
         );
 };
 export default AboutMobileAuthentication;
