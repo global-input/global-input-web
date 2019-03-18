@@ -2,7 +2,7 @@ import {styleMatchingScreenSize} from "../../components/screen-media";
 
 export var styles={
 
-  headerSection:{
+  homeTitleSection:{
       get:styleMatchingScreenSize,
       default:{
               height:530,
@@ -15,8 +15,6 @@ export var styles={
               width:"100%",
               zIndex:50,
               marginBottom:30,
-
-
       },
       desktop:{
         height:330,
@@ -33,6 +31,52 @@ export var styles={
       }
 
   },
+  pageTitleSection:{
+    container:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      color:"white",
+      width:"100%",
+
+
+
+    },
+    title:{
+      fontSize:30,
+      fontFamily:"Tisa Sans Pro"
+    },
+    subtitle:{
+      fontSize:14,
+      fontFamily:"Tisa Sans Pro"
+    }
+
+ },
+
+
+ readMorePage:{
+   container:{
+     display:"flex",
+     flexDirection:"column",
+     justifyContent:"flex-start",
+     alignItems:"center",
+     color:"white",
+     width:"100%",
+
+
+
+   },
+   title:{
+     fontSize:30,
+     fontFamily:"Tisa Sans Pro"
+   },
+   subtitle:{
+     fontSize:14,
+     fontFamily:"Tisa Sans Pro"
+   }
+
+ },
 
 
   title:{

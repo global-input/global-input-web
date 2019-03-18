@@ -1,10 +1,10 @@
 import React from 'react';
-import {Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
-import {styles, images} from './styles';
+
 import examples from "./examples";
 
-import HomePage from './home-page';
+import {HomePageWithScrollToTop as HomePage} from './home-page';
 
 import LearnMorePage from "./learn-more-page";
 import GetAppPage from './get-app-page';
@@ -18,17 +18,9 @@ import AboutFormOperation from './about-form-operation';
 import AboutMobileTransferFormData from "./about-secure-content-transfer";
 import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
 import AboutCopyAndPaste from './about-copy-and-paste';
+import DocumentationPage from './documentation-page';
 import {config} from "../configs";
-export const pagelinks={
-    chromeStore:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp?hl=en",
-    renderChromeStoreLink:function(linkText){
-        return(
-          <a href={this.chromeStore} target="_blank" style={styles.buttonLinks.get('white')}>{linkText}</a>
-        );
-    }
 
-
-};
 
 
 
@@ -48,58 +40,13 @@ const PageRoute=props=>(
         <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
         <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
         <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
+        <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
+
       </React.Fragment>
     );
 
 const pages={
       Route:PageRoute,
-      pageLinks:{
-            learnMore:config.paths.learnMore.path,
-            getApp:config.paths.getAppScreen.path
-      },
-      allLinks:{
-          authentication:config.paths.mobileAuthentication.path,
-          mobileControl:config.paths.mobileControl.path,
-          secondScreen:config.paths.secondScreen.path
-      },
-      readMore:{
-          secondScreen:function(linkText){
-
-                return(<Link to={config.paths.secondScreen.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          mobileControl:function(linkText){
-
-                return(<Link to={config.paths.mobileControl.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          authenticationDevice:function(linkText){
-
-                return(<Link to={config.paths.mobileAuthentication.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          formOperation:function(linkText){
-                return(<Link to={config.paths.formOperation.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          secureTransferFormData:function(linkText){
-                return(<Link to={config.paths.secureTransfer.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          printScanQRCodes:function(linkText){
-                return(<Link to={config.paths.printScanQRCodes.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-          copyAndPaset:function(linkText){
-                return(<Link to={config.paths.copyAndPaste.path} style={styles.readMorelink.get()}>{linkText}</Link>);
-          },
-      },
-      buttons:{
-        learnMoreWhite:function(linkText){
-              return(<Link to={config.paths.learnMore.path} style={styles.buttonLinks.get('white')}>{linkText}</Link>);
-        },
-        getAppScreen:function(linkText){
-          return(
-              <Link to={config.paths.getAppScreen.path} style={styles.buttonLinks.get()}>
-                      {linkText}
-              </Link>
-          );
-        },
-      },
 };
 
 

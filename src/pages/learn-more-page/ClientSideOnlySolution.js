@@ -1,7 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {styles,images} from './styles';
-import examples from '../examples';
+
+import BorderedWhite from '../../page-components/themes/bordered-white';
+
+import {examplesLinks} from '../../links-components';
+
+const {ListAllExamples}=examplesLinks;
 
 
 export default class ClientSideOnlySolution extends React.Component{
@@ -35,9 +40,7 @@ export default class ClientSideOnlySolution extends React.Component{
                   </b>
                   </div>
                   <div style={styles.chapter.paragraph}>
-                    <ul>
-                    {examples.allLinks.map(this.renderExampleLink)}
-                    </ul>
+                      <ListAllExamples theme={BorderedWhite}/>
                   </div>
           </div>
 

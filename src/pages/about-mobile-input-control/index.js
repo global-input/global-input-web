@@ -1,11 +1,11 @@
 import React from 'react';
-import BorderedWhite from '../../page-components/themes/bordered-white';
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
 
 import IntroducingMobileInputAndControl from './IntroducingMobileInputAndControl';
 const AboutMobileInputControl= props =>(
-          <BorderedWhite.Page>
-              <IntroducingMobileInputAndControl theme={BorderedWhite}/>
+          <LighBlueBackground.Page>
+              <IntroducingMobileInputAndControl theme={LighBlueBackground}/>
 
-          </BorderedWhite.Page>
+          </LighBlueBackground.Page>
         );
 export default AboutMobileInputControl;

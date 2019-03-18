@@ -1,14 +1,14 @@
 import React from 'react';
-import BorderedWhite from '../../page-components/themes/bordered-white';
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
 import CopyAndPaste from './CopyAndPaste';
 
 export default class AboutCopyAndPaste extends React.Component{
 
   render(){
         return(
-          <BorderedWhite.Page>
-              <CopyAndPaste theme={BorderedWhite}/>
-          </BorderedWhite.Page>
+          <LighBlueBackground.Page>
+              <CopyAndPaste theme={LighBlueBackground}/>
+          </LighBlueBackground.Page>
         );
 
   }

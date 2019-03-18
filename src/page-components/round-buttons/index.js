@@ -3,30 +3,61 @@ import {Link} from 'react-router-dom';
 import {styles} from './styles';
 
 
-class BlueRoundButton extends React.Component{
-  render(){
-    if(this.props.to){
-        return (<Link to={this.props.to} style={styles.buttonLinks.get()}>{this.props.children}</Link>);
+const BlueRoundButton=props=>{
+    if(props.to){
+        return (<Link to={props.to} style={styles.buttonLinks.get()}>{props.children}</Link>);
     }
     else if(this.props.href){
-        return (<a href={this.props.href} style={styles.buttonLinks.get()}>{this.props.children}</a>);
+        return (<a href={props.href} style={styles.buttonLinks.get()}>{props.children}</a>);
     }
     else{
       return null;
     }
-  }
 };
-class WhiteRoundButton extends React.Component{
-  render(){
-    if(this.props.to){
-        return (<Link to={this.props.to} style={styles.buttonLinks.get('white')}>{this.props.children}</Link>);
+const WhiteRoundButton = props=>{
+    if(props.to){
+        return (<Link to={props.to} style={styles.buttonLinks.get('white')}>{props.children}</Link>);
     }
     else if(this.props.href){
-        return (<a href={this.rops.href} style={styles.buttonLinks.get('white')}>{this.props.children}</a>);
+        return (<a href={props.href} style={styles.buttonLinks.get('white')}>{props.children}</a>);
     }
     else{
       return null;
     }
+};
+const TransparentButton=props=>{
+  if(props.to){
+      return (<Link to={props.to} style={styles.buttonLinks.get('transparent')}>{props.children}</Link>);
+  }
+  else if(this.props.href){
+      return (<a href={props.href} style={styles.buttonLinks.get('transparent')}>{props.children}</a>);
+  }
+  else{
+    return null;
   }
 };
-export {WhiteRoundButton,BlueRoundButton};
+const ImageExternalLink = props=>(
+  <a href={props.href} target="_blank">
+        <img src={props.image} style={styles.imageLink}/>
+        <span style={styles.imageLinkText}>{props.children}</span>
+  </a>
+);
+const ImageButton = props=>{
+  if(props.href){
+        return(
+        <a href={props.href} target="_blank">
+              <img src={props.image} style={styles.imageButton}/>
+        </a>
+        );
+  }
+  else if(props.to){
+    return(
+    <Link href={props.href} target="_blank">
+          <img src={props.image} style={styles.imageButton}/>
+    </Link>
+    );
+  }
+}
+
+
+export {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,TransparentButton};

@@ -20,7 +20,6 @@ var config={
     paths:{
           examples:{
               contentTransfer:{path:"/global-input-app/content-transfer",linkText:"Content Transfer"},
-
               gameControl:{path:"/global-input-app/game-example",linkText:"Game Control"},
               mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
               qrPrinting:{path:"/global-input-app/qr-printing",linkText:"QR Code Printing"},
@@ -39,6 +38,7 @@ var config={
           secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"},
           printScanQRCodes:{path:"/global-input-app/about-print-scan-qrcodes",linkText:"Print Scan QR Codes"},
           copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
+          documentationPage:{path:"/global-input-app/documentation",linkText:"Documentation"},
       },
       links:{
           websocket:{
@@ -55,7 +55,11 @@ var config={
            url:"https://en-gb.wordpress.org/plugins/wp-globalinput-login/"
          },
         authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"},
-        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"}
+        TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"},
+        appdownload:{
+              appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
+              playStore:"https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
+        }
       }
 }
 export default config;

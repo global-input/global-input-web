@@ -1,4 +1,4 @@
-import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent} from './Page';
+import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent, Concept} from './Page';
 
 var BorderedWhite={Page,
                   P:Paragraph,
@@ -6,5 +6,6 @@ var BorderedWhite={Page,
                   ListLinks,
                   Link:TextLink,
                   A:ALink,
-                  Code:CodeContent};
+                  Code:CodeContent,
+                  Concept};
 export default BorderedWhite;

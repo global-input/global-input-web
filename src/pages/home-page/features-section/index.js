@@ -1,11 +1,11 @@
 import React from 'react';
-import {styles} from './styles';
+
 
 import TwoButtonsCard from "../../../page-components/two-buttons-card";
 import FeaturesContainer from "../../../page-components/section-containers/feature-container";
 import FeatureRow from "../../../page-components/section-containers/feature-row";
 
-import FeatureCard from './feature-card';
+
 
 
 import examples from '../../examples';
@@ -27,7 +27,7 @@ const textContent={
       formoperation:{
             title:"Mobile Form Automations",
             content:"Automate form operations using the data stored in the encrypted data storage provided by Global Input App. Allowing users have complete control over their personal data.",
-            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.mobileAuthentication.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.formOperation.path, label:"Read More"}]
       },
       secureTransfer:{
             title:"Form Data Sharing & Editing",
@@ -54,7 +54,7 @@ export default class FeaturesSection extends React.Component{
 
                 <TwoButtonsCard data={textContent.secondScreenInput}/>
                 <TwoButtonsCard data={textContent.mobileControl}/>
-              </FeatureRow>  
+              </FeatureRow>
 
               <FeatureRow>
                   <TwoButtonsCard data={textContent.formoperation}/>

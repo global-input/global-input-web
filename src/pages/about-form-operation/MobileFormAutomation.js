@@ -1,27 +1,37 @@
 import React from 'react';
-import examples from "../examples";
+
+
+import {externalsLinks,examplesLinks} from '../../links-components';
+const {SendMessageListExample} = examplesLinks;
+
+
 const MobileFormAutomation=props=>{
-    const exampleLinks=[examples.linkItems.sendMessage];
-    const {P,Title,ListLinks}=props.theme;
+    const {P,Title,ListLinks,Code,Concept,FirstSection,NextSection}=props.theme;
     return(
       <React.Fragment>
+        <FirstSection>
           <Title>Mobile Form Automation</Title>
-          <P>Global Input App allows users to store their personal data in their mobile devices encrypted, and push them on-demand when they are needed by applications running on other devices.
-          Using the data stored securely in the mobile devices, many operations can be automated. One of the example is the subscription.
-         </P>
-         <P>
-           This also provides applications with a option of not storing user data in their databases, allowing users to store and managing their personal data on their own devices. Applications can request data on-demand from the user, and the user can inspect and push the required data to the application whenever needed.
-        </P>
-        <P>
-          The data in the mobile app is encrypted with encryption keys that are, in turn, encrypted with the master encryption composed from the user app password. The data stays safe in the users’ own mobile device and decrypted only when it is needed. This gives the users complete control over their data.
-        </P>
-        <P>
-            Global Input App also provides portable encryption keys management, allowing applications to store encrypteed data in their databases allowing user to store the master encryption in their mobile devices.
-        </P>
-        <P>
-           In the the following example, the application first displays a company contact information on user's device and ask the users to save it if they have not done so already. Then, it continues to display the a form to allow user to send a message. Since the personal information is not stored in the applications, the user can reuse the data already stored in the encrypted storage.
-         </P>
-         <ListLinks items={exampleLinks}/>
+        </FirstSection>
+        <NextSection>
+          <P>
+            GIA solution provides applications with an option of allowing users to store their personal data in their mobile devices and push them on demand when they are needed by the applications. This might be an attractive option for some simple applications that require personal data occasionally.
+          </P>
+          <SendMessageListExample {...props}/>
+          <P>
+            Global Input App provides applications with encrypted storage on user mobiles. The data are encrypted with encryption keys that are in turn encrypted with a master encryption key generated from the user app password. The encryption hierarchy ensures that even if somebody has physically got hold of the device, and bypassed the device security such as biometric authentication or device password authentication somehow, the data is still safe. Also, data will always stay encrypted until to the point of actual use and the decrypted data will be discarded immediately after the use, minimizing the reliance on the system security.
+          </P>
+          <P>
+            In the current climate of the digital world, where the risk to the data is coming from all directions,  applications could not risk not to put significant effort into securing user data. The requirement (GDPR compliance for example) for obtaining user consent on collecting and processing the user data may bring extra consideration as well.
+          </P>
+          <P>
+            Hence, allowing users to take control of their own data is a great option for both users and application vendors. GIA solution not only provide applications with an option of  storing personal data on mobile device and pushing data back into the applications on demand, but also an option of storing master keys for data encryption processes in applications. This means that no personal data access is possible without user unlocking the data first every time.
+          </P>
+          <P>
+            The availability of portable encrypted data storage for storing sensitive data may provide possibility of automating some form operations, such as subscription, job applications etc.
+          </P>
+</NextSection> 
+
+
       </React.Fragment>
     );
 };

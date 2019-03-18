@@ -8,7 +8,7 @@ import FooterSection from '../../page-components/footer-section';
 import CardSection from "./cards-section";
 import FeaturesSection from './features-section';
 
-
+import {withScrollToTop} from "../../components/screen-media";
 const HomePage=props=> (
           <BasicLayout>
             <HomeHeaderBackground>
@@ -22,3 +22,5 @@ const HomePage=props=> (
             );
 
   export default HomePage;
+
+  export const HomePageWithScrollToTop=withScrollToTop(HomePage,'topContent');
