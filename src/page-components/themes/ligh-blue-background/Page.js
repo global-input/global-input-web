@@ -20,7 +20,11 @@ export const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.c
 export const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
 
 
-export const CodeContent=props=>(<pre style={styles.card.code}>{props.children}</pre>);
+export const CodeContent=props=>(
+  <div style={styles.card.codeContainer}>
+      <pre style={styles.card.code}>{props.children}</pre>
+  </div>
+);
 
 
 

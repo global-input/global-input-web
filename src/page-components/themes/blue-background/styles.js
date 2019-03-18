@@ -1,10 +1,13 @@
 import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={
     background:require("./images/background.svg"),
+    backgroundMobile:require("./images/background-mobile.svg"),
 }
 
 export const styles={
   container:{
+    get:styleMatchingScreenSize,
+    default:{
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
@@ -17,6 +20,13 @@ export const styles={
       minHeight:window.innerHeight,
       paddingTop:100,
       color:"white",
+    },
+    mobile:{
+      backgroundImage: "url("+images.backgroundMobile+")",
+      
+
+    }
+
 
   },
 

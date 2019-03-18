@@ -4,9 +4,9 @@ import {styles} from './styles';
 import {withResponsiveComponent} from '../../../components/screen-media';
 
 const MiddlePageContainer=props=>(
-          <div style={styles.container}>
+          <div style={styles.container.get()}>
               {props.children}
           </div>
         );
 
-export default MiddlePageContainer;
+export default withResponsiveComponent(MiddlePageContainer);

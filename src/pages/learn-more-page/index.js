@@ -1,4 +1,8 @@
 import React from 'react';
+import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
+
+
+
 import {Link} from 'react-router-dom'
 
 import {styles,images} from './styles';
@@ -39,8 +43,9 @@ export default class LearnMorePage extends React.Component{
 
   render(){
       return(
-        <div style={styles.container}>
-            <TopHeaderSection/>
+        <LighBlueBackground.Page>
+
+            
             <SideMenu menus={sideMenus}>
               <div style={styles.scrollContent}>
                   <WatchIntroduction/>
@@ -49,7 +54,7 @@ export default class LearnMorePage extends React.Component{
                   <PortableEncryptedStorage/>
               </div>
             </SideMenu>
-        </div>
+        </LighBlueBackground.Page>
       )
 
   }

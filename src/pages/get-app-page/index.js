@@ -29,12 +29,8 @@ export default class GetAppPage extends React.Component{
                         <MiddlePageContainer>
                             <AppLogo/>
                             <PageTitleSection title="Download Global Input App Now !" subtitle="Install this open-source mobile app for free on App Store or Play Store."/>
-
-
-
-                        <ButtonsContainer>
                             <DownloadGIAButtons/>
-                        </ButtonsContainer>
+
                         </MiddlePageContainer>
 
 

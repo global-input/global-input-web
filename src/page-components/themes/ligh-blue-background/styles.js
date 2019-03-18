@@ -39,7 +39,7 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       width:"100%",
-      
+
   },
   card:{
       container:{
@@ -102,10 +102,17 @@ export const styles={
         item:{
         marginBottom:10
       },
-      code:{
-            border:"2px dashed #888888",
-            padding:10
+      codeContainer:{
+          display:"flex",
+          flexDirection:"row",
+          justifyContent:"center",
+          width:"100%"
       },
+      code:{
+            backgroundColor:'rgba(169,200,230,0.1)',
+            overflow:'scroll'
+      },
+
       concept:{
 
         borderBottomStyle:"dotted",
