@@ -17,36 +17,22 @@ export default class ClientSideOnlySolution extends React.Component{
         title:"Client Side Only Solution"
   }
   render(){
+    const {P, Title, Code,Concept, FirstSection,NextSection}=this.props.theme;
     return(
-      <div style={styles.chapter.container.get()} id={ClientSideOnlySolution.menu.id}>
-          <div style={styles.chapter.title.get()}>
-                {ClientSideOnlySolution.menu.title}
-          </div>
-          <div style={styles.chapter.content.get()}>
-                <div style={styles.chapter.paragraph}>
-                Global Input App provides applications with a <b>client-side-only</b> solution that does not require any extra server-side implementation, no extra API to implement or call, not extra cloud storage, not extra subscriptions, and all business logics are implemented on the client side by including a <b>extension library</b>, passing JSON data and receiving even calls when the user press the button on the mobile.
-              </div>
-              <div style={styles.chapter.paragraph}>
-                <b>For example</b>, if you would like to display a button on user’s mobile after user scans the encrypted QR code presented by your application, and you would like to call a <b>playMovie() function</b> when the user presses the button, you just need to provide the following:
-              </div>
-              {this.renderExampleCode1()}
-                  <div style={styles.chapter.paragraph}>
-                      And if you would like the user to <b>enter content</b> via his/her mobile and sent to your Smart TV app, you just need to provide the following:
-                  </div>
-                  {this.renderExampleCode2()}
-                  <div style={styles.chapter.paragraph}>
-                  <b>
-                If you are interested, you can have a look at the examples in action, and check out their sources codes on the Github:
-                  </b>
-                  </div>
-                  <div style={styles.chapter.paragraph}>
-                      <ListAllExamples theme={BorderedWhite}/>
-                  </div>
-          </div>
+      <React.Fragment>
+
+            <FirstSection>
+                  <Title>{ClientSideOnlySolution.menu.title}</Title>
+
+            </FirstSection>
+
+
+          
 
 
 
-      </div>
+
+    </React.Fragment>
     );
   }
   renderExampleLink(linkitem){

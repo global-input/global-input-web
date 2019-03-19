@@ -15,9 +15,7 @@ export const styles={
       color:"#A9C8E6", //#4880ED
       width:"90%",
 
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: "cover",
-      minHeight:window.innerHeight,
+      
 
   },
   scrollContent:{
