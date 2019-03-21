@@ -29,8 +29,8 @@ var config={
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
           formOperation:{path:"/global-input-app/about-form-operation",linkText:"Form Operation"},
           getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
-          home:{path:"/",paths:["/index.html","/global-input-app/app","/global-input-app/about"],linkText:"Home"},
-          learnMore:{path:"/global-input-app/learn-more",linkText:"Learn More"},
+          home:{path:"/",linkText:"Home"},
+          learnMore:{path:"/global-input-app/documentation",linkText:"Learn More"},
           secondScreen:{path:"/global-input-app/about-second-screen",linkText:"Second Screen"},
           mobileControl:{path:"/global-input-app/about-mobile-control",linkText:"Mobile Input & Control"},
           mobileAuthentication:{path:"/global-input-app/about-mobile-authentication",linkText:"Mobile Authentication"},
@@ -38,8 +38,14 @@ var config={
           secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"},
           printScanQRCodes:{path:"/global-input-app/about-print-scan-qrcodes",linkText:"Print Scan QR Codes"},
           copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
-          documentationPage:{path:"/global-input-app/documentation",linkText:"Documentation", paths:["/global-input-app/help",
-                            "/global-input-app/help","/global-input-app/platform","/global-input-app/developers"]},
+          documentationPage:{
+                              path:"/global-input-app/documentation",
+                              chromeExtensionHelp:{
+                                  id:"chromeExtensionHelp",
+                                  path:"/global-input-app/documentation#chromeExtensionHelp"
+                              },
+                            },
+
       },
       links:{
           websocket:{

@@ -8,7 +8,6 @@ import {
 import {config} from "./configs";
 
 import {HomePageWithScrollToTop as HomePage} from "./pages/home-page";
-import LearnMorePage from "./pages/learn-more-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './pages/privacy-page';
 import ContactUsPage from "./pages/contact-us-page";
@@ -37,7 +36,7 @@ const App=props=>(
       <Router>
         <Switch>
             <Route path={config.paths.home.path} exact component={HomePage}/>
-            <Route path={config.paths.learnMore.path} component={LearnMorePage}/>
+
             <Route path={config.paths.getAppScreen.path} component={GetAppPage}/>
             <Route path={config.paths.privacy.path} component={PrivacyPage}/>
             <Route path={config.paths.contactus.path} component={ContactUsPage}/>

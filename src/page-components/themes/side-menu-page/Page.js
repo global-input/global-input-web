@@ -70,9 +70,7 @@ export const Concept=props=>(<span style={styles.card.concept}>{props.children}<
 
 const _FirstSection=props=>(
           <div style={styles.firstSection}>
-              <div style={styles.card.container.get()}>
                 {props.children}
-              </div>
           </div>
         );
 export const FirstSection=withResponsiveComponent(_FirstSection);
@@ -80,9 +78,7 @@ export const FirstSection=withResponsiveComponent(_FirstSection);
 
 const _NextSection=props=>(
           <div style={styles.nextSection}>
-            <div style={styles.card.container.get()}>
               {props.children}
-            </div>
           </div>
         );
 export const NextSection=withResponsiveComponent(_NextSection);

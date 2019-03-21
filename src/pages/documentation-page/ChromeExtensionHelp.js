@@ -110,7 +110,7 @@ const ChromeExtensionHelp = props =>{
 
 };
 ChromeExtensionHelp.menu={
-    id:"chromeExtension",
+    id:config.paths.documentationPage.chromeExtensionHelp.id,
     label:"Chrome Extension Help"
 }
 export default ChromeExtensionHelp;

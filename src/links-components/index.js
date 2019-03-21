@@ -142,7 +142,7 @@ export const pagesLinks={
                   <ButtonsContainer>
                       <ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>
                       <ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>
-                      <TransparentButton to={config.paths.documentationPage.path}>Documentation</TransparentButton>
+                      <TransparentButton to={config.paths.documentationPage.chromeExtensionHelp.path}>Documentation</TransparentButton>
                   </ButtonsContainer>
                 ),
           }
