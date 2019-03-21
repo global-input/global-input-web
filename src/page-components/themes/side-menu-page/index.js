@@ -28,7 +28,9 @@ const SideMenu=props=>(
 const DisplayContent=props=>(
       <div style={styles.contentContainer.get()} id="scrollableContent">
                 {props.Items.map((Item, index)=>(
-                        <Item key={index} theme={theme}/>
+                        <div id={Item.menu.id}>
+                          <Item key={index} theme={theme}/>
+                        </div>
                 ))}
 
       </div>

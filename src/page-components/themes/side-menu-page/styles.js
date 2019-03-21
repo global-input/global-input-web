@@ -25,6 +25,7 @@ export const styles={
         width:400,
         paddingTop:10,
 
+
       }
 
   },
@@ -37,7 +38,7 @@ export const styles={
       alignItems:"flex-start",
       width:"100%",
       marginBottom:50,
-      height:window.innerHeight-100,
+
       overflow:"scroll",
 
     },
@@ -56,6 +57,7 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"flex-start",
       color:"#5291CD", //#4880ED
+      position:"fixed"
     }
   },
 
@@ -75,7 +77,7 @@ export const styles={
       minHeight:window.innerHeight,
       color:"#5291CD",
       paddingTop:70,
-      position:"relative"
+
   },
   content:{
       width:"100%",

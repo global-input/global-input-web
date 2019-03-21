@@ -18,6 +18,6 @@ import PortableEncryptedStorage from './PortableEncryptedStorage';
 import WatchIntroduction from "./watch-introduction";
 
 
-const Items=[ClientSideOnlySolution];
+const Items=[ClientSideOnlySolution,DeviceToDeviceCommunication,PortableEncryptedStorage];
 
 export default props=>(<SideMenuPage Items={Items}/>);
