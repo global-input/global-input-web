@@ -13,7 +13,7 @@ import sendMessageConfig from "./sendMessageConfig";
 
 import videoPlayerConfig from "./videoPlayerConfig";
 
-import pages from "../../pages";
+
 
 const applicationPathConfig={
     appTitle:homeTextConfig.title,

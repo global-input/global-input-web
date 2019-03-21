@@ -1,39 +1,7 @@
 import React from 'react';
-import {Route,Switch,Redirect} from 'react-router-dom';
-
-
-
-
-import {HomePageWithScrollToTop as HomePage} from './home-page';
-
-import LearnMorePage from "./learn-more-page";
-import GetAppPage from './get-app-page';
-import PrivacyPage from './privacy-page';
-import ContactUsPage from "./contact-us-page";
-import AboutMobileAuthentication from "./about-mobile-authentication";
-import AboutMobileInputControl from './about-mobile-input-control';
-import AboutSecondScreen from './about-second-screen';
-
-import AboutFormOperation from './about-form-operation';
-import AboutMobileTransferFormData from "./about-secure-content-transfer";
-import AboutPrintScanQRCodes from './about-print-scan-qr-codes';
-import AboutCopyAndPaste from './about-copy-and-paste';
-import DocumentationPage from './documentation-page';
-import {config} from "../configs";
-
-
-
-import ContentTransferScreen from './examples/content-transfer-screen';
-import GameControlScreen from './examples/game-game-control-screen';
-import MediaPlayerScreen from './examples/media-player-screen';
-import QRPrintingScreen from './examples/qr-printing-screen';
-import SendMessageScreen from './examples/send-message-screen';
-import TransferFormDataScreen from './examples/transfer-form-data-screen';
 
 
 const PageRoute=props=>(
-      <React.Fragment>
-
         <Switch>
             <Route path={config.paths.home.path} exact component={HomePage}/>
             <Route path={config.paths.learnMore.path} component={LearnMorePage}/>
@@ -49,21 +17,14 @@ const PageRoute=props=>(
             <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
             <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
 
-              <Route  path={config.paths.examples.contentTransfer.path}  component={ContentTransferScreen}/>
-              <Route  path={config.paths.examples.mediaPlayer.path}  component={MediaPlayerScreen}/>
-              <Route  path={config.paths.examples.gameControl.path}  component={GameControlScreen}/>
-              <Route path={config.paths.examples.transferForm.path} component={TransferFormDataScreen}/>
-              <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>
-              <Route path={config.paths.examples.qrPrinting.path} component={QRPrintingScreen}/>
-
-              <Redirect to={config.paths.home.path}/>
-
-
-
-          </Switch>
-
-
-      </React.Fragment>
+            <Route  path={config.paths.examples.contentTransfer.path}  component={ContentTransferScreen}/>
+            <Route  path={config.paths.examples.mediaPlayer.path}  component={MediaPlayerScreen}/>
+            <Route  path={config.paths.examples.gameControl.path}  component={GameControlScreen}/>
+            <Route path={config.paths.examples.transferForm.path} component={TransferFormDataScreen}/>
+            <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>
+            <Route path={config.paths.examples.qrPrinting.path} component={QRPrintingScreen}/>
+            <Redirect to={config.paths.home.path}/>
+        </Switch>
     );
 
 const pages={

@@ -9,7 +9,7 @@ import FeatureRow from "../../../page-components/section-containers/feature-row"
 
 
 
-import pages from '../../../pages';
+
 import {config} from '../../../configs';
 
 const textContent={
