@@ -23,7 +23,8 @@ export const styles={
         justifyContent:"flex-start",
         alignItems:"center",
         width:400,
-        paddingTop:10
+        paddingTop:10,
+
       }
 
   },
@@ -38,6 +39,7 @@ export const styles={
       marginBottom:50,
       height:window.innerHeight-100,
       overflow:"scroll",
+
     },
     mobile:{
       width:"90%",
@@ -99,6 +101,7 @@ export const styles={
       alignItems:"center",
       width:"100%",
 
+
   },
   card:{
       container:{
@@ -132,7 +135,7 @@ export const styles={
         default:{
           fontSize:30,
           display:"block",
-          
+
         },
         mobile:{
           fontSize:25,

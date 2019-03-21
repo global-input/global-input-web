@@ -5,8 +5,11 @@ import {styles,images} from './styles';
 import BorderedWhite from '../../page-components/themes/bordered-white';
 
 import {examplesLinks} from '../../links-components';
+import WatchIntroduction from './watch-introduction';
+
 
 const {ListAllExamples}=examplesLinks;
+
 
 
 export default class ClientSideOnlySolution extends React.Component{
@@ -20,10 +23,10 @@ export default class ClientSideOnlySolution extends React.Component{
     const {P, Title, Code,Concept, FirstSection,NextSection}=this.props.theme;
     return(
       <React.Fragment>
-
+            <WatchIntroduction/>
             <FirstSection>
-                  <Title>{ClientSideOnlySolution.menu.title}</Title>
 
+                  <Title>{ClientSideOnlySolution.menu.title}</Title>
             </FirstSection>
 
 
