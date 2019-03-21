@@ -18,6 +18,8 @@ export default ResponsivePage;
 
 export const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);
 export const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
+export const Title2=props=>(<div style={styles.card.title2.get()}>{props.children}</div>);
+export const Diagram=props=>(<img style={styles.card.diagram.get()} src={props.image}/>);
 
 
 export const CodeContent=props=>(
