@@ -1,7 +1,16 @@
 import React from 'react';
-import LighBlueBackground from '../ligh-blue-background';
-import {styles} from './styles';
 
+import {styles} from './styles';
+import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent, Concept,FirstSection,NextSection} from './Page';
+
+const theme={Page,
+                  P:Paragraph,
+                  Title,
+                  ListLinks,
+                  Link:TextLink,
+                  A:ALink,
+                  Code:CodeContent,
+                  Concept, FirstSection,NextSection};
 
 
 
@@ -19,7 +28,7 @@ const SideMenu=props=>(
 const DisplayContent=props=>(
       <div style={styles.contentContainer.get()} id="scrollableContent">
                 {props.Items.map((Item, index)=>(
-                        <Item key={index} theme={LighBlueBackground}/>
+                        <Item key={index} theme={theme}/>
                 ))}
 
       </div>
@@ -28,12 +37,12 @@ const DisplayContent=props=>(
 export default class  extends React.Component{
     render(){
           return(
-            <LighBlueBackground.Page>
+            <Page>
                   <div style={styles.topcontainer.get()}>
                       <SideMenu {...this.props} gotoContent={this.gotoContent.bind(this)}/>
                       <DisplayContent {...this.props}/>
                   </div>
-            </LighBlueBackground.Page>
+            </Page>
           );
         }
     gotoContent(menu){

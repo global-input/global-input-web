@@ -27,7 +27,7 @@ export default class ClientSideOnlySolution extends React.Component{
             </FirstSection>
 
 
-          
+
 
 
 
