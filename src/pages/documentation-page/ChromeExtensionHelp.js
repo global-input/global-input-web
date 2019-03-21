@@ -109,5 +109,8 @@ const ChromeExtensionHelp = props =>{
 );
 
 };
-
+ChromeExtensionHelp.menu={
+    id:"chromeExtension",
+    label:"Chrome Extension Help"
+}
 export default ChromeExtensionHelp;

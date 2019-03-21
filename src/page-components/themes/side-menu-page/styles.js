@@ -26,7 +26,7 @@ export const styles={
         paddingTop:10,
       },
       mobile:{
-        display:"none"  
+        display:"none"
       }
 
   },
@@ -144,6 +144,17 @@ export const styles={
           fontSize:25,
         }
       },
+      title2:{
+        get:styleMatchingScreenSize,
+        default:{
+          fontSize:24,
+          display:"block",
+
+        },
+        mobile:{
+          fontSize:20,
+        }
+      },
       paragraph:{
         get:styleMatchingScreenSize,
         default:{
@@ -182,8 +193,22 @@ export const styles={
         borderBottomStyle:"dotted",
         borderBottomColor:'black',
         borderBottomWidth:1
+      },
+      diagram:{
+        get:styleMatchingScreenSize,
+        default:{
+          maxWidth: "100%",
+          height: "auto"
+        },
+        screen1080:{
+            float:"right"
+        },
+        smallScreen:{},
+        desktop:{},
+        mobile:{}
       }
   },
+
 
 
 }

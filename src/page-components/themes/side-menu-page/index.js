@@ -3,20 +3,22 @@ import React from 'react';
 import {withResponsiveComponent} from '../../../components/screen-media';
 import {styles} from './styles';
 
-import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent, Concept,FirstSection,NextSection} from './Page';
+import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent, Concept,FirstSection,NextSection,Title2,Diagram} from './Page';
 
 const theme={Page,
                   P:Paragraph,
                   Title,
+                  Title2,
                   ListLinks,
                   Link:TextLink,
                   A:ALink,
                   Code:CodeContent,
-                  Concept, FirstSection,NextSection};
+                  Concept, FirstSection,NextSection,Diagram};
 
 
 
 class SideMenu extends React.Component{
+
       render(){
         return(
             <div style={styles.sideContainer.get()}>
