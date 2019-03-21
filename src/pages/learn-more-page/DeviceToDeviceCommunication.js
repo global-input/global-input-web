@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {styles,images} from './styles';
-import examples from '../examples';
+
 
 
 export default class DeviceToDeviceCommunication extends React.Component{
 
   static menu={
         id:"deviceToDevice",
-        label:"Device-to-Device Communication"        
+        label:"Device-to-Device Communication"
   }
   render(){
     const {P, Title, Code,Concept, FirstSection,NextSection}=this.props.theme;

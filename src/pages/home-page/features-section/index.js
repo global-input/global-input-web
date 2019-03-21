@@ -8,7 +8,7 @@ import FeatureRow from "../../../page-components/section-containers/feature-row"
 
 
 
-import examples from '../../examples';
+
 import pages from '../../../pages';
 import {config} from '../../../configs';
 

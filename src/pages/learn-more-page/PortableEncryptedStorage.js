@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {styles,images} from './styles';
-import examples from '../examples';
+
 
 
 export default class PortableEncryptedStorage extends React.Component{
