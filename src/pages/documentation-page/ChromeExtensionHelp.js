@@ -100,9 +100,7 @@ const ChromeExtensionHelp = props =>{
               flexibility of the mobile UI on the <AuthenticationDemoVideo {...props}>demo video</AuthenticationDemoVideo>, or  you can have a look at the <SecondScreen {...props}>Second Screen Application</SecondScreen>.
               </P>
 
-              <P>
-                  If you would like to know more about the GIA security strategy, you can read our <AuthenticationWhitePaper {...props}>white paper</AuthenticationWhitePaper>.
-              </P>
+              
           </FirstSection>
         </React.Fragment>
 
@@ -110,7 +108,7 @@ const ChromeExtensionHelp = props =>{
 
 };
 ChromeExtensionHelp.menu={
-    id:"chromeExtension",
+    id:config.paths.documentationPage.chromeExtensionHelp.id,
     label:"Chrome Extension Help"
 }
 export default ChromeExtensionHelp;
