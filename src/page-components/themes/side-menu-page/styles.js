@@ -279,9 +279,7 @@ export const styles={
   bookmark:{
       position:"relative",
       top:-75,
-      width:10,
-      height:10,
-      border:"1px solid red"
+      
 
   }
 
