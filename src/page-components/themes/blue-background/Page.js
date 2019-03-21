@@ -6,7 +6,7 @@ import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
 
 
-const Page=props=>(<div style={styles.container} id="topContent">
+const Page=props=>(<div style={styles.container.get()} id="topContent">
             <TopHeaderSection selected={props.selected}/>
             <div style={styles.card.container.get()}>
                         {props.children}

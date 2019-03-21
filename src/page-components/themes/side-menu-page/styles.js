@@ -1,20 +1,84 @@
 import {styleMatchingScreenSize} from "../../../components/screen-media";
-export const images={
-    background:require("./images/background.svg"),
-}
-
 export const styles={
+  topcontainer:{
+        get:styleMatchingScreenSize,
+        default:{
+          display:"flex",
+          flexDirection:"row",
+          justifyContent:"flex-start",
+          alignItems:"flex-start",
+          width:"100%",
+          paddingTop:120,
+        },
+        mobile:{
+          flexDirection:"column",
+          alignItems:"center"
+        }
+  },
+  sideContainer:{
+      get:styleMatchingScreenSize,
+      default:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        width:400,
+        paddingTop:10,
+      },
+      mobile:{
+        display:"none"  
+      }
+
+  },
+  contentContainer:{
+    get:styleMatchingScreenSize,
+    default:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"flex-start",
+      width:"100%",
+      marginBottom:50,
+
+      overflow:"scroll",
+
+    },
+    mobile:{
+      width:"90%",
+      height:"auto",
+      overflow: "visible",
+
+    }
+  },
+  sideMenu:{
+    get:styleMatchingScreenSize,
+    default:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"flex-start",
+      color:"#5291CD", //#4880ED
+      position:"fixed"
+    }
+  },
+
+  menuItem:{
+      whiteSpace:"noWrap",
+      marginBottom:20,
+      cursor:"pointer"
+  },
+
   container:{
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
 
-      backgroundColor:"rgba(169, 200, 230, 0.1)",
+      backgroundColor:"white",
       width:"100%",
       minHeight:window.innerHeight,
       color:"#5291CD",
       paddingTop:70,
-      position:"relative"
+
   },
   content:{
       width:"100%",
@@ -39,6 +103,7 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       width:"100%",
+
 
   },
   card:{
@@ -72,10 +137,7 @@ export const styles={
         get:styleMatchingScreenSize,
         default:{
           fontSize:30,
-          marginTop:20,
           display:"block",
-          marginLeft:"auto",
-          marginRight:"auto",
 
         },
         mobile:{
@@ -110,7 +172,9 @@ export const styles={
       },
       code:{
             backgroundColor:'rgba(169,200,230,0.1)',
-            overflow:'scroll'
+            overflow:'scroll',
+            width:"100%",
+            color:"#5291CD"
       },
 
       concept:{
@@ -120,7 +184,6 @@ export const styles={
         borderBottomWidth:1
       }
   },
-
 
 
 }

@@ -13,6 +13,9 @@ import MiddlePageContainer from '../../page-components/section-containers/middle
 import {PageTitleSection} from '../../page-components/text-title-sections';
 
 import AppLogo from '../../page-components/app-logo';
+
+import {withScrollToTop} from "../../components/screen-media";
+
 const {Title,P,Page}=BlueBackground;
 
 const {DownloadGIAButtons} =externalsLinks;
@@ -20,21 +23,14 @@ const {DownloadGIAButtons} =externalsLinks;
 const {MobileAuthentication}=pagesLinks.buttons;
 
 
-export default class GetAppPage extends React.Component{
-
-  render(){
-      return(
+const GetAppPage=props=>(
         <Page>
 
                         <MiddlePageContainer>
                             <AppLogo/>
                             <PageTitleSection title="Download Global Input App Now !" subtitle="Install this open-source mobile app for free on App Store or Play Store."/>
-
-
-
-                        <ButtonsContainer>
                             <DownloadGIAButtons/>
-                        </ButtonsContainer>
+
                         </MiddlePageContainer>
 
 
@@ -43,8 +39,5 @@ export default class GetAppPage extends React.Component{
 
 
         </Page>
-      )
-
-  }
-
-}
+      );
+export default withScrollToTop(GetAppPage,'topContent');
