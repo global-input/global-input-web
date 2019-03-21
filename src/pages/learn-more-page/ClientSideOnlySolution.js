@@ -37,9 +37,9 @@ export default class ClientSideOnlySolution extends React.Component{
                   </P>
                   <Code>
                     {`
-                      type:  "button",
-                      label: "Play",
-                      onInput:value => playMovie()
+      type:  "button",
+      label: "Play",
+      onInput:value => playMovie()
                     `}
                   </Code>
                   <P>
@@ -47,16 +47,16 @@ export default class ClientSideOnlySolution extends React.Component{
                   </P>
                   <Code>
                     {`
-                       type:  "text",
-                       label: "Search",
-                       onInput:value => searchContent(value)
+     type:  "text",
+     label: "Search",
+     onInput:value => searchContent(value)
                     `}
                   </Code>
                   <P>
                       If you are interested, you can have a look at the examples in action, and check out their sources codes on the Github:
                   </P>
                   <ListAllExamples {...this.props}/>
-                
+
 
             </FirstSection>
 

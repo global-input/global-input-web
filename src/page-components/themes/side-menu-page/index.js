@@ -1,6 +1,8 @@
 import React from 'react';
 
+import {withResponsiveComponent} from '../../../components/screen-media';
 import {styles} from './styles';
+
 import Page,{Paragraph,Title,ListLinks,TextLink,ALink,CodeContent, Concept,FirstSection,NextSection} from './Page';
 
 const theme={Page,
@@ -14,17 +16,26 @@ const theme={Page,
 
 
 
-const SideMenu=props=>(
-      <div style={styles.sideContainer.get()}>
-          <div style={styles.sideMenu.get()}>
-                {props.Items.map((Item, index)=>(
-                        <div style={styles.menuItem} key={index}>
-                        <a onClick={()=>props.gotoContent(Item.menu)}>  {Item.menu.label}</a>
-                        </div>
-                ))}
-          </div>
-      </div>
-);
+class SideMenu extends React.Component{
+      render(){
+        return(
+            <div style={styles.sideContainer.get()}>
+
+                <div style={styles.sideMenu.get()}>
+
+                      {this.props.Items.map((Item, index)=>(
+                              <div style={styles.menuItem} key={index}>
+                              <a onClick={()=>this.props.gotoContent(Item.menu)}>  {Item.menu.label}</a>
+                              </div>
+                      ))}
+
+                </div>
+
+            </div>
+          );
+      }
+
+}
 const DisplayContent=props=>(
       <div style={styles.contentContainer.get()} id="scrollableContent">
                 {props.Items.map((Item, index)=>(
@@ -36,12 +47,14 @@ const DisplayContent=props=>(
       </div>
 );
 
-export default class  extends React.Component{
+class  SideMnuPage  extends React.Component{
     render(){
           return(
             <Page>
                   <div style={styles.topcontainer.get()}>
+
                       <SideMenu {...this.props} gotoContent={this.gotoContent.bind(this)}/>
+
                       <DisplayContent {...this.props}/>
                   </div>
             </Page>
@@ -63,3 +76,5 @@ export default class  extends React.Component{
               }
     }
 }
+
+export default withResponsiveComponent(SideMnuPage);

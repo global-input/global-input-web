@@ -24,8 +24,9 @@ export const styles={
         alignItems:"center",
         width:400,
         paddingTop:10,
-
-
+      },
+      mobile:{
+        display:"none"  
       }
 
   },
@@ -72,7 +73,7 @@ export const styles={
       flexDirection:"column",
       justifyContent:"flex-start",
 
-      backgroundColor:"rgba(169, 200, 230, 0.1)",
+      backgroundColor:"white",
       width:"100%",
       minHeight:window.innerHeight,
       color:"#5291CD",
@@ -171,7 +172,9 @@ export const styles={
       },
       code:{
             backgroundColor:'rgba(169,200,230,0.1)',
-            overflow:'scroll'
+            overflow:'scroll',
+            width:"100%",
+            color:"#5291CD"
       },
 
       concept:{
