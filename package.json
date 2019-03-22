@@ -11,31 +11,21 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.7.2",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "react-markdown": "^2.5.1",
     "react-router-dom": "^4.3.1",
     "react-transition-group": "1.x",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "react-scripts": "^2.1.5",
-    "react-test-renderer": "^16.8.3",
-    "react-testing-library": "^6.0.0",
-    "@storybook/react": "^4.1.13",
-    "@storybook/addon-actions": "^4.1.13",
-    "@storybook/addon-links": "^4.1.13",
-    "@storybook/addons": "^4.1.13",
-    "@babel/core": "^7.3.4",
-    "babel-loader": "^8.0.5"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "npx react-scripts start",
     "build": "npx react-scripts build",
     "test": "npx react-scripts test --env=jsdom",
-    "eject": "npx react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "eject": "npx react-scripts eject"
   },
   "jest": {
     "setupFiles": [
