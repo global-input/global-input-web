@@ -14,3 +14,5 @@ export default class AboutCopyAndPaste extends React.Component{
   }
 
 }
+
+export {CopyAndPaste};

@@ -29,10 +29,14 @@ const MobileFormAutomation=props=>{
           <P>
             The availability of portable encrypted data storage for storing sensitive data may provide possibility of automating some form operations, such as subscription, job applications etc.
           </P>
-</NextSection> 
+</NextSection>
 
 
       </React.Fragment>
     );
 };
+MobileFormAutomation.menu={
+  id:"formAutomation",
+  label:"Mobile Form Automation"
+}
 export default MobileFormAutomation;

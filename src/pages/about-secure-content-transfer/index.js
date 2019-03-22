@@ -21,3 +21,5 @@ export default class  AboutMobileTransferFormData extends React.Component{
 
 
 }
+
+export {MobileTransferFormData};

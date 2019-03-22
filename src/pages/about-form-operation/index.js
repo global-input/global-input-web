@@ -17,3 +17,5 @@ export default class AboutFormOperation extends React.Component{
   }
 
 }
+
+export {MobileFormAutomation};

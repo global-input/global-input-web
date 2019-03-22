@@ -43,3 +43,9 @@ Try out the following the simple web application to copy and paste content from 
 );
   }
 }
+
+CopyAndPaste.menu={
+id:"copyAndPaste",
+label:"Copy And Paste Across Devices"
+
+}

@@ -42,5 +42,11 @@ const ContentEncryption = props=>{
   );
 
 };
+ContentEncryption.menu={
+  id:"contentEncryption",
+  label:"Mobile Content Encryption"
+
+}
+
 
 export default ContentEncryption;
