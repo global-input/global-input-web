@@ -52,36 +52,33 @@ export const styles={
   mobileMenu:{
       container:{
               display:"flex",
-              flexDirection:"row",
+              flexDirection:"column",
               justifyContent:"flex-start",
-              alignItems:"flex-start",
+              alignItems:"center",
               width:"100%",
               paddingTop:0,
               paddingRight:20,
               paddingLeft:20,
       },
-      icon:{        
+      icon:{
         fontSize:35,
-        backgroundColor:'rgba(246,256,256,1)',
-        paddingLeft:10,
-        width:"100%" 
+        width:"100%",
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"flex-end",
+        alignItems:"flex-start",
+        position:"fixed",
+        paddingRight:20,
+
       },
-      sideMenu:{
-                position:"fixed",
-                backgroundColor: 'white',
-                height:'90%',
-                width:"90",
-                left:"2.5vw",
-                border:"1px solid red"
-                
-      },
+
       menu:{
                 color:"#5291CD", //#4880ED
                 transition: '0.5s',
                 backgroundColor: 'white',
                 height:'90%',
                 overflow:"scroll",
-                
+
       },
       menuItem:{
                   whiteSpace:"noWrap",
@@ -115,13 +112,14 @@ export const styles={
     icon:{
       container:{
         position:"fixed",
-        top:58,
-        backgroundColor:'rgba(246,256,256,1)',
-        width:"100%"
+        top:70,
+        width:"100%",
       },
       symbol:{
-        marginLeft:10,
-        fontSize:35,
+        marginRight:10,
+        fontSize:30,
+        float:"right",
+        backgroundColor:"white"
       }
 
     },
@@ -279,7 +277,7 @@ export const styles={
   bookmark:{
       position:"relative",
       top:-75,
-      
+
 
   }
 

@@ -54,7 +54,6 @@ const DeskTopSideMenu=props=>(
   const MobileSideMenu=props=>(
     <Page>
         <div style={styles.mobileMenu.container}>
-              <div style={styles.mobileMenu.sideMenu}>
                   <div style={styles.mobileMenu.icon}>
                       <a onClick={props.closeMenu}>&times;</a>
                   </div>
@@ -66,10 +65,6 @@ const DeskTopSideMenu=props=>(
                                 ))}
 
                   </div>
-              </div>
-              <div style={styles.mobileMenu.content.get()} id="scrollableContent" onClick={props.closeMenu}>
-                    <DisplayContent {...props}/>
-              </div>
           </div>
       </Page>
     );
@@ -96,7 +91,7 @@ const DeskTopSideMenu=props=>(
 class  SideMenuPage  extends React.Component{
   constructor(props){
       super(props);
-      this.state={menuOpen:false};
+      this.state={menuOpen:false, scrollTo:null};
       this.openMenu=this.openMenu.bind(this);
       this.closeMenu=this.closeMenu.bind(this);
       this.gotoContent=this.gotoContent.bind(this);
@@ -104,8 +99,8 @@ class  SideMenuPage  extends React.Component{
   openMenu(){
     this.setState({menuOpen:true});
   }
-  closeMenu(){
-    this.setState({menuOpen:false});
+  closeMenu(scrollTo){
+    this.setState({menuOpen:false, scrollTo});
   }
 
   componentDidMount() {
@@ -113,6 +108,12 @@ class  SideMenuPage  extends React.Component{
           if(hashParts && hashParts.length>1){
               this.processScrollTo(hashParts[1]);
           }
+   }
+   componentDidUpdate(){
+      if(this.state.scrollTo){
+          this.processScrollTo(this.state.scrollTo);
+          this.setState({menuOpen:false, scrollTo:null});
+      }
    }
 
    render(){
@@ -129,7 +130,7 @@ class  SideMenuPage  extends React.Component{
 
     }
     gotoContent(menu){
-        this.processScrollTo(menu.id);
+         this.closeMenu(menu.id);
     }
     processScrollTo(elementId){
               if(!elementId){
@@ -138,11 +139,7 @@ class  SideMenuPage  extends React.Component{
               var elmnt = document.getElementById(elementId);
 
               if(elmnt){
-                  window.scrollBy({top: -70,behavior: "smooth"});
-                  console.log("elementId:"+elementId+":"+elmnt.id);
                   setTimeout(()=>elmnt.scrollIntoView(),400);
-
-
               }
               else{
                 console.log("not found")
