@@ -19,7 +19,7 @@ const IntroducingMobileInputAndControl=props=>{
 
        <React.Fragment>
          <FirstSection>
-                <Title>Introducing Mobile Input & Control</Title>
+                <Title>Mobile Input & Control</Title>
 
           </FirstSection>
 

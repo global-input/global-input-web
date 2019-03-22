@@ -1,11 +1,11 @@
-import {styleMatchingScreenSize} from "../../../components/screen-media";
+import {styleMatchingScreenSize} from "../../components/screen-media";
 export const images={
-    videoIcon:require("./images/video-icon.svg"),
+    watchVideoIcon:require("./images/watch-video.svg"),
 }
 
 export const styles={
 
-  video:{
+  watchVideo:{
     get:styleMatchingScreenSize,
     default:{
       marginTop:12,
@@ -15,7 +15,7 @@ export const styles={
       justifyContent:"flex-start"
     },
     mobile:{
-      justifyContent:"center"      
+      justifyContent:"center"
     }
 
   }

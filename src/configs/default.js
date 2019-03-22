@@ -55,6 +55,9 @@ var config={
               url:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp",
               websites:"https://github.com/global-input/chrome-extension/tree/master/application-controls"
           },
+          jsExtension:{
+              url:"https://github.com/global-input/global-input-message"
+          },
          tutorialP1:{
               url:"https://www.youtube.com/watch?v=7-vavraSj-s"
          },
@@ -62,6 +65,7 @@ var config={
            url:"https://en-gb.wordpress.org/plugins/wp-globalinput-login/"
          },
         authenticationDemo:{url:"https://www.youtube.com/watch?v=jLIIrlEoQXM"},
+        introductionVideo:{url:"https://www.youtube.com/watch?v=HzeTY1TA4V8"},
         TransferFormGigHub:{url:"https://github.com/global-input/transfer-form-data-example"},
         appdownload:{
               appStore:"https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",

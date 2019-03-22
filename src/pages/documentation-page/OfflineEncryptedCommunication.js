@@ -21,7 +21,7 @@ const OfflineEncryptedCommunication = props =>{
 
        <React.Fragment>
 <FirstSection>
-              <Title>Offline Encrypted Communication</Title>
+              <Title>Encrypted QR Codes</Title>
               <P>
               You can establish an encrypted offline communication with a Global Input App user by pre-sharing one of the managed encryption keys in your app. It is called offline because the network communication is not required for transfering the data.
               </P>
@@ -79,6 +79,6 @@ In order to print out the QR code for an encryption key, you can press the “Ke
 };
 OfflineEncryptedCommunication.menu={
     id:"OfflineEncryptedCommunication",
-    label:"Offline Encrypted Communication"
+    label:"Encrypted QR Codes"
 }
 export default OfflineEncryptedCommunication;

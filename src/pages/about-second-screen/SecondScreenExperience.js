@@ -13,7 +13,7 @@ const SecondScreenExperience = props =>{
 
        <React.Fragment>
          <FirstSection>
-              <Title>GIA Solution for Second Screen Experience</Title>
+              <Title>Second Screen Experience</Title>
         </FirstSection>
         <NextSection>
               <P>
@@ -58,6 +58,5 @@ Mobile Authentication, Subscription, Account Update, and Mobile Player Control, 
 SecondScreenExperience.menu={
   id:"secondScreenExperience",
   label:"Second Screen Experience"
-  
 }
 export default SecondScreenExperience;

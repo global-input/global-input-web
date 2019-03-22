@@ -22,9 +22,9 @@ const GlobalInputJSExtension = props =>{
 
        <React.Fragment>
 <FirstSection>
-              <Title>Global Input App JavaScript Extension</Title>
+              <Title>GIA JS Extension</Title>
               <Diagram image={images.deviceSolution}/>
-              <P>The Global Input JavaScript library allows device and web applications to connect to the Global Input platform to have mobile input and mobile control functions without developing a separate mobile app. This is like bringing the mobile device environment into the existing device and web application runtime, and can be explained with the following diagram:</P>
+              <P>The GIA JavaScript extension allows device and web applications to connect to the Global Input platform to have mobile input and mobile control functions without developing a separate mobile app. This is like bringing the mobile device environment into the existing device and web application runtime, and can be explained with the following diagram:</P>
               <P>
               This enables an application to implement mobile operation logic within the application itself by reusing the existing application processes that are usually implemented already. Application can ask the Global Input App to display UI components and use callback function to receive mobile events and execute the process accordingly. For example if an application needs to have button labelled as “Start” on the mobile screen to allow the user to start a process within the application, the following configuration can be passed to the Global Input JS library:
               <Code>
@@ -134,6 +134,6 @@ const GlobalInputJSExtension = props =>{
 };
 GlobalInputJSExtension.menu={
     id:"globalInputJSExtension",
-    label:"Global Input App JavaScript Extension"
+    label:"GIA JS Extension"
 }
 export default GlobalInputJSExtension ;

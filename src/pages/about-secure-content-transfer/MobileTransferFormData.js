@@ -11,7 +11,7 @@ const MobileTransferFormData=props=>{
     return(
          <React.Fragment>
            <FirstSection>
-          <Title>Form Data Sharing and Editing Across Multiple Devices</Title>
+          <Title>Mobile Form Data</Title>
           </FirstSection>
           <NextSection>
           <P>
@@ -71,7 +71,7 @@ Confidential data such as user credentials, personal information, user preferenc
   };
 
 MobileTransferFormData.menu={
-  id:"secondFormDataTransfer",
-  label:"Second Form Data Transfer"
+  id:"mobileFormData",
+  label:"Mobile Form Data"
 }
 export default MobileTransferFormData;

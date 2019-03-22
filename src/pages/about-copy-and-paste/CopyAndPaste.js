@@ -19,7 +19,7 @@ export default class CopyAndPaste extends React.Component{
 
        <React.Fragment>
               <FirstSection>
-              <Title>Copy And Paste Across Devices</Title>
+              <Title>Copy & Paste Across Devices</Title>
               </FirstSection>
               <NextSection>
               <P>
@@ -46,6 +46,6 @@ Try out the following the simple web application to copy and paste content from 
 
 CopyAndPaste.menu={
 id:"copyAndPaste",
-label:"Copy And Paste Across Devices"
+label:"Copy & Paste Across Devices"
 
 }
