@@ -16,5 +16,7 @@ export default class AboutCopyAndPaste extends React.Component{
         );
 
   }
-
 }
+
+
+export {ContentEncryption,ExportEncryptionKeys,ExportAppSettings};

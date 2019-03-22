@@ -44,4 +44,9 @@ In this cases, the Global Input App instance that is not paired with the applica
 
 );
 };
+
+ExportAppSettings.menu={
+  id:"exportAppSettings",
+  label:"Exporting App Settings"
+}
 export default ExportAppSettings;

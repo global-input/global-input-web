@@ -9,3 +9,6 @@ const AboutMobileInputControl= props =>(
           </LighBlueBackground.Page>
         );
 export default AboutMobileInputControl;
+
+
+export  {IntroducingMobileInputAndControl};

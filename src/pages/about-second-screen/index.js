@@ -11,3 +11,5 @@ const AboutSecondScreenExperience=props=>{
         );
 };
 export default AboutSecondScreenExperience;
+
+export {SecondScreenExperience};

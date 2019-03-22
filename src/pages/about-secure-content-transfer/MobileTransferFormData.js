@@ -69,4 +69,9 @@ Confidential data such as user credentials, personal information, user preferenc
       </React.Fragment>
     );
   };
+
+MobileTransferFormData.menu={
+  id:"secondFormDataTransfer",
+  label:"Second Form Data Transfer"
+}
 export default MobileTransferFormData;

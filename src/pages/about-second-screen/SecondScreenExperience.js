@@ -55,5 +55,9 @@ Mobile Authentication, Subscription, Account Update, and Mobile Player Control, 
 );
 
 };
-
+SecondScreenExperience.menu={
+  id:"secondScreenExperience",
+  label:"Second Screen Experience"
+  
+}
 export default SecondScreenExperience;

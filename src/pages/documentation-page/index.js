@@ -15,13 +15,30 @@ import ContentTransferBetweenCompters from './ContentTransferBetweenCompters';
 
 import UserDataProtection from './UserDataProtection';
 
-import MobileInputAndControl from './MobileInputAndControl';
-import SecondScreenExperience from './SecondScreenExperience';
+
+
 import GlobalInputPlatform from './GlobalInputPlatform';
 import  GlobalInputJSExtension from './GlobalInputJSExtension';
 import WebSocketProxyServer from './WebSocketProxyServer';
-const items=[ClientSideOnlySolution,DeviceToDeviceCommunication,PortableEncryptedStorage,ChromeExtensionHelp,SignInAcrossMultipleDevices,SupportToolForCreatingAccount,SupportToolForSharingAccounts,
-  OfflineEncryptedCommunication,ContentTransferBetweenCompters,UserDataProtection,MobileInputAndControl,SecondScreenExperience,
+
+import {IntroducingMobileInputAndControl} from '../about-mobile-input-control';
+
+import {SecondScreenExperience} from '../about-second-screen';
+
+import {MobileTransferFormData} from '../about-secure-content-transfer';
+import {CopyAndPaste} from '../about-copy-and-paste';
+import {MobileFormAutomation} from '../about-form-operation';
+import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about-print-scan-qr-codes';
+
+const items=[ClientSideOnlySolution,DeviceToDeviceCommunication,PortableEncryptedStorage,
+  ChromeExtensionHelp,SignInAcrossMultipleDevices,
+  IntroducingMobileInputAndControl,
+    SecondScreenExperience,MobileTransferFormData,CopyAndPaste,
+    MobileFormAutomation,
+
+ContentEncryption,ExportEncryptionKeys,ExportAppSettings,
+  SupportToolForCreatingAccount,SupportToolForSharingAccounts,
+  OfflineEncryptedCommunication,ContentTransferBetweenCompters,UserDataProtection,
   GlobalInputPlatform, GlobalInputJSExtension,WebSocketProxyServer];
 
 
