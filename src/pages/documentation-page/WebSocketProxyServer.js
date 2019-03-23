@@ -9,7 +9,7 @@ import SubtitleSectionContainer from '../../page-components/section-containers/s
 
 
 
-const {ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayAuthenticationDemo}=externalsLinks;
+const {WebSocketServer,JSExtension,ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayAuthenticationDemo}=externalsLinks;
 const {TransferFormData,SecondScreen,ListAllExamples} = examplesLinks;
 
 const images={
@@ -29,7 +29,8 @@ const WebSocketProxyServer = props =>{
               <Title>WebSocket Proxy Server</Title>
         <P>
             <Diagram image={images.websocket}/>
-            The Global Input WebSocket Server (global-input-node) is a WebSocket server, responsible for managing the connections from the Global Input JavaScript library instances running on the client side. A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also the load balancing of the websocket connections is implemented via a Rest API call as shown in the following diagram.
+            The <WebSocketServer {...props}> GIA WebSocket Server </WebSocketServer> manages connections between <JSExtension {...props}>GIA JS Extension</JSExtension> instances.
+            A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also the load balancing of the websocket connections is implemented via a Rest API call as shown in the following diagram.
 
             When an application invokes the connect function on the Global Input JavaScript function, the library invokes a Rest API call to obtain the URL of the WebSocket node, and then establish the WebSocket connection to the WebSocket server node. This way, the Global Input WebSocket can do the load balancing on the WebSocket server nodes.
 

@@ -2,19 +2,25 @@ import React from 'react';
 import {config} from '../configs';
 import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,TransparentButton} from '../page-components/round-buttons';
 import ButtonsContainer from '../page-components/buttons-container';
-
+import WatchVideoIcon from '../page-components/watch-video';
 const images={
       chrome:require("./images/chrome.png"),
       appStore:require("./images/app-store.png"),
       playStore:require("./images/play-store.png"),
       payIcon:require("./images/play.svg"),
       wordpress:require("./images/wordpress.png"),
+      watchIntroVideo:require("./images/watch-intro-video.svg"),
+      watchDemoVideo:require("./images/watch-demo.svg"),
 }
 export const externalsLinks={
 
       ChromeExtension:props=>{
         const {A}=props.theme;
         return(<A href={config.links.chromeExtension.url}>{props.children}</A>);
+      },
+      JSExtension:props=>{
+        const {A}=props.theme;
+        return(<A href={config.links.jsExtension.url}>{props.children}</A>);
       },
 
       SupportedWebsites:props=>{
@@ -64,6 +70,8 @@ export const externalsLinks={
         const {A}=props.theme;
         return(<A href={config.links.websocket.url}>{props.children}</A>);
       },
+      WatchIntroduction:props=>(<WatchVideoIcon video={config.links.introductionVideo.url} image={images.watchIntroVideo}/>),
+      WatchAuthenticationDemo:props=>(<WatchVideoIcon video={config.links.authenticationDemo.url} image={images.watchDemoVideo}/>),
 
 };
 

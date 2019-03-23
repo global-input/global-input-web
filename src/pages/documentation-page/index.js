@@ -1,17 +1,17 @@
 import React from 'react';
 import SideMenuPage from '../../page-components/themes/side-menu-page';
 
-import ClientSideOnlySolution from './ClientSideOnlySolution';
-import DeviceToDeviceCommunication from './DeviceToDeviceCommunication';
+import MobileIntegration from './MobileIntegration';
+
 import PortableEncryptedStorage from './PortableEncryptedStorage';
 
 
-import ChromeExtensionHelp from './ChromeExtensionHelp';
-import SignInAcrossMultipleDevices from './SignInAcrossMultipleDevices';
-import SupportToolForCreatingAccount from './SupportToolForCreatingAccount';
-import SupportToolForSharingAccounts from './SupportToolForSharingAccounts';
+import MobileAuthentication from './MobileAuthentication';
+
+import SupportTool from './SupportTool';
+
 import OfflineEncryptedCommunication from './OfflineEncryptedCommunication';
-import ContentTransferBetweenCompters from './ContentTransferBetweenCompters';
+
 
 import UserDataProtection from './UserDataProtection';
 
@@ -30,15 +30,16 @@ import {CopyAndPaste} from '../about-copy-and-paste';
 import {MobileFormAutomation} from '../about-form-operation';
 import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about-print-scan-qr-codes';
 
-const items=[ClientSideOnlySolution,DeviceToDeviceCommunication,PortableEncryptedStorage,
-  ChromeExtensionHelp,SignInAcrossMultipleDevices,
+const items=[MobileIntegration,PortableEncryptedStorage,
+  MobileAuthentication,
   IntroducingMobileInputAndControl,
     SecondScreenExperience,MobileTransferFormData,CopyAndPaste,
     MobileFormAutomation,
 
 ContentEncryption,ExportEncryptionKeys,ExportAppSettings,
-  SupportToolForCreatingAccount,SupportToolForSharingAccounts,
-  OfflineEncryptedCommunication,ContentTransferBetweenCompters,UserDataProtection,
+OfflineEncryptedCommunication,
+  SupportTool,
+  UserDataProtection,
   GlobalInputPlatform, GlobalInputJSExtension,WebSocketProxyServer];
 
 
