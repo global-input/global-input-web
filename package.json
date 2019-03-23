@@ -11,10 +11,9 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-markdown": "^2.5.1",
-    "react-router-dom": "^4.3.1",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-router-dom": "^5.0.0",
     "react-transition-group": "1.x",
     "whatwg-fetch": "^2.0.4"
   },
