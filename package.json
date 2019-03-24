@@ -27,11 +27,7 @@
     "test": "npx react-scripts test --env=jsdom",
     "eject": "npx react-scripts eject"
   },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/test/setup.js"
-    ]
-  },
+  
   "browserslist": [
     ">0.2%",
     "not dead",

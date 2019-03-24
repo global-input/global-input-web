@@ -1,4 +1,4 @@
-const images={
+export default {
   downward:require('../images/downward-link.png'),
   companyLogo:require('../images/company-logo.png'),
   globalInput:require('../images/global-input.png'),
@@ -71,4 +71,3 @@ const images={
     signIn:require("../images/others/sign-in.png"),
   }
 }
-export default images;

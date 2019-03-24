@@ -10,7 +10,7 @@ import { linkTo } from '@storybook/addon-links';
 
 
 import {AutoPlayVideo} from '../../src/components';
-import {pagelinks,config, images} from "../../src/configs";
+import {config, images} from "../../src/configs";
 
 
 

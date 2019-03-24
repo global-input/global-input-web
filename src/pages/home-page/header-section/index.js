@@ -16,12 +16,12 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 
 const headerTextContent={
     title:"Global Input App",
-    subtitle:"A Unified & Simple Solution",
+    subtitle:"Mobile Integration Solution",
     items:[
             "Mobile Input & Control",
            "Mobile Authentication",
-           "Data Encryption",
-           "Secure Content Transfer"
+           "Mobile Encryption",
+           "Second Screen"
          ]
 };
 export const images={
