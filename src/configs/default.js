@@ -1,4 +1,4 @@
-var config={
+export default {
     apikey:"k7jc3QcMPKEXGW5UC",
     url:"https://globalinput.co.uk",
     videos:{
@@ -73,4 +73,3 @@ var config={
         }
       }
 }
-export default config;
