@@ -12,6 +12,9 @@ var menus=[{
       link:config.paths.home.path,
       linkText:"Home"
     },{
+      link:config.paths.documentationPage.path,
+      linkText:"Documentation"
+    },{
       link:config.paths.privacy.path,
       linkText:"Privacy"
     },{
