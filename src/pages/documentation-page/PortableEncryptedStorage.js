@@ -20,7 +20,7 @@ export default class PortableEncryptedStorage extends React.Component{
                 Global Input App provides applications with encrypted storage on user mobiles. The data are encrypted with encryption keys
                 that are in turn encrypted
                 with a <Concept>master encryption key</Concept> generated from the user app password. In this encryption keys hierarchy,
-                sits on the top is the app user password, which is not stored anywhere. Hence, on the start of each session, the user has
+                sits on the top is the app user password, which is not stored anywhere. Hence, at the start of each session, the user has
                 to provide the password, which is used for encrypting/decrypting the encryption keys. The encryption keys, in turn, are used
                 for encrypting/decrypting the data stored in the encrypted storage.
             </P>

@@ -19,7 +19,7 @@ const ExportAppSettings=props => {
            <NextSection>
               <P>
 Global Input App scans an Encrypted QR code being displayed by an application to obtain a one-time-use encryption key for end-to-end encryption
-and other communication channel parameters. This allows Global Input App securely connects
+and other communication channel parameters. This allows the Global Input App to securely connects
 to the application and operates on it.
 </P>
 <P>
@@ -35,8 +35,8 @@ You can export your Global Input App settings and print it as QR code using the 
 When you scan the QR code that contains the Global Input App settings, the mobile app presents you with an option of importing the settings into your app.
 </P>
 <P>
-This is useful, when some business application prefers to restrict the Global Input App users to those only that has paired with the applications.
-In this cases, the Global Input App instance that is not paired with the application would not be able to connect to the application even if he/she scans the QR code.
+This is useful when some business application prefers to restrict the Global Input App users to those only that has paired with the applications.
+In this case, the Global Input App instance that is not paired with the application would not be able to connect to the application even if he/she scans the QR code.
 
 </P>
 </NextSection>
