@@ -34,8 +34,8 @@ Global Input App provides device and web applications with a simple, unified and
               subscriptions, account updates etc., for it is usually easier to enter content on mobile than on TV remote controls.
             </P>
             <P>
-              Developing IoT device applications are getting simpler. For example, applications running on devices that are powered by RasBerry Pi are becoming increasingly straightforward to develop.
-              GIA brings the mobile integration
+              Developing IoT device applications are getting simpler. For example, applications running on devices that are powered by Rasberry Pi are becoming increasingly straightforward to develop.
+              GIA brings mobile integration
               to the same level of simplicity, with the immediate availability of mobile control.
 
             </P>
@@ -45,13 +45,12 @@ Global Input App provides device and web applications with a simple, unified and
             </P>
             <P>
               The secure communications between the mobile and the target device is reminiscent of USB cable connecting the mobile to the device.
-              The communication is secured with the end-to-end encryption, which is initiated by one-time-use encryption key coming from the Encryoted QR code.
+              The communication is secured with the end-to-end encryption, which is initiated by one-time-use encryption key coming from the Encrypted QR code.
 
             </P>
             <P>
-              After the communication is established, the application provides a JSON data for constructing the mobile interface,
-              and begins to receive mobile events as user interacts with the mobile interface elements.
-              The level of flexibility enables applications to have mobile feature that is close to a fully functional mobile app.
+              After the communication is established, the application provides a JSON data for constructing mobile user interfaces and begins to receive mobile events as the user interacts with the mobile user interface elements.
+              The level of flexibility enables applications to have mobile features close to a fully functional mobile app.
             </P>
             <P>
 
@@ -83,12 +82,12 @@ Global Input App provides device and web applications with a simple, unified and
               </P>
 
               <P>
-              The Global Input App offers a single mobile app solution for multiple devices and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and callback functions for receiving mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture. The communication between the Global Input App and the application is secured with end-to-end encryption.
+              The Global Input App offers a single mobile app solution for multiple devices and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and use callbacks to receive mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture. The communication between the Global Input App and the application is secured with end-to-end encryption.
               </P>
 
 
               <P>
-                  You amy read our <MobileOperationWhitePaper {...props}>white paper</MobileOperationWhitePaper> on using mobile to operate on device and web applications.
+                  You may read our <MobileOperationWhitePaper {...props}>white paper</MobileOperationWhitePaper> on using mobile to operate on device and web applications.
 
               </P>
 

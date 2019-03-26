@@ -38,7 +38,7 @@ const MobileAuthentication = props =>{
       the need to develop the actual mobile app. This can be achieved by adding the mobile business logic on the client-side application.
     </P>
   <P>
-      Having installed the <ChromeExtension {...props}>Chrome Extension</ChromeExtension>, you you can visit a website and then click on the GIA icon
+      Having installed the <ChromeExtension {...props}>Chrome Extension</ChromeExtension>, you can visit a website and then click on the GIA icon
       on the top of your browser to activate the extension.
   </P>
   <P>
@@ -68,7 +68,7 @@ const MobileAuthentication = props =>{
     which does not have Global Input App extension embedded,  you can still use the  <TransferFormData {...props}>Transfer Form Data Application
     </TransferFormData> to transfer data to there and then copy and paste to wherever you like.
     Again, you can use both computer and your mobile to enter content and they will be synced on the fly.
-    The application allows you to customise the form and then when the QR code is displayed, you can bookmark the URL, saving yourself from go through the process again in the future
+    The application allows you to customise the form and then when the QR code is displayed, you can bookmark the URL, saving yourself from going through the process again in the future
     when you need the same custom form to transfer data between a computer and your mobile.
   </P>
 
@@ -81,7 +81,7 @@ const MobileAuthentication = props =>{
                 The <TransferFormData {...props}>Transfer Form Data Application</TransferFormData> is a sample web application.
                 If you have a web application, you can easily integrate the GIA extension
                 into your application, making the mobile authentication available with no time.
-                For example if you would like to present in the GIA mobile screen, a form that
+                For example, if you would like to present on the GIA mobile screen, a form that
                 is comprised of "Username" and  "Password" fields and a "Login" button, and would like to receive mobile events and
                 input values from mobile, you just need to provide the following JSON data to the extension:
               </P>
@@ -101,7 +101,7 @@ const MobileAuthentication = props =>{
 
               </Code>
               <P>
-              One of the superb features of the GIA solution is that the GIA mobile integration can go easily beyond the authentication step, and you can start from this very simple form and then work on it iteratively to transform it to more sophiscated mobile solution.
+              One of the superb features of the GIA solution is that the GIA mobile integration can go easily beyond the authentication step, and you can start from this very simple form and then work on it iteratively to transform it to a more sophisticated mobile solution.
               </P>
               <P>
               After the authentication, the user can use the mobile device to operate on the application, like using a fully functional mobile version of the application, and this can be achieved without developing the actual mobile app. You may already have seen the
@@ -111,13 +111,13 @@ const MobileAuthentication = props =>{
               <P>
 Global Input App provides an authentication device solution for corporate environments where a common password manager may not always suitable.
 Business applications such as JIRA, Confluence, Gitlab, Github, AWS, WordPress, Dropbox  may often need to be used on devices
-that are shared. There needs to be tool that can force employees to use random password for each password without affecting the convenience, also rule of changing
-passwords frequently should not invonvenience the employees.
+that are shared. There needs to be a tool that can force employees to use a random password for each password without affecting the convenience, also the rule of changing
+passwords frequently should not inconvenience the employees.
               </P>
 
               <P>
               On signing into applications on shared workstations, or on computers attached to the big screens in a conference room or
-              in a shared screen environment, there needs to be tool that can enable to login safely when everybody is watching on your screen
+              in a shared screen environment, there needs to be a tool that can enable to login safely when everybody is watching on your screen
               and on your typing on the computer keyboard.
               </P>
               <P>
@@ -125,13 +125,13 @@ passwords frequently should not invonvenience the employees.
               and select the authentication data stored in your app and press the ”Select” button.
               The data will then be decrypted and transferred to the target application using end-to-end encryption.
               You can now set a random password for each application,
-               and you do not need to memorize them. As the result you can use your mobile as a sign in device for signing in to
+               and you do not need to memorize them. As a result you can use your mobile as a sign in device for signing in to
                the applications on the shared computers. Most importantly, you can now sign in to the application even if people are watching over both
                your mobile and computer screen.
               </P>
               <P>
 You can first try this out on the sample web application without installing the Chrome Extension.
-Click on the ”Next” button on the sample web application, and then scan the QR Code with your Global Input App on your mobile. The same form being displayed on your computer screen should be displayed on your mobile as well. This allows you to use your mobile to enter content in the form on your computer. You can save the form data into your app and end the session. Now If you reload the page and go through the process again, you will notice that a button named “Matched” has appeared on the bottom of your mobile screen. This means that one or more data items in your app matches the form displayed by the application. If you press the button, a list of matched data items will be presented to you. Normally there will vbe only one item in the list. If you select the data item, you will be presented with the detail page of the data item. You will notice that the value of the fields is being displayed with “*” characters, which means that the value is not decrypted yet. You can press the ”Show” button to decrypt and reveal its content, or you can press the “Select” button straightaway to decrypt the data and send it to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into you clipboard, and switch to the application you need and paste the content there.
+Click on the ”Next” button on the sample web application, and then scan the QR Code with your Global Input App on your mobile. The same form being displayed on your computer screen should be displayed on your mobile as well. This allows you to use your mobile to enter content in the form on your computer. You can save the form data into your app and end the session. Now If you reload the page and go through the process again, you will notice that a button named “Matched” has appeared on the bottom of your mobile screen. This means that one or more data items in your app matche the form displayed by the application. If you press the button, a list of matched data items will be presented to you. Normally there will be only one item in the list. If you select the data item, you will be presented with the detail page of the data item. You will notice that the value of the fields is being displayed with “*” characters, which means that the value is not decrypted yet. You can press the ”Show” button to decrypt and reveal its content, or you can press the “Select” button straightaway to decrypt the data and send it to the form on your computer. Now you can select the field and then click on the “Copy” button to copy the content into your clipboard, and switch to the application you need and paste the content there.
               </P>
 
               <P>

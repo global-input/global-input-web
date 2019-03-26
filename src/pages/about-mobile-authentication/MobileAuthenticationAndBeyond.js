@@ -47,7 +47,7 @@ const MobileAuthenticationAndBeyond = props =>{
 
               <P>
 
-                For example if you would like to present mobile user with a form that is comprised of “Username”, “Password” and “Login” button and received events
+                For example, if you would like to present mobile user with a form that is comprised of “Username”, “Password” and “Login” button and received events
                 when users interacts with the form, you just need to provide the following JSON data:
               </P>
               <Code>

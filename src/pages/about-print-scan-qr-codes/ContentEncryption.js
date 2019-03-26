@@ -19,7 +19,7 @@ const ContentEncryption = props=>{
     This means that your encrypted content is safe, and can only be decrypted once imported into your device.
       </P>
       <P>
-          One of the examles is the <QrcodePrinting {...props}> QR Code Printing Application </QrcodePrinting>, which allows you to print Encrypted QR Codes using the encryped content that it receives from your mobile.
+          One of the examples is the <QrcodePrinting {...props}> QR Code Printing Application</QrcodePrinting>, which allows you to print Encrypted QR Codes using the encrypted content that it receives from your mobile.
     </P>
                <P>
     Note that the content will always be encrypted before leaving your mobile, and the encryption key, which you have used to encrypt the content will never leave your device.

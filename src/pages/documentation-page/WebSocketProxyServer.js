@@ -30,7 +30,7 @@ const WebSocketProxyServer = props =>{
         <P>
             <Diagram image={images.websocket}/>
             The <WebSocketServer {...props}> GIA WebSocket Server </WebSocketServer> manages connections between <JSExtension {...props}>GIA JS Extension</JSExtension> instances.
-            A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also the load balancing of the websocket connections is implemented via a Rest API call as shown in the following diagram.
+            A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also, the load balancing of the WebSocket connections is implemented via a Rest API call as shown in the following diagram.
 
             When an application invokes the connect function on the Global Input JavaScript function, the library invokes a Rest API call to obtain the URL of the WebSocket node, and then establish the WebSocket connection to the WebSocket server node. This way, the Global Input WebSocket can do the load balancing on the WebSocket server nodes.
 
@@ -38,7 +38,7 @@ const WebSocketProxyServer = props =>{
         </P>
         <P>
             <Title2>How It Works</Title2>
-            A device application connects to a Global Input WebSocket server and waits for a Global Input App to connect. This can be explained in a familiar way by comparing it with the client-server model. In the client-server model, a server application connects to the network layer of the server/host and waits for connection from a client application. Like a client application needs to know the network address of the server application in order to connect, the Global Input App needs to know the necessary information on how to connect to the device application as well. The Global Input App obtains this information from the QR code, which is displayed by the device application. The content of the QR code is produced by the Global Input JavaScript library, and it contains the following information:
+            A device application connects to a Global Input WebSocket server and waits for a Global Input App to connect. This can be explained in a familiar way by comparing it with the client-server model. In the client-server model, a server application connects to the network layer of the server/host and waits for a connection from a client application. Like a client application needs to know the network address of the server application in order to connect, the Global Input App needs to know the necessary information on how to connect to the device application as well. The Global Input App obtains this information from the QR code, which is displayed by the device application. The content of the QR code is produced by the Global Input JavaScript library, and it contains the following information:
             <ul>
               <li>
                 URL of the WebSocket server that the device application has connected to.
@@ -50,7 +50,7 @@ const WebSocketProxyServer = props =>{
                 Session value of the connection that the device application is attached to. The session value uniquely identifies the connection that device application is attached to in the WebSocket server. If we use the client-server analogy, the session value can be comparable to the port number that the server application is listening to.
               </li>
               <li>
-                Encryption key for encrypting the message content. This is generated within the device application on the fly and will be shared only via QR code with the Global Input App. Hence, even the WebSocket server will not be able to decrypt the message content.
+                The Encryption key for encrypting the message content. This is generated within the device application on the fly and will be shared only via QR code with the Global Input App. Hence, even the WebSocket server will not be able to decrypt the message content.
               </li>
               <li>
                 Security Group Key. This value can be different from the default value when the device application wants to allow connection from only those Global Input App instances that are pre-paired with the device application. In this case, this value will be passed to the WebSocket server to filter/authenticate the incoming messages before forwarding them to the device application. In the client-server analogy, this is like API Key value used by API Gateway to authenticate/filter the incoming message before forwarding them to the service application.
