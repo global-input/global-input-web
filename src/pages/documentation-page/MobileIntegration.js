@@ -28,15 +28,13 @@ export default class MobileIntegration extends React.Component{
 
                   <Title>Mobile Integration</Title>
                     <P>
-  Global Input App (GIA) provides applications with end-to-end encrypted communication across devices,
-  using the <Concept>Encrypted QR Code technology</Concept>.
-
-  This secure device-to-device communication allows applications to implement mobile integration
-  that does not require any extra server-side implementations.
+  Global Input App (GIA) is a mobile app with extensions, providing applications with a universal mobile integration solution.
+  It relies on <Concept>Encrypted QR Codes</Concept> to transfer one-time-use encryption keys to secure the device-to-device communication using end-to-end encryption.
 </P>
 <P>
-  It allows applications to specify mobile user interfaces and receive mobile events, thus being able to implement
-  cross-devices business logic within the single application context.
+  Applications do no need extra server-side business services or develop separate mobile apps to implement the mobile integration.
+  They simply need to specify mobile user interfaces and receive and process mobile events within the existing context.
+  
    </P>
    <P>
   For example, if an application running on a device needs to display a button on the connected mobile device,
