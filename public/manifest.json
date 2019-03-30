@@ -1,8 +1,12 @@
 {
-  "short_name": "Global Input App",
-  "name": "Global Input App",
+  "short_name": "Global Input Web",
+  "name": "Global Input Web",
   "description": "A universtal mobile integration solution for web and device applications",
   "icons": [{
+    "src": "globalinput-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  },{
     "src": "globalinput-256.png",
     "sizes": "256x256",
     "type": "image/png"
