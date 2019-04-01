@@ -22,6 +22,10 @@ export const externalsLinks={
         const {A}=props.theme;
         return(<A href={config.links.jsExtension.url}>{props.children}</A>);
       },
+      ReactJSExtension:props=>{
+        const {A}=props.theme;
+        return(<A href={config.links.reactJSExtension.url}>{props.children}</A>);
+      },
 
       SupportedWebsites:props=>{
             const {A}=props.theme;
@@ -72,6 +76,10 @@ export const externalsLinks={
       },
       WatchIntroduction:props=>(<WatchVideoIcon video={config.links.introductionVideo.url} image={images.watchIntroVideo}/>),
       WatchAuthenticationDemo:props=>(<WatchVideoIcon video={config.links.authenticationDemo.url} image={images.watchDemoVideo}/>),
+      ReactJSLink:props=>{
+        const {A}=props.theme;
+        return(<A href='https://reactjs.org/'>{props.children}</A>);
+      },
 
 };
 

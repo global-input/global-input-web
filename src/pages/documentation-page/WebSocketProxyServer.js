@@ -9,7 +9,7 @@ import SubtitleSectionContainer from '../../page-components/section-containers/s
 
 
 
-const {WebSocketServer,JSExtension,ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayAuthenticationDemo}=externalsLinks;
+const {WebSocketServer,JSExtension,ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayAuthenticationDemo,ReactJSExtension}=externalsLinks;
 const {TransferFormData,SecondScreen,ListAllExamples} = examplesLinks;
 
 const images={
@@ -29,6 +29,19 @@ const WebSocketProxyServer = props =>{
               <Title>WebSocket Proxy Server</Title>
         <P>
             <Diagram image={images.websocket}/>
+
+              <P>
+                  The QR code, which is displayed by the <ReactJSExtension {...props}>GIA extension</ReactJSExtension>,
+                  also contains other communication parameters for successfully establishing communication with the device application:
+                  the URL to a <WebSocketServer {...props}>WebSocket proxy server</WebSocketServer>; the API Key required
+                  by the <WebSocketServer {...props}>WebSocket server</WebSocketServer>, the Security Group ID required by the device application itself, and the connection session id.
+
+The WebSocket server is responsible for routing the encrypted messages between devices.
+
+              </P>
+
+
+
             The <WebSocketServer {...props}> GIA WebSocket Server </WebSocketServer> manages connections between <JSExtension {...props}>GIA JS Extension</JSExtension> instances.
             A client application has to include the correct API key value in order to be able to connect to the WebSocket server. Also, the load balancing of the WebSocket connections is implemented via a Rest API call as shown in the following diagram.
 

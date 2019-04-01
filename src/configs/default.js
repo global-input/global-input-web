@@ -58,6 +58,10 @@ export default {
           jsExtension:{
               url:"https://github.com/global-input/global-input-message"
           },
+          reactJSExtension:{
+              url:"https://github.com/global-input/global-input-react"
+          },
+
          tutorialP1:{
               url:"https://www.youtube.com/watch?v=7-vavraSj-s"
          },

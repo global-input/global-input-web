@@ -8,9 +8,9 @@ import {examplesLinks,externalsLinks} from '../../links-components';
 
 
 
-const {ListAllExamples}=examplesLinks;
+const {ListAllExamples,ContentTransfer}=examplesLinks;
 
-const {WebSocketServer,WatchIntroduction}=externalsLinks;
+const {WebSocketServer,WatchIntroduction,ReactJSLink,ReactJSExtension}=externalsLinks;
 
 export default class MobileIntegration extends React.Component{
 
@@ -28,72 +28,75 @@ export default class MobileIntegration extends React.Component{
 
                   <Title>Mobile Integration</Title>
                     <P>
-  Global Input App (GIA) is a mobile app with extensions, providing applications with a universal mobile integration solution.
-  It relies on <Concept>Encrypted QR Codes</Concept> to transfer one-time-use encryption keys to secure the device-to-device communication using end-to-end encryption.
+  Global Input App (GIA) is a mobile app with extensions, providing applications with
+  a universal mobile integration solution.
+  It relies on <Concept>Encrypted QR Codes</Concept> to transfer one-time-use encryption keys for
+  securing the communications using end-to-end encryption.
 </P>
 <P>
-  Applications do no need extra server-side business services or develop separate mobile apps to implement the mobile integration.
-  They simply need to specify mobile user interfaces and receive and process mobile events within the existing context.
-  
-   </P>
-   <P>
-  For example, if an application running on a device needs to display a button on the connected mobile device,
-  the application can simply pass the following to the <Concept>GIA extension</Concept>:
+  Applications do no need extra server-side business services or develop separate mobile apps to
+  implement the mobile integration.
+  They simply need to specify mobile user interfaces and receive and process mobile events within
+  the existing application context.
+</P>
 
-                    <Code>
-                      {`
-        type:  "button",
-        label: "Play",
-        onInput:() => playMovie()
-                      `}
+<P>
+For example, let's that you have written an <ReactJSLink {...this.props}>React</ReactJSLink> application
+that is running on computers, Smart TVs, IoT devices, or on self-service machines, and
+
+you would like to display a text field, labelled as <Concept>Content</Concept>, on the user's mobile screen after the user has connected to your application by scanning the encrypted QR code.
+
+And you would like to receive the typed content when the user is typing on his/her mobile.
+
+</P>
+<P>
+The <ReactJSExtension {...this.props}>GIA extension</ReactJSExtension> allows you to implement the
+requirement by including the following:
+<Code>
+{`
+import {GlobalInputConnect} from 'global-input-react';
+...
+export default props=>{
+    const [content, setContent]=useState("");
+    let mobileConfig={
+      initData:{
+          form:{
+                  title:"Content Transfer",
+                  fields:[{
+                      label:"Concent",
+                      operations:{onInput:()=>play();}
+                  }]
+            }
+      },
+    };
+    return(<GlobalInputConnect mobileConfig={mobileConfig}/>);
+};
+`}
                     </Code>
-As a result of the above configuration data, the button that is displayed on the user's mobile will have the label of <Concept>Play</Concept>,
-and
-the <Concept>playMovie()</Concept> function will be invoked when the user presses the button.
+Try the <ContentTransfer {...this.props}>demo application</ContentTransfer> to see the above code in action.
+The part related to the mobile integration is straightforward to understand.
+The <Concept>GlobalInputConnect</Concept> component is responsible for displaying an encrypted QR code that
+contains a one-time-use encryption key among other communication channel parameters.
+When a user scans the QR Code with his/her Global Input App, it initiates an end-to-end encrypted
+communication across devices and use the configuration you have specified to construct the mobile
+user interface and your application is able to receive mobile events via callbacks.
+
 
 
   </P>
 
-                    <P>
-  If a Smart TV application needs to receive user inputs via mobile to search media programmes,
-  it may pass the following to the extension to achieve this:
-                    </P>
-                    <Code>
-                      {`
-       type:  "text",
-       label: "Search",
-       onInput:value => searchContent(value)
-                      `}
-                    </Code>
-                    <P>
-The above configuration will display a text field on the user's mobile with the label <Concept>Search</Concept>, and the <Concept>searchContent()</Concept> function
-will be invoked with the value in the search field when the user types on the field.
-</P>
 <P>
-Please try out the following example applications, and examine their sources codes on the Github to find out how the applications implement the mobile integration logics:
+The following applications demonstrate a few of the use cases that the GIA mobile integration can provide:
                     </P>
                     <ListAllExamples {...this.props}/>
 
 
                     <P>
 
-The mobile operations are always started with the scanning of an <Concept>Encrypted QR Code</Concept>,
+The mobile operations are always started by a user action scanning an <Concept>Encrypted QR Code</Concept>,
 which contains a <Concept>one-time-use encryption key</Concept> for the end-to-end encryption.
-The encryption key is generated by the application on-the-fly and displayed as part of the QR Code, so it can
-only be obtained via camera instead of via network.
-
-This means that even if the HTTPS communication is compromised due to a compromised
-                      CA (Certificate Authority) and an active MitM (man-in-the-middle) attack, the communication between devices will still be safe.
+The encryption key is generated by the application on-the-fly and available only as part of the QR Code .
                     </P>
-                    <P>
-                        The QR code also contains other communication parameters for successfully establishing communication with the device application:
-                        the URL to a <WebSocketServer {...this.props}>WebSocket proxy server</WebSocketServer>; the API Key required
-                        by the <WebSocketServer {...this.props}>WebSocket server</WebSocketServer>, the Security Group ID required by the device application itself, and the connection session id.
-
- The WebSocket server is responsible for routing the encrypted messages between devices.
-
-                    </P>
-
             </FirstSection>
 
     </React.Fragment>

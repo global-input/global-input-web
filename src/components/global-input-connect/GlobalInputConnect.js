@@ -1,3 +1,9 @@
+import {GlobalInputConnect} from 'global-input-react';
+
+export default GlobalInputConnect;
+/*
+
+
 import React, {Component} from 'react';
 import {createMessageConnector} from "global-input-message";
 import cloneDeep from "lodash/cloneDeep";
@@ -9,7 +15,7 @@ export  default class GlobalInputConnect extends Component {
       CONNECTED:2,
       SENDER_CONNECTED:3,
       SENDER_DISCONNECTED:4
-  }  
+  }
   constructor(props){
     super(props);
     this.state=this.buildConnectingState(this.props);
@@ -217,3 +223,4 @@ export  default class GlobalInputConnect extends Component {
 
 
 }
+*/
