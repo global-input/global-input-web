@@ -83,7 +83,7 @@ The <Concept>GlobalInputConnect</Concept> component is responsible for displayin
 
 <P>
 The following applications demonstrate a few of the use cases that the GIA mobile integration can provide.
-In all of the use cases, the mobile operations are always started with scanning of an <Concept>Encrypted QR Code</Concept>:
+In all of the use cases, the mobile operations are always started with a scanning of an <Concept>Encrypted QR Code</Concept>:
                     </P>
                     <ListAllExamples {...this.props}/>
 
