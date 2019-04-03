@@ -17,7 +17,7 @@ const DocuButton=props=>{
     if(props.isSideMenu){
       return null;
     }
-    return (<DocumentationButton/>);
+    return (<DocumentationButton>Documentation</DocumentationButton>);
 }
 
 const AuthenticationButtons=props=>{
@@ -26,7 +26,7 @@ const AuthenticationButtons=props=>{
     <ButtonsContainer>
         <ChromeExtensionButton/>
         <WordPressButton/>
-        <TransferFormDataButton/>
+        <TransferFormDataButton>Transfer Form</TransferFormDataButton>
         <DocuButton {...props}/>
     </ButtonsContainer>
   )
