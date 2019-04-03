@@ -44,6 +44,10 @@ export default {
                                   id:"chromeExtensionHelp",
                                   path:"/global-input-app/documentation#chromeExtensionHelp"
                               },
+                              mobileIntegration:{
+                                  id:"mobileIntegration",
+                                  path:"/global-input-app/documentation#clientdevice"
+                              },
                             },
 
       },

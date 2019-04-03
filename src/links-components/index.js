@@ -157,14 +157,12 @@ export const pagesLinks={
                 LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
                 GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>),
                 MobileAuthentication:props=>(<WhiteRoundButton to={config.paths.mobileAuthentication.path}>{props.children}</WhiteRoundButton>),
-                TransferFormDataButton:props=>(<BlueRoundButton to={config.paths.examples.transferForm.path}>{props.children}</BlueRoundButton>),
-                AuthenticationButtons:props=>(
-                  <ButtonsContainer>
-                      <ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>
-                      <ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>
-                      <TransparentButton to={config.paths.documentationPage.chromeExtensionHelp.path}>Documentation</TransparentButton>
-                  </ButtonsContainer>
-                ),
+                ChromeExtensionButton:props=>(<ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>),
+                TransferFormDataButton:props=>(<TransparentButton to={config.paths.examples.transferForm.path}>Transfer Form</TransparentButton>),
+                WordPressButton:props=>(<ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>),
+                DocumentationButton:props=>(<TransparentButton to={config.paths.documentationPage.mobileIntegration.path}>Documentation</TransparentButton>)
+
+
           }
 
 

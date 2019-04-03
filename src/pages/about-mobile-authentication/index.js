@@ -10,3 +10,5 @@ const AboutMobileAuthentication=props=>{
         );
 };
 export default AboutMobileAuthentication;
+
+export {MobileAuthenticationAndBeyond};

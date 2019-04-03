@@ -31,14 +31,15 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       width:"100%",
-      backgroundColor:"white"
+      backgroundColor:"white"    
   },
   firstSection:{
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
       alignItems:"center",
-      width:"100%",
+      width:"100%"
+
 
   },
   card:{

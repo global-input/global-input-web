@@ -7,7 +7,7 @@ import PortableEncryptedStorage from './PortableEncryptedStorage';
 
 
 import MobileAuthentication from './MobileAuthentication';
-
+import {MobileAuthenticationAndBeyond}  from '../about-mobile-authentication';
 import SupportTool from './SupportTool';
 
 import OfflineEncryptedCommunication from './OfflineEncryptedCommunication';
@@ -28,10 +28,13 @@ import {SecondScreenExperience} from '../about-second-screen';
 import {MobileTransferFormData} from '../about-secure-content-transfer';
 import {CopyAndPaste} from '../about-copy-and-paste';
 import {MobileFormAutomation} from '../about-form-operation';
+
 import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about-print-scan-qr-codes';
 
+
+
 const items=[MobileIntegration,PortableEncryptedStorage,
-  MobileAuthentication,
+  MobileAuthenticationAndBeyond,
   IntroducingMobileInputAndControl,
     SecondScreenExperience,MobileTransferFormData,CopyAndPaste,
     MobileFormAutomation,
