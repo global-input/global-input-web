@@ -26,6 +26,10 @@ export const externalsLinks={
         const {A}=props.theme;
         return(<A href={config.links.reactJSExtension.url}>{props.children}</A>);
       },
+      ReactJSFiddle:props=>{
+        const {A}=props.theme;
+        return(<A href="https://jsfiddle.net/dilshat/3crLw63v/">{props.children}</A>);
+      },
 
       SupportedWebsites:props=>{
             const {A}=props.theme;

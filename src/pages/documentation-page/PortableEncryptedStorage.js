@@ -33,7 +33,9 @@ export default class PortableEncryptedStorage extends React.Component{
             </P>
             <P>
 Confidential data such as user credentials, personal information, user preferences for personalized experiences etc. can be stored in the mobile storage securely. The connected application can send data to the user for storing for later use. When this happens, the user will be presented with an option of saving the data into the storage. Later when the application requires the data, he/she can select and inspect the selected data content and push it to the application on demand.
+More information on how it works is given in the <Concept>Mobile Authentication</Concept> section.
             </P>
+
 
         </FirstSection>
         </React.Fragment>
