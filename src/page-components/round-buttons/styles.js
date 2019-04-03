@@ -24,7 +24,12 @@ buttonLinks:{
     transparent:{
       color:"#4281BD",
       backgroundColor:"rgba(256, 256, 256, 0)",
-      heigth:30,      
+      height:42,
+      margin:20,
+      boxShadow: '3px 3px 3px #cccccc',
+      border:"1px solid #eeeeee",
+      borderRadius:8,
+      maxWidth:190
     },
 
     selected:{
