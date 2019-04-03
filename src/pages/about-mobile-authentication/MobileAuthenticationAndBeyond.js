@@ -9,7 +9,7 @@ import SimpleContainer from '../../page-components/section-containers/simple-con
 
 
 
-const {ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon}=externalsLinks;
+const {ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon, JSExtension}=externalsLinks;
 const {TransferFormData,SecondScreen} = examplesLinks;
 const {TransferFormDataButton,AuthenticationButtons}  = pagesLinks.buttons;
 
@@ -21,7 +21,7 @@ const MobileAuthenticationAndBeyond = props =>{
 
        <React.Fragment>
 <FirstSection>
-              <Title>Mobile Authentication & Beyond</Title>
+              <Title>Mobile Authentication</Title>
               <SubtitleSectionContainer>
                   <PlayTutorialVideoIcon/>
               </SubtitleSectionContainer>
@@ -29,8 +29,8 @@ const MobileAuthenticationAndBeyond = props =>{
   <NextSection>
               <P>
               Global Input App (GIA) provides applications with a straightforward solution for introducing mobile authentication without adding any extra
-              server-side logic. The existing username and password based authentication can be extended to have mobile authentication just by including an
-              extension library on the client-side, paving the way for a smooth transition to a more sophisticated authentication later on,
+              server-side logic. The existing username and password based authentication can be extended to have mobile authentication just by including
+              an <JSExtension {...props}>extension library</JSExtension> on the client-side, paving the way for a smooth transition to a more sophisticated authentication later on,
               for example, the Key Pair authentication (WebAuthn, SQRL etc.).
               </P>
 
