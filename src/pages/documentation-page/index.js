@@ -6,7 +6,7 @@ import MobileIntegration from './MobileIntegration';
 import PortableEncryptedStorage from './PortableEncryptedStorage';
 
 
-import MobileAuthentication from './MobileAuthentication';
+
 import {MobileAuthenticationAndBeyond}  from '../about-mobile-authentication';
 import SupportTool from './SupportTool';
 
