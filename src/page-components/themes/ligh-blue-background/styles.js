@@ -31,7 +31,7 @@ export const styles={
       justifyContent:"flex-start",
       alignItems:"center",
       width:"100%",
-      backgroundColor:"white"    
+      backgroundColor:"white"
   },
   firstSection:{
       display:"flex",
@@ -104,14 +104,17 @@ export const styles={
         marginBottom:10
       },
       codeContainer:{
-          display:"flex",
-          flexDirection:"row",
-          justifyContent:"center",
-          width:"100%"
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"center",
+        width:"80%",
+        paddingLeft:10
       },
       code:{
-            backgroundColor:'rgba(169,200,230,0.1)',
-            overflow:'scroll'
+        backgroundColor:'rgba(169,200,230,0.1)',
+        overflow:'scroll',
+        width:"100%",
+        color:"#5291CD",
       },
 
       concept:{

@@ -245,13 +245,15 @@ export const styles={
           display:"flex",
           flexDirection:"row",
           justifyContent:"center",
-          width:"80%"
+          width:"80%",
+          paddingLeft:10
       },
       code:{
             backgroundColor:'rgba(169,200,230,0.1)',
             overflow:'scroll',
             width:"100%",
-            color:"#5291CD"
+            color:"#5291CD",
+            paddingLeft:10
       },
 
       concept:{

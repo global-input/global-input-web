@@ -1,8 +1,31 @@
 import React from 'react';
 
-import {externalsLinks,examplesLinks} from '../../links-components';
+import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
+import SimpleContainer from '../../page-components/section-containers/simple-container';
+import ButtonsContainer from '../../page-components/buttons-container';
 const {AuthenticationWhitePaper}=externalsLinks;
 const {TransferFormData,SecondScreen,SecondScreenList} = examplesLinks;
+
+const {DocumentationButton,SecondScreenButton}  = pagesLinks.buttons;
+
+
+const DocuButton=props=>{
+    if(props.isSideMenu){
+      return null;
+    }
+    return (<DocumentationButton>Documentation</DocumentationButton>);
+}
+const FooterButtons=props=>{
+
+  return(
+    <ButtonsContainer>
+        <SecondScreenButton>Example</SecondScreenButton>
+        <DocuButton {...props}/>
+    </ButtonsContainer>
+  )
+
+}
+
 
 
 const SecondScreenExperience = props =>{
@@ -17,40 +40,25 @@ const SecondScreenExperience = props =>{
         </FirstSection>
         <NextSection>
               <P>
-  When a smart TV application is playing a video, it is always nice to have an option of second screen user interactions
-  on the clips that are being played on the big screen.
-  The second screen devices can be any handheld devices such as mobiles and tablets. The interactions include presenting users with information
-  on characters, objects, places that the users are watching on the big screen. The applications can even choose to implement logic to allow users
-  to control storylines by playing different sets of video based on user selections.
+  When a smart TV application is playing a video, it is always nice to have an option of a second screen feature, allowing users to use their mobile to interact with the applications. The second screen devices can be any handheld devices such as mobiles or tablets, and the interactions can be anything related to the clips that the application is currently playing.   For example, it can be information about the characters, scenes that are shown on the screen, or features allowing users to post screens shots to social media platforms, or simple media controller,  or sophisticated control like controlling the storylines by selecting different sets of clips in the next breakpoint.
               </P>
               <P>
-GIA provides media applications with a simple solution for implementing second screen experience, by introducing mobile integration, allowing a media application to define
-second screen logic within its context without implementing extra server-side logic or a separate mobile app logic.
-              </P>
-<P>
-For example, for displaying a button on user's mobile and calling <Concept> playMovie()</Concept> function on the user interaction, the following JSON data can be passed to
-the extension library:
-</P>
-<Code>
-{`
-type:  "button",
-label: "Play",
-onInput:value => playMovie()
-`}
-</Code>
-<P>
-And then more sophisticated logic and control can be built iteratively.
+Global Input App (GIA) provides media applications with a simple mobile integration solution, which allows applications to implement screen experience without implementing extra server-side logic or separate mobile apps.
 </P>
 
-<P>
-  You may have look at the following example media application, and check out its source codes on the GitHub:
-</P>
-  <SecondScreenList {...props}/>
-<P>
-The mobile device integration leads to a unified solution to many other use cases such as
-Mobile Authentication, Subscription, Account Update, and Mobile Player Control, Programme search & browse etc.
-</P>
+
+
 </NextSection>
+
+
+<FirstSection>
+  <SimpleContainer>
+        <FooterButtons {...props}/>
+  </SimpleContainer>
+
+</FirstSection>
+
+
         </React.Fragment>
 );
 
