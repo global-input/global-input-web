@@ -140,28 +140,30 @@ const [password, setPassword]=useState("");
 
 let mobileConfig={
 initData:{
-form:{
-  title:"Sign In",
-  id:"###username###@mycompany.com",
-  fields:[{
-    label:"Username",
-    operations:{
-      onInput:username=>setUsername(username)
-    }
-  },{
-    label:"Password",
-    operations:{
-      onInput:password=>setPassword(password)
-      }
-},{
-    label:"Sign In",
-    type:"button",
-    operations:{
-      onInput:()=>signIn()
-    }
-}]
-}
-},
+  form:{
+    title:"Sign In",
+    id:"###username###@mycompany.com",
+    fields:[{
+        label:"Username",
+        id:"username",
+        operations:{
+          onInput:username=>setUsername(username)
+        }
+    },{
+        label:"Password",
+        id:"password",
+        operations:{
+          onInput:password=>setPassword(password)
+        }
+    },{
+        label:"Sign In",
+        type:"button",
+        operations:{
+          onInput:()=>signIn()
+        }
+     }]
+   }
+  }
 };
 ...
 return (<GlobalInputConnect mobileConfig={mobileConfig}/>);

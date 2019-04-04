@@ -25,7 +25,7 @@ import {IntroducingMobileInputAndControl} from '../about-mobile-input-control';
 
 import {SecondScreenExperience} from '../about-second-screen';
 
-import {MobileTransferFormData} from '../about-secure-content-transfer';
+
 import {CopyAndPaste} from '../about-copy-and-paste';
 import {PortablePersonalStorage} from '../about-portable-personal-storage';
 
@@ -36,7 +36,7 @@ import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about
 const items=[MobileIntegration,
   MobileAuthenticationAndBeyond,
   IntroducingMobileInputAndControl,
-    SecondScreenExperience,PortablePersonalStorage,MobileTransferFormData,CopyAndPaste,
+    SecondScreenExperience,PortablePersonalStorage,CopyAndPaste,
 
 
 ContentEncryption,ExportEncryptionKeys,ExportAppSettings,

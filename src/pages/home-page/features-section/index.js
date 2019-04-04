@@ -13,6 +13,12 @@ import FeatureRow from "../../../page-components/section-containers/feature-row"
 import {config} from '../../../configs';
 
 const textContent={
+      mobileAuthentication:{
+        title:"Mobile Authentication",
+        content:"A client side solution for mobile authentication, allowing users to sign in on shared devices in public view without compromising passwords.",
+        buttons:[{path:config.paths.examples.mediaPlayer.path, label:"TRY NOW"},{path:config.paths.secondScreen.path, label:"Read More"}]
+
+      },
       secondScreenInput:{
             title:"Second Screen Experience",
             content:"A simple solution for enabling big screen device applications to have second screen experience.",
