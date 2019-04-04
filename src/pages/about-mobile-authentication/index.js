@@ -3,6 +3,9 @@ import LighBlueBackground from '../../page-components/themes/ligh-blue-backgroun
 import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
 
 const AboutMobileAuthentication=props=>{
+        
+
+
         return(
           <LighBlueBackground.Page>
               <MobileAuthenticationAndBeyond theme={LighBlueBackground}/>

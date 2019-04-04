@@ -43,7 +43,7 @@ const App=props=>(
             <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication}/>
             <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl}/>
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
-            <Route path={config.paths.formOperation.path} component={PortablePersonalStorage}/>
+            <Route path={config.paths.portablePersonalStorage.path} component={PortablePersonalStorage}/>
             <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
             <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
             <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>

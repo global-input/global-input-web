@@ -15,9 +15,8 @@ import {config} from '../../../configs';
 const textContent={
       mobileAuthentication:{
         title:"Mobile Authentication",
-        content:"A client side solution for mobile authentication, allowing users to sign in on shared devices in public view without compromising passwords.",
-        buttons:[{path:config.paths.examples.mediaPlayer.path, label:"TRY NOW"},{path:config.paths.secondScreen.path, label:"Read More"}]
-
+        content:"A client-side solution for mobile authentication, allowing users to sign in on shared devices in public view without compromising passwords to prying eyes and hidden cameras.",
+        buttons:[{path:config.paths.examples.transferForm.path, label:"TRY NOW"},{path:config.paths.mobileAuthentication.path, label:"Read More"}]
       },
       secondScreenInput:{
             title:"Second Screen Experience",
@@ -30,16 +29,12 @@ const textContent={
             content:"Enable web and device applications to have mobile input and control functionality without the need to develop separate mobile apps.",
             buttons:[{path:config.paths.examples.gameControl.path, label:"TRY NOW"},{path:config.paths.mobileControl.path, label:"Read More"}]
       },
-      formoperation:{
+      portablePersonalStorage:{
             title:"Portable Personal Storage",
             content:"Store personal data in mobile devices securely with the ability to push the data on demand to applications. A Solution to allow users to have complete control over their data.",
-            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.formOperation.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.portablePersonalStorage.path, label:"Read More"}]
       },
-      secureTransfer:{
-            title:"Form Data Sharing & Editing",
-            content:"Form Data Sharing and Editing Across Multiple devices. This covers not only mobile authentication, but also covers an useful IT support tool.",
-            buttons:[{path:config.paths.examples.transferForm.path, label:"TRY NOW"},{path:config.paths.secureTransfer.path, label:"Read More"}]
-      },
+
       copyAndPaste:{
             title:"Copy And Paste Securely Across Devices",
             content:"Copy and paste securely a text content from your mobile to any computer or vice versa.Transfer content between applications using end-to-end encryption.",
@@ -63,8 +58,8 @@ export default class FeaturesSection extends React.Component{
               </FeatureRow>
 
               <FeatureRow>
-                  <TwoButtonsCard data={textContent.formoperation}/>
-                  <TwoButtonsCard data={textContent.secureTransfer}/>
+                  <TwoButtonsCard data={textContent.portablePersonalStorage}/>
+                  <TwoButtonsCard data={textContent.mobileAuthentication}/>
               </FeatureRow>
 
               <FeatureRow>

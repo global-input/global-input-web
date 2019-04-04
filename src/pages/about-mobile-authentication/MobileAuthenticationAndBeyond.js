@@ -53,6 +53,8 @@ const WatchVideo=props=>{
 const MobileAuthenticationAndBeyond = props =>{
 
         const {P, Title, Code,Concept, FirstSection,NextSection}=props.theme;
+        
+
 
         return(
 
