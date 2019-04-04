@@ -3,7 +3,7 @@ import SideMenuPage from '../../page-components/themes/side-menu-page';
 
 import MobileIntegration from './MobileIntegration';
 
-import PortableEncryptedStorage from './PortableEncryptedStorage';
+
 
 
 
@@ -27,17 +27,17 @@ import {SecondScreenExperience} from '../about-second-screen';
 
 import {MobileTransferFormData} from '../about-secure-content-transfer';
 import {CopyAndPaste} from '../about-copy-and-paste';
-import {MobileFormAutomation} from '../about-form-operation';
+import {PortablePersonalStorage} from '../about-portable-personal-storage';
 
 import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about-print-scan-qr-codes';
 
 
 
-const items=[MobileIntegration,PortableEncryptedStorage,
+const items=[MobileIntegration,
   MobileAuthenticationAndBeyond,
   IntroducingMobileInputAndControl,
-    SecondScreenExperience,MobileTransferFormData,CopyAndPaste,
-    MobileFormAutomation,
+    SecondScreenExperience,PortablePersonalStorage,MobileTransferFormData,CopyAndPaste,
+
 
 ContentEncryption,ExportEncryptionKeys,ExportAppSettings,
 OfflineEncryptedCommunication,

@@ -27,7 +27,7 @@ export default {
               transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"}
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
-          formOperation:{path:"/global-input-app/about-form-operation",linkText:"Form Operation"},
+          formOperation:{path:"/global-input-app/about-portable-personal-storage",linkText:"Form Operation"},
           getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
           home:{path:"/",linkText:"Home"},
           learnMore:{path:"/global-input-app/documentation",linkText:"Learn More"},

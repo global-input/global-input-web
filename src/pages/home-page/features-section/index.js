@@ -21,12 +21,12 @@ const textContent={
 
       mobileControl:{
             title:"Mobile Input & Control",
-            content:"Enable IoT and web applications to have mobile input and control functionality without the need to develop separate mobile app.",
+            content:"Enable web and device applications to have mobile input and control functionality without the need to develop separate mobile apps.",
             buttons:[{path:config.paths.examples.gameControl.path, label:"TRY NOW"},{path:config.paths.mobileControl.path, label:"Read More"}]
       },
       formoperation:{
-            title:"Mobile Form Automations",
-            content:"Automate form operations using the data stored in the encrypted data storage provided by Global Input App. Allowing users have complete control over their personal data.",
+            title:"Portable Personal Storage",
+            content:"Store personal data in mobile devices securely with the ability to push the data on demand to applications. A Solution to allow users to have complete control over their data.",
             buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.formOperation.path, label:"Read More"}]
       },
       secureTransfer:{

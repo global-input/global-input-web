@@ -15,7 +15,7 @@ import AboutMobileAuthentication from "./pages/about-mobile-authentication";
 import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
 
-import AboutFormOperation from './pages/about-form-operation';
+import PortablePersonalStorage from './pages/about-portable-personal-storage';
 import AboutMobileTransferFormData from "./pages/about-secure-content-transfer";
 import AboutPrintScanQRCodes from './pages/about-print-scan-qr-codes';
 import AboutCopyAndPaste from './pages/about-copy-and-paste';
@@ -43,7 +43,7 @@ const App=props=>(
             <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication}/>
             <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl}/>
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
-            <Route path={config.paths.formOperation.path} component={AboutFormOperation}/>
+            <Route path={config.paths.formOperation.path} component={PortablePersonalStorage}/>
             <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
             <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
             <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
