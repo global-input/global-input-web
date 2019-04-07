@@ -7,7 +7,7 @@ import React from 'react';
 import {externalsLinks,examplesLinks} from '../../links-components';
 const {ContentTransferList} = examplesLinks;
 
-export default class CopyAndPaste extends React.Component{
+export default class MobileTools extends React.Component{
 
 
 
@@ -19,7 +19,7 @@ export default class CopyAndPaste extends React.Component{
 
        <React.Fragment>
               <FirstSection>
-              <Title>Copy & Paste Across Devices</Title>
+              <Title>Content Transfer Tools</Title>
               </FirstSection>
               <NextSection>
               <P>
@@ -44,8 +44,7 @@ Try out the following the simple web application to copy and paste content from 
   }
 }
 
-CopyAndPaste.menu={
-id:"copyAndPaste",
-label:"Copy & Paste Across Devices"
-
+MobileTools.menu={
+  id:"contentTransferTools",
+  label:"Content Transfer Tools"
 }

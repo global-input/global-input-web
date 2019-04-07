@@ -36,8 +36,8 @@ const textContent={
       },
 
       copyAndPaste:{
-            title:"Copy And Paste Securely Across Devices",
-            content:"Copy and paste securely a text content from your mobile to any computer or vice versa.Transfer content between applications using end-to-end encryption.",
+            title:"Content Transfer Tools",
+            content:"Transfer content across devices without using network driver or cloud services. Device-to-Device transfer secured with end-to-end ecnryption.",
             buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.copyAndPaste.path, label:"Read More"}]
       },
       printQRCodes:{

@@ -16,9 +16,8 @@ import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
 
 import PortablePersonalStorage from './pages/about-portable-personal-storage';
-import AboutMobileTransferFormData from "./pages/about-secure-content-transfer";
 import AboutPrintScanQRCodes from './pages/about-print-scan-qr-codes';
-import AboutCopyAndPaste from './pages/about-copy-and-paste';
+import AboutMobileTools from './pages/about-mobile-tools';
 import DocumentationPage from './pages/documentation-page';
 
 
@@ -44,9 +43,9 @@ const App=props=>(
             <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl}/>
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
             <Route path={config.paths.portablePersonalStorage.path} component={PortablePersonalStorage}/>
-            <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
+            <Route path={config.paths.secureTransfer.path} component={PortablePersonalStorage}/>
             <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
-            <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
+            <Route path={config.paths.copyAndPaste.path} component={AboutMobileTools}/>
             <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
 
             <Route  path={config.paths.examples.contentTransfer.path}  component={ContentTransferScreen}/>

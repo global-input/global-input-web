@@ -26,7 +26,7 @@ import {IntroducingMobileInputAndControl} from '../about-mobile-input-control';
 import {SecondScreenExperience} from '../about-second-screen';
 
 
-import {CopyAndPaste} from '../about-copy-and-paste';
+import {MobileTools} from '../about-mobile-tools';
 import {PortablePersonalStorage} from '../about-portable-personal-storage';
 
 import {ContentEncryption} from '../about-print-scan-qr-codes';
@@ -38,7 +38,7 @@ const items=[MobileIntegration,
   IntroducingMobileInputAndControl,
     SecondScreenExperience,PortablePersonalStorage,
     ContentEncryption,
-    CopyAndPaste,
+    MobileTools,
 
 
 
