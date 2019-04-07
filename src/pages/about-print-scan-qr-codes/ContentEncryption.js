@@ -1,6 +1,33 @@
 import React from 'react';
-import {externalsLinks,examplesLinks} from '../../links-components';
+import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
+import SimpleContainer from '../../page-components/section-containers/simple-container';
+import ButtonsContainer from '../../page-components/buttons-container';
+
+
+
+
 const {QrcodePrinting,QRCodePrintingListExample} = examplesLinks;
+
+const {DocumentationButton,QRCodePrintingAppButton}  = pagesLinks.buttons;
+
+
+const DocuButton=props=>{
+    if(props.isSideMenu){
+      return null;
+    }
+    return (<DocumentationButton>Documentation</DocumentationButton>);
+}
+const FooterButtons=props=>{
+
+  return(
+    <ButtonsContainer>
+        <QRCodePrintingAppButton>Example</QRCodePrintingAppButton>
+        <DocuButton {...props}/>
+    </ButtonsContainer>
+  )
+
+}
+
 
 const ContentEncryption = props=>{
         const {P, Title,FirstSection,Concept, Code,NextSection}=props.theme;
@@ -70,29 +97,21 @@ const ContentEncryption = props=>{
 
       You can also export your Global Input App settings and print it as QR code using the <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting>.
       This is useful when some business application prefers to restrict the Global Input App users to those only that has paired with them.
-
     </P>
 
-
-
-    <P>
-
-    </P>
-
-
-               <QRCodePrintingListExample {...props}/>
                </NextSection>
+               <FirstSection>
+                 <FirstSection>
+                       <SimpleContainer>
+                             <FooterButtons {...props}/>
+                       </SimpleContainer>
+                 </FirstSection>
+
+               </FirstSection>
 
 
-           <P>
 
 
-
-           </P>
-
-           <P>
-
-           </P>
 
 
 

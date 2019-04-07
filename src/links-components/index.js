@@ -163,7 +163,8 @@ export const pagesLinks={
                 DocumentationButton:props=>(<TransparentButton to={config.paths.documentationPage.mobileIntegration.path}>{props.children}</TransparentButton>),
                 MobileGameControlButton:props=>(<TransparentButton to={config.paths.examples.gameControl.path}>{props.children}</TransparentButton>),
                 SecondScreenButton:props=>(<TransparentButton to={config.paths.examples.mediaPlayer.path}>{props.children}</TransparentButton>),
-                SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>)
+                SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>),
+                QRCodePrintingAppButton:props=>(<TransparentButton to={config.paths.examples.qrPrinting.path}>{props.children}</TransparentButton>)
 
 
 

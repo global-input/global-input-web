@@ -29,17 +29,19 @@ import {SecondScreenExperience} from '../about-second-screen';
 import {CopyAndPaste} from '../about-copy-and-paste';
 import {PortablePersonalStorage} from '../about-portable-personal-storage';
 
-import {ContentEncryption,ExportEncryptionKeys,ExportAppSettings} from '../about-print-scan-qr-codes';
+import {ContentEncryption} from '../about-print-scan-qr-codes';
 
 
 
 const items=[MobileIntegration,
   MobileAuthenticationAndBeyond,
   IntroducingMobileInputAndControl,
-    SecondScreenExperience,PortablePersonalStorage,CopyAndPaste,
+    SecondScreenExperience,PortablePersonalStorage,
+    ContentEncryption,
+    CopyAndPaste,
 
 
-ContentEncryption,ExportEncryptionKeys,ExportAppSettings,
+
 OfflineEncryptedCommunication,
   SupportTool,
   UserDataProtection,
