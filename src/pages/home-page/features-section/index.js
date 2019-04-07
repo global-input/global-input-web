@@ -63,8 +63,8 @@ export default class FeaturesSection extends React.Component{
               </FeatureRow>
 
               <FeatureRow>
-                        <TwoButtonsCard data={textContent.copyAndPaste}/>
                         <TwoButtonsCard data={textContent.printQRCodes}/>
+                        <TwoButtonsCard data={textContent.copyAndPaste}/>
               </FeatureRow>
             </FeaturesContainer>
 

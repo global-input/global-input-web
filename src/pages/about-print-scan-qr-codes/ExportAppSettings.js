@@ -18,7 +18,7 @@ const ExportAppSettings=props => {
         </FirstSection>
            <NextSection>
               <P>
-Global Input App scans an Encrypted QR code being displayed by an application to obtain a one-time-use encryption key for end-to-end encryption
+Global Input App scans an Encrypted QR code being displayed by an application to obtain a ephemeral(one-time-use) encryption key for end-to-end encryption
 and other communication channel parameters. This allows the Global Input App to securely connects
 to the application and operates on it.
 </P>

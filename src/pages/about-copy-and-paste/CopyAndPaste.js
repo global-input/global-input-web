@@ -30,7 +30,7 @@ The connection is secured with the end-to-end enryption and initiated with the s
 This is useful when you are using shared devices/computers in a public environment that you are not in control. In this case, you may need to use your trusted
 mobile device as the bucket for transferring content between devices.  Global Input App allows you to transfer securely content from/to your mobile device without
 leaving any footprints on cloud services or cloud storages.
-Because of the end-to-end encryption with a one-time-use encryption key, you can assume that it is like you have connected
+Because of the end-to-end encryption with a ephemeral(one-time-use) encryption key, you can assume that it is like you have connected
 your mobile device to the shared computer with a USB cable, allowing you to copy and paste operation between your mobile and the computer.
         </P>
         <P>

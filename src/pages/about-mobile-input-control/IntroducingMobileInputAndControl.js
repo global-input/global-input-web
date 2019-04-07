@@ -52,7 +52,7 @@ Global Input App (GIA) provides device and web applications with a simple, unifi
 introducing mobile input and mobile control functionalities, leading to many useful use-cases.
 It is especially useful for devices that have no input or limited input components such as Smart TVs, or IoT devices.
 It also enhances security for users who use shared devices in public places when the applications require personal data to operate.
-The communications between devices are secured with end-to-end encryption that uses a one-time-use encryption key, which
+The communications between devices are secured with end-to-end encryption that uses a ephemeral(one-time-use) encryption key, which
 is obtained from the Encrypted QR code.
 
 </P>
