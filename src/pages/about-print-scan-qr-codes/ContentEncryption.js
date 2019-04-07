@@ -57,10 +57,22 @@ const ContentEncryption = props=>{
 
     <P>
       However, it is also important to backup your encryption keys in your Global Input App, so that you can recover them
-      if your phone is lost or stolen. You can backup your encryption keys in the form of password-encrypted QR Codes 
+      when your phone is lost or stolen.
+      The <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting> allows you backup your encryption keys in
+      the form of Encrypted QR Codes. You can import the encryption keys just by scanning them and provide the password when prompted.
+      You can also export the encryption keys directly to another phone via encrypted QR Codes.
 
+      You can select and export encryption keys on the Keys tab on your Global Input App. When you are exporting an encryption key,
+      you will be asked to provide a password. The app uses the password that you have provided to build a new encryption key
+      for encrypting the encryption key being exported.
+
+      You can scan the encrypted QR Code with another mobile to import the key into your new phone. Or you can share an encryption key with your colleges or your friends so that later on you can share secret messages over Encrypted QR codes.
+
+      You can also export your Global Input App settings and print it as QR code using the <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting>.
+      This is useful when some business application prefers to restrict the Global Input App users to those only that has paired with them.
 
     </P>
+
 
 
     <P>
