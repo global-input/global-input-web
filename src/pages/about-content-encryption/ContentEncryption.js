@@ -6,7 +6,7 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 
 
-const {QrcodePrinting,QRCodePrintingListExample} = examplesLinks;
+const {QrcodePrinting} = examplesLinks;
 
 const {DocumentationButton,QRCodePrintingAppButton}  = pagesLinks.buttons;
 
@@ -74,7 +74,7 @@ const ContentEncryption = props=>{
     to print Encrypted QR Codes using the encrypted content from GIA.
     </P>
     <P>
-    You may find the Encrypted QR codes handy in many situations because of its convenience:scan a Encrypted QR code and the message will be decrypted
+    You may find the Encrypted QR codes handy in many situations because of its convenience: scan an Encrypted QR code and the message will be decrypted
     and displayed immediately on your mobile screen and you can copy it into any applications on your mobile, provided that your GIA contains the same
     encryption key that was used to encrypt the message originally.
 

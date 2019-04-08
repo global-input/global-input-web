@@ -7,9 +7,9 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 const {ReactJSExtension,ReactJSLink}=externalsLinks;
 
-const {SendMessageListExample} = examplesLinks;
+const {SendMessageExample} = examplesLinks;
 const {DocumentationButton,SendMessageAppButton}  = pagesLinks.buttons;
-
+const {AboutContentEncryption} =pagesLinks.links;
 const DocuButton=props=>{
     if(props.isSideMenu){
       return null;
@@ -47,10 +47,14 @@ const PortablePersonalStorage=props=>{
            This mechanism protects the data in the case of somebody having physically got hold of the device, and having bypassed the device security such as biometric authentication or device password authentication.
           </P>
           <P>
-          To minimize the reliance on the system security, GIA ensures that the data will always stay encrypted until to the point of actual use and the decrypted data will be discarded immediately after the use.
-Hence, confidential data such as user credentials, personal information, user preferences for personalized experiences etc. can be safely stored in
-the mobile app's storage with the ability of pushing them to the application on demand.
-A connected application can send personalized data to the GIA, which presents the user with an option of saving it for later use.
+      To minimize the reliance on the system security, GIA ensures that the data will always stay encrypted until to the point of
+      actual use and the decrypted data will be discarded when it is not needed. Hence, confidential data such as user credentials,
+      personal information, user preferences for personalized experiences etc. can be safely stored in the mobile app's storage with the ability
+      to push them to the application on demand. A connected application can send personalized data to the GIA, which presents the user with an
+      option of saving it for later use. For example, a media application can request the user preference data related to viewing habit
+      as part of the login process so that the user can push the data to the application to enjoy
+      the personalized user experience. The application re-calculates the parameters on each session and asks users to save them back into
+      the portable personal storage. This may make some users happy if they prefer to have complete control over their data about their viewing habits.
           </P>
 
           <P>
@@ -112,9 +116,21 @@ let mobileConfig={
 
 <NextSection>
 <P>
-   Some applications may require user data in the current session only, and no need to persist it in its storage,
-   saving itself worrying about storing and managing data securely. In this case, it can opt for using the user's portable personal storage.
-   One example of such applications is a Simple Message Sender Form Component, which uses the personal data to construct the messages being sent.
+  With the ever-increasing number of security threats to the business world,
+  customers are increasingly worried about the safety of their data.
+  Reflecting this reality, applications can consider the options of allowing users to have more control over their data.
+  For example, <AboutContentEncryption {...props}>the GIA encryption strategy</AboutContentEncryption> allows users to have
+  control over the encryption of their data and enhances the accountability of the decryption process.
+  Another solution is not to store sensitive customer data, instead,
+  delegate the responsibility to a third party IAM service provider.
+  GIA offers another approach in this regard: applications can request personal data every time when needed instead of persisting them in their databases.
+  In this approach, users manage their own data in the GIA's portable personal storage,
+  push them on-demand to the applications when requested, thus giving the users complete control over their data,
+  simplifying the compliance to the personal data regulations.
+  This is useful when some applications may require user data in the current session only,
+  and no need to persist it in its storage.
+  One such example is the <SendMessageExample {...props}> Message Sender Application</SendMessageExample>, which uses personal data only
+  constructing the current messages being sent.
 </P>
 
 </NextSection>

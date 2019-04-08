@@ -105,50 +105,20 @@ export const examplesLinks={
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.qrPrinting.path}>{props.children}</Link>);
       },
-
+      SendMessageExample:props=>{
+        const {Link}=props.theme;
+        return(<Link to={config.paths.examples.sendMessage.path}>{props.children}</Link>);
+      },
       listAllExamples:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
           {path:config.paths.examples.gameControl.path, linkText:"Game Control Example"},
           {path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
           {path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"},
           {path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"},
           {path:config.paths.examples.qrPrinting.path, linkText:"QR Code Printing Application"}],
-      ListAllExamples:props=>{
+        ListAllExamples:props=>{
           const {ListLinks}=props.theme;
           return(<ListLinks items={examplesLinks.listAllExamples}/>)
         },
-        listForContentTransferExample:[{path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"}],
-        ContentTransferList:props=>{
-          const {ListLinks}=props.theme;
-          return(<ListLinks items={examplesLinks.listForContentTransferExample}/>);
-        },
-        listForMediaPlayerExample:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"}],
-        SecondScreenList:props=>{
-          const {ListLinks}=props.theme;
-          return(<ListLinks items={examplesLinks.listForMediaPlayerExample}/>);
-        },
-        listForgameControlExample:[{path:config.paths.examples.gameControl.path, linkText:"Mobile Game Control Example"}],
-        MobileGameControlExample:props=>{
-                    const {ListLinks}=props.theme;
-                    return(<ListLinks items={examplesLinks.listForgameControlExample}/>);
-        },
-        listForSendMessage:[{path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"}],
-        SendMessageListExample:props=>{
-                    const {ListLinks}=props.theme;
-                    return(<ListLinks items={examplesLinks.listForSendMessage}/>);
-        },
-        listTransferFormDataExamples:[{path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"}],
-        TransferFormDataListExample:props=>{
-                  const {ListLinks}=props.theme;
-                  return(<ListLinks items={examplesLinks.listTransferFormDataExamples}/>);
-        },
-        listQRPrinting:[{path:config.paths.examples.qrPrinting.path, linkText:"QR Code Printing Application"}],
-        QRCodePrintingListExample:props=>{
-                  const {ListLinks}=props.theme;
-                  return(<ListLinks items={examplesLinks.listQRPrinting}/>);
-        },
-
-
-
 };
 
 
@@ -166,12 +136,15 @@ export const pagesLinks={
                 SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>),
                 QRCodePrintingAppButton:props=>(<TransparentButton to={config.paths.examples.qrPrinting.path}>{props.children}</TransparentButton>),
                 CopyContentAppButton:props=>(<TransparentButton to={config.paths.examples.contentTransfer.path}>{props.children}</TransparentButton>),
-
-
-
-
-
+          },
+          links:{
+                AboutContentEncryption:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.aboutContentEncryption.path}>{props.children}</Link>);
+                }
           }
+
+
 
 
 

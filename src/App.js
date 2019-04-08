@@ -16,7 +16,7 @@ import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
 
 import PortablePersonalStorage from './pages/about-portable-personal-storage';
-import AboutPrintScanQRCodes from './pages/about-print-scan-qr-codes';
+import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileTools from './pages/about-mobile-tools';
 import DocumentationPage from './pages/documentation-page';
 
@@ -44,7 +44,7 @@ const App=props=>(
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
             <Route path={config.paths.portablePersonalStorage.path} component={PortablePersonalStorage}/>
             <Route path={config.paths.secureTransfer.path} component={PortablePersonalStorage}/>
-            <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
+            <Route path={config.paths.aboutContentEncryption.path} component={AboutContentEncryption}/>
             <Route path={config.paths.copyAndPaste.path} component={AboutMobileTools}/>
             <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
 

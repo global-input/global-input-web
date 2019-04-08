@@ -43,7 +43,7 @@ const textContent={
       printQRCodes:{
             title:"Mobile Content Encryption",
             content:"Encrypting and signing content within mobile devices and push the encrypted and signed content to applications. Encryption keys stays encrypted within mobile apps.",
-            buttons:[{path:config.paths.examples.qrPrinting.path, label:"TRY NOW"},{path:config.paths.printScanQRCodes.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.qrPrinting.path, label:"TRY NOW"},{path:config.paths.aboutContentEncryption.path, label:"Read More"}]
       }
 }
 export default class FeaturesSection extends React.Component{

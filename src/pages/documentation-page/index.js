@@ -10,7 +10,7 @@ import MobileIntegration from './MobileIntegration';
 import {MobileAuthenticationAndBeyond}  from '../about-mobile-authentication';
 import SupportTool from './SupportTool';
 
-import OfflineEncryptedCommunication from './OfflineEncryptedCommunication';
+
 
 
 import UserDataProtection from './UserDataProtection';
@@ -29,7 +29,7 @@ import {SecondScreenExperience} from '../about-second-screen';
 import {MobileTools} from '../about-mobile-tools';
 import {PortablePersonalStorage} from '../about-portable-personal-storage';
 
-import {ContentEncryption} from '../about-print-scan-qr-codes';
+import {ContentEncryption} from '../about-content-encryption';
 
 
 
@@ -42,7 +42,7 @@ const items=[MobileIntegration,
 
 
 
-OfflineEncryptedCommunication,
+
   SupportTool,
   UserDataProtection,
   GlobalInputPlatform, GlobalInputJSExtension,WebSocketProxyServer];

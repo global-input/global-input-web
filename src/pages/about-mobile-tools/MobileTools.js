@@ -5,7 +5,7 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
 
-const {TransferFormData,ContentTransfer} = examplesLinks;
+const {TransferFormData,ContentTransfer,QrcodePrinting} = examplesLinks;
 
 const {DocumentationButton,CopyContentAppButton,TransferFormDataButton}  = pagesLinks.buttons;
 
@@ -30,7 +30,7 @@ const FooterButtons=props=>{
 
 const MobileTools=props=>{
 
-    const {P, Title,ListLinks,FirstSection,NextSection}=props.theme;
+    const {P, Title,ListLinks,FirstSection,NextSection,Concept}=props.theme;
 
         return(
 
@@ -45,13 +45,38 @@ const MobileTools=props=>{
               to copy and paste a text content from your mobile to a computer or vice versa.
               And the <TransferFormData  {...props}>Transfer Form Data Application</TransferFormData> allows you to compose a form and
               then use it to transfer some confidential information to another person who uses GIA to connect to your form by scanning an Encrypted QR Code.
-
 </P>
 <P>
-    This may come handy if you are working in a support team and need to send credential data to a user.  This is better than sending credential information via password-protected zip file, because if you do you may not have control over how the user secures the information after he/she has unzipped the file: the user may write the password on a piece of paper or leave it in unsecured storage etc, or try to memorize it without unsuccessfully. Global Input App, on the other hand, will ask the user to confirm to save the data into the secured storage at the end of the session.  This means that you can create a completely random password for the user, and the user does not need to worry about memorizing it. Not only that, since a user can type the information on the form you can receive it on your end, the user detail can be composed collaboratively between a user and yourself.
+    <TransferFormData  {...props}>This application</TransferFormData> may come handy if you are managing user accounts for some applications
+    that do not provide subscription and adequate self-service mechanism,
+    and when you need to create accounts and share confidential information with your users.
+    If you use a traditional way of sending information through a password-protected zip file, you may not have control over how the user secures
+    the information after he/she has unzipped the file: the user may write down the information on a piece of paper or leave the unzip file in an
+    insecure storage, or he/she may try to memorize them without realising the possibility of forgetting after deleting the zip file.
+
+    The <TransferFormData  {...props}>Transfer Form Data Application</TransferFormData> removes the need to memorise passwords,
+    so the user can create a completely random password for each application. You can also choose to collaboratively fill in form with the
+    user.
+    You can bookmark the form that you have created and use it as the intermediate form between your new users
+    and the applications that do not provide subscription mechanism.
+    The Global Input App also allows you to share any form data on your GIA directly with another GIA user via end-to-end encrypted communication.
+    Select the item you would like to share on the Data tab of your GIA, and press the Edit button there to go into the data editor screen.
+    In the data editor screen, you can press the QR Code button to display the QR Code on your mobile screen and ask your user to scan the
+    QR code to connect to the form being displayed on your mobile screen. This allows you to share information securely via end-to-end encryption
+    communication.
+
 </P>
 
+<P>
+  Global Input App also allows passing secret messages via
+  Encrypted QR Codes using a pre-shared encryption key.
+  You can create and share an encryption key on the Keys tab of your Global Input App (GIA), or
+  you can use the <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out an encrypted QR code for the encryption key you would like
+  to share. You can create Encrypted QR Codes for your secret message on the Encrypt tab of your GIA or you can use the
+  <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out the encrypted QR Codes.
 
+
+</P>
 
 
 
