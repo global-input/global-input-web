@@ -28,7 +28,7 @@ const FooterButtons=props=>{
 }
 
 
-const MobileTools=props=>{
+const MobileContentTransfer=props=>{
 
     const {P, Title,ListLinks,FirstSection,NextSection,Concept}=props.theme;
 
@@ -36,7 +36,7 @@ const MobileTools=props=>{
 
        <React.Fragment>
               <FirstSection>
-              <Title>Content Transfer Tools</Title>
+              <Title>Mobile Content Transfer</Title>
               </FirstSection>
               <NextSection>
               <P>
@@ -72,8 +72,8 @@ const MobileTools=props=>{
   Encrypted QR Codes using a pre-shared encryption key.
   You can create and share an encryption key on the Keys tab of your Global Input App (GIA), or
   you can use the <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out an encrypted QR code for the encryption key you would like
-  to share. You can create Encrypted QR Codes for your secret message on the Encrypt tab of your GIA or you can use the
-  <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out the encrypted QR Codes.
+  to share. You can create Encrypted QR Codes for your secret message on the Encrypt tab of your GIA or you can use
+  the <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out the encrypted QR Codes.
 
 
 </P>
@@ -97,8 +97,8 @@ const MobileTools=props=>{
 
 };
 
-MobileTools.menu={
+MobileContentTransfer.menu={
   id:"contentTransferTools",
-  label:"Content Transfer Tools"
+  label:"Mobile Content Transfer"
 };
-export  default MobileTools;
+export  default MobileContentTransfer;

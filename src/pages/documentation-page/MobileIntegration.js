@@ -4,7 +4,7 @@ import {styles,images} from './styles';
 
 import BorderedWhite from '../../page-components/themes/bordered-white';
 
-import {examplesLinks,externalsLinks} from '../../links-components';
+import {examplesLinks,externalsLinks,JSExtension} from '../../links-components';
 
 
 

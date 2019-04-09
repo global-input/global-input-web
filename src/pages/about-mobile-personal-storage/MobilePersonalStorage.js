@@ -30,12 +30,12 @@ const FooterButtons=props=>{
 
 
 
-const PortablePersonalStorage=props=>{
+const MobilePersonalStorage=props=>{
     const {P,Title,ListLinks,Code,Concept,FirstSection,NextSection}=props.theme;
     return(
       <React.Fragment>
         <FirstSection>
-          <Title>Portable Personal Storage</Title>
+          <Title>Mobile Personal Storage</Title>
         </FirstSection>
         <NextSection>
           <P>
@@ -54,7 +54,7 @@ const PortablePersonalStorage=props=>{
       option of saving it for later use. For example, a media application can request the user preference data related to viewing habit
       as part of the login process so that the user can push the data to the application to enjoy
       the personalized user experience. The application re-calculates the parameters on each session and asks users to save them back into
-      the portable personal storage. This may make some users happy if they prefer to have complete control over their data about their viewing habits.
+      the mobile personal storage. This may make some users happy if they prefer to have complete control over their data about their viewing habits.
           </P>
 
           <P>
@@ -72,7 +72,7 @@ const PortablePersonalStorage=props=>{
 
           </P>
           <P>
-            The ability of portable encrypted data storage to store any application data provides the possibility of automating some
+            The ability of mobile encrypted data storage to store any application data provides the possibility of automating some
             manual operations, such as subscription, job applications etc.
             The communication between the mobile app and the application is secured with the end-to-end encryption, and it is always initiated by scanning
             an encrypted QR code.  The QR Code contains a ephemeral(one-time-use) encryption key for initiating the end-to-end encrypted communication.
@@ -82,7 +82,7 @@ const PortablePersonalStorage=props=>{
 <FirstSection>
 <P>
 For example, if you have developed a <ReactJSLink {...props}>React</ReactJSLink> application, and now you would like to allow users to
-store/load a personalised value named as <Concept>viewerPreference</Concept> to/from the Portable Personal Storage.
+store/load a personalised value named as <Concept>viewerPreference</Concept> to/from the Mobile Personal Storage.
 You just need to pass the following <Concept>mobileConfig</Concept> configuration data to the <ReactJSExtension {...props}>GIA React JS Component</ReactJSExtension>:
 
 
@@ -124,7 +124,7 @@ let mobileConfig={
   Another solution is not to store sensitive customer data, instead,
   delegate the responsibility to a third party IAM service provider.
   GIA offers another approach in this regard: applications can request personal data every time when needed instead of persisting them in their databases.
-  In this approach, users manage their own data in the GIA's portable personal storage,
+  In this approach, users manage their own data in the GIA's mobile personal storage,
   push them on-demand to the applications when requested, thus giving the users complete control over their data,
   simplifying the compliance to the personal data regulations.
   This is useful when some applications may require user data in the current session only,
@@ -143,8 +143,8 @@ let mobileConfig={
       </React.Fragment>
     );
 };
-PortablePersonalStorage.menu={
-  id:"portablePersonalStorage",
-  label:"Portable Personal Storage"
+MobilePersonalStorage.menu={
+  id:"mobilePersonalStorage",
+  label:"Mobile Personal Storage"
 }
-export default PortablePersonalStorage;
+export default MobilePersonalStorage;

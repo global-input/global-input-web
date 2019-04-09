@@ -8,26 +8,24 @@ import MobileIntegration from './MobileIntegration';
 
 
 import {MobileAuthenticationAndBeyond}  from '../about-mobile-authentication';
-import SupportTool from './SupportTool';
 
 
 
 
-import UserDataProtection from './UserDataProtection';
 
 
 
-import GlobalInputPlatform from './GlobalInputPlatform';
-import  GlobalInputJSExtension from './GlobalInputJSExtension';
-import WebSocketProxyServer from './WebSocketProxyServer';
+
+import HowItWorks from './HowItWorks';
+
 
 import {IntroducingMobileInputAndControl} from '../about-mobile-input-control';
 
 import {SecondScreenExperience} from '../about-second-screen';
 
 
-import {MobileTools} from '../about-mobile-tools';
-import {PortablePersonalStorage} from '../about-portable-personal-storage';
+import {MobileContentTransfer} from '../about-mobile-content-transfer';
+import {MobilePersonalStorage} from '../about-mobile-personal-storage';
 
 import {ContentEncryption} from '../about-content-encryption';
 
@@ -36,16 +34,10 @@ import {ContentEncryption} from '../about-content-encryption';
 const items=[MobileIntegration,
   MobileAuthenticationAndBeyond,
   IntroducingMobileInputAndControl,
-    SecondScreenExperience,PortablePersonalStorage,
+    SecondScreenExperience,MobilePersonalStorage,
     ContentEncryption,
-    MobileTools,
-
-
-
-
-  SupportTool,
-  UserDataProtection,
-  GlobalInputPlatform, GlobalInputJSExtension,WebSocketProxyServer];
+    MobileContentTransfer,
+    HowItWorks];
 
 
 

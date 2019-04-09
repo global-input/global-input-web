@@ -1,13 +1,13 @@
 import React from 'react';
 import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
-import MobileTools from './MobileTools';
+import MobileContentTransfer from './MobileContentTransfer';
 
-export default class AboutMobileTools extends React.Component{
+export default class AboutMobileContentTransfer extends React.Component{
 
   render(){
         return(
           <LighBlueBackground.Page>
-              <MobileTools theme={LighBlueBackground}/>
+              <MobileContentTransfer theme={LighBlueBackground}/>
           </LighBlueBackground.Page>
         );
 
@@ -15,4 +15,4 @@ export default class AboutMobileTools extends React.Component{
 
 }
 
-export {MobileTools};
+export {MobileContentTransfer};

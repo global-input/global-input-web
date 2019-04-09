@@ -29,16 +29,16 @@ const textContent={
             content:"Enable web and device applications to have mobile input and control functionality without the need to develop separate mobile apps.",
             buttons:[{path:config.paths.examples.gameControl.path, label:"TRY NOW"},{path:config.paths.mobileControl.path, label:"Read More"}]
       },
-      portablePersonalStorage:{
-            title:"Portable Personal Storage",
+      mobilePersonalStorage:{
+            title:"Mobile Personal Storage",
             content:"Store personal data in mobile devices securely with the ability to push the data on demand to applications. A Solution to allow users to have complete control over their data.",
-            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.portablePersonalStorage.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.mobilePersonalStorage.path, label:"Read More"}]
       },
 
-      copyAndPaste:{
-            title:"Content Transfer Tools",
-            content:"Transfer content across devices without using network driver or cloud services. Device-to-Device transfer secured with end-to-end ecnryption.",
-            buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.copyAndPaste.path, label:"Read More"}]
+      mobileContentTransfer:{
+            title:"Mobile Content Transfer",
+            content:"Transferring content securely across devices without using an intermediate network or cloud drives. Copy and Paste Content securely across devices via the end-to-end encrypted communication.",
+            buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.mobileContentTransfer.path, label:"Read More"}]
       },
       printQRCodes:{
             title:"Mobile Content Encryption",
@@ -58,13 +58,13 @@ export default class FeaturesSection extends React.Component{
               </FeatureRow>
 
               <FeatureRow>
-                  <TwoButtonsCard data={textContent.portablePersonalStorage}/>
+                  <TwoButtonsCard data={textContent.mobilePersonalStorage}/>
                   <TwoButtonsCard data={textContent.mobileAuthentication}/>
               </FeatureRow>
 
               <FeatureRow>
                         <TwoButtonsCard data={textContent.printQRCodes}/>
-                        <TwoButtonsCard data={textContent.copyAndPaste}/>
+                        <TwoButtonsCard data={textContent.mobileContentTransfer}/>
               </FeatureRow>
             </FeaturesContainer>
 
