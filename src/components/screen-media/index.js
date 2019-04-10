@@ -106,9 +106,11 @@ export const withResponsiveComponent=(WrappedComponent, data)=>{
           constructor(props){
                   super(props);
                   this.onWindowResize=this.onWindowResize.bind(this);
+
           }
           componentDidMount() {
                 window.addEventListener("resize", this.onWindowResize);
+                this.scrollTo(data);
           }
          componentWillUnmount() {
              window.removeEventListener("resize", this.onWindowResize);
@@ -119,6 +121,17 @@ export const withResponsiveComponent=(WrappedComponent, data)=>{
          render() {
                 return <WrappedComponent  screenMedia={screenMedia} {...this.props}/>;
          }
+         scrollTo(data){
+
+            if(data && data.scrollTo){
+
+              var elmnt = document.getElementById(data.scrollTo);
+              if(elmnt){
+                       window.scrollBy({top: -70,behavior: "smooth"});
+                       elmnt.scrollIntoView();
+              }
+            }
+        }
 
       }
 }

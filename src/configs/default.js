@@ -8,7 +8,7 @@ export default {
       sendMessage:function(){return this.location+"/globbal_input_send_message.mp4";},
       formTransfer:function(){return this.location+"/global_input_transfer_form_2.mp4";},
       signin:function(){return this.location+"/global_input_sign_in_2.mp4";},
-      copyAndPaste:function(){return this.location+"/copy-and-paste.mp4";},
+      mobileContentTransfer:function(){return this.location+"/copy-and-paste.mp4";},
       qrPrinting:function(){return this.location+"/gloal_input_print_qr_2.mp4";},
       globalInputHome:function(){return this.location+"/global_input_home_3.mp4";},
       tutorialPart1:function(){return this.location+"/global_input_sign_in.mp4";}
@@ -27,22 +27,30 @@ export default {
               transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"}
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
-          formOperation:{path:"/global-input-app/about-form-operation",linkText:"Form Operation"},
+
           getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
           home:{path:"/",linkText:"Home"},
           learnMore:{path:"/global-input-app/documentation",linkText:"Learn More"},
-          secondScreen:{path:"/global-input-app/about-second-screen",linkText:"Second Screen"},
-          mobileControl:{path:"/global-input-app/about-mobile-control",linkText:"Mobile Input & Control"},
-          mobileAuthentication:{path:"/global-input-app/about-mobile-authentication",linkText:"Mobile Authentication"},
+          secondScreen:{path:"/global-input-app/second-screen-experience",oldpath:"/global-input-app/about-second-screen"},
+          mobileControl:{path:"/global-input-app/mobile-input-control",        oldpath:"/global-input-app/about-mobile-control"},
+          mobileAuthentication:{path:"/global-input-app/mobile-authentication",oldpath:"/global-input-app/about-mobile-authentication"},
+          mobilePersonalStorage:{path:"/global-input-app/mobile-personal-storage",oldpath:"/global-input-app/about-portable-personal-storage"},
+
+
           privacy:{path:"/global-input-app/privacy",linkText:"Privacy"},
-          secureTransfer:{path:"/global-input-app/about-secure-transfer",linkText:"Secure Content Transfer"},
-          printScanQRCodes:{path:"/global-input-app/about-print-scan-qrcodes",linkText:"Print Scan QR Codes"},
-          copyAndPaste:{path:"/global-input-app/about-copy-and-paste",linkText:"Copy And Paste Across Devices"},
+
+
+          aboutContentEncryption:{path:"/global-input-app/mobile-content-encryption",oldpath:"/global-input-app/about-content-encryption"},
+          mobileContentTransfer:{path:"/global-input-app/mobile-content-transfer", oldpath:"/global-input-app/about-mobile-tools",oldpath2:"/global-input-app/about-secure-transfer"},
           documentationPage:{
                               path:"/global-input-app/documentation",
                               chromeExtensionHelp:{
                                   id:"chromeExtensionHelp",
                                   path:"/global-input-app/documentation#chromeExtensionHelp"
+                              },
+                              mobileIntegration:{
+                                  id:"mobileIntegration",
+                                  path:"/global-input-app/documentation#clientdevice"
                               },
                             },
 

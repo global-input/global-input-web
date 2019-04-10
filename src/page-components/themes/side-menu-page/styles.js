@@ -245,13 +245,15 @@ export const styles={
           display:"flex",
           flexDirection:"row",
           justifyContent:"center",
-          width:"80%"
+          width:"80%",
+          paddingLeft:10
       },
       code:{
             backgroundColor:'rgba(169,200,230,0.1)',
             overflow:'scroll',
             width:"100%",
-            color:"#5291CD"
+            color:"#5291CD",
+            paddingLeft:10
       },
 
       concept:{
@@ -262,16 +264,16 @@ export const styles={
       },
       diagram:{
         get:styleMatchingScreenSize,
-        default:{
-          maxWidth: "70%",
-          height: "auto"
+        default:{            
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto"
         },
-        screen1080:{
-            float:"right"
+        screen1245:{
+            float:"right",
+            maxWidth: "50%",
         },
-        smallScreen:{},
-        desktop:{},
-        mobile:{}
+
       }
   },
   bookmark:{

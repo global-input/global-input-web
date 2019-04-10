@@ -15,10 +15,9 @@ import AboutMobileAuthentication from "./pages/about-mobile-authentication";
 import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
 
-import AboutFormOperation from './pages/about-form-operation';
-import AboutMobileTransferFormData from "./pages/about-secure-content-transfer";
-import AboutPrintScanQRCodes from './pages/about-print-scan-qr-codes';
-import AboutCopyAndPaste from './pages/about-copy-and-paste';
+import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
+import AboutContentEncryption from './pages/about-content-encryption';
+import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 import DocumentationPage from './pages/documentation-page';
 
 
@@ -40,13 +39,34 @@ const App=props=>(
             <Route path={config.paths.getAppScreen.path} component={GetAppPage}/>
             <Route path={config.paths.privacy.path} component={PrivacyPage}/>
             <Route path={config.paths.contactus.path} component={ContactUsPage}/>
+
             <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication}/>
+            <Route path={config.paths.mobileAuthentication.oldpath} component={AboutMobileAuthentication}/>
+
             <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl}/>
+            <Route path={config.paths.mobileControl.oldpath} component={AboutMobileInputControl}/>
+
+
+
             <Route path={config.paths.secondScreen.path} component={AboutSecondScreen}/>
-            <Route path={config.paths.formOperation.path} component={AboutFormOperation}/>
-            <Route path={config.paths.secureTransfer.path} component={AboutMobileTransferFormData}/>
-            <Route path={config.paths.printScanQRCodes.path} component={AboutPrintScanQRCodes}/>
-            <Route path={config.paths.copyAndPaste.path} component={AboutCopyAndPaste}/>
+            <Route path={config.paths.secondScreen.oldpath} component={AboutSecondScreen}/>
+
+            <Route path={config.paths.mobilePersonalStorage.path} component={AboutMobilePersonalStorage}/>
+            <Route path={config.paths.mobilePersonalStorage.oldpath} component={AboutMobilePersonalStorage}/>
+
+
+
+
+            <Route path={config.paths.aboutContentEncryption.path} component={AboutContentEncryption}/>
+            <Route path={config.paths.aboutContentEncryption.oldpath} component={AboutContentEncryption}/>
+
+
+            <Route path={config.paths.mobileContentTransfer.path} component={AboutMobileContentTransfer}/>
+            <Route path={config.paths.mobileContentTransfer.oldpath} component={AboutMobileContentTransfer}/>
+            <Route path={config.paths.mobileContentTransfer.oldpath2} component={AboutMobileContentTransfer}/>
+
+
+
             <Route path={config.paths.documentationPage.path} component={DocumentationPage}/>
 
             <Route  path={config.paths.examples.contentTransfer.path}  component={ContentTransferScreen}/>

@@ -1,13 +1,13 @@
 import React from 'react';
 import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
-import CopyAndPaste from './CopyAndPaste';
+import MobileContentTransfer from './MobileContentTransfer';
 
-export default class AboutCopyAndPaste extends React.Component{
+export default class AboutMobileContentTransfer extends React.Component{
 
   render(){
         return(
           <LighBlueBackground.Page>
-              <CopyAndPaste theme={LighBlueBackground}/>
+              <MobileContentTransfer theme={LighBlueBackground}/>
           </LighBlueBackground.Page>
         );
 
@@ -15,4 +15,4 @@ export default class AboutCopyAndPaste extends React.Component{
 
 }
 
-export {CopyAndPaste};
+export {MobileContentTransfer};

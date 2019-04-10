@@ -23,7 +23,7 @@ const DisplayContent=props=>{
                                   {props.Items.map((Item, index)=>(
                                           <React.Fragment key={index}>
                                               <div id={Item.menu.id} key={index} style={styles.bookmark}/>
-                                              <Item  theme={theme}/>
+                                              <Item  theme={theme} isSideMenu={true}/>
                                           </React.Fragment>
 
                                   ))}

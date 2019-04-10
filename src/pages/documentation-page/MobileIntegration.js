@@ -4,7 +4,7 @@ import {styles,images} from './styles';
 
 import BorderedWhite from '../../page-components/themes/bordered-white';
 
-import {examplesLinks,externalsLinks} from '../../links-components';
+import {examplesLinks,externalsLinks,JSExtension} from '../../links-components';
 
 
 
@@ -30,7 +30,7 @@ export default class MobileIntegration extends React.Component{
                     <P>
       Global Input App (GIA) is a mobile app with extensions,
       providing applications with a universal mobile integration solution.
-      It relies on <Concept>Encrypted QR Codes</Concept> to transfer one-time-use encryption keys for end-to-end encryption to secure communications between devices.
+      It relies on <Concept>Encrypted QR Codes</Concept> to transfer ephemeral(one-time-use) encryption keys for end-to-end encryption to secure communications between devices.
 </P>
 <P>
   Applications do not need extra server-side business services or develop separate mobile apps to  implement mobile integrations.

@@ -3,11 +3,33 @@ import React from 'react';
 
 import {config} from '../../configs';
 
-import {externalsLinks,examplesLinks} from '../../links-components';
+import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
+import ButtonsContainer from '../../page-components/buttons-container';
+import SimpleContainer from '../../page-components/section-containers/simple-container';
+
+const {MobileOperationWhitePaper,ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle} = externalsLinks;
+const {DocumentationButton,MobileGameControlButton}  = pagesLinks.buttons;
 
 
-const {MobileGameControlExample} = examplesLinks;
-const {MobileOperationWhitePaper} = externalsLinks;
+const DocuButton=props=>{
+    if(props.isSideMenu){
+      return null;
+    }
+    return (<DocumentationButton>Documentation</DocumentationButton>);
+}
+
+const FooterButtons=props=>{
+
+  return(
+    <ButtonsContainer>
+        <MobileGameControlButton>Game Control Example</MobileGameControlButton>
+        <DocuButton {...props}/>
+    </ButtonsContainer>
+  )
+
+}
+
+
 
 
 const IntroducingMobileInputAndControl=props=>{
@@ -26,72 +48,55 @@ const IntroducingMobileInputAndControl=props=>{
            <NextSection>
 
 <P>
-Global Input App provides device and web applications with a simple, unified and client-only solution for introducing mobile input and mobile control applications, leading to many useful use-cases that can be made available immediately.
+Global Input App (GIA) provides device and web applications with a simple, unified and client-only solution for
+introducing mobile input and mobile control functionalities, leading to many useful use-cases.
+It is especially useful for devices that have no input or limited input components such as Smart TVs, or IoT devices.
+It also enhances security for users who use shared devices in public places when the applications require personal data to operate.
+The communications between devices are secured with end-to-end encryption that uses a ephemeral(one-time-use) encryption key, which
+is obtained from the Encrypted QR code.
 
 </P>
-            <P>
-              For  Smart TV applications, it is desirable to have options of mobile input and mobile control, especially when it comes to searching,
-              subscriptions, account updates etc., for it is usually easier to enter content on mobile than on TV remote controls.
-            </P>
-            <P>
-              Developing IoT device applications are getting simpler. For example, applications running on devices that are powered by Rasberry Pi are becoming increasingly straightforward to develop.
-              GIA brings mobile integration
-              to the same level of simplicity, with the immediate availability of mobile control.
 
-            </P>
-            <P>
-              For self-service machines in public places (i.e. cache machines, ticket machines etc.), the convenience and the extra security brought
-              by mobile input and mobile control are worth to consider.
-            </P>
-            <P>
-              The secure communications between the mobile and the target device is reminiscent of USB cable connecting the mobile to the device.
-              The communication is secured with the end-to-end encryption, which is initiated by one-time-use encryption key coming from the Encrypted QR code.
+<P>
+    The <JSExtension {...props}>GIA extensions</JSExtension> allow applications to implement mobile integrations within their application
+    context without the need to develop separate mobiles apps.
+</P>
+<P>
+  For example, let's say that you would like to allow users to use their mobile devices to start a process in your application that is running on a device.
+  The related configuration can be as simple as following:
 
-            </P>
-            <P>
-              After the communication is established, the application provides a JSON data for constructing mobile user interfaces and begins to receive mobile events as the user interacts with the mobile user interface elements.
-              The level of flexibility enables applications to have mobile features close to a fully functional mobile app.
-            </P>
-            <P>
-
-
-               For example, if you would like to use mobile to start and stop a process in an application.
-               You just need to provide the following configuration code to the extension library:
+<Code>
+{`
+  fields:[{
+      label:"Start",
+      type:"button",
+      operations:{
+        onInput:()=>start()
+      }
+  }]
+`}
+</Code>
+  </P>
+  <P>
+    As mobile devices are playing increasingly important roles in our daily lives,
+    the ability to use mobile devices to operate on business applications and transferring
+    data between them securely is also getting quite useful. However,
+    the cost of developing such a mobile application for a business application is not a trivial task.
               </P>
-              <Code>
-                  {`
-                     fields:[{
-                          label:"Start",
-                          operations:{onInput:()=>this.start()}
-                      },{
-                        label:"Start",
-                        operations:{onInput:()=>this.stop()}
-                      }]
-                  `}
-
-              </Code>
               <P>
-                If you are interested, you can have a look at the following game control examples in action, and check out its source codes on the GitHub:
+              The Global Input App provides a single mobile app solution for multiple devices and web applications.
+              Existing IoT, Smart TV, and web applications can define mobile user interfaces and process mobile events
+              within its context to implement mobile integration.
+              You may find more information on in <MobileOperationWhitePaper {...props}>our white paper</MobileOperationWhitePaper>.
               </P>
-                <MobileGameControlExample {...props}/>
-
-              <P>
-
-              As mobile devices are playing increasingly important roles in our daily lives, the need for using mobile devices to operate on those business applications and transferring data between them securely is getting quite important. However, the cost of developing such a mobile application for a business application is not a trivial task.
-
-              </P>
-
-              <P>
-              The Global Input App offers a single mobile app solution for multiple devices and web applications. Existing IoT, Smart TV, and web applications can be extended in an add-on manner by defining the mobile UI elements and use callbacks to receive mobile events within the application itself. This is done declaratively in an add-on manner without affecting the business logic and system architecture. The communication between the Global Input App and the application is secured with end-to-end encryption.
-              </P>
-
-
-              <P>
-                  You may read our <MobileOperationWhitePaper {...props}>white paper</MobileOperationWhitePaper> on using mobile to operate on device and web applications.
-
-              </P>
-
 </NextSection>
+<FirstSection>
+  <SimpleContainer>
+        <FooterButtons {...props}/>
+  </SimpleContainer>
+
+</FirstSection>
+
         </React.Fragment>
 
       );

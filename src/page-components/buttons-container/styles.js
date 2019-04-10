@@ -19,7 +19,7 @@ export var styles={
         flexDirection:"column",
         justifyContent:"space-between",
         width:"80%",
-        height:130,        
+        minheight:130,        
       },
       bigScreen:{
 

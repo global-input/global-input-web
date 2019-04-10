@@ -13,6 +13,11 @@ import FeatureRow from "../../../page-components/section-containers/feature-row"
 import {config} from '../../../configs';
 
 const textContent={
+      mobileAuthentication:{
+        title:"Mobile Authentication",
+        content:"A client-side solution for mobile authentication, allowing users to sign in on shared devices in public view without compromising passwords to prying eyes and hidden cameras.",
+        buttons:[{path:config.paths.examples.transferForm.path, label:"TRY NOW"},{path:config.paths.mobileAuthentication.path, label:"Read More"}]
+      },
       secondScreenInput:{
             title:"Second Screen Experience",
             content:"A simple solution for enabling big screen device applications to have second screen experience.",
@@ -21,28 +26,24 @@ const textContent={
 
       mobileControl:{
             title:"Mobile Input & Control",
-            content:"Enable IoT and web applications to have mobile input and control functionality without the need to develop separate mobile app.",
+            content:"Enable web and device applications to have mobile input and control functionality without the need to develop separate mobile apps.",
             buttons:[{path:config.paths.examples.gameControl.path, label:"TRY NOW"},{path:config.paths.mobileControl.path, label:"Read More"}]
       },
-      formoperation:{
-            title:"Mobile Form Automations",
-            content:"Automate form operations using the data stored in the encrypted data storage provided by Global Input App. Allowing users have complete control over their personal data.",
-            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.formOperation.path, label:"Read More"}]
+      mobilePersonalStorage:{
+            title:"Mobile Personal Storage",
+            content:"Store personal data in mobile devices securely with the ability to push the data on demand to applications. A Solution to allow users to have complete control over their data.",
+            buttons:[{path:config.paths.examples.sendMessage.path, label:"TRY NOW"},{path:config.paths.mobilePersonalStorage.path, label:"Read More"}]
       },
-      secureTransfer:{
-            title:"Form Data Sharing & Editing",
-            content:"Form Data Sharing and Editing Across Multiple devices. This covers not only mobile authentication, but also covers an useful IT support tool.",
-            buttons:[{path:config.paths.examples.transferForm.path, label:"TRY NOW"},{path:config.paths.secureTransfer.path, label:"Read More"}]
-      },
-      copyAndPaste:{
-            title:"Copy And Paste Securely Across Devices",
-            content:"Copy and paste securely a text content from your mobile to any computer or vice versa.Transfer content between applications using end-to-end encryption.",
-            buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.copyAndPaste.path, label:"Read More"}]
+
+      mobileContentTransfer:{
+            title:"Mobile Content Transfer",
+            content:"Transferring content securely across devices without using an intermediate network or cloud drives. Copy and Paste Content securely across devices via the end-to-end encrypted communication.",
+            buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.mobileContentTransfer.path, label:"Read More"}]
       },
       printQRCodes:{
             title:"Mobile Content Encryption",
             content:"Encrypting and signing content within mobile devices and push the encrypted and signed content to applications. Encryption keys stays encrypted within mobile apps.",
-            buttons:[{path:config.paths.examples.qrPrinting.path, label:"TRY NOW"},{path:config.paths.printScanQRCodes.path, label:"Read More"}]
+            buttons:[{path:config.paths.examples.qrPrinting.path, label:"TRY NOW"},{path:config.paths.aboutContentEncryption.path, label:"Read More"}]
       }
 }
 export default class FeaturesSection extends React.Component{
@@ -57,13 +58,13 @@ export default class FeaturesSection extends React.Component{
               </FeatureRow>
 
               <FeatureRow>
-                  <TwoButtonsCard data={textContent.formoperation}/>
-                  <TwoButtonsCard data={textContent.secureTransfer}/>
+                  <TwoButtonsCard data={textContent.mobilePersonalStorage}/>
+                  <TwoButtonsCard data={textContent.mobileAuthentication}/>
               </FeatureRow>
 
               <FeatureRow>
-                        <TwoButtonsCard data={textContent.copyAndPaste}/>
                         <TwoButtonsCard data={textContent.printQRCodes}/>
+                        <TwoButtonsCard data={textContent.mobileContentTransfer}/>
               </FeatureRow>
             </FeaturesContainer>
 

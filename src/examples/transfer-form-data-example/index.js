@@ -2,7 +2,7 @@ import React from 'react';
 import FormBuilder from "./form-builder";
 import SecureFormTransfer from "./secure-form-transfer";
 import {styles} from "./styles";
-import {encrypt,decrypt} from "global-input-message";
+import {encrypt,decrypt} from "global-input-react";
 
 const textContent={
     title:"Transfer Form Data with Global Input App",
