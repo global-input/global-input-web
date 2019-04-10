@@ -41,7 +41,7 @@ export default {
 
 
           aboutContentEncryption:{path:"/global-input-app/mobile-content-encryption",oldpath:"/global-input-app/about-content-encryption"},
-          mobileContentTransfer:{path:"/global-input-app/mobile-content-transfer-tools", oldpath:"/global-input-app/about-mobile-tools",oldpath2:"/global-input-app/about-secure-transfer"},
+          mobileContentTransfer:{path:"/global-input-app/mobile-content-transfer", oldpath:"/global-input-app/about-mobile-tools",oldpath2:"/global-input-app/about-secure-transfer"},
           documentationPage:{
                               path:"/global-input-app/documentation",
                               chromeExtensionHelp:{

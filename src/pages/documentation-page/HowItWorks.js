@@ -1,7 +1,11 @@
 import React from 'react';
 
-import {examplesLinks,externalsLinks} from '../../links-components';
-const {WebSocketServer,WatchIntroduction,ReactJSLink,ReactJSExtension, JSExtension}=externalsLinks;
+import {examplesLinks,externalsLinks,pagesLinks} from '../../links-components';
+const {ChromeExtension,WordPressPlugin,WebSocketServer,WatchIntroduction,ReactJSLink,ReactJSExtension, JSExtension}=externalsLinks;
+const {AboutContentEncryption,AboutMobileInputControl,AboutMobilePersonalStorage,
+      AboutMobileAuthentication,AboutSecondScreenExperience,AboutMobileContentTransfer}=pagesLinks.links;
+
+
 const images={deviceSolution:require('./images/global-input-device-solution.png')};
 const HowItWorks=props=>{
     const {P, Title, Code,Concept, FirstSection,NextSection,Diagram}=props.theme;
@@ -12,19 +16,45 @@ const HowItWorks=props=>{
                 </FirstSection>
                 <NextSection>
 <P>
-  Global Input App provides device and web applications with mobile integration solution to enable applications to
-  have mobile input, mobile control, mobile personal storage, mobile content encryption & signing, mobile authentication
-  and second screen experience functionalities. The mechanism allows applications to implement the mobile logic with its
-  existing application context without the need for developing separate mobile apps.
-</P>
-<Diagram image={images.deviceSolution}/>
-  <P>
-    Applications implement mobile integrations by including the GIA extension, which allows GIA to connect to the extension securely using end-to-end encryption. The connection from GIA to an application is always initiated with scanning of an Encrypted QR Code, which contains a one-time-use encryption key and other communication channel parameters. The applications can specify mobile user interfaces and process mobile events to implement mobile integration logic within its existing application context. This client-side only for implementing mobile integration does not require separate server-side logic, greatly simplifying the mobile integration processes.
+  Global Input App enables device and web applications to implement mobile integrations to have:
+      <ul>
+          <li><AboutMobileInputControl {...props}>Mobile Input & Control</AboutMobileInputControl></li>
+          <li><AboutMobilePersonalStorage {...props}>Mobile Personal Storage</AboutMobilePersonalStorage></li>
+          <li><AboutContentEncryption {...props}>Mobile Content Encryption & Signing</AboutContentEncryption></li>
+          <li><AboutMobileAuthentication {...props}>Mobile Authentication</AboutMobileAuthentication></li>
+          <li><AboutSecondScreenExperience {...props}>Second Screen Experience</AboutSecondScreenExperience></li>
+          <li><AboutMobileContentTransfer {...props}>Mobile Content Transfer</AboutMobileContentTransfer></li>
+      </ul>
+  This connects mobile devices to computers and other devices via end-to-end encrypted communication. <Diagram image={images.deviceSolution}/>
+And it also brings the mobile business context into the device application's runtime environment,  allowing it to define mobile integration logic
+within its existing business processes.
+  Hence, this is a client-side-only solution that does not require separate server-side logic,
+  greatly simplifying the mobile integration processes.
+
+
+By including the GIA extension, an application is able to provide an Encrypted QR Code for Global Input App users to scan to connect
+to the application securely and can specify mobile user interfaces and process mobile events to implement mobile integrations.
+The GIA extensions can be any of the following:
+  <ul>
+    <li><ChromeExtension {...props}>GIA Chrome Extension</ChromeExtension></li>
+    <li><WordPressPlugin {...props}>GIA Wordpress Plugin</WordPressPlugin></li>
+    <li><ReactJSExtension {...props}>GIA React Extension</ReactJSExtension></li>
+    <li><JSExtension {...props}>GIA JS Extension</JSExtension></li>
+
+  </ul>
+
+
+
   </P>
 
-<P>
+  <P>
+    The extension uses the default <WebSocketServer {...props}>GIA WebSocket server</WebSocketServer>,
+    but you can run your own <WebSocketServer {...props}>GIA WebSocket server</WebSocketServer> and configure the extension
+    to use your own. The Encrypted QR Code, which initiates the encrypted communication across devices, will include
+    information about the configured <WebSocketServer {...props}>GIA WebSocket  server</WebSocketServer>.
 
-</P>
+  </P>
+
 
                 </NextSection>
 

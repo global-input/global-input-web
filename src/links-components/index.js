@@ -141,7 +141,27 @@ export const pagesLinks={
                 AboutContentEncryption:props=>{
                   const {Link}=props.theme;
                   return(<Link to={config.paths.aboutContentEncryption.path}>{props.children}</Link>);
-                }
+                },
+                AboutMobileInputControl:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.mobileControl.path}>{props.children}</Link>);
+                },
+                AboutMobilePersonalStorage:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.mobilePersonalStorage.path}>{props.children}</Link>);
+                },
+                AboutMobileAuthentication:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.mobileAuthentication.path}>{props.children}</Link>);
+                },
+                AboutSecondScreenExperience:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.secondScreen.path}>{props.children}</Link>);
+                },
+                AboutMobileContentTransfer:props=>{
+                  const {Link}=props.theme;
+                  return(<Link to={config.paths.mobileContentTransfer.path}>{props.children}</Link>);
+                },
           }
 
 

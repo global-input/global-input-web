@@ -264,16 +264,16 @@ export const styles={
       },
       diagram:{
         get:styleMatchingScreenSize,
-        default:{
-          maxWidth: "70%",
-          height: "auto"
+        default:{            
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto"
         },
-        screen1080:{
-            float:"right"
+        screen1245:{
+            float:"right",
+            maxWidth: "50%",
         },
-        smallScreen:{},
-        desktop:{},
-        mobile:{}
+
       }
   },
   bookmark:{
