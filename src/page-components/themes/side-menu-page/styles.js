@@ -264,10 +264,11 @@ export const styles={
       },
       diagram:{
         get:styleMatchingScreenSize,
-        default:{            
+        default:{
             display: "block",
             marginLeft: "auto",
-            marginRight: "auto"
+            marginRight: "auto",
+            maxWidth:window.innerWidth-50
         },
         screen1245:{
             float:"right",
