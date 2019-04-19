@@ -20,7 +20,7 @@ const HowItWorks=props=>{
                 <NextSection>
 <P>
   Global Input App (GIA) provides a universal mobile app integration solution for all device and web applications.
-  Typical Use cases are:
+  Typical use cases are:
       <ul>
           <li><AboutMobileInputControl {...props}>Mobile Input & Control</AboutMobileInputControl></li>
           <li><AboutMobilePersonalStorage {...props}>Mobile Personal Storage</AboutMobilePersonalStorage></li>
@@ -32,15 +32,15 @@ const HowItWorks=props=>{
 
 <Diagram image={images.deviceSolution}/>
 The GIA mobile integration mechanism secures the communication between devices with end-to-end encryption.
-The Global Input App (GIA) extension libraries abstract away this communication details so that device applications can
-concentrate on providing configurations for building mobile interfaces for displaying on the user’s mobile screen
-and using call-back functions to receive and process events that are coming from the mobile devices.
-The GIA extension component displays an Encrypted QR Code that contains information on how to connect to the device application,
-and one of the parameters is an encryption key, which is the shared encrypton key used for end-to-end encryption, is generated
-randomly on the fly within the device application at the beginning
-of the session. When a user scans the QR Code, a secure connection will be established and the GIA displays the user interface,
-which is defined by the device application and sends back the events as the user interacts with the user interface elements.
-This universal mobile app integration solution not only bring the convenience to the users by using the same mobile app for
+The Global Input App (GIA) extension libraries abstract away the communication details so that device applications can
+concentrate on providing configurations for constructing user interfaces on the user’s mobile screen and
+providing call-back functions to receive and process events that are coming from the mobile devices.
+The GIA extension component displays an Encrypted QR Code that contains information on how to connect to the device application.
+One of the parameters in it is a shared encrypton key used for end-to-end encryption.
+The encryption key is generated randomly on the fly within the device application at the beginning
+of the session. When a user scans the QR Code, GIA establishes a secure connection with the device application, and display an user interface based on
+the configuration data it received, and sends back the events as the user interacts with the user interface elements.
+This universal mobile app integration solution not only bring the convenience to users by using the same mobile app for
 interacting with different devices, but also save costs for businesses by eliminating the need for developing different mobile app
 for different devices. The mechanism brings the mobile runtime environment into the device application's runtime context,
 allowing the application to implement the mobile integration logic within its business processes.
@@ -77,8 +77,9 @@ nor does it require to run any business-specific processes.
        </li>
        <li>
             <Concept>securityGroupId</Concept>: required for connecting to the device application.
-            Like <Concept>APIKey</Concept> that validates messages coming to the server, the <Concept>securityGroupId</Concept> validates
-            messages comming to the device application. This parameter is useful for some businesses who would like to use pairing to control who can connect to the devices.
+            Similar to <Concept>APIKey</Concept> that validates messages coming to the server, the <Concept>securityGroupId</Concept> validates
+            messages comming to the device application. This parameter is useful for some businesses who would like to use the GIA pairing mechanism to
+            control who can connect to the devices.
 
        </li>
        <li><Concept>sessionId</Concept>: The id of the session that the device application is bound to.
@@ -90,12 +91,13 @@ nor does it require to run any business-specific processes.
  to achieve mobile integrations. When the device application initialises the GIA extension component
  with the configuration that contains information on how to build the initial mobile interface, the extension component connects to
  one of the <WebSocketServer {...props}>GIA WebSocket server</WebSocketServer> nodes, and displays an Encrypted QR Code and wait for
- the incoming connections like a server application running on the cloud. Hence, the architecture can be viewed as the
+ the incoming connections like a server application waiting for a incoming request. Hence, the architecture can be viewed as the
  logical client-server architecture implemented at the device applications layer. The GIA scans the QR code to obtain the information on
  how to connect to the device application. Once a secure connection is established to the device application,
  the GIA loads the JSON data from the device application to obtain information on how to
  build the mobile interface (form) on the user's mobile screen. When the user interacts with the user interface elements,
- the events will be routed to the connected device application, so that the application can implement mobile integrations within its own context.
+ the events will be routed to the connected device application. This enables the device application to implement mobile integrations within its own runtime context,
+ keeping the universal mobile app as generic as possible.
 
   </P>
 
@@ -106,17 +108,18 @@ nor does it require to run any business-specific processes.
     to use your own one. <Diagram image={images.webSocketServer}/>
     When you set up your own <WebSocketServer {...props}>GIA WebSocket server</WebSocketServer> node,
     you need to modify the URL in its configuration to point to itself to make the GIA load balancing mechanism work correctly.
-    In order to prevent the long-running connections accumulated on the load balancer, the GIA introduces an initial RestAPI call
-    on the load balancer to obtain the URL of an available WebSocket Server node.
-    The subsequent persistent WebSocket connection will skip the load balancer, and connects to the WebSocket node directly.
-    As shown in the diagram, each WebSocket session is started with an initial RestAPI call on the load balancer to obtain the URL of an available WebSocket Server node.
+    In order to prevent the long-running connections accumulated on the load balancer,
+    the GIA introduces an initial RestAPI call on the load balancer to obtain the URL of an available WebSocket Server node.
+    The subsequent persistent WebSocket connection will skip the load balancer, and connects to the WebSocket server node directly.
+    The sequence diagram show that each WebSocket session is started with an initial RestAPI call on the load balancer to obtain the URL of an available WebSocket Server node.
     Therefore, the URL in the <WebSocketServer {...props}>GIA WebSocket server</WebSocketServer> configuration should point
-    to itself instead of pointing to the load balancer. This also means that a service URL for each node in the cluster should be exposed as well.
+    to itself instead of pointing to the load balancer.
+    This requires that the cluster should expose a separate service URL for each node (pod in kubernetes).
   </P>
 
   <P>
-GIA expands the mobile integration to the next level with its
-<AboutMobilePersonalStorage {...props}>Mobile Personal Storage</AboutMobilePersonalStorage>. User can push the data
+GIA expands the mobile integration to the next level with its <AboutMobilePersonalStorage {...props}>Mobile Personal Storage</AboutMobilePersonalStorage>.
+User can push the data
   in the storage to the connected application on-demand, and the connected application can request
 to save some calculated data for later use so that the user can push it back to the application when requested.
 One of its use cases is to turn a password-based authentication into a password-less authentication by pushing credential
@@ -134,10 +137,10 @@ The <AboutContentEncryption {...props}>Mobile Content Encryption & Signing</Abou
 the user to push encrypted data to the connected application.
 The encrypted data can only be decrypted inside the mobile app once sent back to the GIA.
 This is reminiscent of the scenario that you carry around lockers and the keys for locking the doors so that the
-no one else can open the door because the keys will never leave from your pocket. One of its use cases is that
-an application can use the GIA Mobile Encryption to encrypt a keyring (keyset) that contains the data encryption
-key for encrypting the data that the user is allowed to access.
-This not only reduces the reliance of the data security on the system security but also enhances the accountability
+no one else can open the door because the keys will always stay with you. One of its use cases is that
+an application can use the GIA Mobile Encryption to encrypt a keyring (keyset) that contains a set of data encryption
+keys for encrypting the data that the user is allowed to access.
+This can not only reduce the reliance of the data security on the system security mechanism but also enhances the accountability
 of the data processing session because of the personal attachment of the mobile device where the process of
 decrypting the data encryption keys is executed. GIA mobile signing mechanism allows users to use mobiles to sign documents.
   </P>
