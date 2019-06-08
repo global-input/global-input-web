@@ -19,7 +19,7 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "npx react-scripts start",
