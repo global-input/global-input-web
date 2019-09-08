@@ -9,7 +9,7 @@
     "eslint-config-react-app": "^2.1.0",
     "global-input-react": "^2.0.11",
     "json-loader": "^0.5.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "qrcode.react": "^0.7.2",
     "react": "^16.8.6",
