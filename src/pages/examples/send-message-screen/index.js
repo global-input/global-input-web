@@ -3,6 +3,7 @@ import TopHeaderSection from "../../../page-components/top-header-section";
 import {styles} from "./styles";
 
 import SendMessageExample from "../../../examples/send-message-example";
+import {config} from "../../../configs";
 import "whatwg-fetch";
 export default class SendMessageScreen extends React.Component{
   apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
@@ -13,7 +14,7 @@ export default class SendMessageScreen extends React.Component{
         <TopHeaderSection selected={this.props.selected}/>
         <div style={styles.content}>
             <div style={styles.itemSection}>
-                <SendMessageExample {...this.props}/>
+                <SendMessageExample {...this.props} url={config.url}/>
             </div>
         </div>
       </React.Fragment>
