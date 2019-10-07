@@ -3,6 +3,7 @@ import TopHeaderSection from "../../../page-components/top-header-section";
 
 import {styles} from "./styles";
 import QRCodeprintingExample from "../../../examples/qr-code-printing-example";
+import {config} from "../../../configs";
 
 export default class QRPrintingScreen extends React.Component{
   render(){
@@ -14,7 +15,7 @@ export default class QRPrintingScreen extends React.Component{
         </div>
         <div style={styles.content}>
             <div style={styles.itemSection}>
-                <QRCodeprintingExample {...this.props}/>
+                <QRCodeprintingExample {...this.props} url={config.url}/>
             </div>
         </div>
       </React.Fragment>
