@@ -7,7 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.3",
     "eslint-config-react-app": "^2.1.0",
-    "global-input-react": "^2.1.1",
+    "global-input-react": "^2.1.5",
     "json-loader": "^0.5.7",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
@@ -19,7 +19,10 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "react-scripts": "3.1.1"
+    "faker": "^4.1.0",
+    "puppeteer": "^2.0.0",
+    "react-scripts": "3.1.1",
+    "write": "^2.0.0"
   },
   "scripts": {
     "start": "npx react-scripts start",
