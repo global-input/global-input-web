@@ -44,18 +44,19 @@ describe('H1 Text', () => {
 
 
     
+    
   
   
     if(code){
       let testData={
         input:code
       }
-      write.sync('/tmp/test-data/test-code.json',JSON.stringify(testData),{overwrite:true});
+      write.sync('/tmp/tests/test-data/test-code.json',JSON.stringify(testData),{overwrite:true});
+
+
 
 
       
-
-
     
 
 
