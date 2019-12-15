@@ -29,14 +29,20 @@ describe('H1 Text', () => {
     
     page.emulate({
       viewport: {
-        width: 500,
-        height: 2400
+        width: 1200,
+        height: 800
       },
       userAgent: ''
     });
     
     //await page.goto('http://localhost:3000/global-input-app/content-transfer');
-    await page.goto('http://localhost:3000/global-input-app/send-message');
+    //await page.goto('http://localhost:3000/global-input-app/send-message');
+    //await page.goto('http://localhost:3000/global-input-app/game-example');
+    await page.goto('http://localhost:3000/global-input-app/form-data-transfer');
+    await page.goto('http://localhost:3000/global-input-app/qr-printing');
+
+    
+    
     await page.waitForSelector('[data-testid="globalinput-qr-code-label"]');
     
     //const html = await page.$eval('.App-title', e => e.innerHTML);
@@ -52,16 +58,6 @@ describe('H1 Text', () => {
         input:code
       }
       write.sync('/tmp/tests/test-data/test-code.json',JSON.stringify(testData),{overwrite:true});
-
-
-
-
-      
-    
-
-
-
-
 
     }
     await page.waitFor(60000)

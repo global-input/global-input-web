@@ -182,7 +182,7 @@ mobile={
       config:null,
       disconnect:()=>{
           if(this.mobile.globalInputConnect){
-              this.mobile.globalInputConnect.disconnectGlobaInputApp();
+              this.mobile.globalInputConnect.disconnect();
           }
       },
       sendMessage:(message, fieldid)=>{

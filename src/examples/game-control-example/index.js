@@ -396,7 +396,7 @@ export default class GameControlExample extends Component {
                   type:"button",
                   icon:"disconnect",
                   viewId:"footer",
-                  operations:{onInput: value=>this.connectGlobalInput()},
+                  operations:{onInput: value=>this.mobile.globalInputConnect.connect()},                  
                   container:{label:""}
               };
               this.mobile.addField(backButton,initData.form);
