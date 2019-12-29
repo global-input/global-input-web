@@ -204,7 +204,7 @@ mobile={
             this.mobile.config={
                   url:props.url,
                   apikey:props.apikey,
-                  securityGroup:props.securityGroup,
+                  securityGroup:props.securityGroup,                  
                   initData:null,
                   onSenderConnected:()=>()=>{
                           this.setState(Object.assign({},{connected:true}));
@@ -285,7 +285,7 @@ mobile={
      uiForPrintingQRCode:props=>{
        var initData={
                  action:"input",
-                 dataType:"form",
+                 dataType:"form", 
                  form:{
                      title:"Encrypted QR Code",
                      fields:[]
