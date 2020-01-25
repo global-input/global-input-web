@@ -41,11 +41,11 @@ export default class ClipboardCopyButton extends React.Component{
                         this.setNotificationMessage(textContent.copyFieldNotFound);
                   }
                   else{
-                    var type=copyElement.type;
-                    copyElement.type="text";
+                    //var type=copyElement.type;
+                    //copyElement.type="text";
                     copyElement.select();
                     document.execCommand("Copy");
-                    copyElement.type=type;
+                    //copyElement.type=type;
                     this.setNotificationMessage(textContent.copied);
                   }
 

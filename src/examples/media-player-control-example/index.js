@@ -85,6 +85,7 @@ export default class MediaPlayerControlExample extends React.Component{
   }
 
   selectForPlay(){
+      console.log("-----select for play us called");
       var videoSelection=this.state.videoSelection;
       var video=videoSelection.videos[videoSelection.selectedIndex];
       this.changeVideo(video);

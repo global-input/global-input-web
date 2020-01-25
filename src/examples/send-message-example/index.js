@@ -477,7 +477,7 @@ export default class SendMessageExample extends React.Component{
                         action:"input",
                         dataType:"form",
                         form:{
-                              id:"###email###@me",
+                              id:"###email###@messages",
                               title:"Sending a Message",
                               label:"contacts",
                               fields:[]

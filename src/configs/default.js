@@ -24,7 +24,9 @@ export default {
               mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
               qrPrinting:{path:"/global-input-app/qr-printing",linkText:"QR Code Printing"},
               sendMessage:{path:"/global-input-app/send-message",linkText:"Send Message"},
-              transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"}
+              transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"},
+              encryptionDecryption:{path:"/global-input-app/encryption-decryption",linkText:"Encryption Decryption"},
+              mobileEncryption:{path:"/global-input-app/mobile-encryption",linkText:"Mobile Encryption"},
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
 

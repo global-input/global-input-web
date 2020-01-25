@@ -18,6 +18,16 @@ export const styles={
       marginBottom:"20",
       marginLeft:"4vw"
     },
+    subtitle:{
+      display:"flex",
+      flexDirection:"row",
+      width:"100%",
+      justifyContent:"flex-start",
+      fontSize:"1.5vw",
+      color:"#5291CD",
+      marginBottom:"20",
+      marginLeft:"4vw"
+    },
     playHeadInfo:{
           fontSize:20,
           color:"#5291CD",

@@ -6,6 +6,7 @@ import {
 
 
 import {config} from "./configs";
+import TopHeaderSection from "./page-components/top-header-section";
 
 import {HomePageWithScrollToTop as HomePage} from "./pages/home-page";
 import GetAppPage from './pages/get-app-page';
@@ -20,15 +21,18 @@ import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 import DocumentationPage from './pages/documentation-page';
 
+import QRCodeprintingExample     from  "./examples/qr-code-printing-example";
+import ContentTransferExample    from "./examples/content-transfer-example";
+import GameControlExample        from "./examples/game-control-example";
+import MediaPlayerControlExample from "./examples/media-player-control-example";
+import SendMessageExample        from "./examples/send-message-example";
+import TransferFormDataExample   from "./examples/transfer-form-data-example";
+import EncryptionDecryptionExample from './examples/encryption-decryption-example';
+import MobileEncryptionExample from './examples/mobile-encryption-example';
 
 
 
-import ContentTransferScreen from './pages/examples/content-transfer-screen';
-import GameControlScreen from './pages/examples/game-game-control-screen';
-import MediaPlayerScreen from './pages/examples/media-player-screen';
-import QRPrintingScreen from './pages/examples/qr-printing-screen';
-import SendMessageScreen from './pages/examples/send-message-screen';
-import TransferFormDataScreen from './pages/examples/transfer-form-data-screen';
+
 
 
 const App=props=>(
@@ -75,8 +79,72 @@ const App=props=>(
             <Route path={config.paths.examples.transferForm.path} component={TransferFormDataScreen}/>
             <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>
             <Route path={config.paths.examples.qrPrinting.path} component={QRPrintingScreen}/>
+            <Route path={config.paths.examples.encryptionDecryption.path} component={EncryptionDecryptionScreen}/>
+            <Route path={config.paths.examples.mobileEncryption.path} component={MobileEncryptionScreen}/>
+            
+
             <Redirect to={config.paths.home.path}/>
         </Switch>
       </Router>
     );
 export default App;
+
+
+
+const createExampleComponent =ExampleComponent=>{
+  return (props)=>{
+    return(
+      <React.Fragment>
+        <div className="noprint">
+          <TopHeaderSection  selected={props.selected}/>
+        </div>
+        <div style={compStyles.content}>
+            <div style={compStyles.itemSection}>
+                <ExampleComponent url={config.url} {...props}/>              
+                
+            </div>
+        </div>
+      </React.Fragment>  
+    );
+  
+  }
+ 
+
+}
+
+const compStyles={
+
+  content:{
+      paddingLeft:  20,
+      paddingTop:   100,
+      paddingRight: 20,
+      display:      "flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:    "center",
+      backgroundColor:"#5291CD",
+      width:"100%",
+      height:window.innerHeight,
+  },
+  itemSection:{
+     marginTop:20,
+     marginBottom:10,
+     padding:10,
+     backgroundColor:"white",
+     width:"95%",
+     borderRadius:25,
+  },
+
+};
+
+
+const QRPrintingScreen=createExampleComponent(QRCodeprintingExample);
+const GameControlScreen=createExampleComponent(GameControlExample);
+const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample);
+const SendMessageScreen=createExampleComponent(SendMessageExample);
+const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
+const ContentTransferScreen=createExampleComponent(ContentTransferExample);
+const EncryptionDecryptionScreen=createExampleComponent(EncryptionDecryptionExample);
+const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
+
+
