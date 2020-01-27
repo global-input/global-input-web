@@ -1,7 +1,4 @@
 import {createMessageConnector} from 'global-input-message'; ////global-input-message////
-import * as actions from './actions';
-import { generatePath } from 'react-router-dom';
-
 
 let globalInputConnector=null;
 const ServicesProvided={
@@ -17,40 +14,31 @@ export const disconnect= ()=>{
     globalInputConnector.disconnect();
     globalInputConnector=null;
 }
-export const connect = ({dispatch,onFinish}) => {
-  if(globalInputConnector){
-      return;
-  }
-  const displayQRCode = () => {
-    const connectionCode=globalInputConnector.buildInputCodeData();
-    console.log("[["+connectionCode+"]]");
-    actions.displayQRCode({dispatch,connectionCode})
-  };
-  const onInput=()=>{
-
-  };
-  const onSenderConnected=(sender,senders)=>{
-        console.log("-----sender connected");
-        actions.selectService({dispatch});
-  };
-  const onSenderDisconnected=(sender,senders)=>{
-      disconnect();
-      onFinish();  
-  }
-
+export const connect = ({
+    onWaitConnect,
+    onError,
+    onSenderConnected,
+    onSenderDisconnected,
+    onQRCodeServiceSelected,
+    onEncryptedServiceSelected,
+    onDecryptedServiceSelected
+}) => {
+    if(globalInputConnector){ //only allowed one connection
+        return;
+    }  
   const onServiceSelected=value=>{
       console.log("------onServiceSelected:"+value);
 
       switch(value){         
 
            case ServicesProvided.QRCODE.value: 
-                         qrCodeService.startService({dispatch});
+                         onQRCodeServiceSelected();
                          break;
            case  ServicesProvided.ENCRYPT.value: 
-                         actions.gotoEncryptionService({dispatch});
+                         onEncryptedServiceSelected();
                          break;
            case  ServicesProvided.DECRYPT.value:
-                         actions.gotoDecryptionService({dispatch});
+                         onDecryptedServiceSelected();
                          break;
       }
   };
@@ -73,10 +61,12 @@ export const connect = ({dispatch,onFinish}) => {
                     },
                     onRegistered:  next => {
                         next();
-                        displayQRCode();
+                        const connectionCode=globalInputConnector.buildInputCodeData();
+                        console.log("[["+connectionCode+"]]");
+                        onWaitConnect(connectionCode);    
                     },
-                    onRegisterFailed:function(registeredMessage){
-                        console.log("failed to register to the WebSocket:"+registeredMessage);
+                    onRegisterFailed:function(registeredMessage){                        
+                        onError(registeredMessage);
                     },
                     onSenderConnected,
                     onSenderDisconnected,
@@ -90,8 +80,130 @@ export const connect = ({dispatch,onFinish}) => {
             globalInputConnector.connect(mobileConfig);
 };
 
+export const qrCodeService={
+       displayContentLabel:({setCodeContent,setLabel,generateQRCode})=>{
+                const initData={
+                    action:"input",
+                    dataType:"qrcode",
+                    form:{
+                            title:"QR Code Generation",                         
+                        fields:[{
+                                label:"Content of the QR Code", 
+                                id:"content",                            
+                                value:"",
+                                operations:{
+                                        onInput:setCodeContent
+                                }
+                        },{
+                                label:"Label",
+                                id:"label",
+                                value:"",                          
+                                operations:{
+                                    onInput:setLabel
+                                }
+                        },{
+                                label:"Next", 
+                                type:"button",  
+                                id:"next",
+                                icon:"continue",                                                 
+                                operations:{
+                                    onInput:generateQRCode
+                                }
+                        }]
+                    }
+                };
+                globalInputConnector.sendInitData(initData);    
+       },
+       generateQRCode:({setSize,setLevel,printQRCode})=>{
+        const initData={
+            action:"input",
+            dataType:"form", 
+            form:{
+                title:"Encrypted QR Code",
+                fields:[{
+                    label:"Size",
+                    value:300,
+                    type:"range",
+                    minimumValue:100,
+                    maximumValue:1000,
+                    step:10,
+                    operations:{
+                        onInput:value=>setSize(value)
+                    }
+                },{
+                    label:"Level",
+                    type:"list",
+                    selectType:"single",
+                    value:"H",
+                    items:[
+                            {value:"L", label:"Low"},
+                            {value:"M", label:"Medium"},
+                            {value:"Q", label:"Quality"},
+                            {value:"H", label:"High"}
+                          ],
+                    operations:{
+                                  onInput:selectedValue=>{
+                                          if(selectedValue && selectedValue.length){
+                                                  setLevel(selectedValue[0])
+                                          }
+                                          else{
+                                            console.error("receoved unexpected data");
+                                          }
+                                  }
+                              },
+                  },{
+                    type:"button",
+                    label:"Print",
+                    icon:"print",
+                    viewId:"footer",
+                    operations:{
+                        onInput:printQRCode
+         
+                    }
+                }]
+            }
+        };
+        globalInputConnector.sendInitData(initData);
+    }
+
+}
+
+/*
 
 export const qrCodeService={
+        enterContentAndLabel:({setCodeContent,setLabel,generateQRCode})=>{
+                    const initData={
+                            action:"input",
+                            dataType:"qrcode",
+                            form:{
+                                    title:"QR Code Generation",                         
+                            fields:[{
+                            label:"Content of the QR Code", 
+                            id:"content",                            
+                            value:"",
+                            operations:{
+                                    onInput:setCodeContent
+                            }
+                        },{
+                            label:"Label",
+                            id:"label",
+                            value:"",                          
+                            operations:{
+                                onInput:setLabel
+                            }
+                        },{
+                            label:"Next", 
+                            type:"button",  
+                            id:"next",
+                            icon:"continue",                                                 
+                            operations:{
+                                onInput:generateQRCode
+                            }
+                        }]
+                }
+            };
+            globalInputConnector.sendInitData(initData);     
+    },
     startService:({dispatch})=>{
         console.log("---gotoQRCodeService-");
         const setCodeContent=content=>{
@@ -189,4 +301,14 @@ export const qrCodeService={
         globalInputConnector.sendInitData(initData);
     }
     
+};
+
+export const encryptionService={
+    start:()=>{
+        const initData={
+
+        }
+    }
+
 }
+*/

@@ -1,6 +1,6 @@
 import React, {useReducer, useState, useRef, useEffect} from 'react';
 import QRCode from "qrcode.react";
-import * as globalInput from "../globalInput";
+import * as mobile from "../mobile";
 const ActionType={
     SET_SIZE:1,
     SET_LEVEL:2
@@ -10,22 +10,26 @@ const initialData={
     size: 400,
     level:'H'
 }
-export default ({content, label}) => {
+export default ({content, label,theme}) => {
     const [state,dispatch] = useReducer(reducer,initialData);
+    const {CenterContainer,P} =theme;
+
     useEffect(()=>{
         const setSize = size => dispatch({type:ActionType.SET_SIZE,size});
         const setLevel = level => dispatch({type:ActionType.SET_LEVEL,level});
         const printQRCode=()=>{
             window.print();
         }
-        globalInput.qrCodeService.generateQRCode({setSize,setLevel,printQRCode});         
+        mobile.qrCodeService.generateQRCode({setSize,setLevel,printQRCode});         
     },[]);  
     if(content){
         return(
-        <div style={styles.container}>
+        <CenterContainer>
+            <P>{label}</P>
             <QRCode value={content} level={state.level} size={state.size}/>
-        </div>
-        
+            <P>Scan with Global Input App</P>
+        </CenterContainer>
+            
         )
     }
     else{

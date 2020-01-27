@@ -11,5 +11,9 @@ export default {
     qrCodeService:{
         title:"Encrypted QR Code Service",
         content:"Please operate on your mobile to encrypt content to use for QR Code"
+    },
+    code:{
+        label:"Scan with Global Input App"
     }
+    
 };
