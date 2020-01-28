@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import * as actions from './actions';
+import * as actions from '../actions';
 
 
-import PageContainer from './generic-example-container';
-import {Title,P,Code,Concept} from './basic-app-layout';
+import PageContainer from '../generic-example-container';
+import {Title,P,Code,Concept,ErrorMessage} from '../basic-app-layout';
 
 export default ({content,label, errorMessage, dispatch,mobile})=>{   
         useEffect(()=>{  
@@ -16,11 +16,12 @@ export default ({content,label, errorMessage, dispatch,mobile})=>{
         <PageContainer>
                 <Title>Encrypted QR Code Service</Title>  
                 <P>Please operate on your mobile to encrypt content to use for QR Code</P>                                
+                <ErrorMessage errorMessage={errorMessage}/>
                 <P>
                                 <Concept>Content:</Concept><Code>{content}</Code>
                                 <Concept>Label:</Concept><Code>{label}</Code>
                 </P>                
-                <P>{errorMessage}</P>
+                
         </PageContainer>   
         );       
 };

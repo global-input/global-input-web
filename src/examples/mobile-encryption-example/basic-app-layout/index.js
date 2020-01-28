@@ -3,6 +3,14 @@ import {Link} from 'react-router-dom';
 import {styles} from './styles';
 
 export const P=({children})=>(<div style={styles.paragraph.get()}>{children}</div>);
+export const ErrorMessage= ({errorMessage})=>{
+    if(errorMessage){
+      return (<div style={styles.errorMessage.get()}>{errorMessage}</div>);
+    }
+    else {
+      return null;
+    }  
+}
 export const Title=({children})=>(<div style={styles.title.get()}>{children}</div>);
 
 export const Code=({children})=>(
@@ -17,11 +25,22 @@ export const A=({href,children})=>(<a href={href} style={styles.link} target="__
 
 export const Concept=({children})=>(<span style={styles.concept}>{children}</span>);
 
-export const CenterContainer=({children})=><div style={styles.centerContainer}>{children}</div>
+export const CenterContainer=({children,type})=>{
+  let st=styles.centerContainer.center;
+  if(type=='right'){
+
+    st=styles.centerContainer.right;
+  }
+  return(<div style={st}>{children}</div>);
+}
 
 export const TextAreaBox = ({value, id, onChange})=>(
       <textarea  id={id} style={styles.textArea.get()}
       onChange={onChange} value={value}/>            
+);
+
+export const TextButton=({onClick,label})=>(
+  <button style={styles.textButton} onClick={onClick}>{label}</button>
 );
 
 export class ListLinks extends React.Component {

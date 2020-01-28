@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import QRCode from "qrcode.react";
-import PageContainer from './generic-example-container';
-import {Title,P,CenterContainer} from './basic-app-layout';
-import * as actions from './actions';
+import PageContainer from '../generic-example-container';
+import {Title,P,CenterContainer} from '../basic-app-layout';
+import * as actions from '../actions';
 
 
 export default ({content, label, size,level, dispatch,mobile}) => {

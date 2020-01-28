@@ -9,8 +9,13 @@ import DisplayServiceSelection from './DisplayServiceSelection';
 import DisplaySessionDisconnected from './DisplaySessionDisconnected';
 
 
-import DisplayQRCodeServiceContentLabel from './DisplayQRCodeServiceContentLabel';
-import DisplayGenerateQRCode from './DisplayGenerateQRCode';
+import DisplayQRCodeServiceContentLabel from './qr-code-service/DisplayQRCodeServiceContentLabel';
+import DisplayGenerateQRCode from './qr-code-service/DisplayGenerateQRCode';
+
+import DisplayAskEncriptionContent from './encryption-service/DisplayAskEncryptionContent';
+import DisplayEncryptingContent from './encryption-service/DisplayEncryptingContent';
+import DisplayAskDecryptionContent from './decryption-service/DisplayAskDecryptionContent';
+import DisplayDecryptingContent from './decryption-service/DisplayDecryptingContent';
 
 
 export default ()=>{            
@@ -42,7 +47,9 @@ export default ()=>{
                   }
       },[]);
       const {ActionType}=actions;      
-      console.log("-------state.type:"+state.type);      
+      console.log("-------state.type:"+state.type);    
+      
+
       switch(state.type){
                   case ActionType.CONNECTING:
                               if(state.errorMessage){
@@ -71,9 +78,43 @@ export default ()=>{
                   case ActionType.SESSION_FINISHED: 
                               return (<DisplaySessionDisconnected/>);
 
-                  case ActionType.ENCRYPTION_SERVICE: 
-                     //return renderEncryptionService({theme, state, dispatch});
+                  case ActionType.ENCRYPTION_SERVICE.INIT: 
+                  case ActionType.ENCRYPTION_SERVICE.SET_CONTENT: 
+                  case ActionType.ENCRYPTION_SERVICE.SET_ERROR_MESSAGE:
+                              return (
+                              <DisplayAskEncriptionContent 
+                                    dispatch={dispatch}
+                                    mobile={mobile.current} 
+                                    {...actions.encryptionService.getData(state)}/>
+                                    );
+
+                  case ActionType.ENCRYPTION_SERVICE.ENCRYPT:  
+                  case ActionType.ENCRYPTION_SERVICE.SET_ENCRYPTED_CONTENT:
+                              
+                              return (<DisplayEncryptingContent 
+                                    dispatch={dispatch} 
+                                    mobile={mobile.current}                                    
+                                    {...actions.encryptionService.getData(state)}/>);
                   
+                  case ActionType.DECRYPTION_SERVICE.INIT: 
+                  case ActionType.DECRYPTION_SERVICE.SET_CONTENT: 
+                  case ActionType.DECRYPTION_SERVICE.SET_ERROR_MESSAGE:
+                              return (
+                              <DisplayAskDecryptionContent 
+                                    dispatch={dispatch}
+                                    mobile={mobile.current} 
+                                    {...actions.decryptionService.getData(state)}/>
+                                    );
+
+                  case ActionType.DECRYPTION_SERVICE.DECRYPT:  
+                  case ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT:
+                        
+                              return (<DisplayDecryptingContent 
+                                    dispatch={dispatch} 
+                                    mobile={mobile.current}                                    
+                                    {...actions.decryptionService.getData(state)}/>);
+                  
+                                    
                   default: return (<DisplayErrorMessage {...state}/>);
       }
 };
@@ -82,25 +123,6 @@ export default ()=>{
  
  
 const buildMobileConfig =({dispatch,disconnect,waitForMobileToConnect})=>{   
-            const ServicesProvided={
-                  QRCODE:{label:"Create Encrypted QR Codes",value:"qrcode"},
-                  ENCRYPT:{label:"Encrypt Content",value:"encrypt"},
-                  DECRYPT:{label:"Decrypt Content",value:"decrypt"}
-            };
-           
-            const onServiceSelected=(value)=>{                  
-                  switch(value){                    
-                        case ServicesProvided.QRCODE.value: 
-                                     actions.qrCodeService.init({dispatch});
-                                     break;
-                       case  ServicesProvided.ENCRYPT.value: 
-                                     actions.encryptionService.init({dispatch});
-                                     break;
-                       case  ServicesProvided.DECRYPT.value:
-                                     actions.decryptionService.init({dispatch});
-                                     break;
-                  }
-            };
             const onSenderConnected=(sender,senders)=>{                  
                   actions.selectService({dispatch});
             };
@@ -116,14 +138,24 @@ const buildMobileConfig =({dispatch,disconnect,waitForMobileToConnect})=>{
                       action:"input",
                       dataType:"form",
                       form: {
-                      title: "Selecting Services",
-                      fields: [{
-                          label: "Select one of them below:",
-                          type:"list",
-                          selectType:'single',
-                          items:[ServicesProvided.QRCODE, ServicesProvided.ENCRYPT, ServicesProvided.DECRYPT],
-                          operations: {onInput:values => onServiceSelected(values[0])}
-                      }]
+                      title: "Available Services",
+                      fields: [{                          
+                               type:"button",
+                               label:"Encrypted QR Code",
+                               icon:"qrcode",
+                               operations: {onInput:() =>actions.qrCodeService.init({dispatch})}
+
+                         },{                       
+                               type:"button",
+                               label:"Encrypt",
+                               icon:"encrypt",
+                               operations: {onInput:() =>actions.encryptionService.init({dispatch})}
+                        },{
+                              type:"button",
+                              icon:"decrypt",
+                              label:"Decrypt",
+                              operations: {onInput:() =>actions.decryptionService.init({dispatch})}
+                        }]
                       },            
                   },
                   onRegistered:  next => {

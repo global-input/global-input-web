@@ -53,6 +53,19 @@ export const styles={
       fontSize:16,
     }
   },
+  errorMessage:{
+    get:styleMatchingScreenSize,
+    default:{
+      fontSize:16,
+      display:"block",
+      marginBottom:20,
+      marginTop:20,
+      color:'red',
+    },
+    mobile:{
+      fontSize:16,
+    }
+  },
   link:{
     fontWeight:50,
     color:"#6666ff"
@@ -82,20 +95,41 @@ export const styles={
     borderBottomWidth:1
   },
   centerContainer:{
+     center:{
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
-        margin:50
+        margin:50,
+        width:'100%',
+     },
+     right:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"flex-end",
+      margin:20,
+      width:'100%',
+     }
+       
   },
+  
   textArea:{
     get:()=>{
       return{
         width:"80%",
-        height:window.innerHeight*2/3
+        minHeight:200
       }
     }
 
-},
+   },
+   textButton:{
+      backgroundColor:"#5291CD",
+      borderRadius:5,
+      margin:"5vw",
+      color:"white",
+      padding:10,
+      minWidth:150,
+   }
      
 }

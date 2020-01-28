@@ -1,4 +1,5 @@
 import React from 'react';
+
 export default ({children})=>{      
     return(
           <div style={styles.container}>
@@ -22,8 +23,8 @@ const styles={
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
-        windows:"100%",
-        minHeight:window.innerHeight*2/3  
+        width:"100%",
+        minHeight:window.innerHeight*2/3,        
     },
   
     title:{
