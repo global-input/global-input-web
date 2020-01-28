@@ -1,7 +1,7 @@
 import React from 'react';
 import QRCode from "qrcode.react";
 import PageContainer from './generic-example-container';
-import {Title,P} from '../../page-components/themes/basic-app-layout';
+import {Title,P} from './basic-app-layout';
 export default ({connectionCode,level,size})=>{    
         
     return (

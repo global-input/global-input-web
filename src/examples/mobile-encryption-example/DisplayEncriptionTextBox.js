@@ -5,7 +5,7 @@ import {Title,P,CenterContainer} from './basic-app-layout';
 import * as actions from './actions';
 
 
-export default ({content, label, size,level, dispatch,mobile}) => {
+export default ({dispatch,mobile}) => {
     
     useEffect(()=>{        
             const mobileConfig=buildMobileConfig({dispatch});
@@ -14,9 +14,7 @@ export default ({content, label, size,level, dispatch,mobile}) => {
     if(content){
         return(
         <CenterContainer>
-            <P>{label}</P>
-            <QRCode value={content} level={level} size={size}/>
-            <P>Scan with Global Input App</P>
+                
         </CenterContainer>
             
         )

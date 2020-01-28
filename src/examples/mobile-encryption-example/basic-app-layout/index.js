@@ -19,6 +19,11 @@ export const Concept=({children})=>(<span style={styles.concept}>{children}</spa
 
 export const CenterContainer=({children})=><div style={styles.centerContainer}>{children}</div>
 
+export const TextAreaBox = ({value, id, onChange})=>(
+      <textarea  id={id} style={styles.textArea.get()}
+      onChange={onChange} value={value}/>            
+);
+
 export class ListLinks extends React.Component {
 
   render(){

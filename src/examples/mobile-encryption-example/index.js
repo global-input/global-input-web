@@ -1,12 +1,7 @@
 import React, {useReducer, useState, useRef, useEffect} from 'react';
+import {createMessageConnector} from 'global-input-message'; ////global-input-message////
 
-
-import * as mobile from "./mobile";
-import textContent from './textContent';
 import * as actions from './actions';
-//import QRCodeGenerator from './qr-code-generator';
-//import EncryptionService from './encryption-service';
-
 import DisplayConnecting from './DisplayConnecting';
 import DisplayErrorMessage from './DisplayErrorMessage';
 import DisplayConnectionCode from './DisplayConnectionCode';
@@ -21,41 +16,29 @@ import DisplayGenerateQRCode from './DisplayGenerateQRCode';
 export default ()=>{            
       
       const [state,dispatch]=useReducer(actions.reducer,actions.initialState);
-      useEffect(()=>{                  
-                  const onWaitConnect=connectionCode=>{
-                        actions.displayQRCode({dispatch,connectionCode})
+      let mobile=useRef(null);
+      useEffect(()=>{                                    
+                  mobile.current=createMessageConnector();
+                  const disconnect= ()=>{
+                        if(!mobile.current){
+                        return;
+                        }
+                        mobile.current.disconnect();
+                        mobile.current=null;
                   };
-                  const onSenderConnected=(sender,senders)=>{                  
-                        actions.selectService({dispatch});
+                  const waitForMobileToConnect = () => {
+                        if(mobile.current){
+                              const connectionCode=mobile.current.buildInputCodeData();
+                              console.log("[["+connectionCode+"]]");
+                              actions.displayQRCode({dispatch,connectionCode});
+                        }                        
                   };
-                  const onSenderDisconnected=(sender,senders)=>{
-                        mobile.disconnect();
-                        actions.onFinish({dispatch});
-                  };
-                  const onQRCodeServiceSelected=()=>{
-                        actions.qrCodeService.init({dispatch});
-                  }
-                  const onEncryptedServiceSelected=()=>{
-                        actions.encryptionService.init({dispatch});
-                  };
-                  const onDecryptedServiceSelected=()=>{
-                        actions.decryptionService.init({dispatch});
-                  };
-                  const onError=errorMessage=>{
-                        actions.setErrorMessage({dispatch,errorMessage});
-                  };
+                  const mobileConfig=buildMobileConfig({dispatch,disconnect,waitForMobileToConnect});
 
-                  mobile.connect({
-                        onWaitConnect,
-                        onError,
-                        onSenderConnected,
-                        onSenderDisconnected,
-                        onQRCodeServiceSelected,
-                        onEncryptedServiceSelected,
-                        onDecryptedServiceSelected
-                  });
-                  return ()=>{
-                        mobile.disconnect();                     
+                  mobile.current.connect(mobileConfig); 
+
+                  return ()=>{                        
+                        disconnect();                        
                   }
       },[]);
       const {ActionType}=actions;      
@@ -75,11 +58,16 @@ export default ()=>{
                   case ActionType.QRCODE_SERVICE.INIT:                               
                   case ActionType.QRCODE_SERVICE.SET_CONTENT: 
                   case ActionType.QRCODE_SERVICE.SET_LABEL:                               
-                              return (<DisplayQRCodeServiceContentLabel  dispatch={dispatch} {...actions.qrCodeService.getData(state)}/>);
+                              return (<DisplayQRCodeServiceContentLabel  
+                                    dispatch={dispatch} 
+                                    mobile={mobile.current}
+                                    {...actions.qrCodeService.getData(state)}/>);
                   case ActionType.QRCODE_SERVICE.GENERATE_QR_CODE:  
                   case ActionType.QRCODE_SERVICE.SET_LEVEL:
                   case ActionType.QRCODE_SERVICE.SET_SIZE:
-                              return (<DisplayGenerateQRCode dispatch={dispatch} {...actions.qrCodeService.getData(state)}/>)
+                              return (<DisplayGenerateQRCode dispatch={dispatch} 
+                                      mobile={mobile.current}
+                                      {...actions.qrCodeService.getData(state)}/>)
                   case ActionType.SESSION_FINISHED: 
                               return (<DisplaySessionDisconnected/>);
 
@@ -90,81 +78,69 @@ export default ()=>{
       }
 };
 
-const renderError= ({theme, state,PageContainer})=> {
-      const {P,Title}=theme;
-      return (
-            <PageContainer>
-                  <Title>Error</Title>
-                  <P>{state.errorMessage}</P>
-            </PageContainer>
-      );
+ 
+ 
+ 
+const buildMobileConfig =({dispatch,disconnect,waitForMobileToConnect})=>{   
+            const ServicesProvided={
+                  QRCODE:{label:"Create Encrypted QR Codes",value:"qrcode"},
+                  ENCRYPT:{label:"Encrypt Content",value:"encrypt"},
+                  DECRYPT:{label:"Decrypt Content",value:"decrypt"}
+            };
+           
+            const onServiceSelected=(value)=>{                  
+                  switch(value){                    
+                        case ServicesProvided.QRCODE.value: 
+                                     actions.qrCodeService.init({dispatch});
+                                     break;
+                       case  ServicesProvided.ENCRYPT.value: 
+                                     actions.encryptionService.init({dispatch});
+                                     break;
+                       case  ServicesProvided.DECRYPT.value:
+                                     actions.decryptionService.init({dispatch});
+                                     break;
+                  }
+            };
+            const onSenderConnected=(sender,senders)=>{                  
+                  actions.selectService({dispatch});
+            };
+            const onSenderDisconnected=(sender,senders)=>{
+                  disconnect();
+                  actions.onFinish({dispatch});
+            };            
+            const onError=errorMessage=>{
+                  actions.setErrorMessage({dispatch,errorMessage});
+            };
+            return  {
+                  initData: {
+                      action:"input",
+                      dataType:"form",
+                      form: {
+                      title: "Selecting Services",
+                      fields: [{
+                          label: "Select one of them below:",
+                          type:"list",
+                          selectType:'single',
+                          items:[ServicesProvided.QRCODE, ServicesProvided.ENCRYPT, ServicesProvided.DECRYPT],
+                          operations: {onInput:values => onServiceSelected(values[0])}
+                      }]
+                      },            
+                  },
+                  onRegistered:  next => {
+                      next();                                            
+                      waitForMobileToConnect();    
+                  },
+                  onRegisterFailed:function(registeredMessage){                        
+                      onError(registeredMessage);
+                  },
+                  onSenderConnected,
+                  onSenderDisconnected,
+                  apikey:"k7jc3QcMPKEXGW5UC",
+                  securityGroup:"1CNbWCFpsbmRQuKdd",
+                  aes:"dfhrhahfhhfsdhlnnnlkfjlihjc3QcMPKEXGW5UC",
+                  client:"thisShouldBeUniqueId"
+                  //url:"http://localhost:1337"
+             };
+              
+             
 };
-const renderConnecting=({theme, state,PageContainer}) =>{      
-      const {Title,P}=theme;
-      if(state.errorMessage){
-            return renderError({theme, state});      
-      }
-      return(
-            <PageContainer>
-                  <Title>Wait</Title>
-                  <P>Loading...</P>
-            </PageContainer>
-      );
-}
-
-
-const renderSelectService=({theme, PageContainer})=>{
-      const {P,Title}=theme;
-      return (
-            <PageContainer>
-                  <Title>{textContent.serviceSelection.title}</Title>
-                  <P>{textContent.serviceSelection.content}</P>
-            </PageContainer>   
-      )
-}
-
-
-/*
-const qrCodeService = {
-      renderInit:({theme,PageContainer})=>{
-            const {P,Title}=theme;
-          return(
-            <PageContainer>
-                  <Title>{textContent.qrCodeService.title}</Title>
-                  <P>{textContent.qrCodeService.content}</P>                  
-            </PageContainer>
-            );  
-      },
-      displayContentLabel: ({theme, state,Container})=>{
-            const {P,Title,Code,Concept}=theme;      
-            const {content,label}=actions.qrCodeService.getData(state);            
-            return(<DisplayContentLabel 
-                        <Container>
-                              <Title>{textContent.qrCodeService.title}</Title>
-                              <P>{textContent.qrCodeService.content}</P>      
-                              <P>
-                                    <Concept>Content:</Concept><Code>{content}</Code>
-                                    <Concept>Label:</Concept><Code>{label}</Code>
-                              </P>
-                              <P>{state.errorMessage}</P>
-                        </Container>   
-            );
-               
-      }
-}
-
-
-const renderGenerateQRCode=({theme, state, dispatch})=>{      
-      const content=actions.qrCodeService.getContent(state);
-      const label=actions.qrCodeService.getLabel(state);
-      return (<QRCodeGenerator 
-      theme={theme}      
-      content={content} 
-      label={label}/>);
-};
-
-
-const renderEncryptionService = ({theme, state, dispatch})=>{
-      return (<EncryptionService theme={theme} Container={GenericExampleContainer}/>);
-}
-*/

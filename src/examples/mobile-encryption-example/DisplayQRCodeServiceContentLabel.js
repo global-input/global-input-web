@@ -1,18 +1,15 @@
 import React, {useEffect} from 'react';
 import * as actions from './actions';
-import * as mobile from "./mobile";
+
 
 import PageContainer from './generic-example-container';
-import {Title,P,Code,Concept} from '../../page-components/themes/basic-app-layout';
+import {Title,P,Code,Concept} from './basic-app-layout';
 
-export default ({content,label, errorMessage, dispatch})=>{   
-        useEffect(()=>{            
-                const setCodeContent = content => actions.qrCodeService.setContent({dispatch,content});
-                const setLabel = label => actions.qrCodeService.setLabel({dispatch,label});
-                const generateQRCode=()=>{
-                    actions.qrCodeService.generate({dispatch});
-                };            
-                mobile.qrCodeService.displayContentLabel({setCodeContent,setLabel,generateQRCode});            
+export default ({content,label, errorMessage, dispatch,mobile})=>{   
+        useEffect(()=>{  
+                const mobileConfig=buildMobileConfig({dispatch});            
+                mobile.sendInitData(mobileConfig);                                       
+                
         },[]);
 
         return(
@@ -27,3 +24,43 @@ export default ({content,label, errorMessage, dispatch})=>{
         </PageContainer>   
         );       
 };
+
+
+const buildMobileConfig=({dispatch})=>{
+        const setCodeContent = content => actions.qrCodeService.setContent({dispatch,content});
+        const setLabel = label => actions.qrCodeService.setLabel({dispatch,label});
+        const generateQRCode=()=>{
+                    actions.qrCodeService.generate({dispatch});
+        };
+
+        return {
+                action:"input",
+                dataType:"qrcode",
+                form:{
+                        title:"QR Code Generation",                         
+                    fields:[{
+                            label:"Content of the QR Code", 
+                            id:"content",                            
+                            value:"",
+                            operations:{
+                                    onInput:setCodeContent
+                            }
+                    },{
+                            label:"Label",
+                            id:"label",
+                            value:"",                          
+                            operations:{
+                                onInput:setLabel
+                            }
+                    },{
+                            label:"Next", 
+                            type:"button",  
+                            id:"next",
+                            icon:"continue",                                                 
+                            operations:{
+                                onInput:generateQRCode
+                            }
+                    }]
+                }
+            };
+}

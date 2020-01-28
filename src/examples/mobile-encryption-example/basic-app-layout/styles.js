@@ -82,11 +82,20 @@ export const styles={
     borderBottomWidth:1
   },
   centerContainer:{
-    display:"flex",
+        display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
         margin:50
+  },
+  textArea:{
+    get:()=>{
+      return{
+        width:"80%",
+        height:window.innerHeight*2/3
+      }
     }
+
+},
      
 }
