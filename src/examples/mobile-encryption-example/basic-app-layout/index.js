@@ -25,19 +25,33 @@ export const A=({href,children})=>(<a href={href} style={styles.link} target="__
 
 export const Concept=({children})=>(<span style={styles.concept}>{children}</span>);
 
-export const CenterContainer=({children,type})=>{
-  let st=styles.centerContainer.center;
-  if(type=='right'){
-
-    st=styles.centerContainer.right;
+export const ContentContainer=({children,row})=>{
+  let st=styles.contentContainer.left;  
+  if(row==='center'){
+      st=styles.contentContainer.center;  
   }
-  return(<div style={st}>{children}</div>);
+  return(<div style={st.get()}>{children}</div>);
 }
 
 export const TextAreaBox = ({value, id, onChange})=>(
       <textarea  id={id} style={styles.textArea.get()}
       onChange={onChange} value={value}/>            
 );
+export const TextInputBox=({id,type,readOnly,onChange,value,label})=>{
+  return(           
+           <div style={styles.form.row}>             
+              <label htmlFor={id} style={styles.form.label}>{label}</label>
+             <input  id={id} style={styles.form.input}
+             
+            type={type}            
+            readOnly={readOnly}            
+            onChange={onChange} value={value}/>
+            
+          </div>
+      
+         
+  );
+}
 
 export const TextButton=({onClick,label})=>(
   <button style={styles.textButton} onClick={onClick}>{label}</button>

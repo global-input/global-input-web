@@ -6,9 +6,9 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 
 
-const {QrcodePrinting} = examplesLinks;
+const { MobileEncryption} = examplesLinks;
 
-const {DocumentationButton,QRCodePrintingAppButton}  = pagesLinks.buttons;
+const {DocumentationButton,MobileEncryptionAppButton}  = pagesLinks.buttons;
 
 
 const DocuButton=props=>{
@@ -21,7 +21,7 @@ const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <QRCodePrintingAppButton>Example</QRCodePrintingAppButton>
+        <MobileEncryptionAppButton>Example</MobileEncryptionAppButton>
         <DocuButton {...props}/>
     </ButtonsContainer>
   )
@@ -70,8 +70,7 @@ const ContentEncryption = props=>{
   </P>
     <P>
     The mechanism that allows applications to use the mobile app to encrypt/decrypt content using a selected key in the app may lead to many use cases.
-    One of the example applications is <QrcodePrinting {...props}>the QR Code Printing Application</QrcodePrinting>, which allows you
-    to print Encrypted QR Codes using the encrypted content from GIA.
+    You can try out <MobileEncryption {...props}>the example application</MobileEncryption> to see one of many use cases in this regard.    
     </P>
     <P>
     You may find the Encrypted QR codes handy in many situations because of its convenience: scan an Encrypted QR code and the message will be decrypted
@@ -85,7 +84,7 @@ const ContentEncryption = props=>{
     <P>
       However, it is also important to backup your encryption keys in your Global Input App, so that you can recover them
       when your phone is lost or stolen.
-      The <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting> allows you backup your encryption keys in
+      The <MobileEncryption {...props}>Mobile Encryption Application</MobileEncryption> allows you backup your encryption keys in
       the form of Encrypted QR Codes. You can import the encryption keys just by scanning them and provide the password when prompted.
       You can also export the encryption keys directly to another phone via encrypted QR Codes.
 
@@ -95,7 +94,7 @@ const ContentEncryption = props=>{
 
       You can scan the encrypted QR Code with another mobile to import the key into your new phone. Or you can share an encryption key with your colleges or your friends so that later on you can share secret messages over Encrypted QR codes.
 
-      You can also export your Global Input App settings and print it as QR code using the <QrcodePrinting {...props}>QR Code Printing Application</QrcodePrinting>.
+      You can also export your Global Input App settings and print it as QR code using the <MobileEncryption {...props}>Mobile Encryption Application</MobileEncryption>.
       This is useful when some business application prefers to restrict the Global Input App users to those only that has paired with them.
     </P>
 

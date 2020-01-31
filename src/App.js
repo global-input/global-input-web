@@ -21,7 +21,7 @@ import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 import DocumentationPage from './pages/documentation-page';
 
-import QRCodeprintingExample     from  "./examples/qr-code-printing-example";
+
 import ContentTransferExample    from "./examples/content-transfer-example";
 import GameControlExample        from "./examples/game-control-example";
 import MediaPlayerControlExample from "./examples/media-player-control-example";
@@ -77,10 +77,10 @@ const App=props=>(
             <Route  path={config.paths.examples.mediaPlayer.path}  component={MediaPlayerScreen}/>
             <Route  path={config.paths.examples.gameControl.path}  component={GameControlScreen}/>
             <Route path={config.paths.examples.transferForm.path} component={TransferFormDataScreen}/>
-            <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>
-            <Route path={config.paths.examples.qrPrinting.path} component={QRPrintingScreen}/>
+            <Route path={config.paths.examples.sendMessage.path} component={SendMessageScreen}/>            
             <Route path={config.paths.examples.encryptionDecryption.path} component={EncryptionDecryptionScreen}/>
             <Route path={config.paths.examples.mobileEncryption.path} component={MobileEncryptionScreen}/>
+            <Route path={config.paths.examples.mobileEncryption.oldpath} component={MobileEncryptionScreen}/>
             
 
             <Redirect to={config.paths.home.path}/>
@@ -138,7 +138,7 @@ const compStyles={
 };
 
 
-const QRPrintingScreen=createExampleComponent(QRCodeprintingExample);
+
 const GameControlScreen=createExampleComponent(GameControlExample);
 const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample);
 const SendMessageScreen=createExampleComponent(SendMessageExample);

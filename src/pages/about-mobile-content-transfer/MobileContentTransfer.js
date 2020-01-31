@@ -5,7 +5,7 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
 
-const {TransferFormData,ContentTransfer,QrcodePrinting} = examplesLinks;
+const {TransferFormData,ContentTransfer,MobileEncryption} = examplesLinks;
 
 const {DocumentationButton,CopyContentAppButton,TransferFormDataButton}  = pagesLinks.buttons;
 
@@ -71,9 +71,9 @@ const MobileContentTransfer=props=>{
   Global Input App also allows passing secret messages via
   Encrypted QR Codes using a pre-shared encryption key.
   You can create and share an encryption key on the Keys tab of your Global Input App (GIA), or
-  you can use the <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out an encrypted QR code for the encryption key you would like
+  you can use the <MobileEncryption  {...props}>the Mobile Encryption Application</MobileEncryption> to print out an encrypted QR code for the encryption key you would like
   to share. You can create Encrypted QR Codes for your secret message on the Encrypt tab of your GIA or you can use
-  the <QrcodePrinting  {...props}>QR Code Printing Application</QrcodePrinting> to print out the encrypted QR Codes.
+  the <MobileEncryption  {...props}>Mobile Encryption Application</MobileEncryption> to print out the encrypted QR Codes.
 
 
 </P>

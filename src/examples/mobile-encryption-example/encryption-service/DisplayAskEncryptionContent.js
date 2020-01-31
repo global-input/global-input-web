@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react';
 import QRCode from "qrcode.react";
 import PageContainer from '../generic-example-container';
-import {Title,P,CenterContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
 import * as actions from '../actions';
 
 
-export default ({dispatch,mobile, content,errorMessage}) => {
+export default ({dispatch,mobile, content,errorMessage,backToServiceSelection}) => {
     
     useEffect(()=>{        
-            const mobileConfig=buildMobileConfig({dispatch});
+            const mobileConfig=buildMobileConfig({dispatch,backToServiceSelection});
             mobile.sendInitData(mobileConfig);                                       
     },[]);  
         const setContent= content => actions.encryptionService.setContent({content,dispatch});
-        const onEncryptContent=()=>{
+        const onSendContent=()=>{
             
             if(!content){
-                actions.encryptionService.setErrorMessage(dispatch,'Empty content cannot be encrypted!');
+                actions.encryptionService.setContent({dispatch,content,errorMessage:'Please provide a content before clicking on the "Send" button.'});
             }
             else{
                 actions.encryptionService.encrypt(dispatch);
@@ -23,31 +23,21 @@ export default ({dispatch,mobile, content,errorMessage}) => {
             
         }
         return(
-            <PageContainer>
-                <P>Please paste the content you would like encrypt into the following text box, and then click the 'Encrypt' button</P>
-                <CenterContainer type='right'>
-                    <TextButton label="Encrypt" onClick={onEncryptContent}/>
+            
+                <ContentContainer>
+                    <Title>Encryption</Title>
                     <ErrorMessage errorMessage={errorMessage}/>
-                    <CenterContainer>
-                    <TextAreaBox onChange={evt=>setContent(evt.target.value)}/>
-                    </CenterContainer>
-                    
-                </CenterContainer>
-                
-                
-
-            </PageContainer>
+                    <P>You may paste the content into the following text box, and then click the 'Send' button to the send the content to your mobile for encryption.</P>                                        
+                    <TextAreaBox onChange={evt=>setContent(evt.target.value)}/>                    
+                    <TextButton label="Send" onClick={onSendContent}/>                                        
+                </ContentContainer>
         
         );
                      
 };
 
-const buildMobileConfig=({dispatch})=>{
-        const setSize = size => actions.qrCodeService.setSize({dispatch,size});        
-        const setLevel = level => actions.qrCodeService.setLevel({dispatch,level});        
-        const printQRCode=()=>{
-            window.print();
-        };
+const buildMobileConfig=({dispatch,backToServiceSelection})=>{
+        
         return {
             action:"input",
             dataType:"form", 
@@ -55,7 +45,15 @@ const buildMobileConfig=({dispatch})=>{
                 title:"Mobile Encryption",
                 fields:[{
                     type:'info',
-                    value: 'Please enter the content you would like to encrypt in the connected application running on your computer',
+                    value: 'You need to operate on the connected application to provide the content for encryption.',
+                },{
+                    type:"button",
+                    label:"Back",
+                    icon:"back",                    
+                    operations:{
+                        onInput:backToServiceSelection
+         
+                    }
                 }]
             }
         };

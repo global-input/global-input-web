@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import QRCode from "qrcode.react";
 import PageContainer from '../generic-example-container';
-import {Title,P,CenterContainer} from '../basic-app-layout';
+import {Title,P,ContentContainer} from '../basic-app-layout';
 import * as actions from '../actions';
 
 
@@ -13,11 +13,11 @@ export default ({content, label, size,level, dispatch,mobile}) => {
     },[]);  
     if(content){
         return(
-        <CenterContainer>
-            <P>{label}</P>
+        <ContentContainer row='center'>            
+            <P>{label}</P>            
             <QRCode value={content} level={level} size={size}/>
             <P>Scan with Global Input App</P>
-        </CenterContainer>
+        </ContentContainer>
             
         )
     }
@@ -32,11 +32,14 @@ const buildMobileConfig=({dispatch})=>{
         const printQRCode=()=>{
             window.print();
         };
+        const backToContent=()=>{
+            actions.qrCodeService.init({dispatch})
+        }
         return {
             action:"input",
             dataType:"form", 
             form:{
-                title:"Encrypted QR Code",
+                title:"QR Code Generated",
                 fields:[{
                     label:"Size",
                     value:300,
@@ -70,6 +73,15 @@ const buildMobileConfig=({dispatch})=>{
                               },
                   },{
                     type:"button",
+                    label:"Back",
+                    icon:"back",
+                    viewId:"footer",
+                    operations:{
+                        onInput:backToContent
+         
+                    }
+                },{
+                    type:"button",
                     label:"Print",
                     icon:"print",
                     viewId:"footer",
@@ -77,6 +89,9 @@ const buildMobileConfig=({dispatch})=>{
                         onInput:printQRCode
          
                     }
+                },{
+                    type:'info',
+                    value:'The connected application should be displaying a QR Code with the content received from your mobile.'
                 }]
             }
         };

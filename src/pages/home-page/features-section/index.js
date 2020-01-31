@@ -40,10 +40,10 @@ const textContent={
             content:"Transferring content securely across devices without using an intermediate network or cloud drives. Copy and Paste Content securely across devices via the end-to-end encrypted communication.",
             buttons:[{path:config.paths.examples.contentTransfer.path, label:"TRY NOW"},{path:config.paths.mobileContentTransfer.path, label:"Read More"}]
       },
-      printQRCodes:{
-            title:"Mobile Content Encryption",
-            content:"Encrypting and signing content within mobile devices and push the encrypted and signed content to applications. Encryption keys stays encrypted within mobile apps.",
-            buttons:[{path:config.paths.examples.qrPrinting.path, label:"TRY NOW"},{path:config.paths.aboutContentEncryption.path, label:"Read More"}]
+      mobileEncryption:{
+            title:"Mobile Encryption",
+            content:"Use your mobile to encrypt or decrypt content that are stored on cloud, on your computer or on other devices. You encryption keys will never leave your mobile device.",
+            buttons:[{path:config.paths.examples.mobileEncryption.path, label:"TRY NOW"},{path:config.paths.aboutContentEncryption.path, label:"Read More"}]
       }
 }
 export default class FeaturesSection extends React.Component{
@@ -52,20 +52,21 @@ export default class FeaturesSection extends React.Component{
       return(
             <FeaturesContainer title="Try Our Features">
               <FeatureRow>
-
-                <TwoButtonsCard data={textContent.secondScreenInput}/>
-                <TwoButtonsCard data={textContent.mobileControl}/>
+                        <TwoButtonsCard data={textContent.mobileEncryption}/>
+                        <TwoButtonsCard data={textContent.mobileContentTransfer}/>
               </FeatureRow>
-
               <FeatureRow>
                   <TwoButtonsCard data={textContent.mobilePersonalStorage}/>
                   <TwoButtonsCard data={textContent.mobileAuthentication}/>
               </FeatureRow>
-
               <FeatureRow>
-                        <TwoButtonsCard data={textContent.printQRCodes}/>
-                        <TwoButtonsCard data={textContent.mobileContentTransfer}/>
+                <TwoButtonsCard data={textContent.secondScreenInput}/>
+                <TwoButtonsCard data={textContent.mobileControl}/>
               </FeatureRow>
+
+              
+
+              
             </FeaturesContainer>
 
       );

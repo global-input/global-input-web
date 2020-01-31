@@ -3,64 +3,76 @@ import * as actions from '../actions';
 
 
 import PageContainer from '../generic-example-container';
-import {Title,P,Code,Concept,ErrorMessage} from '../basic-app-layout';
+import {Title,P,TextInputBox,ErrorMessage, ContentContainer} from '../basic-app-layout';
 
-export default ({content,label, errorMessage, dispatch,mobile})=>{   
+export default ({content,label, errorMessage, dispatch,mobile,backToServiceSelection})=>{ 
         useEffect(()=>{  
-                const mobileConfig=buildMobileConfig({dispatch});            
+                const mobileConfig=buildMobileConfig({dispatch,backToServiceSelection});            
                 mobile.sendInitData(mobileConfig);                                       
                 
         },[]);
 
         return(
-        <PageContainer>
-                <Title>Encrypted QR Code Service</Title>  
-                <P>Please operate on your mobile to encrypt content to use for QR Code</P>                                
-                <ErrorMessage errorMessage={errorMessage}/>
-                <P>
-                                <Concept>Content:</Concept><Code>{content}</Code>
-                                <Concept>Label:</Concept><Code>{label}</Code>
-                </P>                
-                
-        </PageContainer>   
+                <ContentContainer>
+                        <Title>QR Code Generation</Title>  
+                        <P>Please operate on your mobile to build an encrypted content. </P>                        
+                        <ErrorMessage errorMessage={errorMessage}/>
+                        <TextInputBox id="content" value={content} label="Content" readOnly={true}/>
+                        <TextInputBox id="label" value={label} label="Label" readOnly={true}/>
+                </ContentContainer>        
+        
         );       
 };
 
-
-const buildMobileConfig=({dispatch})=>{
+ 
+const buildMobileConfig = ({dispatch,backToServiceSelection}) => {
+        
         const setCodeContent = content => actions.qrCodeService.setContent({dispatch,content});
         const setLabel = label => actions.qrCodeService.setLabel({dispatch,label});
-        const generateQRCode=()=>{
-                    actions.qrCodeService.generate({dispatch});
+        const generateQRCode = () => {                                           
+                actions.qrCodeService.generate({dispatch});                
         };
-
         return {
                 action:"input",
                 dataType:"qrcode",
                 form:{
-                        title:"QR Code Generation",                         
+                        title:"QR Code Content",                         
                     fields:[{
-                            label:"Content of the QR Code", 
+                            label:"Content for the QR Code", 
                             id:"content",                            
                             value:"",
                             operations:{
                                     onInput:setCodeContent
                             }
                     },{
-                            label:"Label",
+                            label:"Label for the QR Code",
                             id:"label",
                             value:"",                          
                             operations:{
                                 onInput:setLabel
-                            }
+                            } 
+                    },{
+                        label:"Back", 
+                        type:"button",  
+                        id:"back",
+                        icon:"back",
+                        viewId:"foot",                                                 
+                        operations:{
+                            onInput:backToServiceSelection
+                        }
                     },{
                             label:"Next", 
                             type:"button",  
                             id:"next",
-                            icon:"continue",                                                 
+                            icon:"continue",
+                            viewId:"foot",                                                 
                             operations:{
                                 onInput:generateQRCode
                             }
+                    },{
+                            type:'info',
+                            value:'You may press the "Encrypt" icon below to generate an encrypted content',
+                            viewId:'info'
                     }]
                 }
             };

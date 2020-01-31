@@ -100,21 +100,22 @@ export const examplesLinks={
       SecondScreen:props=>{
             const {Link}=props.theme;
             return(<Link to={config.paths.examples.mediaPlayer.path}>{props.children}</Link>);
-      },
-      QrcodePrinting:props=>{
+      },      
+      MobileEncryption:props=>{
             const {Link}=props.theme;
-            return(<Link to={config.paths.examples.qrPrinting.path}>{props.children}</Link>);
+            return(<Link to={config.paths.examples.mobileEncryption.path}>{props.children}</Link>);
       },
       SendMessageExample:props=>{
         const {Link}=props.theme;
         return(<Link to={config.paths.examples.sendMessage.path}>{props.children}</Link>);
       },
-      listAllExamples:[{path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
-          {path:config.paths.examples.gameControl.path, linkText:"Game Control Example"},
-          {path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
-          {path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"},
-          {path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"},
-          {path:config.paths.examples.qrPrinting.path, linkText:"QR Code Printing Application"}],
+      listAllExamples:[
+        {path:config.paths.examples.mobileEncryption.path, linkText:"Mobile Encryption Application"},
+        {path:config.paths.examples.contentTransfer.path, linkText:"Content Transfer Example"},
+        {path:config.paths.examples.transferForm.path, linkText:"Transfer Form Data Example"},
+        {path:config.paths.examples.mediaPlayer.path, linkText:"Media Application Example"},
+        {path:config.paths.examples.gameControl.path, linkText:"Game Control Example"},          
+        {path:config.paths.examples.sendMessage.path, linkText:"Send Message Example"}],          
         ListAllExamples:props=>{
           const {ListLinks}=props.theme;
           return(<ListLinks items={examplesLinks.listAllExamples}/>)
@@ -133,8 +134,8 @@ export const pagesLinks={
                 DocumentationButton:props=>(<TransparentButton to={config.paths.documentationPage.mobileIntegration.path}>{props.children}</TransparentButton>),
                 MobileGameControlButton:props=>(<TransparentButton to={config.paths.examples.gameControl.path}>{props.children}</TransparentButton>),
                 SecondScreenButton:props=>(<TransparentButton to={config.paths.examples.mediaPlayer.path}>{props.children}</TransparentButton>),
-                SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>),
-                QRCodePrintingAppButton:props=>(<TransparentButton to={config.paths.examples.qrPrinting.path}>{props.children}</TransparentButton>),
+                SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>),                
+                MobileEncryptionAppButton:props=>(<TransparentButton to={config.paths.examples.mobileEncryption.path}>{props.children}</TransparentButton>),
                 CopyContentAppButton:props=>(<TransparentButton to={config.paths.examples.contentTransfer.path}>{props.children}</TransparentButton>),
           },
           links:{

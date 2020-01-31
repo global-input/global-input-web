@@ -15,9 +15,12 @@ const urls={
       sendMessage: async ({page})=>await page.goto('http://localhost:3000/global-input-app/send-message'),
       gameExample: async ({page})=>await page.goto('http://localhost:3000/global-input-app/game-example'),
       formDataTransfer: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
-      qrPrinting: async ({page})=>await page.goto('http://localhost:3000/global-input-app/qr-printing'),
+      mobileEcryptionOld: async ({page})=>await page.goto('http://localhost:3000/global-input-app/qr-printing'),
       encryptionDecryption:async ({page})=> await page.goto('http://localhost:3000/global-input-app/encryption-decryption'),
-      mobileEcryption:async ({page})=> await page.goto('http://localhost:3000/global-input-app/mobile-encryption'),      
+      mobileEcryption:async ({page})=> {
+        debugger;
+        await page.goto('http://localhost:3000/global-input-app/mobile-encryption')
+      },      
 }
 const loadTestPage=urls.mobileEcryption;
 const testTime=600000;
@@ -31,7 +34,8 @@ const testTimeOut=testTime*2;
 describe('H1 Text', () => {
   test('transfer content', async () => {
     let browser = await puppeteer.launch({
-      headless: false
+      headless: false,
+      devtools:true
     });
     
     let page = await browser.newPage();

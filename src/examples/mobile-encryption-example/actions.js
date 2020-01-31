@@ -13,17 +13,16 @@ export const ActionType = {
      },
      ENCRYPTION_SERVICE:{
           INIT:21,
-          SET_CONTENT:22,
-          SET_ERROR_MESSAGE:23,
+          SET_CONTENT:22,          
           ENCRYPT:24,
           SET_ENCRYPTED_CONTENT:25
      },
      DECRYPTION_SERVICE:{
           INIT:31,
-          SET_CONTENT:32,
-          SET_ERROR_MESSAGE:33,
+          SET_CONTENT:32,          
           DECRYPT:34,
-          SET_DECRYPTED_CONTENT:35
+          SET_DECRYPTED_CONTENT:35,
+          FAILED:36
      },
      SESSION_FINISHED:41
 };
@@ -71,14 +70,14 @@ const transformers={
                return {...state, type,qrCodeService};
           },
           setContent:(state, action)=>{
-               const {type,content}=action;               
-               const qrCodeService={...state.qrCodeService, content,errorMessage:''};               
+               const {type,content,errorMessage}=action;               
+               const qrCodeService={...state.qrCodeService, content,errorMessage};               
                return {...state, type,qrCodeService};
           },
           setLabel:(state, action)=>{
                const {type,label}=action;   
                let   {qrCodeService} = state;
-               qrCodeService={...qrCodeService, label,errorMessage:''};               
+               qrCodeService={...qrCodeService, label};               
                return {...state, type,qrCodeService};
           },
           generate:(state, action)=>{
@@ -86,7 +85,7 @@ const transformers={
                let {qrCodeService}=state;               
                const {content}=qrCodeService;               
                if(!content){    
-                    const errorMessage='Cannot create QR code with empty content';                     
+                    const errorMessage='You need to provide content before continue.';                     
                     qrCodeService={...qrCodeService,errorMessage};                    
                     return {...state, qrCodeService};
                } 
@@ -118,20 +117,15 @@ const transformers={
                     return {...state, type,encryptionService};
                },
                setContent: (state, action)=>{
-                    const {type,content}=action;               
-                    const encryptionService={...state.encryptionService, content,encryptedContent:'',errorMessage:''};               
+                    const {type,content,errorMessage}=action;               
+                    const encryptionService={...state.encryptionService, content,encryptedContent:'',errorMessage};
                     return {...state, type,encryptionService};
                },
                setEncryptedContent:(state, action)=>{
                     const {type,encryptedContent}=action;               
                     const encryptionService={...state.encryptionService, encryptedContent,errorMessage:''};               
                     return {...state, type,encryptionService};
-               },
-               setErrorMessage:(state, action)=>{
-                    const {type,errorMessage}=action;               
-                    const encryptionService={...state.encryptionService, errorMessage};               
-                    return {...state, type,encryptionService};
-               },
+               },               
       },
       decryptionService:{
           init:(state,action) =>{
@@ -144,8 +138,8 @@ const transformers={
                return {...state, type,decryptionService};
           },
           setContent: (state, action)=>{
-               const {type,content}=action;               
-               const decryptionService={...state.decryptionService, content,decryptedContent:'',errorMessage:''};               
+               const {type,content, errorMessage}=action;               
+               const decryptionService={...state.decryptionService, content,decryptedContent:'',errorMessage};               
                return {...state, type,decryptionService};
           },
           setDecryptedContent:(state, action)=>{
@@ -153,11 +147,11 @@ const transformers={
                const decryptionService={...state.decryptionService, decryptedContent,errorMessage:''};               
                return {...state, type,decryptionService};
           },
-          setErrorMessage:(state, action)=>{
+          failed:(state, action) => {
                const {type,errorMessage}=action;               
                const decryptionService={...state.decryptionService, errorMessage};               
                return {...state, type,decryptionService};
-          },
+          }          
  }
         
 }
@@ -178,16 +172,15 @@ export const reducer= (state, action)=>{
         case ActionType.QRCODE_SERVICE.SET_LEVEL:return transformers.qrCodeService.setLevel(state,action);
         
         case ActionType.ENCRYPTION_SERVICE.INIT: return transformers.encryptionService.init(state,action);        
-        case ActionType.ENCRYPTION_SERVICE.SET_CONTENT: return transformers.encryptionService.setContent(state,action); 
-        case ActionType.ENCRYPTION_SERVICE.SET_ERROR_MESSAGE: return transformers.encryptionService.setErrorMessage(state,action); 
+        case ActionType.ENCRYPTION_SERVICE.SET_CONTENT: return transformers.encryptionService.setContent(state,action);         
         case ActionType.ENCRYPTION_SERVICE.ENCRYPT: return transformers.setActionType(state,action);
         case ActionType.ENCRYPTION_SERVICE.SET_ENCRYPTED_CONTENT: return transformers.encryptionService.setEncryptedContent(state,action);
 
         case ActionType.DECRYPTION_SERVICE.INIT: return transformers.decryptionService.init(state,action);        
-        case ActionType.DECRYPTION_SERVICE.SET_CONTENT: return transformers.decryptionService.setContent(state,action);
-        case ActionType.DECRYPTION_SERVICE.SET_ERROR_MESSAGE: return transformers.decryptionService.setErrorMessage(state,action);
+        case ActionType.DECRYPTION_SERVICE.SET_CONTENT: return transformers.decryptionService.setContent(state,action);        
         case ActionType.DECRYPTION_SERVICE.DECRYPT: return transformers.setActionType(state,action);
         case ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT: return transformers.decryptionService.setDecryptedContent(state,action);        
+        case ActionType.DECRYPTION_SERVICE.FAILED: return transformers.decryptionService.failed(state,action);
         
         default:
               return state;
@@ -198,33 +191,32 @@ export const displayQRCode = ({dispatch,connectionCode})=>{
      dispatch({type:ActionType.DISPLAY_CODE, connectionCode});     
 }
 
-export const selectService=({dispatch})=>{
+export const selectService = ({dispatch}) => {
      dispatch({type:ActionType.SELECT_SERVICE});          
 };
 
-export const onFinish=({dispatch}) =>{
+export const onFinish = ({dispatch}) => {
      dispatch({type:ActionType.SESSION_FINISHED});
 };
-export const setErrorMessage=({dispatch,errorMessage}) =>{
-     dispatch({type:ActionType.ERROR,errorMessage});     
+
+export const setErrorMessage = ({dispatch,errorMessage}) => {
+     dispatch({type:ActionType.ERROR,errorMessage});
 };
 
 export const qrCodeService={
           init: ({dispatch}) => dispatch({type:ActionType.QRCODE_SERVICE.INIT}),
-          setContent:({dispatch, content}) =>dispatch({type:ActionType.QRCODE_SERVICE.SET_CONTENT,content}),
-          setLabel:({dispatch, label}) =>dispatch({type:ActionType.QRCODE_SERVICE.SET_LABEL,label}),
-          generate:({dispatch}) =>dispatch({type:ActionType.QRCODE_SERVICE.GENERATE_QR_CODE}),
-          setSize:({dispatch,size}) =>dispatch({type:ActionType.QRCODE_SERVICE.SET_SIZE,size}),
-          setLevel:({dispatch,level}) =>dispatch({type:ActionType.QRCODE_SERVICE.SET_LEVEL,level}),
+          setContent:({dispatch, content,errorMessage}) => dispatch({type:ActionType.QRCODE_SERVICE.SET_CONTENT,content,errorMessage}),
+          setLabel:({dispatch, label}) => dispatch({type:ActionType.QRCODE_SERVICE.SET_LABEL,label}),
+          generate:({dispatch}) => dispatch({type:ActionType.QRCODE_SERVICE.GENERATE_QR_CODE}),
+          setSize:({dispatch,size}) => dispatch({type:ActionType.QRCODE_SERVICE.SET_SIZE,size}),
+          setLevel:({dispatch,level}) => dispatch({type:ActionType.QRCODE_SERVICE.SET_LEVEL,level}),
           getData:state => state.qrCodeService,
-
 };
         
 
 export const encryptionService={
           init: ({dispatch}) => dispatch({type:ActionType.ENCRYPTION_SERVICE.INIT}),
-          setContent:({dispatch, content}) =>dispatch({type:ActionType.ENCRYPTION_SERVICE.SET_CONTENT,content}),
-          setErrorMessage:(dispatch, errorMessage) =>dispatch({type:ActionType.ENCRYPTION_SERVICE.SET_ERROR_MESSAGE,errorMessage}),
+          setContent:({dispatch, content,errorMessage}) =>dispatch({type:ActionType.ENCRYPTION_SERVICE.SET_CONTENT,content,errorMessage}),          
           getData:state => state.encryptionService,
           encrypt: dispatch => dispatch({type:ActionType.ENCRYPTION_SERVICE.ENCRYPT}),
           setEncryptedContent: ({dispatch,encryptedContent}) => dispatch({type:ActionType.ENCRYPTION_SERVICE.SET_ENCRYPTED_CONTENT, encryptedContent})
@@ -232,9 +224,9 @@ export const encryptionService={
 };
 export const decryptionService={
           init: ({dispatch}) => dispatch({type:ActionType.DECRYPTION_SERVICE.INIT}),
-          setContent:({dispatch, content}) =>dispatch({type:ActionType.DECRYPTION_SERVICE.SET_CONTENT,content}),
-          setErrorMessage:(dispatch, errorMessage) =>dispatch({type:ActionType.DECRYPTION_SERVICE.SET_ERROR_MESSAGE,errorMessage}),
+          setContent:({dispatch, content,errorMessage}) =>dispatch({type:ActionType.DECRYPTION_SERVICE.SET_CONTENT,content,errorMessage}),          
           getData:state => state.decryptionService,
           decrypt: dispatch => dispatch({type:ActionType.DECRYPTION_SERVICE.DECRYPT}),
-          setDecryptedContent: ({dispatch,decryptedContent}) => dispatch({type:ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT, decryptedContent})
+          setDecryptedContent: ({dispatch,decryptedContent}) => dispatch({type:ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT, decryptedContent}),
+          failed: ({dispatch,errorMessage}) => dispatch({type:ActionType.DECRYPTION_SERVICE.FAILED, errorMessage}),
 };

@@ -1,11 +1,16 @@
 import React from 'react';
 import PageContainer from './generic-example-container';
-import {Title,P} from './basic-app-layout';
+import {Title,P, ContentContainer} from './basic-app-layout';
 export default () => {    
     return (
           <PageContainer>
-                <Title>Selecting Service</Title>
-                <P>Please select from the list of services shown on your mobile screen (Global Input App).</P>
+                <ContentContainer>
+                  <Title>Select Service</Title>
+                  <P>A set of available services are display on you mobile (Global Input App). Please operate on your mobile.</P>
+
+                </ContentContainer>
+
+                
           </PageContainer>   
     )
 }

@@ -21,12 +21,11 @@ export default {
           examples:{
               contentTransfer:{path:"/global-input-app/content-transfer",linkText:"Content Transfer"},
               gameControl:{path:"/global-input-app/game-example",linkText:"Game Control"},
-              mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
-              qrPrinting:{path:"/global-input-app/qr-printing",linkText:"QR Code Printing"},
+              mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},              
               sendMessage:{path:"/global-input-app/send-message",linkText:"Send Message"},
               transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"},
               encryptionDecryption:{path:"/global-input-app/encryption-decryption",linkText:"Encryption Decryption"},
-              mobileEncryption:{path:"/global-input-app/mobile-encryption",linkText:"Mobile Encryption"},
+              mobileEncryption:{path:"/global-input-app/mobile-encryption",linkText:"Mobile Encryption", oldpath:"/global-input-app/qr-printing"},
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
 

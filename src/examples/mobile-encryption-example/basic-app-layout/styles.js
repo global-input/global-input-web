@@ -34,6 +34,7 @@ export const styles={
       display:"block",
       marginLeft:"auto",
       marginRight:"auto",
+      color:"#5291CD",
 
     },
     mobile:{
@@ -47,6 +48,7 @@ export const styles={
       display:"block",
       marginBottom:20,
       marginTop:20,
+      color:"#5291CD",
 
     },
     mobile:{
@@ -94,30 +96,37 @@ export const styles={
     borderBottomColor:'black',
     borderBottomWidth:1
   },
-  centerContainer:{
-     center:{
+  contentContainer:{
+    left:{
+      get:styleMatchingScreenSize,
+      default:{      
         display:"flex",
         flexDirection:"column",
         justifyContent:"flex-start",
-        alignItems:"center",
-        margin:50,
+        alignItems:"flex-start",      
         width:'100%',
-     },
-     right:{
-      display:"flex",
-      flexDirection:"column",
-      justifyContent:"flex-start",
-      alignItems:"flex-end",
-      margin:20,
-      width:'100%',
-     }
-       
+        padding:30,
+      }
+    },
+    center:{
+      get:styleMatchingScreenSize,
+      default:{      
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center",      
+        width:'100%',
+        padding:30,
+      }
+    },
+
+         
   },
   
   textArea:{
     get:()=>{
       return{
-        width:"80%",
+        width:"100%",
         minHeight:200
       }
     }
@@ -130,6 +139,23 @@ export const styles={
       color:"white",
       padding:10,
       minWidth:150,
+   },
+   form:{
+      row:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"flex-start",
+        width:"90%"       
+      },
+      label:{
+        color:"#5291CD",
+        position:"relative",        
+        top:+10        
+      },
+      input:{
+          width:"100%"
+      }
    }
      
 }
