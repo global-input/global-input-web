@@ -5,7 +5,7 @@ export default ()=>{
     return (
           <PageContainer>
           <Title>Session Finished</Title>
-          <P>Global Input App has disconnected to the application. You can reload the page to start again</P>
+          <P>Global Input App has terminated the connection. You may reload the page and start again.</P>
           </PageContainer>      
     )
 };
