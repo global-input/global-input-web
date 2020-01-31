@@ -5,11 +5,7 @@ import {styles,images} from './styles';
 
 import {withResponsiveComponent} from '../../components/screen-media';
 const textContent={
-    title:"Join Us!",
-    community:{
-        gitter:"https://gitter.im/globalinput/globalinputapp",
-        whatsapp:"https://chat.whatsapp.com/DTYPz6fY7atGjwLk3TQp7e"
-    },
+    title:"Contact Us!",    
     address:{
       title:"Address:",
       content:["Iterative Solution Limited",
@@ -34,15 +30,7 @@ class FooterSection extends React.Component {
       return(<div style={styles.container}>
           <div id="contactUs"></div>
           <div style={styles.titleContainer}>{textContent.title}</div>
-          <div style={styles.iConsContainer}>
-                  <a href={textContent.community.whatsapp} target="_blank" style={styles.icon}>
-                      <img  src={images.whatsapp}/>
-                  </a>
-                  <a href={textContent.community.gitter} target="_blank" style={styles.icon}>
-                      <img  src={images.gitter}/>
-                  </a>
-
-          </div>
+          
           <div style={styles.contactContainer.get()}>
                 <div style={styles.contact.container}>
                       <div style={styles.contact.title}>{textContent.address.title}</div>
