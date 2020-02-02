@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../../components/screen-media";
+import styleMatchingScreenSize from "./styleMatchingScreenSize";
 export const styles={
   container:{
     get:styleMatchingScreenSize,

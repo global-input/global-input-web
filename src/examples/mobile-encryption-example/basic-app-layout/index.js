@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+
 import {styles} from './styles';
 
 export const P=({children})=>(<div style={styles.paragraph.get()}>{children}</div>);
@@ -20,7 +20,7 @@ export const Code=({children})=>(
 );
 
 
-export const ALink=({children,to})=>(<Link to={to} style={styles.link}>{children}</Link>);
+
 export const A=({href,children})=>(<a href={href} style={styles.link} target="__blank">{children}</a>);
 
 export const Concept=({children})=>(<span style={styles.concept}>{children}</span>);
@@ -64,15 +64,8 @@ export class ListLinks extends React.Component {
           {this.props.items.map(this.renderItem.bind(this))}
         </ul>);
   }
-  renderItem(item, index){
-    if(item.path){
-      return (
-              <li style={styles.item} key={index}>
-                    <Link to={item.path} style={styles.link}>{item.linkText}</Link>
-              </li>
-             );
-      }
-      else if(item.href){
+  renderItem(item, index){    
+      if(item.href){
               return(
 
                 <li style={styles.item} key={index}>

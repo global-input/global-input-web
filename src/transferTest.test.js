@@ -15,8 +15,7 @@ const urls={
       sendMessage: async ({page})=>await page.goto('http://localhost:3000/global-input-app/send-message'),
       gameExample: async ({page})=>await page.goto('http://localhost:3000/global-input-app/game-example'),
       formDataTransfer: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
-      mobileEcryptionOld: async ({page})=>await page.goto('http://localhost:3000/global-input-app/qr-printing'),
-      encryptionDecryption:async ({page})=> await page.goto('http://localhost:3000/global-input-app/encryption-decryption'),
+      mobileEcryptionOld: async ({page})=>await page.goto('http://localhost:3000/global-input-app/qr-printing'),      
       mobileEcryption:async ({page})=> {
         debugger;
         await page.goto('http://localhost:3000/global-input-app/mobile-encryption')

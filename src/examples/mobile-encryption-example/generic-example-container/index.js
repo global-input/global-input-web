@@ -15,7 +15,7 @@ export default ({children})=>{
 };
 const textContent={
   title: "Mobile Encryption",
-  githuburl: "https://github.com/global-input/qr-code-printing-example"  
+  githuburl: "https://github.com/global-input/mobile-encryption"  
 };
 const styles={
     container:{
