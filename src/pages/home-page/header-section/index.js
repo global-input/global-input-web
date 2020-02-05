@@ -17,10 +17,10 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 const headerTextContent={
     title:"Global Input App",
     subtitle:"A Universal Mobile Integration Solution",
-    items:[
-           "Mobile Input & Control",
+    items:[           
            "Mobile Authentication",
            "Mobile Encryption",
+           "Mobile Input & Control",           
            "Second Screen"
          ]
 };

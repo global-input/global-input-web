@@ -24,7 +24,7 @@ export const externalsLinks={
       },
       ReactJSExtension:props=>{
         const {A}=props.theme;
-        return(<A href={config.links.reactJSExtension.url}>{props.children}</A>);
+        return(<A href={config.links.jsExtension.url}>{props.children}</A>);
       },
       ReactJSFiddle:props=>{
         const {A}=props.theme;

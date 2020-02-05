@@ -186,12 +186,7 @@ const buildMobileConfig = ({ dispatch, disconnect, waitForMobileToConnect }) => 
                   onError(registeredMessage);
             },
             onSenderConnected,
-            onSenderDisconnected,
-            apikey: "k7jc3QcMPKEXGW5UC",
-            securityGroup: "1CNbWCFpsbmRQuKdd",
-            aes: "dfhrhahfhhfsdhlnnnlkfjlihjc3QcMPKEXGW5UC",
-            client: "thisShouldBeUniqueId"
-            //url:"http://localhost:1337"
+            onSenderDisconnected            
       };
 
 

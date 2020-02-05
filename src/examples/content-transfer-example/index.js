@@ -1,132 +1,111 @@
-import React from "react";
+import React, { useReducer, useRef, useEffect } from "react";
+import { createMessageConnector } from 'global-input-message';
 
-import GlobalInputConnect from '../../components/global-input-connect';
-import ClipboardCopyButton from '../../components/clipboard-copy-button';
+import * as actions from './actions';
 
-import {styles} from "./styles";
 
-const textContent={
-    title:"Content Transfer Example",
-    githuburl:"https://github.com/global-input/content-transfer-example"
-}
-export default class ContentTransferExample extends React.Component{
-  constructor(props){
-        super(props);
-        this.state={content:"", connected:false, notificationMessage:null};
-        this.messageTimeoutHandler=null;
-        this.mobile.init(props);
-    }
-    componentWillUnmount(){
-      if(this.messageTimeoutHandler){
-        clearTimeout(this.messageTimeoutHandler);
-        this.messageTimeoutHandler=null;
+import Initializing from './Initializing';
+import WaitingForConnection from './WaitingForMobile';
+import SessionFinished from './SessionFinished';
+import MobileConnected from './MobileConnected';
+import DisplayError from './DisplayError';
+
+
+export default () => {
+  const [state, dispatch] = useReducer(actions.reducer, actions.initialState);
+  const mobile = useRef(null);
+
+  useEffect(() => {
+    mobile.current = createMessageConnector();
+    const disconnect = () => {
+      if (!mobile.current) {
+        return;
       }
-    }
-    setContent(content){
-        this.setState(Object.assign({},{content}));
-    }
-    setNotificationMessage(notificationMessage){
-      this.setState(Object.assign({},this.state,{notificationMessage}),()=>{
-        this.clipboardTimerHandler=setTimeout(()=>{
-              this.setState(Object.assign({},this.state,{notificationMessage:null}));
-        },2000);
-      });
-    }
-    onSenderConnected(){
-        this.setState(Object.assign({},{connected:true}));
-    }
-
-    renderCopyButton(){
-      if(this.state.notificationMessage){
-
+      mobile.current.disconnect();
+      mobile.current = null;
+    };
+    const waitForMobileToConnect = () => {
+      if (mobile.current) {
+        const connectionCode = mobile.current.buildInputCodeData();
+        console.log("[[" + connectionCode + "]]");
+        actions.waitForMobile({ dispatch, connectionCode });
       }
+    };
+    const mobileConfig = buildMobileConfig({ dispatch, disconnect, waitForMobileToConnect });
+
+    mobile.current.connect(mobileConfig);
+
+
+
+    return () => {
+      disconnect();
     }
-    render(){
-      return(
-        <div style={styles.container}>
+  }, []);
 
-          <div style={styles.title}>
-              {textContent.title}
-          </div>
-          <div style={styles.topControl}>
-                <span style={styles.githuburl}>
-                    <a href={textContent.githuburl} target="_blank">{textContent.githuburl}</a>
-                </span>
-                <ClipboardCopyButton copyFieldId="contentField"/>
+  const { ActionType } = actions;
 
-          </div>
-          <div style={styles.areaContainer}>
-            <textarea  id="contentField" style={styles.textArea.get()}
-              onChange={(evt) => {
-                  this.setContent(evt.target.value);
-                  this.mobile.setContent(evt.target.value);
-
-            }} value={this.state.content}/>
-            <div style={styles.globalConnect}>
-                  <GlobalInputConnect mobileConfig={this.mobile.config}
-                    ref={globalInputConnect =>this.mobile.globalInputConnect=globalInputConnect}
-                    connectingMessage="Connecting...."
-                    connectedMessage="Scan with Global Input App">
-
-                    </GlobalInputConnect>
-            </div>
-
-          </div>
+  switch (state.type) {
+    
+    
+    case ActionType.SESSION_FINISHED:
+      return (<SessionFinished />);
+    case ActionType.WAITING_FOR_MOBILE:
+      return (<WaitingForConnection {...state} />);
+    case ActionType.MOBILE_CONNECTED:
+    case ActionType.SET_CONTENT:
+        return (<MobileConnected dispatch={dispatch} {...state} mobile={mobile.current}/>);      
+    case ActionType.SET_ERROR_MESSAGE:
+        return (<DisplayError {...state}/>);
+    default:
+      console.log("----type:"+state.type);
+      return <Initializing />  
 
 
+  }
 
-        </div>
-      );
+};
 
-    }
-
-    mobile={
-      globalInputConnect:null,
-          config:null,
-          disconnect:()=>{
-              if(this.mobile.globalInputConnect){
-                  this.mobile.globalInputConnect.disconnectGlobaInputApp();
-              }
-          },
-          init:(props)=>{
-                    this.mobile.config={
-                          url:props.url,
-                          apikey:props.apikey,
-                          securityGroup:props.securityGroup,
-                          initData:{
-                              action:"input",
-                              dataType:"control",
-                              form:{
-                                title:"Content Transfer",
-                                fields:[{
-                                  label:"Content",
-                                  id:"content",
-                                  value:"",
-                                  nLines:10,
-                                  operations:{
-                                      onInput:value=>this.setContent(value)
-                                  }
-                                }]
-                              }
-                          },
-                          onSenderConnected:()=>{
-                                  this.setState(Object.assign({},this.state,{connected:true}));
-                          },
-                          onSenderDisconnected:()=>{
-                              this.setState(Object.assign({}, this.state,{connected:false}));
-                          }
-                     };
-          },
-          setContent:content=>{
-            if(this.mobile.globalInputConnect){
-                  this.mobile.globalInputConnect.sendInputMessage(content,0);
-            }
+const buildMobileConfig = ({ dispatch, disconnect, waitForMobileToConnect }) => {
+  const onSenderConnected = (sender, senders) => {
+    actions.mobileConnected({ dispatch });
+  };
+  const onSenderDisconnected = (sender, senders) => {
+    disconnect();
+    actions.onFinish({ dispatch });
+  };
+  const onError = errorMessage => {
+    actions.setErrorMessage({ dispatch, errorMessage });
+  };
+  return {
+    initData: {
+      action: "input",
+      dataType: "form",
+      form: {
+        title: "Content Transfer",
+        fields: [{
+          label: "Content",
+          id: "content",
+          value: "",
+          nLines: 10,
+          operations: {
+            onInput: content => actions.setContent({ dispatch, content })
           }
+        },{
+          type:"info",
+          value:"You may paste content to transfer it to the connected application"
+        }]
+      },
+    },
+    onRegistered: next => {
+      next();
+      waitForMobileToConnect();
+    },
+    onRegisterFailed: function (registeredMessage) {
+      onError(registeredMessage);
+    },
+    onSenderConnected,
+    onSenderDisconnected
+  };
 
 
-    }
-
-
-
-
-}
+};
