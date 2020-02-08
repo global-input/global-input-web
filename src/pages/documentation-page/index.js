@@ -31,11 +31,14 @@ import {ContentEncryption} from '../about-content-encryption';
 
 
 
-const items=[MobileIntegration,
+const items=[
+  MobileIntegration,
+  ContentEncryption,
   MobileAuthenticationAndBeyond,
+  
   IntroducingMobileInputAndControl,
     SecondScreenExperience,MobilePersonalStorage,
-    ContentEncryption,
+    
     MobileContentTransfer,
     HowItWorks];
 

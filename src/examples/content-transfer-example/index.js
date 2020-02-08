@@ -104,7 +104,8 @@ const buildMobileConfig = ({ dispatch, disconnect, waitForMobileToConnect }) => 
       onError(registeredMessage);
     },
     onSenderConnected,
-    onSenderDisconnected
+    onSenderDisconnected,
+    url:"https://node3.globalinput.co.uk"
   };
 
 

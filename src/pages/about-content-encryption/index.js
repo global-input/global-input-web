@@ -3,17 +3,11 @@ import LighBlueBackground from '../../page-components/themes/ligh-blue-backgroun
 
 import ContentEncryption from './ContentEncryption';
 
-export default class extends React.Component{
-
-  render(){
+export default ()=>{  
         return(
           <LighBlueBackground.Page>
                 <ContentEncryption theme={LighBlueBackground}/>
           </LighBlueBackground.Page>
-        );
-
-  }
-}
-
-
+        );  
+};
 export {ContentEncryption};
