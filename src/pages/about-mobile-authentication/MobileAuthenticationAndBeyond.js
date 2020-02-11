@@ -64,131 +64,76 @@ const MobileAuthenticationAndBeyond = props =>{
               <WatchVideo {...props}/>
   </FirstSection>
   <NextSection>
-    <P>
-Global Input App (GIA) provides applications with a straightforward solution for introducing mobile authentication without adding any extra
-server-side logic. The existing username and password based authentication can be extended to have mobile authentication just by including
-an <JSExtension {...props}>extension module</JSExtension> on the client-side, paving the way for a smooth transition to a more sophisticated
-authentication later on, for example, the Key Pair authentication (WebAuthn, SQRL etc.).
-</P>
-
 <P>
-Global Input App provides applications with a mechanism that allows users to securely push confidential data from mobile to the applications.
-The mobile integration can go beyond than the authentication to have mobile input and mobile control similar to a dedicated mobile app
-for the application without the need to develop the actual mobile app. This can be achieved by adding the mobile business logic on the
-client-side application.
-</P>
+Powered by device-to-device communication that is secured by end-to-end encryption, the connected application can request data from the Global Input App or instruct it to save data into the mobile app's secure storage. 
+The applications can utilize this to turn their existing password-based authentication mechanism into a mobile authentication. 
+Users can sign in to the application by simply pushing their credentials to the connected application from their mobile without ever worrying about remembering passwords. Hence, random and long passwords can be enforced seamlessly without affecting convenience or usability of the applications.
 
-<P>
-For the websites/applications that do not have <JSExtension {...props}>GIA extension</JSExtension>,
-the <ChromeExtension {...props}>Chrome Extension</ChromeExtension> plays the role of a proxy between the web page that is currently loaded in the browser
-and the GIA running on user's mobile, routing the data between them via the end-to-end encrypted communication.
-</P>
-
-<P>
-The <ChromeExtension {...props}>Chrome Extension</ChromeExtension> uses the configurations specified in
-the <SupportedWebsites {...props}>Application Control Settings</SupportedWebsites> to locate the HTML elements to interact with and transfer
-the data that is received from the GIA running on your mobile, allowing you to operate on the page
-directly using your mobile device. In the extension window, you can modify/add/remove those configurations for the website you are visiting.
+Another benefit that comes with this approach is you can sign in securely on shared devices in public view without compromising passwords to prying eyes or hidden cameras that could be anywhere in this day and age.
 </P>
 <P>
-If there is no configuration setting for the website, you can still push the selected data from your mobile to the Chrome Extension first,
-and then you can copy and paste the required data to the web page currently loaded on your browser.
-In this mode, you can enter content both on your computer and on your mobile,
-and the content will be synced automatically with each other. This is convenient if you would like to transfer some content from a computer
-to your mobile or vice versa.
-Also, you can quickly customise the form displayed on the extension matching what is required by the website that is currently loaded.
-The customised form allows you to manage data in your mobile device that is specific to the website.
+One of such examples is a <WordPressPlugin {...props}> Wordpress Plugin</WordPressPlugin> that allows WordPress websites to have mobile authentication so that users can save their credentials in their app and push them into the Worldpress login form when required. Furthermore, the mobile authentication strategy provides the possibility, if required, smooth transitioning into cryptography-based authentication, since the the app also provides mobile encryption and mobile signing mechanism. Best of all, the connected application can take advantage of the same mobile integration session to allow users to continue to use their mobile to operate on the application to accomplish other operations.
 </P>
 <P>
-
-If a website or a web application has the <JSExtension {...props}>GIA extension</JSExtension> included,
-you do not need to use the <ChromeExtension {...props}>Chrome Extension</ChromeExtension> to use mobile to operate on it.
-If you have a WordPress website, you can install the <WordPressPlugin {...props}>Global Input App Wordpress Plugin</WordPressPlugin>.
-This allows you to scan the QR code using GIA and sign in straight away using the credential data stored in your mobile without worrying about installing and activating the Chrome extension.
+The <ChromeExtension {...props}>Chrome Extension</ChromeExtension> allows users to operate on the web applications that do not yet have mobile integration. In this case, the extension acts as a proxy between the web application and the Global Input App, routing the data between them. Also, you can use the <TransferFormData {...props}>Transfer Form Data Application
+</TransferFormData> to create customised form transfer data between your computer and your mobile.
 
 </P>
-
-<P>
-When you are using a computer that does not have Global Input App Chrome Extension installed, and you are visiting a website,
-which does not have Global Input App extension embedded,  you can still use the  <TransferFormData {...props}>Transfer Form Data Application
-</TransferFormData> to transfer data to there and then copy and paste to wherever you like.
-Again, you can use both computer and your mobile to enter content and they will be synced on the fly.
-The application allows you to customise the form and then when the QR code is displayed, you can bookmark the URL, saving yourself from going through the process again in the future
-when you need the same custom form to transfer data between a computer and your mobile.
-</P>
-
-
     </NextSection>
 
     <FirstSection>
 
       <P>
-          If you have a <ReactJSLink {...props}>React</ReactJSLink> web application that is using the password authentication to authenticate users.
+      The following examples codes demonstrate how you can attach the password-based authentication of a React JS application to Global Input App to allow users to use their mobile to carry out sign-in operation.
+</P>
 
-          You can use the <ReactJSExtension {...props}>GIA React JS Component</ReactJSExtension> to achieve mobile integrations.
-          For example, the following code displays a form on the user's mobile with the <Concept>Username</Concept> and <Concept>Password</Concept> fields
-          and a <Concept>Login</Concept> button:
 
         <Code>
           {`
-
-import {GlobalInputConnect} from 'global-input-react';
-import React, { useState } from 'react';
-
-const [username, setUsername]=useState("");
-const [password, setPassword]=useState("");
-
-...
-
-let mobileConfig={
-initData:{
-  form:{
-    title:"Sign In",
-    id:"###username###@mycompany.com",
-    fields:[{
-        label:"Username",
-        id:"username",
-        operations:{
-          onInput:username=>setUsername(username)
-        }
-    },{
-        label:"Password",
-        id:"password",
-        operations:{
-          onInput:password=>setPassword(password)
-        }
-    },{
-        label:"Sign In",
-        type:"button",
-        operations:{
-          onInput:()=>signIn()
-        }
-     }]
-   }
-  }
+export default ({setUsername,setPassword,signIn})={  
+  const mobile = useRef(null);
+  useEffect(()=>{
+    let mobileConfig={
+        initData:{
+          form:{
+            title:"Sign In",
+            id:"###username###@mycompany.com",
+            fields:[{
+                label:"Username",
+                id:"username",
+                operations:{
+                  onInput:setUsername
+                }
+            },{
+                label:"Password",
+                id:"password",
+                operations:{
+                  onInput:setPassword
+                }
+            },{
+                label:"Sign In",
+                type:"button",
+                operations:{
+                  onInput:signIn
+                }
+            }]
+          }
+          }
+        };
+        mobile.current = createMessageConnector();
+        mobile.current.connect(mobileConfig);
+  },[])
+  
 };
-...
-return (<GlobalInputConnect mobileConfig={mobileConfig}/>);
-          `}
+
+  `}
 
         </Code>
-The <Concept>GlobalInputConnect</Concept> component in the above sample code is responsible for displaying an encrypted QR code, allowing users
-to connect to your application by scanning the QR code. This allows users to sign in to your application by
-pushing stored credentials from the mobile devices to your application.
-        This brings convenience and security by allowing users to set up complicated passwords without the need to remember them,
-        also allowing them to sign in securely on shared devices in public view without compromising passwords to prying eyes or hiddence cameras.
-        You may try out the sample code above on the <ReactJSFiddle {...props}>JSFiddle</ReactJSFiddle>
-      </P>
-      <P>
-
-        One of the features of the GIA solution is that you can start from this very simple form to achieve the basic GIA mobile integration, and then
-        work on it iteratively to transform it to a more sophisticated mobile integration solution. For example, after the successfull authentication,
-        you may like to allow users to continually use the mobile devices to operate on the application, for example,
-        playing video content like <SecondScreen {...props}>this demo application</SecondScreen>.
-        </P>
+      
+        
 
         <P>
-Global Input App provides an authentication device solution for corporate environments where a common password manager may not always suitable.
+
 Business applications such as JIRA, Confluence, Gitlab, Github, AWS, WordPress, Dropbox  may often need to be used on devices
 that are shared. GIA allows employees to use a random and different password for each application without the need to remember them and still
 can spedily sign in to the applications by just scanning the encrypted QR codes. GIA also allows employee to change passwords frequently without any pain.

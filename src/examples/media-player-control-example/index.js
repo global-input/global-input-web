@@ -9,6 +9,10 @@ const textContent={
     title:"Media Control App Example",
     githuburl:"https://github.com/global-input/media-player-control-example/"
 }
+
+
+
+
 export default class MediaPlayerControlExample extends React.Component{
 
   constructor(props){

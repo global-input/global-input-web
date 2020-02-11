@@ -28,7 +28,7 @@ export default class MobileIntegration extends React.Component{
 
                   <Title>Mobile Integration</Title>
                     <P>
-                    Global Input App (GIA) and its extensions libraries form a secure integration platform for various smart devices that we use in our daily life and workspaces. As contrary to the general approaches that emphasize data security within servers and cloud platforms, the platform shifts the focus of attention towards the devices by employing a strategy that relies on end-to-end encryption across the communicating devices.  The extension library extends the mobile device environments into the device application's runtime context, allowing it to define mobile user interface elements and receives events to implement the business logic across devices.
+                    Global Input App and its extensions libraries form a secure integration platform for various smart devices that we use in our daily life and workspaces. Instead of adopting a solution that relies on data security within servers and cloud platforms, we shift the focus towards devices by employing a strategy that is based on end-to-end encryption across the communicating device applications. The extension library extends the mobile device environments into the device application's runtime context, allowing it to define mobile user interface elements and receives events to implement the business logic across devices.
 
                   </P>
                   
@@ -63,7 +63,7 @@ export default ()=>{
   </P>
 
 <P>
-To see the mobile integration in action, you can download the Global Input App, and then load the examples below on a browser on your computer.
+To see the mobile integration in action, you can download the Global Input App in your mobile, and then load the examples below on a browser on your computer.
                     </P>
                     <ListAllExamples {...this.props}/>
                     <P>

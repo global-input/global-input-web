@@ -1,112 +1,85 @@
-import React, { useReducer, useRef, useEffect } from "react";
-import { createMessageConnector } from 'global-input-message';
+import React, { useReducer, useState, useRef, useEffect } from "react";
+import QRCode from "qrcode.react";
+import useGlobalInputApp, { MobileState } from './useGlobalInputApp';
+import PageContainer from './generic-example-container';
+import { Title, P, ContentContainer, TextAreaBox, TextButton, ErrorMessage } from './basic-app-layout';
 
-import * as actions from './actions';
-
-
-import Initializing from './Initializing';
-import WaitingForConnection from './WaitingForMobile';
-import SessionFinished from './SessionFinished';
-import MobileConnected from './MobileConnected';
-import DisplayError from './DisplayError';
-
+const contentElementID = "content";
 
 export default () => {
-  const [state, dispatch] = useReducer(actions.reducer, actions.initialState);
-  const mobile = useRef(null);
+  const [content, setContent] = useState('');
+  const initData = {
+    action: "input",
+    dataType: "form",
+    form: {
+      title: "Content Transfer",
+      fields: [{
+        label: "Content",
+        id: "content",
+        value: "",
+        nLines: 10,
+        operations: {
+          onInput: setContent
+        }
+      }, {
+        type: "info",
+        value: "You may paste content to transfer it to the connected application"
+      }]
+    },
+  };
+  const { mobile, mobileState, connectionCode, errorMessage } = useGlobalInputApp({initData});
+  console.log("--------useMobile----:"+mobile);
 
-  useEffect(() => {
-    mobile.current = createMessageConnector();
-    const disconnect = () => {
-      if (!mobile.current) {
-        return;
-      }
-      mobile.current.disconnect();
-      mobile.current = null;
-    };
-    const waitForMobileToConnect = () => {
-      if (mobile.current) {
-        const connectionCode = mobile.current.buildInputCodeData();
-        console.log("[[" + connectionCode + "]]");
-        actions.waitForMobile({ dispatch, connectionCode });
-      }
-    };
-    const mobileConfig = buildMobileConfig({ dispatch, disconnect, waitForMobileToConnect });
-
-    mobile.current.connect(mobileConfig);
-
-
-
-    return () => {
-      disconnect();
-    }
-  }, []);
-
-  const { ActionType } = actions;
-
-  switch (state.type) {
-    
-    
-    case ActionType.SESSION_FINISHED:
-      return (<SessionFinished />);
-    case ActionType.WAITING_FOR_MOBILE:
-      return (<WaitingForConnection {...state} />);
-    case ActionType.MOBILE_CONNECTED:
-    case ActionType.SET_CONTENT:
-        return (<MobileConnected dispatch={dispatch} {...state} mobile={mobile.current}/>);      
-    case ActionType.SET_ERROR_MESSAGE:
-        return (<DisplayError {...state}/>);
-    default:
-      console.log("----type:"+state.type);
-      return <Initializing />  
-
-
+  const copyToClipboard = () => {
+    document.getElementById(contentElementID).select();
+    document.execCommand("Copy");
   }
 
-};
+  switch (mobileState) {
 
-const buildMobileConfig = ({ dispatch, disconnect, waitForMobileToConnect }) => {
-  const onSenderConnected = (sender, senders) => {
-    actions.mobileConnected({ dispatch });
-  };
-  const onSenderDisconnected = (sender, senders) => {
-    disconnect();
-    actions.onFinish({ dispatch });
-  };
-  const onError = errorMessage => {
-    actions.setErrorMessage({ dispatch, errorMessage });
-  };
-  return {
-    initData: {
-      action: "input",
-      dataType: "form",
-      form: {
-        title: "Content Transfer",
-        fields: [{
-          label: "Content",
-          id: "content",
-          value: "",
-          nLines: 10,
-          operations: {
-            onInput: content => actions.setContent({ dispatch, content })
-          }
-        },{
-          type:"info",
-          value:"You may paste content to transfer it to the connected application"
-        }]
-      },
-    },
-    onRegistered: next => {
-      next();
-      waitForMobileToConnect();
-    },
-    onRegisterFailed: function (registeredMessage) {
-      onError(registeredMessage);
-    },
-    onSenderConnected,
-    onSenderDisconnected,
-    url:"https://node3.globalinput.co.uk"
-  };
-
+    case MobileState.MOBILE_DISCONNECTED:
+      return (
+        <PageContainer>
+          <Title>Session Finished</Title>
+          <P>Global Input App has terminated the connection. You may reload the page to start again.</P>
+        </PageContainer>
+      )
+    case MobileState.WAITING_FOR_MOBILE:
+      return (
+        <PageContainer>
+          <QRCode value={connectionCode} level='H' size={400} />
+          <P>Scan with Global Input App</P>
+        </PageContainer>
+      );
+    case MobileState.MOBILE_CONNECTED:
+      const onContentChange = evt => {
+        setContent(evt.target.value);
+        mobile.sendInputMessage(evt.target.value, 0);
+      }
+      return (
+        <PageContainer>
+          <ContentContainer>
+            <Title>Content Transfer</Title>
+            <TextAreaBox id={contentElementID} onChange={onContentChange} value={content} />
+            <TextButton label="Copy" onClick={copyToClipboard} />
+          </ContentContainer>
+          <P>You can paste content to the text box above to transfer it to your mobile.</P>
+        </PageContainer>
+      );
+    case MobileState.ERROR:
+      return (
+        <PageContainer>
+          <Title>Error</Title>
+          <P>{errorMessage}</P>
+        </PageContainer>
+      );
+    default:
+      return (
+        <PageContainer>
+          <Title>Wait</Title>
+          <P>Initializing...</P>
+        </PageContainer>
+      );
+  }
 
 };
