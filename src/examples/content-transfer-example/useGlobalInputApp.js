@@ -13,8 +13,7 @@ const initialState={
     connectionCode:null,
     errorMessage:null    
 };
-const reducer= (state, action)=>{  
-    console.log("--------state------"+JSON.stringify(state));  
+const reducer= (state, action)=>{      
     const {type}=action;
     const  mobileState=type;
     switch(type){                        
@@ -32,10 +31,11 @@ const reducer= (state, action)=>{
 
 export default ({initData})=>{
     const mobile=useRef(null);
-
     const [state, dispatch] = useReducer(reducer, initialState);
+    const initDataInUse=useRef(null);   
+    
     useEffect(()=>{
-            mobile.current = createMessageConnector(); 
+            
             const disconnect = () => {  
                 if(mobile.current){
                     mobile.current.disconnect();
@@ -69,12 +69,27 @@ export default ({initData})=>{
                 onSenderConnected,
                 onSenderDisconnected    
             };
-            mobile.current.connect(mobileConfig);
+            if(initData){
+                mobile.current = createMessageConnector(); 
+                mobile.current.connect(mobileConfig);
+                initDataInUse.current=initData;
+            }
             
-            return () => {
+            return () => {                
                 disconnect();
             }
     },[]);
+    
+    
+    useEffect(()=>{
+    
+       if(initData && initDataInUse.current!==initData){
+                initDataInUse.current=initData;
+                if(mobile.current){
+                        mobile.current.sendInitData(initData);
+                }                
+       }
+    },[initData]);
     return {...state,mobile:mobile.current};
 };
 

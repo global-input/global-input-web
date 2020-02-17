@@ -1,0 +1,47 @@
+export const styles={
+  title:{
+    display:"flex",
+    flexDirection:"row",
+    width:"100%",
+    justifyContent:"flex-start",
+    fontSize:"2vw",
+    color:"#5291CD",
+    marginBottom:"20",
+    marginLeft:"4vw"
+  },
+    playHeadInfo:{
+          fontSize:20,
+          color:"#5291CD",
+    },
+    
+    videoContainer:{
+        position:"relative"
+    },
+    barcodeContainer:{
+        position:"absolute",
+        top:10,
+        width:"100%",
+        height:"100%",
+
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    }, 
+    barcode:{
+      backgroundColor:"white",        
+      padding:20,
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      alignItems:"center" 
+    },  
+    reconnectConnectainer:{
+      width:"100%"
+    },
+    reconnectButton:{
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto"
+    }
+};

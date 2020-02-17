@@ -45,9 +45,13 @@ export default () => {
         </PageContainer>
       )
     case MobileState.WAITING_FOR_MOBILE:
+              let  qrCodeSize = window.innerWidth-10;
+              if(qrCodeSize>400){
+                qrCodeSize=400;
+              }
       return (
         <PageContainer>
-          <QRCode value={connectionCode} level='H' size={400} />
+          <QRCode value={connectionCode} level='H' size={qrCodeSize} />
           <P>Scan with Global Input App</P>
         </PageContainer>
       );
