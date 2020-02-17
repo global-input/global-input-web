@@ -7,11 +7,9 @@ import {QRCodeContainer} from './app-layout';
 
 
 export const useMobile= ({state,dispatch,videoPlayer})=>{
-    const {initData, mobileControl,playStatusMessage}=state;
+    const {initData, video,mobileControl}=state;
     const {mobile, connectionMessage}=useGlobalInputApp({initData,renders:{QRCodeContainer}});
-
     
-
     useEffect(()=>{ 
             dispatch({type:ActionType.SET_MOBILE_CONTROL,mobileControl:MobileControl.SELECT_VIDEO});    
     },[]);
@@ -26,6 +24,12 @@ export const useMobile= ({state,dispatch,videoPlayer})=>{
                         break;    
                 }    
     },[mobileControl]);
+    
+    useEffect(()=>{          
+            videoControl.setPlayVideoSource(videoPlayer.current,video);
+            mobileUtil.onVideoChanged(state);      
+    },[video]);
+  
     
     return {connectionMessage};
     
@@ -118,15 +122,13 @@ export const initialData={
             case ActionType.PREVIOUS_VIDEO:                
                       {                        
                           const videoIndex= utils.decreaseVideoIndex(state.videoIndex);                          
-                          const video=videos[videoIndex];
-                          mobileUtil.onVideoIndexChanged(state,video);                                                 
+                          const video=videos[videoIndex];                          
                           return {...state, videoIndex,video};
                       }
             case ActionType.NEXT_VIDEO:  
                       {
                           const videoIndex= utils.increaseVideoIndex(state.videoIndex);
-                          const video=videos[videoIndex];
-                          mobileUtil.onVideoIndexChanged(state,video);
+                          const video=videos[videoIndex];                          
                           return {...state, videoIndex,video};          
                       }         
              case ActionType.SET_MOBILE_CONTROL:
@@ -150,22 +152,25 @@ const mobileUtil=(()=>{
                           type:"view",
                           style:{
                             borderColor:"#rgba(72,128,237,0.5)",
+                            backgroundColor:"#rgba(72,128,237,0.5)",
                             borderWidth:1,
                             marginTop:5,
-                            minWidth:80,
+                            minWidth:"100%",                            
                             minHeight:80,
                           },
                           content:[{
                               type:"text",
                               content:title,
                               style:{
-                                  fontSize:14
+                                  fontSize:18,
+                                  color:"white"
                               }
                             },{
                                 type:"text",
                                 content:message,
                                 style:{
-                                    fontSize:14
+                                    fontSize:14,
+                                    color:"white"
                                 }
                               }]
             
@@ -196,8 +201,8 @@ const mobileUtil=(()=>{
             
 
 
-        const onVideoIndexChanged = (state,video)=>{    
-              const {mobile, initData}=state;    
+        const onVideoChanged = (state)=>{    
+              const {mobile, initData,video}=state;    
               if(!mobile || !initData){
                   return;
               }    
@@ -426,7 +431,7 @@ const mobileUtil=(()=>{
 
 
         return {
-          onVideoIndexChanged,
+          onVideoChanged,
           switchToPlayVideoControl,
           switchToSelectVideoControl,
           setPlayerStatus,
@@ -436,7 +441,7 @@ const mobileUtil=(()=>{
   
       
   
- export const events={
+ export const playerEvents={
   setCurrentTime: ({state,currentTime, duration })=>{
     const {mobileControl,mobile}=state;    
     if(mobileControl!==MobileControl.PLAY_VIDEO){
@@ -488,6 +493,43 @@ const mobileUtil=(()=>{
       playerStatusMessage:'Something wrong in player', 
       playerButtonValue:0}); 
   },
+  onLoadedData:({state,videoPlayer}) => {
+  },
+  onLoadedMetadata:({state,videoPlayer}) => {
+  },
+  onLoadStart:({state,videoPlayer}) => {
+  },
+  onPlaying:({state,videoPlayer}) => {
+    const {mobileControl,mobile}=state;    
+    mobileUtil.setPlayerStatus({mobile, 
+      mobileControl, 
+      playerStatusTitle:'Playing', 
+      playerStatusMessage:'', 
+      playerButtonValue:1}); 
+  },
+  onProgress:({state,videoPlayer}) => {
+  },
+  onRateChange:({state,videoPlayer}) => {
+  },
+  onSeeked:({state,videoPlayer}) => {
+  },
+  onSeeking:({state,videoPlayer}) => {
+  },
+  onStalled:({state,videoPlayer}) => {
+    const {mobileControl,mobile}=state;    
+    mobileUtil.setPlayerStatus({mobile, 
+      mobileControl, 
+      playerStatusTitle:'Stalled', 
+      playerStatusMessage:'', 
+      playerButtonValue:0}); 
+  },
+  onSuspend:({state,videoPlayer}) => {
+  },
+  onVolumeChange:({state,videoPlayer}) => {
+  },
+  onWaiting:({state,videoPlayer}) => {
+  },
+  
 
 };
   

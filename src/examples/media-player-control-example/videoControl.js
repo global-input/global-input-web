@@ -16,19 +16,21 @@ const startSkipProcess = (videoPlayer,onFinish) => {
       if(!videoPlayer){
         return;      
       }
-      threadForSkip=setInterval(()=>{
-      var nextPosition=videoPlayer.currentTime -0.1;
-      if(nextPosition<=0){
-        videoPlayer.currentTime=0;
-        stopSkipProcess(videoPlayer);
-        if(onFinish){
-          onFinish();          
-        }
-      }
-      else{
-          videoPlayer.currentTime=nextPosition;
-      }
-    },30);
+      let nextPosition=videoPlayer.currentTime -0.1;    
+
+      threadForSkip=setInterval(()=>{      
+            if(nextPosition<=0){
+              videoPlayer.currentTime=0;
+              stopSkipProcess(videoPlayer);
+              if(onFinish){
+                onFinish();          
+              }
+            }
+            else{
+                videoPlayer.currentTime=nextPosition;                   
+                nextPosition-=2;                       
+            }
+        },500);
   }
 
 export const setPlayVideoSource = (videoPlayer, video) => {      

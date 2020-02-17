@@ -4,11 +4,9 @@ import React,{useRef, useEffect,useReducer} from "react";
 
 import PageContainer from './generic-example-container';
 
-
-
 import * as actions from './actions';
 import * as videoControl from './videoControl';
-import {BarCodeContainer, Title} from './app-layout'; 
+import {Title} from './app-layout'; 
 
 
 
@@ -25,49 +23,85 @@ export default () => {
   const {video}=state;
   
   
-  useEffect(()=>{
-    videoControl.setPlayVideoSource(videoPlayer.current,video);
-  },[video]);
-
+  
 
   const onPlay=()=>{        
-    actions.events.onPlayPause({state,isPlaying:true});        
+    actions.playerEvents.onPlayPause({state,isPlaying:true});        
   }
   const onPause=()=>{        
-    actions.events.onPlayPause({state,isPlaying:false});        
+    actions.playerEvents.onPlayPause({state,isPlaying:false});        
   };
   const onTimeUpdate=()=>{
     const {currentTime, duration}=videoControl.getVideoData(videoPlayer.current);                     
-    actions.events.setCurrentTime({state,currentTime,duration});      
+    actions.playerEvents.setCurrentTime({state,currentTime,duration});      
   };
   const onAbort=()=>{
-    actions.events.onAbort({state,videoPlayer});        
+    actions.playerEvents.onAbort({state,videoPlayer});        
   };
   const onCanPlay=()=>{
-    actions.events.onCanPlay({state,videoPlayer});        
+    actions.playerEvents.onCanPlay({state,videoPlayer});        
   }
   const onCanPlayThrough=()=>{
-    actions.events.onCanPlayThrough({state,videoPlayer});        
+    actions.playerEvents.onCanPlayThrough({state,videoPlayer});        
   };
   const onDurationChange=()=>{
-    actions.events.onDurationChange({state,videoPlayer});        
+    actions.playerEvents.onDurationChange({state,videoPlayer});        
   };
   const onEncrypted=()=>{
-    actions.events.onEncrypted({state,videoPlayer});        
+    actions.playerEvents.onEncrypted({state,videoPlayer});        
   };
   const onEnded=()=>{
-    actions.events.onEnded({state,videoPlayer});        
+    actions.playerEvents.onEnded({state,videoPlayer});        
   };
   const onError=()=>{
-    actions.events.onError({state,videoPlayer});        
-  }
+    actions.playerEvents.onError({state,videoPlayer});        
+  };
+  const onLoadedData=()=>{
+    actions.playerEvents.onLoadedData({state,videoPlayer});        
+  };
+  const onLoadedMetadata=()=>{
+    actions.playerEvents.onLoadedMetadata({state,videoPlayer});        
+  };
+  const onLoadStart=()=>{
+    actions.playerEvents.onLoadStart({state,videoPlayer});        
+  };
+  const onPlaying=()=>{
+    actions.playerEvents.onPlaying({state,videoPlayer});        
+  };
+  const onProgress=()=>{
+    actions.playerEvents.onProgress({state,videoPlayer});        
+  };
+  const onRateChange=()=>{
+    actions.playerEvents.onRateChange({state,videoPlayer});        
+  };
+  const onSeeked=()=>{
+    actions.playerEvents.onSeeked({state,videoPlayer});        
+  };
+  const onSeeking=()=>{
+    actions.playerEvents.onSeeking({state,videoPlayer});        
+  };
+  const onStalled=()=>{
+    actions.playerEvents.onStalled({state,videoPlayer});        
+  };
+  const onSuspend=()=>{
+    actions.playerEvents.onSuspend({state,videoPlayer});        
+  };
+  const onVolumeChange=()=>{
+    actions.playerEvents.onVolumeChange({state,videoPlayer});        
+  };
+  
+  const onWaiting=()=>{
+    actions.playerEvents.onWaiting({state,videoPlayer});        
+  };
+  
+
 
   
 
   
   
   const {videoWidth,videoHeight}=videoControl.calculateWatchWindowSize();  
-  console.log("---video---:"+JSON.stringify(video));
+  
   return (
       <PageContainer>
             <Title>{video.title}</Title>
@@ -83,21 +117,21 @@ export default () => {
                 onEncrypted={onEncrypted}
                 onEnded={onEnded}
                 onError={onError}
-                // onLoadedData={onLoadedData.}
-                // onLoadedMetadata={onLoadedMetadata}
-                // onLoadStart={onLoadStart}
+                onLoadedData={onLoadedData}
+                onLoadedMetadata={onLoadedMetadata}
+                onLoadStart={onLoadStart}
                 onPause={onPause}
                 onPlay={onPlay}
-                // onPlaying={onPlaying}
-                // onProgress={onProgress}
-                // onRateChange={onRateChange}
-                // onSeeked={onSeeked}
-                // onSeeking={onSeeking}
-                // onStalled={onStalled}
-                // onSuspend={onSuspend}
+                onPlaying={onPlaying}
+                onProgress={onProgress}
+                onRateChange={onRateChange}
+                onSeeked={onSeeked}
+                onSeeking={onSeeking}
+                onStalled={onStalled}
+                onSuspend={onSuspend}
                 onTimeUpdate={onTimeUpdate}
-                // onVolumeChange={onVolumeChange}
-                // onWaiting={onWaiting}
+                onVolumeChange={onVolumeChange}
+                onWaiting={onWaiting}
                 controls>
                 <source src={video.mp4} type="video/mp4"/>
             </video>            
