@@ -34,7 +34,7 @@ const createExampleComponent =ExampleComponent=>{
   
     content:{
         paddingLeft:  20,
-        paddingTop:   100,
+        paddingTop:   50,
         paddingRight: 20,
         display:      "flex",
         flexDirection:"column",

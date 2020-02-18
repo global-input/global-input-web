@@ -2,11 +2,11 @@ import React,{useRef, useEffect,useReducer} from "react";
 
 
 
-import PageContainer from './generic-example-container';
+
 
 import * as actions from './actions';
 import * as videoControl from './videoControl';
-import {Title} from './app-layout'; 
+import {PageContainer, P,Title,useWindowSize} from './app-layout'; 
 
 export default () => {
   const videoPlayer=useRef(null);
@@ -94,11 +94,13 @@ export default () => {
 
   
   
-  const {videoWidth,videoHeight}=videoControl.calculateWatchWindowSize();  
+  const windowSize=useWindowSize();
+ 
+  const {videoWidth,videoHeight}=videoControl.calculateWatchWindowSize(windowSize);
+
   
   return (
-      <PageContainer>
-            <Title>{video.title}</Title>
+      <PageContainer>            
             <video width={videoWidth} height={videoHeight}
                     id="videoplayer" autoPlay={false}
                     muted={false}
@@ -128,10 +130,9 @@ export default () => {
                 onWaiting={onWaiting}
                 controls>
                 <source src={video.mp4} type="video/mp4"/>
-            </video>            
-                
-            {connectionMessage}                                    
-                
+            </video>
+            {connectionMessage}
+            <P>This is an <a href="">Second Screen Experience application</a> example. Its source code is available on <a href="">GitHub</a></P>
       </PageContainer>);
 
     

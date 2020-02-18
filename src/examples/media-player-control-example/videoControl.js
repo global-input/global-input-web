@@ -64,9 +64,11 @@ export const pauseVideo= videoPlayer => {
    }
 }
 
-export const calculateWatchWindowSize = () => {
-    var w = window.innerWidth-50;
-    var h = window.innerHeight-50;
+export const calculateWatchWindowSize = ([width, height]) => {
+  console.log("width::::"+width);
+  console.log("height::::"+height);
+    var w = width-50;
+    var h = height-50;
 
     var videoHeight=h-50;
     var videoWidth=16*videoHeight/9;

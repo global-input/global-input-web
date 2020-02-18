@@ -1,4 +1,13 @@
+import styleMatchingScreenSize from "./styleMatchingScreenSize";
 export const styles={
+  container:{
+    paddingTop:10,
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    alignItems:"center",
+    width:"100%",
+  },
   title:{
     display:"flex",
     flexDirection:"row",
@@ -19,10 +28,10 @@ export const styles={
     },
     barcodeContainer:{
         position:"absolute",
-        top:10,
+        top:0,
         width:"100%",
         height:"100%",
-
+        backgroundColor:"rgba(200,200,200,0.3)",
         display:"flex",
         flexDirection:"column",
         justifyContent:"center",
@@ -43,5 +52,27 @@ export const styles={
       display:"block",
       marginLeft:"auto",
       marginRight:"auto"
-    }
+    },
+    videoContainer:{
+      position:"relative"
+    },
+    paragraph:{
+      get:styleMatchingScreenSize,
+      default:{
+        fontSize:16,
+        display:"block",
+        marginBottom:20,
+        marginTop:20,
+        color:"#5291CD",
+  
+      },
+      mobile:{
+        fontSize:16,
+      }
+    },
+    link:{
+      fontWeight:50,
+      color:"#6666ff"
+    },
+    
 };
