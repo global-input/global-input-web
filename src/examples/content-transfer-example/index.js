@@ -1,8 +1,9 @@
 import React, { useReducer, useState, useRef, useEffect } from "react";
-import QRCode from "qrcode.react";
-import useGlobalInputApp, { MobileState } from './useGlobalInputApp';
+
+//import {useGlobalInputApp} from 'global-input-react';
+import useGlobalInputApp from './useGlobalInputApp';
 import PageContainer from './generic-example-container';
-import { Title, P, ContentContainer, TextAreaBox, TextButton, ErrorMessage } from './basic-app-layout';
+import { Title, P, ContentContainer, TextAreaBox, TextButton } from './basic-app-layout';
 
 const contentElementID = "content";
 
@@ -27,63 +28,27 @@ export default () => {
       }]
     },
   };
-  const { mobile, mobileState, connectionCode, errorMessage } = useGlobalInputApp({initData});
-  console.log("--------useMobile----:"+mobile);
+  const { connectionMessage,mobile} = useGlobalInputApp({initData});
+  
 
   const copyToClipboard = () => {
     document.getElementById(contentElementID).select();
     document.execCommand("Copy");
   }
 
-  switch (mobileState) {
-
-    case MobileState.MOBILE_DISCONNECTED:
-      return (
-        <PageContainer>
-          <Title>Session Finished</Title>
-          <P>Global Input App has terminated the connection. You may reload the page to start again.</P>
-        </PageContainer>
-      )
-    case MobileState.WAITING_FOR_MOBILE:
-              let  qrCodeSize = window.innerWidth-10;
-              if(qrCodeSize>400){
-                qrCodeSize=400;
-              }
-      return (
-        <PageContainer>
-          <QRCode value={connectionCode} level='H' size={qrCodeSize} />
-          <P>Scan with Global Input App</P>
-        </PageContainer>
-      );
-    case MobileState.MOBILE_CONNECTED:
-      const onContentChange = evt => {
-        setContent(evt.target.value);
-        mobile.sendInputMessage(evt.target.value, 0);
-      }
       return (
         <PageContainer>
           <ContentContainer>
+            {connectionMessage}
             <Title>Content Transfer</Title>
-            <TextAreaBox id={contentElementID} onChange={onContentChange} value={content} />
+            <TextAreaBox id={contentElementID} onChange={evt=>{
+                setContent(evt.target.value);
+                mobile.sendInputMessage(evt.target.value, 0);
+            }} value={content} />
             <TextButton label="Copy" onClick={copyToClipboard} />
           </ContentContainer>
           <P>You can paste content to the text box above to transfer it to your mobile.</P>
         </PageContainer>
-      );
-    case MobileState.ERROR:
-      return (
-        <PageContainer>
-          <Title>Error</Title>
-          <P>{errorMessage}</P>
-        </PageContainer>
-      );
-    default:
-      return (
-        <PageContainer>
-          <Title>Wait</Title>
-          <P>Initializing...</P>
-        </PageContainer>
-      );
-  }
+      );    
 
 };

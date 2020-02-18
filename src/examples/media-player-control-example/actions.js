@@ -8,7 +8,7 @@ import {QRCodeContainer} from './app-layout';
 
 export const useMobile= ({state,dispatch,videoPlayer})=>{
     const {initData, video,mobileControl}=state;
-    const {mobile, connectionMessage}=useGlobalInputApp({initData,renders:{QRCodeContainer}});
+    const {mobile, connectionMessage}=useGlobalInputApp({initData,renders:{QRCodeContainer}},[initData]);
     
     useEffect(()=>{ 
             dispatch({type:ActionType.SET_MOBILE_CONTROL,mobileControl:MobileControl.SELECT_VIDEO});    

@@ -8,12 +8,6 @@ import * as actions from './actions';
 import * as videoControl from './videoControl';
 import {Title} from './app-layout'; 
 
-
-
-
-
-
-
 export default () => {
   const videoPlayer=useRef(null);
 
@@ -107,7 +101,7 @@ export default () => {
             <Title>{video.title}</Title>
             <video width={videoWidth} height={videoHeight}
                     id="videoplayer" autoPlay={false}
-                    muted={true}
+                    muted={false}
                     ref={videoPlayer}
                 
                 onAbort={onAbort}
