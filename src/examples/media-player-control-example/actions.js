@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-import useGlobalInputApp from './useGlobalInputApp';
+import {useGlobalInputApp} from 'global-input-react';
 import * as videoControl from './videoControl';
 import {QRCodeContainer} from './app-layout'; 
 
