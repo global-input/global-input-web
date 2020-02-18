@@ -28,6 +28,22 @@ const createExampleComponent =ExampleComponent=>{
     }
    
   
+  };
+
+  const createExampleComponent2 =ExampleComponent=>{
+    return (props)=>{
+      return(
+        <React.Fragment>
+          <div className="noprint">
+            <TopHeaderSection  selected={props.selected}/>
+          </div>
+          <ExampleComponent url={config.url} {...props}/>                        
+        </React.Fragment>  
+      );
+    
+    }
+   
+  
   }
   
   const compStyles={
@@ -59,7 +75,7 @@ const createExampleComponent =ExampleComponent=>{
 
   
 export const GameControlScreen=createExampleComponent(GameControlExample);
-export const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample);
+export const MediaPlayerScreen=createExampleComponent2(MediaPlayerControlExample);
 export const SendMessageScreen=createExampleComponent(SendMessageExample);
 export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
 export const ContentTransferScreen=createExampleComponent(ContentTransferExample);
