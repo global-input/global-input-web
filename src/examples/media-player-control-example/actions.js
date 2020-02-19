@@ -2,42 +2,6 @@ import { useEffect } from 'react';
 
 import { useGlobalInputApp } from 'global-input-react';
 import * as videoControl from './videoControl';
-import { QRCodeContainer } from './app-layout';
-
-
-
-export const useMobile = ({ state, dispatch, videoPlayer }) => {
-  const { initData, video, mobileControl } = state;
-  const { mobile, connectionMessage } = useGlobalInputApp({ initData, renders: { QRCodeContainer } }, [initData]);
-
-  useEffect(() => {
-    dispatch({ type: ActionType.SET_MOBILE_CONTROL, mobileControl: MobileControl.SELECT_VIDEO });
-  }, []);
-
-  useEffect(() => {
-    switch (mobileControl) {
-      case MobileControl.SELECT_VIDEO:
-        mobileUtil.switchToSelectVideoControl({ state, dispatch, mobile });
-        break;
-      case MobileControl.PLAY_VIDEO:
-        mobileUtil.switchToPlayVideoControl({ state, dispatch, mobile, videoPlayer });
-        break;
-    }
-  }, [mobileControl]);
-
-  useEffect(() => {
-    videoControl.setPlayVideoSource(videoPlayer.current, video);
-    mobileUtil.onVideoChanged(state);
-  }, [video]);
-
-
-  return { connectionMessage };
-
-}
-
-
-
-
 
 
 
@@ -141,7 +105,32 @@ export const reducer = (state, action) => {
 }
 
 
+const setMobileControlToSelectVideo =({dispatch,videoPlayer})=>{
+    dispatch({ type: ActionType.SET_MOBILE_CONTROL, mobileControl: MobileControl.SELECT_VIDEO });
+    videoControl.pauseVideo(videoPlayer.current);
+};
+const setMobileControlToPlayVideo =({dispatch})=>{
+  dispatch({ type: ActionType.SET_MOBILE_CONTROL, mobileControl: MobileControl.PLAY_VIDEO });
+};
+export const onVideoMounted =({dispatch,videoPlayer})=>{
+  setMobileControlToSelectVideo({dispatch,videoPlayer});  
+}
 
+export const onMobileControlChanged = ({state,mobileControl,dispatch,mobile,videoPlayer}) => {
+  switch (mobileControl) {
+    case MobileControl.SELECT_VIDEO:
+      mobileUtil.switchToSelectVideoControl({ state, dispatch, mobile });
+      break;
+    case MobileControl.PLAY_VIDEO:
+      mobileUtil.switchToPlayVideoControl({ state, dispatch, mobile, videoPlayer });
+      break;
+  }
+};
+export const onVideoChanged=({state,videoPlayer})=>{
+  const {video}=state;
+  videoControl.setPlayVideoSource(videoPlayer.current, video);
+  mobileUtil.onVideoChanged(state);
+}
 
 
 
@@ -215,9 +204,8 @@ const mobileUtil = (() => {
   };
   const switchToPlayVideoControl = ({ state, dispatch, mobile, videoPlayer }) => {
     const { video } = state;
-    const toSelectControl = () => {
-      videoControl.pauseVideo(videoPlayer.current);
-      dispatch({ type: ActionType.SET_MOBILE_CONTROL, mobileControl: MobileControl.SELECT_VIDEO });
+    const toSelectControl = () => {      
+      setMobileControlToSelectVideo({dispatch,videoPlayer});      
     };
     const playVideo = () => {
       videoControl.playVideo(videoPlayer.current);
@@ -355,7 +343,7 @@ const mobileUtil = (() => {
       dispatch({ type: ActionType.NEXT_VIDEO });
     };
     const toPlayControl = () => {
-      dispatch({ type: ActionType.SET_MOBILE_CONTROL, mobileControl: MobileControl.PLAY_VIDEO });
+      setMobileControlToPlayVideo({dispatch});      
     };
 
     const { video } = state;

@@ -1,21 +1,32 @@
 import React, { useRef, useEffect, useReducer } from "react";
-
+import { useGlobalInputApp } from 'global-input-react';
 
 
 
 
 import * as actions from './actions';
 import * as videoControl from './videoControl';
-import { PageContainer, P, Title, useWindowSize } from './app-layout';
+import { PageContainer, P, QRCodeContainer, useWindowSize,A } from './app-layout';
 
 export default () => {
   const videoPlayer = useRef(null);
 
 
   const [state, dispatch] = useReducer(actions.reducer, actions.initialData);
-  const { connectionMessage } = actions.useMobile({ state, dispatch, videoPlayer });
-  const { video } = state;
+  const { initData, video, mobileControl } = state;
+  const { connectionMessage,mobile,WhenWaiting,WhenDisconnected} = useGlobalInputApp({initData}, [initData]);
 
+  useEffect(() => {
+      actions.onVideoMounted({dispatch,videoPlayer});
+  }, []);
+
+  useEffect(() => {
+    actions.onMobileControlChanged({state,mobileControl,mobile,videoPlayer,dispatch});    
+  }, [mobileControl]);
+
+  useEffect(() => {
+    actions.onVideoChanged({state,videoPlayer});
+  }, [video]);
 
 
 
@@ -90,10 +101,6 @@ export default () => {
 
 
 
-
-
-
-
   const windowSize = useWindowSize();
 
   const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(windowSize);
@@ -103,7 +110,7 @@ export default () => {
     <PageContainer>
       <video width={videoWidth} height={videoHeight}
         id="videoplayer" autoPlay={false}
-        muted={false}
+        muted={true}
         ref={videoPlayer}
 
         onAbort={onAbort}
@@ -131,8 +138,18 @@ export default () => {
         controls>
         <source src={video.mp4} type="video/mp4" />
       </video>
-      {connectionMessage}
-      <P>This is an <a href="">Second Screen Experience application</a> example. Its source code is available on <a href="">GitHub</a></P>
+      <WhenWaiting>
+        <QRCodeContainer>
+          {connectionMessage}      
+        </QRCodeContainer>
+      </WhenWaiting>
+      <WhenDisconnected>
+        <P>Disconnected, reload the page to try again.</P>
+        
+      </WhenDisconnected>
+      
+      
+      <P>This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience application</a> example. Its source code is available on <A href="https://github.com/global-input/media-player-control-example">GitHub</A></P>
     </PageContainer>);
 
 
