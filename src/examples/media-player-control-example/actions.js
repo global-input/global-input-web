@@ -1,9 +1,4 @@
-import { useEffect } from 'react';
-
-import { useGlobalInputApp } from 'global-input-react';
 import * as videoControl from './videoControl';
-
-
 
 const videos = [{
   title: "Tutorial Part 1",

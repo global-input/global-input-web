@@ -86,7 +86,6 @@ export const styles = {
       marginBottom: 20,
       marginTop: 20,
       color: "#5291CD",
-
     },
     mobile: {
       fontSize: 16,
