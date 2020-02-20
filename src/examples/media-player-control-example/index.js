@@ -1,102 +1,213 @@
-import React, { useRef, useEffect, useReducer } from "react";
+import React, { useRef, useState,useEffect} from "react";
 import { useGlobalInputApp } from 'global-input-react';
 
-
-
-
-import * as actions from './actions';
 import * as videoControl from './videoControl';
 import { PageContainer, P, QRCodeContainer, useWindowSize,A } from './app-layout';
 
+
+
+
+
 export default () => {
+  
   const videoPlayer = useRef(null);
+  const [videoData,setVideoData]=useState(videoControl.getDefaultVideo());
+  const [initData,setInitData]=useState(null);
+  const globalInputApp = useGlobalInputApp({initData}, [initData]);
+  
+  
+  const setPlayerStatusAttributes = (playerStatusTitle, playerStatusMessage, playerButtonValue) => {
+    const {setStatusValue,setPlayerPauseButton}=getPlayerControlSetters(globalInputApp, initData);    
+      const statusValue = buildPlayerStatusValue(playerStatusTitle, playerStatusMessage);
+      setStatusValue(statusValue);      
+      setPlayerPauseButton(playerButtonValue);    
+  };
+  
+  
+  const onPrevious=()=>{
+    setVideoData(videoData=>videoControl.getPreviousVideo(videoData));
+  };
+  const onNext=()=>{
+    setVideoData(videoData=>videoControl.getNextVideo(videoData));
+  };
+  const setSliderPosition= sliderPosition => {
+      videoControl.setCurrentTimeWithSlider(videoPlayer.current, sliderPosition);
+  };
+  const rewindVideo=()=>{      
+      setPlayerStatusAttributes('<<','',1);      
+      videoControl.rewindVideo(videoPlayer.current, () => {
+          setPlayerStatusAttributes('Paused','Rewind complete',0);
+      });
+  };
+  const pauseVideo=()=>{
+      videoControl.pauseVideo(videoPlayer.current);
+  };
+  const playVideo=()=>{
+      videoControl.playVideo(videoPlayer.current);
+  };
+  const fastForwardVideo=()=>{
+      videoControl.fastForwardVideo(videoPlayer.current);
+      if(!videoPlayer.current){
+        setPlayerStatusAttributes('>> ',">> " + videoPlayer.current.playbackRate,1);      
+        return;
+      }
+      setPlayerStatusAttributes('>',"x " + videoPlayer.current.playbackRate,1);      
+  };
+  const skipToBegin=()=>{
+    videoControl.pauseVideo(videoPlayer.current);
+    videoControl.skipToBegin(videoPlayer.current);
+    setPlayerStatusAttributes('Paused','',0);          
+  };
+  const skipToEnd=()=>{
+      videoControl.pauseVideo(videoPlayer.current);
+      videoControl.skipToEnd(videoPlayer.current);
+      setPlayerStatusAttributes('Paused','',0);      
+  };
+  
 
 
-  const [state, dispatch] = useReducer(actions.reducer, actions.initialData);
-  const { initData, video, mobileControl } = state;
-  const { connectionMessage,mobile,WhenWaiting,WhenDisconnected} = useGlobalInputApp({initData}, [initData]);
 
-  useEffect(() => {
-      actions.onVideoMounted({dispatch,videoPlayer});
-  }, []);
+  const switchToPlayerControl=()=>{
+    const playerStatusValue=buildPlayerStatusValue('', '');
+    setVideoData(videoData=>{
+        const title=videoData.video.title;                
+        const initData=buildPlayerControl({title,switchToSelectVideoControl, playerStatusValue,setSliderPosition,rewindVideo,pauseVideo,playVideo,fastForwardVideo,skipToBegin,skipToEnd});
+        setInitData(initData);
+        playVideo();
+        return videoData;
+    });
+  };
 
-  useEffect(() => {
-    actions.onMobileControlChanged({state,mobileControl,mobile,videoPlayer,dispatch});    
-  }, [mobileControl]);
+  const switchToSelectVideoControl=()=>{
+      
+      setVideoData(videoData=>{
+          const initData=buildSelectVideoControl({onPrevious,onNext,switchToPlayerControl,video:videoData.video});   
+          setInitData(initData); 
+      return videoData;
+    });
+    
+  }
+    
+  useEffect(()=>{
+    switchToSelectVideoControl();      
+   },[]);
 
-  useEffect(() => {
-    actions.onVideoChanged({state,videoPlayer});
-  }, [video]);
+
+  useEffect(()=>{
+    videoControl.setPlayVideoSource(videoPlayer.current,videoData.video);
+    if(initData && initData.id==='selectVideo'){
+        const {setters}=globalInputApp;        
+        const [setTitle, setSynopsis]=setters;
+        if(setTitle){
+          setTitle(videoData.video.title);
+        }
+        if(setSynopsis){
+          setSynopsis(videoData.video.synopsis);      
+        }
+    }     
+  },[videoData]);
+  
+  const processPlayVideoUserEvent = field=>{
+      switch(field.id){
+          case 'changeVideo':return switchToSelectVideoControl();
+          case 'currentTime':return setSliderPosition(field.value);
+          case 'rwButton': return  rewindVideo();
+          case 'playPauseButton': return field.value? pauseVideo():playVideo();
+          case 'ffButton': return fastForwardVideo();
+          case 'skipToBeginButton':return skipToBegin();
+          case 'skipToEndButton': return skipToEnd();        
+      }
+  };
+  useEffect(()=>{
+      if(!globalInputApp.field){
+        return;
+      }
+      if(initData.id==='playVideo'){
+          processPlayVideoUserEvent(globalInputApp.field);
+      }
+  },[globalInputApp.field])
+
+
 
 
 
   const onPlay = () => {
-    actions.playerEvents.onPlayPause({ state, isPlaying: true });
-  }
-  const onPause = () => {
-    actions.playerEvents.onPlayPause({ state, isPlaying: false });
+    setPlayerStatusAttributes('Playing','',1);
   };
+  const onPause = () => {
+    setPlayerStatusAttributes('Paused','',0);    
+  };
+
   const onTimeUpdate = () => {
-    const { currentTime, duration } = videoControl.getVideoData(videoPlayer.current);
-    actions.playerEvents.setCurrentTime({ state, currentTime, duration });
+    const { currentTime, duration } = videoControl.getVideoData(videoPlayer.current);    
+    if (!duration) {
+      return;
+    }    
+    const sliderValue=buildSliderValue(currentTime,duration);  
+    if(videoControl.throttleSliderValue(sliderValue)){
+      const {setSliderValue}=getPlayerControlSetters(globalInputApp, initData);    
+      setSliderValue(sliderValue);    
+    }     
   };
   const onAbort = () => {
-    actions.playerEvents.onAbort({ state, videoPlayer });
+    setPlayerStatusAttributes('Aborted','',0);     
   };
+  
   const onCanPlay = () => {
-    actions.playerEvents.onCanPlay({ state, videoPlayer });
+    
   }
   const onCanPlayThrough = () => {
-    actions.playerEvents.onCanPlayThrough({ state, videoPlayer });
+    
   };
   const onDurationChange = () => {
-    actions.playerEvents.onDurationChange({ state, videoPlayer });
+    
   };
   const onEncrypted = () => {
-    actions.playerEvents.onEncrypted({ state, videoPlayer });
+    
   };
-  const onEnded = () => {
-    actions.playerEvents.onEnded({ state, videoPlayer });
+  const onEnded = () => {    
+    videoControl.skipToBegin(videoPlayer.current);
+    setPlayerStatusAttributes('Completed','',0);         
   };
   const onError = () => {
-    actions.playerEvents.onError({ state, videoPlayer });
+    setPlayerStatusAttributes('Error','Something wrong in player',0);             
   };
   const onLoadedData = () => {
-    actions.playerEvents.onLoadedData({ state, videoPlayer });
+    
   };
   const onLoadedMetadata = () => {
-    actions.playerEvents.onLoadedMetadata({ state, videoPlayer });
+    
   };
   const onLoadStart = () => {
-    actions.playerEvents.onLoadStart({ state, videoPlayer });
+    
   };
   const onPlaying = () => {
-    actions.playerEvents.onPlaying({ state, videoPlayer });
+    setPlayerStatusAttributes('Playing','',1);    
   };
   const onProgress = () => {
-    actions.playerEvents.onProgress({ state, videoPlayer });
+    
   };
   const onRateChange = () => {
-    actions.playerEvents.onRateChange({ state, videoPlayer });
+    
   };
   const onSeeked = () => {
-    actions.playerEvents.onSeeked({ state, videoPlayer });
+    
   };
   const onSeeking = () => {
-    actions.playerEvents.onSeeking({ state, videoPlayer });
+    
   };
   const onStalled = () => {
-    actions.playerEvents.onStalled({ state, videoPlayer });
+    
   };
   const onSuspend = () => {
-    actions.playerEvents.onSuspend({ state, videoPlayer });
+    
   };
   const onVolumeChange = () => {
-    actions.playerEvents.onVolumeChange({ state, videoPlayer });
+    
   };
 
   const onWaiting = () => {
-    actions.playerEvents.onWaiting({ state, videoPlayer });
+    
   };
 
 
@@ -105,6 +216,7 @@ export default () => {
 
   const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(windowSize);
 
+  const { connectionMessage,WhenWaiting,WhenDisconnected}=globalInputApp
 
   return (
     <PageContainer>
@@ -113,7 +225,7 @@ export default () => {
         muted={true}
         ref={videoPlayer}
 
-        onAbort={onAbort}
+         onAbort={onAbort}
         onCanPlay={onCanPlay}
         onCanPlayThrough={onCanPlayThrough}
         onDurationChange={onDurationChange}
@@ -125,7 +237,7 @@ export default () => {
         onLoadStart={onLoadStart}
         onPause={onPause}
         onPlay={onPlay}
-        onPlaying={onPlaying}
+       onPlaying={onPlaying}
         onProgress={onProgress}
         onRateChange={onRateChange}
         onSeeked={onSeeked}
@@ -136,7 +248,7 @@ export default () => {
         onVolumeChange={onVolumeChange}
         onWaiting={onWaiting}
         controls>
-        <source src={video.mp4} type="video/mp4" />
+        <source src={videoData.video.mp4} type="video/mp4" />
       </video>
       <WhenWaiting>
         <QRCodeContainer>
@@ -157,5 +269,192 @@ export default () => {
 
 
 
+
+
+const buildSelectVideoControl=({onPrevious,onNext,switchToPlayerControl,video})=>{
+          
+    return {
+      action: "input",
+      id: 'selectVideo',
+      dataType: "control",
+      form: {
+        title: "Select Video to Play",
+        fields: [{
+          id: "videoTitle",
+          type: "info",
+          value: {
+            type: "text",
+            content: video.title,
+            style: {
+              fontSize: 18,
+              marginTop: 20,
+            }
+          },
+          viewId: "row1",
+        }, {
+          id: "sunopsis",
+          type: "info",
+          value: video.synopsis,
+          viewId: "row1"
+        }, {
+          id: "previousVideo",
+          label: "Previous Video",
+          type: "button",
+          icon: "left",
+          viewId: "row2",
+          operations: { onInput: onPrevious }
+        }, {
+          id: "nextVideo",
+          label: "Next Video",
+          type: "button",
+          icon: "right",
+          viewId: "row2",
+          operations: { onInput: onNext }
+        }, {
+          id: "play",
+          label: "Play",
+          type: "button",
+          icon: "select",
+          viewId: "row3",
+          operations: { onInput: switchToPlayerControl }
+        }]
+      }
+    };    
+}
+
+
+
+const buildPlayerControl = ({title,switchToSelectVideoControl, playerStatusValue,setSliderPosition,rewindVideo,pauseVideo,playVideo,fastForwardVideo,skipToBegin,skipToEnd})=>{
+  return {
+    action: "input",
+    dataType: "control",
+    id: 'playVideo',
+    form: {
+      title: title,
+      fields: [{
+        id: "changeVideo",
+        type: "button",
+        label: "Play Different Video",
+        viewId: "row1"        
+      }, {
+        id: "playerStatus",
+        type: "info",
+        value:  playerStatusValue,
+        viewId: "row2"
+      }, {
+        id: "currentTime",
+        type: "range",
+        value: 0,
+        minimumValue: 0,
+        maximumValue: 100,
+        step: 1,
+        viewId: "row3"        
+      }, {
+        id: "rwButton",
+        type: "button",
+        label: "RW",
+        icon: "rw",
+        viewId: "row4"        
+      }, {
+        id: "playPauseButton",
+        type: "button",
+        value: 0,
+        label: "Play",
+        icon: "play",
+        options: [{ value: 0, label: "Play", icon: "play" }, { value: 1, label: "Pause", icon: "pause" }],
+        viewId: "row4"        
+      }, {
+        id: "ffButton",
+        type: "button",
+        label: "FF",
+        icon: "ff",
+        viewId: "row4"        
+      }, {
+        id: "skipToBeginButton",
+        type: "button",
+        label: "Begin",
+        icon: "skip-to-begin",
+        viewId: "row5"        
+      }, {
+        id: "skipToEndButton",
+        type: "button",
+        label: "End",
+        icon: "skip-to-end",
+        viewId: "row5"        
+      }
+      ]
+    }
+  };
+};
+const getPlayerControlSetters = (globalInputApp,initData) => {
+  const defaultSetters={
+    setStatusValue: ()=>{},
+    setSliderValue: ()=>{},
+    setPlayerPauseButton:()=>{}      
+  };
+  if(!initData || initData.id!=='playVideo'){          
+          return defaultSetters;
+  }
+  const {setters}=globalInputApp;
+  if(!setters){
+    return defaultSetters;
+  }
+  const [setChangeVideoButton,setStatusValue,setSliderValue,setRWButton,setPlayerPauseButton]=setters;
+  if(!setStatusValue){
+    return defaultSetters;
+  }      
+  return {setStatusValue,setSliderValue,setPlayerPauseButton};      
+};
+
+const buildPlayerStatusValue = (title, message) => {
+  return {
+    type: "view",
+    style: {
+      borderColor: "#rgba(72,128,237,0.5)",
+      backgroundColor: "#rgba(72,128,237,0.5)",
+      borderWidth: 1,
+      marginTop: 5,
+      minWidth: "100%",
+      minHeight: 80,
+    },
+    content: [{
+      type: "text",
+      content: title,
+      style: {
+        fontSize: 18,
+        color: "white"
+      }
+    }, {
+      type: "text",
+      content: message,
+      style: {
+        fontSize: 14,
+        color: "white"
+      }
+    }]
+
+  };
+};
+
+const buildTimeString= timestamp => {
+  var mininutes = Math.floor(timestamp / 60) % 60;
+  var hours = Math.floor(timestamp / 3600);
+  var minutesString = mininutes.toString().length < 2 ? '0' + mininutes : mininutes.toString();
+
+  var seconds = Math.floor(timestamp) % 60;
+  var secondsString = seconds.toString().length < 2 ? '0' + seconds : seconds;
+  var result = (hours > 0) ? (hours.toString() + ':' + minutesString + ':' + secondsString) : (minutesString + ':' + secondsString);
+  return result.match(/^([0-9]+:)?[0-9]*:[0-9]*$/) ? result : '00:00';
+}
+const buildSliderValue=(currentTime, duration)=>{
+  return {
+    value: Math.floor(currentTime * 100 / duration),
+    labels: {
+      value: buildTimeString(currentTime),
+      minimumValue: buildTimeString(0),
+      maximumValue: buildTimeString(duration)
+    }
+  };
+};
 
 

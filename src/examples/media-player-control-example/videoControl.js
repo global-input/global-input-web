@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 let threadForSkip = null;
 const stopSkipProcess = videoPlayer => {
@@ -65,8 +65,6 @@ export const pauseVideo = videoPlayer => {
 }
 
 export const calculateWatchWindowSize = ([width, height]) => {
-  console.log("width::::" + width);
-  console.log("height::::" + height);
   var w = width - 50;
   var h = height - 50;
 
@@ -141,4 +139,73 @@ export const setCurrentTimeWithSlider = (videoPlayer, sliderPosition) => {
 }
 
 
+const videos = [{
+  title: "Tutorial Part 1",
+  synopsis: "In this Global Input App tutorial video, you will learn how to install the Chrome extension and then use ir to sign in to web applications quickly and securely. You can subscribe and sign in to web applications without worrying about remembering your passwords for they are stored automatically into your phone",
+  mp4: "https://media.iterativesolution.co.uk/video/global_input_sign_in.mp4"
+}, {
+  title: "Authentication Demo",
+  synopsis: "This authentication demo demonstrate that you can use the Global Input App to sign in to applications in public view. You can also create mutltiple accounts, for example google accounts, and sign in without needing to know your auto-generated random passwords.",
+  mp4: "https://media.iterativesolution.co.uk/video/google-sign-in.mp4"
+}, {
+  title: "Copy and Paste Across Devices",
+  synopsis: "A very short demo demonstrating using Global Input App to copy and paste contents across devices",
+  mp4: "https://media.iterativesolution.co.uk/video/copy-and-paste.mp4"
+}];
+
+const buildVideo = index => {
+  return {
+    index,
+    video:videos[index]
+  };
+};
+
+
+
+const decreaseVideoIndex =videoIndex => {
+  if (videoIndex <= 0) {
+    return videos.length - 1;
+  }
+  else {
+    return videoIndex - 1;
+  }
+};
+const increaseVideoIndex =videoIndex => {
+  if (videoIndex >= (videos.length - 1)) {
+    return 0;
+  }
+  else {
+    return videoIndex + 1;
+  }
+};
+export const getDefaultVideo =()=>{
+  return buildVideo(0);
+};
+
+export const getNextVideo = videoData =>{
+    const index=increaseVideoIndex(videoData.index);
+    return buildVideo(index);
+};
+export const getPreviousVideo = videoData =>{
+  const index=decreaseVideoIndex(videoData.index);
+  return buildVideo(index);
+};
+
+
+let cache = {
+  sliderValueHolder: null
+};
+export const throttleSliderValue = (sliderValue) => {
+  var data = {
+    sliderValue,
+    timestamp: (new Date()).getTime()
+  };
+  if ((!cache.sliderValueHolder) || (data.timestamp - cache.sliderValueHolder.timestamp) > 2000 || Math.abs(data.sliderValue.value - cache.sliderValueHolder.sliderValue.value) >= 5) {
+    cache.sliderValueHolder = data;
+    return true;
+  }
+  else{
+    return false;    
+  }
+};
 
