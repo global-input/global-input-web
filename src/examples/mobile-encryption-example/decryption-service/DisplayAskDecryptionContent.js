@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
-import PageContainer from '../generic-example-container';
-import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+
+import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
 
 
-export default ({dispatch,mobile, content,errorMessage,backToServiceSelection}) => {
+export default ({dispatch,globalInputApp, content,errorMessage,back}) => {
     
     useEffect(()=>{        
-            const mobileConfig=buildMobileConfig({dispatch,backToServiceSelection});
-            mobile.sendInitData(mobileConfig);                                       
+            const mobileConfig=buildMobileConfig({dispatch,back});
+            globalInputApp.setInitData(mobileConfig);                                       
     },[]);  
         const setContent= content => actions.decryptionService.setContent({content,dispatch});
         const onSend=()=>{
@@ -23,13 +23,13 @@ export default ({dispatch,mobile, content,errorMessage,backToServiceSelection}) 
         }
         return(
             
-                <ContentContainer>
+                <>
                     <Title>Mobile Decryption</Title>
-                <P>You may paste the encrypted content into the text box below, and click the 'Send' button to send it to your mobile for decryption.</P>                
-                    <TextButton label="Send" onClick={onSend}/>
+                <P>You may paste the encrypted content into the text box below, and click the 'Send' button to send it to your mobile for decryption.</P>                                    
                     <ErrorMessage errorMessage={errorMessage}/>                
-                    <TextAreaBox onChange={evt=>setContent(evt.target.value)}/>                    
-                </ContentContainer>
+                    <TextAreaBox onChange={evt=>setContent(evt.target.value)}/> 
+                    <TextButton label="Send" onClick={onSend}/>                   
+                </>
 
             
         
@@ -37,7 +37,7 @@ export default ({dispatch,mobile, content,errorMessage,backToServiceSelection}) 
                      
 };
 
-const buildMobileConfig=({dispatch,backToServiceSelection})=>{
+const buildMobileConfig=({dispatch,back})=>{
         return {
             action:"input",
             dataType:"form", 
@@ -51,7 +51,7 @@ const buildMobileConfig=({dispatch,backToServiceSelection})=>{
                     label:"Back",
                     icon:"back",                    
                     operations:{
-                        onInput:backToServiceSelection
+                        onInput:back
                     }
                 }]
             }

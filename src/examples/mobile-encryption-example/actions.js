@@ -1,7 +1,4 @@
 export const ActionType = {
-     ERROR:0,
-     CONNECTING:1,
-     DISPLAY_CODE:2,
      SELECT_SERVICE:3,
      QRCODE_SERVICE:{
           INIT:11,
@@ -24,15 +21,12 @@ export const ActionType = {
           SET_DECRYPTED_CONTENT:35,
           FAILED:36
      },
-     SESSION_FINISHED:41
+     
 };
 
 export const initialState={
-     type:ActionType.CONNECTING,
-     connectionCode:null,
-     size:400,
-     level:'H',
-     errorMessage:null,
+     type:ActionType.SELECT_SERVICE,
+     connectionCode:null,     
      qrCodeService:null
 }
 const utils={
@@ -46,11 +40,7 @@ const transformers={
           const {type}=action;
           const errorMessage="";
           return {...state, type,errorMessage};        
-     },
-      setError:(state, action)=>{
-          const {errorMessage,type}=action;
-          return {...state, errorMessage, type};        
-      },
+     },      
       displayCode:(state, action)=>{
              const errorMessage="";
              const size=utils.computeDefaultSize();
@@ -158,11 +148,10 @@ const transformers={
 
 
 export const reducer= (state, action)=>{
-    switch(action.type){
-        case  ActionType.ERROR: return transformers.setError(state, action);
+    switch(action.type){        
         case ActionType.DISPLAY_CODE:return transformers.displayCode(state,action);                         
         case ActionType.SELECT_SERVICE: return transformers.setActionType(state,action);                         
-        case ActionType.SESSION_FINISHED: return transformers.setActionType(state,action);
+        
         
         case ActionType.QRCODE_SERVICE.INIT:return transformers.qrCodeService.init(state,action);
         case ActionType.QRCODE_SERVICE.SET_CONTENT:return transformers.qrCodeService.setContent(state,action);
@@ -195,13 +184,7 @@ export const selectService = ({dispatch}) => {
      dispatch({type:ActionType.SELECT_SERVICE});          
 };
 
-export const onFinish = ({dispatch}) => {
-     dispatch({type:ActionType.SESSION_FINISHED});
-};
 
-export const setErrorMessage = ({dispatch,errorMessage}) => {
-     dispatch({type:ActionType.ERROR,errorMessage});
-};
 
 export const qrCodeService={
           init: ({dispatch}) => dispatch({type:ActionType.QRCODE_SERVICE.INIT}),

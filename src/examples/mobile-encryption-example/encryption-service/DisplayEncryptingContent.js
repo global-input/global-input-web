@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
-import QRCode from "qrcode.react";
-import PageContainer from '../generic-example-container';
-import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+
+
+import {Title,P,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
 import * as actions from '../actions';
 
 const encryptedContentId='encryptedContent'
 
-export default ({dispatch,mobile, content,encryptedContent,errorMessage}) => {
+export default ({dispatch,globalInputApp, content,encryptedContent,errorMessage}) => {
     
     useEffect(()=>{        
             const mobileConfig=buildMobileConfig({dispatch,content});
-            mobile.sendInitData(mobileConfig);                                       
+            globalInputApp.setInitData(mobileConfig);                                       
     },[]);          
         const copyToClipboard=()=>{
             document.getElementById(encryptedContentId).select();
@@ -20,7 +20,7 @@ export default ({dispatch,mobile, content,encryptedContent,errorMessage}) => {
             return(
                 
                     
-                    <ContentContainer>
+                    <>
                       <Title>Mobile Encryption</Title>    
                         <P>The encrypted content received from your mobile is displayed in the text box below.
                         You may click on the "Copy" button to copy the content into your clipboard.</P>
@@ -28,7 +28,7 @@ export default ({dispatch,mobile, content,encryptedContent,errorMessage}) => {
                         <TextButton label="Copy" onClick={copyToClipboard}/>
                         <ErrorMessage errorMessage={errorMessage}/>                        
                         <TextAreaBox id={encryptedContentId} value={encryptedContent}/>                        
-                    </ContentContainer>
+                    </>
                 
             );
                 
@@ -38,11 +38,11 @@ export default ({dispatch,mobile, content,encryptedContent,errorMessage}) => {
                 
                   
                     
-                    <ContentContainer>
+                    <>
                     <Title>Mobile Encryption</Title>
                       <P>The content is sent to your mobile for encryption</P>
                       <P>You may follow the instruction on your mobile to encrypt the content.</P>                    
-                    </ContentContainer>
+                    </>
                 
             );
         }

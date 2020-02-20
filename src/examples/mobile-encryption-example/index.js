@@ -1,5 +1,8 @@
 import React, { useReducer, useState, useRef, useEffect } from 'react';
-import { createMessageConnector } from 'global-input-message'; ////global-input-message////
+import { useGlobalInputApp } from 'global-input-react'; 
+
+import {PageContainer,QRCodeContainer,P,Title,ContentContainer} from './app-layout';
+
 
 import * as actions from './actions';
 import DisplayConnecting from './DisplayConnecting';
@@ -22,172 +25,158 @@ import DecryptionFailed from './decryption-service/DecryptionFailed';
 export default () => {
 
       const [state, dispatch] = useReducer(actions.reducer, actions.initialState);
-      const mobile = useRef(null);
-      const mobileConfig = useRef(null);
-      const backToServiceSelection = () => {
-            console.log("back to service selection");
-            actions.selectService({ dispatch });
-            mobile.current.sendInitData(mobileConfig.current.initData);
-      };
+      const [initData,setInitData]=useState('');      
+      const globalInputApp = useGlobalInputApp({initData},[initData]);
+      
+      useEffect(()=>{   
+            console.log("buildInitData");
+            setInitData(buildInitData({dispatch}));
+      },[])
 
-      useEffect(() => {
-            mobile.current = createMessageConnector();
-            const disconnect = () => {
-                  if (!mobile.current) {
-                        return;
-                  }
-                  mobile.current.disconnect();
-                  mobile.current = null;
-            };
-            const waitForMobileToConnect = () => {
-                  if (mobile.current) {
-                        const connectionCode = mobile.current.buildInputCodeData();
-                        console.log("[[" + connectionCode + "]]");
-                        actions.displayQRCode({ dispatch, connectionCode });
-                  }
-            };
-            mobileConfig.current = buildMobileConfig({ dispatch, disconnect, waitForMobileToConnect });
-
-            mobile.current.connect(mobileConfig.current);
-
-
-
-            return () => {
-                  disconnect();
-            }
-      }, []);
-      const { ActionType } = actions;
-
-      switch (state.type) {
+      const back=()=>{
+            actions.selectService({dispatch});
+            globalInputApp.setInitData(buildInitData({dispatch}));
             
-            case ActionType.CONNECTING:
+      };
+      
+      const {WhenWaiting, WhenConnected,WhenError, WhenDisconnected,errorMessage,connectionMessage}=globalInputApp;
+      return(<>
+                  <WhenConnected>
+                        {selectPages({state, dispatch,globalInputApp,back})}
+                  </WhenConnected>            
+                  <WhenWaiting>
+                        <Title>Mobile Encryption</Title>
+                        <QRCodeContainer>                                          
+                        {connectionMessage}
+                        </QRCodeContainer>
+                  </WhenWaiting> 
                   
-                  if (state.errorMessage) {
-                        return (<DisplayErrorMessage {...state} />);
-                  }
-                  else {
-                        return (<DisplayConnecting {...state} />);
-                  }
-            case ActionType.DISPLAY_CODE:
-                  return (<DisplayConnectionCode {...state} />);
+                  <WhenError>
+                        <Title>Mobile Encryption</Title>
+                        {errorMessage}
+                  </WhenError>   
+                  <WhenDisconnected>
+                              <QRCodeContainer>                                          
+                                    Disconnected, reload the page to try again.
+                              </QRCodeContainer>
+
+                  </WhenDisconnected>              
+            </>);
+      
+};
+
+const selectPages=({state, dispatch,back,globalInputApp})=>{   
+      const { ActionType } = actions;
+      console.log("-----:"+state.type);
+      switch (state.type) {  
             case ActionType.SELECT_SERVICE:
-                  return (<DisplayServiceSelection {...state} />);
-            case ActionType.QRCODE_SERVICE.INIT:
-            case ActionType.QRCODE_SERVICE.SET_CONTENT:
-            case ActionType.QRCODE_SERVICE.SET_LABEL:
-                  return (<DisplayQRCodeServiceContentLabel
-                        dispatch={dispatch}
-                        backToServiceSelection={backToServiceSelection}
-                        mobile={mobile.current}
-                        {...actions.qrCodeService.getData(state)} />);
-            case ActionType.QRCODE_SERVICE.GENERATE_QR_CODE:
-            case ActionType.QRCODE_SERVICE.SET_LEVEL:
-            case ActionType.QRCODE_SERVICE.SET_SIZE:
-                  return (<DisplayGenerateQRCode dispatch={dispatch}
-                        mobile={mobile.current}
-                        {...actions.qrCodeService.getData(state)} />)
-            case ActionType.SESSION_FINISHED:
-                  return (<DisplaySessionDisconnected />);
-
-            case ActionType.ENCRYPTION_SERVICE.INIT:
-            case ActionType.ENCRYPTION_SERVICE.SET_CONTENT:
-            case ActionType.ENCRYPTION_SERVICE.SET_ERROR_MESSAGE:
-                  return (
-                        <DisplayAskEncriptionContent
-                              dispatch={dispatch}
-                              backToServiceSelection={backToServiceSelection}
-                              mobile={mobile.current}
-                              {...actions.encryptionService.getData(state)} />
-                  );
-
-            case ActionType.ENCRYPTION_SERVICE.ENCRYPT:
-            case ActionType.ENCRYPTION_SERVICE.SET_ENCRYPTED_CONTENT:
-
-                  return (<DisplayEncryptingContent
-                        dispatch={dispatch}
-                        mobile={mobile.current}
-                        {...actions.encryptionService.getData(state)} />);
-
-            case ActionType.DECRYPTION_SERVICE.INIT:
-            case ActionType.DECRYPTION_SERVICE.SET_CONTENT:
-                  return (
-                        <DisplayAskDecryptionContent
-                              dispatch={dispatch}
-                              mobile={mobile.current}
-                              backToServiceSelection={backToServiceSelection}
-                              {...actions.decryptionService.getData(state)} />
-                  );
-
-            case ActionType.DECRYPTION_SERVICE.DECRYPT:
-            case ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT:
-
-                  return (<DisplayDecryptingContent
-                        dispatch={dispatch}
-                        mobile={mobile.current}
-                        {...actions.decryptionService.getData(state)} />);
+                                    return (
+                                          <PageContainer>
+                                                <Title>Mobile Encryption</Title>
+                                                      <ContentContainer>
+                                                      <Title>Select Service</Title>
+                                                      <P>A set of available services are display on you mobile. Please operate on your mobile.</P>
+                                    
+                                                      </ContentContainer>
+                                          </PageContainer>
+                                    );                     
+                        case ActionType.QRCODE_SERVICE.INIT:
+                        case ActionType.QRCODE_SERVICE.SET_CONTENT:
+                        case ActionType.QRCODE_SERVICE.SET_LABEL:                              
+                              return (<DisplayQRCodeServiceContentLabel
+                                    dispatch={dispatch}
+                                    back={back}
+                                    globalInputApp={globalInputApp}
+                                    {...actions.qrCodeService.getData(state)} />);                                    
+                        case ActionType.QRCODE_SERVICE.GENERATE_QR_CODE:
+                        case ActionType.QRCODE_SERVICE.SET_LEVEL:
+                        case ActionType.QRCODE_SERVICE.SET_SIZE:
+                              return (<DisplayGenerateQRCode dispatch={dispatch}
+                                    globalInputApp={globalInputApp}
+                                    {...actions.qrCodeService.getData(state)} />)
+      
+                        case ActionType.ENCRYPTION_SERVICE.INIT:
+                        case ActionType.ENCRYPTION_SERVICE.SET_CONTENT:
+                        case ActionType.ENCRYPTION_SERVICE.SET_ERROR_MESSAGE:
+                              return (
+                                    <DisplayAskEncriptionContent
+                                          dispatch={dispatch}
+                                          back={back}
+                                          globalInputApp={globalInputApp}
+                                          {...actions.encryptionService.getData(state)} />
+                              );
             
-            case ActionType.DECRYPTION_SERVICE.FAILED:
-                  return (<DecryptionFailed mobile={mobile.current} 
-                        dispatch={dispatch}
-                        {...actions.decryptionService.getData(state)}/>);
-
-
-            default: return (<DisplayErrorMessage {...state} />);
-      }
-};
-
-
-
-
-const buildMobileConfig = ({ dispatch, disconnect, waitForMobileToConnect }) => {
-      const onSenderConnected = (sender, senders) => {
-            actions.selectService({ dispatch });
-      };
-      const onSenderDisconnected = (sender, senders) => {
-            disconnect();
-            actions.onFinish({ dispatch });
-      };
-      const onError = errorMessage => {
-            actions.setErrorMessage({ dispatch, errorMessage });
-      };
-      return {
-            initData: {
-                  action: "input",
-                  dataType: "form",
-                  form: {
-                        title: "Mobile Encryption Services",
-                        fields: [{
-                              type: "button",
-                              label: "Encrypted QR Code",
-                              icon: "qrcode",
-                              viewId: "row1",
-                              operations: { onInput: () => actions.qrCodeService.init({ dispatch }) }
-
-                        }, {
-                              type: "button",
-                              label: "Encrypt",
-                              icon: "encrypt",
-                              viewId: "foot",
-                              operations: { onInput: () => actions.encryptionService.init({ dispatch }) }
-                        }, {
-                              type: "button",
-                              icon: "decrypt",
-                              label: "Decrypt",
-                              viewId: "foot",
-                              operations: { onInput: () => actions.decryptionService.init({ dispatch }) }
-                        }]
-                  },
-            },
-            onRegistered: next => {
-                  next();
-                  waitForMobileToConnect();
-            },
-            onRegisterFailed: function (registeredMessage) {
-                  onError(registeredMessage);
-            },
-            onSenderConnected,
-            onSenderDisconnected            
-      };
-
+                        case ActionType.ENCRYPTION_SERVICE.ENCRYPT:
+                        case ActionType.ENCRYPTION_SERVICE.SET_ENCRYPTED_CONTENT:
+            
+                              return (<DisplayEncryptingContent
+                                    dispatch={dispatch}
+                                    globalInputApp={globalInputApp}
+                                    {...actions.encryptionService.getData(state)} />);
+                              
+                        case ActionType.DECRYPTION_SERVICE.INIT:
+                        case ActionType.DECRYPTION_SERVICE.SET_CONTENT:
+                              return (
+                                    <DisplayAskDecryptionContent
+                                          dispatch={dispatch}
+                                          globalInputApp={globalInputApp}
+                                          back={back}
+                                          {...actions.decryptionService.getData(state)} />
+                              );
+      
+                        case ActionType.DECRYPTION_SERVICE.DECRYPT:
+                        case ActionType.DECRYPTION_SERVICE.SET_DECRYPTED_CONTENT:
+            
+                              return (<DisplayDecryptingContent
+                                    dispatch={dispatch}
+                                    globalInputApp={globalInputApp}
+                                    {...actions.decryptionService.getData(state)} />);
+                        
+                        case ActionType.DECRYPTION_SERVICE.FAILED:
+                              return (<DecryptionFailed globalInputApp={globalInputApp} 
+                                    dispatch={dispatch}
+                                    {...actions.decryptionService.getData(state)}/>);
+                        
+                        
+            
+                        default: return (
+                                    <ContentContainer>
+                                                <Title>Error</Title>
+                                                <P>Unknown Error</P>
+                                    </ContentContainer>);
+                  
+                  }
+      
 
 };
+
+const buildInitData = ({dispatch}) =>{
+      const initData = {
+            action: "input",
+            dataType: "form",
+            form: {
+                  title: "Mobile Encryption Services",
+                  fields: [{
+                        type: "button",
+                        label: "Encrypted QR Code",
+                        icon: "qrcode",
+                        viewId: "row1",
+                        operations: { onInput: () => actions.qrCodeService.init({ dispatch }) }
+
+                  }, {
+                        type: "button",
+                        label: "Encrypt",
+                        icon: "encrypt",
+                        viewId: "foot",
+                        operations: { onInput: () => actions.encryptionService.init({ dispatch }) }
+                  }, {
+                        type: "button",
+                        icon: "decrypt",
+                        label: "Decrypt",
+                        viewId: "foot",
+                        operations: { onInput: () => actions.decryptionService.init({ dispatch }) }
+                  }]
+            },
+      };
+      return initData;
+}

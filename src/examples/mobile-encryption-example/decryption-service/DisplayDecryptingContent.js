@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
 
-import PageContainer from '../generic-example-container';
-import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+
+import {Title,P,TextAreaBox, TextButton,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
 
 const decryptedContentId='decryptedContent'
 
-export default ({dispatch,mobile, content,decryptedContent,errorMessage}) => {
+export default ({dispatch,globalInputApp, content,decryptedContent,errorMessage}) => {
     
     useEffect(()=>{            
             const mobileConfig=buildMobileConfig({dispatch,content});            
-            mobile.sendInitData(mobileConfig);
+            globalInputApp.setInitData(mobileConfig);
     },[]);          
         const copyToClipboard=()=>{
             document.getElementById(decryptedContentId).select();
@@ -19,7 +19,7 @@ export default ({dispatch,mobile, content,decryptedContent,errorMessage}) => {
         if(decryptedContent){
             return(
                 
-                    <ContentContainer>
+                    <>
                       <Title>Mobile Decryption</Title>
                     <P>The encrypted content received from your mobile is displayed in the following text box.
                     You may click on the "Copy" button to copy the content into your clipboard</P>
@@ -28,7 +28,7 @@ export default ({dispatch,mobile, content,decryptedContent,errorMessage}) => {
                         <ErrorMessage errorMessage={errorMessage}/>                        
                         <TextAreaBox id={decryptedContentId} value={decryptedContent}/>
                         
-                    </ContentContainer>
+                    </>
                 
             );
                 
@@ -36,10 +36,10 @@ export default ({dispatch,mobile, content,decryptedContent,errorMessage}) => {
         else{
             return(
                 
-                  <ContentContainer>
+                  <>
                     <Title>Mobile Decryption</Title>
                     <P>The encrypted content is sent to your mobile for decryption. Now you can operate on your mobile to decrypt the content</P>
-                  </ContentContainer>
+                  </>
                
             );
         }

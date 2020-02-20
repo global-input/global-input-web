@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
 import QRCode from "qrcode.react";
-import PageContainer from '../generic-example-container';
-import {Title,P,ContentContainer} from '../basic-app-layout';
+
+import {P,ContentContainer,A} from '../app-layout';
 import * as actions from '../actions';
+import  './no-print.css';
 
-
-export default ({content, label, size,level, dispatch,mobile}) => {
+export default ({content, label, size,level, dispatch,globalInputApp}) => {
     
     useEffect(()=>{        
             const mobileConfig=buildMobileConfig({dispatch});
-            mobile.sendInitData(mobileConfig);                                       
+            globalInputApp.setInitData(mobileConfig);                                       
     },[]);  
     if(content){
         return(
-        <ContentContainer row='center'>            
+        <ContentContainer row="center">          
             <P>{label}</P>            
             <QRCode value={content} level={level} size={size}/>
-            <P>Scan with Global Input App</P>
+            <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
         </ContentContainer>
             
         )

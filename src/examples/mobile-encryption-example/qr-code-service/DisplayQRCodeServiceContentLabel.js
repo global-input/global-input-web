@@ -1,31 +1,29 @@
 import React, {useEffect} from 'react';
 import * as actions from '../actions';
 
+import {Title,P,TextInputBox,ErrorMessage} from '../app-layout';
 
-import PageContainer from '../generic-example-container';
-import {Title,P,TextInputBox,ErrorMessage, ContentContainer} from '../basic-app-layout';
-
-export default ({content,label, errorMessage, dispatch,mobile,backToServiceSelection})=>{ 
+export default ({content,label, errorMessage, dispatch,globalInputApp,back})=>{ 
         useEffect(()=>{  
-                const mobileConfig=buildMobileConfig({dispatch,backToServiceSelection});            
-                mobile.sendInitData(mobileConfig);                                       
+                const mobileConfig=buildMobileConfig({dispatch,back});            
+                globalInputApp.setInitData(mobileConfig);                                       
                 
         },[]);
 
         return(
-                <ContentContainer>
+                <>
                         <Title>QR Code Generation</Title>  
                         <P>Please operate on your mobile to build an encrypted content. </P>                        
                         <ErrorMessage errorMessage={errorMessage}/>
                         <TextInputBox id="content" value={content} label="Content" readOnly={true}/>
                         <TextInputBox id="label" value={label} label="Label" readOnly={true}/>
-                </ContentContainer>        
+                </>        
         
         );       
 };
 
  
-const buildMobileConfig = ({dispatch,backToServiceSelection}) => {
+const buildMobileConfig = ({dispatch,back}) => {
         
         const setCodeContent = content => actions.qrCodeService.setContent({dispatch,content});
         const setLabel = label => actions.qrCodeService.setLabel({dispatch,label});
@@ -58,7 +56,7 @@ const buildMobileConfig = ({dispatch,backToServiceSelection}) => {
                         icon:"back",
                         viewId:"foot",                                                 
                         operations:{
-                            onInput:backToServiceSelection
+                            onInput:back
                         }
                     },{
                             label:"Next", 

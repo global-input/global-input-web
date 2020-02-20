@@ -1,23 +1,23 @@
 import React, {useEffect} from 'react';
-import PageContainer from '../generic-example-container';
-import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+
+import {Title,P,ContentContainer,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
 
 
-export default ({dispatch,mobile, errorMessage}) => {
+export default ({dispatch,globalInputApp, errorMessage}) => {
     
     useEffect(()=>{        
             const mobileConfig=buildMobileConfig({dispatch,errorMessage});
-            mobile.sendInitData(mobileConfig);                                       
+            globalInputApp.setInitData(mobileConfig);                                       
     },[]);  
         
         return(
-            <PageContainer>
+            <>
                 <Title>Decryption Failure</Title>
                 <ContentContainer>                    
                     <ErrorMessage errorMessage={errorMessage}/>                    
                 </ContentContainer>
-            </PageContainer>
+            </>
         
         );
                      
