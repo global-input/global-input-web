@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 
-import {Title,P,TextAreaBox, TextButton,ErrorMessage} from '../basic-app-layout';
+import {Title,P,TextAreaBox, TextButton,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
 
 const encryptedContentId='encryptedContent'

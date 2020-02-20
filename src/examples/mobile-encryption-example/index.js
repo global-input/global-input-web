@@ -5,11 +5,6 @@ import {PageContainer,QRCodeContainer,P,Title,ContentContainer} from './app-layo
 
 
 import * as actions from './actions';
-import DisplayConnecting from './DisplayConnecting';
-import DisplayErrorMessage from './DisplayErrorMessage';
-import DisplayConnectionCode from './DisplayConnectionCode';
-import DisplayServiceSelection from './DisplayServiceSelection';
-import DisplaySessionDisconnected from './DisplaySessionDisconnected';
 
 
 import DisplayQRCodeServiceContentLabel from './qr-code-service/DisplayQRCodeServiceContentLabel';
