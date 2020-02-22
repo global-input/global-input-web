@@ -1,10 +1,6 @@
 import React from "react";
 
-import GlobalInputConnect from '../../../components/global-input-connect';
-import ClipboardCopyButton from '../../../components/clipboard-copy-button';
-import InputWithLabel from '../../../components/input-with-label';
-import SelectableInput from '../../../components/selectable-input';
-import TextButton from '../../../components/text-button';
+import {InputWithLabel,SelectableInput,TextButton} from '../app-layout';
 
 import {styles} from "./styles";
 import AddNewFieldDialog from "./add-new-field-dialog";

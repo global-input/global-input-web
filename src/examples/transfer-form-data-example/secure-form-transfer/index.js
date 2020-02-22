@@ -1,10 +1,63 @@
-import React from "react";
+import React,{useState} from "react";
 
+import {InputWithCopy, TextButton,PageContainer,Title,P} from '../app-layout';
 import GlobalInputConnect from '../../../components/global-input-connect';
-import ClipboardCopyButton from '../../../components/clipboard-copy-button';
-import InputWithCopy from '../../../components/input-with-copy';
-import TextButton from '../../../components/text-button';
+//import {useGlobalInputApp} from 'global-input-react';
 
+
+
+
+export default ({form})=>{
+    const [formFields,setFormFields]=useState(()=>buildFormFields(form));
+    const [hideValue, setHideValue]=useState(true);
+    return(
+      
+      <PageContainer>
+          <Title>Transfer Form Data</Title>  
+          {formFields.map(formField=>(<RenderFormField formField={formField} key={formField.id} hideValue={hideValue}/>))}                                        
+      </PageContainer>
+      
+    );
+
+};
+
+const RenderFormField = ({formField,hideValue})=>{
+  var fieldType="text";
+  if(formField.nLines && formField.nLines>1){
+      fieldType="textarea";
+  }
+  if(hideValue){
+    fieldType="password";
+  }
+
+  return(
+    
+      <InputWithCopy label={formField.label} id={formField.id} type={fieldType}
+         value={formField.value}  onSelected={()=>this.toggleFormFieldSelection(formField)} secret={true}
+         onChange={value=>{
+           this.setFieldValue(value,formField.id);
+           this.mobile.sendMessage(value,formField.id);
+         }
+         }/>    
+    );
+}
+
+
+const buildFormFields= form=>{
+    const fields=form.fields.map(f=>{
+      return {
+        id:f.id,
+        nLines:f.nLines,
+        value:f.value?f.value:"",
+        label:f.label
+      }
+    });
+    return fields;
+
+};
+
+
+/*
 export default class SecureFormTransfer extends React.Component{
 
   constructor(props){
@@ -224,3 +277,33 @@ export default class SecureFormTransfer extends React.Component{
 
 
 }
+
+*/
+/*
+
+const buildInitData =({form})=>{
+  const initData={
+      action:"input",
+      dataType:"form",
+      form:{
+        title:form.title,
+        id:form.id,
+        fields:[]
+      }
+   };
+   form.fields.forEach(f=>{
+        const field={
+                label:f.label,
+                id:f.id,
+                value:f.value?f.value:"",
+                nLines:f.nLines,
+                operations:{
+                    onInput:value=>this.setFieldValue(value,field.id)
+                }
+        };
+    this.mobile.addField(field);
+  });
+
+
+}
+*/

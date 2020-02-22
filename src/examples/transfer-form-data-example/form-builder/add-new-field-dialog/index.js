@@ -1,7 +1,7 @@
 import React from 'react';
 import {styles} from './styles';
-import InputWithLabel from '../../../../components/input-with-label';
-import TextButton from '../../../../components/text-button';
+import {InputWithLabel,TextButton}  from '../../app-layout';
+
 export default class AddNewFieldDialog extends React.Component{
 
   constructor(props){
@@ -29,6 +29,7 @@ export default class AddNewFieldDialog extends React.Component{
     }
     this.props.onAddNewField(data);
   }
+  
   render(){
       return(
         <div style={styles.container}>
