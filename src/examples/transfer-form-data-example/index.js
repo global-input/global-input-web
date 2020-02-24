@@ -3,19 +3,28 @@ import React, { useReducer, useState, useRef, useEffect } from "react";
 import {useGlobalInputApp} from 'global-input-react';
 
 
-import { PageContainer,Title, P, A,DisplaySelectableFormField,TextAreaBox, TextButton,QRCodeContainer } from './app-layout';
+
+import { PageContainer,Title, P} from './app-layout';
 
 import * as dataUtil from './dataUtil';
+import {AddNewField,TransferFormData,DisplayApplicationInfo,DeleteFields, ChangeForm} from './renders';
 
 
 
-
+const ACTIONS={
+        TRANSFER:1,
+        ADD_NEW_FIELD:2,
+        DELETE_FIELDS:3,
+        CHANGE_FORM:4
+}
 
 
 export default ({location}) => {
-    const [form,setForm]=useState(()=>dataUtil.buildInitialForm({location}));
+    const [form,setForm]=useState(()=>dataUtil.form.buildInitialForm({location}));
     const [visibility, setVisibility]=useState(()=>dataUtil.visibility.getDefaultOption());
-    const [initData, setInitData]=useState(null)
+    const [initData, setInitData]=useState(null);
+    const [action, setAction]=useState(ACTIONS.TRANSFER);
+    
 
     const globalInputApp = useGlobalInputApp({initData},[initData]);
     
@@ -23,64 +32,99 @@ export default ({location}) => {
     const onToggleShowHide=()=>{
         const nextVisibility=dataUtil.visibility.getNext(visibility);                
         setVisibility(nextVisibility);
-        const {setters}=globalInputApp;
-        if(setters&& setters.length){              
-            setters[setters.length-1](nextVisibility.value);                    
-        }
+        dataUtil.form.setMobileVisibilityValue(globalInputApp,nextVisibility.value);        
      };
      const onFormFieldValueChanged= (field,value) => {                
-        setForm(dataUtil.updateField({form,field,value}));        
+        setForm(dataUtil.form.updateField({form,field,value}));        
+    };
+
+    const gotoAddField=()=>{
+         setAction(ACTIONS.ADD_NEW_FIELD);            
+    };
+    const gotoDeleteFields=()=>{
+        setAction(ACTIONS.DELETE_FIELDS);            
+    };
+    const gotoChangeForm=()=>{
+        setAction(ACTIONS.CHANGE_FORM);            
+    };   
+    
+    const gotoTransfer=(newForm=form)=>{                
+        setAction(ACTIONS.TRANSFER);                       
+        const initData=dataUtil.form.getInitData(newForm,visibility);      
+        setInitData(initData);        
+    } 
+    const addNewField=(label,multiLine)=>{
+        const newForm=dataUtil.form.createNewFormNewField({form,label, multiLine});        
+        setForm(newForm);
+        gotoTransfer(newForm);        
+    };
+    const deleteFields=items=>{
+        const newForm=dataUtil.form.createNewFormDeleteFields({form,items});        
+        setForm(newForm);
+        gotoTransfer(newForm);
     }
-  
- useEffect(()=>{    
-      const initData=dataUtil.buildInitData(form,visibility);      
-        setInitData(initData);                       
-  },[]);
+    const changeFormAttributes=({formTitle, formId, formLabel})=>{
+        const newForm=dataUtil.form.createNewFormWithAttributes({form,formTitle, formId, formLabel});        
+        setForm(newForm);
+        gotoTransfer(newForm);
 
+    };
 
-  useEffect(()=>{  
-            if(!globalInputApp.field){
-                return;
-            }
-            if(dataUtil.visibility.matchId(globalInputApp.field)){
-                    onToggleShowHide();        
-            }
-            else{
-                    onFormFieldValueChanged(globalInputApp.field,globalInputApp.field.value);    
-            }       
-  },[globalInputApp.field]);
+    useEffect(()=>{
+        gotoTransfer();
+    },[]);
 
   
-  
-  const {connectionMessage, WhenConnected,WhenDisconnected}=globalInputApp;   
-  
+  const renderMain=()=>{
+        const props={        
+            onFieldChanged:(formField,value)=>{    
+                onFormFieldValueChanged(formField,value);
+                dataUtil.form.setMobileFieldValue(globalInputApp,formField,value);
+            },
+            onToggleShowHide,
+            onFormFieldValueChanged,
+            gotoAddField,
+            gotoDeleteFields,
+            gotoChangeForm,
+            form,
+            visibility,
+            globalInputApp        
+        };
+        
+        switch(action){
+            case ACTIONS.TRANSFER:
+                        return (<TransferFormData {...props}/>)
+            case ACTIONS.ADD_NEW_FIELD: 
+                        return (<AddNewField globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} addNewField={addNewField}/>);
+            case ACTIONS.DELETE_FIELDS:
+                        return (<DeleteFields globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} form={form} deleteFields={deleteFields}/>)
+            case ACTIONS.CHANGE_FORM:
+                        return (<ChangeForm globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} form={form} changeFormAttributes={changeFormAttributes}/>)
+            default:
+                return null;
+        }
+  };
+   
+   const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=globalInputApp;  
       return (
-        <PageContainer>          
-            <Title>Mobile Form Automation and Mobile Authentication</Title>                        
-            {connectionMessage}
-            <WhenConnected>
+        <PageContainer>                      
+            
+            <WhenWaiting>
+                <Title>Mobile Form Automation and Mobile Authentication</Title>
+                {connectionMessage}
+                <DisplayApplicationInfo/>            
+            </WhenWaiting>
 
-                {form.fields.map((formField,index)=>(<DisplaySelectableFormField 
-                      field={formField} 
-                      key={formField.id} 
-                hideValue={visibility.value===0} onChange={value=>{
-                        onFormFieldValueChanged(formField,value);
-                        const {setters}=globalInputApp;
-                        if(setters && index<setters.length){              
-                            setters[index](value);                    
-                        }
-
-                    }}/>))}              
-
-                    <TextButton onClick={onToggleShowHide} label={visibility.label}/>
-            </WhenConnected>
+            
+            
             <WhenDisconnected>
                 <P>Disconnected, reload the page to try again</P>               
+                <DisplayApplicationInfo/>
             </WhenDisconnected>
-
-                     
-            <P>This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">example application</a> demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">mobile form operations such as mobile authentication.</A> 
-            Its source code is available on <A href="https://github.com/global-input/transfer-form-data-example">GitHub</A></P>  
+            <WhenConnected>
+                {renderMain()}
+            </WhenConnected>
+            
         </PageContainer>
       );    
 

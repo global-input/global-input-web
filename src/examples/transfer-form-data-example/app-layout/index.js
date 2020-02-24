@@ -6,8 +6,10 @@ import TextButton from './text-button';
 import SelectableInput from './selectable-input';
 import ClipboardCopyButton from './clipboard-copy-button';
 import InputWithCopy from './input-with-copy';
+import {SelectionContainer, RadioButton,CheckboxButton} from './selectable';
 
 export {InputWithLabel,TextButton,SelectableInput,ClipboardCopyButton,InputWithCopy};
+export {SelectionContainer, RadioButton,CheckboxButton};
 export function useWindowSize() {
      const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
      useLayoutEffect(() => {
@@ -103,7 +105,7 @@ export const TextInputBox=({id,type,readOnly,onChange,value,label})=>{
 };
 
 
-export const DisplaySelectableFormField = ({field,hideValue,onChange,onToggleSelection})=>{
+export const DisplayInputCopyField = ({field,hideValue,onChange,onToggleSelection})=>{
      var fieldType="text";
      if(field.nLines && field.nLines>1){
          fieldType="textarea";
@@ -111,9 +113,13 @@ export const DisplaySelectableFormField = ({field,hideValue,onChange,onToggleSel
      if(hideValue){
        fieldType="password";
      }
+     let value=field.value;
+     if(!value){
+          value='';
+     }
      return(       
          <InputWithCopy label={field.label} id={field.id} type={fieldType}
-            value={field.value}  onSelected={onToggleSelection} secret={true}
+            value={value}  onSelected={onToggleSelection} secret={true}
             onChange={onChange}/>    
        );
 };

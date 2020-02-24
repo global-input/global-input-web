@@ -41,8 +41,7 @@ export default class InputWithLabel extends Component{
 
 
   }
-  renderTextInput(stylestatus){
-
+  renderTextInput(stylestatus){    
     return(
       <div style={styles.container}>
         <label htmlFor={this.props.id}  onClick={this.labelClicked.bind(this)}>
