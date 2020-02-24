@@ -15,7 +15,7 @@ const urls={
       sendMessage: async ({page})=>await page.goto('http://localhost:3000/global-input-app/send-message'),
       gameExample: async ({page})=>await page.goto('http://localhost:3000/global-input-app/game-example'),
       formDataTransfer: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
-      formDataTransfer2: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer?formData=U2FsdGVkX1/L75KqmW46k9IT5KBo4KloQufXzt0/lX9q+1FqmsXZXIvNp7IShCYVSxrJWm5+JmK1EPCGbsrrgp9KHov+EKJ7Y5MAaT4lXDg402LkXFPZZmJ/J6qQmuw/rZU6w3zyfgrs3nb+nrQ6yziO7NCKRfdNxipODXz41E5AVPNRczY2M6cUfS156mz+r0COHP9gPGGCTJdQMTAF7IfOIZyGp/NGLgqsBRWJSn8WSvgsdPaNJ7YSzoxQeX2ehBDOxPAm9od24v/YENS8rAk6XDPDyCHigiJTj1O/VzJvxvkV6rA7nthKvRkeGtiLuMnfGWIfUlYe9sNgz4ZhXQ%3D%3D'),
+      formDataTransfer2: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
             
       mobileEcryption:async ({page})=> {
         debugger;

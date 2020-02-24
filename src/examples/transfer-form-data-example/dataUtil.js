@@ -34,12 +34,12 @@ export const visibility = (()=>{
 export const form=(()=>{
         const defaultForm={    
             id:"###username###@domain.com",
-            title:"Credential",
+            title:"Transfer Form Data",
             label:"members",
             fields:[
                 {id:"username",label:"Username", value:'',selected:false},
                 {id:"password",label:"Password", value:'',selected:false},
-                {id:"note",label:"Note", value:'',selected:false}
+                {id:"note",label:"Note",nLines:5, value:'',selected:false}
             ]
         };
         const addNewField={
@@ -57,7 +57,7 @@ export const form=(()=>{
         const changeFormField={
             id:"changeForm",
             type:"button",
-            label:"Change Form",
+            label:"Edit Form Attributes",
             viewId:"row2"
         };
         const setMobileFieldValue = (globalInputApp, field,value)=>{
@@ -127,9 +127,13 @@ export const form=(()=>{
     };
     
     const encryptionKey='TDwtv0dV6u';
-    const encoderFormData = formData => {
+    const encodeFormData = formData => {
             return encrypt(JSON.stringify(formData),encryptionKey);
-    };       
+    };  
+    const createBookmark = form =>{
+        const encoded=encodeFormData(form);
+        return window.location.protocol + "//" + window.location.host + window.location.pathname + "?formData="+encoded;
+    }     
     const decodeFormData = formData => {
             return JSON.parse(decrypt(formData,encryptionKey))
     };
@@ -225,7 +229,8 @@ export const form=(()=>{
             createNewFormNewField,
             createNewFormDeleteFields,
             deleteFieldsButtonPressed,
-            createNewFormWithAttributes
+            createNewFormWithAttributes,
+            createBookmark
         }
         
 
@@ -290,7 +295,7 @@ export const addNewField= (()=>{
             action: "input",
             dataType: "form",
             form:{
-                title:"Add New Field",
+                title:"Adding New Field",
                 fields
             }
           };      
@@ -379,7 +384,7 @@ export const deleteFields= (()=>{
             action: "input",
             dataType: "form",
             form:{
-                title:"Delete Fields",
+                title:"Deleting Fields",
                 fields
             }
           };
@@ -500,7 +505,7 @@ export const changeForm= (()=>{
                   action: "input",
                   dataType: "form",
                   form:{
-                      title:"Delete Fields",
+                      title:"Form Attributes",
                       fields
                   }
                 };

@@ -3,12 +3,27 @@ import {Title, P, A,DisplayInputCopyField,InputWithLabel, TextButton,SelectableI
 import * as dataUtil from './dataUtil';
 export const DisplayApplicationInfo= () => (
     <P>
-        This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">example application</a> 
-    demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">mobile form operations such as mobile authentication. </A> 
+        This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">example application </a> 
+    demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">mobile form operations such as mobile authentication, mobile subscription. </A> 
     Its source code is available on <A href="https://github.com/global-input/transfer-form-data-example"> GitHub</A>
+    If you are looking for a simpler example, try <a href="https://globalinput.co.uk/global-input-app/content-transfer">the content transfer example</a> 
     </P>  
   );
-export const TransferFormData=({onFieldChanged,onToggleShowHide,form,visibility, globalInputApp,gotoAddField,gotoDeleteFields,gotoChangeForm,onFormFieldValueChanged})=>{
+
+const renderBookMark=(bookmark,form)=>{
+        if(!bookmark){
+            return null;            
+        }
+        if(!form.fields.length){
+            return null;
+        }
+        return(
+            <P>
+              You can save this form for future use by click <A href={bookmark}>here</A> and book mark the page loaded.  
+            </P>
+        );
+} 
+export const TransferFormData=({onFieldChanged,onToggleShowHide,form,visibility, globalInputApp,gotoAddField,gotoDeleteFields,gotoChangeForm,onFormFieldValueChanged,bookmark})=>{
     useEffect(()=>{  
         if(!globalInputApp.field){
             return;
@@ -29,15 +44,19 @@ export const TransferFormData=({onFieldChanged,onToggleShowHide,form,visibility,
         else {
                 onFormFieldValueChanged(globalInputApp.field,globalInputApp.field.value);    
         }       
-    },[globalInputApp.field]);
-
+    },[globalInputApp.field]);    
     return(
         <>
+            <Title>{form.title}</Title>
             {form.fields.map((formField,index)=>(<DisplayInputCopyField 
             field={formField} 
             key={formField.id} 
             hideValue={visibility.value===0} onChange={value=>onFieldChanged(formField,value)}/>))}
             <TextButton onClick={onToggleShowHide} label={visibility.label}/>
+            {renderBookMark(bookmark, form)}
+            <P>You may now operate on your mobile to transfer content to the form above.</P>
+            <DisplayApplicationInfo/>
+
         </>
     );
 }
@@ -86,7 +105,7 @@ export const AddNewField=({globalInputApp,gotoTransfer,addNewField})=>{
 
         return(
             <>
-                <Title>Adding a New Field</Title>
+                <Title>Adding New Field</Title>
                 <P>Enter the name of the new field </P>                            
                 <InputWithLabel label="Name of the field" id="newFieldLabel"
                               onChange={setFormLabel}
@@ -138,7 +157,7 @@ export const DeleteFields=({globalInputApp,gotoTransfer,form,deleteFields})=>{
     };
     return (
         <>
-            <Title>Delete Fields</Title>
+            <Title>Deleting Fields</Title>
             <SelectionContainer>
                 {items.map(item=>(
                 <CheckboxButton 
@@ -181,7 +200,7 @@ export const ChangeForm=({globalInputApp,gotoTransfer,form,changeFormAttributes}
     
     return (
     <>
-            <Title>Change Form Attributes</Title>            
+            <Title>Form Attributes</Title>            
             <InputWithLabel value={formTitle} label="Form Title" onChange={value=>{
                 setFormTitle(value);
                 dataUtil.changeForm.setFormTitleOnMobile(globalInputApp,value);           

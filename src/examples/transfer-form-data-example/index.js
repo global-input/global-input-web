@@ -24,6 +24,9 @@ export default ({location}) => {
     const [visibility, setVisibility]=useState(()=>dataUtil.visibility.getDefaultOption());
     const [initData, setInitData]=useState(null);
     const [action, setAction]=useState(ACTIONS.TRANSFER);
+    const [bookmark,setBookmark]=useState(null);
+
+
     
 
     const globalInputApp = useGlobalInputApp({initData},[initData]);
@@ -36,7 +39,7 @@ export default ({location}) => {
      };
      const onFormFieldValueChanged= (field,value) => {                
         setForm(dataUtil.form.updateField({form,field,value}));        
-    };
+     };
 
     const gotoAddField=()=>{
          setAction(ACTIONS.ADD_NEW_FIELD);            
@@ -52,21 +55,31 @@ export default ({location}) => {
         setAction(ACTIONS.TRANSFER);                       
         const initData=dataUtil.form.getInitData(newForm,visibility);      
         setInitData(initData);        
-    } 
+    };
+    const onFormModified=newForm=>{
+        setForm(newForm);                
+        const bookmark=dataUtil.form.createBookmark(newForm);
+        setBookmark(bookmark); 
+        if(newForm.fields.length){
+            gotoTransfer(newForm);             
+        }
+        else{
+            gotoAddField();
+        }
+
+        
+    }
     const addNewField=(label,multiLine)=>{
-        const newForm=dataUtil.form.createNewFormNewField({form,label, multiLine});        
-        setForm(newForm);
-        gotoTransfer(newForm);        
+        const newForm=dataUtil.form.createNewFormNewField({form,label, multiLine});                
+        onFormModified(newForm);
     };
     const deleteFields=items=>{
-        const newForm=dataUtil.form.createNewFormDeleteFields({form,items});        
-        setForm(newForm);
-        gotoTransfer(newForm);
+        const newForm=dataUtil.form.createNewFormDeleteFields({form,items});                
+        onFormModified(newForm);
     }
     const changeFormAttributes=({formTitle, formId, formLabel})=>{
-        const newForm=dataUtil.form.createNewFormWithAttributes({form,formTitle, formId, formLabel});        
-        setForm(newForm);
-        gotoTransfer(newForm);
+        const newForm=dataUtil.form.createNewFormWithAttributes({form,formTitle, formId, formLabel});                
+        onFormModified(newForm);
 
     };
 
@@ -88,7 +101,8 @@ export default ({location}) => {
             gotoChangeForm,
             form,
             visibility,
-            globalInputApp        
+            globalInputApp,
+            bookmark        
         };
         
         switch(action){
