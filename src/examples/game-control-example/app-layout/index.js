@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect ,useRef} from 'react';
 import { styles } from './styles';
 
 import InputWithLabel from './input-with-label';
@@ -125,11 +125,13 @@ export const DisplayInputCopyField = ({field,hideValue,onChange,onToggleSelectio
 };
 
 export const DisplayCanvas=({onCanvas})=>{
-     //const canvasHolder=useRef(null);
+     const canvasHolder=useRef(null);
      const [width,height]=useWindowSize();  
      const setCanvas=ref=>{
-          if(ref){
+          if(ref && canvasHolder.current!==ref){
+               canvasHolder.current=ref;
                onCanvas(ref);
+
           }          
       };
       var w = width - 50;
