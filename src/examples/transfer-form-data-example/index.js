@@ -132,6 +132,7 @@ export default ({location}) => {
             
             
             <WhenDisconnected>
+                <Title>Mobile Form Automation and Mobile Authentication</Title>
                 <P>Disconnected, reload the page to try again</P>               
                 <DisplayApplicationInfo/>
             </WhenDisconnected>
