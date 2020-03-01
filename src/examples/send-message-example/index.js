@@ -4,47 +4,64 @@ import {useGlobalInputApp} from 'global-input-react';
 
 
 
-import { PageContainer,Title, P,A} from './app-layout';
+import { PageContainer,Title, P,SelectionContainer} from './app-layout';
+import CompanyContact from './CompanyContact';
+import SendMessageAction from './SendMessageAction';
+import DisplayApplicationInfo from './DisplayApplicationInfo';
+import SendCompleteAction from './SendCompleteAction';
 
-import * as dataUtil from './dataUtil';
-
-
-
-
-const ACTIONS={
-        CONTACT:1,
-        SEND_MESSAGE:2,        
-        COMPLETE:4
-}
-
-
-export default ({location}) => {
+export default ({sendMessage}) => {
     
-    const [action, setAction]=useState(ACTIONS.CONTACT);
-    const globalInputApp = useGlobalInputApp({initData:dataUtil.contact.getInitData});            
+    const [action, setAction]=useState(ACTIONS.MAIN);
+    const globalInputApp = useGlobalInputApp({initData});            
 
     useEffect(()=>{
         const {field}=globalInputApp;
-        if(dataUtil.contact.isSendMessageButtonPressed(field)){
-            setAction(ACTIONS.SEND_MESSAGE);
-            globalInputApp.setInitData(dataUtil.sendMessage.getInitData);
+        if(!field){
+            return;
+        }
+        switch(field.id){
+            case initData.form.fields[0].id:
+                setAction(ACTIONS.CONTACT);
+                break;
+            case initData.form.fields[1].id:
+                setAction(ACTIONS.SEND_MESSAGE);
+                break;
         }
     },[globalInputApp.field]);
-
+    const backToMain=()=>{        
+            setAction(ACTIONS.MAIN);
+            globalInputApp.setInitData(initData);
+    }
+    const onSendMessage=({firstName,lastName, email, phone,message})=>{
+        sendMessage({firstName,lastName, email, phone,message});
+        setAction(ACTIONS.COMPLETE);             
+    }
 
     const renderMain=()=>{
         switch(action){
-            case ACTIONS.CONTACT:
+            case ACTIONS.MAIN:
                 return(
-                    <>
-                        <Title>Our Contact Details</Title>
-                        <P>Our contact details are displayed on your mobile screen. You can save it into your mobile storage by pressing the "save" button</P>
-                        <P>You can continue to the next step by pressing the "Send Message To Us" button on your mobile</P>
-                    </>
-                );                        
+                <SelectionContainer>
+                    <Title>Mobile Storage Example</Title>
+                <P>Please operate on your mobile.</P>
+                <P>If you click on the "{initData.form.fields[0].label}" button, the application sends contact information to the mobile app so you can save it into your mobile storage.</P>
+                <P>If you click on the "{initData.form.fields[1].label}" button, the application allows you to use your mobile to fill the form to send messages. Since you can saved the content of form for later use, you do not have to fill the form every time. This means the application does not have to stores the information into its database to use the personal information. The application can always request it on demand from the connected mobile app. </P>
+                        <DisplayApplicationInfo/>
+                    </SelectionContainer>
+                
+                );
+
+            case ACTIONS.CONTACT:
+                return(<CompanyContact globalInputApp={globalInputApp} backToMain={backToMain}/>);
+            case ACTIONS.SEND_MESSAGE:
+                return(<SendMessageAction globalInputApp={globalInputApp} backToMain={backToMain} onSendMessage={onSendMessage}/>);
+            case ACTIONS.COMPLETE:
+                return(<SendCompleteAction globalInputApp={globalInputApp} backToMain={backToMain}/>);
         }
   
     }    
+    
     
    
    const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=globalInputApp;  
@@ -71,10 +88,32 @@ export default ({location}) => {
 
 
 
-export const DisplayApplicationInfo= () => (
-    <P>
-        This is an example application demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-personal-storage">Mobile Personal Storage</A> as part of the mobile integration solution. 
-    Its source code is available on <A href="https://github.com/global-input/send-message-example"> GitHub</A>    
-    </P>  
-  );
+
+
+
+const ACTIONS={
+    MAIN:1,
+    CONTACT:2,
+    SEND_MESSAGE:3,        
+    COMPLETE:4
+}
+
+
+
+const initData={
+    action:"input",
+    dataType:"form",
+    form:{          
+          title:"Mobile Storage Example",          
+          fields:[{            
+            id:"contactInfo",
+            label:"Save Our Contact Information",
+            type:"button",
+          },{            
+            id:"sendMessageToUs",
+            label:"Send Message To Us",
+            type:"button"
+          }]
+    }
+};
 
