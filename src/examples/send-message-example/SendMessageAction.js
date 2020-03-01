@@ -80,7 +80,7 @@ export default ({ globalInputApp, backToMain, onSendMessage }) => {
                 }}
                 value={message} />
             <P>
-                You may save the content of the form into your mobile app for later use so that the application can repeatedly request your personal data without centrally storing them beyond the lifetime of the workflow that represent the service being offered. 
+                You may save the content of the form into your mobile app for later use so that the application can repeatedly request your personal data without centrally storing them beyond the lifetime of the current service workflow. 
             </P>
         </>
     );

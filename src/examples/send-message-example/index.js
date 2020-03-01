@@ -4,7 +4,7 @@ import {useGlobalInputApp} from 'global-input-react';
 
 
 
-import { PageContainer,Title, P,SelectionContainer} from './app-layout';
+import { PageContainer,Title, P,A,SelectionContainer} from './app-layout';
 import CompanyContact from './CompanyContact';
 import SendMessageAction from './SendMessageAction';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
@@ -50,9 +50,11 @@ export default ({sendMessage}) => {
                 <SelectionContainer>
                     <Title>Mobile Storage Example</Title>
                 <P>Please operate on your mobile.</P>
-                <P>If you click on the "{initData.form.fields[0].label}" button, the application sends contact information to the mobile app so you can save it into your mobile storage.</P>
-                <P>If you click on the "{initData.form.fields[1].label}" button, the application allows you to use your mobile to fill the form to send messages. Since you can saved the content of form for later use, you do not have to fill the form every time. This means the application does not have to stores the information into its database to use the personal information. The application can always request it on demand from the connected mobile app. </P>
-                        <DisplayApplicationInfo/>
+                <P>If you click on the "{initData.form.fields[0].label}" button, the application sends our contact information to your mobile so you can save it into your mobile personal storage. 
+                If you click on the "{initData.form.fields[1].label}" button, you will be able to use your mobile to fill in a form for sending messages to us. 
+                You can save the content of the form into your mobile personal storage so that you can speed up the form operation by using the autofill feature.
+                </P>
+            <DisplayApplicationInfo/>
                     </SelectionContainer>
                 
                 );
@@ -127,8 +129,8 @@ const initData={
 const mockSendMessage = async ({firstName,lastName,email,phone,message}) => {    
     return new Promise(function(resolve, reject){
          setTimeout(()=>{
-             const message={firstName,lastName,email,phone,message};
-             console.log("mock message sender completed:"+JSON.stringify(message));
+             const messageBlob={firstName,lastName,email,phone,message};
+             console.log("mock message sender completed:"+JSON.stringify(messageBlob));
          },1000);    
     });         
 }

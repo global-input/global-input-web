@@ -21,7 +21,7 @@ export default ({globalInputApp,backToMain})=>{
                     <>
                         <Title>Our Contact Details</Title>
                         <P>Our contact details are displayed on your mobile screen. You can save it into your mobile storage by pressing the "save" button</P>
-                        <P>You can continue to the next step by pressing the "Send Message To Us" button on your mobile</P>
+                        
                     </>
                    );                           
                    
