@@ -76,11 +76,11 @@ const createExampleComponent =ExampleComponent=>{
   
 
   
-export const GameControlScreen=createExampleComponent(GameControlExample);
+export const GameControlScreen=createExampleComponent2(GameControlExample);
 export const MediaPlayerScreen=createExampleComponent2(MediaPlayerControlExample);
 
-export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
-export const ContentTransferScreen=createExampleComponent(ContentTransferExample);
+export const TransferFormDataScreen=createExampleComponent2(TransferFormDataExample);
+export const ContentTransferScreen=createExampleComponent2(ContentTransferExample);
 export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
 
 

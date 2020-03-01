@@ -53,17 +53,20 @@ export default class FeaturesSection extends React.Component{
             <FeaturesContainer title="Try Our Features">
               <FeatureRow>
                         <TwoButtonsCard data={textContent.mobileEncryption}/>
-                        <TwoButtonsCard data={textContent.mobileContentTransfer}/>
-              </FeatureRow>
-              <FeatureRow>
-                  <TwoButtonsCard data={textContent.mobilePersonalStorage}/>
-                  <TwoButtonsCard data={textContent.mobileAuthentication}/>
+                        <TwoButtonsCard data={textContent.mobileAuthentication}/>
+                        
               </FeatureRow>
               <FeatureRow>
                 <TwoButtonsCard data={textContent.secondScreenInput}/>
                 <TwoButtonsCard data={textContent.mobileControl}/>
               </FeatureRow>
 
+              <FeatureRow>
+                  <TwoButtonsCard data={textContent.mobilePersonalStorage}/>
+                  
+                  <TwoButtonsCard data={textContent.mobileContentTransfer}/>
+              </FeatureRow>
+              
               
 
               
