@@ -34,7 +34,12 @@ export default ({sendMessage}) => {
             globalInputApp.setInitData(initData);
     }
     const onSendMessage=({firstName,lastName, email, phone,message})=>{
-        sendMessage({firstName,lastName, email, phone,message});
+        if(sendMessage){
+            sendMessage({firstName,lastName, email, phone,message});
+        }
+        else{
+            mockSendMessage({firstName,lastName, email, phone,message}); 
+        }
         setAction(ACTIONS.COMPLETE);             
     }
 
@@ -117,3 +122,13 @@ const initData={
     }
 };
 
+
+
+const mockSendMessage = async ({firstName,lastName,email,phone,message}) => {    
+    return new Promise(function(resolve, reject){
+         setTimeout(()=>{
+             const message={firstName,lastName,email,phone,message};
+             console.log("mock message sender completed:"+JSON.stringify(message));
+         },1000);    
+    });         
+}

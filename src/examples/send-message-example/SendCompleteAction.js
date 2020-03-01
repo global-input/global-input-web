@@ -1,13 +1,26 @@
 import React, { useReducer, useState, useRef, useEffect } from "react";
 import { PageContainer,Title, P,A} from './app-layout';
-export default ({globalInputApp}) => {
+import DisplayApplicationInfo from './DisplayApplicationInfo';
+export default ({globalInputApp,backToMain}) => {
     useEffect(()=>{
         globalInputApp.setInitData(initData);
     },[]);
+    useEffect(() => {
+        const { field } = globalInputApp;
+        if (!field) {
+            return null;
+        }
+        switch (field.id) {
+            case initData.form.fields[1].id:                
+                backToMain();
+                break;            
+        }
+    }, [globalInputApp.field]);
 
     return(
     <>
     <P>Send Message Complete</P>
+    <DisplayApplicationInfo/>
     </>);
 
     };

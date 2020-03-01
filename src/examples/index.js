@@ -45,6 +45,8 @@ const createExampleComponent =ExampleComponent=>{
    
   
   }
+
+  
   
   const compStyles={
   
@@ -76,9 +78,31 @@ const createExampleComponent =ExampleComponent=>{
   
 export const GameControlScreen=createExampleComponent(GameControlExample);
 export const MediaPlayerScreen=createExampleComponent2(MediaPlayerControlExample);
-export const SendMessageScreen=createExampleComponent(SendMessageExample);
+
 export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
 export const ContentTransferScreen=createExampleComponent(ContentTransferExample);
 export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
 
 
+const SendMessageScreenWithoutSendMessage=createExampleComponent2(SendMessageExample);
+
+export const SendMessageScreen=props=>{    
+      return(
+          <SendMessageScreenWithoutSendMessage {...props} sendMessage={sendMessage}/>                                
+      );
+}
+
+const apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
+
+const  sendMessage =  async ({firstName,lastName,email,phone,message}) => {
+  var headers={
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  };
+  var searchParams = new URLSearchParams();
+  searchParams.append("your-first-name", firstName);
+  searchParams.append("your-last-name", lastName);
+  searchParams.append("your-email", email);
+  searchParams.append("your-phone", phone);
+  searchParams.append("your-message", message);
+  return fetch(apiURL,{headers, method:"POST", body:searchParams});  
+};
