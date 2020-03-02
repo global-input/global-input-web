@@ -40,8 +40,9 @@ export default () => {
                <TextAreaBox id="textContent" readOnly={true} value={content} />
                 <TextButton label="Copy" onClick={copyToClipboard} />
             </WhenDisconnected>                     
-            <P>This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">example application</a> demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">mobile content transfer.</A> 
-            Its source code is available on <A href="https://github.com/global-input/content-transfer-example">GitHub</A></P>  
+            <P>This example application demonstrate how applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to include <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">Mobile Content Transfer</A> functionality on a multi-device environment.
+            Because of its simplicity, you may consider it as an "Hello World" example of the Mobile Integration offered by Global Input App. 
+            Its source code is available on <A href="https://github.com/global-input/content-transfer-example">GitHub</A>.</P>  
         </PageContainer>
       );    
 
