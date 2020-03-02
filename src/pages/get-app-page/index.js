@@ -16,9 +16,9 @@ import AppLogo from '../../page-components/app-logo';
 
 import {withScrollToTop} from "../../components/screen-media";
 
-const {Title,P,Page}=BlueBackground;
+const {Title, P, Page}=BlueBackground;
 
-const {DownloadGIAButtons} =externalsLinks;
+const {DownloadGIAButtons} = externalsLinks;
 
 const {MobileAuthentication}=pagesLinks.buttons;
 

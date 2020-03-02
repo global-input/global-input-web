@@ -62,9 +62,10 @@ export const externalsLinks={
       },
       DownloadGIAButtons:props=>(
         <ButtonsContainer>
-            <ImageExternalLink image={images.chrome} href={config.links.chromeExtension.url}/>
+            
             <ImageExternalLink image={images.appStore} href={config.links.appdownload.appStore}/>
             <ImageExternalLink image={images.playStore} href={config.links.appdownload.playStore}/>
+            <ImageExternalLink image={images.chrome} href={config.links.chromeExtension.url}/>
         </ButtonsContainer>
       ),
 

@@ -16,7 +16,7 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 
 const headerTextContent={
     title:"Global Input App",
-    subtitle:"A Universal Mobile Integration Solution",
+    subtitle:"A Strategy for Multi-device Environment",
     items:[           
            "Mobile Authentication",
            "Mobile Encryption",
@@ -37,11 +37,11 @@ const HeaderSection = props =>(
                     image={images.rightPoster}
                     image200={images.rightPoster200}
                     image400={images.rightPoster400}/>
-            <HomeTitleSection title={headerTextContent.title}
+            <HomeTitleSection 
+                        title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>
                           <FourItemsList items={headerTextContent.items}/>
                           <ButtonsContainer>
-                              <LearnMoteWhiteButton>Read More</LearnMoteWhiteButton>
                               <GetAppButton>Get GIA App Free</GetAppButton>
                           </ButtonsContainer>
             </HomeTitleSection>
