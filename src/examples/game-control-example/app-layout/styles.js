@@ -93,7 +93,8 @@ export const styles = {
   },
   link: {
     fontWeight: 50,
-    color: "#6666ff"
+    color: "#6666ff",
+    marginRight:5
   },
 
   errorMessage:{

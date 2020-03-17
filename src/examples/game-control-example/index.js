@@ -60,8 +60,7 @@ export default ()=>{
 export const DisplayApplicationInfo= () => (
     <P>
         This is an example application demonstrating how web applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to implement <A href="https://globalinput.co.uk/global-input-app/mobile-input-control">mobile control</A> as part of the mobile integration. 
-    Its source code is available on <A href="https://github.com/global-input/game-control-example"> GitHub</A>
-    If you are looking for mobile input operation, you can try <a href="https://globalinput.co.uk/global-input-app/content-transfer">the content transfer example</a>, or <a href="https://globalinput.co.uk/global-input-app/form-data-transfer">the form transfer example</a>
+        Its source code is available on <A href="https://github.com/global-input/game-control-example"> GitHub</A>.    
     </P>  
   );
 

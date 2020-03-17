@@ -16,13 +16,14 @@ const urls={
       gameExample: async ({page})=>await page.goto('http://localhost:3000/global-input-app/game-example'),
       formDataTransfer: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
       formDataTransfer2: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
+      home: async ({page})=> await page.goto('http://localhost:3000'),
             
       mobileEcryption:async ({page})=> {
         debugger;
         await page.goto('http://localhost:3000/global-input-app/mobile-encryption')
       },      
 }
-const loadTestPage=urls.loadContentTransfer;
+const loadTestPage=urls.home;
 const testTime=600000;
 const testTimeOut=testTime*2;
 //const testTime=6000;
@@ -49,7 +50,8 @@ describe('H1 Text', () => {
           code=msgCode;
           let testData={
             input:code
-          }        
+          }     
+          console.log("-----writing this:"+JSON.stringify(testData));
           write.sync('/tmp/tests/test-data/test-code.json',JSON.stringify(testData),{overwrite:true});
         }    
       }  
