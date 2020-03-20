@@ -179,6 +179,6 @@ const buildInitData = ({dispatch}) =>{
 
 
 const AppInfo=()=>(
-      <P>This example application demonstrates how applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to include <A href="http://localhost:3000/global-input-app/mobile-content-encryption">Mobile Integration</A> functionality on a multi-device environment.            
+      <P>This example application demonstrates how applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to include <A href="http://localhost:3000/global-input-app/mobile-content-encryption">Mobile Encryption</A> functionality on a multi-device environment.            
             Its source code is available on <A href="https://github.com/global-input/mobile-encryption">GitHub</A>.</P>  
 )

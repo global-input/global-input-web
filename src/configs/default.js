@@ -63,6 +63,9 @@ export default {
               url:"https://chrome.google.com/webstore/detail/global-input-app/hcklienddlealndjnakkagefaelhnjkp",
               websites:"https://github.com/global-input/chrome-extension/tree/master/application-controls"
           },
+          firefox:{
+            url:"https://addons.mozilla.org/en-GB/firefox/addon/global-input-app/",
+          },
           jsExtension:{
               url:"https://github.com/global-input/global-input-message"
           },

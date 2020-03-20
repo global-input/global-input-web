@@ -4,16 +4,22 @@ import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,Transpare
 import ButtonsContainer from '../page-components/buttons-container';
 import WatchVideoIcon from '../page-components/watch-video';
 const images={
-      chrome:require("./images/chrome.png"),
+      chrome:require("./images/chrome.png"),      
+      firefox:require("./images/firefox-add-ons.png"),
       appStore:require("./images/app-store.png"),
       playStore:require("./images/play-store.png"),
       payIcon:require("./images/play.svg"),
       wordpress:require("./images/wordpress.png"),
       watchIntroVideo:require("./images/watch-intro-video.svg"),
       watchDemoVideo:require("./images/watch-demo.svg"),
+      
 }
 export const externalsLinks={
 
+      FirefoxExtension:props=>{
+        const {A}=props.theme;
+        return(<A href={config.links.firefox.url}>{props.children}</A>);
+      },
       ChromeExtension:props=>{
         const {A}=props.theme;
         return(<A href={config.links.chromeExtension.url}>{props.children}</A>);
@@ -66,6 +72,7 @@ export const externalsLinks={
             <ImageExternalLink image={images.appStore} href={config.links.appdownload.appStore}/>
             <ImageExternalLink image={images.playStore} href={config.links.appdownload.playStore}/>
             <ImageExternalLink image={images.chrome} href={config.links.chromeExtension.url}/>
+            <ImageExternalLink image={images.firefox} href={config.links.firefox.url}/>
         </ButtonsContainer>
       ),
 
