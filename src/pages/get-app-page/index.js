@@ -28,7 +28,7 @@ const GetAppPage=props=>(
 
                         <MiddlePageContainer>
                             <AppLogo/>
-                            <PageTitleSection title="Download Global Input App Now !" subtitle="Install this open-source mobile app for free on App Store or Play Store."/>
+                            <PageTitleSection title="Download Global Input App" subtitle="Open-source mobile app &amp; browser extensions"/>
                             <DownloadGIAButtons/>
 
                         </MiddlePageContainer>
