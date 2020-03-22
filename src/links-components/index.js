@@ -137,6 +137,7 @@ export const pagesLinks={
                 GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>),
                 MobileAuthentication:props=>(<WhiteRoundButton to={config.paths.mobileAuthentication.path}>{props.children}</WhiteRoundButton>),
                 ChromeExtensionButton:props=>(<ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>),
+                FirefoxExtensionButton:props=>(<ImageButton image={images.firefox} href={config.links.firefox.url}/>),
                 TransferFormDataButton:props=>(<TransparentButton to={config.paths.examples.transferForm.path}>{props.children}</TransparentButton>),
                 WordPressButton:props=>(<ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>),
                 DocumentationButton:props=>(<TransparentButton to={config.paths.documentationPage.mobileIntegration.path}>{props.children}</TransparentButton>),

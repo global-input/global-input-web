@@ -11,7 +11,7 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 const {ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,WatchAuthenticationDemo,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon, ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle}=externalsLinks;
 const {TransferFormData,SecondScreen} = examplesLinks;
-const {TransferFormDataButton,ChromeExtensionButton,WordPressButton,DocumentationButton}  = pagesLinks.buttons;
+const {TransferFormDataButton,ChromeExtensionButton,FirefoxExtensionButton,WordPressButton,DocumentationButton}  = pagesLinks.buttons;
 
 const DocuButton=props=>{
     if(props.isSideMenu){
@@ -25,9 +25,8 @@ const AuthenticationButtons=props=>{
   return(
     <ButtonsContainer>
         <ChromeExtensionButton/>
-        <WordPressButton/>
-        <TransferFormDataButton>Transfer Form</TransferFormDataButton>
-        <DocuButton {...props}/>
+        <FirefoxExtensionButton/>        
+        <TransferFormDataButton>Transfer Form</TransferFormDataButton>        
     </ButtonsContainer>
   )
 
@@ -61,24 +60,22 @@ const MobileAuthenticationAndBeyond = props =>{
        <React.Fragment>
 <FirstSection>
               <Title>Mobile Authentication</Title>
-              <WatchVideo {...props}/>
+              <SimpleContainer>
+          <AuthenticationButtons {...props}/>
+          </SimpleContainer>     
   </FirstSection>
   <NextSection>
-<P>
-Powered by device-to-device communication that is secured by end-to-end encryption, the connected application can request data from the Global Input App or instruct it to save data into the mobile app's secure storage. 
-The applications can utilize this to turn their existing password-based authentication mechanism into a mobile authentication. 
-Users can sign in to the application by simply pushing their credentials to the connected application from their mobile without ever worrying about remembering passwords. Hence, random and long passwords can be enforced seamlessly without affecting convenience or usability of the applications.
 
-Another benefit that comes with this approach is you can sign in securely on shared devices in public view without compromising passwords to prying eyes or hidden cameras that could be anywhere in this day and age.
+<P>
+The Mobile Integration provided by Global Input App allows you to use your mobile device to carry out operations securely on applications that are running on computers, set-top boxes, smart TVs,  connected devices in IoT(Internet of Things), and maybe even some self-service machines. The combination of this capability with the Encrypted Storage provided by the mobile app allows you to use mobile authentication to authenticate yourself against an application that uses a simple password-based authentication mechanism.  You can sign in securely in public view without worrying about revealing your credentials to prying eyes or hidden cameras that could be anywhere in this day and age. This can be achieved without requiring any modifications to the existing authentication logic of the application. Most of all, you do not need to remember a master password that would be required in a generic password manager solution. Entering a master password on multiple devices would risk exposing all of your passwords stored in the password manager. Lastly, you can continue using the same session to carry on other business operations using your mobile device.
 </P>
 <P>
-One of such examples is a <WordPressPlugin {...props}> Wordpress Plugin</WordPressPlugin> that allows WordPress websites to have mobile authentication so that users can save their credentials in their app and push them into the Worldpress login form when required. Furthermore, the mobile authentication strategy provides the possibility, if required, smooth transitioning into cryptography-based authentication, since the the app also provides mobile encryption and mobile signing mechanism. Best of all, the connected application can take advantage of the same mobile integration session to allow users to continue to use their mobile to operate on the application to accomplish other operations.
+The cross-device communication is secure because it is secured with end-to-end encryption at the device-to-device level, in which the encryption key that starts the session is always generated dynamically within the device at the start of of the session and can be accessed only via an Encrypted QR Code. This means that each device-to-device session has to start from the same physical location where the device is located unless the QR Code is sent over to a remote location via video streaming or any other medium, enhancing the security further.
 </P>
 <P>
-The <ChromeExtension {...props}>Chrome Extension</ChromeExtension> allows users to operate on the web applications that do not yet have mobile integration. In this case, the extension acts as a proxy between the web application and the Global Input App, routing the data between them. Also, you can use the <TransferFormData {...props}>Transfer Form Data Application
-</TransferFormData> to create customised form transfer data between your computer and your mobile.
+Also, your data in the mobile app always stays encrypted inside your device's storage/memory and decrypted only at the point of use and discarded immediately after. Since the mobile app does not have any server or cloud storage to store your data, you need to export and backup your data yourself, which is incredibly easy to do and secure by its nature. Exported data is automatically protected because you can export the data only in its encrypted form, and you can import the data back into your mobile app only if you have the same encryption key that you have used when encrypting the data. This implicates that you need to export and back up the encryption key as well considering you might lose your mobile device. Backing up or sharing encryption is a straightforward and intuitive process because you can export an encryption key only in its encrypted form, which is encrypted with a memorable password that you provide when you are exporting it. The encrypted QR codes mechanism allows you to back up or share encryption keys between your devices extremely easy and secure. All of these processes are constructed to allow you to have complete control over the encryption of your data as well as the data itself.
+</P>
 
-</P>
     </NextSection>
 
     <FirstSection>
@@ -151,12 +148,7 @@ can spedily sign in to the applications by just scanning the encrypted QR codes.
               And upon successful authentication, you can use the same session to provide different JSON data to allow users to use mobile continually to operate on your application. If you are interested, you can have a look at the following the form transfer example in action, and check out its source codes on the github:
         </P>
       </NextSection>
-      <FirstSection>
-        <SimpleContainer>
-          <AuthenticationButtons {...props}/>
-          </SimpleContainer>
-      </FirstSection>
-
+      
         </React.Fragment>
 
 );
