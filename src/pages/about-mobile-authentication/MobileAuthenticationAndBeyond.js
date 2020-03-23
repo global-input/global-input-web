@@ -9,7 +9,7 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 
 
-const {ChromeExtension,SupportedWebsites,WatchAuthenticationVideos,WatchAuthenticationDemo,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon, ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle}=externalsLinks;
+const {ChromeExtension,FirefoxExtension,SupportedWebsites,WatchAuthenticationVideos,WatchAuthenticationDemo,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon, ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle}=externalsLinks;
 const {TransferFormData,SecondScreen} = examplesLinks;
 const {TransferFormDataButton,ChromeExtensionButton,FirefoxExtensionButton,WordPressButton,DocumentationButton}  = pagesLinks.buttons;
 
@@ -80,73 +80,78 @@ Also, your data in the mobile app always stays encrypted inside your device's st
 
     <FirstSection>
 
-      <P>
-      The following examples codes demonstrate how you can attach the password-based authentication of a React JS application to Global Input App to allow users to use their mobile to carry out sign-in operation.
+      <P>        
+      The browser extensions (<ChromeExtension {...props}>Chrome</ChromeExtension>, <FirefoxExtension {...props}>Firefox</FirefoxExtension>) and form transfer applications are example React JS applications demonstrating how you can use the <ReactJSExtension {...props}>extension library</ReactJSExtension> to implement the Mobile Integration. The following is the source code that is simple enough to serve as a "Hello World" code for  web applications to have direct support for Global Input App support to allows user to use the mobile device to sign in to applications:
 </P>
 
 
         <Code>
           {`
-export default ({setUsername,setPassword,signIn})={  
-  const mobile = useRef(null);
-  useEffect(()=>{
-    let mobileConfig={
-        initData:{
-          form:{
-            title:"Sign In",
-            id:"###username###@mycompany.com",
-            fields:[{
-                label:"Username",
-                id:"username",
-                operations:{
-                  onInput:setUsername
-                }
-            },{
-                label:"Password",
-                id:"password",
-                operations:{
-                  onInput:setPassword
-                }
-            },{
-                label:"Sign In",
-                type:"button",
-                operations:{
-                  onInput:signIn
-                }
-            }]
-          }
-          }
-        };
-        mobile.current = createMessageConnector();
-        mobile.current.connect(mobileConfig);
-  },[])
-  
+import React, {useState,useRef, useEffect} from 'react';
+
+import {useGlobalInputApp} from 'global-input-react';
+
+const initData={
+      action:"input",
+      dataType:"form",
+      form:{            
+        title:"Sign In", 
+        id:"###username###@global-input-test",           
+        fields:[{
+          label:"Username",
+          id:"username",
+          value:"test"                        
+        },{
+          label:"Password",
+          id:"password",
+          value:"test"            
+        },{
+          label:"Login",
+          type:"button",
+          id:"login"           
+        }]
+      }
+}; 
+
+export default ({login})=>{  
+   const [username, setUsername]=useState('');
+   const [password, setPassword]=useState('');     
+   const {connectionMessage,field}=useGlobalInputApp({initData});
+         
+    useEffect(()=>{
+        if(!field){
+          return;
+        }
+        switch(field.id){
+          case initData.form.fields[0].id:
+                  setUsername(field.value);
+                  break;
+          case initData.form.fields[1].id:
+                  setPassword(field.value);
+                  break;
+          case initData.form.fields[2].id:
+                  login(username,password);
+                  break;
+        }
+    },[field]);            
+        return(
+                <>                        
+                        {connectionMessage}                    
+                        <div>Username:{username}</div>
+                        <div>Password:{password}</div>                    
+                </>
+                );            
 };
 
-  `}
+  `}</Code>
+  <P>
+      When it comes to using applications on shared or public devices (i.e, computers in a conference room), the security and convenience brought by mobile integration is enormous. This is especially true for business applications like JIRA, Confluence, Gitlab, Github, Dropbox, to name a few.  You can sign in to the applications safely, while the computer screen, your mobile screen, your actions, and your typings are in public view. 
+      </P>
 
-        </Code>
-      
-        
-
-        <P>
-
-Business applications such as JIRA, Confluence, Gitlab, Github, AWS, WordPress, Dropbox  may often need to be used on devices
-that are shared. GIA allows employees to use a random and different password for each application without the need to remember them and still
-can spedily sign in to the applications by just scanning the encrypted QR codes. GIA also allows employee to change passwords frequently without any pain.
-        </P>
-
-        <P>
-        When employees need to sign into applications on shared workstations, or on computers attached to the big screens in a conference room or
-        in a shared screen environment, GIA allows them to login safely in public view, effectively turning the mobile devices to authentication devices
-        for signing in to web applications running on computers. You can read our <AuthenticationWhitePaper {...props}>white paper</AuthenticationWhitePaper> for more information on this topic.
-        </P>
       </FirstSection>
       <NextSection>
 
-        <P>
-              And upon successful authentication, you can use the same session to provide different JSON data to allow users to use mobile continually to operate on your application. If you are interested, you can have a look at the following the form transfer example in action, and check out its source codes on the github:
-        </P>
+       
       </NextSection>
       
         </React.Fragment>
