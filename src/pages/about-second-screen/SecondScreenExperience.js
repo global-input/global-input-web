@@ -19,8 +19,7 @@ const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <SecondScreenButton>Example</SecondScreenButton>
-        <DocuButton {...props}/>
+        <SecondScreenButton>Player Example</SecondScreenButton>        
     </ButtonsContainer>
   )
 
@@ -37,26 +36,23 @@ const SecondScreenExperience = props =>{
        <React.Fragment>
          <FirstSection>
               <Title>Second Screen Experience</Title>
+              <SimpleContainer>
+        <FooterButtons {...props}/>
+  </SimpleContainer>
+
         </FirstSection>
         <NextSection>
               <P>
-  When a smart TV application is playing a video, it is always nice to have an option of a second screen feature, allowing users to use their mobile to interact with the applications. The second screen devices can be any handheld devices such as mobiles or tablets, and the interactions can be anything related to the clips that the application is currently playing.   For example, it can be information about the characters, scenes that are shown on the screen, or features allowing users to post screens shots to social media platforms, or simple media controller,  or sophisticated control like controlling the storylines by selecting different sets of clips in the next breakpoint.
+              Global Input App provides an intuitive and straightforward way of implementing second screen experience for media applications running on Smart TVs and set-top boxes.
+Responding to media events or any other events raised inside the first screen device, a media application can pass a configuration (JSON) to the extension library specifying what information and what user interface elements that the second screen device should display. On the other hand,  the extension forwards the events generated within the second screen device to the media application in an intuitive way. This allows the media application to respond to the local and remote events, implementing business logic in the same place for both main and second screens. This architecture that centralizes the related business logic for both main and second screen into one place makes it simple and fun to extend an existing media application to support a second screen.
+
               </P>
-              <P>
-Global Input App (GIA) provides media applications with a simple mobile integration solution, which allows applications to implement screen experience without implementing extra server-side logic or separate mobile apps.
-</P>
 
 
 
 </NextSection>
 
 
-<FirstSection>
-  <SimpleContainer>
-        <FooterButtons {...props}/>
-  </SimpleContainer>
-
-</FirstSection>
 
 
         </React.Fragment>

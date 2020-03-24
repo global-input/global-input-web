@@ -23,7 +23,7 @@ const FooterButtons=props=>{
   return(
     <ButtonsContainer>
         <MobileGameControlButton>Game Control Example</MobileGameControlButton>
-        <DocuButton {...props}/>
+        
     </ButtonsContainer>
   )
 
@@ -41,61 +41,77 @@ const IntroducingMobileInputAndControl=props=>{
 
        <React.Fragment>
          <FirstSection>
-                <Title>Mobile Input & Control</Title>
+                <Title>Mobile Input &amp; Control</Title>
+                <SimpleContainer>
+        <FooterButtons {...props}/>
+  </SimpleContainer>
 
           </FirstSection>
 
            <NextSection>
-
 <P>
-Global Input App (GIA) provides device and web applications with a simple, unified and client-only solution for
-introducing mobile input and mobile control functionalities, leading to many useful use-cases.
-It is especially useful for devices that have no input or limited input components such as Smart TVs, or IoT devices.
-It also enhances security for users who use shared devices in public places when the applications require personal data to operate.
-The communications between devices are secured with end-to-end encryption that uses a ephemeral(one-time-use) encryption key, which
-is obtained from the Encrypted QR code.
-
-</P>
-
-<P>
-    The <JSExtension {...props}>GIA extensions</JSExtension> allow applications to implement mobile integrations within their application
-    context without the need to develop separate mobiles apps.
+Global Input App provides applications with a simple and intuitive client-only solution to achieve 
+mobile input and mobile control without the need to develop a separate mobile app. 
+It is particularly useful for devices that have no input or limited input such as Smart TVs, Set-top boxes, connected devices in IoT, and even some self-service machines. On top of that, it brings better security and convenience for devices/computers that we often use in public places, especially when the applications require personal data to operate on. A user can use his/her mobile to sign into the application, then operate on it,  pushing personal data if requested. The mobile-to-devices operations are powered by the <JSExtension {...props}> Global Input App extension</JSExtension>, allowing applications to specify the mobile user interfaces elements and receiving events generated within the mobile app.
 </P>
 <P>
-  For example, let's say that you would like to allow users to use their mobile devices to start a process in your application that is running on a device.
-  The related configuration can be as simple as following:
+The following example is a "Hello World" level application code that allows users to use their mobile invoke a play/pause function.
+ 
+</P>
 
 <Code>
 {`
-  fields:[{
-      label:"Start",
-      type:"button",
-      operations:{
-        onInput:()=>start()
-      }
-  }]
-`}
-</Code>
-  </P>
-  <P>
-    As mobile devices are playing increasingly important roles in our daily lives,
-    the ability to use mobile devices to operate on business applications and transferring
-    data between them securely is also getting quite useful. However,
-    the cost of developing such a mobile application for a business application is not a trivial task.
-              </P>
-              <P>
-              The Global Input App provides a single mobile app solution for multiple devices and web applications.
-              Existing IoT, Smart TV, and web applications can define mobile user interfaces and process mobile events
-              within its context to implement mobile integration.
-              You may find more information on in <MobileOperationWhitePaper {...props}>our white paper</MobileOperationWhitePaper>.
-              </P>
-</NextSection>
-<FirstSection>
-  <SimpleContainer>
-        <FooterButtons {...props}/>
-  </SimpleContainer>
+  import React, {useState, useEffect } from "react";
 
-</FirstSection>
+  import {useGlobalInputApp} from 'global-input-react';
+  const initData = {
+    action: "input",
+    dataType: "form",
+    form: {
+      title: "Play/Pause",
+      fields: [{
+        label: "Play",
+        id: "play",
+        type:"button"        
+      },{
+        label: "Pause",
+        id: "pause",
+        type:"button"        
+      }]
+    },
+  }; 
+  export default ({play,pause}) => {    
+    const {field} = useGlobalInputApp({initData}); 
+    useEffect(()=>{        
+      if(!field){
+        return;
+      }
+      switch(field.id){
+        case initData.form.fields[0].id:
+                  play();
+                  break;
+        case initData.form.fields[1].id:
+                  pause();
+                  break;
+
+      }  
+    },[field])
+
+      const {connectionMessage,WhenConnected}=globalInputApp;
+        return (
+          <>                        
+                {connectionMessage}
+                <WhenConnected>
+                Please operate on your mobile, you should see a "Play" button and a "Pause" button on your mobile screen.
+                </WhenConnected>
+          </>
+              
+        );    
+  };
+  
+`}
+</Code>  
+</NextSection>
 
         </React.Fragment>
 

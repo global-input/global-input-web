@@ -3,14 +3,8 @@ import {Title, P, A,DisplayInputCopyField,InputWithLabel, TextButton,SelectableI
 import * as dataUtil from './dataUtil';
 export const DisplayApplicationInfo= () => (
     <P>
-        This example application demonstrates 
-    how applications can use the <a href="https://github.com/global-input/global-input-react">Global Input App library</a> to achieve <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">mobile form operations </A> like mobile authentication, mobile subscription to name a few.
-
-    
-
-    Its source code is available on <A href="https://github.com/global-input/transfer-form-data-example"> GitHub</A>. 
-    If you are looking for a simpler example, try <a href="https://globalinput.co.uk/global-input-app/content-transfer">the content transfer example</a> 
-    
+        This example application (with its <A href="https://github.com/global-input/transfer-form-data-example">source code </A>) demonstrates 
+        how applications can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to achieve <a href="https://globalinput.co.uk/global-input-app/mobile-authentication">Mobile Authentication</a> as part of the Form Data Transfer across devices.
     </P>  
   );
 

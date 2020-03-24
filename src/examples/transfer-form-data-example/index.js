@@ -18,7 +18,9 @@ const ACTIONS={
         CHANGE_FORM:4
 }
 
-
+const AppTitle=()=>(
+    <Title>Mobile Authentication &amp; Form Data Transfer</Title>
+);
 export default ({location}) => {
     const [form,setForm]=useState(()=>dataUtil.form.buildInitialForm({location}));
     const [visibility, setVisibility]=useState(()=>dataUtil.visibility.getDefaultOption());
@@ -124,7 +126,8 @@ export default ({location}) => {
         <PageContainer>                      
             
             <WhenWaiting>
-                <Title>Mobile Form Automation and Mobile Authentication</Title>
+                <AppTitle/>
+                
                 {connectionMessage}
                 <DisplayApplicationInfo/>            
             </WhenWaiting>
@@ -132,7 +135,7 @@ export default ({location}) => {
             
             
             <WhenDisconnected>
-                <Title>Mobile Form Automation and Mobile Authentication</Title>
+            <AppTitle/>
                 <P>Disconnected, reload the page to try again</P>               
                 <DisplayApplicationInfo/>
             </WhenDisconnected>

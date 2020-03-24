@@ -35,7 +35,7 @@ export const styles = {
     flexDirection: "row",
     width: "100%",
     justifyContent: "flex-start",
-    fontSize: "2vw",
+    fontSize: "18",
     color: "#5291CD",
     marginBottom: "20",
     marginLeft: "4vw"
