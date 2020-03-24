@@ -261,7 +261,10 @@ export default () => {
       </WhenDisconnected>
       
       
-      <P>This is an <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience application</a> example. Its source code is available on <A href="https://github.com/global-input/media-player-control-example">GitHub</A></P>
+      <P>This example application (with <A href="https://github.com/global-input/media-player-control-example">its source code</A>)
+      demonstrate how you can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to extend an existing media application 
+      to have <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience</a>
+      </P>
     </PageContainer>);
 
 

@@ -14,7 +14,7 @@ const IconHeaderCard=props=>(
               <div style={styles.footer}>
 
                         <Link to={props.link}>
-                        READ MORE <img src={images.arrow} style={styles.arrow}/>
+                        MORE <img src={images.arrow} style={styles.arrow}/>
                         </Link>
 
               </div>
