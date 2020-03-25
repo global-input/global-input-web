@@ -6,6 +6,7 @@ import {HomeHeaderBackground} from "../../page-components/header-backgrounds";
 import HowItWorks from "./how-it-works";
 import FooterSection from '../../page-components/footer-section';
 import CardSection from "./cards-section";
+import NextCards from "./next-cards";
 import FeaturesSection from './features-section';
 
 import {withScrollToTop} from "../../components/screen-media";
@@ -14,6 +15,7 @@ const HomePage=props=> (
             <HomeHeaderBackground>
                 <HeaderSection history={props.history}/>
                 <CardSection/>
+                <NextCards/>
                 <HowItWorks/>
             </HomeHeaderBackground>
             <FeaturesSection/>

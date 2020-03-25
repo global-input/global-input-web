@@ -43,24 +43,29 @@ export var styles={
               justifyContent:"flex-start",
               alignItems:"flex-start",
               backgroundColor:"#A9C8E6", //#4880ED
-              backgroundColor:"white", //#4880ED
+              backgroundColor:"white", //#4880ED, 
+              
+                          
             },
             desktop:{
               backgroundImage: "url("+images.home.screen600+")",
               backgroundSize: "auto",
+              
             },
             smallScreen:{
               backgroundImage: "url("+images.home.screen800+")",
+              
 
             },
             screen1080:{
-              backgroundImage: "url("+images.home.screen1080+")",
+              backgroundImage: "url("+images.home.screen800+")",
             },
             screen1245:{
-              backgroundImage: "url("+images.home.screen1245+")",
+              backgroundImage: "url("+images.home.screen800+")",
+              
             },
             bigScreen:{
-              backgroundImage: "url("+images.home.screen1440+")"
+              backgroundImage: "url("+images.home.screen800+")",              
             },
             mobile:{
               backgroundImage: "url("+images.home.backgroundMobile+")"

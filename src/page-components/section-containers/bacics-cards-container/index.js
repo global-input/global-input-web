@@ -3,10 +3,10 @@ import {styles} from './styles';
 
 import {withResponsiveComponent} from '../../../components/screen-media';
 
-const BacicsCardsContainer=props=>(
+const BasicCardsContainer=props=>(
           <div style={styles.cardContainer.get()}>
               {props.children}
           </div>
         );
-const ResponsiveBacicsCardsContainer=withResponsiveComponent(BacicsCardsContainer);
-export default ResponsiveBacicsCardsContainer;
+const ResponsiveBaiscCardsContainer=withResponsiveComponent(BasicCardsContainer);
+export default ResponsiveBaiscCardsContainer;

@@ -21,8 +21,7 @@ const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <MobileEncryptionAppButton>Example</MobileEncryptionAppButton>
-        <DocuButton {...props}/>
+        <MobileEncryptionAppButton>Mobile Encryption Example</MobileEncryptionAppButton>        
     </ButtonsContainer>
   )
 
@@ -36,77 +35,26 @@ const ContentEncryption = props=>{
           <React.Fragment>
               <FirstSection>
                  <Title>Mobile Encryption</Title>
-                 </FirstSection>
-                 <NextSection>
-                  <P>
-                  Global Input App provides secure mobile storage for storing encryption keys used in encrypting/decrypting data that is sent by the connected application. The encryption keys stay encrypted in your mobile and can only be decrypted by a memorable password that you use to unlock the app. This strategy provides a secure and intuitive way of securing data for the organisations that are looking to maximising the security of their data. The <MobileEncryption {...props}>example application</MobileEncryption> demonstrates how the mobile app helps eliminate the complexity in securing encryption keys used in encrypting data.
-                  </P>
-                  <P>
-                  <P>
-For example, in the following code, the application will send the specified content to the mobile app for encryption. 
-</P>
-<P>
-
-<Code>
-{`
-...
-export default ()=>{
-    const [content, setContent]=useState("");
-    const [encrypted, setEncrypted]=useState("");
-    const mobile = useRef(null);
-
-    useEffect(()=>{
-      ...
-      let mobileConfig={
-        initData:{
-            form:{
-                    title:"Mobile Encryption",
-                    fields:[{
-                      label:"Content",
-                      type:'encrypt',
-                      id:"content",
-                      value:content,
-                      operations:{
-                        onInput:setEncrypted
-                      }
-                    }]
-              }
-        },
-      };
-      mobile.current = createMessageConnector();
-      mobile.current.connect(mobileConfig);
-    },[])
-    ....
-};
-`}
-                    </Code>
-  </P>
-
-                  </P>
-                  <P>                 
-                  The <MobileEncryption {...props}>example application</MobileEncryption> demonstrates another interesting usage of the mobile encryption. You can use one of your encryption keys to encrypt content, so the connected application can generate a QR Code with the encrypted content. When you scan the QR Code, the mobile app can instantly display and import the decrypted content. This may be an ideal way for many people who would prefer to use printed media to record passwords. This is especially useful when you would like to backup or share an encryption key so that you can instantly import it into your app.
-                                       
-                  </P>
-                  
-                  <P>
-                  The mobile app can also be used to decrypt an encrypted keyset sent over by a connected application. The keyset contains the keys that the application can use to decrypt part of the data that the user is supposed to access. The key set is like a keyring in the physical world. In this metaphor, the keyring contains the keys to the facilities that you are supposed to have access, and you may put the keyring into a locker that you can only unlock with your master key. Then, you may place your master key securely in a locked case that you can unlock with a memorable password. Finally, you would carry around your locked case wherever you go. The Global Input App corresponds to the locked case in the metaphor. With this strategy, business applications can implement a cryptography-based access control mechanism to manage access to the data stored in the cloud.
-                  </P>
-
-
-               </NextSection>
-               <FirstSection>
-                 <FirstSection>
-                       <SimpleContainer>
+                 <SimpleContainer>
                              <FooterButtons {...props}/>
                        </SimpleContainer>
                  </FirstSection>
+                 <NextSection>
+<P>
+Encrypting personal data is now an essential requirement for applications that collects customer information. Gone are the days that you can store user data into your database without securing your data further, assuming/wishing that underlying provider and infrastructure would have a defense mechanism that can keep all kinds of intruders out. On the other hand, when you encrypt the data, obviously you need to have a strategy of securing the encryption keys that you use in your encryption/decryption processes, otherwise, it would be like locking your front door and putting the key under your doormat.  The mobile encryption provided by the Global Input App offers an extremely easy and intuitive way of securing encryption keys, in a similar way to carrying a key to your front door securely in your pocket.
+</P>
+<P>
+As part of a form data transfer, a connected application can set the type of a field to either "encrypt" or "decrypt" to instructs the mobile app to present you with an appropriate user interface that you can use to encrypt/decrypt the content received and push the result back to the application. In this architecture, the encryption keys that you use to encrypt/decrypt content never leaves your mobile app, leading to an intuitive and secure way of protecting encryption keys.
+</P>
+<P>
+An application can either send a block of content directly to the Global Input App or can request to encrypt/decrypt an encryption key-set that contains all the keys that the user can use to lock/unlock the data that the user is allowed to access, leading to a data-level access control mechanism that does not rely on the underlying data storage system.
+</P>
 
-               </FirstSection>
+<P>
+The mobile app allows you to manage encryption keys inside the mobile app, and they encrypted with a memorable password that you have to provide to unlock them.
+</P>
 
-
-
-
-
+               </NextSection>
 
 
        </React.Fragment>

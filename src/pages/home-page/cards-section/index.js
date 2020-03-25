@@ -1,7 +1,7 @@
 import React from 'react';
 
 import IconHeaderCard from "../../../page-components/icon-header-card";
-import BacicsCardsContainer from '../../../page-components/section-containers/bacics-cards-container';
+import BasicCardsContainer from '../../../page-components/section-containers/bacics-cards-container';
 import {config} from '../../../configs';
 const images={
   authentication:require('./images/authentication.svg'),
@@ -27,7 +27,8 @@ const textContent={
 
 }
 const CardSection= props =>(
-          <BacicsCardsContainer>
+  
+          <BasicCardsContainer>
               <IconHeaderCard titleIcon={images.authentication}
                   title={textContent.authentication.title}
                   content={textContent.authentication.content}
@@ -45,6 +46,6 @@ const CardSection= props =>(
                           content={textContent.secondScreen.content}
                           link={config.paths.secondScreen.path}
                           />
-          </BacicsCardsContainer>
+          </BasicCardsContainer>
         );
 export default CardSection;
