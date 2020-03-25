@@ -44,7 +44,6 @@ export var styles={
               alignItems:"flex-start",
               backgroundColor:"#A9C8E6", //#4880ED
               backgroundColor:"white", //#4880ED, 
-              
                           
             },
             desktop:{
@@ -65,7 +64,7 @@ export var styles={
               
             },
             bigScreen:{
-              backgroundImage: "url("+images.home.screen800+")",              
+              backgroundImage: "url("+images.home.screen1440+")",                        
             },
             mobile:{
               backgroundImage: "url("+images.home.backgroundMobile+")"
