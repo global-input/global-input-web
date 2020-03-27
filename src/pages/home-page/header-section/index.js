@@ -15,14 +15,15 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 
 
 const headerTextContent={
-    title:"Global Input App",
-    subtitle:"Mobile Integration on Multi-Device environment",
+    title:"Mobile Integration",
+    subtitle:"Solution for Multi-Device environment",
     items:[           
-           "Mobile Authentication",
-           "Mobile Encryption",
-           "Mobile Input & Control",           
-           "Second Screen"
-         ]
+           "Own Your Data",
+           "Own Your Data Security",
+           "Mobile to Lock/Unlock Data",           
+           
+         ],
+    description:"Users Carry Their Around Own Data or their Key "     
 };
 export const images={
 
@@ -42,7 +43,7 @@ const HeaderSection = props =>(
                         subtitle={headerTextContent.subtitle}>
                           <FourItemsList items={headerTextContent.items}/>
                           <ButtonsContainer>
-                              <GetAppButton>Download</GetAppButton>
+                              <GetAppButton>Get Global Input App Free</GetAppButton>
                           </ButtonsContainer>
             </HomeTitleSection>
     </SimpleHeaderBackground>

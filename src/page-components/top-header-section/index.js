@@ -6,27 +6,23 @@ import {TopMenu} from "../../components";
 import {config} from "../../configs";
 import {styles, images} from './styles';
 const textContent={
-    title:"Global Input App Solution"
+    title:"Global Input App"
 }
 var menus=[{
       link:config.paths.home.path,
-      linkText:"Home"
+      linkText:"HOME"
     },{
       link:config.paths.privacy.path,
-      linkText:"Privacy"
+      linkText:"PRIVACY"
     },{
       link:config.paths.contactus.path,
-      linkText:"Contact Us"
+      linkText:"CONTACT US"
     },{
       link:config.paths.getAppScreen.path,
-      linkText:"Get GIA App Free",
-      button:images.downloadapp,
-      styles:{
-             menuItem: styles.menuItem
-      }
+      linkText:"DOWNLOAD"      
     }];
 
-const TopHeaderSection=props => (<TopMenu
+const TopHeaderSection=props => (<TopMenu appTitle={textContent.title}
           menus={menus}
           selected={props.selected} appLogo={images.appIcon}/>);
 export default TopHeaderSection;

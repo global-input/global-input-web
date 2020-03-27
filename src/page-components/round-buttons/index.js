@@ -5,10 +5,10 @@ import {styles} from './styles';
 
 const BlueRoundButton=props=>{
     if(props.to){
-        return (<Link to={props.to} style={styles.buttonLinks.get()}>{props.children}</Link>);
+        return (<Link to={props.to} style={styles.buttonLinks.get('white')}>{props.children}</Link>);
     }
     else if(this.props.href){
-        return (<a href={props.href} style={styles.buttonLinks.get()}>{props.children}</a>);
+        return (<a href={props.href} style={styles.buttonLinks.get('white')}>{props.children}</a>);
     }
     else{
       return null;

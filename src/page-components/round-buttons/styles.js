@@ -5,7 +5,7 @@ buttonLinks:{
     default:{
       textDecoration: "none",
       fontSize: 15,
-      borderRadius:25,
+      borderRadius:8,
       color:"white",
       backgroundColor:"#4281BD",
       whiteSpace:"nowrap",
@@ -20,7 +20,7 @@ buttonLinks:{
     white:{
       color:"#4281BD",
       backgroundColor:"white",
-    },
+    },    
     transparent:{
       color:"#4281BD",
       backgroundColor:"rgba(256, 256, 256, 0)",

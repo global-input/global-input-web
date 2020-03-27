@@ -17,9 +17,9 @@ ul.listmenu li::after {
   content: ' ';
   white-space: normal;
   word-spacing: 1em; /* = nav@padding-right - this actually makes width */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='16'><rect fill='6052cd' x='0' y='0' width='10%' height='100%'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='16'><rect fill='ffffff' x='0' y='0' width='10%' height='100%'/></svg>");
   background-size: 1em 1em;
   background-repeat: no-repeat;
-  background-position: left 5px top 2px;
+  background-position: left 7px top 2px;
   opacity: 0.5;
 }

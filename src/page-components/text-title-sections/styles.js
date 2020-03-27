@@ -50,7 +50,7 @@ export var styles={
     subtitle:{
       fontSize:14,
       fontFamily:"Tisa Sans Pro"
-    }
+    }    
 
  },
 
@@ -109,4 +109,18 @@ export var styles={
     },
     get:styleMatchingScreenSize
   },
+  description:{
+    default:{
+      fontSize:16,
+      marginLeft:70,
+    },
+    mobile:{
+      fontSize:"4vw",
+      display:"block",
+      marginLeft:"auto",
+      marginRight:"auto",
+      marginBottom:20
+    },
+    get:styleMatchingScreenSize
+  }
 };
