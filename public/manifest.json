@@ -1,7 +1,7 @@
 {
   "short_name": "Global Input Web",
   "name": "Global Input Web",
-  "description": "A universtal mobile integration solution for web and device applications",
+  "description": "The Mobile Integration provides web and device applications with Mobile-to-Device functionalities like Mobile Authentication, Mobile Encryption, Mobile Encrypted Storage, Mobile Content Transfer. ",
   "icons": [{
     "src": "globalinput-512.png",
     "sizes": "512x512",

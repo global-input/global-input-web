@@ -7,27 +7,20 @@
 
 <url>
   <loc>https://globalinput.co.uk/</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
+  <lastmod>2020-03-26T10:52:43+00:00</lastmod>
    <priority>1.00</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/documentation</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
-   <priority>0.90</priority>
 </url>
 
 <url>
   <loc>https://globalinput.co.uk/global-input-app/privacy</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
+  <lastmod>2020-03-26T10:52:43+00:00</lastmod>
    <priority>0.90</priority>
 </url>
 
 
 <url>
   <loc>https://globalinput.co.uk/global-input-app/get-app</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
+  <lastmod>2020-03-26T10:52:43+00:00</lastmod>
    <priority>0.90</priority>
 </url>
 
@@ -52,6 +45,13 @@
 </url>
 
 <url>
+  <loc>https://globalinput.co.uk/global-input-app/mobile-content-encryption</loc>
+  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
+   <priority>1.00</priority>
+</url>
+
+
+<url>
   <loc>https://globalinput.co.uk/global-input-app/mobile-personal-storage</loc>
   <lastmod>2020-01-31T10:52:43+00:00</lastmod>
    <priority>1.00</priority>
@@ -63,11 +63,6 @@
    <priority>1.00</priority>
 </url>
 
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-content-encryption</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
-   <priority>1.00</priority>
-</url>
 <url>
   <loc>https://globalinput.co.uk/global-input-app/mobile-encryption</loc>
   <lastmod>2020-01-31T10:52:43+00:00</lastmod>
@@ -83,6 +78,13 @@
 </url>
 
 <url>
+  <loc>https://globalinput.co.uk/global-input-app/form-data-transfer</loc>
+  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
+   <priority>0.80</priority>
+</url>
+
+
+<url>
   <loc>https://globalinput.co.uk/global-input-app/game-example</loc>
   <lastmod>2020-01-31T10:52:43+00:00</lastmod>
    <priority>0.80</priority>
@@ -94,11 +96,6 @@
    <priority>0.80</priority>
 </url>
 
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/form-data-transfer</loc>
-  <lastmod>2020-01-31T10:52:43+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
 
 <url>
   <loc>https://globalinput.co.uk/global-input-app/content-transfer</loc>

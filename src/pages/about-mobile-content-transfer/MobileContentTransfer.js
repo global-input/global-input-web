@@ -19,9 +19,9 @@ const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <CopyContentAppButton>Copy & Paste </CopyContentAppButton>
-        <TransferFormDataButton>Transfer Form Data</TransferFormDataButton>
-        <DocuButton {...props}/>
+        <CopyContentAppButton>Transfer Content Example </CopyContentAppButton>
+        <TransferFormDataButton>Transfer Form Data Example</TransferFormDataButton>
+        
     </ButtonsContainer>
   )
 
@@ -37,56 +37,16 @@ const MobileContentTransfer=props=>{
        <React.Fragment>
               <FirstSection>
               <Title>Mobile Content Transfer</Title>
+              <SimpleContainer>
+            <FooterButtons {...props}/>
+      </SimpleContainer>
               </FirstSection>
               <NextSection>
-              <P>
-              Global Input App provides a secure content transfer solution with a minimal footprint that does not require subscription,
-              network or cloud drive. For example, the <ContentTransfer {...props}>Content Transfer Application</ContentTransfer> allows you
-              to copy and paste a text content from your mobile to a computer or vice versa.
-              And the <TransferFormData  {...props}>Transfer Form Data Application</TransferFormData> allows you to compose a form and
-              then use it to transfer some confidential information to another person who uses GIA to connect to your form by scanning an Encrypted QR Code.
-</P>
-<P>
-    <TransferFormData  {...props}>This application</TransferFormData> may come handy if you are managing user accounts for some applications
-    that do not provide subscription and adequate self-service mechanism,
-    and when you need to create accounts and share confidential information with your users.
-    If you use a traditional way of sending information through a password-protected zip file, you may not have control over how the user secures
-    the information after he/she has unzipped the file: the user may write down the information on a piece of paper or leave the unzip file in an
-    insecure storage, or he/she may try to memorize them without realising the possibility of forgetting after deleting the zip file.
-
-    The <TransferFormData  {...props}>Transfer Form Data Application</TransferFormData> removes the need to memorise passwords,
-    so the user can create a completely random password for each application. You can also choose to collaboratively fill in form with the
-    user.
-    You can bookmark the form that you have created and use it as the intermediate form between your new users
-    and the applications that do not provide subscription mechanism.
-    The Global Input App also allows you to share any form data on your GIA directly with another GIA user via end-to-end encrypted communication.
-    Select the item you would like to share on the Data tab of your GIA, and press the Edit button there to go into the data editor screen.
-    In the data editor screen, you can press the QR Code button to display the QR Code on your mobile screen and ask your user to scan the
-    QR code to connect to the form being displayed on your mobile screen. This allows you to share information securely via end-to-end encryption
-    communication.
-
-</P>
-
-<P>
-  Global Input App also allows passing secret messages via
-  Encrypted QR Codes using a pre-shared encryption key.
-  You can create and share an encryption key on the Keys tab of your Global Input App (GIA), or
-  you can use the <MobileEncryption  {...props}>the Mobile Encryption Application</MobileEncryption> to print out an encrypted QR code for the encryption key you would like
-  to share. You can create Encrypted QR Codes for your secret message on the Encrypt tab of your GIA or you can use
-  the <MobileEncryption  {...props}>Mobile Encryption Application</MobileEncryption> to print out the encrypted QR Codes.
-
-
-</P>
-
+              Global Input App allows you to transfer content between your mobile and a shared device or a computer. It works like using a USB cable connecting your mobile directly to your computer rather than using an intermediate storage system that normally requires sign in on both devices. You start the process by scanning an encrypted QR code that contains the required parameters to start an end-to-end encrypted communication between your devices, then, you can operate on either device to transfer or receive content.  This is particularly useful when you are working in your workplace or in a public facility where you need to work on several shared computers or devices and when you need some information stored on your mobile, for example, your personal information. This capability of transferring data securely between heterogeneous and multi-vendor devices show an interesting approach that may clear the hurdles that are impeding the development of IoT and other connected and smart devices because of the lack of a secure and simple platform that facilitates the interoperability over a multi-device environment.
 
 
 </NextSection>
 
-<FirstSection>
-      <SimpleContainer>
-            <FooterButtons {...props}/>
-      </SimpleContainer>
-</FirstSection>
 
 
 

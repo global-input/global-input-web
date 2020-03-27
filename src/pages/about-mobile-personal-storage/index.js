@@ -5,17 +5,12 @@ import LighBlueBackground from '../../page-components/themes/ligh-blue-backgroun
 import MobilePersonalStorage from './MobilePersonalStorage';
 
 
-export default class AboutMobilePersonalStorage extends React.Component{
-  render(){
-      return(
+export default ()=>(
         <LighBlueBackground.Page>
                 <MobilePersonalStorage theme={LighBlueBackground}/>
         </LighBlueBackground.Page>
 
-      )
-
-  }
-
-}
+);
+      
 
 export {MobilePersonalStorage};
