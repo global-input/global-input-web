@@ -1,6 +1,7 @@
 import React from 'react'
 
 import TopHeaderSection from "../page-components/top-header-section";
+import {PageFooter} from "../page-components/themes/ligh-blue-background";
 import ContentTransferExample    from "./content-transfer-example";
 import GameControlExample        from "./game-control-example";
 import MediaPlayerControlExample from "./media-player-control-example";
@@ -38,6 +39,7 @@ const createExampleComponent =ExampleComponent=>{
             <TopHeaderSection  selected={props.selected}/>
           </div>
           <ExampleComponent url={config.url} {...props}/>                        
+          <PageFooter/>
         </React.Fragment>  
       );
     
@@ -81,7 +83,7 @@ export const MediaPlayerScreen=createExampleComponent2(MediaPlayerControlExample
 
 export const TransferFormDataScreen=createExampleComponent2(TransferFormDataExample);
 export const ContentTransferScreen=createExampleComponent2(ContentTransferExample);
-export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
+export const MobileEncryptionScreen=createExampleComponent2(MobileEncryptionExample);
 
 
 const SendMessageScreenWithoutSendMessage=createExampleComponent2(SendMessageExample);

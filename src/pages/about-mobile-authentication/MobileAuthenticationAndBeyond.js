@@ -127,13 +127,9 @@ export default ({login})=>{
   <P>
       When it comes to using applications on shared or public devices (i.e, computers in a conference room), the security and convenience brought by mobile integration is enormous. This is especially true for business applications like JIRA, Confluence, Gitlab, Github, Dropbox, to name a few.  You can sign in to the applications safely, while the computer screen, your mobile screen, your actions, and your typings are in public view. 
       </P>
-
-      </FirstSection>
-      <NextSection>
-
-       
-      </NextSection>
       
+
+      </FirstSection>      
         </React.Fragment>
 
 );
