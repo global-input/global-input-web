@@ -10,8 +10,7 @@ const TwoButtonsCard=props=>(
               {props.data.content}
           </div>
           <div style={styles.footer.get()}>
-              <BlueRoundButton to={props.data.buttons[0].path}>{props.data.buttons[0].label}</BlueRoundButton>
-              <WhiteRoundButton to={props.data.buttons[1].path}>{props.data.buttons[1].label}</WhiteRoundButton>
+              <BlueRoundButton to={props.data.buttons[0].path}>{props.data.buttons[0].label}</BlueRoundButton>              
           </div>
       </div>
     );

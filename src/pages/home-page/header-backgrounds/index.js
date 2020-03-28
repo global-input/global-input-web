@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {styles} from "./styles";
-import {withResponsiveComponent} from '../../components/screen-media';
+import {withResponsiveComponent} from '../../../components/screen-media';
 
 const _SimpleHeaderBackground=props=>(<div style={styles.headerContainer.get()}>{props.children}</div>);
 

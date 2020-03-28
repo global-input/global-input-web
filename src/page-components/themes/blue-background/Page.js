@@ -6,14 +6,6 @@ import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
 
 
-const Page=props=>(<div style={styles.container.get()} id="topContent">
-            <TopHeaderSection selected={props.selected}/>
-            <div style={styles.card.container.get()}>
-                        {props.children}
-            </div>
-        </div>);
-const ResponsivePage=withResponsiveComponent(Page,{scrollTo:"topContent"});
-export default ResponsivePage;
 
 
 export const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);

@@ -13,12 +13,6 @@ const {ChromeExtension,FirefoxExtension,SupportedWebsites,WatchAuthenticationVid
 const {TransferFormData,SecondScreen} = examplesLinks;
 const {TransferFormDataButton,ChromeExtensionButton,FirefoxExtensionButton,WordPressButton,DocumentationButton}  = pagesLinks.buttons;
 
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
 
 const AuthenticationButtons=props=>{
 
@@ -33,20 +27,6 @@ const AuthenticationButtons=props=>{
 }
 
 
-const WatchVideo=props=>{
-    if(props.isSideMenu){
-      console.log("side......");
-      return(<WatchAuthenticationDemo {...props}/>);
-    }
-    else{
-      console.log("no side......");
-      return(
-        <SubtitleSectionContainer>
-            <PlayTutorialVideoIcon {...props}/>
-        </SubtitleSectionContainer>
-      );
-    }
-}
 
 
 const MobileAuthenticationAndBeyond = props =>{

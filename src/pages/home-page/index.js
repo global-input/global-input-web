@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import HeaderSection from "./header-section";
-import {HomeHeaderBackground} from "../../page-components/header-backgrounds";
+import {HomeHeaderBackground} from "./header-backgrounds";
 import HowItWorks from "./how-it-works";
-import FooterSection from '../../page-components/footer-section';
+import FooterSection from './footer-section';
 import CardSection from "./cards-section";
 import NextCards from "./next-cards";
 import FeaturesSection from './features-section';

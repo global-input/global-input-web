@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import {styles,images} from './styles';
+import {styles} from './styles';
 
-import {withResponsiveComponent} from '../../components/screen-media';
+import {withResponsiveComponent} from '../../../components/screen-media';
 const textContent={
     title:"Contact Us!",    
     address:{
@@ -24,17 +24,16 @@ const textContent={
     }
 }
 
-class FooterSection extends React.Component {
+const readItems = (content,index) => (<div style={styles.contact.item} key={index}>{content}</div>);
 
-    render(){
-      return(<div style={styles.container}>
+const FooterSection = () =>(<div style={styles.container}>
           <div id="contactUs"></div>
           <div style={styles.titleContainer}>{textContent.title}</div>
           
           <div style={styles.contactContainer.get()}>
                 <div style={styles.contact.container}>
                       <div style={styles.contact.title}>{textContent.address.title}</div>
-                      {textContent.address.content.map(this.readItems.bind(this))}
+                      {textContent.address.content.map(readItems)}
                 </div>
                 <div style={styles.contact.container}>
                       <div style={styles.contact.container}>
@@ -57,12 +56,10 @@ class FooterSection extends React.Component {
           </div>
 
         </div>);
-    }
-    readItems(content,index){
-        return (<div style={styles.contact.item} key={index}>{content}</div>);
-    }
-}
+    
 
 const ResponsiveFooterSection=withResponsiveComponent(FooterSection);
 
 export default ResponsiveFooterSection;
+
+

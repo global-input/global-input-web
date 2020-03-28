@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import FourItemsList from '../../../page-components/four-items-list';
 import RightPosterImage from '../../../page-components/right-poster-image';
-import {SimpleHeaderBackground} from '../../../page-components/header-backgrounds';
+import {SimpleHeaderBackground} from '../header-backgrounds';
 import {HomeTitleSection} from '../../../page-components/text-title-sections';
 
 

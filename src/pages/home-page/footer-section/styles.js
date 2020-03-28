@@ -1,4 +1,4 @@
-import {styleMatchingScreenSize} from "../../components/screen-media";
+import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={
     backgroundimage:require('./images/background.svg'),
     whatsapp:require('./images/whatsapp.svg'),

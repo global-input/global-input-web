@@ -134,7 +134,7 @@ export const examplesLinks={
 export const pagesLinks={
           buttons:{
                 LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
-                GetAppButton:props=>(<BlueRoundButton to={config.paths.getAppScreen.path}>{props.children}</BlueRoundButton>),
+                GetAppButton:props=>(<WhiteRoundButton to={config.paths.getAppScreen.path}>{props.children}</WhiteRoundButton>),
                 MobileAuthentication:props=>(<WhiteRoundButton to={config.paths.mobileAuthentication.path}>{props.children}</WhiteRoundButton>),
                 ChromeExtensionButton:props=>(<ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>),
                 FirefoxExtensionButton:props=>(<ImageButton image={images.firefox} href={config.links.firefox.url}/>),
