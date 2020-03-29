@@ -1,10 +1,10 @@
-import {styleMatchingScreenSize} from "../../components/screen-media";
+import {styleMatchingScreenSize} from "../../../../components/screen-media";
 
 export var styles={
   listContent:{
       default:{
         fontSize:14,
-        marginTop:20,
+        marginTop:10,
         width:"auto",
         marginLeft:70,
         marginBottom:30,

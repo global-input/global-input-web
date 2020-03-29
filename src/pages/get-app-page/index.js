@@ -26,12 +26,12 @@ const {MobileAuthentication}=pagesLinks.buttons;
 const GetAppPage=props=>(
         <Page>
 
-                        <MiddlePageContainer>
-                            <AppLogo/>
+                        
+                            
                             <PageTitleSection title="Download Global Input App" subtitle="Open-source mobile app &amp; browser extensions"/>
                             <DownloadGIAButtons/>
 
-                        </MiddlePageContainer>
+                        
 
 
 

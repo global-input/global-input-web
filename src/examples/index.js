@@ -1,7 +1,7 @@
 import React from 'react'
 
 import TopHeaderSection from "../page-components/top-header-section";
-import {PageFooter} from "../page-components/themes/ligh-blue-background";
+import PageFooter from "../page-components/themes/page-footer";
 import ContentTransferExample    from "./content-transfer-example";
 import GameControlExample        from "./game-control-example";
 import MediaPlayerControlExample from "./media-player-control-example";

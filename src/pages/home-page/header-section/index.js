@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import FourItemsList from '../../../page-components/four-items-list';
+import SmallText from './small-text';
 import RightPosterImage from '../../../page-components/right-poster-image';
 import {SimpleHeaderBackground} from '../header-backgrounds';
 import {HomeTitleSection} from '../../../page-components/text-title-sections';
@@ -17,12 +17,7 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 const headerTextContent={
     title:"Mobile Integration",
     subtitle:"Solution for Multi-Device environment",
-    items:[           
-           "Own Your Data",
-           "Own Your Data Security",
-           "Mobile to Lock/Unlock Data",           
-           
-         ],
+    smallText:"Data Security, Mobile Input & Control for IoT",
     description:"Users Carry Their Around Own Data or their Key "     
 };
 export const images={
@@ -41,7 +36,7 @@ const HeaderSection = props =>(
             <HomeTitleSection 
                         title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>
-                          <FourItemsList items={headerTextContent.items}/>
+                          <SmallText content={headerTextContent.smallText}/>
                           <ButtonsContainer>
                               <GetAppButton>Get Global Input App Free</GetAppButton>
                           </ButtonsContainer>
