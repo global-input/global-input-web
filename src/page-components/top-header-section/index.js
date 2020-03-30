@@ -19,7 +19,7 @@ var menus=[{
       linkText:"CONTACT US"
     },{
       link:config.paths.getAppScreen.path,
-      linkText:"DOWNLOAD"      
+      linkText:"GET IT FREE"      
     }];
 
 const TopHeaderSection=props => (<TopMenu appTitle={textContent.title}

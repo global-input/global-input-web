@@ -8,7 +8,7 @@ export var styles={
 
         display:"flex",
         flexDirection:"row",
-        marginTop:20,
+        marginTop:5,
         marginLeft:50,
       },
       smallScreen:{

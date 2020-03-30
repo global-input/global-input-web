@@ -1,10 +1,7 @@
 
-import {styleMatchingScreenSize} from "../../components/screen-media";
+import {styleMatchingScreenSize} from '../../../components/screen-media';
 
 
-export const images={
-  arrow:require('./images/arrow.svg')
-}
 export var styles={
 
  card:{
@@ -15,15 +12,17 @@ export var styles={
         justifyContent:"flex-start",
         alignItems:"flex-start",
         backgroundColor:"#FFFFFF",
-        color:"#5291CD",
-        width:"30%",
-        maxWidth:370,
+        color:"#5291CD",        
+        width:400,
         minHeight:300,
+        
 
         paddingBottom:25,
         borderRadius:5,
         paddingTop:20,
-        position:"relative"
+        position:"relative",
+        marginBottom:20,
+        marginRight:20
       },
       screen1080:{
        
@@ -91,10 +90,7 @@ export var styles={
    },
    get:styleMatchingScreenSize
  },
- line:{
-   textAlign:"center",
-   width:"100%"
- },
+ 
  footer:{
    text:{
     textAlign:"center",
@@ -106,12 +102,27 @@ export var styles={
    buttons:{
       display:"flex",
       flexDirection:"row",
-      justifyContent:"center",      
+      justifyContent:"center", 
+      marginTop:20,
+      position:"absolute",
+      width:"100%",
+    bottom:30,      
    }
     
  },
-
- arrow:{
-
+ cardContainer:{
+      get:styleMatchingScreenSize,
+      default:{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        width:"100%"
+      },
+      screen1080:{
+        flexDirection:"row",
+      },
  }
+
+ 
 };

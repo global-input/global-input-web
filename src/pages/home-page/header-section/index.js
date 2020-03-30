@@ -38,7 +38,7 @@ const HeaderSection = props =>(
                         subtitle={headerTextContent.subtitle}>
                           <SmallText content={headerTextContent.smallText}/>
                           <ButtonsContainer>
-                              <GetAppButton>Get Global Input App Free</GetAppButton>
+                              <GetAppButton>Get It Free</GetAppButton>
                           </ButtonsContainer>
             </HomeTitleSection>
     </SimpleHeaderBackground>
