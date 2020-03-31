@@ -1,14 +1,14 @@
 import React from 'react';
 
-import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
+import * as theme from '../../page-components/themes/light-blue-background';
 
 import MobilePersonalStorage from './MobilePersonalStorage';
 
 
 export default ()=>(
-        <LighBlueBackground.Page>
-                <MobilePersonalStorage theme={LighBlueBackground}/>
-        </LighBlueBackground.Page>
+        <theme.Page>
+                <MobilePersonalStorage theme={theme}/>
+        </theme.Page>
 
 );
       

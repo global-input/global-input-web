@@ -7,7 +7,7 @@ import {styles} from './styles';
 import {config} from '../../../configs';
 import PageFooter from '../page-footer';
 
-const Page=props=>(<div style={styles.container} id="topContent">
+const _Page=props=>(<div style={styles.container} id="topContent">
             <TopHeaderSection selected={props.selected}/>
             <div style={styles.content}>
                         {props.children}
@@ -15,15 +15,15 @@ const Page=props=>(<div style={styles.container} id="topContent">
             </div>
             <PageFooter/>
         </div>);
-const ResponsivePage=withResponsiveComponent(Page,{scrollTo:"topContent"});
+export const Page=withResponsiveComponent(_Page,{scrollTo:"topContent"});
 
 
 
-const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);
-const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
+export const P=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);
+export const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
 
 
-const CodeContent=props=>(
+export const Code=props=>(
   <div style={styles.card.codeContainer}>
       <pre style={styles.card.code}>{props.children}</pre>
   </div>
@@ -33,7 +33,7 @@ const CodeContent=props=>(
 
 
 
-class ListLinks extends React.Component {
+export class ListLinks extends React.Component {
 
   render(){
     return(<ul>
@@ -64,10 +64,10 @@ class ListLinks extends React.Component {
   }
 }
 
-const TextLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
-const ALink=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);
+export const TextLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
+export const A=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);
 
-const Concept=props=>(<span style={styles.card.concept}>{props.children}</span>);
+export const Concept=props=>(<span style={styles.card.concept}>{props.children}</span>);
 
 const _FirstSection=props=>(
           <div style={styles.firstSection}>
@@ -76,7 +76,7 @@ const _FirstSection=props=>(
               </div>
           </div>
         );
- const FirstSection=withResponsiveComponent(_FirstSection);
+ export const FirstSection=withResponsiveComponent(_FirstSection);
 
 
 const _NextSection=props=>(
@@ -86,15 +86,6 @@ const _NextSection=props=>(
             </div>
           </div>
         );
-const NextSection=withResponsiveComponent(_NextSection);
+export const NextSection=withResponsiveComponent(_NextSection);
 
-
-export default {Page:ResponsivePage,
-                  P:Paragraph,
-                  Title,
-                  ListLinks,
-                  Link:TextLink,
-                  A:ALink,
-                  Code:CodeContent,
-                  Concept, FirstSection,NextSection};
 

@@ -19,6 +19,7 @@ export const styles={
     boxShadow: "0 -5px 5px -5px #333",
     backgroundColor:"white",
     backgroundColor:"white",
+    
   },
 
   topnav:{

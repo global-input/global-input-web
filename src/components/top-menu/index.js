@@ -131,7 +131,7 @@ export  default class TopMenu extends Component {
   renderDeskTop(){
 
     return (
-              <div style={styles.topnavContainer}>
+              <div style={styles.topnavContainer} className="noprint">
                    <div style={styles.topnav}>
                         <a href="/">
                         <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
@@ -218,7 +218,7 @@ export  default class TopMenu extends Component {
   renderMobile(){
 
     return(
-    <div style={styles.topnavContainer}>
+    <div style={styles.topnavContainer} className="noprint">
           <div style={styles.topnav}>
             <div style={styles.mobileMenu}>
                {this.renderMenuItemSymbol()}

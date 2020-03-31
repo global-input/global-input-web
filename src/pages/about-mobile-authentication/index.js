@@ -1,10 +1,10 @@
 import React from 'react';
-import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
+import * as theme from '../../page-components/themes/light-blue-background';
 import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
 
 export default ()=>(
-          <LighBlueBackground.Page>
-              <MobileAuthenticationAndBeyond theme={LighBlueBackground}/>
-          </LighBlueBackground.Page>
+          <theme.Page>
+              <MobileAuthenticationAndBeyond theme={theme}/>
+          </theme.Page>
         );
 export {MobileAuthenticationAndBeyond};

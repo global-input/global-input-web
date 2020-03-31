@@ -1,7 +1,6 @@
 import React from 'react'
+import {Title, P, Page} from "../page-components/themes/blue-background";
 
-import TopHeaderSection from "../page-components/top-header-section";
-import PageFooter from "../page-components/themes/page-footer";
 import ContentTransferExample    from "./content-transfer-example";
 import GameControlExample        from "./game-control-example";
 import MediaPlayerControlExample from "./media-player-control-example";
@@ -10,37 +9,16 @@ import TransferFormDataExample   from "./transfer-form-data-example";
 import MobileEncryptionExample from './mobile-encryption-example';
 import {config} from "../configs";
 
-const createExampleComponent =ExampleComponent=>{
-    return (props)=>{
-      return(
-        <React.Fragment>
-          <div className="noprint">
-            <TopHeaderSection  selected={props.selected}/>
-          </div>
-          <div style={compStyles.content}>
-              <div style={compStyles.itemSection}>
-                  <ExampleComponent url={config.url} {...props}/>              
-                  
-              </div>
-          </div>
-        </React.Fragment>  
-      );
-    
-    }
-   
-  
-  };
 
-  const createExampleComponent2 =ExampleComponent=>{
+
+  const createExampleComponent =ExampleComponent=>{
     return (props)=>{
+      
       return(
-        <React.Fragment>
-          <div className="noprint">
-            <TopHeaderSection  selected={props.selected}/>
-          </div>
-          <ExampleComponent url={config.url} {...props}/>                        
-          <PageFooter/>
-        </React.Fragment>  
+        <Page>              
+          <ExampleComponent url={config.url} {...props}/>          
+        </Page>
+        
       );
     
     }
@@ -78,15 +56,15 @@ const createExampleComponent =ExampleComponent=>{
   
 
   
-export const GameControlScreen=createExampleComponent2(GameControlExample);
-export const MediaPlayerScreen=createExampleComponent2(MediaPlayerControlExample);
+export const GameControlScreen=createExampleComponent(GameControlExample);
+export const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample);
 
-export const TransferFormDataScreen=createExampleComponent2(TransferFormDataExample);
-export const ContentTransferScreen=createExampleComponent2(ContentTransferExample);
-export const MobileEncryptionScreen=createExampleComponent2(MobileEncryptionExample);
+export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
+export const ContentTransferScreen=createExampleComponent(ContentTransferExample);
+export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
 
 
-const SendMessageScreenWithoutSendMessage=createExampleComponent2(SendMessageExample);
+const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample);
 
 export const SendMessageScreen=props=>{    
       return(

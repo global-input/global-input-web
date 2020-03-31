@@ -1,11 +1,11 @@
 import React from 'react';
-import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
+import * as theme from '../../page-components/themes/light-blue-background';
 
 import IntroducingMobileInputAndControl from './IntroducingMobileInputAndControl';
 export default () =>(
-          <LighBlueBackground.Page>
-              <IntroducingMobileInputAndControl theme={LighBlueBackground}/>
+          <theme.Page>
+              <IntroducingMobileInputAndControl theme={theme}/>
 
-          </LighBlueBackground.Page>
+          </theme.Page>
         );
 export  {IntroducingMobileInputAndControl};

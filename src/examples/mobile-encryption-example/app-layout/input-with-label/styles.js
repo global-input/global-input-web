@@ -50,7 +50,7 @@ export var styles={
               display:"flex",
               flexDirection:"row",
               justifyContent:"flex-start",
-              alignItems:"center",
+              alignItems:"center"              
           },
           placeholder:{
               transform: 'translateY(50px)',
@@ -58,6 +58,7 @@ export var styles={
 
 
     },
+    
 
     help:{
       fontSize:10,

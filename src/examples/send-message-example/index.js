@@ -114,7 +114,7 @@ const initData={
           title:"Mobile Storage Example",          
           fields:[{            
             id:"contactInfo",
-            label:"Save Our Contact Information",
+            label:"Our Contact Information",
             type:"button",
           },{            
             id:"sendMessageToUs",

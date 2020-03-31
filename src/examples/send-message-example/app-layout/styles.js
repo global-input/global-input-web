@@ -2,24 +2,18 @@ import styleMatchingScreenSize from "./styleMatchingScreenSize";
 export const styles = {
 
   pageContainer: {
-    paddingLeft: 20,
-    paddingTop: 50,
-    paddingRight: 20,
-    display: "flex",
+    display: "flex",  
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#5291CD",
-    width: "100%",
-    height: window.innerHeight,
+    width: "100%"    
   },
   pageContent: {
-    marginTop: 20,
-    marginBottom: 10,
     padding: 10,
     backgroundColor: "white",
-    width: "95%",
-    borderRadius: 25,
+    width: "100%",
+    
   },
 
   bodyContent: {
@@ -34,8 +28,8 @@ export const styles = {
     display: "flex",
     flexDirection: "row",
     width: "100%",
-    justifyContent: "flex-start",
-    fontSize: "2vw",
+    justifyContent: "center",
+    fontSize: 22,
     color: "#5291CD",
     marginBottom: "20",
     marginLeft: "4vw"
@@ -86,6 +80,8 @@ export const styles = {
       marginBottom: 20,
       marginTop: 20,
       color: "#5291CD",
+      maxWidth:900
+      
     },
     mobile: {
       fontSize: 16,
@@ -168,7 +164,9 @@ export const styles = {
  canvas:{    
     backgroundColor:"#FFFFFF",
     borderRadius: 25,
- }
+ },
+
+ 
  
    
 };

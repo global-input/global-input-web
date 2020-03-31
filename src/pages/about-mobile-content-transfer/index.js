@@ -1,10 +1,10 @@
 import React from 'react';
-import LighBlueBackground from '../../page-components/themes/ligh-blue-background';
+import * as theme from '../../page-components/themes/light-blue-background';
 import MobileContentTransfer from './MobileContentTransfer';
 
 export default ()=>(
-          <LighBlueBackground.Page>
-              <MobileContentTransfer theme={LighBlueBackground}/>
-          </LighBlueBackground.Page>
+          <theme.Page>
+              <MobileContentTransfer theme={theme}/>
+          </theme.Page>
         );
 export {MobileContentTransfer};

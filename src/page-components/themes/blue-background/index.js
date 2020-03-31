@@ -60,7 +60,10 @@ export const Concept=props=>(<span style={styles.card.concept}>{props.children}<
 
 const _Page=props=>(
       <div style={styles.container.get()} id="topContent">
+            
             <TopHeaderSection selected={props.selected}/>
+            
+            
             <div style={styles.card.container.get()}>
                         {props.children}
                         

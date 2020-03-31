@@ -35,11 +35,12 @@ export default () => {
       };
       
       const {WhenWaiting, WhenConnected,WhenError, WhenDisconnected,errorMessage,connectionMessage}=globalInputApp;
-      return(<>
+      return(<PageContainer>
                   <WhenConnected>
                         {selectPages({state, dispatch,globalInputApp,back})}
                   </WhenConnected>            
                   <WhenWaiting>
+                        
                         <Title>Mobile Encryption</Title>
                         
                         {connectionMessage}
@@ -48,16 +49,19 @@ export default () => {
                   </WhenWaiting> 
                   
                   <WhenError>
-                        <Title>Mobile Encryption</Title>
-                        {errorMessage}
+                        
+                              <Title>Mobile Encryption</Title>
+                              {errorMessage}
+                       
                   </WhenError>   
                   <WhenDisconnected>
+                        
                               <QRCodeContainer>                                          
                                     Disconnected, reload the page to try again.
                               </QRCodeContainer>
-
+                        
                   </WhenDisconnected>              
-            </>);
+            </PageContainer>);
       
 };
 

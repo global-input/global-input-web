@@ -19,8 +19,9 @@ export const styles={
       backgroundRepeat: 'no-repeat',
       backgroundSize: "cover",
       minHeight:window.innerHeight,
-      paddingTop:100,
-      color:"white",      
+      
+      color:"white",  
+      
     },
     screen1245:{
       
@@ -66,14 +67,12 @@ export const styles={
           flexDirection:"column",
           justifyContent:"flex-start",
           alignItems:"center",
-
           width:"100%",
           minHeight:300,
           borderRadius:5,
-          paddingBottom:20,
-          
+          paddingBottom:20,          
           marginBottom:20,
-          marginTop:70
+          paddingTop:70
         },        
       },
       title:{

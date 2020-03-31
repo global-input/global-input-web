@@ -1,15 +1,7 @@
-import React, { useState, useLayoutEffect ,useRef} from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { styles } from './styles';
 
-import InputWithLabel from './input-with-label';
-import TextButton from './text-button';
-import SelectableInput from './selectable-input';
-import ClipboardCopyButton from './clipboard-copy-button';
-import InputWithCopy from './input-with-copy';
-import {SelectionContainer, RadioButton,CheckboxButton} from './selectable';
 
-export {InputWithLabel,TextButton,SelectableInput,ClipboardCopyButton,InputWithCopy};
-export {SelectionContainer, RadioButton,CheckboxButton};
 export function useWindowSize() {
      const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
      useLayoutEffect(() => {
@@ -47,7 +39,19 @@ export const PageContainer = ({ children }) => {
 
 
      );
+};
+
+export const ContentContainer=({children,row})=>{
+     let st=styles.contentContainer.left;  
+     if(row==='center'){
+         st=styles.contentContainer.center;  
+     }
+     return(<div style={st.get()}>{children}</div>);
 }
+   
+
+
+
 export const VideoContainer = ({ children }) => {
      return (<div style={styles.videoContainer}>{children}</div>);
 }
@@ -105,55 +109,7 @@ export const TextInputBox=({id,type,readOnly,onChange,value,label})=>{
 };
 
 
-export const DisplayInputCopyField = ({field,hideValue,onChange,onToggleSelection})=>{
-     var fieldType="text";
-     if(field.nLines && field.nLines>1){
-         fieldType="textarea";
-     }          
-     if(hideValue){
-       fieldType="password";
-     }
-     let value=field.value;
-     if(!value){
-          value='';
-     }
-     return(       
-         <InputWithCopy label={field.label} id={field.id} type={fieldType}
-            value={value}  onSelected={onToggleSelection} secret={true}
-            onChange={onChange}/>    
-       );
-};
-
-export const DisplayCanvas=({onCanvas})=>{
-     const canvasHolder=useRef(null);
-     const [width,height]=useWindowSize();  
-     const setCanvas=ref=>{
-          if(ref && canvasHolder.current!==ref){
-               canvasHolder.current=ref;
-               onCanvas(ref);
-
-          }          
-      };
-      var w = width - 50;
-      var h = height - 50;
-     var canvasHeight = h - 50;
-     var canvasWidth = 16 * canvasHeight / 9;
-     if (canvasWidth > w) {
-          canvasWidth = w - 50;
-          canvasHeight = 9 * canvasWidth / 16;
-     }
-     return(
-               <canvas  width={canvasWidth} height={canvasHeight} ref={setCanvas} style={styles.canvas}/>
-     );
-};
-
-
-export const ContentContainer=({children,row})=>{
-     let st=styles.contentContainer.left;  
-     if(row==='center'){
-         st=styles.contentContainer.center;  
-     }
-     return(<div style={st.get()}>{children}</div>);
-}
-
-
+export const TextButton=({onClick,label})=>(
+     <button style={styles.form.textButton} onClick={onClick}>{label}</button>
+   );
+   
