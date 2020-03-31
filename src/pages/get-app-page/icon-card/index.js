@@ -11,7 +11,7 @@ const IconHeaderCard=({titleIcon,title,content,link,children,footerContent})=>(
               <div style={styles.content.get()}>
                         {children}
               </div>
-              <div style={styles.footer.buttons}>            
+              <div style={styles.footer.buttons.get()}>            
                     {footerContent}            
                </div>
           </div>);

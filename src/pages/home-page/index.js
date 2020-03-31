@@ -5,6 +5,7 @@ import HeaderSection from "./header-section";
 import {HomeHeaderBackground} from "./header-backgrounds";
 import HowItWorks from "./how-it-works";
 import FooterSection from './footer-section';
+
 import CardSection from "./cards-section";
 import NextCards from "./next-cards";
 import FeaturesSection from './features-section';

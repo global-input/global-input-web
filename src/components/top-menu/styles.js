@@ -11,6 +11,14 @@ export const styles={
     zIndex:100,
     top:0,
     left:0,
+    paddingTop:5,
+    paddingRight:50,
+    borderBottomColor:'#EEEEEE',
+    borderBottomStyle:"solid",
+    borderBottomWidth:1,
+    boxShadow: "0 -5px 5px -5px #333",
+    backgroundColor:"white",
+    backgroundColor:"white",
   },
 
   topnav:{
@@ -21,33 +29,30 @@ export const styles={
     display:"flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor:"white",
+    
     alignItems: "center",
-    borderBottomColor:'#EEEEEE',
-    borderBottomStyle:"solid",
-    borderBottomWidth:1,
-    boxShadow: "0 -5px 5px -5px #333"
+    
 
   },
   appTitleContainer:{
-    marginLeft:10,
-    paddingTop:5,
-
+    marginLeft:0    
   },
 
   appDesktopTitle:{
-    fontSize: 15,
+    fontSize: 20,
     color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
+    paddingLeft:10,
     fontFamily:fontFamily
   },
   appMobileTitle:{
-    fontSize: 15,
+    fontSize: 20,
     color: "#5291CD",
     whiteSpace: "nowrap",
     fontWeight: 300,
-    fontFamily:fontFamily
+    fontFamily:fontFamily,
+    
   },
   appVersion:{
     fontFamily: fontFamily,

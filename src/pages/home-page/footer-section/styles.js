@@ -14,10 +14,11 @@ export const styles={
       backgroundRepeat: 'no-repeat',
       backgroundSize: "cover",
       width:"100%",
-      minHeight:300,
+      minHeight:400,
       color:"white",
-      paddingLeft:50,
-      paddingBottom:50
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"flex-end"      
     },
     titleContainer:{
       width:"100%",

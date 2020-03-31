@@ -16,11 +16,12 @@ const _PageFooterContainer=({screenMedia})=>(
 
 export default withResponsiveComponent(_PageFooterContainer);
 
-const FooterItem=({href, label, isLast})=>(
-        <div style={isLast?styles.footer.lastItem:styles.footer.item}>
-            <a href={href} style={styles.footer.link}>{label}</a>
-        </div>
+const _FooterItem=({href, label, isLast})=>(
+    <div style={isLast?styles.footer.lastItem.get():styles.footer.item.get()}>
+        <a href={href} style={styles.footer.link}>{label}</a>
+    </div>
 );
+const FooterItem=withResponsiveComponent(_FooterItem);
 
 const FooterMobileAuthentication=({isLast=false})=>(
     <FooterItem href={config.paths.mobileAuthentication.path}
@@ -45,7 +46,7 @@ const FooterMobilePersonalStorage=({isLast=false})=>(
 );
 const FooterMobileContentTransfer=({isLast=false})=>(
     <FooterItem href={config.paths.mobileContentTransfer.path}
-    label="Mobile Content Transfer" isLast={isLast}/>
+    label="Content Transfer" isLast={isLast}/>
 );
 
 const FooterPrivacyPolicy=({isLast=false})=>(
@@ -128,37 +129,23 @@ const PageFooterContent=({screenMedia})=>{
     else{
       return (   
         <div style={styles.footer.content.get()}>
-                 <div style={styles.footer.singleItem}>   
-                    <FooterMobileAuthentication  isLast={true}/>                                            
-                 </div>
-                 <div style={styles.footer.singleItem}>
-                    <FooterMobileEncryption  isLast={true}/>
-                 </div>
-
-                 <div style={styles.footer.singleItem}>                    
-                    <FooterMobileInputControl  isLast={true}/>                    
-                </div>
-                <div style={styles.footer.singleItem}>                    
-                  <FooterSecondScreen  isLast={true}/>                        
-                </div>
-                
-                <div style={styles.footer.singleItem}>
-                    <FooterMobilePersonalStorage  isLast={true}/>                    
-                </div>
-                
-                <div style={styles.footer.singleItem}>
-                    <FooterMobileContentTransfer  isLast={true}/>
-                </div>
-
-
-                <div style={styles.footer.singleItem}>                        
-                    <FooterPrivacyPolicy  isLast={true}/>                    
-                </div>                    
-                
-                <div style={styles.footer.singleItem}>  
-                      <FooterContactUs  isLast={true}/>                      
-                </div>
-       </div>                                 
+                     <div style={styles.footer.items}>   
+                        <FooterMobileAuthentication/>                        
+                        <FooterMobileEncryption isLast={true}/>
+                     </div>
+                     <div style={styles.footer.items}>                    
+                        <FooterMobileInputControl/>
+                        <FooterSecondScreen isLast={true}/>                        
+                    </div>
+                    <div style={styles.footer.items}>
+                        <FooterMobilePersonalStorage/>
+                        <FooterMobileContentTransfer isLast={true}/>
+                    </div>
+                    <div style={styles.footer.items}>                        
+                        <FooterPrivacyPolicy/>
+                        <FooterContactUs isLast={true}/>
+                    </div>                    
+           </div>                               
      );
     }
     

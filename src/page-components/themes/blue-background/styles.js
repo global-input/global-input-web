@@ -1,6 +1,7 @@
 import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={
     background:require("./images/background.svg"),
+    background1245:require("./images/background-1245.svg"),
     backgroundMobile:require("./images/background-mobile.svg"),
 }
 
@@ -19,17 +20,44 @@ export const styles={
       backgroundSize: "cover",
       minHeight:window.innerHeight,
       paddingTop:100,
-      color:"white",
+      color:"white",      
     },
+    screen1245:{
+      
+      backgroundImage: "url("+images.background1245+")",
+    },
+    
+
     mobile:{
       backgroundImage: "url("+images.backgroundMobile+")",
       
 
     }
-
-
   },
-
+  
+  titleCenter:{
+    width:"100%",
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"center",
+    fontSize:40,
+  },
+  
+  rowColumn:{
+      get:styleMatchingScreenSize,
+      default:{
+              width:"100%",
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"center",
+              marginTop:50,
+              marginBottom:100,              
+      },
+      mobile:{
+            flexDirection:"column",
+      }
+    
+  },
   card:{
       container:{
         get:styleMatchingScreenSize,
@@ -37,27 +65,16 @@ export const styles={
           display:"flex",
           flexDirection:"column",
           justifyContent:"flex-start",
-          alignItems:"flex-start",
+          alignItems:"center",
 
-          width:"90%",
+          width:"100%",
           minHeight:300,
           borderRadius:5,
           paddingBottom:20,
-
-          paddingLeft:20,
-          paddingRight:10,
+          
           marginBottom:20,
           marginTop:70
-        },
-        bigScreen:{
-          width:1000
-        },
-        screen1245:{
-          width:800
-        },
-        desktop:{
-          width:"80%"
-        }
+        },        
       },
       title:{
         get:styleMatchingScreenSize,
@@ -100,7 +117,19 @@ export const styles={
         borderBottomStyle:"dotted",
         borderBottomColor:'black',
         borderBottomWidth:1
-      }
+      },      
+  },
+  pageContainer:{
+        get:styleMatchingScreenSize,
+        default:{
+          display:"flex",
+          flexDirection:"column",
+          justifyContent:"flex-start",
+          alignItems:"center",
+          maxWidth:800,
+          padding:20,
+
+        }
   },
 
   footer:{

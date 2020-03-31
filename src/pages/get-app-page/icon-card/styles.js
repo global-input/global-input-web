@@ -19,18 +19,23 @@ export var styles={
 
         paddingBottom:25,
         borderRadius:5,
-        paddingTop:20,
+        padding:10,        
         position:"relative",
-        marginBottom:20,
-        marginRight:20
+        
+        marginRight:100,
+        marginBottom:20
       },
       screen1080:{
-       
-      },
 
-      mobile:{
-        width:"90%",
-        marginBottom:50
+      },
+      narrowMobile:{
+        width:"100%",   
+        marginRight:0,
+        marginBottom:50,        
+      },
+      mobile:{        
+        marginBottom:50,
+        marginRight:0     
       },
  },
  
@@ -92,21 +97,24 @@ export var styles={
  },
  
  footer:{
-   text:{
-    textAlign:"center",
-    width:"100%",
-    position:"absolute",
-    bottom:30,
-    color:"#A8A8A8"
-   },
+   
    buttons:{
+    get:styleMatchingScreenSize,
+     default:{
       display:"flex",
       flexDirection:"row",
-      justifyContent:"center", 
-      marginTop:20,
-      position:"absolute",
-      width:"100%",
-    bottom:30,      
+      justifyContent:"space-between",      
+      width:"100%",       
+      bottom:5, 
+      
+     },
+     narrowMobile:{
+      flexDirection:"column",
+      justifyContent:"center",
+      alignItems:"center"
+      
+    },
+      
    }
     
  },
@@ -117,7 +125,7 @@ export var styles={
         flexDirection:"column",
         justifyContent:"center",
         alignItems:"center",
-        width:"100%"
+        width:"100%",
       },
       screen1080:{
         flexDirection:"row",

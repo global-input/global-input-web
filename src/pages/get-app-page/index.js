@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import BlueBackground from "../../page-components/themes/blue-background";
+import {Title, P, Page} from "../../page-components/themes/blue-background";
 
 import {withScrollToTop} from "../../components/screen-media";
 
@@ -9,7 +9,7 @@ import IconCard,{CardContainer} from "./icon-card";
 import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,TransparentButton} from '../../page-components/round-buttons';
 import {config} from '../../configs';
 
-const {Title, P, Page}=BlueBackground;
+
 
 
 const images={

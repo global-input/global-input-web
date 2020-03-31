@@ -5,17 +5,21 @@ import {Link} from 'react-router-dom';
 import {withResponsiveComponent} from '../../../components/screen-media';
 import TopHeaderSection from '../../top-header-section';
 import {styles} from './styles';
-import {config} from '../../../configs';
 import PageFooter from '../page-footer';
-const Paragraph=props=>(<div style={styles.card.paragraph.get()}>{props.children}</div>);
-const Title=props=>(<div style={styles.card.title.get()}>{props.children}</div>);
+
+export const P=({children})=>(<div style={styles.card.paragraph.get()}>{children}</div>);
+export const Title=({children})=>(<div style={styles.card.title.get()}>{children}</div>);
+export const TitleCenter=({children})=>(<div style={styles.titleCenter}>{children}</div>);
+
+export const VerticalOnMobile = ({children}) =>(
+  <div style={styles.rowColumn.get()}>{children}</div>
+);
+
+export const Code=props=>(<pre style={styles.card.code}>{props.children}</pre>);
 
 
-const CodeContent=props=>(<pre style={styles.card.code}>{props.children}</pre>);
 
-
-
-class ListLinks extends React.Component {
+export class ListLinks extends React.Component {
 
   render(){
     return(<ul>
@@ -46,32 +50,34 @@ class ListLinks extends React.Component {
   }
 }
 
-const TextLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
-const ALink=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);
-
-const Concept=props=>(<span style={styles.card.concept}>{props.children}</span>);
+export const PageLink=props=>(<Link to={props.to} style={styles.card.link}>{props.children}</Link>);
 
 
-const Page=props=>(<div style={styles.container.get()} id="topContent">
+export const A=props=>(<a href={props.href} style={styles.card.link} target="__blank">{props.children}</a>);
+
+export const Concept=props=>(<span style={styles.card.concept}>{props.children}</span>);
+
+
+const _Page=props=>(
+      <div style={styles.container.get()} id="topContent">
             <TopHeaderSection selected={props.selected}/>
             <div style={styles.card.container.get()}>
                         {props.children}
+                        
             </div>
-            <PageFooter/>
+            <PageFooter/>            
         </div>);
-const ResponsivePage=withResponsiveComponent(Page,{scrollTo:"topContent"});
+export const Page=withResponsiveComponent(_Page,{scrollTo:"topContent"});
+
+
+export const PageContainer=({children})=>(
+  <div style={styles.pageContainer.get()}>
+      {children}
+  </div>
+);
 
 
 
 
-export default {
-    Page:ResponsivePage,
-    P:Paragraph,
-    Title,
-    ListLinks,
-    Link:TextLink,
-    A:ALink,
-    Code:CodeContent,
-    Concept    
-};
+
 

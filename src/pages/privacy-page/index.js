@@ -1,14 +1,15 @@
 import React from 'react';
 
-import BlueBackground from "../../page-components/themes/blue-background";
+import {Title,P,PageContainer,Page} from "../../page-components/themes/blue-background";
 
 
 
-const {Title,P}=BlueBackground;
+
 
 export default ()=>(
-        <BlueBackground.Page>
-                  <Title>Privacy Policy</Title>
+        <Page>
+          <PageContainer>
+          <Title>Privacy Policy</Title>
                   <P>
                   Our privacy policy guarantees that we do not collect your data or track your activities. That applies to our website and all of our Global Input App software components including the mobile app itself, its extensions and library components. 
 
@@ -19,7 +20,10 @@ export default ()=>(
 
 
 
+          </PageContainer>
+            
 
-        </BlueBackground.Page>
+
+        </Page>
       );
 
