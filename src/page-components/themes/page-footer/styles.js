@@ -1,10 +1,24 @@
 import {styleMatchingScreenSize} from "../../../components/screen-media";
 export const images={    
     footerBackground:require("./images/footer-background.svg"),
+    footerBackground2:require("./images/footer-background2.svg"),
 }
 
 export const styles={
-  
+  container:{
+    paddingTop:100,
+    backgroundImage: "url("+images.footerBackground2+")",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: "cover",
+    width:"100%",
+    minHeight:400,
+    color:"white",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"flex-end" ,
+    alignItems:"center",    
+  },
+
 footer:{
       container:{
       flex:1,      
@@ -17,7 +31,8 @@ footer:{
       flexDirection:"column",
       justifyContent:"flex-end",
       alignItems:"center",
-      paddingBottom:20      
+      paddingBottom:20,
+      
     },
     content:{
       get:styleMatchingScreenSize,

@@ -6,15 +6,16 @@ import {withResponsiveComponent} from '../../../components/screen-media';
 import {styles} from './styles';
 import {config} from '../../../configs';
 
-const _PageFooterContainer=({screenMedia})=>(    
-    <div style={styles.footer.container}>
-        
-            <PageFooterContent screenMedia={screenMedia}/>
-        
+const PageFooterContainer=({screenMedia})=>(    
+    <div style={styles.container}>
+        <div style={styles.footer.container}>        
+                <PageFooterContent screenMedia={screenMedia}/>    
+        </div>
     </div>
+    
 );
 
-export default withResponsiveComponent(_PageFooterContainer);
+export default withResponsiveComponent(PageFooterContainer);
 
 const _FooterItem=({href, label, isLast})=>(
     <div style={isLast?styles.footer.lastItem.get():styles.footer.item.get()}>
@@ -67,6 +68,7 @@ const FooterContactUs=({isLast=false})=>(
 const PageFooterContent=({screenMedia})=>{
       if(screenMedia.biggerThan(1204)){
         return (   
+            
             <div style={styles.footer.content.get()}>
                     <div style={styles.footer.items}>   
                         <FooterMobileAuthentication/>                        
@@ -80,11 +82,15 @@ const PageFooterContent=({screenMedia})=>{
                         <FooterMobilePersonalStorage/>
                         <FooterMobileContentTransfer isLast={true}/>
                     </div>
-          </div>                                 
+          </div>  
+                                     
         );
     }
     else if(screenMedia.biggerThan(900)){
-        return (   
+        return (  
+            
+
+            
             <div style={styles.footer.content.get()}>
                      <div style={styles.footer.items}>   
                         <FooterMobileAuthentication/>                        
@@ -101,7 +107,8 @@ const PageFooterContent=({screenMedia})=>{
                         <FooterDownload/>
                         <FooterContactUs isLast={true}/>
                     </div>
-           </div>                                 
+           </div>  
+                                         
          );
     }
     else if(screenMedia.biggerThan(600)){
@@ -128,6 +135,7 @@ const PageFooterContent=({screenMedia})=>{
     }
     else{
       return (   
+        
         <div style={styles.footer.content.get()}>
                      <div style={styles.footer.items}>   
                         <FooterMobileAuthentication/>                        
@@ -145,9 +153,15 @@ const PageFooterContent=({screenMedia})=>{
                         <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
                     </div>                    
-           </div>                               
+           </div> 
+           
      );
     }
     
-}
+};
+
+
+
+
+
 
