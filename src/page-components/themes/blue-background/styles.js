@@ -79,7 +79,7 @@ export const styles={
       title:{
         get:styleMatchingScreenSize,
         default:{
-          fontSize:30,
+          fontSize:40,
           marginTop:20,
           display:"block",
 
@@ -93,8 +93,8 @@ export const styles={
         get:styleMatchingScreenSize,
         default:{
           marginBottom:10,
-          fontSize:14,
-          display:"block",
+          fontSize:18,
+          display:"block",          
           marginBottom:30
         },
         mobile:{
@@ -126,7 +126,7 @@ export const styles={
           flexDirection:"column",
           justifyContent:"flex-start",
           alignItems:"center",
-          maxWidth:800,
+          maxWidth:900,
           padding:20,
 
         }

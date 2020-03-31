@@ -17,7 +17,7 @@ const images={
   appStore:require('./images/app-store.png'),
   playStore:require('./images/play-store.png'),
   extension:require('./images/extension.png'),
-  chrome:require('./images/chrome.png'),
+  chrome:require('./images/web-store.png'),
   firefox:require('./images/firefox-addons.png'),
 }
 
@@ -44,7 +44,10 @@ const GetAppPage=props=>(
 <IconCard titleIcon={images.appIcon}
                   title="Global Input App" 
                   footerContent={mobileApp()}>
-   Get our free and open-source mobile app
+   Get our free and open-source mobile app to operate on a multi-device environment.
+
+
+
 </IconCard>
 
 <IconCard titleIcon={images.extension}

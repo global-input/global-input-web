@@ -97,8 +97,14 @@ export var styles={
  },
  
  footer:{
-   
-   buttons:{
+  container:{
+    display:"flex",
+    flexDirection:"column",
+    width:"100%",
+    flex:1,
+    justifyContent:"flex-end"
+  },
+  content:{
     get:styleMatchingScreenSize,
      default:{
       display:"flex",
