@@ -81,7 +81,7 @@ export default class InputWithLabel extends Component{
                 type={this.props.type}
                 style={styles.field.get(stylestatus.field)}
                 readOnly={this.props.readOnly}
-                rows="6"
+                rows="6"                
                 onFocus={()=>this.setFocus(true)}
                 onBlur={()=>this.setFocus(false)}
                 onChange={(evt) => {

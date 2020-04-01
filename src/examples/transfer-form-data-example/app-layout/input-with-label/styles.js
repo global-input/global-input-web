@@ -13,8 +13,9 @@ export var styles={
         get:styleMatchingScreenSize,
         default:{
           width:"100%",
-          fontSize:"1vw",
+          fontSize:"20",
           color:"#5291CD",
+          border:"1px solid #888888"
         },
         readOnly:{
             backgroundColor:"#AAAAAA"
@@ -25,7 +26,7 @@ export var styles={
     label:{
           get:styleMatchingScreenSize,
           default:{
-              fontSize: "1vw",
+              fontSize: "20",
               color: "#4880ED",
               minWidth:100,
               display:"flex",
@@ -43,13 +44,13 @@ export var styles={
     arealabel:{
           get:styleMatchingScreenSize,
           default:{
-              fontSize: "1vw",
+              fontSize: "20",
               color: "#4880ED",
               minWidth:100,
               display:"flex",
               flexDirection:"row",
               justifyContent:"flex-start",
-              alignItems:"center",
+              alignItems:"center"              
           },
           placeholder:{
               transform: 'translateY(50px)',
@@ -57,6 +58,7 @@ export var styles={
 
 
     },
+    
 
     help:{
       fontSize:10,

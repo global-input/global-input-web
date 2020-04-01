@@ -125,8 +125,10 @@ export const DisplayInputCopyField = ({field,hideValue,onChange,onToggleSelectio
 };
 
 export const DisplayCanvas=({onCanvas})=>{
+     
      const canvasHolder=useRef(null);
      const [width,height]=useWindowSize();  
+     console.log("-------re-render?:"+width);
      const setCanvas=ref=>{
           if(ref && canvasHolder.current!==ref){
                canvasHolder.current=ref;
@@ -137,13 +139,21 @@ export const DisplayCanvas=({onCanvas})=>{
       var w = width - 50;
       var h = height - 50;
      var canvasHeight = h - 50;
-     var canvasWidth = 16 * canvasHeight / 9;
-     if (canvasWidth > w) {
-          canvasWidth = w - 50;
-          canvasHeight = 9 * canvasWidth / 16;
-     }
+     const canvasWidth=w;
+     
      return(
                <canvas  width={canvasWidth} height={canvasHeight} ref={setCanvas} style={styles.canvas}/>
      );
+};
+
+
+
+export const ContentContainer=({children,row})=>{
+     let st=styles.contentContainer.left;  
+     if(row==='center'){
+         st=styles.contentContainer.center;  
+     }
+     return(<div style={st.get()}>{children}</div>);
 }
+
 
