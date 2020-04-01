@@ -4,8 +4,8 @@ import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,Transpare
 import ButtonsContainer from '../page-components/buttons-container';
 import WatchVideoIcon from '../page-components/watch-video';
 const images={
-      chrome:require("./images/chrome.png"),      
-      firefox:require("./images/firefox-add-ons.png"),
+      chrome:require("./images/web-store.png"),      
+      firefox:require("./images/firefox-addons.png"),
       appStore:require("./images/app-store.png"),
       playStore:require("./images/play-store.png"),
       payIcon:require("./images/play.svg"),

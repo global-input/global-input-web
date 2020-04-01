@@ -57,7 +57,7 @@ const FooterPrivacyPolicy=({isLast=false})=>(
 
 const FooterDownload=({isLast=false})=>(
     <FooterItem href={config.paths.getAppScreen.path}
-    label="Download" isLast={isLast}/>
+    label="Get It Free" isLast={isLast}/>
 );
 
 const FooterContactUs=({isLast=false})=>(
@@ -76,11 +76,11 @@ const PageFooterContent=({screenMedia})=>{
                         <FooterSecondScreen/>
                         <FooterMobileInputControl isLast={true}/>
                      </div>
-                     <div style={styles.footer.items}>                    
-                        <FooterPrivacyPolicy/>
-                        <FooterDownload/>
+                     <div style={styles.footer.items}>                                                                    
                         <FooterMobilePersonalStorage/>
-                        <FooterMobileContentTransfer isLast={true}/>
+                        <FooterDownload/>
+                        <FooterPrivacyPolicy/>
+                        <FooterContactUs isLast={true}/>
                     </div>
           </div>  
                                      
@@ -102,9 +102,9 @@ const PageFooterContent=({screenMedia})=>{
                         <FooterMobilePersonalStorage/>
                         <FooterMobileContentTransfer isLast={true}/>
                     </div>
-                    <div style={styles.footer.items}>
-                        <FooterPrivacyPolicy/>
+                    <div style={styles.footer.items}>                        
                         <FooterDownload/>
+                        <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
                     </div>
            </div>  

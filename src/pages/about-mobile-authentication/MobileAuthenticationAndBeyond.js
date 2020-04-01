@@ -2,16 +2,16 @@ import React from 'react';
 
 
 import {config} from '../../configs';
-import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
-import SubtitleSectionContainer from '../../page-components/section-containers/subtitle-section-container';
+import {externalsLinks,pagesLinks} from '../../links-components';
+
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
 
 
 
-const {ChromeExtension,FirefoxExtension,SupportedWebsites,WatchAuthenticationVideos,WatchAuthenticationDemo,AuthenticationDemoVideo,WordPressPlugin,AuthenticationWhitePaper,PlayTutorialVideoIcon, ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle}=externalsLinks;
-const {TransferFormData,SecondScreen} = examplesLinks;
-const {TransferFormDataButton,ChromeExtensionButton,FirefoxExtensionButton,WordPressButton,DocumentationButton}  = pagesLinks.buttons;
+const {ChromeExtension,FirefoxExtension, ReactJSExtension}=externalsLinks;
+
+const {TransferFormDataButton,ChromeExtensionButton,FirefoxExtensionButton}  = pagesLinks.buttons;
 
 
 const AuthenticationButtons=props=>{
