@@ -1,26 +1,23 @@
 import React from 'react';
 
 
-import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
+import {pagesLinks} from '../../links-components';
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
 
-const {ReactJSExtension,ReactJSLink}=externalsLinks;
 
-const {SendMessageExample} = examplesLinks;
-const {DocumentationButton,SendMessageAppButton}  = pagesLinks.buttons;
-const {AboutContentEncryption} =pagesLinks.links;
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
+
+
+const {SendMessageAppButton,ChromeExtensionButton,FirefoxExtensionButton}  = pagesLinks.buttons;
+
+
 const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <SendMessageAppButton>Example</SendMessageAppButton>        
+        <SendMessageAppButton>Try It Now</SendMessageAppButton> 
+        <ChromeExtensionButton/>
+        <FirefoxExtensionButton/>       
     </ButtonsContainer>
   )
 

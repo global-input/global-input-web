@@ -4,23 +4,13 @@ import SimpleContainer from '../../page-components/section-containers/simple-con
 import ButtonsContainer from '../../page-components/buttons-container';
 
 
+const {MobileEncryptionAppButton,ChromeExtensionButton,FirefoxExtensionButton}  = pagesLinks.buttons;
 
-
-const { MobileEncryption} = examplesLinks;
-
-const {DocumentationButton,MobileEncryptionAppButton}  = pagesLinks.buttons;
-
-
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
 const FooterButtons=props=>{
 
   return(
-    <ButtonsContainer>
+    <ButtonsContainer>        
+        <ChromeExtensionButton/><FirefoxExtensionButton/>
         <MobileEncryptionAppButton>Mobile Encryption Example</MobileEncryptionAppButton>        
     </ButtonsContainer>
   )

@@ -11,19 +11,12 @@ const {MobileOperationWhitePaper,ReactJSExtension,JSExtension,ReactJSLink,ReactJ
 const {DocumentationButton,MobileGameControlButton}  = pagesLinks.buttons;
 
 
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
 
 const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <MobileGameControlButton>Game Control Example</MobileGameControlButton>
-        
+        <MobileGameControlButton>Try It Now</MobileGameControlButton>        
     </ButtonsContainer>
   )
 

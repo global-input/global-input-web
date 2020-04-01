@@ -7,20 +7,15 @@ import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
 
 const {TransferFormData,ContentTransfer,MobileEncryption} = examplesLinks;
 
-const {DocumentationButton,CopyContentAppButton,TransferFormDataButton}  = pagesLinks.buttons;
+const {CopyContentAppButton,ChromeExtensionButton,FirefoxExtensionButton}  = pagesLinks.buttons;
 
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
 const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <CopyContentAppButton>Transfer Content Example </CopyContentAppButton>
-        <TransferFormDataButton>Transfer Form Data Example</TransferFormDataButton>
+        <CopyContentAppButton>Try It Now</CopyContentAppButton>
+        <ChromeExtensionButton/>
+        <FirefoxExtensionButton/>
         
     </ButtonsContainer>
   )

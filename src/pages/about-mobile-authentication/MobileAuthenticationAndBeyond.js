@@ -20,7 +20,7 @@ const AuthenticationButtons=props=>{
     <ButtonsContainer>
         <ChromeExtensionButton/>
         <FirefoxExtensionButton/>        
-        <TransferFormDataButton>Transfer Form</TransferFormDataButton>        
+        <TransferFormDataButton>Form Data Transfer</TransferFormDataButton>        
     </ButtonsContainer>
   )
 

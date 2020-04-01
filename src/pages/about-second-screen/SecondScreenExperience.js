@@ -9,17 +9,11 @@ const {TransferFormData,SecondScreen} = examplesLinks;
 const {DocumentationButton,SecondScreenButton}  = pagesLinks.buttons;
 
 
-const DocuButton=props=>{
-    if(props.isSideMenu){
-      return null;
-    }
-    return (<DocumentationButton>Documentation</DocumentationButton>);
-}
 const FooterButtons=props=>{
 
   return(
     <ButtonsContainer>
-        <SecondScreenButton>Player Example</SecondScreenButton>        
+        <SecondScreenButton>Try It Now</SecondScreenButton>        
     </ButtonsContainer>
   )
 
