@@ -23,9 +23,9 @@ const IconHeaderCard=({titleIcon,title,content,link,children,footerContent})=>(
 export default withResponsiveComponent(IconHeaderCard);
 
 
-const _CardContainer=({children})=>(
+
+export const CardContainer=withResponsiveComponent(({children})=>(
      <div style={styles.cardContainer.get()}>
                {children}
      </div>
-);
-export const CardContainer=withResponsiveComponent(_CardContainer);
+));

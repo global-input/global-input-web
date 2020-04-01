@@ -38,7 +38,7 @@ const extension=()=>(
 );
 
 
-const GetAppPage=props=>(
+const GetAppPage=()=>(
         <Page>
 <CardContainer>
 <IconCard titleIcon={images.appIcon}

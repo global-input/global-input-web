@@ -132,6 +132,7 @@ export var styles={
         justifyContent:"center",
         alignItems:"center",
         width:"100%",
+        marginTop:100
       },
       screen1080:{
         flexDirection:"row",

@@ -3,6 +3,7 @@ import {withResponsiveComponent} from "../../components/screen-media";
 
 import {TitleCenter,Page,VerticalOnMobile,PageContainer} from "../../page-components/themes/blue-background";
 import VerticalList from '../../page-components/vertifical-list';
+import ContactContainer from './contact-container';
 
 
 
@@ -11,6 +12,7 @@ import VerticalList from '../../page-components/vertifical-list';
 const ContactUsPage= ()=>(
         <Page>
           <PageContainer>
+          <ContactContainer>
           <TitleCenter>{textContent.title}</TitleCenter>
               
               <VerticalOnMobile>
@@ -24,6 +26,8 @@ const ContactUsPage= ()=>(
                     
                     
               </VerticalOnMobile>
+          </ContactContainer>
+          
           </PageContainer>
             
 
