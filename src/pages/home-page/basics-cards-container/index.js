@@ -8,5 +8,5 @@ const BasicCardsContainer=props=>(
               {props.children}
           </div>
         );
-const ResponsiveBaiscCardsContainer=withResponsiveComponent(BasicCardsContainer);
-export default ResponsiveBaiscCardsContainer;
+
+export default withResponsiveComponent(BasicCardsContainer);;

@@ -16,7 +16,7 @@ export var styles={
         alignItems:"flex-start",
         backgroundColor:"#FFFFFF",
         color:"#5291CD",
-        width:"30%",
+        width:300,
         maxWidth:370,
         minHeight:300,
 
@@ -26,7 +26,13 @@ export var styles={
         position:"relative"
       },
       screen1080:{
-       
+        width:400,
+      },
+      smallScreen:{
+        width:400,
+      },
+      desktop:{
+        width:280,        
       },
 
       mobile:{
@@ -53,13 +59,14 @@ export var styles={
            justifyContent:"center",
         },
         desktop:{
-          fontSize:"2.5vw",
+          fontSize:20,
+          
         },
         smallScreen:{
           fontSize:20,
         },
         mobile:{
-          fontSize:"6vw",
+          fontSize:25,
         },
         get:styleMatchingScreenSize
  },
@@ -77,10 +84,10 @@ export var styles={
      position:"relative"
    },
    desktop:{
-     fontSize:"1.5vw",
+     fontSize:14,
    },
    smallScreen:{
-     fontSize:"1.4vw",
+     fontSize:14,
    },
    screen1080:{
      fontSize:14,
@@ -92,7 +99,7 @@ export var styles={
    get:styleMatchingScreenSize
  },
  line:{
-   textAlign:"center",
+   textAlign:"left",
    width:"100%"
  },
  footer:{

@@ -5,7 +5,7 @@ import {withResponsiveComponent} from '../../../components/screen-media';
 
 const HowItWorks=props=>{
 
-    if(props.screenMedia && props.screenMedia.biggerThan(600)){
+    if(props.screenMedia && props.screenMedia.biggerThan(700)){
         return(
             <div style={styles.container}>
                     <div style={styles.title}>How It Works</div>

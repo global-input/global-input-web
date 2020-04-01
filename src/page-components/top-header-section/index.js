@@ -13,7 +13,7 @@ var menus=[{
       linkText:"HOME"
     },{
       link:config.paths.privacy.path,
-      linkText:"PRIVACY"
+      linkText:"PRIVACY POLICY"
     },{
       link:config.paths.contactus.path,
       linkText:"CONTACT US"

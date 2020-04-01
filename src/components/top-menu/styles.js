@@ -140,8 +140,13 @@ export const styles={
         borderTopRightRadius:10,
         borderTopLeftRadius:10,
         marginBottom:10,
+        fontSize: 12,
         color:"#5291CD"
     },
+    smallScreen:{
+        fontSize: 15,
+    },
+    
     mobile:{
         textAlign:"left",
         backgroundColor:"#FFFFFF",
@@ -155,7 +160,8 @@ export const styles={
     },
     hover:{
         color:"#66ccff",
-        fontWeight:300
+        fontWeight:300,
+        textDecoration:"underline"
     }
   },
   content:{

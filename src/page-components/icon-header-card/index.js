@@ -34,7 +34,8 @@ const renderContent=(content,children)=>{
 
 const IconHeaderCard=({titleIcon,title,content,link,children,footerContent})=>(
           <div style={styles.card.get()}>
-              <div style={styles.icon.container}><img src={titleIcon} style={styles.icon.img}/></div>
+              <div style={styles.icon.container}>
+                  <img src={titleIcon} style={styles.icon.img}/></div>
               <div style={styles.title.get()}>{title}</div>
               <div style={styles.content.get()}>
                         {renderContent(content,children)}
@@ -43,6 +44,4 @@ const IconHeaderCard=({titleIcon,title,content,link,children,footerContent})=>(
           </div>);
 
 
-const ResponsiveIconHeaderCard=withResponsiveComponent(IconHeaderCard);
-
-export default ResponsiveIconHeaderCard;
+export default withResponsiveComponent(IconHeaderCard);

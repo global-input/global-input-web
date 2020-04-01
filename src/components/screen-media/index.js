@@ -55,43 +55,57 @@ export let screenMedia={
   }
 };
 export function styleMatchingScreenSize(namedState){
+        const computeIfMatch=(item,itemName,defaultSize,op)=>{
+            if(!item){
+                return null;
+            }
+            let computedStyle=null;
+            let cSize=defaultSize;
+            if(item.compareSize){
+                cSize=item.compareSize;             
+            }
 
-        if(this.bigScreen){
-
-            if(screenMedia.biggerThan(1440)){
-                return screenMedia.getScreenStyle(this.default,this.bigScreen,this,"bigScreen",namedState);
+            if(op){
+                if(!screenMedia.biggerThan(cSize)){
+                    computedStyle=screenMedia.getScreenStyle(this.default,item,this,itemName,namedState);
+                }                
             }
-        }
-        if(this.screen1245){
-            if(screenMedia.biggerThan(1245)){
-              return screenMedia.getScreenStyle(this.default,this.screen1245,this,"screen1245",namedState);
+            else if(screenMedia.biggerThan(cSize)){
+                computedStyle=screenMedia.getScreenStyle(this.default,item,this,itemName,namedState);
             }
-        }
-        if(this.screen1080){
-            if(screenMedia.biggerThan(1080)){
-              return screenMedia.getScreenStyle(this.default,this.screen1080,this,"screen1080",namedState);
+            if(computedStyle && computedStyle.compareSize){
+                delete computedStyle.compareSize;
             }
+            return  computedStyle;
         }
-        if(this.smallScreen){
-            if(screenMedia.biggerThan(800)){
-              return screenMedia.getScreenStyle(this.default,this.smallScreen,this,"smallScreen",namedState);
-            }
+        let computedStyle=computeIfMatch(this.bigScreen,"bigScreen",1440);
+        if(computedStyle){
+            return computedStyle;
         }
-        if(this.desktop){
-            if(screenMedia.biggerThan(600)){
-              return screenMedia.getScreenStyle(this.default,this.desktop,this,"desktop",namedState);
-            }
+        computedStyle=computeIfMatch(this.screen1245,"screen1245",1245);
+        if(computedStyle){
+            return computedStyle;
         }
-        if(this.narrowMobile){
-            if(!screenMedia.biggerThan(361)){
-              return screenMedia.getScreenStyle(this.default,this.narrowMobile,this,"narrowMobile",namedState);
-            }
+        computedStyle=computeIfMatch(this.screen1080,"screen1080",1080);
+        if(computedStyle){
+            return computedStyle;
         }
-        if(this.mobile){
-            if(!screenMedia.biggerThan(600)){
-              return screenMedia.getScreenStyle(this.default,this.mobile,this,"mobile",namedState);
-            }
+        computedStyle=computeIfMatch(this.smallScreen,"smallScreen",800);
+        if(computedStyle){
+            return computedStyle;
         }
+        computedStyle=computeIfMatch(this.desktop,"desktop",600);
+        if(computedStyle){
+            return computedStyle;
+        }
+        computedStyle=computeIfMatch(this.narrowMobile,"narrowMobile",361,true);
+        if(computedStyle){
+            return computedStyle;
+        }
+        computedStyle=computeIfMatch(this.mobile,"mobile",660,true);
+        if(computedStyle){
+            return computedStyle;
+        }        
         if(namedState){
             return screenMedia.getScreenStyle(this.default,this.default,this,"default",namedState);
         }

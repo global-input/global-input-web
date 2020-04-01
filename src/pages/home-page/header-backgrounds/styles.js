@@ -47,9 +47,8 @@ export var styles={
                           
             },
             desktop:{
-              backgroundImage: "url("+images.home.screen600+")",
-              backgroundSize: "auto",
-              
+              backgroundImage: "url("+images.home.screen800+"), url("+images.home.screen600+")", 
+              backgroundPosition: "left top, left bottom",              
             },
             smallScreen:{
               backgroundImage: "url("+images.home.screen800+")",

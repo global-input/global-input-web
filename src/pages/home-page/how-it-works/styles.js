@@ -23,10 +23,8 @@ export const styles={
             flexDirection:"column",
             justifyContent:"flex-start",
             alignItems:"flex-start",
-
         },
-        title:{
-          marginTop:"5vw",
+        title:{          
           display:"flex",
           flexDirection:"row",
           justifyContent:"center",
