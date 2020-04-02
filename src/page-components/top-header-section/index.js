@@ -6,7 +6,8 @@ import {TopMenu} from "../../components";
 import {config} from "../../configs";
 import {styles, images} from './styles';
 const textContent={
-    title:"Global Input App"
+    title:"Global Input App",
+    companyTitle:"Iterative Solution Limited"
 }
 var menus=[{
       link:config.paths.home.path,
@@ -22,7 +23,24 @@ var menus=[{
       linkText:"GET IT FREE"      
     }];
 
-const TopHeaderSection=props => (<TopMenu appTitle={textContent.title}
+const   getWebSiteConfig=()=>{
+   if(config.id==='iterative'){
+     return {
+        webSiteTitle:textContent.companyTitle,
+        websiteIcon:images.companyIcon
+     };
+   }   
+      return {
+        webSiteTitle:textContent.title,
+        websiteIcon:images.appIcon
+    }; 
+}  
+ 
+const {webSiteTitle, websiteIcon}=getWebSiteConfig();
+
+
+
+export default ({selected}) => (<TopMenu appTitle={webSiteTitle}
           menus={menus}
-          selected={props.selected} appLogo={images.appIcon}/>);
-export default TopHeaderSection;
+          selected={selected} appLogo={websiteIcon}/>);
+

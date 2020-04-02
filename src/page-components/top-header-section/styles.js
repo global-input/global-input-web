@@ -1,7 +1,8 @@
 import {styleMatchingScreenSize} from "../../components/screen-media";
 export const images={
     appIcon:require("./images/app-icon.png"),
-    downloadapp:require("./images/download-app.svg")
+    downloadapp:require("./images/download-app.svg"),
+    companyIcon:require("./images/company-icon.png"),
 }
 
 export const styles={
