@@ -7,7 +7,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.3",
     "eslint-config-react-app": "^2.1.0",
-    "global-input-react": "^3.1.19",
+    "global-input-react": "^3.2.2",
     "json-loader": "^0.5.7",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",

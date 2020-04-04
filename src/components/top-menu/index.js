@@ -131,8 +131,8 @@ export  default class TopMenu extends Component {
   renderDeskTop(){
 
     return (
-              <div style={styles.topnavContainer} className="noprint">
-                   <div style={styles.topnav}>
+              <div style={styles.topnavContainer.desktop} className="noprint">
+                   <div style={styles.topnav.desktop}>
                         <a href="/">
                         <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
                         </a>
@@ -218,23 +218,21 @@ export  default class TopMenu extends Component {
   renderMobile(){
 
     return(
-    <div style={styles.topnavContainer} className="noprint">
-          <div style={styles.topnav}>
-            <div style={styles.mobileMenu}>
-               {this.renderMenuItemSymbol()}
-            </div>
-            <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
+    <div style={styles.topnavContainer.mobile} className="noprint">
+          <div style={styles.topnav.mobile}>
+              <div style={styles.mobileMenu}>
+                {this.renderMenuItemSymbol()}
+              </div>
+              <img src={this.props.appLogo} style={styles.logo} alt={this.props.appLogo}/>
 
-           <div style={styles.appTitleContainer}>
-                         <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
-                         {this.renderMobileSubtitle()}
-                         {this.reanderMenuButton()}
+            < div style={styles.appTitleContainer}>
+                    <div style={styles.appMobileTitle}>{this.props.appTitle}</div>
+                    {this.renderMobileSubtitle()}
+                    {this.reanderMenuButton()}
+              </div>          
           </div>
-
-
+            {this.renderMobileMenuItems()}
           </div>
-          {this.renderMobileMenuItems()}
-    </div>
   );
   }
   reanderMenuButton(){

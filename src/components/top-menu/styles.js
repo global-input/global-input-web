@@ -2,38 +2,65 @@ import {styleMatchingScreenSize} from '../screen-media';
 var fontFamily="Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif";
 export const styles={
   topnavContainer:{
-    display:"flex",
-    flexDirection: "column",
-    width:"100%",
-    justifyContent: "flex-start",
-    alignItems:"flex-start",
-    position:"fixed",
-    zIndex:100,
-    top:0,
-    left:0,
-    paddingTop:5,
-    paddingRight:50,
-    borderBottomColor:'#EEEEEE',
-    borderBottomStyle:"solid",
-    borderBottomWidth:1,
-    boxShadow: "0 -5px 5px -5px #333",
-    backgroundColor:"white",
-    backgroundColor:"white",
+    desktop:{
+      display:"flex",
+      flexDirection: "column",
+      width:"100%",
+      justifyContent: "flex-start",
+      alignItems:"flex-start",
+      position:"fixed",
+      zIndex:100,
+      top:0,
+      left:0,
+      paddingTop:5,
+      paddingRight:50,
+      borderBottomColor:'#EEEEEE',
+      borderBottomStyle:"solid",
+      borderBottomWidth:1,
+      boxShadow: "0 -5px 5px -5px #333",
+      backgroundColor:"white",
+    },
+    mobile:{
+      display:"flex",
+      flexDirection: "column",
+      width:"100%",
+      justifyContent: "flex-start",
+      alignItems:"flex-start",
+      position:"fixed",
+      zIndex:100,
+      top:0,
+      left:0      
+    }
     
   },
 
   topnav:{
-    paddingRight:30,
-    position:"static",
-    paddingTop:10,
-    width:"100%",
-    display:"flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    desktop:{
+      paddingRight:30,
+      position:"static",
+      paddingTop:10,
+      width:"100%",
+      display:"flex",
+      flexDirection: "row",
+      justifyContent: "space-between",    
+      alignItems: "center",
+    },
+    mobile:{
+      paddingRight:30,      
+      paddingTop:10,
+      width:"100%",
+      display:"flex",
+      flexDirection: "row",
+      justifyContent: "space-between",    
+      alignItems: "center",
+      backgroundColor:"white",
+      borderBottomColor:'#EEEEEE',
+      borderBottomStyle:"solid",
+      borderBottomWidth:2,
+      
+      
+    }
     
-    alignItems: "center",
-    
-
   },
   appTitleContainer:{
     marginLeft:0    
@@ -96,11 +123,7 @@ export const styles={
   },
   mobileMenuOverlay:{
       width:"100%",
-      height:1000,
-      borderTopColor:'#EEEEEE',
-      borderTopStyle:"solid",
-      borderTopWidth:5,
-      boxShadow: "0 -5px 5px -5px #333"
+      height:1000
   },
   menuItemsDesktop:{
     display:"flex",
@@ -118,6 +141,7 @@ export const styles={
     flexDirection:"column",
     backgroundColor:"rgba(0,0,0,0)",
     width:"100%",
+    
 
   },
 
@@ -150,9 +174,9 @@ export const styles={
     mobile:{
         textAlign:"left",
         backgroundColor:"#FFFFFF",
-        borderBottomColor:'#EEEEEE',
+        borderBottomColor:'#BBBBBB',
         borderBottomStyle:"solid",
-        borderBottomWidth:5
+        borderBottomWidth:1
     },
     selected:{
         color:"#002080",
