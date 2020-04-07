@@ -13,7 +13,7 @@ export default ({ globalInputApp, backToMain, onSendMessage }) => {
     useEffect(() => {
         const { field } = globalInputApp;
         if (!field) {
-            return null;
+            return;
         }
         switch (field.id) {
             case initData.form.fields[0].id:

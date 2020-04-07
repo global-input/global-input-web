@@ -8,7 +8,7 @@ export default ({globalInputApp,backToMain}) => {
     useEffect(() => {
         const { field } = globalInputApp;
         if (!field) {
-            return null;
+            return;
         }
         switch (field.id) {
             case initData.form.fields[1].id:                
