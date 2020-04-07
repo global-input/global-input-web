@@ -136,6 +136,9 @@ export const DeleteFields=({globalInputApp,gotoTransfer,form,deleteFields})=>{
     
     useEffect(()=>{
         const {field}=globalInputApp;
+        if(!field){
+            return;
+        }
         if(dataUtil.deleteFields.cancelButtonPressed(field)){
             gotoTransfer();
         }
@@ -178,7 +181,10 @@ export const ChangeForm=({globalInputApp,gotoTransfer,form,changeFormAttributes}
         globalInputApp.setInitData(dataUtil.changeForm.getInitData({form}));    
     },[]);
     useEffect(()=>{
-        const {field}=globalInputApp;
+        const {field}=globalInputApp;        
+        if(!field){
+            return;
+        }
         if(dataUtil.changeForm.cancelButtonPressed(field)){
             gotoTransfer();
         }

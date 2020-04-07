@@ -510,11 +510,11 @@ export const changeForm= (()=>{
                   }
                 };
           }; 
-          const cancelButtonPressed=field=>field.id==='cancelEdit';
-          const titleFieldModified=field=>field.id==='formTitle';      
-          const idFieldModified=field=>field.id==='formID';      
-          const labelFieldModified=field=>field.id==='formLabel';
-          const updateButtonPressed=field=>field.id==='updateForm';      
+          const cancelButtonPressed=field=>field && field.id==='cancelEdit';
+          const titleFieldModified=field=>field && field.id==='formTitle';      
+          const idFieldModified=field=>field &&  field.id==='formID';      
+          const labelFieldModified=field=>field &&  field.id==='formLabel';
+          const updateButtonPressed=field=>field &&  field.id==='updateForm';      
           const setFormTitleOnMobile=(globalInputApp,value)=>{
             const {setters}=globalInputApp;
             const [setFormTitle]=setters;
