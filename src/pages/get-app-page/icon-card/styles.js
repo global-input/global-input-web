@@ -57,13 +57,13 @@ export var styles={
            justifyContent:"center",
         },
         desktop:{
-          fontSize:"2.5vw",
+          fontSize:20,
         },
         smallScreen:{
           fontSize:20,
         },
         mobile:{
-          fontSize:"6vw",
+          fontSize:20,
         },
         get:styleMatchingScreenSize
  },
@@ -76,22 +76,24 @@ export var styles={
      paddingLeft:20,
      paddingRight:20,
      paddingTop:20,
-     fontSize:14,
+     fontSize:14,     
      width:"100%",
-     position:"relative"
+     position:"relative"     
    },
    desktop:{
-     fontSize:"1.5vw",
+     fontSize:15,
+     
+     
    },
    smallScreen:{
-     fontSize:"1.4vw",
+     fontSize:14,     
    },
    screen1080:{
      fontSize:14,
    },
 
    mobile:{
-      fontSize:14,
+      fontSize:16,
    },
    get:styleMatchingScreenSize
  },
