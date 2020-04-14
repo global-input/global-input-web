@@ -19,7 +19,7 @@ export default withResponsiveComponent(PageFooterContainer);
 
 const _FooterItem=({href, label, isLast})=>(
     <div style={isLast?styles.footer.lastItem.get():styles.footer.item.get()}>
-        <a href={href} style={styles.footer.link}>{label}</a>
+        <Link to={href} style={styles.footer.link}>{label}</Link>
     </div>
 );
 const FooterItem=withResponsiveComponent(_FooterItem);
