@@ -29,7 +29,7 @@ export default {
           },
           contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
 
-          getAppScreen:{path:"/global-input-app/get-app",linkText:"Get GIA App Free"},
+          getAppScreen:{path:"/global-input-app/get-app",linkText:"GET IT FREE"},
           home:{path:"/",linkText:"Home"},
           learnMore:{path:"/global-input-app/documentation",linkText:"Learn More"},
           secondScreen:{path:"/global-input-app/second-screen-experience",oldpath:"/global-input-app/about-second-screen"},
