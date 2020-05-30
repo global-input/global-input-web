@@ -49,13 +49,20 @@ const ImageButton = props=>{
               <img src={props.image} style={styles.imageButton}/>
         </a>
         );
-  }
+  }  
   else if(props.to){
     return(
     <Link href={props.href} target="_blank">
           <img src={props.image} style={styles.imageButton}/>
     </Link>
     );
+  }
+  else if(props.onClick){
+    return(
+      <a onClick={props.onClick}>
+            <img src={props.image} style={styles.imageButton}/>
+      </a>
+      );
   }
 }
 

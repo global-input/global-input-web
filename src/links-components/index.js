@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import {config} from '../configs';
 import {WhiteRoundButton,BlueRoundButton,ImageExternalLink,ImageButton,TransparentButton} from '../page-components/round-buttons';
 import ButtonsContainer from '../page-components/buttons-container';
@@ -130,12 +130,54 @@ export const examplesLinks={
         },
 };
 
+const WEB_STORE_STATUS={
+  AVAILABLE:0,
+  NOT_REACHABLE:1,
+  NOT_AVAILABLE:2
+};
+const ChromeStoreNotAvailable=()=>(
+  <div style={storeStyles.container}>
+    Sorry, <a href={config.links.chromeExtension.url} target="_blank">Chrome Web Store</a> seems experiencing some issues at this time.
+    You may try again later or install it from <a href="https://github.com/global-input/browser-extension" target="_blank">its source code</a>.
+    
+  </div>
+);
+const storeStyles={  
+  container:{
+    textDecoration: "none",
+    fontSize: 15,
+    borderRadius:8,            
+    padding:10,
+    width:300, 
+    border:"1px solid red",
+    
+  }
+};
 
 export const pagesLinks={
           buttons:{
                 AppStoreButton:()=>(<ImageButton image={images.appStore} href={config.links.appdownload.appStore}/>),
-                PlayStoreButton:()=>(<ImageButton image={images.playStore} href={config.links.appdownload.playStore}/>),
-                ChromeExtensionButton:props=>(<ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>),
+                PlayStoreButton:()=>(<ImageButton image={images.playStore} href={config.links.appdownload.playStore}/>),                
+                ChromeExtensionButton:props=>{
+                  // const [webStoreStatus,setWebStoreStatus]=useState(WEB_STORE_STATUS.NOT_REACHABLE);                  
+                  // const toNotAvailable=()=>{
+                  //   setWebStoreStatus(WEB_STORE_STATUS.NOT_AVAILABLE);
+                  // }
+                  
+                  // if(webStoreStatus===WEB_STORE_STATUS.NOT_AVAILABLE){
+                  //   return (<ChromeStoreNotAvailable/>);
+                  // }
+                  // else if(webStoreStatus===WEB_STORE_STATUS.NOT_REACHABLE){
+                  //   return (<ImageButton image={images.chrome} onClick={toNotAvailable}/>);
+                  // }
+                  // else{
+                    return (<ImageButton image={images.chrome} href={config.links.chromeExtension.url}/>);
+                  // }
+
+
+                  
+                
+                },
                 FirefoxExtensionButton:props=>(<ImageButton image={images.firefox} href={config.links.firefox.url}/>),
                 LearnMoteWhiteButton:props=>(<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
                 GetAppButton:props=>(<WhiteRoundButton to={config.paths.getAppScreen.path}>{props.children}</WhiteRoundButton>),
