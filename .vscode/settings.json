@@ -1,5 +1,0 @@
-{
-    "jest.autoEnable": false,
-    "jest.runAllTestsFirst": false,
-    "java.configuration.updateBuildConfiguration": "disabled"
-}

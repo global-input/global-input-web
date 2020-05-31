@@ -70,7 +70,7 @@ export const ErrorMessage= ({errorMessage})=>{
 export const Title = ({ children }) => {
      return (<div style={styles.title}>{children}</div>);
 }
-export const P = ({ children,id}) => (<div id={id} style={styles.paragraph.get()}>{children}</div>);
+export const P = ({ children}) => (<div style={styles.paragraph.get()}>{children}</div>);
 
 export const A = ({ href, children }) => (<a href={href} style={styles.link} target="__blank">{children}</a>);
 

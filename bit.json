@@ -1,8 +1,0 @@
-{
-    "env": {
-        "compiler": "bit.envs/compilers/react@1.0.1"
-    },
-    "dependencies": {},
-    "componentsDefaultDirectory": "components/{name}",
-    "packageManager": "npm"
-}

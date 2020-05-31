@@ -1,4 +1,6 @@
 import styleMatchingScreenSize from "./styleMatchingScreenSize";
+
+
 export const styles = {
 
   pageContainer: {
@@ -42,6 +44,7 @@ export const styles = {
   videoContainer: {
     position: "relative"
   },
+  
   barcodeContainer: {
     position: "absolute",
     top: 0,
