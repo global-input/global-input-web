@@ -5,10 +5,35 @@ import {useGlobalInputApp} from 'global-input-react';
 
 import { PageContainer,Title, P, A,TextAreaBox, TextButton} from './app-layout';
 
+
+const initData = {
+  action: "input",
+  dataType: "form",
+  form: {
+    title: "Content Transfer",
+    fields: [{
+      label: "Content",
+      id: "content",
+      value: "",
+      nLines: 10      
+    },{
+      id:"info",
+      type:"info",
+      value:"You may paste content in the text box above to transfer it into the connected application."
+    }]
+  },
+};
+
 export default () => {
   const [content, setContent] = useState('');  
-  const globalInputApp = useGlobalInputApp({initData}); 
 
+  const onFieldChanged=({field})=>{
+    if(field.id===initData.form.fields[0].id){
+        setContent(field.value);
+    }
+  }
+  const globalInputApp = useGlobalInputApp({initData,onFieldChanged}); 
+  
   const copyToClipboard = () => {
     const el=document.getElementById("textContent") as HTMLInputElement;
 
@@ -17,14 +42,7 @@ export default () => {
     } 
     document.execCommand("Copy");
   }
-  useEffect(()=>{
-      const {field}=globalInputApp;
-      if(field && field.id===initData.form.fields[0].id){
-        setContent(field.value);
-      }
-
-  },[globalInputApp.field])
-
+  
     const {connectionMessage,WhenConnected,WhenDisconnected}=globalInputApp;
       return (
         <PageContainer>          
@@ -50,21 +68,4 @@ export default () => {
         </PageContainer>
       );    
 
-};
-const initData = {
-  action: "input",
-  dataType: "form",
-  form: {
-    title: "Content Transfer",
-    fields: [{
-      label: "Content",
-      id: "content",
-      value: "",
-      nLines: 10      
-    },{
-      id:"info",
-      type:"info",
-      value:"You may paste content in the text box above to transfer it into the connected application."
-    }]
-  },
 };
