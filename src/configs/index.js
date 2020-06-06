@@ -1,7 +1,7 @@
 export const config={    
     apikey:"k7jc3QcMPKEXGW5UC",
     url:"https://globalinput.co.uk",
-    id:"globalInputApp",
+    id:'globalInputApp',
     videos:{
       location:"https://media.iterativesolution.co.uk/video",
       game:function(){return this.location+"/globabl_input_game_control.mp4";},
