@@ -3,10 +3,9 @@ import React from 'react';
 import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
-const {AuthenticationWhitePaper}=externalsLinks;
-const {TransferFormData,SecondScreen} = examplesLinks;
 
-const {DocumentationButton,SecondScreenButton}  = pagesLinks.buttons;
+
+const {SecondScreenButton}  = pagesLinks.buttons;
 
 
 const FooterButtons=props=>{

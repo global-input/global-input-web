@@ -8,15 +8,17 @@ import SendMessageExample        from "./send-message-example";
 import TransferFormDataExample   from "./transfer-form-data-example";
 import MobileEncryptionExample from './mobile-encryption-example';
 import {config} from "../configs";
+import RenderPageMetadata from "../pages/RenderPageMetadata";
 
 
 
-  const createExampleComponent =(ExampleComponent:React.ComponentType)=>{
+  const createExampleComponent =(ExampleComponent:React.ComponentType, title)=>{
     return (props:any)=>{
       
       return(
         <Page>              
           <ExampleComponent url={config.url} {...props}/>          
+          <RenderPageMetadata title={title}/>
         </Page>
         
       );
@@ -56,15 +58,15 @@ import {config} from "../configs";
   
 
   
-export const GameControlScreen=createExampleComponent(GameControlExample);
-export const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample);
+export const GameControlScreen=createExampleComponent(GameControlExample, "Global Input App - Mobile Input & Control Example");
+export const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample, "Global Input App - Second Screen Example");
 
-export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample);
-export const ContentTransferScreen=createExampleComponent(ContentTransferExample);
-export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample);
+export const TransferFormDataScreen=createExampleComponent(TransferFormDataExample,"Global Input App - Mobile Authentication &amp; Example");
+export const ContentTransferScreen=createExampleComponent(ContentTransferExample,"Global Input App - Mobile Content Example");
+export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample,"Global Input App - Mobile Encryption Example");
 
 
-const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample);
+const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample,"Global Input App - Mobile Personal Storage Example");
 
 export const SendMessageScreen=(props:object)=>{    
       return(

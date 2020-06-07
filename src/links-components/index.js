@@ -185,8 +185,7 @@ export const pagesLinks={
                 
                 
                 TransferFormDataButton:props=>(<TransparentButton to={config.paths.examples.transferForm.path}>{props.children}</TransparentButton>),
-                WordPressButton:props=>(<ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>),
-                DocumentationButton:props=>(<TransparentButton to={config.paths.documentationPage.mobileIntegration.path}>{props.children}</TransparentButton>),
+                WordPressButton:props=>(<ImageButton image={images.wordpress} href={config.links.wordpressPlugin.url}/>),                
                 MobileGameControlButton:props=>(<TransparentButton to={config.paths.examples.gameControl.path}>{props.children}</TransparentButton>),
                 SecondScreenButton:props=>(<TransparentButton to={config.paths.examples.mediaPlayer.path}>{props.children}</TransparentButton>),
                 SendMessageAppButton:props=>(<TransparentButton to={config.paths.examples.sendMessage.path}>{props.children}</TransparentButton>),                

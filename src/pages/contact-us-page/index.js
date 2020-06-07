@@ -4,13 +4,14 @@ import {withResponsiveComponent} from "../../components/screen-media";
 import {TitleCenter,Page,VerticalOnMobile,PageContainer} from "../../page-components/themes/blue-background";
 import VerticalList from '../../page-components/vertifical-list';
 import ContactContainer from './contact-container';
-
+  import RenderPageMetadata from "../RenderPageMetadata";
 
 
 
 
 const ContactUsPage= ()=>(
         <Page>
+          <RenderPageMetadata title="Global Input App - Contact Us"/>
           <PageContainer>
           <ContactContainer>
           <TitleCenter>{textContent.title}</TitleCenter>

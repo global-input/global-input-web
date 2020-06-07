@@ -7,8 +7,8 @@ import {externalsLinks,examplesLinks,pagesLinks} from '../../links-components';
 import ButtonsContainer from '../../page-components/buttons-container';
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 
-const {MobileOperationWhitePaper,ReactJSExtension,JSExtension,ReactJSLink,ReactJSFiddle} = externalsLinks;
-const {DocumentationButton,MobileGameControlButton}  = pagesLinks.buttons;
+const {JSExtension} = externalsLinks;
+const {MobileGameControlButton}  = pagesLinks.buttons;
 
 
 

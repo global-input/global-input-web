@@ -20,48 +20,26 @@ import AboutSecondScreen from './pages/about-second-screen';
 import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
 import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
-import DocumentationPage from './pages/documentation-page';
+
 
 import * as examples from './examples';
 
+
+
+
 const App = () => (
-  <Router>
+  <Router>    
     <Switch>
       <Route path={config.paths.home.path} exact component={HomePage} />
-
       <Route path={config.paths.getAppScreen.path} component={GetAppPage} />
       <Route path={config.paths.privacy.path} component={PrivacyPage} />
       <Route path={config.paths.contactus.path} component={ContactUsPage} />
-
       <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication} />
-      <Route path={config.paths.mobileAuthentication.oldpath} component={AboutMobileAuthentication} />
-
       <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl} />
-      <Route path={config.paths.mobileControl.oldpath} component={AboutMobileInputControl} />
-
-
-
       <Route path={config.paths.secondScreen.path} component={AboutSecondScreen} />
-      <Route path={config.paths.secondScreen.oldpath} component={AboutSecondScreen} />
-
       <Route path={config.paths.mobilePersonalStorage.path} component={AboutMobilePersonalStorage} />
-      <Route path={config.paths.mobilePersonalStorage.oldpath} component={AboutMobilePersonalStorage} />
-
-
-
-
       <Route path={config.paths.aboutContentEncryption.path} component={AboutContentEncryption} />
-      <Route path={config.paths.aboutContentEncryption.oldpath} component={AboutContentEncryption} />
-
-
-      <Route path={config.paths.mobileContentTransfer.path} component={AboutMobileContentTransfer} />
-      <Route path={config.paths.mobileContentTransfer.oldpath} component={AboutMobileContentTransfer} />
-      <Route path={config.paths.mobileContentTransfer.oldpath2} component={AboutMobileContentTransfer} />
-
-
-
-      <Route path={config.paths.documentationPage.path} component={DocumentationPage} />
-
+      <Route path={config.paths.mobileContentTransfer.path} component={AboutMobileContentTransfer} />          
       <Route path={config.paths.examples.contentTransfer.path} component={examples.ContentTransferScreen} />
       <Route path={config.paths.examples.mediaPlayer.path} component={examples.MediaPlayerScreen} />
       <Route path={config.paths.examples.gameControl.path} component={examples.GameControlScreen} />
@@ -69,8 +47,6 @@ const App = () => (
       <Route path={config.paths.examples.sendMessage.path} component={examples.SendMessageScreen} />
       <Route path={config.paths.examples.mobileEncryption.path} component={examples.MobileEncryptionScreen} />
       <Route path={config.paths.examples.mobileEncryption.oldpath} component={examples.MobileEncryptionScreen} />
-
-
       <Redirect to={config.paths.home.path} />
     </Switch>
   </Router>

@@ -32,29 +32,17 @@ export const config={
           getAppScreen:{path:"/global-input-app/get-app",linkText:"GET IT FREE"},
           home:{path:"/",linkText:"Home"},
           learnMore:{path:"/global-input-app/documentation",linkText:"Learn More"},
-          secondScreen:{path:"/global-input-app/second-screen-experience",oldpath:"/global-input-app/about-second-screen"},
-          mobileControl:{path:"/global-input-app/mobile-input-control",        oldpath:"/global-input-app/about-mobile-control"},
-          mobileAuthentication:{path:"/global-input-app/mobile-authentication",oldpath:"/global-input-app/about-mobile-authentication"},
-          mobilePersonalStorage:{path:"/global-input-app/mobile-personal-storage",oldpath:"/global-input-app/about-portable-personal-storage"},
+          secondScreen:{path:"/global-input-app/second-screen-experience"},
+          mobileControl:{path:"/global-input-app/mobile-input-control"},
+          mobileAuthentication:{path:"/global-input-app/mobile-authentication"},
+          mobilePersonalStorage:{path:"/global-input-app/mobile-personal-storage"},
 
 
           privacy:{path:"/global-input-app/privacy",linkText:"Privacy"},
 
 
-          aboutContentEncryption:{path:"/global-input-app/mobile-content-encryption",oldpath:"/global-input-app/about-content-encryption"},
-          mobileContentTransfer:{path:"/global-input-app/mobile-content-transfer", oldpath:"/global-input-app/about-mobile-tools",oldpath2:"/global-input-app/about-secure-transfer"},
-          documentationPage:{
-                              path:"/global-input-app/documentation",
-                              chromeExtensionHelp:{
-                                  id:"chromeExtensionHelp",
-                                  path:"/global-input-app/documentation#chromeExtensionHelp"
-                              },
-                              mobileIntegration:{
-                                  id:"mobileIntegration",
-                                  path:"/global-input-app/documentation#clientdevice"
-                              },
-                            },
-
+          aboutContentEncryption:{path:"/global-input-app/mobile-content-encryption"},
+          mobileContentTransfer:{path:"/global-input-app/mobile-content-transfer"}
       },
       links:{
           websocket:{

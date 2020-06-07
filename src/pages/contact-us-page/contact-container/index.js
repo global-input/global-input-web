@@ -1,8 +1,10 @@
 import React from 'react';
 
 
+
 export default({children})=>(
     <div style={styles.contactContainer}>{children}</div>
+
 );
 const styles={
     contactContainer:{

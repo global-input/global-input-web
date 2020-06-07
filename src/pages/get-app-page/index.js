@@ -9,7 +9,7 @@ import IconCard,{CardContainer} from "./icon-card";
 
 import {pagesLinks} from '../../links-components';
 
-
+import RenderPageMetadata from "../RenderPageMetadata";
 
 
 const {AppStoreButton,PlayStoreButton,ChromeExtensionButton,FirefoxExtensionButton} =pagesLinks.buttons;
@@ -39,6 +39,7 @@ const extension=()=>(
 
 const GetAppPage=()=>(
         <Page>
+          <RenderPageMetadata/>
 <CardContainer>
 <IconCard titleIcon={images.appIcon}
                   title="Global Input App" 

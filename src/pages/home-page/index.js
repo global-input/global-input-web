@@ -14,6 +14,7 @@ import FeaturesSection from './features-section';
 import PageFooter from '../../page-components/themes/page-footer';
 import {withScrollToTop, withResponsiveComponent} from "../../components/screen-media";
 import {config} from '../../configs';
+import RenderPageMetadata from "../RenderPageMetadata";
 const images={
   authentication:require('./images/authentication.svg'),
   mobileControl:require('./images/control.svg'),
@@ -151,7 +152,7 @@ const textContent={
 
   
 const HomePage=props=> (
-          <BasicLayout>
+          <BasicLayout>            
             <HomeHeaderBackground>
                 <HeaderSection history={props.history}/>
                 <CardSection/>                
@@ -159,6 +160,7 @@ const HomePage=props=> (
             </HomeHeaderBackground>
             <FeaturesSection/>
             <PageFooter/>
+            <RenderPageMetadata/>/
           </BasicLayout>
             );
 

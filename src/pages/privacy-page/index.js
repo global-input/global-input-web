@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {Title,P,PageContainer,Page} from "../../page-components/themes/blue-background";
-
+import RenderPageMetadata from "../RenderPageMetadata";
 
 
 
 
 export default ()=>(
         <Page>
+          <RenderPageMetadata title="Global Input App -  Privacy Policy"/>
           <PageContainer>
           <Title>Privacy Policy</Title>
           <P>

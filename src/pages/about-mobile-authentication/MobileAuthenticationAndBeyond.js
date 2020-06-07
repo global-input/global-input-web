@@ -136,9 +136,5 @@ export default ({login})=>{
 
 };
 
-MobileAuthenticationAndBeyond.menu={
-    id:config.paths.documentationPage.chromeExtensionHelp.id,
-    label:"Mobile Authentication"
-}
 
 export default MobileAuthenticationAndBeyond;
