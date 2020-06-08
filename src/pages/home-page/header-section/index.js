@@ -16,7 +16,7 @@ const {LearnMoteWhiteButton,GetAppButton}=pagesLinks.buttons;
 
 const headerTextContent={
     title:"Mobile Integration",
-    subtitle:"Solution for Multi-Device environment",
+    subtitle:"Mobile Solution for Device Applications",
     smallText:"Data Security, Mobile Input & Control for IoT",
     description:"Users Carry Their Around Own Data or their Key "     
 };
