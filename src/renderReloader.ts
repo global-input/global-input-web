@@ -1,4 +1,4 @@
-import React,{useState,createContext,useContext} from 'react';
+import React from 'react';
 
 
 
@@ -19,16 +19,24 @@ export const onServiceWorkerUpdate=(registration:ServiceWorkerRegistration)=>{
 
 
 
-const reloadPage=()=>{
+
+
+const reloadPage = ()=>{
     postSkipWaiting();
     window.location.reload(true);
 }
-type Props={
-   reloader:(boolean, any)=>any
-};
+
+
+type ReloadPage= ()=> void;
+type Reloader =(boolean, ReloadPage) => JSX.Element;
+
+
+interface Props {
+    reloader: Reloader;
+}
 
 export const RenderReloader=(props:Props)=>{
-    const [needsToReload,setNeedsToReload]=useState(available);
+    const [needsToReload,setNeedsToReload]=React.useState(available);
     availableListener=setNeedsToReload;    
     return props.reloader(needsToReload,reloadPage);
 
