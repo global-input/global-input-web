@@ -34,6 +34,4 @@ ReactDOM.render(
 );
 
 
-serviceWorker.register({
-  onUpdate:onServiceWorkerUpdate
-});
+serviceWorker.register({ onUpdate: onServiceWorkerUpdate });
