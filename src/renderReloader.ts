@@ -28,17 +28,16 @@ const reloadPage = ()=>{
 
 
 type ReloadPage= ()=> void;
-type Reloader =(boolean, ReloadPage) => JSX.Element;
 
 
-interface Props {
-    reloader: Reloader;
+interface IRenderLoaderProps {
+    reloader: (boolean, ReloadPage) => React.ReactNode;    
 }
 
-export const RenderReloader=(props:Props)=>{
-    const [needsToReload,setNeedsToReload]=React.useState(available);
+export const RenderReloader=({reloader}:IRenderLoaderProps)=>{
+    const [needsToReload,setNeedsToReload]=React.useState<boolean>(available);
     availableListener=setNeedsToReload;    
-    return props.reloader(needsToReload,reloadPage);
+    return reloader(needsToReload,reloadPage);
 
 };
 
