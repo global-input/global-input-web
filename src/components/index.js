@@ -17,9 +17,8 @@ import TextRadioButtons from "./input/TextRadioButtons";
 import TextSelectOptions from "./input/TextSelectOptions";
 import TopMenu from "./top-menu";
 import DisplayQRCode from "./display-qrcode";
-import GlobalInputConnect from "./global-input-connect";
 import AutoPlayVideo from "./auto-play-video";
 import LinkItem from "./link-item";
-export {LinkItem,AutoPlayVideo,GlobalInputConnect,TopMenu,DisplayQRCode,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
+export {LinkItem,AutoPlayVideo,TopMenu,DisplayQRCode,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
         ShowHideButton,
         InputWithLabel,InputWithSelect,TextSelectOptions,TextAreaWithSelect,TextAreaWithLabel,TextButton,ClipboardButton,TextRadioButtons,NotificationMessage,BookMark};

@@ -31,7 +31,7 @@ type ReloadPage= ()=> void;
 
 
 interface IRenderLoaderProps {
-    reloader: (boolean, ReloadPage) => React.ReactNode;    
+    reloader: (boolean, ReloadPage) => JSX.Element;    
 }
 
 export const RenderReloader=({reloader}:IRenderLoaderProps)=>{
