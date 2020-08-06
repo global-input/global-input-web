@@ -1,28 +1,29 @@
-import React, { useReducer, useState, useRef, useEffect } from "react";
-import {useGlobalInputApp} from 'global-input-react';
-import * as dataUtil from './dataUtil';
-import { PageContainer,Title, P,DisplayCanvas,A} from './app-layout';
+import React from "react";
 
-export default ()=>{           
-        const globalInputApp=useGlobalInputApp({initData:dataUtil.mobile.getInitData});
-        
+
+import useMobileControl from './useMobileControl';
+import { PageContainer,Title, P,DisplayCanvas,A} from './app-layout';
+import * as game from "./game";
+
+export default ()=>{
+        const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected,
+            setMoveSpeed,setPlayPauseButtonValue,seGameStatus}=useMobileControl(game);
+
         const onCanvas=(canvas:any)=>{                
             const onGameRunning=()=>{                                
-                dataUtil.mobile.setPlayPauseButtonValue(globalInputApp,1);
-                dataUtil.mobile.seGameStatus(globalInputApp,'Game Stated');
-                
-                
+                setPlayPauseButtonValue(1);
+                seGameStatus('Game Stated');                                
             }
             const onGameStopped=()=>{                
-                 dataUtil.mobile.setPlayPauseButtonValue(globalInputApp,0);                
-                 dataUtil.mobile.seGameStatus(globalInputApp,'Game Over');
+                setPlayPauseButtonValue(0);                
+                seGameStatus('Game Over');
             }
             const onGamePaused=()=>{
-                 dataUtil.mobile.setPlayPauseButtonValue(globalInputApp,3);                
-                 dataUtil.mobile.seGameStatus(globalInputApp,'Game Paused');
+                setPlayPauseButtonValue(3);                
+                seGameStatus('Game Paused');
             }
             const onSpeedChanges=(moveSpeed:number)=>{
-                dataUtil.mobile.setMoveSpeed(globalInputApp,moveSpeed);
+                setMoveSpeed(moveSpeed);
             };
             const listeners={
                 onGameRunning,
@@ -30,28 +31,27 @@ export default ()=>{
                 onGamePaused,
                 onSpeedChanges
             };
-            dataUtil.game.initGame(canvas,listeners);            
+            game.initGame(canvas,listeners);            
         };
-        
-            const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=globalInputApp;  
-            return (
-              <PageContainer> 
-                  <WhenWaiting>
-                      <Title>Mobile Control Example</Title>
-                      {connectionMessage} 
-                      <DisplayApplicationInfo/>                     
-                  </WhenWaiting>                  
-                  <WhenDisconnected>
-                  <Title>Mobile Control Example</Title>
-                      <P>Disconnected, reload the page to try again</P>               
-                      <DisplayApplicationInfo/>                     
-                  </WhenDisconnected>
-                  <WhenConnected>
-                    <DisplayCanvas onCanvas={onCanvas}/>                    
-                  </WhenConnected>
-                  
-              </PageContainer>
-            );     
+
+        return (
+            <PageContainer> 
+                <WhenWaiting>
+                    <Title>Mobile Control Example</Title>
+                    {connectionMessage} 
+                    <DisplayApplicationInfo/>                     
+                </WhenWaiting>                  
+                <WhenDisconnected>
+                <Title>Mobile Control Example</Title>
+                    <P>Disconnected, reload the page to try again</P>               
+                    <DisplayApplicationInfo/>                     
+                </WhenDisconnected>
+                <WhenConnected>
+                  <DisplayCanvas onCanvas={onCanvas}/>                    
+                </WhenConnected>
+                
+            </PageContainer>
+          );  
 
 
 }

@@ -9,9 +9,6 @@ import TransferFormDataExample   from "./transfer-form-data-example";
 import MobileEncryptionExample from './mobile-encryption-example';
 import {config} from "../configs";
 import RenderPageMetadata from "../pages/RenderPageMetadata";
-
-
-
   const createExampleComponent =(ExampleComponent:React.ComponentType, title)=>{
     return (props:any)=>{
       
@@ -27,35 +24,6 @@ import RenderPageMetadata from "../pages/RenderPageMetadata";
    
   
   }
-
-  
-  
-  const compStyles={
-  
-    content:{
-        paddingLeft:  20,
-        paddingTop:   50,
-        paddingRight: 20,
-        display:      "flex",
-        flexDirection:"column",
-        justifyContent:"flex-start",
-        alignItems:    "center",
-        backgroundColor:"#5291CD",
-        width:"100%",
-        height:window.innerHeight,
-    },
-    itemSection:{
-       marginTop:20,
-       marginBottom:10,
-       padding:10,
-       backgroundColor:"white",
-       width:"95%",
-       borderRadius:25,
-    },
-  
-  };
-  
-  
 
   
 export const GameControlScreen=createExampleComponent(GameControlExample, "Global Input App - Mobile Input & Control Example");

@@ -1,14 +1,14 @@
 /* istanbul ignore file */
 
-const faker = require('faker');
+//const faker = require('faker');
 const puppeteer = require('puppeteer');
 const write = require ('write');
-const person = {
-  name: faker.name.firstName() + ' ' + faker.name.lastName(),
-  email: faker.internet.email(),
-  phone: faker.phone.phoneNumber(),
-  message: faker.random.words()
-};
+// const person = {
+//   name: faker.name.firstName() + ' ' + faker.name.lastName(),
+//   email: faker.internet.email(),
+//   phone: faker.phone.phoneNumber(),
+//   message: faker.random.words()
+// };
 const urls={
       loadVideoPlayer: async ({page})=>await page.goto('http://localhost:3000/global-input-app/video-player'),
       loadContentTransfer:async ({page})=>  await page.goto('http://localhost:3000/global-input-app/content-transfer'),
@@ -18,7 +18,7 @@ const urls={
       formDataTransfer2: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
       home: async ({page})=> await page.goto('http://localhost:3000'),
             
-      mobileEcryption:async ({page})=> {
+      mobileEncryption:async ({page})=> {
         debugger;
         await page.goto('http://localhost:3000/global-input-app/mobile-encryption')
       },      
@@ -38,6 +38,7 @@ describe('H1 Text', () => {
       headless: false,
       devtools:true
     });
+
     
     let page = await browser.newPage();
     let code=null;
@@ -56,7 +57,7 @@ describe('H1 Text', () => {
         }    
       }  
       else{
-        console.log('LOG:*******', msg.text());
+        console.log('LOG:*******'+ msg.text());
       }
       
     });
@@ -77,7 +78,7 @@ describe('H1 Text', () => {
     //const html = await page.$eval('.App-title', e => e.innerHTML);
     //expect(html).toBe('Welcome to React');
 
-    await page.waitFor(testTime);
+    //await page.waitFor(testTime);
     browser.close();    
   }, testTimeOut);
 });
