@@ -1,9 +1,9 @@
 import React, { useRef, useState,useEffect} from "react";
-import { useGlobalInputApp } from 'global-input-react';
+
 
 import * as videoControl from './videoControl';
 import { PageContainer, P, QRCodeContainer, useWindowSize,A } from './app-layout';
-
+import useMobileVideo from './use-mobile-video';
 
 
 
@@ -12,8 +12,8 @@ export default () => {
   
   const videoPlayer = useRef(null);
   const [videoData,setVideoData]=useState(videoControl.getDefaultVideo());
-  const [initData,setInitData]=useState<any>(null);
-  const globalInputApp = useGlobalInputApp({initData}, [initData]);
+  
+  
   
   
   const setPlayerStatusAttributes = (playerStatusTitle:string, playerStatusMessage:string, playerButtonValue:number) => {
@@ -27,9 +27,11 @@ export default () => {
   const onPrevious=()=>{
     setVideoData(videoData=>videoControl.getPreviousVideo(videoData));
   };
+  const onPreviousVideo=onPrevious;
   const onNext=()=>{
     setVideoData(videoData=>videoControl.getNextVideo(videoData));
   };
+  const onNextVideo=onNext;
   const setSliderPosition= (sliderPosition:number) => {
       videoControl.setCurrentTimeWithSlider(videoPlayer.current, sliderPosition);
   };
@@ -88,11 +90,9 @@ export default () => {
     });
     
   }
-    
-  useEffect(()=>{
-    switchToSelectVideoControl();      
-   },[]);
 
+  const {globalInputApp,initData,setInitData} = useMobileVideo({videoData,onPreviousVideo,onNextVideo});
+  
 
   useEffect(()=>{
     videoControl.setPlayVideoSource(videoPlayer.current,videoData.video);
