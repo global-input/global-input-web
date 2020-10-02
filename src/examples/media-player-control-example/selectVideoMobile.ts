@@ -1,15 +1,18 @@
-export default (video)=>({  
+
+const VIDEO_TITLE_ID="videoTitle";
+const VIDEO_SYNOPSIS_ID="synopsis"
+export const initData =(title, synopsis)=>({  
       action: "input",
       id: 'selectVideo',
       dataType: "control",
       form: {
         title: "Select Video to Play",
         fields: [{
-          id: "videoTitle",
+          id: VIDEO_TITLE_ID,
           type: "info",
           value: {
             type: "text",
-            content: video.title,
+            content: title,
             style: {
               fontSize: 18,
               marginTop: 20,
@@ -17,9 +20,9 @@ export default (video)=>({
           },
           viewId: "row1",
         }, {
-          id: "sunopsis",
+          id: VIDEO_SYNOPSIS_ID,
           type: "info",
-          value: video.synopsis,
+          value: synopsis,
           viewId: "row1"
         }, {
           id: "previousVideo",
@@ -43,3 +46,8 @@ export default (video)=>({
         }]
       }    
 });
+
+export const setTitleAndSynopsis=(globalInputApp,title,synopsis)=>{  
+  globalInputApp.setFieldValueById(VIDEO_TITLE_ID,title);    
+  globalInputApp.setFieldValueById(VIDEO_SYNOPSIS_ID,synopsis);        
+}

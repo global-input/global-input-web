@@ -35,6 +35,7 @@ const startSkipProcess = (videoPlayer, onFinish) => {
 
 export const setPlayVideoSource = (videoPlayer, video) => {
   if (videoPlayer) {
+    console.log("****changed video source:::"+video.mp4);
     videoPlayer.pause();
     videoPlayer.childNodes[0].setAttribute('src', video.mp4);
     videoPlayer.load();
@@ -47,6 +48,7 @@ export const playVideo = videoPlayer => {
   if (videoPlayer) {
     videoPlayer.play();
     videoPlayer.playbackRate = 1;
+    console.log("*********video is playing.....");
   }
   else {
     console.log("videoPlayer is empty");
@@ -115,28 +117,7 @@ export const skipToEnd = videoPlayer => {
 
   }
 };
-export const getVideoData = videoPlayer => {
-  if (!videoPlayer) {
-    return { currentTime: 0, duration: 0 }
-  }
-  const currentTime = videoPlayer.currentTime;
-  const duration = videoPlayer.duration;
-  return { currentTime, duration };
-};
 
-export const setCurrentTimeWithSlider = (videoPlayer, sliderPosition) => {
-  if (!videoPlayer) {
-    return;
-  }
-  if (!videoPlayer.duration) {
-    return;
-  }
-  let currentTime = sliderPosition * videoPlayer.duration / 100;
-  if (currentTime > videoPlayer.duration) {
-    currentTime = videoPlayer.duration;
-  }
-  videoPlayer.currentTime = currentTime;
-}
 
 
 const videos = [{
@@ -192,6 +173,30 @@ export const getPreviousVideo = videoData =>{
 };
 
 
+
+
+
+
+
+
+
+export const setCurrentTimeWithSlider = (videoPlayer, sliderPosition) => {
+  if (!videoPlayer) {
+    return;
+  }
+  if (!videoPlayer.duration) {
+    return;
+  }
+  let currentTime = sliderPosition * videoPlayer.duration / 100;
+  if (currentTime > videoPlayer.duration) {
+    currentTime = videoPlayer.duration;
+  }
+  videoPlayer.currentTime = currentTime;
+}
+
+
+
+
 let cache = {
   sliderValueHolder: null
 };
@@ -209,3 +214,45 @@ export const throttleSliderValue = (sliderValue) => {
   }
 };
 
+
+ const buildSliderValue=(currentTime, duration)=>{
+  return {
+    value: Math.floor(currentTime * 100 / duration),
+    labels: {
+      value: buildTimeString(currentTime),
+      minimumValue: buildTimeString(0),
+      maximumValue: buildTimeString(duration)
+    }
+  };
+};
+export const getVideoData = videoPlayer => {
+      const videoData={
+        currentTime:0,
+        duration:0,
+        sliderValue:0
+      }
+      if (!videoPlayer) {
+          return videoData;    
+      }
+      videoData.currentTime = videoPlayer.currentTime;
+      videoData.duration = videoPlayer.duration;
+      if(!videoData.duration){
+        return videoData;
+      }  
+      videoData.sliderValue=buildSliderValue(videoData.currentTime,videoData.duration);  
+      return videoData;
+};
+
+
+
+
+const buildTimeString= timestamp => {
+  var mininutes = Math.floor(timestamp / 60) % 60;
+  var hours = Math.floor(timestamp / 3600);
+  var minutesString = mininutes.toString().length < 2 ? '0' + mininutes : mininutes.toString();
+
+  var seconds = Math.floor(timestamp) % 60;
+  var secondsString = seconds.toString().length < 2 ? '0' + seconds : seconds;
+  var result = (hours > 0) ? (hours.toString() + ':' + minutesString + ':' + secondsString) : (minutesString + ':' + secondsString);
+  return result.match(/^([0-9]+:)?[0-9]*:[0-9]*$/) ? result : '00:00';
+}

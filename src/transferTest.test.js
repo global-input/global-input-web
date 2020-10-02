@@ -23,7 +23,7 @@ const urls={
         await page.goto('http://localhost:3000/global-input-app/mobile-encryption')
       },      
 }
-const loadTestPage=urls.home;
+const loadTestPage=urls.loadVideoPlayer;
 const testTime=600000;
 const testTimeOut=testTime*2;
 //const testTime=6000;
@@ -78,7 +78,7 @@ describe('H1 Text', () => {
     //const html = await page.$eval('.App-title', e => e.innerHTML);
     //expect(html).toBe('Welcome to React');
 
-    //await page.waitFor(testTime);
+    await page.waitFor(testTime);
     browser.close();    
   }, testTimeOut);
 });
