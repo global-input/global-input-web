@@ -1,13 +1,13 @@
 import React from "react";
 
 
-import useMobileControl from './useMobileControl';
+import useSecondScreen from './useSecondScreen';
 import { PageContainer,Title, P,DisplayCanvas,A} from './app-layout';
 import * as game from "./game";
 
 export default ()=>{
         const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected,
-            setMoveSpeed,setPlayPauseButtonValue,seGameStatus}=useMobileControl(game);
+            setMoveSpeed,setPlayPauseButtonValue,seGameStatus}=useSecondScreen(game);
 
         const onCanvas=(canvas:any)=>{                
             const onGameRunning=()=>{                                

@@ -1,12 +1,32 @@
 import React, {useState } from "react";
 
-import useSecondScreen from './useSecondScreen';
+import {useGlobalInputApp} from 'global-input-react';
 
 
 import { PageContainer,Title, P, A,TextAreaBox, TextButton} from './app-layout';
 
+const initData = {
+  action: "input",
+  dataType: "form",
+  form: {
+    title: "Content Transfer",
+    fields: [{
+      label: "Content",
+      id: "content",
+      value: "",
+      nLines: 10      
+    },{
+      id:"info",
+      type:"info",
+      value:"You may paste content in the text box above to transfer it into the connected application."
+    }]
+  },
+};
+
 export default () => {
-  const {content, setContent,SecondScreenConnection} = useSecondScreen();
+  const [content, setContent] = useState(''); 
+  const {setOnFieldChanged,connectionMessage,setFieldValueById} = useGlobalInputApp({initData});  
+
 
   const copyToClipboard = () => {
     const el=document.getElementById("textContent") as HTMLInputElement;
@@ -16,12 +36,19 @@ export default () => {
     } 
     document.execCommand("Copy");
   }
+
+  setOnFieldChanged(({field})=>{
+    if(field.id===initData.form.fields[0].id){
+          setContent(field.value);
+    }
+  });
       return (
         <PageContainer>          
             <Title>Content Transfer Application</Title>                        
-            <SecondScreenConnection/>            
+            {connectionMessage}
                 <TextAreaBox id="textContent" onChange={(evt:any)=>{                    
-                    setContent(evt.target.value);                    
+                    setContent(evt.target.value);
+                    setFieldValueById(initData.form.fields[0].id,content);
                 }} value={content} />
                 <TextButton label="Copy" onClick={copyToClipboard} />              
               

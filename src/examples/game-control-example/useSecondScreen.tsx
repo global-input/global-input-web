@@ -107,16 +107,16 @@ export default (game)=>{
             }]             
         }
     };
-    const globalInputApp=useGlobalInputApp({initData});
+    const {setFieldValueById,connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=useGlobalInputApp({initData});
     const setMoveSpeed=(speed)=>{        
         var speedValue = {
             type: "text",
             content: speed
         };        
-        globalInputApp.setFieldValueById('speedText',speedValue);
+        setFieldValueById('speedText',speedValue);
     };
     const setPlayPauseButtonValue = (value)=>{
-        globalInputApp.setFieldValueById('startPauseButton',value);                       
+        setFieldValueById('startPauseButton',value);                       
     };
     const seGameStatus = (message) => {
         const statusValue = {
@@ -126,10 +126,10 @@ export default (game)=>{
             },
             content:message                       
         };
-        globalInputApp.setFieldValueById('gameStatus',statusValue);                       
+        setFieldValueById('gameStatus',statusValue);                       
 
     };
-    return {...globalInputApp,setMoveSpeed,setPlayPauseButtonValue,seGameStatus}
+    return {setMoveSpeed,setPlayPauseButtonValue,seGameStatus,connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}
 
 };
 
