@@ -1,92 +1,97 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useGlobalInputApp } from 'global-input-react';
-import * as selectVideoMobile from './selectVideoMobile';
-import * as playVideoMobile from './playVideoMobile';
+import * as config from './config';
 import * as videoControl from './videoControl';
 import { P, QRCodeContainer } from './app-layout';
 
 export default (videoPlayer) => {
 
-        const [videoData, setVideoData] = useState(videoControl.getDefaultVideo());
+        const [videoData, _setVideoData] = useState(videoControl.getDefaultVideo());
+        const {initDataID,connectionMessage, WhenWaiting, WhenDisconnected,setFieldValueById,setOnFieldChanged} = useGlobalInputApp({ initData: config.selector(videoData.video.title, videoData.video.synopsis)});        
+        
+        const setVideoData = videoData => {
+                videoControl.setPlayVideoSource(videoPlayer.current, videoData.video);                                
+                setFieldValueById(config.VIDEO_TITLE_ID,videoData.video.title);    
+                setFieldValueById(config.VIDEO_SYNOPSIS_ID,videoData.video.synopsis);
+                _setVideoData(videoData);
+        };        
+        const setPlayerStatus = (playerStatusTitle, playerStatusMessage) => {
+                setFieldValueById(config.PLAYER_STATUS_FIELD_ID,config.buildPlayerStatusValue(playerStatusTitle,playerStatusMessage));    
+        };
+        const showPlayButton= ()=>{
+                setFieldValueById(config.PLAY_PAUSE_BUTTON_ID,0);        
+        };
+        const showPauseButton= ()=>{
+                setFieldValueById(config.PLAY_PAUSE_BUTTON_ID,1);        
+        };
+        const setSliderValue= (sliderValue) => {
+                setFieldValueById(config.SLIDER_FIELD_ID,sliderValue);        
+        };
 
-        const globalInputApp = useGlobalInputApp({ initData: () => selectVideoMobile.initData(videoData.video.title, videoData.video.synopsis) });
-
-        useEffect(() => {
-                switch (globalInputApp.field && globalInputApp.field.id) {
-                        case 'play':
+        setOnFieldChanged(({field,setInitData,initDataID}) => {
+                console.log("****initDataID:"+initDataID);
+                switch (initDataID===config.VIDEO_SELECTOR_ID && field.id) {
+                        case config.VIDEO_PLAYER_ID:
                                 videoControl.playVideo(videoPlayer.current);
-                                globalInputApp.setInitData(playVideoMobile.initData(videoData.video.title));
+                                setInitData(config.player(videoData.video.title));
+                                break;                        
+                        case config.PREVIOUS_VIDEO_ID:
+                                setVideoData(videoControl.getPreviousVideo(videoData));
                                 break;
-                        case 'changeVideo':
-                                globalInputApp.setInitData(selectVideoMobile.initData(videoData.video.title, videoData.video.synopsis));
+                        case config.NEXT_VIDEO_ID:
+                                setVideoData(videoControl.getNextVideo(videoData));
                                 break;
-                        case 'previousVideo':
-                                const v1 = videoControl.getPreviousVideo(videoData)
-                                videoControl.setPlayVideoSource(videoPlayer.current, v1.video);
-                                selectVideoMobile.setTitleAndSynopsis(globalInputApp, v1.video.title, v1.video.synopsis);
-                                setVideoData(v1);
+                }
+                
+                switch (initDataID===config.VIDEO_PLAYER_ID && field.id) {                        
+                        case config.VIDEO_SELECTOR_ID:
+                                setInitData(config.selector(videoData.video.title, videoData.video.synopsis));
+                                break;                        
+                        case config.SLIDER_FIELD_ID:
+                                videoControl.setCurrentTimeWithSlider(videoPlayer.current, field.value);
                                 break;
-
-                        case 'nextVideo':
-                                const v2 = videoControl.getNextVideo(videoData)
-                                videoControl.setPlayVideoSource(videoPlayer.current, v2.video);
-                                selectVideoMobile.setTitleAndSynopsis(globalInputApp, v2.video.title, v2.video.synopsis);
-                                setVideoData(v2);
-                                break;
-                        case 'currentTime':
-                                videoControl.setCurrentTimeWithSlider(videoPlayer.current, globalInputApp.field.value);
-                                break;
-                        case 'rwButton':
-                                playVideoMobile.setPlayerStatus(globalInputApp, '<<', '');
-                                playVideoMobile.showPauseButton(globalInputApp);
+                        case config.RW_BUTTON_ID:
+                                setPlayerStatus('<<', '');
+                                showPauseButton();
                                 videoControl.rewindVideo(videoPlayer.current, () => {
-                                        playVideoMobile.setPlayerStatus(globalInputApp, 'Paused', 'Rewind complete');
-                                        playVideoMobile.showPlayButton(globalInputApp);
+                                        setPlayerStatus('Paused', 'Rewind complete');
+                                        showPlayButton();
                                 });
                                 break;
-                        case 'playPauseButton':
-                                globalInputApp.field.value ? videoControl.pauseVideo(videoPlayer.current) : videoControl.playVideo(videoPlayer.current);
+                        case config.PLAY_PAUSE_BUTTON_ID:
+                                field.value ? videoControl.pauseVideo(videoPlayer.current) : videoControl.playVideo(videoPlayer.current);                                
                                 break;
-                        case 'ffButton':
-                                videoControl.fastForwardVideo(videoPlayer.current);
+                        case config.FF_BUTTON_ID:                                
                                 if (videoPlayer.current) {
+                                        videoControl.fastForwardVideo(videoPlayer.current);
                                         const { playbackRate } = videoPlayer.current as any;
-                                        playVideoMobile.setPlayerStatus(globalInputApp, '>', `x  ${playbackRate}`);
-                                        playVideoMobile.showPlayButton(globalInputApp);
+                                        setPlayerStatus('>', `x  ${playbackRate}`);
+                                        showPauseButton();
                                 }
                                 break;
-                        case 'skipToBeginButton':
+                        case config.SKIP_TO_BEGIN_ID:
                                 videoControl.pauseVideo(videoPlayer.current);
                                 videoControl.skipToBegin(videoPlayer.current);
-                                playVideoMobile.setPlayerStatus(globalInputApp, 'Paused', '');
-                                playVideoMobile.showPauseButton(globalInputApp);
+                                setPlayerStatus('Paused', '');
+                                showPauseButton();
                                 break;
-                        case 'skipToEndButton':
+                        case config.SKIP_TO_END_ID:
                                 videoControl.pauseVideo(videoPlayer.current);
                                 videoControl.skipToEnd(videoPlayer.current);
-                                playVideoMobile.setPlayerStatus(globalInputApp, 'Paused', '');
-                                playVideoMobile.showPauseButton(globalInputApp);
+                                setPlayerStatus( 'Paused', '');
+                                showPauseButton();
                                 break;
-
                 }
 
-        }, [globalInputApp.field])
+        });
 
         const secondScreenControl = {
-                setPlayerStatus:(playerStatusTitle,playerStatusMessage)=>{
-                        playVideoMobile.setPlayerStatus(globalInputApp, playerStatusTitle, playerStatusMessage);
-                },
-                showPlayButton:()=>{
-                        playVideoMobile.showPlayButton(globalInputApp);
-                },              
-                showPauseButton:()=>{
-                        playVideoMobile.showPauseButton(globalInputApp);        
-                },                                                                               
-                setSliderValue: (sliderValue) => {
-                        playVideoMobile.setSliderValue(globalInputApp, sliderValue);
-                }
+                setPlayerStatus,
+                showPlayButton,              
+                showPauseButton,                                                                              
+                setSliderValue
         };
-        const { connectionMessage, WhenWaiting, WhenDisconnected } = globalInputApp;
+        
         const SecondScreenConnection = () => (
                 <>
                         <WhenWaiting>
@@ -102,7 +107,7 @@ export default (videoPlayer) => {
         );
 
 
-        return { globalInputApp, secondScreenControl, SecondScreenConnection, videoData };
+        return { secondScreenControl, SecondScreenConnection, videoData };
 
 };
 

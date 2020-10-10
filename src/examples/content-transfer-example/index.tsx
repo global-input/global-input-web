@@ -1,12 +1,12 @@
 import React, {useState } from "react";
 
-import useContentTransfer from './useContentTransfer';
+import useSecondScreen from './useSecondScreen';
 
 
 import { PageContainer,Title, P, A,TextAreaBox, TextButton} from './app-layout';
 
 export default () => {
-  const {content, setContent,connectionMessage,WhenConnected,WhenDisconnected,setFieldValueById} = useContentTransfer();
+  const {content, setContent,SecondScreenConnection} = useSecondScreen();
 
   const copyToClipboard = () => {
     const el=document.getElementById("textContent") as HTMLInputElement;
@@ -19,12 +19,8 @@ export default () => {
       return (
         <PageContainer>          
             <Title>Content Transfer Application</Title>                        
-            {connectionMessage}
-            <WhenDisconnected>
-               <P>Disconnected, reload the page to try again</P>              
-            </WhenDisconnected>                                 
-                <TextAreaBox id="textContent" onChange={(evt:any)=>{
-                    console.log("--0----::::::");
+            <SecondScreenConnection/>            
+                <TextAreaBox id="textContent" onChange={(evt:any)=>{                    
                     setContent(evt.target.value);                    
                 }} value={content} />
                 <TextButton label="Copy" onClick={copyToClipboard} />              
