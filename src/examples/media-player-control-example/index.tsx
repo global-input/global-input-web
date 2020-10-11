@@ -6,9 +6,11 @@ import { PageContainer, P, useWindowSize, A } from './app-layout';
 import useSecondScreen from './useSecondScreen';
 
 export default () => {
+  
 
   const videoPlayer = useRef(null);
   const { secondScreenControl, SecondScreenConnection, videoData } = useSecondScreen(videoPlayer);
+  
 
   const onPlay = () => {    
       secondScreenControl.setPlayerStatus('Playing', '');
@@ -93,13 +95,14 @@ export default () => {
 
   };
 
+  
 
+  const [w,h] = useWindowSize();
+  
 
-  const windowSize = useWindowSize();
+  const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(w,h );
 
-  const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(windowSize as [any, any]);
-
-
+  
 
   return (
     <PageContainer>

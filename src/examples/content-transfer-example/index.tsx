@@ -39,7 +39,7 @@ export default () => {
 
   setOnFieldChanged(({field})=>{
     if(field.id===initData.form.fields[0].id){
-          setContent(field.value);
+          setContent(field.value as string);
     }
   });
       return (
