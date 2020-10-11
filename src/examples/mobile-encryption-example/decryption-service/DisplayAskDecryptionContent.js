@@ -1,15 +1,35 @@
 import React, {useEffect} from 'react';
-
+import { useGlobalInputApp } from 'global-input-react';
 import {Title,P,ContentContainer,TextAreaBox, TextButton,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
-
-
-export default ({dispatch,globalInputApp, content,errorMessage,back}) => {
-    
-    useEffect(()=>{        
-            const mobileConfig=buildMobileConfig({dispatch,back});
-            globalInputApp.setInitData(mobileConfig);                                       
-    },[]);  
+const FIELDS={
+    BACK:"backOnDecryption"
+}
+const initData={
+    action:"input",
+    dataType:"form", 
+    form:{
+        title:"Mobile Decryption",
+        fields:[{
+            type:'info',
+            value: 'You need to operate on the connected application to provide the encrypted content for decryption.',
+        },{
+            id:FIELDS.BACK,
+            type:"button",
+            label:"Back",
+            icon:"back"            
+        }]
+    }
+};
+export default ({dispatch,mobile, content,errorMessage,back}) => {
+    const {setOnFieldChanged}=useGlobalInputApp({initData,mobile});
+      setOnFieldChanged(({field})=>{
+              switch(field.id){                 
+                  case FIELDS.BACK:
+                            back();
+                        break;                        
+              }
+        });           
         const setContent= content => actions.decryptionService.setContent({content,dispatch});
         const onSend=()=>{
             
@@ -18,8 +38,7 @@ export default ({dispatch,globalInputApp, content,errorMessage,back}) => {
             }
             else{
                 actions.decryptionService.decrypt(dispatch);
-            }
-            
+            }            
         }
         return(
             
@@ -30,30 +49,9 @@ export default ({dispatch,globalInputApp, content,errorMessage,back}) => {
                     <TextAreaBox onChange={evt=>setContent(evt.target.value)}/> 
                     <TextButton label="Send" onClick={onSend}/>                   
                 </>
-
             
         
         );
                      
 };
 
-const buildMobileConfig=({dispatch,back})=>{
-        return {
-            action:"input",
-            dataType:"form", 
-            form:{
-                title:"Mobile Decryption",
-                fields:[{
-                    type:'info',
-                    value: 'You need to operate on the connected application to provide the encrypted content for decryption.',
-                },{
-                    type:"button",
-                    label:"Back",
-                    icon:"back",                    
-                    operations:{
-                        onInput:back
-                    }
-                }]
-            }
-        };
-};

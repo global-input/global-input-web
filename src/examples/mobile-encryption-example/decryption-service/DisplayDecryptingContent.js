@@ -1,17 +1,56 @@
-import React, {useEffect} from 'react';
-
+import React from 'react';
+import { useGlobalInputApp } from 'global-input-react';
 
 import {Title,P,TextAreaBox, TextButton,ErrorMessage} from '../app-layout';
 import * as actions from '../actions';
 
 const decryptedContentId='decryptedContent'
 
-export default ({dispatch,globalInputApp, content,decryptedContent,errorMessage}) => {
+const FIELDS={
+  CONTENT:"contentToDecrypt",
+  BACK:"backOnContentToDecrypt"
+}
+const initData = content => ({
+  action:"input",
+  dataType:"form",
+  key:"general",
+  form:{
+    title:"Mobile Decryption",
+    fields:[{
+      id:FIELDS.CONTENT,
+      label:"Content",
+      type:'decrypt',      
+      value:content,      
+    },{
+      type:"info",
+      value:"The decrypted content has now been sent to the application."
+    },{
+      id:FIELDS.BACK,
+      label:"Back",
+      type:"button",      
+      icon:'back'
+    }]
+  }
+});
+
+export default ({dispatch,mobile, content,decryptedContent,errorMessage}) => {
+  const {setOnFieldChanged}=useGlobalInputApp({initData:()=>initData(content),mobile},[content]);
+  setOnFieldChanged(({field})=>{
+          switch(field.id){
+              case FIELDS.CONTENT:
+                if(!field.value){
+                  actions.decryptionService.failed({dispatch, errorMessage:'You might have selected a wrong encryption key or there was something wrong with the encrypted content.'});
+                }
+                else{
+                  actions.decryptionService.setDecryptedContent({dispatch,decryptedContent:field.value});
+                }
+                    break;
+              case FIELDS.BACK:
+                  actions.decryptionService.init({dispatch});
+                  break;                        
+          }
+    });           
     
-    useEffect(()=>{            
-            const mobileConfig=buildMobileConfig({dispatch,content});            
-            globalInputApp.setInitData(mobileConfig);
-    },[]);          
         const copyToClipboard=()=>{
             document.getElementById(decryptedContentId).select();
             document.execCommand("Copy");                      
@@ -47,44 +86,3 @@ export default ({dispatch,globalInputApp, content,decryptedContent,errorMessage}
                      
 };
 
-const buildMobileConfig=({dispatch,content})=>{
-        const onDecryptedContent=decryptedContent=>{
-            console.log("-----decrpted:"+decryptedContent);
-            if(!decryptedContent){
-              actions.decryptionService.failed({dispatch, errorMessage:'You might have selected a wrong encryption key or there was something wrong with the encrypted content.'});              
-            }
-            else{
-              actions.decryptionService.setDecryptedContent({dispatch,decryptedContent});
-            }
-            
-        };
-        return {
-            action:"input",
-            dataType:"form",
-            key:"general",
-            form:{
-              title:"Mobile Decryption",
-              fields:[{
-                label:"Content",
-                type:'decrypt',
-                id:"content",
-                value:content,
-                operations:{
-                  onInput:onDecryptedContent
-
-                }
-              },{
-                type:"info",
-                value:"The decrypted content has now been sent to the application."
-              },{
-                label:"Back",
-                type:"button",
-                id:"back",
-                icon:'back',                                                    
-                operations:{
-                  onInput:()=>actions.decryptionService.init({dispatch})
-                }
-              }]
-            }
-       };
-}
