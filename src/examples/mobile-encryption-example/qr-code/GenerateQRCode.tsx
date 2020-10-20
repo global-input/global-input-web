@@ -1,19 +1,15 @@
-import React, {useEffect} from 'react';
-import QRCode from "qrcode.react";
+import React,{useState} from 'react';
 import { useGlobalInputApp } from 'global-input-react';
-
-import {P,ContentContainer,A} from '../app-layout';
-import * as actions from '../actions';
+import QRCode from "qrcode.react";
 import  './no-print.css';
-
+import {P,Title,ContentContainer,A,PageContainer} from '../app-layout';
 const FIELDS={
     SIZE:"QRCODE_SIZE",
     LEVEL:"QRCODE_LEVEL",
     BACK:"BACK_ON_QRCODE_GENERATE",
     PRINT:"PrintQRCode"
+};
 
-
-}
 const initData = {
     action:"input",
     dataType:"form", 
@@ -57,23 +53,22 @@ const initData = {
         }]
     }
 };
-export default ({content, label, size,level, dispatch,mobile}) => {
-    const {setOnFieldChanged}=useGlobalInputApp({initData,mobile});
-        setOnFieldChanged(({field})=>{
+
+export default ({content, label,back}) => {
+    const mobile=useGlobalInputApp({initData});
+    const [size,setSize]=useState(300);
+    const [level,setLevel]=useState('H');
+
+    mobile.setOnchange(({field})=>{
             switch(field.id){
-                case FIELDS.SIZE:                    
-                    actions.qrCodeService.setSize({dispatch,size:field.value});         
+                case FIELDS.SIZE:
+                    setSize(field.value as number);
                     break;
                 case FIELDS.LEVEL:
-                    if(field.value && field.value.length){
-                        actions.qrCodeService.setLevel({dispatch,level:field.value[0]});                                
-                    }
-                    else{
-                        console.error("receoved unexpected data");
-                    }
+                    setLevel(field.value as string);
                     break;
                 case FIELDS.BACK:
-                    actions.qrCodeService.init({dispatch});
+                    back();
                     break;
                 case FIELDS.PRINT:
                     window.print();
@@ -83,11 +78,15 @@ export default ({content, label, size,level, dispatch,mobile}) => {
         });    
     if(content){
         return(
+        <PageContainer>        
+            <Title>Mobile Encryption</Title>                                    
+            <mobile.ConnectQR/>
         <ContentContainer row="center">          
             <P>{label}</P>            
             <QRCode value={content} level={level} size={size}/>
             <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
         </ContentContainer>
+        </PageContainer>
             
         )
     }
@@ -95,4 +94,3 @@ export default ({content, label, size,level, dispatch,mobile}) => {
           return null;
     }    
 };
-

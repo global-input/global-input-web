@@ -40,9 +40,12 @@ export const PageContainer = ({ children }) => {
      return (
           <div style={styles.pageContainer}>
                <div style={styles.pageContent}>
-                    <div style={styles.bodyContent}>{children}</div>
-
+                    <div style={styles.bodyContent}>{children}
+                    
+                    </div>
+                    <AppInfo/>     
                </div>
+               
           </div>
 
 
@@ -88,14 +91,14 @@ export const TextAreaBox = ({value, id, onChange})=>(
      onChange={onChange} value={value}/>            
 );
 
-export const TextInputBox=({id,type,readOnly,onChange,value,label})=>{
+export const TextInputBox=({id,type,onChange,value,label})=>{
      return(           
               <div style={styles.form.row}>             
                  <label htmlFor={id} style={styles.form.label}>{label}</label>
                 <input  id={id} style={styles.form.input}
                 
                type={type}            
-               readOnly={readOnly}            
+               
                onChange={onChange} value={value}/>
                
              </div>
@@ -155,5 +158,10 @@ export const ContentContainer=({children,row})=>{
      }
      return(<div style={st.get()}>{children}</div>);
 }
+
+export const AppInfo=()=>(
+     <P>This example application (with <A href="https://github.com/global-input/mobile-encryption">its source code</A>) demonstrates how you can use the <a href="https://github.com/global-input/global-input-react">extension library</a> to implement a <a href="https://globalinput.co.uk/global-input-app/mobile-content-encryption">Mobile Encryption</a> mechanism to secure user information in a way that allows users to have complete control over their own data.            
+     </P>
+ );
 
 

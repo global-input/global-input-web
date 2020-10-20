@@ -1,136 +1,96 @@
-import React, { useReducer, useState, useRef, useEffect } from "react";
-
-import {useGlobalInputApp} from 'global-input-react';
-
-
-
-import { PageContainer,Title, P,A,SelectionContainer} from './app-layout';
-import CompanyContact from './CompanyContact';
-import SendMessageAction from './SendMessageAction';
-import DisplayApplicationInfo from './DisplayApplicationInfo';
-import SendCompleteAction from './SendCompleteAction';
-
-export default (props) => {
-    const {sendMessage}=props;
-    const [action, setAction]=useState(ACTIONS.MAIN);
-    const globalInputApp = useGlobalInputApp({initData});            
-
-    useEffect(()=>{
-        const {field}=globalInputApp;
-        if(!field){
-            return;
-        }
-        switch(field.id){
-            case initData.form.fields[0].id:
-                setAction(ACTIONS.CONTACT);
-                break;
-            case initData.form.fields[1].id:
-                setAction(ACTIONS.SEND_MESSAGE);
-                break;
-        }
-    },[globalInputApp.field]);
-    const backToMain=()=>{        
-            setAction(ACTIONS.MAIN);
-            globalInputApp.setInitData(initData);
-    }
-    const onSendMessage=({firstName,lastName, email, phone,message})=>{
-        if(sendMessage){
-            sendMessage({firstName,lastName, email, phone,message});
-        }
-        else{
-            mockSendMessage({firstName,lastName, email, phone,message}); 
-        }
-        setAction(ACTIONS.COMPLETE);             
-    }
-
-    const renderMain=()=>{
-        switch(action){
-            case ACTIONS.MAIN:
-                return(
-                <SelectionContainer>
-                    <Title>Mobile Storage Example</Title>
-                <P>Please operate on your mobile.</P>
-                <P>If you click on the "{initData.form.fields[0].label}" button, the application sends our contact information to your mobile so you can save it into your mobile personal storage. 
-                If you click on the "{initData.form.fields[1].label}" button, you will be able to use your mobile to fill in a form for sending messages to us. 
-                You can save the content of the form into your mobile personal storage so that you can speed up the form operation by using the autofill feature.
-                </P>
-            <DisplayApplicationInfo/>
-                    </SelectionContainer>
-                
-                );
-
-            case ACTIONS.CONTACT:
-                return(<CompanyContact globalInputApp={globalInputApp} backToMain={backToMain}/>);
-            case ACTIONS.SEND_MESSAGE:
-                return(<SendMessageAction globalInputApp={globalInputApp} backToMain={backToMain} onSendMessage={onSendMessage}/>);
-            case ACTIONS.COMPLETE:
-                return(<SendCompleteAction globalInputApp={globalInputApp} backToMain={backToMain}/>);
-        }
-  
-    }    
-    
-    
-   
-   const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=globalInputApp;  
-      return (
-        <PageContainer>                                  
-            <WhenWaiting>
-                <Title>Mobile Personal Storage Example</Title>
-                {connectionMessage}
-                <DisplayApplicationInfo/>            
-            </WhenWaiting>
-            <WhenDisconnected>
-                <Title>Mobile Personal Storage Example</Title>
-                <P>Disconnected, reload the page to try again</P>               
-                <DisplayApplicationInfo/>
-            </WhenDisconnected>
-            <WhenConnected>
-                {renderMain()}
-            </WhenConnected>
-            
-        </PageContainer>
-      );    
-
+import React, {useState,useCallback} from "react";
+import {decrypt} from 'global-input-react';
+import TransferForm from './TransferForm';
+import AddNewField from './AddNewField';
+import DeleteField from './DeleteField';
+import EditFormProperties from './EditFormProperties';
+const PAGES={
+        TRANSFER_FORM:"transfer-form",
+        ADD_FIELD:"add-field",  
+        DELETE_FIELDS:'delete-fields',
+        EDIT_FORM_PROPERTIES:'edit-form-properties'      
 };
+const encryptionKey='TDwtv0dV6u';
 
 
-
-
-
-
-const ACTIONS={
-    MAIN:1,
-    CONTACT:2,
-    SEND_MESSAGE:3,        
-    COMPLETE:4
-}
-
-
-
-const initData={
-    action:"input",
-    dataType:"form",
-    form:{          
-          title:"Mobile Storage Example",          
-          fields:[{            
-            id:"contactInfo",
-            label:"Our Contact Information",
-            type:"button",
-          },{            
-            id:"sendMessageToUs",
-            label:"Send Message To Us",
-            type:"button"
-          }]
+const getQueryParam = (query,variable) => {
+    if(!query){
+         return null;
     }
+    query=query.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+           var pair = vars[i].split('=');
+           if (decodeURIComponent(pair[0]) === variable) {
+               return decodeURIComponent(pair[1]);
+           }
+    }
+    return null;
 };
+const decodeFormData = formData => {
+    return JSON.parse(decrypt(formData,encryptionKey))
+};
+const buildInitialForm = ({location}) => {        
+    const defaultForm={    
+        id:"###username###@domain.com",
+        title:"Transfer Form Data",
+        label:"members",
+        fields:[
+            {id:"username",label:"Username", value:'',selected:false},
+            {id:"password",label:"Password", value:'',selected:false},
+            {id:"note",label:"Note",nLines:5, value:'',selected:false}
+        ]
+    };    
+    if(!location || !location.search){
+        return defaultForm;                
+    }                                                
+    var formDataString=getQueryParam(location.search, "formData");
+    if(!formDataString){
+        return defaultForm;
+
+    }        
+    try{
+            var formFromQuery=decodeFormData(formDataString);
+            if(formFromQuery){                    
+                return formFromQuery;
+            }                    
+    }
+    catch(e){
+                        console.error(e+" while processing the formDataString");                                                  
+    }
+    
+    return defaultForm;                       
+};
+export default (props:any)=>{    
+    const [form,setForm]=useState(()=>buildInitialForm({location:props.location}));
+    const [page,setPage]=useState(PAGES.TRANSFER_FORM);        
+    const updateForm=useCallback(f=>setForm(f),[setForm]);
+    const gotoAddField=useCallback(()=>setPage(PAGES.ADD_FIELD),[setPage]);
+    const gotoTransfer=useCallback((newForm)=>{
+          if(newForm){
+            setForm(newForm);  
+          }
+          setPage(PAGES.TRANSFER_FORM)
+        },[setPage]);
+    const gotoDeleteFields=useCallback(()=>setPage(PAGES.DELETE_FIELDS),[setPage]);    
+    const gotoEditFormProperties=useCallback(()=>setPage(PAGES.EDIT_FORM_PROPERTIES),[setPage]);    
+    switch(page){
+            case PAGES.TRANSFER_FORM:
+                    return (<TransferForm form={form} 
+                            updateForm={updateForm} 
+                            gotoAddField={gotoAddField}
+                            gotoDeleteFields={gotoDeleteFields}
+                            gotoEditFormProperties={gotoEditFormProperties}/>)
+            case PAGES.ADD_FIELD:
+                    return (<AddNewField gotoTransfer={gotoTransfer} form={form}/>)
+            case PAGES.DELETE_FIELDS:
+                    return (<DeleteField form={form} gotoTransfer={gotoTransfer}/>)
+            case PAGES.EDIT_FORM_PROPERTIES:
+                    return (<EditFormProperties form={form} gotoTransfer={gotoTransfer}/>)    
+            default:
+                    return null;    
+    }
+    
 
 
-
-const mockSendMessage = async ({firstName,lastName,email,phone,message}) => {    
-    return new Promise(function(resolve, reject){
-         setTimeout(()=>{
-             const messageBlob={firstName,lastName,email,phone,message};
-             console.log("mock message sender completed:"+JSON.stringify(messageBlob));
-         },1000);    
-    });         
 }

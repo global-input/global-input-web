@@ -4,6 +4,7 @@ import {useGlobalInputApp} from 'global-input-react';
 
 
 import { PageContainer,Title, P, A,TextAreaBox, TextButton} from './app-layout';
+const CONTENT_ID="content";
 
 const initData = {
   action: "input",
@@ -11,8 +12,8 @@ const initData = {
   form: {
     title: "Content Transfer",
     fields: [{
-      label: "Content",
-      id: "content",
+      id: CONTENT_ID,
+      label: "Content",      
       value: "",
       nLines: 10      
     },{
@@ -25,7 +26,7 @@ const initData = {
 
 export default () => {
   const [content, setContent] = useState(''); 
-  const {setOnFieldChanged,connectionMessage,setFieldValueById} = useGlobalInputApp({initData});  
+  const mobile = useGlobalInputApp({initData});  
 
 
   const copyToClipboard = () => {
@@ -37,21 +38,24 @@ export default () => {
     document.execCommand("Copy");
   }
 
-  setOnFieldChanged(({field})=>{
-    if(field.id===initData.form.fields[0].id){
+  mobile.setOnchange(({field})=>{
+    if(field.id===CONTENT_ID){
           setContent(field.value as string);
     }
   });
       return (
         <PageContainer>          
             <Title>Content Transfer Application</Title>                        
-            {connectionMessage}
+            <mobile.ConnectQR/>            
+              {mobile.isConnected && (
+                <>
                 <TextAreaBox id="textContent" onChange={(evt:any)=>{                    
                     setContent(evt.target.value);
-                    setFieldValueById(initData.form.fields[0].id,content);
+                    mobile.sendValue(CONTENT_ID,evt.target.value);
                 }} value={content} />
                 <TextButton label="Copy" onClick={copyToClipboard} />              
-              
+                </>
+                )}
             
             <P>This example application (with its <A href="https://github.com/global-input/content-transfer-example">source code</A>) demonstrate how you can use the <a href="https://github.com/global-input/global-input-react">extension library</a> to provide <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">Mobile Content Transfer</A> functionality on a multi-device environment.
             Because of its simplicity, you may consider it as an "Hello World" example of the Mobile Integration offered by Global Input App.            

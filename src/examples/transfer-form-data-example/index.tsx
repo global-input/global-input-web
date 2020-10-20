@@ -1,154 +1,96 @@
-import React, { useReducer, useState, useRef, useEffect } from "react";
-
-import {useGlobalInputApp} from 'global-input-react';
-
-
-
-import { PageContainer,Title, P} from './app-layout';
-
-import * as dataUtil from './dataUtil';
-import {AddNewField,TransferFormData,DisplayApplicationInfo,DeleteFields, ChangeForm} from './renders';
-
-
-
-const ACTIONS={
-        TRANSFER:1,
-        ADD_NEW_FIELD:2,
-        DELETE_FIELDS:3,
-        CHANGE_FORM:4
-}
-
-const AppTitle=()=>(
-    <Title>Mobile Authentication &amp; Form Data Transfer</Title>
-);
-export default props => {
-    const location=props.location;
-    
-    const [form,setForm]=useState(()=>dataUtil.form.buildInitialForm({location}));
-    const [visibility, setVisibility]=useState(()=>dataUtil.visibility.getDefaultOption());
-    const [initData, setInitData]=useState<any>(null);
-    const [action, setAction]=useState(ACTIONS.TRANSFER);
-    const [bookmark,setBookmark]=useState<string>('');
-
-
-    
-
-    const globalInputApp = useGlobalInputApp({initData},[initData]);
-    
-     
-    const onToggleShowHide=()=>{
-        const nextVisibility=dataUtil.visibility.getNext(visibility);                
-        setVisibility(nextVisibility);
-        dataUtil.form.setMobileVisibilityValue(globalInputApp,nextVisibility.value);        
-     };
-     const onFormFieldValueChanged= (field,value) => {                
-        setForm(dataUtil.form.updateField({form,field,value}));        
-     };
-
-    const gotoAddField=()=>{
-         setAction(ACTIONS.ADD_NEW_FIELD);            
-    };
-    const gotoDeleteFields=()=>{
-        setAction(ACTIONS.DELETE_FIELDS);            
-    };
-    const gotoChangeForm=()=>{
-        setAction(ACTIONS.CHANGE_FORM);            
-    };   
-    
-    const gotoTransfer=(newForm=form)=>{                
-        setAction(ACTIONS.TRANSFER);                       
-        const initData=dataUtil.form.getInitData(newForm,visibility);      
-        setInitData(initData);        
-    };
-    const onFormModified=newForm=>{
-        setForm(newForm);                
-        const bookmark=dataUtil.form.createBookmark(newForm);
-        setBookmark(bookmark); 
-        if(newForm.fields.length){
-            gotoTransfer(newForm);             
-        }
-        else{
-            gotoAddField();
-        }
-
-        
-    }
-    const addNewField=(label,multiLine)=>{
-        const newForm=dataUtil.form.createNewFormNewField({form,label, multiLine});                
-        onFormModified(newForm);
-    };
-    const deleteFields=items=>{
-        const newForm=dataUtil.form.createNewFormDeleteFields({form,items});                
-        onFormModified(newForm);
-    }
-    const changeFormAttributes=({formTitle, formId, formLabel})=>{
-        const newForm=dataUtil.form.createNewFormWithAttributes({form,formTitle, formId, formLabel});                
-        onFormModified(newForm);
-
-    };
-
-    useEffect(()=>{
-        gotoTransfer();
-    },[]);
-
-  
-  const renderMain=()=>{
-        const props={        
-            onFieldChanged:(formField,value)=>{    
-                onFormFieldValueChanged(formField,value);
-                dataUtil.form.setMobileFieldValue(globalInputApp,formField,value);
-            },
-            onToggleShowHide,
-            onFormFieldValueChanged,
-            gotoAddField,
-            gotoDeleteFields,
-            gotoChangeForm,
-            form,
-            visibility,
-            globalInputApp,
-            bookmark        
-        };
-        
-        switch(action){
-            case ACTIONS.TRANSFER:
-                        return (<TransferFormData {...props}/>)
-            case ACTIONS.ADD_NEW_FIELD: 
-                        return (<AddNewField globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} addNewField={addNewField}/>);
-            case ACTIONS.DELETE_FIELDS:
-                        return (<DeleteFields globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} form={form} deleteFields={deleteFields}/>)
-            case ACTIONS.CHANGE_FORM:
-                        return (<ChangeForm globalInputApp={globalInputApp} gotoTransfer={gotoTransfer} form={form} changeFormAttributes={changeFormAttributes}/>)
-            default:
-                return null;
-        }
-  };
-   
-   const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected}=globalInputApp;  
-      return (
-        <PageContainer>                      
-            
-            <WhenWaiting>
-                <AppTitle/>
-                
-                {connectionMessage}
-                <DisplayApplicationInfo/>            
-            </WhenWaiting>
-
-            
-            
-            <WhenDisconnected>
-            <AppTitle/>
-                <P>Disconnected, reload the page to try again</P>               
-                <DisplayApplicationInfo/>
-            </WhenDisconnected>
-            <WhenConnected>
-                {renderMain()}
-            </WhenConnected>
-            
-        </PageContainer>
-      );    
-
+import React, {useState,useCallback} from "react";
+import {decrypt} from 'global-input-react';
+import TransferForm from './TransferForm';
+import AddNewField from './AddNewField';
+import DeleteField from './DeleteField';
+import EditFormProperties from './EditFormProperties';
+const PAGES={
+        TRANSFER_FORM:"transfer-form",
+        ADD_FIELD:"add-field",  
+        DELETE_FIELDS:'delete-fields',
+        EDIT_FORM_PROPERTIES:'edit-form-properties'      
 };
+const encryptionKey='TDwtv0dV6u';
 
 
+const getQueryParam = (query,variable) => {
+    if(!query){
+         return null;
+    }
+    query=query.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+           var pair = vars[i].split('=');
+           if (decodeURIComponent(pair[0]) === variable) {
+               return decodeURIComponent(pair[1]);
+           }
+    }
+    return null;
+};
+const decodeFormData = formData => {
+    return JSON.parse(decrypt(formData,encryptionKey))
+};
+const buildInitialForm = ({location}) => {        
+    const defaultForm={    
+        id:"###username###@domain.com",
+        title:"Transfer Form Data",
+        label:"members",
+        fields:[
+            {id:"username",label:"Username", value:'',selected:false},
+            {id:"password",label:"Password", value:'',selected:false},
+            {id:"note",label:"Note",nLines:5, value:'',selected:false}
+        ]
+    };    
+    if(!location || !location.search){
+        return defaultForm;                
+    }                                                
+    var formDataString=getQueryParam(location.search, "formData");
+    if(!formDataString){
+        return defaultForm;
 
+    }        
+    try{
+            var formFromQuery=decodeFormData(formDataString);
+            if(formFromQuery){                    
+                return formFromQuery;
+            }                    
+    }
+    catch(e){
+                        console.error(e+" while processing the formDataString");                                                  
+    }
+    
+    return defaultForm;                       
+};
+export default (props:any)=>{    
+    const [form,setForm]=useState(()=>buildInitialForm({location:props.location}));
+    const [page,setPage]=useState(PAGES.TRANSFER_FORM);        
+    const updateForm=useCallback(f=>setForm(f),[setForm]);
+    const gotoAddField=useCallback(()=>setPage(PAGES.ADD_FIELD),[setPage]);
+    const gotoTransfer=useCallback((newForm)=>{
+          if(newForm){
+            setForm(newForm);  
+          }
+          setPage(PAGES.TRANSFER_FORM)
+        },[setPage]);
+    const gotoDeleteFields=useCallback(()=>setPage(PAGES.DELETE_FIELDS),[setPage]);    
+    const gotoEditFormProperties=useCallback(()=>setPage(PAGES.EDIT_FORM_PROPERTIES),[setPage]);    
+    switch(page){
+            case PAGES.TRANSFER_FORM:
+                    return (<TransferForm form={form} 
+                            updateForm={updateForm} 
+                            gotoAddField={gotoAddField}
+                            gotoDeleteFields={gotoDeleteFields}
+                            gotoEditFormProperties={gotoEditFormProperties}/>)
+            case PAGES.ADD_FIELD:
+                    return (<AddNewField gotoTransfer={gotoTransfer} form={form}/>)
+            case PAGES.DELETE_FIELDS:
+                    return (<DeleteField form={form} gotoTransfer={gotoTransfer}/>)
+            case PAGES.EDIT_FORM_PROPERTIES:
+                    return (<EditFormProperties form={form} gotoTransfer={gotoTransfer}/>)    
+            default:
+                    return null;    
+    }
+    
+
+
+}

@@ -14,8 +14,11 @@ const urls={
       loadContentTransfer:async ({page})=>  await page.goto('http://localhost:3000/global-input-app/content-transfer'),
       sendMessage: async ({page})=>await page.goto('http://localhost:3000/global-input-app/send-message'),
       gameExample: async ({page})=>await page.goto('http://localhost:3000/global-input-app/game-example'),
-      formDataTransfer: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
-      formDataTransfer2: async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
+      formDataTransfer:  async ({page})=> await page.goto('http://localhost:3000/global-input-app/form-data-transfer'),
+      formDataTransfer2: async ({page})=>{
+        debugger;
+        await page.goto('http://localhost:3000/global-input-app/form-data-transfer');
+      }, 
       home: async ({page})=> await page.goto('http://localhost:3000'),
             
       mobileEncryption:async ({page})=> {
@@ -23,7 +26,8 @@ const urls={
         await page.goto('http://localhost:3000/global-input-app/mobile-encryption')
       },      
 }
-const loadTestPage=urls.mobileEncryption;
+//const loadTestPage=urls.formDataTransfer2;
+const loadTestPage=urls.formDataTransfer2;
 const testTime=600000;
 const testTimeOut=testTime*2;
 //const testTime=6000;

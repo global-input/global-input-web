@@ -14,10 +14,10 @@ export const RadioButton=({name,checked,onChange,label})=>{
             </div>);        
           
 };
-export const CheckboxButton=({name,checked,onChange,label})=>{
+export const CheckboxButton=({checked,onChange,label})=>{
     return(
         <div style={styles.multiline.item}>
-            <input type="checkbox" name={name} checked={checked} onChange={onChange}/>
+            <input type="checkbox" checked={checked} onChange={onChange}/>
             <span style={styles.multiline.text}>{label}</span>
             </div>);        
           
@@ -47,7 +47,8 @@ const styles={
             },
             text:{
                 paddingLeft:10,
-
+                color:"#5291CD"
+                
             }
     }
 };

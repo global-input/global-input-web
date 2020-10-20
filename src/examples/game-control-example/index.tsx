@@ -1,25 +1,157 @@
 import React from "react";
 
 
-import useSecondScreen from './useSecondScreen';
+import {useGlobalInputApp} from 'global-input-react';
 import { PageContainer,Title, P,DisplayCanvas,A} from './app-layout';
 import * as game from "./game";
 
+const SPEED_TEXT="speed-text";
+const START_PAUSE_BUTTON="startPauseButton";
+
+
+const initData = {
+        action: "input",
+        dataType: "control",
+        form: {
+            title: "Mobile Control Example",                
+            views: {
+                viewId: {
+                    footer: {
+                        style: {
+                            justifyContent: "space-between",
+                            width: "100%",
+                        }
+                    }
+                }    
+            },
+            fields: [{
+                id: "gameStatus",
+                type: "info",
+                value: null,                    
+                
+            },{
+                id: "upButton",
+                type: "button",
+                icon: "up",
+                viewId: "row1",
+                operations: { onInput: game.onUpButtonPressed}
+            },{
+                id: "leftButton",
+                type: "button",
+                icon: "left",
+                viewId: "row2",
+                operations: { onInput: game.onLeftButtonPressed}
+            },{
+                id: "infoField",
+                type: "info",
+                value: {
+                    type: "view",
+                    style: {
+                        minWidth: 36,
+                        minHeight: 36
+                    },                        
+                },                    
+                viewId: "row2"
+            },{
+                id: "rightButton",
+                type: "button",
+                icon: "right",
+                viewId: "row2",
+                operations: { onInput: game.onRightButtonPressed }
+            },{
+                id: "downButton",
+                type: "button",
+                icon: "down",
+                viewId: "row3",
+                operations: { onInput: game.onDownButtonPressed }
+            },{
+                id: "speedDown",
+                type: "button",
+                label: "Speed Down",
+                iconText: {
+                    content: "-",
+                    style: { fontSize: 36 },
+                },
+                style: {
+                    borderColor: "green",
+                    paddingRight: 10
+                },
+                viewId: "row4",
+                operations: { onInput: game.speedDown }
+            },{
+                id: SPEED_TEXT,
+                type: "info",
+                value: { type: "text", content: "30" },
+                viewId: "row4",
+            },{
+                id: "speedUp",
+                type: "button",
+                label: "Speed Up",
+                style: { borderColor: "green" },
+                iconText: {
+                    content: "+",
+                    style: {
+                        fontSize: 36,
+                    }
+                },
+                viewId: "row4",
+                operations: { onInput: game.speedUp }
+            },{
+                id: START_PAUSE_BUTTON,
+                type: "button",
+                value: 0,
+                label: "Start",
+                options: [{ value: 0, label: "Start", icon: "play" }, 
+                          { value: 1, label: "Pause", icon: "pause" },
+                          { value: 3, label: "Resume", icon: "play" }],
+                viewId: "footer",
+                operations: { onInput: value => {
+                    switch(value){
+                            case 0:game.startGame(); break;
+                            case 1:game.pauseGame();break;
+                            case 3:game.resumeGame();break;
+                    }                        
+                }}
+            }]             
+        }
+    };
+
+
 export default ()=>{
-        const {connectionMessage, WhenConnected,WhenWaiting, WhenDisconnected,
-            setMoveSpeed,setPlayPauseButtonValue,seGameStatus}=useSecondScreen(game);
+        const mobile=useGlobalInputApp({initData});
+        
+        const setMoveSpeed=(speed)=>{        
+            var speedValue = {
+                type: "text",
+                content: speed
+            };        
+            mobile.sendValue(SPEED_TEXT,speedValue);
+        };
+        
+        const seGameStatus = (message) => {
+            const statusValue = {
+                type: "view",
+                style: {
+                    color:'red'
+                },
+                content:message                       
+            };
+            mobile.sendValue('gameStatus',statusValue);                       
+    
+        };
 
         const onCanvas=(canvas:any)=>{                
             const onGameRunning=()=>{                                
-                setPlayPauseButtonValue(1);
+                
+                mobile.sendValue(START_PAUSE_BUTTON,1);                       
                 seGameStatus('Game Stated');                                
             }
-            const onGameStopped=()=>{                
-                setPlayPauseButtonValue(0);                
+            const onGameStopped=()=>{                                
+                mobile.sendValue(START_PAUSE_BUTTON,0);                       
                 seGameStatus('Game Over');
             }
-            const onGamePaused=()=>{
-                setPlayPauseButtonValue(3);                
+            const onGamePaused=()=>{                
+                mobile.sendValue(START_PAUSE_BUTTON,3);                             
                 seGameStatus('Game Paused');
             }
             const onSpeedChanges=(moveSpeed:number)=>{
@@ -35,25 +167,26 @@ export default ()=>{
         };
 
         return (
-            <PageContainer> 
-                <WhenWaiting>
-                    <Title>Mobile Control Example</Title>
-                    {connectionMessage} 
-                    <DisplayApplicationInfo/>                     
-                </WhenWaiting>                  
-                <WhenDisconnected>
-                <Title>Mobile Control Example</Title>
+            <PageContainer>                                    
+                    <Title>Mobile Control Example</Title>                                        
+                    <mobile.ConnectQR>
+                        <P>
+                        Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" target="_blank"> Global Input App</a>
+                        </P>
+                        <DisplayApplicationInfo/> 
+                    </mobile.ConnectQR>                
+                {mobile.isDisconnected && (
+                    <>                
                     <P>Disconnected, reload the page to try again</P>               
                     <DisplayApplicationInfo/>                     
-                </WhenDisconnected>
-                <WhenConnected>
+                    </>
+                )}             
+                {mobile.isConnected && (
                   <DisplayCanvas onCanvas={onCanvas}/>                    
-                </WhenConnected>
-                
+                )}       
+                                                                                              
             </PageContainer>
           );  
-
-
 }
 
 

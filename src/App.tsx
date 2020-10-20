@@ -41,12 +41,14 @@ const App = () => (
       <Route path={config.paths.aboutContentEncryption.path} component={AboutContentEncryption} />
       <Route path={config.paths.mobileContentTransfer.path} component={AboutMobileContentTransfer} />          
       <Route path={config.paths.examples.contentTransfer.path} component={examples.ContentTransferScreen} />
-      <Route path={config.paths.examples.mediaPlayer.path} component={examples.MediaPlayerScreen} />
       <Route path={config.paths.examples.gameControl.path} component={examples.GameControlScreen} />
-      <Route path={config.paths.examples.transferForm.path} component={examples.TransferFormDataScreen} />
-      <Route path={config.paths.examples.sendMessage.path} component={examples.SendMessageScreen} />
+      <Route path={config.paths.examples.mediaPlayer.path} component={examples.MediaPlayerScreen} />
       <Route path={config.paths.examples.mobileEncryption.path} component={examples.MobileEncryptionScreen} />
-      <Route path={config.paths.examples.mobileEncryption.oldpath} component={examples.MobileEncryptionScreen} />
+      <Route path={config.paths.examples.transferForm.path} component={examples.TransferFormDataScreen} />
+      {/*       
+      <Route path={config.paths.examples.sendMessage.path} component={examples.SendMessageScreen} />
+      
+      <Route path={config.paths.examples.mobileEncryption.oldpath} component={examples.MobileEncryptionScreen} /> */}
       <Redirect to={config.paths.home.path} />
     </Switch>
   </Router>
