@@ -1,96 +1,106 @@
 import React, {useState,useCallback} from "react";
-import {decrypt} from 'global-input-react';
-import TransferForm from './TransferForm';
-import AddNewField from './AddNewField';
-import DeleteField from './DeleteField';
-import EditFormProperties from './EditFormProperties';
+import {useGlobalInputApp} from 'global-input-react';
+import { PageContainer,Title, P,A,SelectionContainer} from './app-layout';
+import DisplayApplicationInfo from './DisplayApplicationInfo';
+import SendMessage from './SendMessage';
+import CompanyInfo from './CompanyInfo';
+import MessageSent from './MessageSent';
 const PAGES={
-        TRANSFER_FORM:"transfer-form",
-        ADD_FIELD:"add-field",  
-        DELETE_FIELDS:'delete-fields',
-        EDIT_FORM_PROPERTIES:'edit-form-properties'      
+      HOME:'home',
+      COMPANY_INFO:'company-info',
+      MESSAGE: 'send-message',
+      MESSAGE_SENT:'message-sent'
 };
-const encryptionKey='TDwtv0dV6u';
 
 
-const getQueryParam = (query,variable) => {
-    if(!query){
-         return null;
-    }
-    query=query.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-           var pair = vars[i].split('=');
-           if (decodeURIComponent(pair[0]) === variable) {
-               return decodeURIComponent(pair[1]);
-           }
-    }
-    return null;
-};
-const decodeFormData = formData => {
-    return JSON.parse(decrypt(formData,encryptionKey))
-};
-const buildInitialForm = ({location}) => {        
-    const defaultForm={    
-        id:"###username###@domain.com",
-        title:"Transfer Form Data",
-        label:"members",
-        fields:[
-            {id:"username",label:"Username", value:'',selected:false},
-            {id:"password",label:"Password", value:'',selected:false},
-            {id:"note",label:"Note",nLines:5, value:'',selected:false}
-        ]
-    };    
-    if(!location || !location.search){
-        return defaultForm;                
-    }                                                
-    var formDataString=getQueryParam(location.search, "formData");
-    if(!formDataString){
-        return defaultForm;
 
-    }        
-    try{
-            var formFromQuery=decodeFormData(formDataString);
-            if(formFromQuery){                    
-                return formFromQuery;
-            }                    
-    }
-    catch(e){
-                        console.error(e+" while processing the formDataString");                                                  
-    }
+
+export default (props:any)=>{        
+    const [page,setPage]=useState(PAGES.HOME);        
+   
+    const backToHome=useCallback(()=>setPage(PAGES.HOME),[setPage]);
     
-    return defaultForm;                       
-};
-export default (props:any)=>{    
-    const [form,setForm]=useState(()=>buildInitialForm({location:props.location}));
-    const [page,setPage]=useState(PAGES.TRANSFER_FORM);        
-    const updateForm=useCallback(f=>setForm(f),[setForm]);
-    const gotoAddField=useCallback(()=>setPage(PAGES.ADD_FIELD),[setPage]);
-    const gotoTransfer=useCallback((newForm)=>{
-          if(newForm){
-            setForm(newForm);  
-          }
-          setPage(PAGES.TRANSFER_FORM)
-        },[setPage]);
-    const gotoDeleteFields=useCallback(()=>setPage(PAGES.DELETE_FIELDS),[setPage]);    
-    const gotoEditFormProperties=useCallback(()=>setPage(PAGES.EDIT_FORM_PROPERTIES),[setPage]);    
+    const onSendMessage=useCallback(({firstName,lastName, email, phone,message})=>{
+        if(props.sendMessage){
+            props.sendMessage({firstName,lastName, email, phone,message});
+        }
+        else{
+            mockSendMessage({firstName,lastName, email, phone,message}); 
+        }
+        setPage(PAGES.MESSAGE_SENT);
+    },[setPage]);
+
+    
     switch(page){
-            case PAGES.TRANSFER_FORM:
-                    return (<TransferForm form={form} 
-                            updateForm={updateForm} 
-                            gotoAddField={gotoAddField}
-                            gotoDeleteFields={gotoDeleteFields}
-                            gotoEditFormProperties={gotoEditFormProperties}/>)
-            case PAGES.ADD_FIELD:
-                    return (<AddNewField gotoTransfer={gotoTransfer} form={form}/>)
-            case PAGES.DELETE_FIELDS:
-                    return (<DeleteField form={form} gotoTransfer={gotoTransfer}/>)
-            case PAGES.EDIT_FORM_PROPERTIES:
-                    return (<EditFormProperties form={form} gotoTransfer={gotoTransfer}/>)    
-            default:
-                    return null;    
+        case PAGES.HOME:
+                return (<Home setPage={setPage}/>);
+        case PAGES.COMPANY_INFO:
+                return (<CompanyInfo backToHome={backToHome}/>);
+        case PAGES.MESSAGE:
+                return (<SendMessage backToHome={backToHome} onSendMessage={onSendMessage}/>);
+        case PAGES.MESSAGE_SENT:
+                return (<MessageSent backToHome={backToHome}/>);
+        default:
+            return null;
     }
     
+    
+
+}
 
 
+const initData={
+    action:"input",
+    dataType:"form",
+    form:{          
+          title:"Mobile Storage Example",          
+          fields:[{            
+            id:PAGES.COMPANY_INFO,
+            label:"Our Contact Information",
+            type:"button",
+          },{            
+            id:PAGES.MESSAGE,
+            label:"Send Message To Us",
+            type:"button"
+          }]
+    }
+};
+const Home=({setPage})=>{
+    const mobile = useGlobalInputApp({initData});            
+    mobile.setOnchange(({field})=>{
+        switch(field.id){
+            case PAGES.COMPANY_INFO:
+                    setPage(PAGES.COMPANY_INFO)
+                break;
+            case PAGES.MESSAGE:
+                    setPage(PAGES.MESSAGE);
+                    break;
+        }
+    });
+    return (
+        <PageContainer>   
+            <mobile.ConnectQR/>
+            {mobile.isConnected && (<>
+                               
+        <SelectionContainer>
+        <Title>Mobile Storage Example</Title>
+    <P>Please operate on your mobile.</P>
+    <P>If you click on the "{initData.form.fields[0].label}" button, the application sends our contact information to your mobile so you can save it into your mobile personal storage. 
+    If you click on the "{initData.form.fields[1].label}" button, you will be able to use your mobile to fill in a form for sending messages to us. 
+    You can save the content of the form into your mobile personal storage so that you can speed up the form operation by using the autofill feature.
+    </P>
+        <DisplayApplicationInfo/>
+        </SelectionContainer>
+        </>)}
+    </PageContainer>
+    );
+};
+
+const mockSendMessage = async ({firstName,lastName,email,phone,message}) => {    
+    return new Promise(function(resolve, reject){
+         setTimeout(()=>{
+             const messageBlob={firstName,lastName,email,phone,message};
+             console.log("mock message sender completed:"+JSON.stringify(messageBlob));
+         },1000);    
+    });         
 }

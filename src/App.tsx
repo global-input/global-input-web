@@ -44,11 +44,9 @@ const App = () => (
       <Route path={config.paths.examples.gameControl.path} component={examples.GameControlScreen} />
       <Route path={config.paths.examples.mediaPlayer.path} component={examples.MediaPlayerScreen} />
       <Route path={config.paths.examples.mobileEncryption.path} component={examples.MobileEncryptionScreen} />
-      <Route path={config.paths.examples.transferForm.path} component={examples.TransferFormDataScreen} />
-      {/*       
+      <Route path={config.paths.examples.transferForm.path} component={examples.TransferFormDataScreen} />            
       <Route path={config.paths.examples.sendMessage.path} component={examples.SendMessageScreen} />
-      
-      <Route path={config.paths.examples.mobileEncryption.oldpath} component={examples.MobileEncryptionScreen} /> */}
+      <Route path={config.paths.examples.mobileEncryption.oldpath} component={examples.MobileEncryptionScreen} />
       <Redirect to={config.paths.home.path} />
     </Switch>
   </Router>

@@ -27,7 +27,7 @@ const urls={
       },      
 }
 //const loadTestPage=urls.formDataTransfer2;
-const loadTestPage=urls.formDataTransfer2;
+const loadTestPage=urls.sendMessage;
 const testTime=600000;
 const testTimeOut=testTime*2;
 //const testTime=6000;

@@ -4,7 +4,7 @@ import {Page} from "../page-components/themes/blue-background";
 import ContentTransferExample    from "./content-transfer-example";
 import GameControlExample        from "./game-control-example";
 import MediaPlayerControlExample from "./media-player-control-example";
-// import SendMessageExample        from "./send-message-example";
+import SendMessageExample        from "./send-message-example";
 import TransferFormDataExample   from "./transfer-form-data-example";
 import MobileEncryptionExample from './mobile-encryption-example';
 import {config} from "../configs";
@@ -34,13 +34,13 @@ export const ContentTransferScreen=createExampleComponent(ContentTransferExample
 export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExample,"Global Input App - Mobile Encryption Example");
 
 
-// const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample,"Global Input App - Mobile Personal Storage Example");
+ const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample,"Global Input App - Mobile Personal Storage Example");
 
-// export const SendMessageScreen=(props:object)=>{    
-//       return(
-//           <SendMessageScreenWithoutSendMessage {...props} sendMessage={sendMessage}/>                                
-//       );
-// }
+export const SendMessageScreen=(props:object)=>{    
+      return(
+          <SendMessageScreenWithoutSendMessage {...props} sendMessage={sendMessage}/>                                
+      );
+}
 
 const apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
 
