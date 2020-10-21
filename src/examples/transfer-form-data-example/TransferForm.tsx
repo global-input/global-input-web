@@ -88,8 +88,10 @@ export default ({form,updateForm,gotoAddField,gotoDeleteFields,gotoEditFormPrope
     });
 
 return (
-    <PageContainer>                                              
-             <Title>Mobile Authentication &amp; Form Data Transfer</Title>             
+    <PageContainer>
+            {!mobile.isConnected && (
+                <Title>Mobile Authentication &amp; Form Data Transfer</Title>
+            )}
              <mobile.ConnectQR/>
             {mobile.isConnected && (<>
                 <Title>{form.title}</Title>

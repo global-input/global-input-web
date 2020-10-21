@@ -4,19 +4,20 @@ import {useGlobalInputApp} from 'global-input-react';
 
 
 import { PageContainer,Title, P, A,TextAreaBox, TextButton} from './app-layout';
-const CONTENT_ID="content";
 
+
+const contentField={
+  id: "content",
+  label: "Content",      
+  value: "",
+  nLines: 10      
+};
 const initData = {
   action: "input",
   dataType: "form",
   form: {
     title: "Content Transfer",
-    fields: [{
-      id: CONTENT_ID,
-      label: "Content",      
-      value: "",
-      nLines: 10      
-    },{
+    fields: [contentField,{
       id:"info",
       type:"info",
       value:"You may paste content in the text box above to transfer it into the connected application."
@@ -37,11 +38,12 @@ export default () => {
     } 
     document.execCommand("Copy");
   }
-
   mobile.setOnchange(({field})=>{
-    if(field.id===CONTENT_ID){
+    switch(field.id){
+        case contentField.id:
           setContent(field.value as string);
-    }
+          break;     
+    }    
   });
       return (
         <PageContainer>          
@@ -51,7 +53,7 @@ export default () => {
                 <>
                 <TextAreaBox id="textContent" onChange={(evt:any)=>{                    
                     setContent(evt.target.value);
-                    mobile.sendValue(CONTENT_ID,evt.target.value);
+                    mobile.sendValue(contentField.id,evt.target.value);
                 }} value={content} />
                 <TextButton label="Copy" onClick={copyToClipboard} />              
                 </>

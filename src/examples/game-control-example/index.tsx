@@ -5,8 +5,35 @@ import {useGlobalInputApp} from 'global-input-react';
 import { PageContainer,Title, P,DisplayCanvas,A} from './app-layout';
 import * as game from "./game";
 
-const SPEED_TEXT="speed-text";
-const START_PAUSE_BUTTON="startPauseButton";
+
+const speedTextField={
+    id: "speed-text",
+    type: "info",
+    value: { type: "text", content: "30" },
+    viewId: "row4",
+};
+
+
+const startPauseButton={
+    id: "startPauseButton",
+    type: "button",
+    value: 0,
+    label: "Start",
+    options: [{ value: 0, label: "Start", icon: "play" }, 
+              { value: 1, label: "Pause", icon: "pause" },
+              { value: 3, label: "Resume", icon: "play" }],
+    viewId: "footer",
+    operations: { onInput: value => {
+        switch(value){
+                case 0:game.startGame(); break;
+                case 1:game.pauseGame();break;
+                case 3:game.resumeGame();break;
+        }                        
+    }}
+};
+
+
+
 
 
 const initData = {
@@ -78,12 +105,7 @@ const initData = {
                 },
                 viewId: "row4",
                 operations: { onInput: game.speedDown }
-            },{
-                id: SPEED_TEXT,
-                type: "info",
-                value: { type: "text", content: "30" },
-                viewId: "row4",
-            },{
+            },speedTextField,{
                 id: "speedUp",
                 type: "button",
                 label: "Speed Up",
@@ -96,23 +118,7 @@ const initData = {
                 },
                 viewId: "row4",
                 operations: { onInput: game.speedUp }
-            },{
-                id: START_PAUSE_BUTTON,
-                type: "button",
-                value: 0,
-                label: "Start",
-                options: [{ value: 0, label: "Start", icon: "play" }, 
-                          { value: 1, label: "Pause", icon: "pause" },
-                          { value: 3, label: "Resume", icon: "play" }],
-                viewId: "footer",
-                operations: { onInput: value => {
-                    switch(value){
-                            case 0:game.startGame(); break;
-                            case 1:game.pauseGame();break;
-                            case 3:game.resumeGame();break;
-                    }                        
-                }}
-            }]             
+            },startPauseButton]             
         }
     };
 
@@ -125,7 +131,7 @@ export default ()=>{
                 type: "text",
                 content: speed
             };        
-            mobile.sendValue(SPEED_TEXT,speedValue);
+            mobile.sendValue(speedTextField.id,speedValue);
         };
         
         const seGameStatus = (message) => {
@@ -143,15 +149,15 @@ export default ()=>{
         const onCanvas=(canvas:any)=>{                
             const onGameRunning=()=>{                                
                 
-                mobile.sendValue(START_PAUSE_BUTTON,1);                       
+                mobile.sendValue(startPauseButton.id,1);                       
                 seGameStatus('Game Stated');                                
             }
             const onGameStopped=()=>{                                
-                mobile.sendValue(START_PAUSE_BUTTON,0);                       
+                mobile.sendValue(startPauseButton.id,0);                       
                 seGameStatus('Game Over');
             }
             const onGamePaused=()=>{                
-                mobile.sendValue(START_PAUSE_BUTTON,3);                             
+                mobile.sendValue(startPauseButton.id,3);                             
                 seGameStatus('Game Paused');
             }
             const onSpeedChanges=(moveSpeed:number)=>{

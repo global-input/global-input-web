@@ -81,11 +81,14 @@ export default ({content, label,back}) => {
         <PageContainer>        
             <Title>Mobile Encryption</Title>                                    
             <mobile.ConnectQR/>
-        <ContentContainer row="center">          
-            <P>{label}</P>            
-            <QRCode value={content} level={level} size={size}/>
-            <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
-        </ContentContainer>
+            {mobile.isConnected && (
+                <ContentContainer row="center">          
+                    <P>{label}</P>            
+                    <QRCode value={content} level={level} size={size}/>
+                    <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
+                </ContentContainer>            
+            )}
+        
         </PageContainer>
             
         )
