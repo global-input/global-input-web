@@ -34,11 +34,7 @@ const initData = {
 
 
 export default ({backToHome})=>{
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [message, setMessage] = useState('');
+    
     const mobile = useGlobalInputApp({initData});            
     mobile.setOnchange(({field})=>{
         

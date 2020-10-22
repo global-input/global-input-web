@@ -160,7 +160,7 @@ const HomePage=props=> (
             </HomeHeaderBackground>
             <FeaturesSection/>
             <PageFooter/>
-            <RenderPageMetadata/>/
+            <RenderPageMetadata/>
           </BasicLayout>
             );
 
