@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState} from "react";
 import { useGlobalInputApp } from 'global-input-react';
 
 import * as videoControl from './videoControl';
@@ -8,7 +8,7 @@ import { PageContainer, QRCodeContainer,P, useWindowSize, A } from './app-layout
 const selectorFields={
   id:"videoSelector",
   title:{
-    id: "video-title",    
+    id: "video-title",
     type: "info",
     value: {
       type: "text",
@@ -19,34 +19,34 @@ const selectorFields={
       }
     },
     viewId: "row1",
-   }, 
+   },
    synopsis:{
     id: "synopsis",
     type: "info",
     value: "",
     viewId: "row1"
-  }, 
+  },
   previous:{
     id: "previousVideo",
     label: "Previous Video",
     type: "button",
     icon: "left",
-    viewId: "row2"          
-  }, 
+    viewId: "row2"
+  },
   next:{
     id: "nextVideo",
     label: "Next Video",
     type: "button",
     icon: "right",
     viewId: "row2",
-    
-  }, 
+
+  },
   play:{
     id: "videoPlayer",
     label: "Play",
     type: "button",
     icon: "select",
-    viewId: "row3"          
+    viewId: "row3"
   }
 
 };
@@ -82,14 +82,14 @@ const buildPlayerStatusValue = (title, message) => {
   };
 };
 
-const playerFields={   
-    id:"videoPlayer", 
+const playerFields={
+    id:"videoPlayer",
     selector:{
     id: "videoSelector",
     type: "button",
     label: "Play Different Video",
-    viewId: "row1"        
-    }, 
+    viewId: "row1"
+    },
     status:{
       id: "playerStatus",
       type: "info",
@@ -103,14 +103,14 @@ const playerFields={
       minimumValue: 0,
       maximumValue: 100,
       step: 1,
-     viewId: "row3"        
-    }, 
+     viewId: "row3"
+    },
     rw:{
     id: "rwButton",
     type: "button",
     label: "RW",
     icon: "rw",
-    viewId: "row4"        
+    viewId: "row4"
    },
    playPause:{
     id: "playPauseButton",
@@ -119,28 +119,28 @@ const playerFields={
     label: "Play",
     icon: "play",
     options: [{ value: 0, label: "Play", icon: "play" }, { value: 1, label: "Pause", icon: "pause" }],
-    viewId: "row4"        
+    viewId: "row4"
    },
    ff:{
     id: "ffButton",
     type: "button",
     label: "FF",
     icon: "ff",
-    viewId: "row4"        
-  }, 
+    viewId: "row4"
+  },
   begin:{
     id: "skipToBeginButton",
     type: "button",
     label: "Begin",
     icon: "skip-to-begin",
-    viewId: "row5"        
-  }, 
+    viewId: "row5"
+  },
   end:{
     id: "skipToEndButton",
     type: "button",
     label: "End",
     icon: "skip-to-end",
-    viewId: "row5"        
+    viewId: "row5"
   }
 
 }
@@ -150,7 +150,7 @@ const playerFields={
 export const selector =(title, synopsis)=>{
   selectorFields.title.value.content=title;
   selectorFields.synopsis.value=synopsis;
-    return {  
+    return {
       action: "input",
       id: selectorFields.id,
       dataType: "control",
@@ -162,14 +162,14 @@ export const selector =(title, synopsis)=>{
                 selectorFields.next,
                 selectorFields.play
                 ]
-      } 
-  }   
+      }
+  }
 };
 
 
 
 export const player=(title)=>{
-    
+
     return {
       action: "input",
       dataType: "control",
@@ -177,14 +177,14 @@ export const player=(title)=>{
       form: {
         title: title,
         fields: [
-          playerFields.selector, 
-          playerFields.status, 
-          playerFields.slider, 
+          playerFields.selector,
+          playerFields.status,
+          playerFields.slider,
           playerFields.rw,
           playerFields.playPause,
           playerFields.ff,
           playerFields.begin,
-          playerFields.end         
+          playerFields.end
         ]
       }
     };
@@ -192,12 +192,12 @@ export const player=(title)=>{
 
 
 
-export default () => {
-  
+const App = () => {
+
   const [videoData, setVideoData] = useState(videoControl.getDefaultVideo());
   const videoPlayer = useRef(null);
-  const mobile = useGlobalInputApp({ initData: selector(videoData.video.title, videoData.video.synopsis)});        
-  
+  const mobile = useGlobalInputApp({ initData: selector(videoData.video.title, videoData.video.synopsis)});
+
     const onChangeVideoData = videoData => {
       videoControl.setPlayVideoSource(videoPlayer.current, videoData.video);
       mobile.sendValue(selectorFields.title.id,videoData.video.title);
@@ -205,24 +205,24 @@ export default () => {
       setVideoData(videoData);
     };
    const setPlayerStatus = (playerStatusTitle, playerStatusMessage) => {
-        mobile.sendValue(playerFields.status.id,buildPlayerStatusValue(playerStatusTitle,playerStatusMessage));    
+        mobile.sendValue(playerFields.status.id,buildPlayerStatusValue(playerStatusTitle,playerStatusMessage));
     };
     const showPlayButton= ()=>{
-        mobile.sendValue(playerFields.playPause.id,0);        
+        mobile.sendValue(playerFields.playPause.id,0);
     };
     const showPauseButton= ()=>{
-        mobile.sendValue(playerFields.playPause.id,1);        
+        mobile.sendValue(playerFields.playPause.id,1);
     };
     const setSliderValue= (sliderValue) => {
-        mobile.sendValue(playerFields.slider.id,sliderValue);        
+        mobile.sendValue(playerFields.slider.id,sliderValue);
     };
 
-    mobile.setOnchange(({field,initData,sendInitData}) => {      
+    mobile.setOnchange(({field,initData,sendInitData}) => {
       switch (initData.id===selectorFields.id && field.id) {
               case selectorFields.play.id:
                       videoControl.playVideo(videoPlayer.current);
-                      sendInitData(player(videoData.video.title));                      
-                      break;                        
+                      sendInitData(player(videoData.video.title));
+                      break;
               case selectorFields.previous.id:
                       onChangeVideoData(videoControl.getPreviousVideo(videoData));
                       break;
@@ -230,11 +230,11 @@ export default () => {
                       onChangeVideoData(videoControl.getNextVideo(videoData));
                       break;
       }
-      
-      switch (initData.id===playerFields.id && field.id) {                        
+
+      switch (initData.id===playerFields.id && field.id) {
               case playerFields.selector.id:
                       sendInitData(selector(videoData.video.title, videoData.video.synopsis));
-                      break;                        
+                      break;
               case playerFields.slider.id:
                       videoControl.setCurrentTimeWithSlider(videoPlayer.current, field.value);
                       break;
@@ -253,11 +253,11 @@ export default () => {
 
                       }
                       else{
-                        videoControl.playVideo(videoPlayer.current);                                
+                        videoControl.playVideo(videoPlayer.current);
                         showPauseButton();
-                      }                       
+                      }
                       break;
-              case playerFields.ff.id:                                
+              case playerFields.ff.id:
                       if (videoPlayer.current) {
                               videoControl.fastForwardVideo(videoPlayer.current);
                               const { playbackRate } = videoPlayer.current as any;
@@ -285,15 +285,15 @@ export default () => {
 
 
 
-   const onPlay = () => {    
+   const onPlay = () => {
       setPlayerStatus('Playing', '');
       showPauseButton();
     };
-    const onPause = () => {    
+    const onPause = () => {
       setPlayerStatus('Paused', '');
       showPlayButton();
     };
-    
+
     const onTimeUpdate = () => {
       const { duration, sliderValue } = videoControl.getVideoData(videoPlayer.current);
       if (!duration) {
@@ -303,7 +303,7 @@ export default () => {
         setSliderValue(sliderValue);
       }
     };
-    const onAbort = () => {    
+    const onAbort = () => {
       setPlayerStatus('Aborted', '');
       showPlayButton();
     };
@@ -321,11 +321,11 @@ export default () => {
 
   };
   const onEnded = () => {
-      videoControl.skipToBegin(videoPlayer.current);    
+      videoControl.skipToBegin(videoPlayer.current);
       setPlayerStatus('Completed', '');
       showPlayButton();
   };
-  const onError = () => {    
+  const onError = () => {
     setPlayerStatus('Error', 'Something wrong in player');
     showPlayButton();
   };
@@ -338,7 +338,7 @@ export default () => {
   const onLoadStart = () => {
 
   };
-  const onPlaying = () => {    
+  const onPlaying = () => {
     setPlayerStatus('Playing', '');
     showPauseButton();
   };
@@ -368,14 +368,14 @@ export default () => {
 
   };
 
-  
+
 
   const [w,h] = useWindowSize();
-  
+
 
   const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(w,h );
 
-  
+
 
   return (
     <PageContainer>
@@ -409,9 +409,13 @@ export default () => {
         controls>
         <source src={videoData.video.mp4} type="video/mp4" />
       </video>
+      {mobile.isReady && (
+        <QRCodeContainer>
+            <mobile.ConnectQR/>
+        </QRCodeContainer>
+      )}
 
-      <mobile.ConnectQR container={QRCodeContainer}/>
-      
+
       <P>This example application (with <A href="https://github.com/global-input/media-player-control-example">its source code</A>)
       demonstrate how you can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to extend an existing media application
       to have <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience</a>
@@ -421,8 +425,4 @@ export default () => {
 
 };
 
-
-
-
-
-
+export default App;

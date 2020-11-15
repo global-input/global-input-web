@@ -1,98 +1,50 @@
-import React, {useState,useCallback} from 'react';
-import {PageContainer,P,Title,ContentContainer} from './app-layout';
-import { useGlobalInputApp } from 'global-input-react'; 
-import QRCodeService from './qr-code';
-import EncryptionService  from './encryption-service';
-import DecryptionService  from './decryption-service';
+import React, { useCallback, useState } from 'react';
+import * as storage from './storage';
 
-const pages ={
-      SELECTION:"selection",
-      QRCODE:"qrcode",
-      ENCRYPTION:"encryption",
-      DECRYPTION:"decryption"
-};
+import MobileEncryption from './mobile-encryption';
+import MobileDecryption from './mobile-decryption';
+import MainPage from './MainPage';
+import ConnectionSettings from './connection-settings';
+import AppPairing from './app-pairing'
+import QRCodeGenerator from './qr-code-generator';
 
-
-export default ()=>{
-      const [page,setPage]=useState(pages.SELECTION);
-      const gotoServiceSelection=useCallback(()=>setPage(pages.SELECTION),[setPage]);
-
-      const onServiceSelection = id=>{
-            switch(id){
-                  case pages.QRCODE:
-                        setPage(pages.QRCODE);
-                        break;
-                  case pages.ENCRYPTION:
-                        setPage(pages.ENCRYPTION);
-                        break;
-                  case pages.DECRYPTION:
-                        setPage(pages.DECRYPTION);
-                        break;
-                  default:
-                        setPage(pages.SELECTION);      
-            }
-      };      
-      switch(page){
-                  case pages.QRCODE:
-                                    return (<QRCodeService back={gotoServiceSelection}/>);
-                  case pages.ENCRYPTION:
-                                    return (<EncryptionService back={gotoServiceSelection}/>);
-                  case pages.DECRYPTION:    
-                                    return (<DecryptionService back={gotoServiceSelection}/>);
-                  case pages.SELECTION:
-                               return (<ServiceSelection onServiceSelection={onServiceSelection}/>);
-                  default:                                                
-                      return null;
-                        
-      }      
-};
-const initData = {
-      action: "input",
-      dataType: "form",
-      form: {
-            title: "Mobile Encryption Services",
-            fields: [{
-                  id:pages.QRCODE,
-                  type: "button",
-                  label: "Encrypted QR Code",
-                  icon: "qrcode",
-                  viewId: "row1",                        
-            }, {
-                  id:pages.ENCRYPTION,
-                  type: "button",
-                  label: "Encrypt",
-                  icon: "encrypt",
-                  viewId: "foot",                        
-            }, {
-                  id:pages.DECRYPTION,
-                  type: "button",
-                  icon: "decrypt",
-                  label: "Decrypt",
-                  viewId: "foot",                        
-            }]
-      },
-};
-
-
-const ServiceSelection=({onServiceSelection})=>{
-      const mobile = useGlobalInputApp({initData});
-      mobile.setOnchange(({field})=>{            
-            onServiceSelection(field.id);
-      });
-      return(<PageContainer>
-            {!mobile.isConnected && (<Title>Mobile Encryption</Title>)}                  
-            <mobile.ConnectQR/>
-            {mobile.errorMessage}            
-            {mobile.isConnected && (
-                  
-                        <ContentContainer row="">
-                              <Title>Select Service</Title>
-                              <P>A set of available services are display on you mobile. Please operate on your mobile.</P>
-                        </ContentContainer>
-                
-            )}                                    
-      </PageContainer>);
-
-
+enum PAGES {
+    MAIN_PAGE,
+    ENCRYPTION,
+    DECRYPTION,
+    EDIT_CONNECTION_SETTINGS,
+    PAIRING,
+    QR_CODE_GENERATOR
 }
 
+const App = () => {
+    const [page, setPage] = useState(PAGES.MAIN_PAGE);
+    const [domain, setDomain] = useState<string>('');
+    const [cacheKey, setCacheKey] = useState(null);
+
+    const mainPage = useCallback(() => setPage(PAGES.MAIN_PAGE), []);
+    const encryption = useCallback(() => setPage(PAGES.ENCRYPTION), []);
+    const decryption = useCallback(() => setPage(PAGES.DECRYPTION), []);
+    const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
+    const editConnectionSettings = useCallback(() => setPage(PAGES.EDIT_CONNECTION_SETTINGS), []);
+    const qrCodeGenerator=useCallback(()=>setPage(PAGES.QR_CODE_GENERATOR),[]);
+    switch (page) {
+        case PAGES.ENCRYPTION:
+            return (<MobileEncryption back={mainPage} domain={domain} />);
+        case PAGES.DECRYPTION:
+            return (<MobileDecryption back={mainPage} domain={domain} />);
+        case PAGES.MAIN_PAGE:
+            return (<MainPage domain={domain} encryption={encryption}
+                decryption={decryption}
+                editConnectionSettings={editConnectionSettings} qrCodeGenerator={qrCodeGenerator}/>);
+        case PAGES.EDIT_CONNECTION_SETTINGS:
+            return (<ConnectionSettings back={mainPage} pairing={pairing} />);
+        case PAGES.PAIRING:
+            return (<AppPairing back={mainPage} />);
+        case PAGES.QR_CODE_GENERATOR:
+            return (<QRCodeGenerator back={mainPage}/>);
+        default:
+            return null;
+    }
+};
+export default App;

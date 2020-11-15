@@ -19,7 +19,7 @@ const startPauseButton={
     type: "button",
     value: 0,
     label: "Start",
-    options: [{ value: 0, label: "Start", icon: "play" }, 
+    options: [{ value: 0, label: "Start", icon: "play" },
               { value: 1, label: "Pause", icon: "pause" },
               { value: 3, label: "Resume", icon: "play" }],
     viewId: "footer",
@@ -28,7 +28,7 @@ const startPauseButton={
                 case 0:game.startGame(); break;
                 case 1:game.pauseGame();break;
                 case 3:game.resumeGame();break;
-        }                        
+        }
     }}
 };
 
@@ -40,7 +40,7 @@ const initData = {
         action: "input",
         dataType: "control",
         form: {
-            title: "Mobile Control Example",                
+            title: "Mobile Control Example",
             views: {
                 viewId: {
                     footer: {
@@ -49,13 +49,13 @@ const initData = {
                             width: "100%",
                         }
                     }
-                }    
+                }
             },
             fields: [{
                 id: "gameStatus",
                 type: "info",
-                value: null,                    
-                
+                value: null,
+
             },{
                 id: "upButton",
                 type: "button",
@@ -76,8 +76,8 @@ const initData = {
                     style: {
                         minWidth: 36,
                         minHeight: 36
-                    },                        
-                },                    
+                    },
+                },
                 viewId: "row2"
             },{
                 id: "rightButton",
@@ -118,46 +118,46 @@ const initData = {
                 },
                 viewId: "row4",
                 operations: { onInput: game.speedUp }
-            },startPauseButton]             
+            },startPauseButton]
         }
     };
 
 
-export default ()=>{
+const App = ()=>{
         const mobile=useGlobalInputApp({initData});
-        
-        const setMoveSpeed=(speed)=>{        
+
+        const setMoveSpeed=(speed)=>{
             var speedValue = {
                 type: "text",
                 content: speed
-            };        
+            };
             mobile.sendValue(speedTextField.id,speedValue);
         };
-        
+
         const seGameStatus = (message) => {
             const statusValue = {
                 type: "view",
                 style: {
                     color:'red'
                 },
-                content:message                       
+                content:message
             };
-            mobile.sendValue('gameStatus',statusValue);                       
-    
+            mobile.sendValue('gameStatus',statusValue);
+
         };
 
-        const onCanvas=(canvas:any)=>{                
-            const onGameRunning=()=>{                                
-                
-                mobile.sendValue(startPauseButton.id,1);                       
-                seGameStatus('Game Stated');                                
+        const onCanvas=(canvas:any)=>{
+            const onGameRunning=()=>{
+
+                mobile.sendValue(startPauseButton.id,1);
+                seGameStatus('Game Stated');
             }
-            const onGameStopped=()=>{                                
-                mobile.sendValue(startPauseButton.id,0);                       
+            const onGameStopped=()=>{
+                mobile.sendValue(startPauseButton.id,0);
                 seGameStatus('Game Over');
             }
-            const onGamePaused=()=>{                
-                mobile.sendValue(startPauseButton.id,3);                             
+            const onGamePaused=()=>{
+                mobile.sendValue(startPauseButton.id,3);
                 seGameStatus('Game Paused');
             }
             const onSpeedChanges=(moveSpeed:number)=>{
@@ -169,38 +169,37 @@ export default ()=>{
                 onGamePaused,
                 onSpeedChanges
             };
-            game.initGame(canvas,listeners);            
+            game.initGame(canvas,listeners);
         };
 
         return (
-            <PageContainer>                                    
-                    <Title>Mobile Control Example</Title>                                        
+            <PageContainer>
+                    <Title>Global Input App Mobile Control Example</Title>
                     <mobile.ConnectQR>
                         <P>
-                        Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" target="_blank"> Global Input App</a>
+                        Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" target="_blank" rel="noreferrer"> Global Input App</a>
                         </P>
-                        <DisplayApplicationInfo/> 
-                    </mobile.ConnectQR>                
+                        <DisplayApplicationInfo/>
+                    </mobile.ConnectQR>
                 {mobile.isDisconnected && (
-                    <>                
-                    <P>Disconnected, reload the page to try again</P>               
-                    <DisplayApplicationInfo/>                     
+                    <>
+                    <P>Disconnected, reload the page to try again</P>
+                    <DisplayApplicationInfo/>
                     </>
-                )}             
+                )}
                 {mobile.isConnected && (
-                  <DisplayCanvas onCanvas={onCanvas}/>                    
-                )}       
-                                                                                              
+                  <DisplayCanvas onCanvas={onCanvas}/>
+                )}
+
             </PageContainer>
-          );  
+          );
 }
 
 
 export const DisplayApplicationInfo= () => (
     <P>
-        This example application (with <A href="https://github.com/global-input/game-control-example">its source code</A>) demonstrates how web applications can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to implement <a href="https://globalinput.co.uk/global-input-app/mobile-input-control">mobile control</a> as part of the mobile integration.         
-    </P>  
+        This example application (with <A href="https://github.com/global-input/game-control-example">its source code</A>) demonstrates how web applications can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to implement <a href="https://globalinput.co.uk/global-input-app/mobile-input-control">mobile control</a> as part of the mobile integration.
+    </P>
   );
 
-
-
+  export default App;

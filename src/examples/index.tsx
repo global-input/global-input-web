@@ -11,21 +11,21 @@ import {config} from "../configs";
 import RenderPageMetadata from "../pages/RenderPageMetadata";
   const createExampleComponent =(ExampleComponent:React.ComponentType, title)=>{
     return (props:any)=>{
-      
+
       return(
-        <Page>              
-          <ExampleComponent url={config.url} {...props}/>          
+        <Page>
+          <ExampleComponent url={config.url} {...props}/>
           <RenderPageMetadata title={title}/>
         </Page>
-        
+
       );
-    
+
     }
-   
-  
+
+
   }
 
-  
+
 export const GameControlScreen=createExampleComponent(GameControlExample, "Global Input App - Mobile Input & Control Example");
 export const MediaPlayerScreen=createExampleComponent(MediaPlayerControlExample, "Global Input App - Second Screen Example");
 
@@ -36,22 +36,22 @@ export const MobileEncryptionScreen=createExampleComponent(MobileEncryptionExamp
 
  const SendMessageScreenWithoutSendMessage=createExampleComponent(SendMessageExample,"Global Input App - Mobile Personal Storage Example");
 
-export const SendMessageScreen=(props:object)=>{    
+export const SendMessageScreen=(props:object)=>{
       return(
-          <SendMessageScreenWithoutSendMessage {...props} sendMessage={sendMessage}/>                                
+          <SendMessageScreenWithoutSendMessage {...props} sendEmail={sendEmail}/>
       );
 }
 
 const apiURL="https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
 
-type EmailMessage={
+interface EmailMessage{
   firstName:string;
   lastName:string;
   email:string;
   phone:string;
   message:string;
 };
-const  sendMessage =  async ({firstName,lastName,email,phone,message}:EmailMessage) => {
+const  sendEmail =  async ({firstName,lastName,email,phone,message}:EmailMessage) => {
   var headers={
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
   };
@@ -61,5 +61,5 @@ const  sendMessage =  async ({firstName,lastName,email,phone,message}:EmailMessa
   searchParams.append("your-email", email);
   searchParams.append("your-phone", phone);
   searchParams.append("your-message", message);
-  return fetch(apiURL,{headers, method:"POST", body:searchParams});  
+  return fetch(apiURL,{headers, method:"POST", body:searchParams});
 };
