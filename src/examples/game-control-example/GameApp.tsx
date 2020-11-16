@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import { useMobile } from './mobile';
+import { useMobile } from '../../mobile';
 import { PageContainer, Title, P, DisplayCanvas, A, AppFooter, MessageButton, MessageLink } from './app-layout';
 import * as game from "./game";
 
@@ -10,6 +10,7 @@ interface Props {
 }
 const GameApp: React.FC<Props> = ({ connectionSettings }) => {
     const mobile = useMobile(initData);
+    mobile.setOnFieldChange((field) => { });
 
     const setMoveSpeed = (speed) => {
         var speedValue = {

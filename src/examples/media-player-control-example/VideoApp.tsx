@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useMobile } from './mobile';
+import { useMobile } from '../../mobile';
 import * as videoControl from './videoControl';
 import { AppFooter, MessageButton, MessageLink, PageContainer, QRCodeContainer, P, useWindowSize, A } from './app-layout';
 import * as selectorUI from './selectorUI';

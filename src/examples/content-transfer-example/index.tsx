@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useGlobalInputApp } from 'global-input-react';
+import { useMobile }from '../../mobile';
 
 import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
 
@@ -12,8 +12,8 @@ const App: React.FC = () => {
       fields: Object.values(FIELDS)
     }
   };
-  const mobile = useGlobalInputApp({ initData });
-  mobile.setOnchange(({ field }) => {
+  const mobile = useMobile( initData );
+  mobile.setOnFieldChange(( field ) => {
     switch (field.id) {
       case FIELDS.contentField.id:
         setContent(field.value as string);

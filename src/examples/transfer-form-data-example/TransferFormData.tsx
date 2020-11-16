@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import { useMobile, FormField,userWithDomainAsFormId } from './mobile';
+import { useMobile, FormField,userWithDomainAsFormId } from '../../mobile';
 import { FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
 
 interface Props {
