@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMobile } from './mobile';
+import { useMobile } from '../../mobile';
 
 import { AppFooter, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
 

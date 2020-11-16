@@ -154,30 +154,19 @@ interface HomeProps {
 
 }
 const HomePage: React.FC<HomeProps> = () => {
-
-
   const history = useHistory();
-
   const initData = {
+    id: "website-home",
     form: {
       title: "Home",
       fields: [{
         type: "info",
-        value: "You may try the following examples"
-      },
-      {
-        id: "mobile-encryption",
-        type: "button",
-        label: 'Mobile Encryption',
-        operations: {
-          onInput: () => {
-            history.push(config.paths.examples.mobileEncryption.path);
-          }
-        }
+        value: "Welcome to Global Input App home page!"
       }]
     }
   };
   const mobile = useMobile(initData);
+  mobile.setOnFieldChange((field) => { });
 
   return (
     <BasicLayout>

@@ -1,12 +1,14 @@
 import React from 'react';
 
+export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
+
 export const Title: React.FC = ({ children }) => (
     <div style={styles.title}>{children}</div>
 );
-export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
 
 
 export const A = ({ href, children }) => (<a href={href} style={styles.link} target="__blank">{children}</a>);
+
 
 
 export const LoadingCircle = () => (
@@ -152,6 +154,7 @@ const styles = {
         marginTop: 20,
         color: "#5291CD",
         maxWidth: 900
+
     },
     link: {
         fontWeight: 50,
@@ -188,27 +191,27 @@ const styles = {
         minWidth: 100,
         minHeight: 20,
         width: "100%",
-        backgroundColor: "#153E85",
-        color: "white",
         display: "flex",
         flexDirection: 'row' as 'row',
         justifyContent: "center",
         fontFamily: "Avenir",
+        color: "#5291CD",
         fontSize: 20,
         fontWeight: 100,
         whiteSpace: 'nowrap' as 'nowrap',
         paddingTop: 10,
         paddingBottom: 10,
         paddingLeft: 30,
-        paddingRight: 30,
+        paddingRight: 30
     },
     content: {
-        minWidth: 100,
+        width: "100%",
         minHeight: 100,
         display: "flex",
         flexDirection: "column" as 'column',
         justifyContent: "flex-start",
-        alignItems: 'center',
+        backgroundColor: "white",
+        alignItems: 'center'
     },
     domain: {
         width: "100%",
