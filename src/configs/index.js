@@ -1,4 +1,4 @@
-export const config={    
+export const config={
     apikey:"k7jc3QcMPKEXGW5UC",
     url:"https://globalinput.co.uk",
     id:'globalInputApp',
@@ -22,12 +22,12 @@ export const config={
           examples:{
               contentTransfer:{path:"/global-input-app/content-transfer",linkText:"Content Transfer"},
               gameControl:{path:"/global-input-app/game-example",linkText:"Game Control"},
-              mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},              
+              mediaPlayer:{path:"/global-input-app/video-player",linkText:"Media Player Control"},
               sendMessage:{path:"/global-input-app/send-message",linkText:"Send Message"},
-              transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"},              
-              mobileEncryption:{path:"/global-input-app/mobile-encryption",linkText:"Mobile Encryption", oldpath:"/global-input-app/qr-printing"},
+              transferForm:{path:"/global-input-app/form-data-transfer",linkText:"Transfer Form Data"},
+              mobileEncryption:{path:"/global-input-app/mobile-encryption",linkText:"Mobile Encryption", oldPath:"/global-input-app/qr-printing"},
           },
-          contactus:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
+          contactUs:{path:"/global-input-app/contact-us", linkText:"Contact Us"},
 
           getAppScreen:{path:"/global-input-app/get-app",linkText:"GET IT FREE"},
           home:{path:"/",linkText:"Home"},
@@ -77,4 +77,3 @@ export const config={
         }
       }
 };
-

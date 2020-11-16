@@ -13,14 +13,13 @@ interface PROPS {
 const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, cancel, startEncrypt, domain }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [content, setContent] = useState<string>(initialContent);
-    const mobile = useMobile({
-        action: "input",
-        dataType: "form",
+    const initData = () => ({
         form: {
             title: "Content To Encrypt",
             fields: [FIELDS.info, { ...FIELDS.content, value: initialContent }, FIELDS.back, FIELDS.cancel, FIELDS.encrypt]
         }
-    });
+    })
+    const mobile = useMobile(initData);
 
     const onEncrypt = () => {
         if (content.trim()) {
@@ -34,7 +33,7 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
     const back = () => {
         contentOnComputer(content);
     }
-    mobile.setOnchange(({ field }) => {
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.back.id:
                 back();

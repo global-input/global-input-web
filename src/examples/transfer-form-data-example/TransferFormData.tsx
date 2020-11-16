@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import { useMobile, FormField } from './mobile';
+import { useMobile, FormField,userWithDomainAsFormId } from './mobile';
 import { FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
 
 interface Props {
@@ -13,27 +13,29 @@ interface Props {
 };
 const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, manageForm, editDomain, editConnectionSettings }) => {
     const [visibility, setVisibility] = useState(FIELDS.visibility.options[0]);
-    const mobile = useMobile(() => {
-        const id = computerFormId(domain, formFields);
-        return {
+    const initData = () => {
+        const initData = {
             form: {
-                id,
                 title: domain,
-                label: "web",
                 domain: domain,
-                fields: [...Object.values(FIELDS),
-                ...formFields]
+                label: domain,
+                fields: [...Object.values(FIELDS), ...formFields]
             }
-        };
-    });
-    const { sendValue } = mobile;
+        }
+        userWithDomainAsFormId(initData);
+        return initData;
+    };
+    const mobile = useMobile(initData);
+
+
     const toggleVisibility = useCallback(() => {
         const vis = visibility === FIELDS.visibility.options[0] ? FIELDS.visibility.options[1] : FIELDS.visibility.options[0];
         setVisibility(vis);
-        sendValue(FIELDS.visibility.id, vis.value);
-    }, [visibility, sendValue]);
+        mobile.sendValue(FIELDS.visibility.id, vis.value);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [visibility, mobile.sendValue]);
 
-    mobile.setOnchange(({ field }) => {
+    mobile.setOnFieldChange(( field ) => {
         switch (field.id) {
             case FIELDS.visibility.id:
                 toggleVisibility();

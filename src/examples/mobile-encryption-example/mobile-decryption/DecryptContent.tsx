@@ -11,16 +11,14 @@ interface Props {
 
 const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, domain }) => {
     const [errorMessage, setErrorMessage] = useState('');
-    const mobile = useMobile({
-        action: "input",
-        dataType: "form",
+    const initData = {
         form: {
             title: "Mobile Decryption",
             fields: [{ ...FIELDS.content, value: content }, FIELDS.info, FIELDS.back]
         }
-    });
-
-    mobile.setOnchange(({ field }) => {
+    }
+    const mobile = useMobile(initData);
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.content.id:
                 if (field.value) {

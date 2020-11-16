@@ -15,14 +15,13 @@ interface PROPS {
 const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, startEncrypt, cancel, domain }) => {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [content, setContent] = useState(initialContent);
-    const mobile = useMobile({
-        action: "input",
-        dataType: "form",
+    const initData = {
         form: {
             title: "Mobile Encryption",
             fields: Object.values(FIELDS)
         }
-    });
+    }
+    const mobile = useMobile(initData);
     const onContentChange = useCallback((value: string) => {
         setErrorMessage('');
         setContent(value);
@@ -36,7 +35,7 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
             mobile.sendValue(FIELDS.info.id, 'The content (in the extension window) on your computer is empty. You can  press "Use Mobile" button to use your mobile to provide the content.')
         }
     };
-    mobile.setOnchange(({ field }) => {
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.cancel.id:
                 cancel();

@@ -10,14 +10,13 @@ interface Props {
 const CreateField: React.FC<Props> = ({ formFields, onFormStructureChanged, back }) => {
     const [label, setLabel] = useState('');
     const [fieldType, setFieldType] = useState(FIELDS.type.items[0].value);
-    const mobile = useMobile({
-        action: "input",
-        dataType: "form",
+    const initData = {
         form: {
             title: "Creating New Field",
             fields: Object.values(FIELDS)
         }
-    });
+    }
+    const mobile = useMobile(initData);
     const onCreateNew = () => {
         const newFormFields = createNewFormFields(formFields, label, fieldType);
         if (newFormFields) {
@@ -26,7 +25,7 @@ const CreateField: React.FC<Props> = ({ formFields, onFormStructureChanged, back
         }
     }
 
-    mobile.setOnchange(({ field }) => {
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.type.id:
                 if (!field.value || (!(field.value as string[]).length)) {
@@ -120,7 +119,7 @@ const FIELDS = {
         items: [
             { value: "single-line", label: "Single-line" },
             { value: "multi-line", label: "Multi-line" },
-            { value: "password", label: "secret" }
+            { value: "password", label: "Password" }
 
         ]
     },

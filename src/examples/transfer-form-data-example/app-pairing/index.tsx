@@ -7,16 +7,14 @@ interface Props {
 }
 
 const AppPairing: React.FC<Props> = ({ back }) => {
-
-    const mobile = useMobile({
-        action: "input",
-        dataType: "form",
+    const initData = {
         form: {
-            title: "Paring",
+            title: "Pairing",
             fields: Object.values(FIELDS)
         }
-    });
-    mobile.setOnchange(({ field }) => {
+    }
+    const mobile = useMobile(initData);
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.back.id:
                 back();
@@ -30,7 +28,10 @@ const AppPairing: React.FC<Props> = ({ back }) => {
             <MessageContainer>
                 You need to pair your mobile app in order to be able to connect to your extension.
                 </MessageContainer>
-            {mobile.pairing}
+
+
+            <mobile.PairingQR />
+
             <FormFooter>
                 <TextButton onClick={back} label='Done' />
             </FormFooter>

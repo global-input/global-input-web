@@ -6,17 +6,13 @@ import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layou
 
 const App: React.FC = () => {
   const [content, setContent] = useState('');
-
-  const mobile = useGlobalInputApp({
-    initData: {
-      action: "input",
-      dataType: "form",
-      form: {
-        title: "Content Transfer",
-        fields: Object.values(FIELDS)
-      }
+  const initData = {
+    form: {
+      title: "Content Transfer",
+      fields: Object.values(FIELDS)
     }
-  });
+  };
+  const mobile = useGlobalInputApp({ initData });
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:

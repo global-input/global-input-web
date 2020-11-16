@@ -19,9 +19,19 @@ const ConnectionSettings: React.FC<Props> = ({ back, pairing }) => {
     const apikey = setting.apikey ? setting.apikey : '';
     const securityGroup = setting.securityGroup ? setting.securityGroup : '';
     const codeKey = setting.codeKey ? setting.codeKey : '';
-
-    const mobile = useMobile(initData(url, apikey, securityGroup, codeKey));
-    mobile.setOnchange(({ field }) => {
+    const initData = () => ({
+        form: {
+            title: "Connection Settings",
+            fields: [{ ...FIELDS.url, value: url },
+            { ...FIELDS.apikey, value: apikey },
+            { ...FIELDS.securityGroup, value: securityGroup },
+            { ...FIELDS.codeKey, value: codeKey },
+            FIELDS.back,
+            FIELDS.save]
+        }
+    });
+    const mobile = useMobile(initData);
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.url.id:
                 setURL(field.value as string);
@@ -50,7 +60,7 @@ const ConnectionSettings: React.FC<Props> = ({ back, pairing }) => {
             back();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.disconnect, back, setting, mobile.pairing]);
+    }, [mobile.disconnect, back, setting]);
 
     const onURLChange = useCallback((url: string) => {
         setURL(url);
@@ -113,16 +123,6 @@ const ConnectionSettings: React.FC<Props> = ({ back, pairing }) => {
     )
 
 };
-const initData = (url: string, apikey: string, securityGroup: string, codeKey: string) => {
-    return {
-        action: "input",
-        dataType: "form",
-        form: {
-            title: "Connecting Settings",
-            fields: [{ ...FIELDS.url, value: url }, { ...FIELDS.apikey, value: apikey }, { ...FIELDS.securityGroup, value: securityGroup }, { ...FIELDS.codeKey, value: codeKey }, FIELDS.back, FIELDS.save]
-        }
-    }
-}
 
 
 const FIELDS = {

@@ -6,13 +6,13 @@ import {withResponsiveComponent} from '../../../components/screen-media';
 import {styles} from './styles';
 import {config} from '../../../configs';
 
-const PageFooterContainer=({screenMedia})=>(    
+const PageFooterContainer=({screenMedia})=>(
     <div style={styles.container}>
-        <div style={styles.footer.container}>        
-                <PageFooterContent screenMedia={screenMedia}/>    
+        <div style={styles.footer.container}>
+                <PageFooterContent screenMedia={screenMedia}/>
         </div>
     </div>
-    
+
 );
 
 export default withResponsiveComponent(PageFooterContainer);
@@ -61,107 +61,101 @@ const FooterDownload=({isLast=false})=>(
 );
 
 const FooterContactUs=({isLast=false})=>(
-    <FooterItem href={config.paths.contactus.path}
+    <FooterItem href={config.paths.contactUs.path}
     label="Contact Us" isLast={isLast}/>
 );
 
 const PageFooterContent=({screenMedia})=>{
       if(screenMedia.biggerThan(1204)){
-        return (   
-            
+        return (
+
             <div style={styles.footer.content.get()}>
-                    <div style={styles.footer.items}>   
-                        <FooterMobileAuthentication/>                        
+                    <div style={styles.footer.items}>
+                        <FooterMobileAuthentication/>
                         <FooterMobileEncryption/>
                         <FooterSecondScreen/>
                         <FooterMobileInputControl isLast={true}/>
                      </div>
-                     <div style={styles.footer.items}>                                                                    
+                     <div style={styles.footer.items}>
                         <FooterMobilePersonalStorage/>
                         <FooterDownload/>
                         <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
                     </div>
-          </div>  
-                                     
+          </div>
+
         );
     }
     else if(screenMedia.biggerThan(900)){
-        return (  
-            
+        return (
 
-            
+
+
             <div style={styles.footer.content.get()}>
-                     <div style={styles.footer.items}>   
-                        <FooterMobileAuthentication/>                        
+                     <div style={styles.footer.items}>
+                        <FooterMobileAuthentication/>
                         <FooterMobileEncryption/>
                         <FooterMobileInputControl isLast={true}/>
                      </div>
-                     <div style={styles.footer.items}>                    
+                     <div style={styles.footer.items}>
                         <FooterSecondScreen/>
                         <FooterMobilePersonalStorage/>
                         <FooterMobileContentTransfer isLast={true}/>
                     </div>
-                    <div style={styles.footer.items}>                        
+                    <div style={styles.footer.items}>
                         <FooterDownload/>
                         <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
                     </div>
-           </div>  
-                                         
+           </div>
+
          );
     }
     else if(screenMedia.biggerThan(600)){
-        return (   
+        return (
             <div style={styles.footer.content.get()}>
-                     <div style={styles.footer.items}>   
-                        <FooterMobileAuthentication/>                        
+                     <div style={styles.footer.items}>
+                        <FooterMobileAuthentication/>
                         <FooterMobileEncryption isLast={true}/>
                      </div>
-                     <div style={styles.footer.items}>                    
+                     <div style={styles.footer.items}>
                         <FooterMobileInputControl/>
-                        <FooterSecondScreen isLast={true}/>                        
+                        <FooterSecondScreen isLast={true}/>
                     </div>
                     <div style={styles.footer.items}>
                         <FooterMobilePersonalStorage/>
                         <FooterMobileContentTransfer isLast={true}/>
                     </div>
-                    <div style={styles.footer.items}>                        
+                    <div style={styles.footer.items}>
                         <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
-                    </div>                    
-           </div>                                 
+                    </div>
+           </div>
          );
     }
     else{
-      return (   
-        
+      return (
+
         <div style={styles.footer.content.get()}>
-                     <div style={styles.footer.items}>   
-                        <FooterMobileAuthentication/>                        
+                     <div style={styles.footer.items}>
+                        <FooterMobileAuthentication/>
                         <FooterMobileEncryption isLast={true}/>
                      </div>
-                     <div style={styles.footer.items}>                    
+                     <div style={styles.footer.items}>
                         <FooterMobileInputControl/>
-                        <FooterSecondScreen isLast={true}/>                        
+                        <FooterSecondScreen isLast={true}/>
                     </div>
                     <div style={styles.footer.items}>
                         <FooterMobilePersonalStorage/>
                         <FooterMobileContentTransfer isLast={true}/>
                     </div>
-                    <div style={styles.footer.items}>                        
+                    <div style={styles.footer.items}>
                         <FooterPrivacyPolicy/>
                         <FooterContactUs isLast={true}/>
-                    </div>                    
-           </div> 
-           
+                    </div>
+           </div>
+
      );
     }
-    
+
 };
-
-
-
-
-
-

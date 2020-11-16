@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const P = ({ children}) => (<div  style={styles.paragraph}>{children}</div>);
+export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
 
 export const Title: React.FC = ({ children }) => (
     <div style={styles.title}>{children}</div>
@@ -135,7 +135,7 @@ interface MessageButtonProp {
 export const MessageButton: React.FC<MessageButtonProp> = ({ label, onClick }) => (<button style={styles.messageAlink} onClick={onClick}>{label}</button>)
 
 
-const styles={
+const styles = {
     title: {
         display: "flex",
         flexDirection: 'row' as 'row',
@@ -147,12 +147,12 @@ const styles={
         color: "#153E85"
     },
     paragraph: {
-          fontSize: 16,
-          display: "block",
-          marginBottom: 20,
-          marginTop: 20,
-          color: "#5291CD",
-          maxWidth:900
+        fontSize: 16,
+        display: "block",
+        marginBottom: 20,
+        marginTop: 20,
+        color: "#5291CD",
+        maxWidth: 900
 
     },
     link: {
@@ -204,7 +204,7 @@ const styles={
         paddingRight: 30
     },
     content: {
-        width:"100%",
+        width: "100%",
         minHeight: 100,
         display: "flex",
         flexDirection: "column" as 'column',
@@ -237,40 +237,40 @@ const styles={
         minWidth: "350px"
     },
     messageContainer: {
-            minWidth: 300,
-            minHeight: 30,
-            display: 'flex',
-            flexDirection: 'column' as 'column',
-            justifyContent: 'center',
-            alignItems: 'center'
-        },
+        minWidth: 300,
+        minHeight: 30,
+        display: 'flex',
+        flexDirection: 'column' as 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     messageText: {
-            width: "100%",
-            color: "#153E85",
-            fontFamily: "Avenir",
-            fontSize: 14,
-            fontWeight: 100,
-            padding: 20,
-            display: 'block'
-        },
+        width: "100%",
+        color: "#153E85",
+        fontFamily: "Avenir",
+        fontSize: 14,
+        fontWeight: 100,
+        padding: 20,
+        display: 'block'
+    },
     messageAlink: {
-            paddingLeft: 4,
-            paddingRight: 4,
-            backgroundColor: 'white',
-            border: 0,
-            color: "#153E85",
-            fontWeight: 100,
-            fontSize: 14,
-            fontFamily: "Avenir",
+        paddingLeft: 4,
+        paddingRight: 4,
+        backgroundColor: 'white',
+        border: 0,
+        color: "#153E85",
+        fontWeight: 100,
+        fontSize: 14,
+        fontFamily: "Avenir",
     },
     formContainer: {
-            display: 'flex',
-            flexDirection: 'column' as 'column',
-            justifyContent: 'start',
-            alignItems: 'start',
-            width: "100%",
-            minWidth: 300,
-            padding: 10
+        display: 'flex',
+        flexDirection: 'column' as 'column',
+        justifyContent: 'start',
+        alignItems: 'start',
+        width: "100%",
+        minWidth: 300,
+        padding: 10
     },
     fields: {
         display: 'flex',

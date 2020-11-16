@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalInputApp } from 'global-input-react';
+import { useMobile } from './mobile';
 import { Title, P, PageContainer } from './app-layout';
 
 
@@ -7,18 +7,15 @@ interface Props {
     back: () => void;
 }
 const CompanyInfo: React.FC<Props> = ({ back }) => {
-    const mobile = useGlobalInputApp({
-        initData: {
-            action: "input",
-            dataType: "form",
-            form: {
-                id: "###company_name###@iterative",
-                title: "Our Contact Details",
-                label: "contacts",
-                fields: Object.values(FIELDS)
-            }
+    const initData = {
+        form: {
+            id: "###company_name###@iterative",
+            title: "Our Contact Details",
+            label: "contacts",
+            fields: Object.values(FIELDS)
         }
-    });
+    };
+    const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.back.id:
