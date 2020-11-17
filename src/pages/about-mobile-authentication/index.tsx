@@ -15,7 +15,7 @@ const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
       fields: []
     }
   };
-  const mobile = useMobile(initData);
+  const mobile = useMobile(initData, true);
   mobile.setOnFieldChange((field) => { });
   return (
     <theme.Page>

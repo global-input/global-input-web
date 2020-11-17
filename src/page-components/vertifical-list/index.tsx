@@ -15,7 +15,7 @@ const VerticalList: React.FC<Props> = ({ title, items, children }) => {
             fields: []
         }
     };
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnFieldChange((field) => { });
 
     return (

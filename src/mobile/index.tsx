@@ -22,7 +22,7 @@ interface ControlledContainerProps {
 }
 
 
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData)) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), autoConnectWhenConnected: boolean = false) => {
     const connectionSettings = storage.loadConnectionSettings();
     const history = useHistory();
     const options: globalInput.ConnectOptions = {
@@ -36,12 +36,15 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     useEffect(() => {
         addPageContent(initData);
     });
-
+    let autoConnect = true;
+    if (autoConnectWhenConnected) {
+        autoConnect = globalInput.getGlobalInputState().isConnected || globalInput.getGlobalInputState().isReady;
+    }
 
 
     const mobile = globalInput.useGlobalInputApp({
         initData, options, codeAES: connectionSettings.codeKey
-    });
+    }, autoConnect);
 
     const sendInitData = mobile.sendInitData;
     mobile.sendInitData = (initData) => {

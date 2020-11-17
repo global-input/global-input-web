@@ -13,7 +13,7 @@ export default () => {
                         fields: []
                 }
         };
-        const mobile = useMobile(initData);
+        const mobile = useMobile(initData, true);
         mobile.setOnFieldChange((field) => { });
 
         return (

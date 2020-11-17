@@ -165,7 +165,7 @@ const HomePage: React.FC<HomeProps> = () => {
       }]
     }
   };
-  const mobile = useMobile(initData);
+  const mobile = useMobile(initData, true);
   mobile.setOnFieldChange((field) => { });
 
   return (
