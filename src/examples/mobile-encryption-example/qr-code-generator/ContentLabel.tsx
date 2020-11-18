@@ -73,7 +73,7 @@ const ContentLabel: React.FC<Props> = ({ back, next }) => {
                         </FormContainer>
                         <FormFooter>
                                 <TextButton onClick={back} label='Back' />
-                                <TextButton onClick={onNext} label='Cancel' />
+                                <TextButton onClick={onNext} label='Next' />
                         </FormFooter>
 
                 </mobile.ControlledContainer>
