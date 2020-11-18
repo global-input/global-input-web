@@ -124,7 +124,7 @@ const FIELDS = {
         viewId: "row8"
     },
     encryption: {
-        id: "mobile-encryption",
+        id: "mobile-encryption-example",
         type: "button",
         label: 'Mobile Encryption'
     },
