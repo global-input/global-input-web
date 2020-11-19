@@ -10,10 +10,8 @@ const images = {
 };
 
 interface Menu {
-  label: string;
   link: string;
   linkText: string;
-  button: string;
 }
 
 interface TopMenuProps {
@@ -22,9 +20,10 @@ interface TopMenuProps {
   appLogo: string;
   appTitle: string;
   appSubtitle: string;
+  onClickLogo: () => void;
 }
 
-const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle }) => {
+const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle, onClickLogo }) => {
   const [menuPressed, setMenuPressed] = useState(false);
 
   const [refresh, setRefresh] = useState(0);
@@ -68,14 +67,14 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
         </div>
         {bgs && (
           <div style={styles.menuItemsDesktop}>
-            {menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_menu.label`} selected={selected} />))}
+            {menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_${menu.link}_${menu.linkText}`} selected={selected} />))}
           </div>
         )}
       </div>
 
       {(!bgs) && menuPressed && (
         <div style={styles.menuItemsMobile}>
-          {menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_menu.label`} selected={selected} />))}
+          {menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_${menu.link}`} selected={selected} />))}
           <a onClick={hideMenu} href="#b" >
             <div style={styles.mobileMenuOverlay}>
             </div>
