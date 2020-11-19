@@ -201,4 +201,16 @@ const handlePageNavigate = (field, history) => {
 };
 
 
+interface MobileConnectProps {
+    initData: globalInput.InitData;
+    autoConnectWhenConnected: boolean;
+}
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, autoConnectWhenConnected = false }) => {
+    const mobile = useMobile(initData, autoConnectWhenConnected);
+    mobile.setOnFieldChange(field => {
+
+    });
+    return (<mobile.ConnectQR />);
+}
+
 export type { FormField, FieldValue } from 'global-input-react';////global-input-react////

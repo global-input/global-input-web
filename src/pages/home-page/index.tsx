@@ -1,6 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
-
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
@@ -154,7 +152,6 @@ interface HomeProps {
 
 }
 const HomePage: React.FC<HomeProps> = () => {
-  const history = useHistory();
   const initData = {
     id: "website-home",
     form: {
@@ -167,11 +164,14 @@ const HomePage: React.FC<HomeProps> = () => {
   };
   const mobile = useMobile(initData, true);
   mobile.setOnFieldChange((field) => { });
+  const onLogoClick = () => {
+    console.log("---logo click");
+  }
 
   return (
-    <BasicLayout>
+    <BasicLayout onLogoClick={onLogoClick}>
       <HomeHeaderBackground>
-        <HeaderSection history={history} />
+        <HeaderSection />
         <CardSection />
         <HowItWorks />
       </HomeHeaderBackground>

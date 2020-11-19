@@ -16,14 +16,14 @@ interface Menu {
 
 interface TopMenuProps {
   menus: Menu[];
-  selected: Menu;
+  selected: Menu | null;
   appLogo: string;
   appTitle: string;
-  appSubtitle: string;
-  onClickLogo: () => void;
+  appSubtitle?: string;
+  onLogoClick?: () => void;
 }
 
-const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle, onClickLogo }) => {
+const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle, onLogoClick }) => {
   const [menuPressed, setMenuPressed] = useState(false);
 
   const [refresh, setRefresh] = useState(0);
@@ -58,7 +58,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
           </div>
         )}
-        <a href="/">
+        <a href="#" onClick={onLogoClick}>
           <img src={appLogo} style={styles.logo} alt="App Logo" />
         </a>
         <div style={styles.appTitleContainer}>
@@ -88,7 +88,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
 interface MenuItemProps {
   menu: Menu;
-  selected: Menu;
+  selected: Menu | null;
 
 }
 const MenuItem: React.FC<MenuItemProps> = ({ menu, selected }) => {
