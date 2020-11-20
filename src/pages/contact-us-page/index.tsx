@@ -5,17 +5,23 @@ import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-c
 import VerticalList from '../../page-components/vertifical-list';
 import ContactContainer from './contact-container';
 import RenderPageMetadata from "../RenderPageMetadata";
-
+import { MobileConnect } from '../../mobile';
 
 
 
 const ContactUsPage: React.FC = () => {
-
+  const initData = {
+    form: {
+      title: "Contact Us",
+      fields: []
+    }
+  };
   return (
     <Page>
       <RenderPageMetadata title="Global Input App - Contact Us" />
       <PageContainer>
         <ContactContainer>
+          <MobileConnect initData={initData} />
           <TitleCenter>{textContent.title}</TitleCenter>
 
           <VerticalOnMobile>

@@ -3,7 +3,7 @@ import * as theme from '../../page-components/themes/light-blue-background';
 
 import IntroducingMobileInputAndControl from './IntroducingMobileInputAndControl';
 import RenderPageMetadata from "../RenderPageMetadata";
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 
 const AboutMobileInputControl: React.FC = () => {
@@ -14,11 +14,9 @@ const AboutMobileInputControl: React.FC = () => {
       fields: []
     }
   };
-  const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange((field) => { });
-
   return (
     <theme.Page>
+      <MobileConnect initData={initData} />
       <IntroducingMobileInputAndControl theme={theme} />
       <RenderPageMetadata title="Mobile Input &amp; Control" />
     </theme.Page>

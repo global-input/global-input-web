@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import { styleMatchingScreenSize } from "../../components/screen-media";
-import { useMobile } from '../../mobile';
+
 
 interface Props {
     title?: string;
@@ -9,17 +9,10 @@ interface Props {
 }
 const VerticalList: React.FC<Props> = ({ title, items, children }) => {
 
-    const initData = {
-        form: {
-            title: "Contact Us",
-            fields: []
-        }
-    };
-    const mobile = useMobile(initData, false);
-    mobile.setOnFieldChange((field) => { });
 
     return (
         <div style={styles.container.get()}>
+
             {renderTitle(title)}
             {renderContent(items, children)}
         </div>

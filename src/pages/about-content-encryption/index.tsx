@@ -3,7 +3,7 @@ import * as theme from '../../page-components/themes/light-blue-background';
 
 import ContentEncryption from './ContentEncryption';
 import RenderPageMetadata from "../RenderPageMetadata";
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 
 const AboutContentEncryption = () => {
@@ -13,10 +13,10 @@ const AboutContentEncryption = () => {
       fields: []
     }
   };
-  const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange((field) => { });
+
   return (
     <theme.Page>
+      <MobileConnect initData={initData} />
       <ContentEncryption theme={theme} />
       <RenderPageMetadata title="Mobile Encryption" />/
     </theme.Page>

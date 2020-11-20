@@ -3,7 +3,7 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 import SecondScreenExperience from './SecondScreenExperience';
 import RenderPageMetadata from "../RenderPageMetadata";
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 const AboutSecondScreen = () => {
   const initData = {
@@ -12,11 +12,10 @@ const AboutSecondScreen = () => {
       fields: []
     }
   };
-  const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange((field) => { });
 
   return (
     <theme.Page>
+      <MobileConnect initData={initData} />
       <SecondScreenExperience theme={theme} />
       <RenderPageMetadata title="Second Screen Experience" />
     </theme.Page>

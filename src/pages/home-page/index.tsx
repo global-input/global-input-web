@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
 import IconHeaderCard from "../../page-components/icon-header-card";
-import HeaderSection from "./header-section";
+
 import { HomeHeaderBackground } from "./header-backgrounds";
 import HowItWorks from "./how-it-works";
 
@@ -12,6 +12,13 @@ import PageFooter from '../../page-components/themes/page-footer';
 import { withScrollToTop, withResponsiveComponent } from "../../components/screen-media";
 import { config } from '../../configs';
 import RenderPageMetadata from "../RenderPageMetadata";
+
+import { SimpleHeaderBackground } from './header-backgrounds';
+import RightPosterImage from '../../page-components/right-poster-image';
+import { HomeTitleSection } from '../../page-components/text-title-sections';
+import SmallText from './header-section/small-text';
+import ButtonsContainer from '../../page-components/buttons-container';
+import { pagesLinks } from "../../links-components";
 
 import { MobileConnect } from '../../mobile';
 
@@ -23,7 +30,12 @@ const images = {
   encryption: require('./images/encryption.png'),
   mobilePersonStorage: require('./images/personal-storage.png'),
   mobileContentTransfer: require('./images/transfer.png'),
+  rightPoster: require('./header-section/images/right-poster.png'),
+  rightPoster400: require('./header-section/images/right-poster-400.png'),
+  rightPoster200: require('./header-section/images/right-poster-200.png')
 }
+
+
 
 
 const textContent = {
@@ -53,6 +65,12 @@ const textContent = {
   }
 };
 
+const headerTextContent = {
+  title: "Mobile Integration",
+  subtitle: "Mobile Solution for Device Applications",
+  smallText: "Data Security, Mobile Input & Control for IoT",
+  description: "Users Carry Their Around Own Data or their Key "
+};
 const AuthenticationCard = () => (
   <IconHeaderCard titleIcon={images.authentication}
     title={textContent.authentication.title}
@@ -163,16 +181,29 @@ const HomePage: React.FC<HomeProps> = () => {
     }
   };
   const [connect, setConnect] = useState(false);
-  const onLogoClick = () => {
 
-    //setConnect((connect) => !connect);
-  }
-
+  const { GetAppButton } = pagesLinks.buttons;
   return (
-    <BasicLayout onLogoClick={onLogoClick}>
-      <MobileConnect initData={initData} connect={connect} />
+    <BasicLayout>
+
       <HomeHeaderBackground>
-        <HeaderSection />
+        <SimpleHeaderBackground>
+          <MobileConnect initData={initData} onNotConnected={(<RightPosterImage
+            image={images.rightPoster}
+            image200={images.rightPoster200}
+            image400={images.rightPoster400} />)} />
+          <HomeTitleSection
+            title={headerTextContent.title}
+            subtitle={headerTextContent.subtitle}>
+            <SmallText content={headerTextContent.smallText} />
+            <ButtonsContainer>
+              <GetAppButton>Get It Free</GetAppButton>
+            </ButtonsContainer>
+          </HomeTitleSection>
+        </SimpleHeaderBackground>
+
+
+
         <CardSection />
         <HowItWorks />
       </HomeHeaderBackground>

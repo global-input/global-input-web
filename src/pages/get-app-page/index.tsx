@@ -10,7 +10,7 @@ import IconCard, { CardContainer } from "./icon-card";
 import { pagesLinks } from '../../links-components';
 
 import RenderPageMetadata from "../RenderPageMetadata";
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 const { AppStoreButton, PlayStoreButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
 
@@ -44,11 +44,10 @@ const GetAppPage = () => {
       fields: []
     }
   };
-  const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange((field) => { });
   return (
     <Page>
       <RenderPageMetadata />
+      <MobileConnect initData={initData} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}
           title="Global Input App"

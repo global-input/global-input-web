@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import * as globalInput from 'global-input-react';////global-input-react////
 
@@ -23,7 +23,7 @@ interface ControlledContainerProps {
 }
 
 
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect?: boolean) => {
     const connectionSettings = storage.loadConnectionSettings();
     const history = useHistory();
     const options: globalInput.ConnectOptions = {
@@ -31,24 +31,16 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         apikey: connectionSettings.apikey,
         securityGroup: connectionSettings.securityGroup
     };
-    if (typeof initData === 'function') {
-        initData = initData();
-    }
-    useEffect(() => {
-        addPageContent(initData);
-    });
-    if (!connect) {
-        const globalInputState = globalInput.getGlobalInputState();
-        connect = globalInputState.isConnected || globalInputState.isReady;
-    }
+
+    const initDataEnriched = addPageContent(initData);
     const mobile = globalInput.useGlobalInputApp({
-        initData, options, codeAES: connectionSettings.codeKey
+        initData: initDataEnriched, options, codeAES: connectionSettings.codeKey
     }, connect);
 
     const sendInitData = mobile.sendInitData;
     mobile.sendInitData = (initData) => {
-        addPageContent(initData);
-        sendInitData(initData);
+        const initDataEnriched = addPageContent(initData);
+        sendInitData(initDataEnriched);
     };
 
 
@@ -154,19 +146,24 @@ const FIELDS = {
     }
 
 };
-const addPageContent = (initData) => {
+const addPageContent = (initData: globalInput.InitData | (() => globalInput.InitData)): globalInput.InitData => {
+    if (typeof initData === 'function') {
+        initData = initData();
+    }
+    const fields = [...initData.form.fields];
     if (initData.id === 'website-home') {
-        initData.form.fields.indexOf(FIELDS.encryption) === -1 && initData.form.fields.push(FIELDS.encryption);
-        initData.form.fields.indexOf(FIELDS.transferForm) === -1 && initData.form.fields.push(FIELDS.transferForm);
-        initData.form.fields.indexOf(FIELDS.secondScreen) === -1 && initData.form.fields.push(FIELDS.secondScreen);
-        initData.form.fields.indexOf(FIELDS.game) === -1 && initData.form.fields.push(FIELDS.game);
-        initData.form.fields.indexOf(FIELDS.sendMessage) === -1 && initData.form.fields.push(FIELDS.sendMessage);
-        initData.form.fields.indexOf(FIELDS.contentTransfer) === -1 && initData.form.fields.push(FIELDS.contentTransfer);
-
+        fields.push(FIELDS.encryption);
+        fields.push(FIELDS.transferForm);
+        fields.push(FIELDS.secondScreen);
+        fields.push(FIELDS.game);
+        fields.push(FIELDS.sendMessage);
+        fields.push(FIELDS.contentTransfer);
     }
     else {
-        initData.form.fields.indexOf(FIELDS.home) === -1 && initData.form.fields.push(FIELDS.home);
+        fields.push(FIELDS.home);
     }
+    const form = { ...initData.form, fields };
+    return { ...initData, form };
 }
 const handlePageNavigate = (field, history) => {
     switch (field.id) {
@@ -202,24 +199,45 @@ const handlePageNavigate = (field, history) => {
 
 interface MobileConnectProps {
     initData: globalInput.InitData;
-    connect: boolean;
+    onNotConnected?: React.ReactNode;
 }
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, connect = true }) => {
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, onNotConnected }) => {
+    const [connect, setConnect] = useState(globalInput.getGlobalInputState().isConnected);
     const mobile = useMobile(initData, connect);
+
+
     mobile.setOnFieldChange(field => {
 
     });
-    if (connect) {
-        return (
-            <div style={styles.qrCode}>
-                <mobile.ConnectQR />
-            </div >
 
-        );
-    }
-    else {
-        return null;
-    }
+
+    const enableConnect = useCallback(() => setConnect(true), []);
+    const disableConnect = useCallback(() => setConnect(false), []);
+
+    const qrCodeLabel = (
+        <div style={styles.labelContainer}>
+            <div></div>
+            <div style={styles.label}>
+                Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noreferrer" target="_blank"> Global Input App</a>
+            </div>
+            <button style={styles.closeButton} onClick={disableConnect}>☓</button>
+        </div>
+    );
+
+
+
+    return (
+        <>
+            {(!connect) && (
+                <div style={styles.buttonContainer}>
+                    <button style={styles.connect} onClick={enableConnect}> Connect</button>
+                </div>
+
+            )}
+            {(!connect) && onNotConnected}
+            {connect && (!mobile.isConnected) && (<div style={styles.qrCode}><mobile.ConnectQR label={qrCodeLabel} /></div>)}
+        </>
+    );
 
 }
 const styles = {
@@ -228,9 +246,50 @@ const styles = {
         flexDirection: 'column' as 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minWidth: 450,
-        minHeight: 450,
+        paddingTop: 50,
+        paddingLeft: 20,
+        paddingRight: 20,
+        backgroundColor: "white"
+    },
+    buttonContainer: {
+        flex: 'display',
+        flexDirection: 'row' as 'row',
+        justifyContent: 'flex-start',
+        width: "100%"
+    },
+    connect: {
+        textDecoration: "none",
+        fontSize: 15,
+        borderRadius: 8,
+        color: "#4281BD",
+        backgroundColor: "white",
+        whiteSpace: "nowrap" as 'nowrap',
+        padding: 10,
+        minWidth: 120,
+        marginLeft: 20,
+        marginTop: 20,
+        display: "flex",
+        flexDirection: "row" as 'row',
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    label: {
+        paddingTop: 20,
+        color: "#A9C8E6", //#4880ED
+    },
+    labelContainer: {
+        display: "flex",
+        flexDirection: 'row' as 'row',
+        justifyContent: 'space-between',
+        width: "100%"
+    },
+    closeButton: {
+        backgroundColor: "white",
+        borderWidth: 0,
+        marginRight: 20,
+        color: "#4880ED"
     }
+
 
 }
 

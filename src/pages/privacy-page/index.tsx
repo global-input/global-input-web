@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 import RenderPageMetadata from "../RenderPageMetadata";
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 
 
@@ -18,17 +18,16 @@ const PrivacyPage: React.FC = () => {
       }]
     }
   };
-  const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange((field) => {
 
-  });
 
 
   return (
     <Page>
+      <MobileConnect initData={initData} />
       <RenderPageMetadata title="Global Input App -  Privacy Policy" />
       <PageContainer>
         <Title>Privacy Policy</Title>
+
         <P>
           We do not track your activities and we do not store your data.  We do not even have a server database or cloud storage to store your data.
           </P>
