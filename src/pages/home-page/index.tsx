@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
@@ -13,7 +13,7 @@ import { withScrollToTop, withResponsiveComponent } from "../../components/scree
 import { config } from '../../configs';
 import RenderPageMetadata from "../RenderPageMetadata";
 
-import { useMobile } from '../../mobile';
+import { MobileConnect } from '../../mobile';
 
 
 const images = {
@@ -162,14 +162,15 @@ const HomePage: React.FC<HomeProps> = () => {
       }]
     }
   };
-  const mobile = useMobile(initData, true);
-  mobile.setOnFieldChange((field) => { });
+  const [connect, setConnect] = useState(false);
   const onLogoClick = () => {
-    console.log("---logo click");
+
+    //setConnect((connect) => !connect);
   }
 
   return (
     <BasicLayout onLogoClick={onLogoClick}>
+      <MobileConnect initData={initData} connect={connect} />
       <HomeHeaderBackground>
         <HeaderSection />
         <CardSection />

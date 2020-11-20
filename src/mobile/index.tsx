@@ -14,6 +14,7 @@ import { AppContainer, RowCenter, FormContainer, TextButton, QRCodeContainer, Di
 
 
 
+
 interface ControlledContainerProps {
     domain: string;
     title: string;
@@ -22,7 +23,7 @@ interface ControlledContainerProps {
 }
 
 
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), autoConnectWhenConnected: boolean = false) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
     const connectionSettings = storage.loadConnectionSettings();
     const history = useHistory();
     const options: globalInput.ConnectOptions = {
@@ -36,15 +37,13 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     useEffect(() => {
         addPageContent(initData);
     });
-    let autoConnect = true;
-    if (autoConnectWhenConnected) {
-        autoConnect = globalInput.getGlobalInputState().isConnected || globalInput.getGlobalInputState().isReady;
+    if (!connect) {
+        const globalInputState = globalInput.getGlobalInputState();
+        connect = globalInputState.isConnected || globalInputState.isReady;
     }
-
-
     const mobile = globalInput.useGlobalInputApp({
         initData, options, codeAES: connectionSettings.codeKey
-    }, autoConnect);
+    }, connect);
 
     const sendInitData = mobile.sendInitData;
     mobile.sendInitData = (initData) => {
@@ -203,14 +202,36 @@ const handlePageNavigate = (field, history) => {
 
 interface MobileConnectProps {
     initData: globalInput.InitData;
-    autoConnectWhenConnected: boolean;
+    connect: boolean;
 }
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, autoConnectWhenConnected = false }) => {
-    const mobile = useMobile(initData, autoConnectWhenConnected);
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, connect = true }) => {
+    const mobile = useMobile(initData, connect);
     mobile.setOnFieldChange(field => {
 
     });
-    return (<mobile.ConnectQR />);
+    if (connect) {
+        return (
+            <div style={styles.qrCode}>
+                <mobile.ConnectQR />
+            </div >
+
+        );
+    }
+    else {
+        return null;
+    }
+
+}
+const styles = {
+    qrCode: {
+        display: "flex",
+        flexDirection: 'column' as 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minWidth: 450,
+        minHeight: 450,
+    }
+
 }
 
 export type { FormField, FieldValue } from 'global-input-react';////global-input-react////

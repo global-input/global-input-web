@@ -14,7 +14,7 @@ const AboutMobileInputControl: React.FC = () => {
       fields: []
     }
   };
-  const mobile = useMobile(initData, true);
+  const mobile = useMobile(initData, false);
   mobile.setOnFieldChange((field) => { });
 
   return (

@@ -18,7 +18,7 @@ const PrivacyPage: React.FC = () => {
       }]
     }
   };
-  const mobile = useMobile(initData, true);
+  const mobile = useMobile(initData, false);
   mobile.setOnFieldChange((field) => {
 
   });

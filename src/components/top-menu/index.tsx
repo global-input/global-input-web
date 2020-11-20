@@ -58,9 +58,9 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
           </div>
         )}
-        <a href="#" onClick={onLogoClick}>
+        <button onClick={onLogoClick} style={styles.logoButton}>
           <img src={appLogo} style={styles.logo} alt="App Logo" />
-        </a>
+        </button>
         <div style={styles.appTitleContainer}>
           <div style={titleStyle}>{appTitle}</div>
           {appSubtitle && (<div style={subTitleStyle}>{appSubtitle}</div>)}
@@ -317,9 +317,16 @@ export const styles = {
 
   logo: {
     maxWidth: 80,
-    marginLeft: 20,
-    marginBottom: 4
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 4,
+    marginTop: 4
   },
+  logoButton: {
+    borderWidth: 0,
+    backgroundColor: "#FFFFFF",
+    padding: 0
+  }
 
 };
 
