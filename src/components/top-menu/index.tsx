@@ -34,7 +34,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
   const navStyle = bgs ? styles.topNav.desktop : styles.topNav.mobile
   const titleStyle = bgs ? styles.appDesktopTitle : styles.appMobileTitle;
   const subTitleStyle = bgs ? styles.subtitleDesktopContainer : styles.subtitleMobileContainer;
-
+  console.log("render menu:" + refresh);
   useEffect(() => {
     const onWindowResize = () => {
       setRefresh(refresh => refresh + 1);
