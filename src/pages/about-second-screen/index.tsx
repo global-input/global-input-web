@@ -2,9 +2,9 @@ import React from 'react';
 
 import * as theme from '../../page-components/themes/light-blue-background';
 import SecondScreenExperience from './SecondScreenExperience';
-import RenderPageMetadata from "../RenderPageMetadata";
-import { MobileConnect } from '../../mobile';
 
+import { MobileConnect } from '../../mobile';
+import { usePageTitle } from '../../page-metadata';
 const AboutSecondScreen = () => {
   const initData = {
     form: {
@@ -12,12 +12,12 @@ const AboutSecondScreen = () => {
       fields: []
     }
   };
+  usePageTitle('Second Screen Experience');
 
   return (
     <theme.Page>
       <MobileConnect initData={initData} />
       <SecondScreenExperience theme={theme} />
-      <RenderPageMetadata title="Second Screen Experience" />
     </theme.Page>
   )
 };

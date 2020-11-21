@@ -2,10 +2,11 @@ import React from 'react';
 import { withResponsiveComponent } from "../../components/screen-media";
 
 import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-components/themes/blue-background";
-import VerticalList from '../../page-components/vertifical-list';
+import VerticalList from '../../page-components/vertical-list';
 import ContactContainer from './contact-container';
-import RenderPageMetadata from "../RenderPageMetadata";
+
 import { MobileConnect } from '../../mobile';
+import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';
 
 
@@ -16,9 +17,9 @@ const ContactUsPage: React.FC = () => {
       fields: []
     }
   };
+  usePageTitle('Global Input App - Contact Us');
   return (
     <Page selected={config.paths.contactUs.path}>
-      <RenderPageMetadata title="Global Input App - Contact Us" />
       <PageContainer>
         <ContactContainer>
           <MobileConnect initData={initData} />

@@ -11,7 +11,7 @@ import FeaturesSection from './features-section';
 import PageFooter from '../../page-components/themes/page-footer';
 import { withScrollToTop, withResponsiveComponent } from "../../components/screen-media";
 import { config } from '../../configs';
-import RenderPageMetadata from "../RenderPageMetadata";
+
 
 import { SimpleHeaderBackground } from './header-backgrounds';
 import RightPosterImage from '../../page-components/right-poster-image';
@@ -214,7 +214,7 @@ const HomePage: React.FC<HomeProps> = () => {
       </HomeHeaderBackground>
       <FeaturesSection />
       <PageFooter />
-      <RenderPageMetadata />
+
 
     </BasicLayout>
   )

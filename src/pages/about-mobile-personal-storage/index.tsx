@@ -4,7 +4,7 @@ import * as theme from '../../page-components/themes/light-blue-background';
 
 import MobilePersonalStorage from './MobilePersonalStorage';
 
-import RenderPageMetadata from "../RenderPageMetadata";
+import { usePageTitle } from '../../page-metadata';
 import { MobileConnect } from '../../mobile';
 export default () => {
         const initData = {
@@ -13,12 +13,12 @@ export default () => {
                         fields: []
                 }
         };
+        usePageTitle('Mobile Personal Storage');
 
         return (
                 <theme.Page>
                         <MobileConnect initData={initData} />
                         <MobilePersonalStorage theme={theme} />
-                        <RenderPageMetadata title="Mobile Personal Storage" />
                 </theme.Page>
 
         )

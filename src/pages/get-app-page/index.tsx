@@ -9,9 +9,10 @@ import IconCard, { CardContainer } from "./icon-card";
 
 import { pagesLinks } from '../../links-components';
 
-import RenderPageMetadata from "../RenderPageMetadata";
+
 import { MobileConnect } from '../../mobile';
 import { config } from '../../configs';
+import { usePageTitle } from '../../page-metadata';
 
 const { AppStoreButton, PlayStoreButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
 
@@ -45,9 +46,9 @@ const GetAppPage = () => {
       fields: []
     }
   };
+  usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path}>
-      <RenderPageMetadata />
       <MobileConnect initData={initData} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}

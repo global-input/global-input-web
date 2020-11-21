@@ -2,9 +2,8 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 
 import IntroducingMobileInputAndControl from './IntroducingMobileInputAndControl';
-import RenderPageMetadata from "../RenderPageMetadata";
 import { MobileConnect } from '../../mobile';
-
+import { usePageTitle } from '../../page-metadata';
 
 const AboutMobileInputControl: React.FC = () => {
 
@@ -14,11 +13,11 @@ const AboutMobileInputControl: React.FC = () => {
       fields: []
     }
   };
+  usePageTitle('Mobile Input &amp; Control');
   return (
     <theme.Page>
       <MobileConnect initData={initData} />
       <IntroducingMobileInputAndControl theme={theme} />
-      <RenderPageMetadata title="Mobile Input &amp; Control" />
     </theme.Page>
   )
 };
