@@ -57,7 +57,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
             <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={() => {
               setMenuPressed(!menuPressed);
             }}>
-              {menuPressed ? '☓' : (<img src={images.menuSymbol} />)}
+              {menuPressed ? '☓' : (<img src={images.menuSymbol} alt="Close" />)}
             </a>
 
           </div>
@@ -236,13 +236,7 @@ export const styles = {
     color: "#5291CD",
     fontSize: 12,
   },
-  userinfo: {
-    position: "absolute",
-    right: 0,
-    top: 10,
-    marginRight: 20,
-    color: "#80ccff",
-  },
+
   mobileMenu: {
 
     marginLeft: 20

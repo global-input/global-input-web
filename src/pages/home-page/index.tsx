@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
@@ -191,10 +191,10 @@ const HomePage: React.FC<HomeProps> = () => {
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
           <DisplayMobileConnect mobile={mobile} />
-          {(!mobile.connect) && (<RightPosterImage
+          <RightPosterImage
             image={images.rightPoster}
             image200={images.rightPoster200}
-            image400={images.rightPoster400} />)}
+            image400={images.rightPoster400} />
           <HomeTitleSection
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>
@@ -215,6 +215,7 @@ const HomePage: React.FC<HomeProps> = () => {
       <FeaturesSection />
       <PageFooter />
       <RenderPageMetadata />
+
     </BasicLayout>
   )
 };
