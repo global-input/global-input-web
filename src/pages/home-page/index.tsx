@@ -181,7 +181,6 @@ const HomePage: React.FC<HomeProps> = () => {
     }
   };
   const mobile = useMobile(initData, false);
-  mobile.setOnFieldChange(field => { });
 
   const { GetAppButton } = pagesLinks.buttons;
   return (
@@ -194,6 +193,8 @@ const HomePage: React.FC<HomeProps> = () => {
             image={images.rightPoster}
             image200={images.rightPoster200}
             image400={images.rightPoster400} />)}
+
+          <mobile.ConnectQR />
           <HomeTitleSection
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>
