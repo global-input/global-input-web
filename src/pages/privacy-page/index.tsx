@@ -3,7 +3,7 @@ import React from 'react';
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 import RenderPageMetadata from "../RenderPageMetadata";
 import { MobileConnect } from '../../mobile';
-
+import { config } from '../../configs';
 
 
 
@@ -22,7 +22,7 @@ const PrivacyPage: React.FC = () => {
 
 
   return (
-    <Page>
+    <Page selected={config.paths.privacy.path}>
       <MobileConnect initData={initData} />
       <RenderPageMetadata title="Global Input App -  Privacy Policy" />
       <PageContainer>

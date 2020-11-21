@@ -20,7 +20,7 @@ import SmallText from './header-section/small-text';
 import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../links-components";
 
-import { MobileConnect } from '../../mobile';
+import { useMobile, DisplayMobileConnect } from '../../mobile';
 
 
 const images = {
@@ -180,22 +180,26 @@ const HomePage: React.FC<HomeProps> = () => {
       }]
     }
   };
-  const [connect, setConnect] = useState(false);
+  const mobile = useMobile(initData, false);
+  mobile.setOnFieldChange(field => { });
 
   const { GetAppButton } = pagesLinks.buttons;
   return (
-    <BasicLayout>
+    <BasicLayout onLogoClick={mobile.toggleConnect} selected={config.paths.home.path} onReClicked={mobile.disableConnect}>
 
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
-          <MobileConnect initData={initData} onNotConnected={(<RightPosterImage
+          <DisplayMobileConnect mobile={mobile} />
+          {(!mobile.connect) && (<RightPosterImage
             image={images.rightPoster}
             image200={images.rightPoster200}
-            image400={images.rightPoster400} />)} />
+            image400={images.rightPoster400} />)}
           <HomeTitleSection
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>
+
             <SmallText content={headerTextContent.smallText} />
+
             <ButtonsContainer>
               <GetAppButton>Get It Free</GetAppButton>
             </ButtonsContainer>

@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 
 import * as globalInput from 'global-input-react';////global-input-react////
 
+import appIcon from './app-icon.png';
+
 import { useHistory } from 'react-router-dom';
 
 ////main////
@@ -23,9 +25,17 @@ interface ControlledContainerProps {
 }
 
 
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect?: boolean) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), initialConnect: boolean = true) => {
+    const [connect, setConnect] = useState(initialConnect);
+
     const connectionSettings = storage.loadConnectionSettings();
     const history = useHistory();
+
+    const enableConnect = useCallback(() => setConnect(true), []);
+    const disableConnect = useCallback(() => setConnect(false), []);
+    const toggleConnect = useCallback(() => setConnect(connect => !connect), []);
+
+
     const options: globalInput.ConnectOptions = {
         url: connectionSettings.url,////use your own server"
         apikey: connectionSettings.apikey,
@@ -37,10 +47,10 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         initData: initDataEnriched, options, codeAES: connectionSettings.codeKey
     }, connect);
 
-    const sendInitData = mobile.sendInitData;
-    mobile.sendInitData = (initData) => {
+
+    const sendInitData = (initData) => {
         const initDataEnriched = addPageContent(initData);
-        sendInitData(initDataEnriched);
+        mobile.sendInitData(initDataEnriched);
     };
 
 
@@ -60,6 +70,24 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const restart = useCallback(() => mobile.restart(), [mobile.restart]);
+
+
+
+    const ConnectQR: React.FC<globalInput.ConnectQRProps> = ({ label }) => {
+        if (!connect) {
+            return null;
+        }
+        if (mobile.isConnected) {
+            return null;
+        }
+        return (
+            <div style={styles.qrContainer}>
+                <div style={styles.qrCode}>
+                    <mobile.ConnectQR label={label} />
+                </div>
+            </div>
+        );
+    };
 
     const disconnectButton = (<TextButton onClick={restart} label="Disconnect" />);
 
@@ -84,7 +112,10 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         // eslint-disable-next-line react-hooks/exhaustive-deps
     ), [mobile.isConnectionDenied, mobile.isError, mobile.isConnected, mobile.isReady, mobile.disconnect, mobile.ConnectQR, mobile.errorMessage]);
 
-    return { ...mobile, ControlledContainer, disconnectButton, setOnFieldChange };
+    return {
+        ...mobile, ControlledContainer, disconnectButton, setOnFieldChange, sendInitData, ConnectQR, enableConnect, disableConnect,
+        toggleConnect, connect
+    };
 };
 
 
@@ -197,58 +228,55 @@ const handlePageNavigate = (field, history) => {
 };
 
 
+
+
 interface MobileConnectProps {
     initData: globalInput.InitData;
     onNotConnected?: React.ReactNode;
+    silent?: boolean;
+    notEnabled?: React.ReactNode;
 }
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, onNotConnected }) => {
-    const [connect, setConnect] = useState(globalInput.getGlobalInputState().isConnected);
-    const mobile = useMobile(initData, connect);
 
-
-    mobile.setOnFieldChange(field => {
-
-    });
-
-
-    const enableConnect = useCallback(() => setConnect(true), []);
-    const disableConnect = useCallback(() => setConnect(false), []);
-
-    const qrCodeLabel = (
-        <div style={styles.labelContainer}>
-            <div></div>
-            <div style={styles.label}>
-                Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noreferrer" target="_blank"> Global Input App</a>
-            </div>
-            <button style={styles.closeButton} onClick={disableConnect}>☓</button>
-        </div>
-    );
-
-
-
+export const DisplayMobileConnect = ({ mobile }) => {
     return (
         <>
-            {(!connect) && (
+            {(!mobile.connect) && (!mobile.isConnected) && (
                 <div style={styles.buttonContainer}>
-                    <button style={styles.connect} onClick={enableConnect}> Connect</button>
+                    <button style={styles.connectButton} onClick={mobile.enableConnect}>
+                        <img src={appIcon} alt="global input app icon" />
+                Connect
+                </button>
                 </div>
 
             )}
-            {(!connect) && onNotConnected}
-            {connect && (!mobile.isConnected) && (<div style={styles.qrCode}><mobile.ConnectQR label={qrCodeLabel} /></div>)}
+            <mobile.ConnectQR />
         </>
+
     );
 
 }
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, notEnabled, silent = true }) => {
+    const mobile = useMobile(initData, false);
+    mobile.setOnFieldChange(field => { });
+    if (silent) {
+        return null;
+    }
+    return (<DisplayMobileConnect mobile={mobile} />);
+}
 const styles = {
+    qrContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        paddingTop: 30,
+    } as React.CSSProperties,
     qrCode: {
         display: "flex",
         flexDirection: 'column' as 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 50,
-        paddingLeft: 20,
-        paddingRight: 20,
+        padding: 20,
         backgroundColor: "white"
     },
     buttonContainer: {
@@ -257,15 +285,15 @@ const styles = {
         justifyContent: 'flex-start',
         width: "100%"
     },
-    connect: {
+    connectButton: {
         textDecoration: "none",
-        fontSize: 15,
+        fontSize: 11,
         borderRadius: 8,
         color: "#4281BD",
         backgroundColor: "white",
         whiteSpace: "nowrap" as 'nowrap',
-        padding: 10,
-        minWidth: 120,
+        padding: 5,
+        minWidth: 20,
         marginLeft: 20,
         marginTop: 20,
         display: "flex",

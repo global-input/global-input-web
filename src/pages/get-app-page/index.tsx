@@ -11,6 +11,7 @@ import { pagesLinks } from '../../links-components';
 
 import RenderPageMetadata from "../RenderPageMetadata";
 import { MobileConnect } from '../../mobile';
+import { config } from '../../configs';
 
 const { AppStoreButton, PlayStoreButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
 
@@ -45,7 +46,7 @@ const GetAppPage = () => {
     }
   };
   return (
-    <Page>
+    <Page selected={config.paths.getAppScreen.path}>
       <RenderPageMetadata />
       <MobileConnect initData={initData} />
       <CardContainer>

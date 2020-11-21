@@ -6,7 +6,7 @@ import VerticalList from '../../page-components/vertifical-list';
 import ContactContainer from './contact-container';
 import RenderPageMetadata from "../RenderPageMetadata";
 import { MobileConnect } from '../../mobile';
-
+import { config } from '../../configs';
 
 
 const ContactUsPage: React.FC = () => {
@@ -17,7 +17,7 @@ const ContactUsPage: React.FC = () => {
     }
   };
   return (
-    <Page>
+    <Page selected={config.paths.contactUs.path}>
       <RenderPageMetadata title="Global Input App - Contact Us" />
       <PageContainer>
         <ContactContainer>
