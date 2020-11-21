@@ -11,14 +11,15 @@ import InputWithLabel from "./input/InputWithLabel";
 import InputWithSelect from "./input/InputWithSelect";
 import TextAreaWithSelect from "./input/TextAreaWithSelect";
 import TextAreaWithLabel from "./input/TextAreaWithLabel";
-import TextButton         from "./input/TextButton";
+import TextButton from "./input/TextButton";
 import ClipboardButton from "./input/ClipboardButton";
 import TextRadioButtons from "./input/TextRadioButtons";
 import TextSelectOptions from "./input/TextSelectOptions";
 import TopMenu from "./top-menu";
 import DisplayQRCode from "./display-qrcode";
 import AutoPlayVideo from "./auto-play-video";
-import LinkItem from "./link-item";
-export {LinkItem,AutoPlayVideo,TopMenu,DisplayQRCode,DisplayTextImage,DisplayVideo,DisplayStaticContent,DisplaySourceCode,DisplaySectionTitle,TextViewPad,
+export {
+        AutoPlayVideo, TopMenu, DisplayQRCode, DisplayTextImage, DisplayVideo, DisplayStaticContent, DisplaySourceCode, DisplaySectionTitle, TextViewPad,
         ShowHideButton,
-        InputWithLabel,InputWithSelect,TextSelectOptions,TextAreaWithSelect,TextAreaWithLabel,TextButton,ClipboardButton,TextRadioButtons,NotificationMessage,BookMark};
+        InputWithLabel, InputWithSelect, TextSelectOptions, TextAreaWithSelect, TextAreaWithLabel, TextButton, ClipboardButton, TextRadioButtons, NotificationMessage, BookMark
+};

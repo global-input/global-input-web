@@ -36,32 +36,20 @@ const TransparentButton = props => {
     return null;
   }
 };
-const ImageExternalLink = props => (
-  <a href={props.href} target="_blank" rel="noopener noreferrer">
-    <img src={props.image} style={styles.imageLink} />
-    <span style={styles.imageLinkText}>{props.children}</span>
-  </a>
-);
+
 const ImageButton = props => {
   if (props.href) {
     return (
-      <a href={props.href} target="_blank">
-        <img src={props.image} style={styles.imageButton} />
+      <a href={props.href} target="_blank" rel="noopener noreferrer">
+        <img src={props.image} style={styles.imageButton} alt='button' />
       </a>
     );
   }
   else if (props.to) {
     return (
       <Link href={props.href} target="_blank">
-        <img src={props.image} style={styles.imageButton} />
+        <img src={props.image} style={styles.imageButton} alt='button' />
       </Link>
-    );
-  }
-  else if (props.onClick) {
-    return (
-      <a onClick={props.onClick}>
-        <img src={props.image} style={styles.imageButton} />
-      </a>
     );
   }
   else {
@@ -70,4 +58,4 @@ const ImageButton = props => {
 }
 
 
-export { WhiteRoundButton, BlueRoundButton, ImageExternalLink, ImageButton, TransparentButton };
+export { WhiteRoundButton, BlueRoundButton, ImageButton, TransparentButton };

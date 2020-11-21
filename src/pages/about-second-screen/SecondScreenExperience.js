@@ -22,7 +22,7 @@ const FooterButtons = props => {
 
 const SecondScreenExperience = props => {
 
-  const { P, Title, Code, Concept, FirstSection, NextSection } = props.theme;
+  const { P, Title, FirstSection, NextSection } = props.theme;
 
   return (
 

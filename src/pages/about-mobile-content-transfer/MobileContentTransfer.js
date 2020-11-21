@@ -25,7 +25,7 @@ const FooterButtons = props => {
 
 const MobileContentTransfer = props => {
 
-  const { P, Title, ListLinks, FirstSection, NextSection, Concept } = props.theme;
+  const { Title, FirstSection, NextSection } = props.theme;
 
   return (
 
