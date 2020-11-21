@@ -27,7 +27,7 @@ import * as examples from './examples';
 
 
 
-const App:React.FC = () => (
+const App: React.FC = () => (
   <Router>
     <Switch>
       <Route path={config.paths.home.path} exact component={HomePage} />
