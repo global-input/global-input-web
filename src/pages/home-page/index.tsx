@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useWindowSize, useMemo } from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
@@ -170,6 +170,8 @@ interface HomeProps {
 
 }
 const HomePage: React.FC<HomeProps> = () => {
+  const size = useWindowSize();
+
   const initData = {
     id: "website-home",
     form: {
@@ -183,6 +185,14 @@ const HomePage: React.FC<HomeProps> = () => {
   const mobile = useMobile(initData, false);
 
   const { GetAppButton } = pagesLinks.buttons;
+
+  const featureAndFooter = useMemo((
+
+  ) => (
+<FeaturesSection />
+      <PageFooter />
+    ), [])
+
   return (
     <BasicLayout onLogoClick={mobile.toggleConnect} selected={config.paths.home.path} onReClicked={mobile.disableConnect}>
 

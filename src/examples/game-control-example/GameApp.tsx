@@ -10,7 +10,6 @@ interface Props {
 }
 const GameApp: React.FC<Props> = ({ connectionSettings }) => {
     const mobile = useMobile(initData);
-    mobile.setOnFieldChange((field) => { });
 
     const setMoveSpeed = (speed) => {
         var speedValue = {
