@@ -7,7 +7,6 @@ import MediaPlayerControlExample from "./media-player-control-example";
 import SendMessageExample from "./send-message-example";
 import TransferFormDataExample from "./transfer-form-data-example";
 import MobileEncryptionExample from './mobile-encryption-example';
-import { config } from "../configs";
 import { usePageTitle } from '../page-metadata';
 
 const createExampleComponent = (ExampleComponent: React.ComponentType, title) => {
@@ -15,7 +14,7 @@ const createExampleComponent = (ExampleComponent: React.ComponentType, title) =>
     usePageTitle(title);
     return (
       <Page>
-        <ExampleComponent url={config.url} {...props} />
+        <ExampleComponent {...props} />
       </Page>
 
     );
