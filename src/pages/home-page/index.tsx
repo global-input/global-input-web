@@ -20,20 +20,16 @@ import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../links-components";
 
 import { MobileConnect } from '../../mobile';
-import { useWindowSize } from '../../app-layout'
-
-
-const images = {
-  authentication: require('./images/authentication.svg'),
-  mobileControl: require('./images/control.svg'),
-  secondScreen: require('./images/second-screen.svg'),
-  encryption: require('./images/encryption.png'),
-  mobilePersonStorage: require('./images/personal-storage.png'),
-  mobileContentTransfer: require('./images/transfer.png'),
-  rightPoster: require('./images/right-poster.png'),
-  rightPoster400: require('./images/right-poster-400.png'),
-  rightPoster200: require('./images/right-poster-200.png')
-}
+import { useWindowSize } from '../../app-layout';
+import authenticationImage from './images/authentication.svg'
+import mobileControlImage from './images/control.svg';
+import secondScreenImage from './images/second-screen.svg';
+import encryptionImage from './images/encryption.png';
+import mobilePersonStorageImage from './images/personal-storage.png';
+import mobileContentTransferImage from './images/transfer.png';
+import rightPoster from './images/right-poster.png';
+import rightPoster400 from './images/right-poster-400.png';
+import rightPoster200 from './images/right-poster-200.png';
 
 
 
@@ -72,7 +68,7 @@ const headerTextContent = {
   description: "Users Carry Their Around Own Data or their Key "
 };
 const AuthenticationCard = () => (
-  <IconHeaderCard titleIcon={images.authentication}
+  <IconHeaderCard titleIcon={authenticationImage}
     title={textContent.authentication.title}
     content={textContent.authentication.content}
     link={config.paths.mobileAuthentication.path}
@@ -80,7 +76,7 @@ const AuthenticationCard = () => (
 );
 
 const MobileControlCard = () => (
-  <IconHeaderCard titleIcon={images.mobileControl}
+  <IconHeaderCard titleIcon={mobileControlImage}
     title={textContent.mobileControl.title}
     content={textContent.mobileControl.content}
     link={config.paths.mobileControl.path}
@@ -88,28 +84,28 @@ const MobileControlCard = () => (
 
 );
 const SecondScreenCard = () => (
-  <IconHeaderCard titleIcon={images.secondScreen}
+  <IconHeaderCard titleIcon={secondScreenImage}
     title={textContent.secondScreen.title}
     content={textContent.secondScreen.content}
     link={config.paths.secondScreen.path}
   />
 );
 const MobileEncryptionCard = () => (
-  <IconHeaderCard titleIcon={images.encryption}
+  <IconHeaderCard titleIcon={encryptionImage}
     title={textContent.encryption.title}
     content={textContent.encryption.content}
     link={config.paths.aboutContentEncryption.path}
   />
 );
 const PersonalStorageCard = () => (
-  <IconHeaderCard titleIcon={images.mobilePersonStorage}
+  <IconHeaderCard titleIcon={mobilePersonStorageImage}
     title={textContent.mobilePersonStorage.title}
     content={textContent.mobilePersonStorage.content}
     link={config.paths.mobilePersonalStorage.path}
   />
 );
 const ContentTransferCard = () => (
-  <IconHeaderCard titleIcon={images.mobileContentTransfer}
+  <IconHeaderCard titleIcon={mobileContentTransferImage}
     title={textContent.mobileContentTransfer.title}
     content={textContent.mobileContentTransfer.content}
     link={config.paths.mobileContentTransfer.path}
@@ -181,16 +177,15 @@ const HomePage: React.FC<HomeProps> = () => {
 
   const [width] = useWindowSize();
 
-
   return (
     <BasicLayout selected={config.paths.home.path}>
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
 
           <RightPosterImage
-            image={images.rightPoster}
-            image200={images.rightPoster200}
-            image400={images.rightPoster400} />
+            image={rightPoster}
+            image200={rightPoster200}
+            image400={rightPoster400} />
           <MobileConnect initData={initData} silent={false} />
           <HomeTitleSection
             title={headerTextContent.title}
