@@ -1,4 +1,4 @@
-import { styleMatchingScreenSize } from "../../components/screen-media";
+import { styleMatchingScreenSize } from "../../../components/screen-media";
 import appIcon from './images/app-icon.png';
 import downloadapp from './images/download-app.svg';
 import companyIcon from './images/company-icon.png';

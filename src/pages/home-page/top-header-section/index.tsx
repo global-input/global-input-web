@@ -2,8 +2,8 @@
 import React from 'react';
 
 
-import { TopMenu } from "../../components";
-import { config } from "../../configs";
+import { TopMenu } from "../../../components";
+import { config } from "../../../configs";
 import { images } from './styles';
 const textContent = {
   title: "Global Input App",

@@ -13,7 +13,7 @@ import { config } from '../../configs';
 
 
 import { SimpleHeaderBackground } from './header-backgrounds';
-import RightPosterImage from '../../page-components/right-poster-image';
+import RightPosterImage from './right-poster-image';
 import { HomeTitleSection } from '../../page-components/text-title-sections';
 import SmallText from './SmallText';
 import ButtonsContainer from '../../page-components/buttons-container';
@@ -27,10 +27,6 @@ import secondScreenImage from './images/second-screen.svg';
 import encryptionImage from './images/encryption.png';
 import mobilePersonStorageImage from './images/personal-storage.png';
 import mobileContentTransferImage from './images/transfer.png';
-import rightPoster from './images/right-poster.png';
-import rightPoster400 from './images/right-poster-400.png';
-import rightPoster200 from './images/right-poster-200.png';
-
 
 
 
@@ -179,10 +175,7 @@ const HomePage: React.FC = () => {
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
 
-          <RightPosterImage
-            image={rightPoster}
-            image200={rightPoster200}
-            image400={rightPoster400} />
+          <RightPosterImage scWidth={width} />
           <MobileConnect initData={initData} silent={false} />
           <HomeTitleSection
             title={headerTextContent.title}
