@@ -15,7 +15,7 @@ import { config } from '../../configs';
 import { SimpleHeaderBackground } from './header-backgrounds';
 import RightPosterImage from '../../page-components/right-poster-image';
 import { HomeTitleSection } from '../../page-components/text-title-sections';
-import SmallText from './header-section/small-text';
+import SmallText from './SmallText';
 import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../links-components";
 
@@ -30,9 +30,9 @@ const images = {
   encryption: require('./images/encryption.png'),
   mobilePersonStorage: require('./images/personal-storage.png'),
   mobileContentTransfer: require('./images/transfer.png'),
-  rightPoster: require('./header-section/images/right-poster.png'),
-  rightPoster400: require('./header-section/images/right-poster-400.png'),
-  rightPoster200: require('./header-section/images/right-poster-200.png')
+  rightPoster: require('./images/right-poster.png'),
+  rightPoster400: require('./images/right-poster-400.png'),
+  rightPoster200: require('./images/right-poster-200.png')
 }
 
 
@@ -196,7 +196,7 @@ const HomePage: React.FC<HomeProps> = () => {
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>
 
-            <SmallText content={headerTextContent.smallText} />
+            <SmallText content={headerTextContent.smallText} scWidth={width} />
 
             <ButtonsContainer>
               <GetAppButton>Get It Free</GetAppButton>
