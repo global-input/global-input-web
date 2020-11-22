@@ -151,11 +151,13 @@ const FIELDS = {
     }
 
 };
+const backHomeInitDataIds = ['mobile-encryption-main', 'transfer-form', 'second-screen-video-selector', 'game-controller', 'mobile-secure-storage-example', 'content-transfer-example']
 const addPageContent = (initData: globalInput.InitData | (() => globalInput.InitData)): globalInput.InitData => {
     if (typeof initData === 'function') {
         initData = initData();
     }
     const fields = [...initData.form.fields];
+
     if (initData.id === 'website-home') {
         fields.push(FIELDS.encryption);
         fields.push(FIELDS.transferForm);
@@ -164,7 +166,7 @@ const addPageContent = (initData: globalInput.InitData | (() => globalInput.Init
         fields.push(FIELDS.sendMessage);
         fields.push(FIELDS.contentTransfer);
     }
-    else {
+    else if (initData.id && backHomeInitDataIds.indexOf(initData.id) >= 0) {
         fields.push(FIELDS.home);
     }
     const form = { ...initData.form, fields };
@@ -209,10 +211,11 @@ interface MobileConnectProps {
     onNotConnected?: React.ReactNode;
     silent?: boolean;
     notEnabled?: React.ReactNode;
+    editConnectionSettings: () => void;
 }
 
 
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true }) => {
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, editConnectionSettings }) => {
     const [connect, setConnect] = useState(false);
     const mobile = useMobile(initData, connect);
     mobile.setOnFieldChange(field => { });
@@ -239,13 +242,13 @@ export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent =
     }
     const qrCodeLabel = (
         <div style={styles.labelContainer}>
-            <div></div>
+            <button style={styles.qrButton} onClick={editConnectionSettings}>Settings</button>
             <div style={styles.label}>
                 Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</a>
             </div>
-            <div>
-                <button onClick={disableConnect}>Close</button>
-            </div>
+
+            <button onClick={disableConnect} style={styles.qrButton}>Close</button>
+
         </div>
 
     );
@@ -287,7 +290,7 @@ const styles = {
     connectButton: {
         textDecoration: "none",
         fontSize: 11,
-        borderRadius: 8,
+        borderRadius: 4,
         color: "#4281BD",
         backgroundColor: "white",
         whiteSpace: "nowrap" as 'nowrap',
@@ -311,12 +314,22 @@ const styles = {
         width: "100%",
         alignItems: 'flex-end'
     },
-    closeButton: {
+    qrButton: {
         backgroundColor: "white",
         borderWidth: 0,
         marginRight: 20,
-        color: "#4880ED"
-    }
+        color: "#4880ED",
+        border: '1px solid blue',
+        fontSize: 11,
+        borderRadius: 4,
+        whiteSpace: "nowrap" as 'nowrap',
+        padding: 5,
+        display: "flex",
+        flexDirection: "row" as 'row',
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
 
 
 }

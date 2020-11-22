@@ -7,6 +7,7 @@ import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layou
 const App: React.FC = () => {
   const [content, setContent] = useState('');
   const initData = {
+    id: 'content-transfer-example',
     form: {
       title: "Content Transfer",
       fields: Object.values(FIELDS)

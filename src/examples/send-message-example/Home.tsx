@@ -13,6 +13,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings }) => {
     const initData = {
+        id: 'mobile-secure-storage-example',
         form: {
             title: "Mobile Storage Example",
             fields: Object.values(FIELDS)

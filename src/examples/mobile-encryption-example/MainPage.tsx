@@ -11,10 +11,11 @@ interface Props {
     qrCodeGenerator: () => void;
 }
 const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnectionSettings, qrCodeGenerator }) => {
-    const initData={
-        form:{
-            title:"Please Select",
-            fields:Object.values(FIELDS)
+    const initData = {
+        id: "mobile-encryption-main",
+        form: {
+            title: "Please Select",
+            fields: Object.values(FIELDS)
         }
     };
     const mobile = useMobile(initData);

@@ -15,6 +15,7 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
     const [visibility, setVisibility] = useState(FIELDS.visibility.options[0]);
     const initData = () => {
         const initData = {
+            id: 'transfer-form',
             form: {
                 title: domain,
                 domain: domain,

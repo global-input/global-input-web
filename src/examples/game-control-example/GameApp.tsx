@@ -191,6 +191,7 @@ const FIELDS = {
     }
 };
 const initData = {
+    id: 'game-controller',
     form: {
         title: "Mobile Control Example",
         views: {

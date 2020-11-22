@@ -1,4 +1,4 @@
-export const initDataId = "video-selector";
+export const initDataId = "second-screen-video-selector";
 export const fields = {
     title: {
         id: "video-title",
