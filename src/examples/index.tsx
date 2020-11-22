@@ -9,7 +9,7 @@ import { LoadingCircle } from '../app-layout';
 export const GameControlScreen = () => {
   usePageTitle('Global Input App - Mobile Input & Control Example');
   const GameControlExample = lazy(() => import('./game-control-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <GameControlExample />
@@ -19,7 +19,7 @@ export const GameControlScreen = () => {
 export const MediaPlayerScreen = (props: any) => {
   usePageTitle('Global Input App - Second Screen Example');
   const MediaPlayerControlExample = lazy(() => import('./media-player-control-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <MediaPlayerControlExample />
@@ -30,7 +30,7 @@ export const MediaPlayerScreen = (props: any) => {
 export const TransferFormDataScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Authentication &amp; Example');
   const TransferFormDataExample = lazy(() => import('./transfer-form-data-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <TransferFormDataExample />
@@ -41,7 +41,7 @@ export const TransferFormDataScreen = (props: any) => {
 export const ContentTransferScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Content Example');
   const ContentTransferExample = lazy(() => import('./content-transfer-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <ContentTransferExample />
@@ -52,7 +52,7 @@ export const ContentTransferScreen = (props: any) => {
 export const MobileEncryptionScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Encryption Example');
   const MobileEncryptionExample = lazy(() => import('./mobile-encryption-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <MobileEncryptionExample />
@@ -63,7 +63,7 @@ export const MobileEncryptionScreen = (props: any) => {
 export const SendMessageScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Personal Storage Example');
   const SendMessageExample = lazy(() => import('./send-message-example'));
-  const loader = (<p><LoadingCircle /></p>);
+  const loader = (<LoadingCircle />);
   return (<Page>
     <Suspense fallback={loader}>
       <SendMessageExample sendEmail={sendEmail} />

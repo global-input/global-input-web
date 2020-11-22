@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 
 import * as globalInput from 'global-input-react';////global-input-react////
 
@@ -24,18 +24,11 @@ interface ControlledContainerProps {
     errorMessage?: string;
 }
 
-
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), initialConnect: boolean = true) => {
-    const [connect, setConnect] = useState(initialConnect);
+type OnFieldChangeType = ((field: globalInput.FormField) => void) | null;
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
 
     const connectionSettings = storage.loadConnectionSettings();
     const history = useHistory();
-
-    const enableConnect = useCallback(() => setConnect(true), []);
-    const disableConnect = useCallback(() => setConnect(false), []);
-    const toggleConnect = useCallback(() => setConnect(connect => !connect), []);
-
-
     const options: globalInput.ConnectOptions = {
         url: connectionSettings.url,////use your own server"
         apikey: connectionSettings.apikey,
@@ -52,17 +45,17 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         const initDataEnriched = addPageContent(initData);
         mobile.sendInitData(initDataEnriched);
     };
+    const onFieldChangeRef = useRef<OnFieldChangeType>(null);
+    const setOnFieldChange = useCallback((onFieldChange: OnFieldChangeType) => {
+        onFieldChangeRef.current = onFieldChange;
+    }, []);
+    mobile.setOnchange(({ field }) => {
+        onFieldChangeRef.current && onFieldChangeRef.current(field);
+        if (handlePageNavigate(field, history)) {
+            return;
+        }
+    });
 
-
-    const setOnFieldChange = useCallback((onFieldChange: (field: globalInput.FormField) => void) => {
-        mobile.setOnchange(({ field }) => {
-            if (handlePageNavigate(field, history)) {
-                return;
-            }
-            onFieldChange(field);
-        })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.setOnchange]);
 
     ////dev-test codeData
 
@@ -70,24 +63,6 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const restart = useCallback(() => mobile.restart(), [mobile.restart]);
-
-
-
-    const ConnectQR: React.FC<globalInput.ConnectQRProps> = ({ label }) => {
-        if (!connect) {
-            return null;
-        }
-        if (mobile.isConnected) {
-            return null;
-        }
-        return (
-            <div style={styles.qrContainer}>
-                <div style={styles.qrCode}>
-                    <mobile.ConnectQR label={label} />
-                </div>
-            </div>
-        );
-    };
 
     const disconnectButton = (<TextButton onClick={restart} label="Disconnect" />);
 
@@ -113,8 +88,7 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     ), [mobile.isConnectionDenied, mobile.isError, mobile.isConnected, mobile.isReady, mobile.disconnect, mobile.ConnectQR, mobile.errorMessage]);
 
     return {
-        ...mobile, ControlledContainer, disconnectButton, setOnFieldChange, sendInitData, ConnectQR, enableConnect, disableConnect,
-        toggleConnect, connect
+        ...mobile, ControlledContainer, disconnectButton, setOnFieldChange, sendInitData
     };
 };
 
@@ -239,10 +213,29 @@ interface MobileConnectProps {
 
 
 export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true }) => {
-    const mobile = useMobile(initData, false);
+    const [connect, setConnect] = useState(false);
+    const mobile = useMobile(initData, connect);
     mobile.setOnFieldChange(field => { });
+    const enableConnect = useCallback(() => setConnect(true), []);
+    const disableConnect = useCallback(() => setConnect(false), []);
+
+
     if (silent) {
         return null;
+    }
+    if (mobile.isConnected) {
+        return null;
+    }
+    if (!connect) {
+        return (
+            <div style={styles.buttonContainer}>
+                <button style={styles.connectButton} onClick={enableConnect}>
+                    <img src={appIcon} alt="global input app icon" />
+            Connect
+            </button>
+            </div>
+
+        );
     }
     const qrCodeLabel = (
         <div style={styles.labelContainer}>
@@ -251,25 +244,18 @@ export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent =
                 Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</a>
             </div>
             <div>
-                <button onClick={mobile.disableConnect}>Close</button>
+                <button onClick={disableConnect}>Close</button>
             </div>
         </div>
 
     );
-    if ((!mobile.connect) && (!mobile.isConnected)) {
-        return (
-            <div style={styles.buttonContainer}>
-                <button style={styles.connectButton} onClick={mobile.enableConnect}>
-                    <img src={appIcon} alt="global input app icon" />
-            Connect
-            </button>
+    return (
+        <div style={styles.qrContainer}>
+            <div style={styles.qrCode}>
+                <mobile.ConnectQR label={qrCodeLabel} />
             </div>
-
-        )
-    }
-    else {
-        return (<mobile.ConnectQR label={qrCodeLabel} />);
-    }
+        </div>
+    );
 }
 const styles = {
     qrContainer: {
