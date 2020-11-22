@@ -16,10 +16,10 @@ const ResponsivePage = withResponsiveComponent(Page, { scrollTo: "topContent" })
 export default ResponsivePage;
 
 
-export const Paragraph = props => (<div style={styles.card.paragraph.get()}>{props.children}</div>);
-export const Title = props => (<div style={styles.card.title.get()}>{props.children}</div>);
-export const Title2 = props => (<div style={styles.card.title2.get()}>{props.children}</div>);
-export const Diagram = props => (<img style={styles.card.diagram.get()} src={props.image} />);
+export const Paragraph = ({ children }) => (<div style={styles.card.paragraph.get()}>{children}</div>);
+export const Title = ({ children }) => (<div style={styles.card.title.get()}>{children}</div>);
+export const Title2 = ({ children }) => (<div style={styles.card.title2.get()}>{children}</div>);
+export const Diagram = ({ image }) => (<img style={styles.card.diagram.get()} src={image} alt='diagram' />);
 
 
 export const CodeContent = props => (

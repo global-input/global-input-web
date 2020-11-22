@@ -10,7 +10,7 @@ enum PAGES {
   PAIRING
 };
 
-const Main = () => {
+const Main: React.FC = () => {
   const [page, setPage] = useState(PAGES.HOME);
   const home = useCallback(() => setPage(PAGES.HOME), []);
   const editConnectionSettings = useCallback(() => setPage(PAGES.EDIT_CONNECTION_SETTINGS), []);
@@ -24,6 +24,7 @@ const Main = () => {
     case PAGES.HOME:
       return (<HomePage editConnectionSettings={editConnectionSettings} />)
     default:
+      return null;
 
   }
 }

@@ -3,6 +3,8 @@
         "Elysio",
         "Tisa",
         "noopener",
-        "noprint"
+        "noprint",
+        "onerow",
+        "tworows"
     ]
 }

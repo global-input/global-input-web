@@ -9,5 +9,5 @@ const styles = {
         position: "absolute",
         top: "2vw",
         right: "5vw"
-    }
+    } as React.CSSProperties
 };

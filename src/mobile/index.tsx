@@ -211,7 +211,7 @@ interface MobileConnectProps {
     onNotConnected?: React.ReactNode;
     silent?: boolean;
     notEnabled?: React.ReactNode;
-    editConnectionSettings: () => void;
+    editConnectionSettings?: () => void;
 }
 
 
