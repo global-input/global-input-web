@@ -9,7 +9,7 @@ import HowItWorks from "./how-it-works";
 
 import FeaturesSection from './features-section';
 import PageFooter from '../../page-components/themes/page-footer';
-import { withScrollToTop, withResponsiveComponent } from "../../components/screen-media";
+import { withResponsiveComponent } from "../../components/screen-media";
 import { config } from '../../configs';
 
 
@@ -20,7 +20,8 @@ import SmallText from './header-section/small-text';
 import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../links-components";
 
-import { useMobile, DisplayMobileConnect } from '../../mobile';
+import { MobileConnect } from '../../mobile';
+import { useWindowSize } from '../../app-layout'
 
 
 const images = {
@@ -180,21 +181,23 @@ const HomePage: React.FC<HomeProps> = () => {
       }]
     }
   };
-  const mobile = useMobile(initData, false);
+
 
   const { GetAppButton } = pagesLinks.buttons;
+
+  const [width] = useWindowSize();
 
 
   return (
     <BasicLayout selected={config.paths.home.path}>
-
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
-          <DisplayMobileConnect mobile={mobile} />
+
           <RightPosterImage
             image={images.rightPoster}
             image200={images.rightPoster200}
             image400={images.rightPoster400} />
+          <MobileConnect initData={initData} silent={false} />
           <HomeTitleSection
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>

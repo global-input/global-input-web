@@ -237,31 +237,39 @@ interface MobileConnectProps {
     notEnabled?: React.ReactNode;
 }
 
-export const DisplayMobileConnect = ({ mobile }) => {
-    return (
-        <>
-            {(!mobile.connect) && (!mobile.isConnected) && (
-                <div style={styles.buttonContainer}>
-                    <button style={styles.connectButton} onClick={mobile.enableConnect}>
-                        <img src={appIcon} alt="global input app icon" />
-                Connect
-                </button>
-                </div>
 
-            )}
-            <mobile.ConnectQR />
-        </>
-
-    );
-
-}
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, notEnabled, silent = true }) => {
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true }) => {
     const mobile = useMobile(initData, false);
     mobile.setOnFieldChange(field => { });
     if (silent) {
         return null;
     }
-    return (<DisplayMobileConnect mobile={mobile} />);
+    const qrCodeLabel = (
+        <div style={styles.labelContainer}>
+            <div></div>
+            <div style={styles.label}>
+                Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</a>
+            </div>
+            <div>
+                <button onClick={mobile.disableConnect}>Close</button>
+            </div>
+        </div>
+
+    );
+    if ((!mobile.connect) && (!mobile.isConnected)) {
+        return (
+            <div style={styles.buttonContainer}>
+                <button style={styles.connectButton} onClick={mobile.enableConnect}>
+                    <img src={appIcon} alt="global input app icon" />
+            Connect
+            </button>
+            </div>
+
+        )
+    }
+    else {
+        return (<mobile.ConnectQR label={qrCodeLabel} />);
+    }
 }
 const styles = {
     qrContainer: {
@@ -270,6 +278,10 @@ const styles = {
         justifyContent: 'center',
         width: '100%',
         paddingTop: 30,
+        position: "absolute",
+        zIndex: 100,
+
+
     } as React.CSSProperties,
     qrCode: {
         display: "flex",
@@ -277,7 +289,8 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        border: "1px solid blue"
     },
     buttonContainer: {
         flex: 'display',
@@ -309,7 +322,8 @@ const styles = {
         display: "flex",
         flexDirection: 'row' as 'row',
         justifyContent: 'space-between',
-        width: "100%"
+        width: "100%",
+        alignItems: 'flex-end'
     },
     closeButton: {
         backgroundColor: "white",
