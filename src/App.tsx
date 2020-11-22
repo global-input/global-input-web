@@ -1,14 +1,10 @@
-import React from 'react'
+import React from 'react';
+
 import {
   BrowserRouter as Router,
   Route, Switch, Redirect
 } from 'react-router-dom';
-
-
-
 import { config } from "./configs";
-
-
 import HomePage from "./pages/home-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './pages/privacy-page';
@@ -16,17 +12,11 @@ import ContactUsPage from "./pages/contact-us-page";
 import AboutMobileAuthentication from "./pages/about-mobile-authentication";
 import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
-
 import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
 import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 
-
 import * as examples from './examples';
-
-
-
-
 const App: React.FC = () => (
   <Router>
     <Switch>

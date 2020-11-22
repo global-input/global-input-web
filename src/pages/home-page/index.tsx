@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';
@@ -9,7 +9,6 @@ import HowItWorks from "./how-it-works";
 
 import FeaturesSection from './features-section';
 import PageFooter from '../../page-components/themes/page-footer';
-import { withResponsiveComponent } from "../../components/screen-media";
 import { config } from '../../configs';
 
 
@@ -118,27 +117,24 @@ const ContentTransferCard = () => (
 )
 
 
-const CardSection = withResponsiveComponent(({ screenMedia }) => {
-  if (screenMedia.biggerThan(1340)) {
-    return (
+const CardSection = ({ scWidth }) => {
 
-      <>
-        <BasicCardsContainer>
-          <AuthenticationCard />
-          <MobileControlCard />
-          <SecondScreenCard />
-        </BasicCardsContainer>
-        <BasicCardsContainer>
-          <MobileEncryptionCard />
-          <PersonalStorageCard />
-          <ContentTransferCard />
-        </BasicCardsContainer>
-      </>
+  if (scWidth > 1340) {
+    return (<>
+      <BasicCardsContainer>
+        <AuthenticationCard />
+        <MobileControlCard />
+        <SecondScreenCard />
+      </BasicCardsContainer>
+      <BasicCardsContainer>
+        <MobileEncryptionCard />
+        <PersonalStorageCard />
+        <ContentTransferCard />
+      </BasicCardsContainer></>
     );
   }
   else {
     return (
-
       <>
         <BasicCardsContainer>
           <AuthenticationCard />
@@ -162,9 +158,7 @@ const CardSection = withResponsiveComponent(({ screenMedia }) => {
       </>
     );
   }
-
-
-});
+};
 
 interface HomeProps {
   history: any;
@@ -210,9 +204,7 @@ const HomePage: React.FC<HomeProps> = () => {
           </HomeTitleSection>
         </SimpleHeaderBackground>
 
-
-
-        <CardSection />
+        <CardSection scWidth={width} />
         <HowItWorks />
       </HomeHeaderBackground>
       <FeaturesSection />

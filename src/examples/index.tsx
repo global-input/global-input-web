@@ -1,45 +1,79 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react';
+
 import { Page } from "../page-components/themes/blue-background";
 
-import ContentTransferExample from "./content-transfer-example";
-import GameControlExample from "./game-control-example";
-import MediaPlayerControlExample from "./media-player-control-example";
-import SendMessageExample from "./send-message-example";
-import TransferFormDataExample from "./transfer-form-data-example";
-import MobileEncryptionExample from './mobile-encryption-example';
 import { usePageTitle } from '../page-metadata';
-
-const createExampleComponent = (ExampleComponent: React.ComponentType, title) => {
-  return (props: any) => {
-    usePageTitle(title);
-    return (
-      <Page>
-        <ExampleComponent {...props} />
-      </Page>
-
-    );
-
-  }
+import { LoadingCircle } from '../app-layout';
 
 
+export const GameControlScreen = () => {
+  usePageTitle('Global Input App - Mobile Input & Control Example');
+  const GameControlExample = lazy(() => import('./game-control-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <GameControlExample />
+    </Suspense>
+  </Page>);
+};
+export const MediaPlayerScreen = (props: any) => {
+  usePageTitle('Global Input App - Second Screen Example');
+  const MediaPlayerControlExample = lazy(() => import('./media-player-control-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <MediaPlayerControlExample />
+    </Suspense>
+  </Page>);
+}
+
+export const TransferFormDataScreen = (props: any) => {
+  usePageTitle('Global Input App - Mobile Authentication &amp; Example');
+  const TransferFormDataExample = lazy(() => import('./transfer-form-data-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <TransferFormDataExample />
+    </Suspense>
+  </Page>);
+}
+
+export const ContentTransferScreen = (props: any) => {
+  usePageTitle('Global Input App - Mobile Content Example');
+  const ContentTransferExample = lazy(() => import('./content-transfer-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <ContentTransferExample />
+    </Suspense>
+  </Page>);
+}
+
+export const MobileEncryptionScreen = (props: any) => {
+  usePageTitle('Global Input App - Mobile Encryption Example');
+  const MobileEncryptionExample = lazy(() => import('./mobile-encryption-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <MobileEncryptionExample />
+    </Suspense>
+  </Page>);
+}
+
+export const SendMessageScreen = (props: any) => {
+  usePageTitle('Global Input App - Mobile Personal Storage Example');
+  const SendMessageExample = lazy(() => import('./send-message-example'));
+  const loader = (<p><LoadingCircle /></p>);
+  return (<Page>
+    <Suspense fallback={loader}>
+      <SendMessageExample sendEmail={sendEmail} />
+    </Suspense>
+  </Page>);
 }
 
 
-export const GameControlScreen = createExampleComponent(GameControlExample, "Global Input App - Mobile Input & Control Example");
-export const MediaPlayerScreen = createExampleComponent(MediaPlayerControlExample, "Global Input App - Second Screen Example");
-
-export const TransferFormDataScreen = createExampleComponent(TransferFormDataExample, "Global Input App - Mobile Authentication &amp; Example");
-export const ContentTransferScreen = createExampleComponent(ContentTransferExample, "Global Input App - Mobile Content Example");
-export const MobileEncryptionScreen = createExampleComponent(MobileEncryptionExample, "Global Input App - Mobile Encryption Example");
 
 
-const SendMessageScreenWithoutSendMessage = createExampleComponent(SendMessageExample, "Global Input App - Mobile Personal Storage Example");
-
-export const SendMessageScreen = (props: object) => {
-  return (
-    <SendMessageScreenWithoutSendMessage {...props} sendEmail={sendEmail} />
-  );
-}
 
 const apiURL = "https://iterativesolution.co.uk/wp-json/contact-form-7/v1/contact-forms/283/feedback";
 

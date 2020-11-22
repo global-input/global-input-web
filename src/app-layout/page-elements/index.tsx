@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
 
@@ -11,15 +12,18 @@ export const A = ({ href, children }) => (<a href={href} style={styles.link} tar
 
 
 
-export const LoadingCircle = () => (
-    <div style={styles.loading}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-            <path fill="#C779D0" d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z">
-                <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.5s" repeatCount="indefinite" />
-            </path>
-        </svg>
-    </div>
-);
+export const LoadingCircle = () => {
+    const Loader = styled.div`
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+`;
+    return (<Loader />);
+};
 
 interface DisplayErrorMessageProps {
     errorMessage: string | null;
