@@ -156,11 +156,8 @@ const CardSection = ({ scWidth }) => {
   }
 };
 
-interface HomeProps {
-  history: any;
 
-}
-const HomePage: React.FC<HomeProps> = () => {
+const HomePage: React.FC = () => {
   const initData = {
     id: "website-home",
     form: {

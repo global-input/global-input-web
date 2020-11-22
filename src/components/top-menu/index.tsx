@@ -20,11 +20,9 @@ interface TopMenuProps {
   appLogo: string;
   appTitle: string;
   appSubtitle?: string;
-  onLogoClick?: () => void;
-  onReClicked?: () => void;
 }
 
-const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle, onLogoClick, onReClicked }) => {
+const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle }) => {
   const [menuPressed, setMenuPressed] = useState(false);
 
   const [refresh, setRefresh] = useState(0);
@@ -46,7 +44,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
   const hideMenu = () => setMenuPressed(false);
 
-  const renderedMenu = menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_${menu.link}_${menu.linkText}`} selected={selected} onReClicked={onReClicked} />));
+  const renderedMenu = menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_${menu.link}_${menu.linkText}`} selected={selected} />));
 
 
   return (
@@ -62,9 +60,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
           </div>
         )}
-        <button onClick={onLogoClick} style={styles.logoButton}>
-          <img src={appLogo} style={styles.logo} alt="App Logo" />
-        </button>
+        <img src={appLogo} style={styles.logo} alt="App Logo" />
         <div style={styles.appTitleContainer}>
           <div style={titleStyle}>{appTitle}</div>
           {appSubtitle && (<div style={subTitleStyle}>{appSubtitle}</div>)}
@@ -93,10 +89,8 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 interface MenuItemProps {
   menu: Menu;
   selected: Menu | null;
-  onReClicked?: () => void;
-
 }
-const MenuItem: React.FC<MenuItemProps> = ({ menu, selected, onReClicked }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ menu, selected }) => {
   const [hover, setHover] = useState(false);
   const onHover = useCallback(() => setHover(true), []);
   const offHover = useCallback(() => setHover(false), []);
@@ -106,11 +100,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ menu, selected, onReClicked }) => {
   }
   let linkText = menu.linkText;
   let isSelected = selected && menu.link === selected.link;
-  const onClick = useCallback(() => {
-    if (selected === menu) {
-      onReClicked && onReClicked();
-    }
-  }, [menu, selected, onReClicked]);
 
   const getMenuItemStyle = () => {
     if (hover) return styles.menuItem.get('hover');
@@ -119,7 +108,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ menu, selected, onReClicked }) => {
   };
   const menuItemStyle = getMenuItemStyle();
   return (<Link to={link} style={menuItemStyle}
-    onMouseEnter={onHover} onMouseLeave={offHover} onClick={onClick} data-testid="top-menu-item">
+    onMouseEnter={onHover} onMouseLeave={offHover} data-testid="top-menu-item">
     {linkText}
   </Link>);
 
@@ -325,11 +314,6 @@ export const styles = {
     marginRight: 10,
     marginBottom: 4,
     marginTop: 4
-  },
-  logoButton: {
-    borderWidth: 0,
-    backgroundColor: "#FFFFFF",
-    padding: 0
   }
 
 };

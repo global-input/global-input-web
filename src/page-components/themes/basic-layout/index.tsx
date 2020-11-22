@@ -5,12 +5,10 @@ import TopHeaderSection from "../../top-header-section";
 
 interface Props {
         selected?: string;
-        onLogoClick?: () => void;
-        onReClicked?: () => void;
 }
-const BasicLayout: React.FC<Props> = ({ selected, children, onLogoClick, onReClicked }) => (
+const BasicLayout: React.FC<Props> = ({ selected, children }) => (
         <div style={styles.content} id="topContent">
-                <TopHeaderSection selected={selected} onLogoClick={onLogoClick} onReClicked={onReClicked} />
+                <TopHeaderSection selected={selected} />
                 {children}
         </div>
 );

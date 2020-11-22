@@ -41,17 +41,15 @@ const { webSiteTitle, websiteIcon } = getWebSiteConfig();
 
 interface Props {
   selected?: string | null;
-  onLogoClick?: () => void;
-  onReClicked?: () => void;
 }
-const TopHeaderSection: React.FC<Props> = ({ selected, onLogoClick, onReClicked }) => {
+const TopHeaderSection: React.FC<Props> = ({ selected }) => {
   const matched = menus.filter(m => m.link === selected);
 
   const first = matched.length ? matched[0] : null;
 
   return (<TopMenu appTitle={webSiteTitle}
     menus={menus}
-    selected={first} appLogo={websiteIcon} onLogoClick={onLogoClick} onReClicked={onReClicked} />)
+    selected={first} appLogo={websiteIcon} />)
 };
 
 export default TopHeaderSection;
