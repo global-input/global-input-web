@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import BasicLayout from "../../page-components/themes/basic-layout";
 import BasicCardsContainer from './basics-cards-container';

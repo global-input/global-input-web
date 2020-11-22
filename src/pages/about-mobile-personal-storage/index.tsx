@@ -6,7 +6,7 @@ import MobilePersonalStorage from './MobilePersonalStorage';
 
 import { usePageTitle } from '../../page-metadata';
 import { MobileConnect } from '../../mobile';
-export default () => {
+const AboutMobilePersonalStorage = () => {
         const initData = {
                 form: {
                         title: "About Mobile Secure Storage",
@@ -25,4 +25,4 @@ export default () => {
 };
 
 
-export { MobilePersonalStorage };
+export default AboutMobilePersonalStorage;

@@ -24,6 +24,5 @@ const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
     </theme.Page>
   )
 };
-export { MobileAuthenticationAndBeyond };
 
 export default AboutMobileAuthentication;

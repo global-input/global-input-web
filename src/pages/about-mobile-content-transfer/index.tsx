@@ -4,7 +4,7 @@ import MobileContentTransfer from './MobileContentTransfer';
 
 import { MobileConnect } from '../../mobile';
 import { usePageTitle } from '../../page-metadata';
-export default () => {
+const AboutMobileContentTransfer = () => {
   const initData = {
     form: {
       title: "About Mobile Content Transfer",
@@ -19,4 +19,4 @@ export default () => {
     </theme.Page>
   )
 };
-export { MobileContentTransfer };
+export default AboutMobileContentTransfer;

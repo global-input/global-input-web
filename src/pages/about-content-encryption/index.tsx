@@ -22,5 +22,4 @@ const AboutContentEncryption = () => {
     </theme.Page>
   );
 };
-export { ContentEncryption };
 export default AboutContentEncryption;

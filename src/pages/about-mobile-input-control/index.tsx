@@ -21,6 +21,6 @@ const AboutMobileInputControl: React.FC = () => {
     </theme.Page>
   )
 };
-export { IntroducingMobileInputAndControl };
+
 
 export default AboutMobileInputControl;

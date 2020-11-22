@@ -21,5 +21,5 @@ const AboutSecondScreen = () => {
     </theme.Page>
   )
 };
-export { SecondScreenExperience };
+
 export default AboutSecondScreen;

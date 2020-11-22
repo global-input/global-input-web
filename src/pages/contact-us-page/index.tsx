@@ -1,5 +1,4 @@
 import React from 'react';
-import { withResponsiveComponent } from "../../components/screen-media";
 
 import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-components/themes/blue-background";
 import VerticalList from '../../page-components/vertical-list';
@@ -8,15 +7,18 @@ import ContactContainer from './contact-container';
 import { MobileConnect } from '../../mobile';
 import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';
+import { useWindowSize } from '../../app-layout';
 
 
 const ContactUsPage: React.FC = () => {
+  const [width] = useWindowSize();
   const initData = {
     form: {
       title: "Contact Us",
       fields: []
     }
   };
+  console.log(':' + width);
   usePageTitle('Global Input App - Contact Us');
   return (
     <Page selected={config.paths.contactUs.path}>
@@ -68,4 +70,4 @@ const textContent = {
     content: ["info@iterativesolution.co.uk"]
   }
 }
-export default withResponsiveComponent(ContactUsPage);
+export default ContactUsPage;
