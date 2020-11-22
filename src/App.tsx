@@ -9,7 +9,7 @@ import {
 import { config } from "./configs";
 
 
-import { HomePageWithScrollToTop as HomePage } from "./pages/home-page";
+import HomePage from "./pages/home-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './pages/privacy-page';
 import ContactUsPage from "./pages/contact-us-page";

@@ -186,7 +186,7 @@ const HomePage: React.FC<HomeProps> = () => {
 
 
   return (
-    <BasicLayout onLogoClick={mobile.toggleConnect} selected={config.paths.home.path} onReClicked={mobile.disableConnect}>
+    <BasicLayout selected={config.paths.home.path}>
 
       <HomeHeaderBackground>
         <SimpleHeaderBackground>
@@ -220,9 +220,4 @@ const HomePage: React.FC<HomeProps> = () => {
   )
 };
 
-
-
-
 export default HomePage;
-
-export const HomePageWithScrollToTop = withScrollToTop(HomePage, 'topContent');

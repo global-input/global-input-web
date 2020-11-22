@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
-import { useMobile, FormField,userWithDomainAsFormId } from '../../mobile';
+import { useMobile, FormField, userWithDomainAsFormId } from '../../mobile';
 import { FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
 
 interface Props {
@@ -35,7 +35,7 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [visibility, mobile.sendValue]);
 
-    mobile.setOnFieldChange(( field ) => {
+    mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.visibility.id:
                 toggleVisibility();
@@ -90,10 +90,6 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
 
 };
 
-const computerFormId = (domain: string, fields: FormField[]) => {
-    const id = fields.length ? '###' + fields[0].id + '###' : 'credential';
-    return id + '@' + domain;
-}
 
 const FIELDS = {
     editDomain: {

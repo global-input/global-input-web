@@ -18,7 +18,7 @@ enum PAGES {
 
 const App = () => {
     const [page, setPage] = useState(PAGES.MAIN_PAGE);
-    const [domain, setDomain] = useState<string>('');
+    const [domain] = useState<string>('');
     const mainPage = useCallback(() => setPage(PAGES.MAIN_PAGE), []);
     const encryption = useCallback(() => setPage(PAGES.ENCRYPTION), []);
     const decryption = useCallback(() => setPage(PAGES.DECRYPTION), []);
