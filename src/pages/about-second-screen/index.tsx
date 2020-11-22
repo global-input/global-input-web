@@ -8,8 +8,14 @@ import { usePageTitle } from '../../page-metadata';
 const AboutSecondScreen = () => {
   const initData = {
     form: {
-      title: "About Second Screen",
-      fields: []
+      title: "About Second Screen Experience",
+      fields: [{
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
+      }]
     }
   };
   usePageTitle('Second Screen Experience');

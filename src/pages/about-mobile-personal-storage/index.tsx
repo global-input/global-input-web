@@ -10,7 +10,13 @@ const AboutMobilePersonalStorage = () => {
         const initData = {
                 form: {
                         title: "About Mobile Secure Storage",
-                        fields: []
+                        fields: [{
+                                id: "back-to-website-home",
+                                type: "button",
+                                label: "back",
+                                icon: "back",
+                                viewId: "footer"
+                        }]
                 }
         };
         usePageTitle('Mobile Personal Storage');

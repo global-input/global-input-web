@@ -10,7 +10,13 @@ const AboutMobileInputControl: React.FC = () => {
   const initData = {
     form: {
       title: "About Input & Control",
-      fields: []
+      fields: [{
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
+      }]
     }
   };
   usePageTitle('Mobile Input &amp; Control');

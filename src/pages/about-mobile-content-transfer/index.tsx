@@ -8,7 +8,13 @@ const AboutMobileContentTransfer = () => {
   const initData = {
     form: {
       title: "About Mobile Content Transfer",
-      fields: []
+      fields: [{
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
+      }]
     }
   };
   usePageTitle('Mobile Content Transfer');

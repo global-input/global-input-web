@@ -43,7 +43,15 @@ const GetAppPage = () => {
   const initData = {
     form: {
       title: "Get App Page",
-      fields: []
+      fields: [{
+        type: 'info',
+        value: 'You can install the browser extension to connect your mobile to your browser'
+      }, {
+        id: 'back-to-website-home',
+        type: 'button',
+        label: 'Back',
+        icon: 'back'
+      }]
     }
   };
   usePageTitle('Global Input App -  Get It Free');

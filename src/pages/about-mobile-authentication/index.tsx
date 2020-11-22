@@ -13,7 +13,17 @@ const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
   const initData = {
     form: {
       title: "Mobile Authentication",
-      fields: []
+      fields: [{
+        id: 'transfer-form-example',
+        type: "button",
+        label: "Form Transfer Data Example"
+      }, {
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
+      }]
     }
   };
   usePageTitle('Mobile Authentication');

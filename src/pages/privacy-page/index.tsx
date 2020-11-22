@@ -10,11 +10,18 @@ import { usePageTitle } from '../../page-metadata';
 const PrivacyPage: React.FC = () => {
 
   const initData = {
+    id: 'privacy-policy',
     form: {
       title: "Privacy Policy",
       fields: [{
         type: "info",
-        value: "You can now read our privacy policy on the big screen"
+        value: "You can now read our privacy policy on the big screen."
+      }, {
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
       }]
     }
   };

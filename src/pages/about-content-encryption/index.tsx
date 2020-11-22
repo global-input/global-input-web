@@ -11,7 +11,13 @@ const AboutContentEncryption = () => {
   const initData = {
     form: {
       title: 'About Mobile Encryption',
-      fields: []
+      fields: [{
+        id: "back-to-website-home",
+        type: "button",
+        label: "back",
+        icon: "back",
+        viewId: "footer"
+      }]
     }
   };
   usePageTitle('Mobile Encryption');

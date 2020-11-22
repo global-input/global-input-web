@@ -25,6 +25,8 @@ interface ControlledContainerProps {
 }
 
 type OnFieldChangeType = ((field: globalInput.FormField) => void) | null;
+
+
 export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
 
     const connectionSettings = storage.loadConnectionSettings();
@@ -46,9 +48,16 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         mobile.sendInitData(initDataEnriched);
     };
     const onFieldChangeRef = useRef<OnFieldChangeType>(null);
+
+
+
     const setOnFieldChange = useCallback((onFieldChange: OnFieldChangeType) => {
         onFieldChangeRef.current = onFieldChange;
     }, []);
+
+
+
+
     mobile.setOnchange(({ field }) => {
         onFieldChangeRef.current && onFieldChangeRef.current(field);
         if (handlePageNavigate(field, history)) {
@@ -151,7 +160,8 @@ const FIELDS = {
     }
 
 };
-const backHomeInitDataIds = ['mobile-encryption-main', 'transfer-form', 'second-screen-video-selector', 'game-controller', 'mobile-secure-storage-example', 'content-transfer-example']
+const backHomeInitDataIds = ['mobile-encryption-main', 'transfer-form', 'second-screen-video-selector',
+    'game-controller', 'mobile-secure-storage-example', 'content-transfer-example']
 const addPageContent = (initData: globalInput.InitData | (() => globalInput.InitData)): globalInput.InitData => {
     if (typeof initData === 'function') {
         initData = initData();
