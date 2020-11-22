@@ -26,24 +26,15 @@ const ContactUsPage: React.FC = () => {
         <ContactContainer>
           <MobileConnect initData={initData} />
           <TitleCenter>{textContent.title}</TitleCenter>
-
           <VerticalOnMobile>
             <VerticalList title={textContent.address.title} items={textContent.address.content} />
             <VerticalList>
               <VerticalList title={textContent.phone.title} items={textContent.phone.content} />
               <VerticalList title={textContent.email.title} items={textContent.email.content} />
-
-
             </VerticalList>
-
-
           </VerticalOnMobile>
         </ContactContainer>
-
       </PageContainer>
-
-
-
     </Page>
   )
 };
