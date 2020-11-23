@@ -1,46 +1,8 @@
-import { config } from '../configs';
 import * as exampleFields from './exampleFields';
-import * as addHomeButton from './addHomeButton';
 import * as contactUsFields from './contactUsFields';
-
-const FIELDS = {
-    privacy: {
-        id: 'website-privacy',
-        type: 'button',
-        label: 'Privacy',
-        viewId: "row9",
-    },
-    contactUs: {
-        id: 'website-contact-us',
-        type: 'button',
-        label: 'Contact Us',
-        viewId: "row9",
-    },
-    getItFree: {
-        id: 'website-get-it-free',
-        type: 'button',
-        label: 'Get It Free',
-        viewId: "row9",
-    }
-};
-
-
-const onFieldChange = (field, history) => {
-    switch (field.id) {
-        case FIELDS.privacy.id:
-            history.push(config.paths.privacy.path);
-            break;
-        case FIELDS.contactUs.id:
-            history.push(config.paths.contactUs.path);
-            break;
-        case FIELDS.getItFree.id:
-            history.push(config.paths.getAppScreen.path);
-            break;
-        default:
-            return false;
-    }
-    return true;
-};
+import * as pageMenu from './pageMenu';
+import * as addField from './addField';
+export { addField };
 
 export const home = {
     initData: {
@@ -50,14 +12,14 @@ export const home = {
             fields: [{
                 type: "info",
                 value: "Welcome to Global Input App home page!"
-            }, ...Object.values(exampleFields.FIELDS), ...Object.values(FIELDS)]
+            }, ...Object.values(exampleFields.FIELDS), pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree]
         }
     },
     onFieldChange: (field, history) => {
         if (exampleFields.onFieldChange(field, history)) {
             return true;
         }
-        if (onFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -70,24 +32,24 @@ export const aboutEncryption = {
     initData: {
         form: {
             title: 'About Mobile Encryption',
-            fields: [addHomeButton.home]
+            fields: [pageMenu.FIELDS.home]
         }
     },
-    onFieldChange: addHomeButton.onFieldChange
+    onFieldChange: pageMenu.onHomeFieldChange
 };
 
 export const aboutAuthentication = {
     initData: {
         form: {
             title: "Mobile Authentication",
-            fields: [exampleFields.FIELDS.transferForm, addHomeButton.home]
+            fields: [exampleFields.FIELDS.transferForm, pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
         if (exampleFields.onFieldChange(field, history)) {
             return true;
         }
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -99,11 +61,11 @@ export const aboutContentTransfer = {
     initData: {
         form: {
             title: "About Mobile Content Transfer",
-            fields: [addHomeButton.home]
+            fields: [pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -116,11 +78,11 @@ export const aboutControl = {
     initData: {
         form: {
             title: "About Input & Control",
-            fields: [addHomeButton.home]
+            fields: [pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -132,11 +94,11 @@ export const aboutStorage = {
     initData: {
         form: {
             title: "About Mobile Secure Storage",
-            fields: [addHomeButton.home]
+            fields: [pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -148,11 +110,11 @@ export const aboutSecondScreen = {
     initData: {
         form: {
             title: "About Second Screen Experience",
-            fields: [addHomeButton.home]
+            fields: [pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -180,11 +142,11 @@ export const getIt = {
             fields: [{
                 type: 'info',
                 value: 'You can install the browser extension to connect your mobile to your browser'
-            }, addHomeButton.home]
+            }, pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -199,11 +161,11 @@ export const privacy = {
             fields: [{
                 type: "info",
                 value: "You can now read our privacy policy on the big screen."
-            }, addHomeButton.home]
+            }, pageMenu.FIELDS.home]
         }
     },
     onFieldChange: (field, history) => {
-        if (addHomeButton.onFieldChange(field, history)) {
+        if (pageMenu.onHomeFieldChange(field, history)) {
             return true;
         }
         return false;
