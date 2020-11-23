@@ -19,7 +19,7 @@ import SmallText from './SmallText';
 import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../links-components";
 
-import { MobileConnect } from '../../mobile';
+
 import { useWindowSize } from '../../app-layout';
 import authenticationImage from './images/authentication.svg'
 import mobileControlImage from './images/control.svg';
@@ -28,6 +28,7 @@ import encryptionImage from './images/encryption.png';
 import mobilePersonStorageImage from './images/personal-storage.png';
 import mobileContentTransferImage from './images/transfer.png';
 
+import * as mobile from '../../mobile';
 
 
 
@@ -158,18 +159,6 @@ interface HomePageProps {
 }
 const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
 
-    const initData = {
-        id: "website-home",
-        form: {
-            title: "Home",
-            fields: [{
-                type: "info",
-                value: "Welcome to Global Input App home page!"
-            }]
-        }
-    };
-
-
     const { GetAppButton } = pagesLinks.buttons;
 
     const [width] = useWindowSize();
@@ -180,7 +169,7 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
                 <SimpleHeaderBackground>
 
                     <RightPosterImage scWidth={width} />
-                    <MobileConnect initData={initData} silent={false} editConnectionSettings={editConnectionSettings} />
+                    <mobile.MobileConnect initData={mobile.home.initData} silent={false} onFieldChange={mobile.home.onFieldChange} editConnectionSettings={editConnectionSettings} />
                     <HomeTitleSection
                         title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>

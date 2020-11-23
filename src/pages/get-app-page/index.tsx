@@ -10,7 +10,7 @@ import IconCard, { CardContainer } from "./icon-card";
 import { pagesLinks } from '../../links-components';
 
 
-import { MobileConnect } from '../../mobile';
+import * as mobile from '../../mobile';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 
@@ -40,24 +40,11 @@ const extension = () => (
 
 
 const GetAppPage = () => {
-  const initData = {
-    form: {
-      title: "Get App Page",
-      fields: [{
-        type: 'info',
-        value: 'You can install the browser extension to connect your mobile to your browser'
-      }, {
-        id: 'back-to-website-home',
-        type: 'button',
-        label: 'Back',
-        icon: 'back'
-      }]
-    }
-  };
+
   usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path}>
-      <MobileConnect initData={initData} />
+      <mobile.MobileConnect initData={mobile.getIt.initData} onFieldChange={mobile.getIt.onFieldChange} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}
           title="Global Input App"

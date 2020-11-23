@@ -2,7 +2,7 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
 
-import { MobileConnect } from '../../mobile';
+import * as mobile from '../../mobile';
 import { usePageTitle } from '../../page-metadata';
 
 interface Props {
@@ -10,26 +10,11 @@ interface Props {
 }
 
 const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
-  const initData = {
-    form: {
-      title: "Mobile Authentication",
-      fields: [{
-        id: 'transfer-form-example',
-        type: "button",
-        label: "Form Transfer Data Example"
-      }, {
-        id: "back-to-website-home",
-        type: "button",
-        label: "back",
-        icon: "back",
-        viewId: "footer"
-      }]
-    }
-  };
+
   usePageTitle('Mobile Authentication');
   return (
     <theme.Page>
-      <MobileConnect initData={initData} />
+      <mobile.MobileConnect initData={mobile.aboutAuthentication.initData} onFieldChange={mobile.aboutAuthentication.onFieldChange} />
       <MobileAuthenticationAndBeyond theme={theme} />
     </theme.Page>
   )

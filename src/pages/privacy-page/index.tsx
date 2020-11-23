@@ -2,35 +2,20 @@ import React from 'react';
 
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 
-import { MobileConnect } from '../../mobile';
+import * as mobile from '../../mobile';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 
 
 const PrivacyPage: React.FC = () => {
 
-  const initData = {
-    id: 'privacy-policy',
-    form: {
-      title: "Privacy Policy",
-      fields: [{
-        type: "info",
-        value: "You can now read our privacy policy on the big screen."
-      }, {
-        id: "back-to-website-home",
-        type: "button",
-        label: "back",
-        icon: "back",
-        viewId: "footer"
-      }]
-    }
-  };
+
   usePageTitle('Global Input App -  Privacy Policy');
 
 
   return (
     <Page selected={config.paths.privacy.path}>
-      <MobileConnect initData={initData} />
+      <mobile.MobileConnect initData={mobile.privacy.initData} onFieldChange={mobile.privacy.onFieldChange} />
 
       <PageContainer>
         <Title>Privacy Policy</Title>

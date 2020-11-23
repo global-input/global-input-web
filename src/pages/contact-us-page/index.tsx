@@ -4,7 +4,7 @@ import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-c
 import VerticalList from '../../page-components/vertical-list';
 import ContactContainer from './contact-container';
 
-import { MobileConnect } from '../../mobile';
+import * as mobile from '../../mobile';
 import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';
 import { useWindowSize } from '../../app-layout';
@@ -12,21 +12,14 @@ import { useWindowSize } from '../../app-layout';
 
 const ContactUsPage: React.FC = () => {
   const [width] = useWindowSize();
-  const initData = {
-    id: 'iterative-contact-us',
-    form: {
-      id: "iterative@contact",
-      title: "Contact Us",
-      fields: Object.values(FIELDS)
-    }
-  };
+
   console.log(':' + width);
   usePageTitle('Global Input App - Contact Us');
   return (
     <Page selected={config.paths.contactUs.path}>
       <PageContainer>
         <ContactContainer>
-          <MobileConnect initData={initData} />
+          <mobile.MobileConnect initData={mobile.contactUs.initData} onFieldChange={mobile.contactUs.onFieldChange} />
           <TitleCenter>{textContent.title}</TitleCenter>
           <VerticalOnMobile>
             <VerticalList title={textContent.address.title} items={textContent.address.content} />

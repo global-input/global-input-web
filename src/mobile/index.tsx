@@ -8,13 +8,15 @@ import { useHistory } from 'react-router-dom';
 
 ////main////
 
-import { config } from '../configs';
-
 import * as storage from '../storage';
 
 import { AppContainer, RowCenter, FormContainer, TextButton, QRCodeContainer, DisplayErrorMessage, MessageContainer } from '../app-layout';
 
+import * as addHomeButton from './addHomeButton';
 
+
+
+export * from './pageFields';
 
 
 interface ControlledContainerProps {
@@ -27,6 +29,7 @@ interface ControlledContainerProps {
 type OnFieldChangeType = ((field: globalInput.FormField) => void) | null;
 
 
+
 export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
 
     const connectionSettings = storage.loadConnectionSettings();
@@ -37,32 +40,27 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         securityGroup: connectionSettings.securityGroup
     };
 
-    const initDataEnriched = addPageContent(initData);
+    const initDataEnriched = addHomeButton.addToInitData(initData);
     const mobile = globalInput.useGlobalInputApp({
         initData: initDataEnriched, options, codeAES: connectionSettings.codeKey
     }, connect);
 
 
     const sendInitData = (initData) => {
-        const initDataEnriched = addPageContent(initData);
+        const initDataEnriched = addHomeButton.addToInitData(initData);
         mobile.sendInitData(initDataEnriched);
     };
+
     const onFieldChangeRef = useRef<OnFieldChangeType>(null);
-
-
-
     const setOnFieldChange = useCallback((onFieldChange: OnFieldChangeType) => {
         onFieldChangeRef.current = onFieldChange;
     }, []);
 
-
-
-
     mobile.setOnchange(({ field }) => {
-        onFieldChangeRef.current && onFieldChangeRef.current(field);
-        if (handlePageNavigate(field, history)) {
+        if (addHomeButton.onFieldChange(field, history)) {
             return;
         }
+        onFieldChangeRef.current && onFieldChangeRef.current(field);
     });
 
 
@@ -120,101 +118,6 @@ export const userWithDomainAsFormId = (initData: globalInput.InitData) => {
         initData.form.id = `###${textFields[0].id}###@${initData.form.domain}`;
     }
 };
-const FIELDS = {
-    home: {
-        id: 'back-to-website-home',
-        type: 'button',
-        label: 'Home',
-        icon: 'home',
-        viewId: "row8"
-    },
-    encryption: {
-        id: "mobile-encryption-example",
-        type: "button",
-        label: 'Mobile Encryption'
-    },
-    transferForm: {
-        id: "transfer-form-example",
-        type: 'button',
-        label: 'Transfer Form Data'
-    },
-    secondScreen: {
-        id: 'second-screen-example',
-        type: 'button',
-        label: 'Second Screen Example'
-    },
-    game: {
-        id: 'game-control-example',
-        type: 'button',
-        label: 'Mobile Control Example'
-    },
-    sendMessage: {
-        id: 'send-message-example',
-        type: 'button',
-        label: 'Send Message Example'
-    },
-    contentTransfer: {
-        id: 'content-transfer-example',
-        type: 'button',
-        label: 'Content Transfer Example'
-    }
-
-};
-const backHomeInitDataIds = ['mobile-encryption-main', 'transfer-form', 'second-screen-video-selector',
-    'game-controller', 'mobile-secure-storage-example', 'content-transfer-example']
-const addPageContent = (initData: globalInput.InitData | (() => globalInput.InitData)): globalInput.InitData => {
-    if (typeof initData === 'function') {
-        initData = initData();
-    }
-    const fields = [...initData.form.fields];
-
-    if (initData.id === 'website-home') {
-        fields.push(FIELDS.encryption);
-        fields.push(FIELDS.transferForm);
-        fields.push(FIELDS.secondScreen);
-        fields.push(FIELDS.game);
-        fields.push(FIELDS.sendMessage);
-        fields.push(FIELDS.contentTransfer);
-    }
-    else if (initData.id && backHomeInitDataIds.indexOf(initData.id) >= 0) {
-        fields.push(FIELDS.home);
-    }
-    const form = { ...initData.form, fields };
-    return { ...initData, form };
-}
-const handlePageNavigate = (field, history) => {
-    switch (field.id) {
-        case FIELDS.home.id:
-            history.push('/');
-            break;
-        case FIELDS.encryption.id:
-            history.push(config.paths.examples.mobileEncryption.path);
-            break;
-        case FIELDS.transferForm.id:
-            history.push(config.paths.examples.transferForm.path);
-            break;
-        case FIELDS.secondScreen.id:
-            history.push(config.paths.examples.mediaPlayer.path);
-            break;
-        case FIELDS.game.id:
-            history.push(config.paths.examples.gameControl.path);
-            break;
-        case FIELDS.sendMessage.id:
-            history.push(config.paths.examples.sendMessage.path);
-            break;
-        case FIELDS.contentTransfer.id:
-            history.push(config.paths.examples.contentTransfer.path);
-            break;
-
-
-        default:
-            return false;
-    }
-    return true;
-};
-
-
-
 
 interface MobileConnectProps {
     initData: globalInput.InitData;
@@ -222,13 +125,18 @@ interface MobileConnectProps {
     silent?: boolean;
     notEnabled?: React.ReactNode;
     editConnectionSettings?: () => void;
+    onFieldChange?: (field: globalInput.FormField, history) => void;
 }
 
 
-export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, editConnectionSettings }) => {
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, editConnectionSettings, onFieldChange }) => {
     const [connect, setConnect] = useState(false);
     const mobile = useMobile(initData, connect);
-    mobile.setOnFieldChange(field => { });
+    const history = useHistory();
+
+    mobile.setOnFieldChange(field => {
+        onFieldChange && onFieldChange(field, history);
+    });
     const enableConnect = useCallback(() => setConnect(true), []);
     const disableConnect = useCallback(() => setConnect(false), []);
 
