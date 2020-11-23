@@ -5,7 +5,6 @@ export const FIELDS = {
         id: 'back-to-website-home',
         type: 'button',
         label: 'Home',
-        icon: 'home',
         viewId: "row9"
     },
     privacy: {
@@ -23,7 +22,7 @@ export const FIELDS = {
     getItFree: {
         id: 'website-get-it-free',
         type: 'button',
-        label: 'Get It Free',
+        label: 'Get It',
         viewId: "row9",
     }
 };

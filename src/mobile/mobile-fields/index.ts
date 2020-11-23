@@ -71,11 +71,11 @@ export const aboutContentTransfer = {
     initData: {
         form: {
             title: "About Mobile Content Transfer",
-            fields: [pageMenu.FIELDS.home]
+            fields: Object.values(pageMenu.FIELDS)
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -88,11 +88,11 @@ export const aboutControl = {
     initData: {
         form: {
             title: "About Input & Control",
-            fields: [pageMenu.FIELDS.home]
+            fields: Object.values(pageMenu.FIELDS)
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -104,11 +104,11 @@ export const aboutStorage = {
     initData: {
         form: {
             title: "About Mobile Secure Storage",
-            fields: [pageMenu.FIELDS.home]
+            fields: Object.values(pageMenu.FIELDS)
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -120,11 +120,11 @@ export const aboutSecondScreen = {
     initData: {
         form: {
             title: "About Second Screen Experience",
-            fields: [pageMenu.FIELDS.home]
+            fields: Object.values(pageMenu.FIELDS)
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -152,11 +152,11 @@ export const getIt = {
             fields: [{
                 type: 'info',
                 value: 'You can install the browser extension to connect your mobile to your browser'
-            }, pageMenu.FIELDS.home]
+            }, pageMenu.FIELDS.home, pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs]
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
@@ -171,11 +171,11 @@ export const privacy = {
             fields: [{
                 type: "info",
                 value: "You can now read our privacy policy on the big screen."
-            }, pageMenu.FIELDS.home]
+            }, pageMenu.FIELDS.home, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree]
         }
     },
     onFieldChange: (field, history) => {
-        if (pageMenu.onHomeFieldChange(field, history)) {
+        if (pageMenu.onFieldChange(field, history)) {
             return true;
         }
         return false;
