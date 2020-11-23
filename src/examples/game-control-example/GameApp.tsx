@@ -195,7 +195,7 @@ const initData = {
     form: {
         title: "Mobile Control Example",
         views: {
-            viewId: {
+            viewIds: {
                 footer: {
                     style: {
                         justifyContent: "space-between",

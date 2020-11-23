@@ -174,9 +174,7 @@ export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent =
     );
     return (
         <div style={styles.qrContainer}>
-            <div style={styles.qrCode}>
-                <mobile.ConnectQR label={qrCodeLabel} />
-            </div>
+            <mobile.ConnectQR label={qrCodeLabel} />
         </div>
     );
 }
@@ -192,15 +190,7 @@ const styles = {
 
 
     } as React.CSSProperties,
-    qrCode: {
-        display: "flex",
-        flexDirection: 'column' as 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: "white",
-        border: "1px solid blue"
-    },
+
     buttonContainer: {
         flex: 'display',
         flexDirection: 'row' as 'row',

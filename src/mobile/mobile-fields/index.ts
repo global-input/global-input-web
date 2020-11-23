@@ -9,6 +9,16 @@ export const home = {
         id: "website-home",
         form: {
             title: "Home",
+            views: {
+                viewIds: {
+                    row9: {
+                        style: {
+                            borderWidth: 1,
+                            borderColor: '#EEEEEE'
+                        }
+                    }
+                }
+            },
             fields: [{
                 type: "info",
                 value: "Welcome to Global Input App home page!"
