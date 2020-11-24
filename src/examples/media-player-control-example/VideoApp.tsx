@@ -1,15 +1,17 @@
 import React, { useRef, useState } from "react";
-import { useMobile } from '../../mobile';
+import { useHistory } from 'react-router-dom'; ////website
+import { useMobile } from './mobile';
 import * as videoControl from './videoControl';
 import { AppFooter, MessageButton, MessageLink, PageContainer, QRCodeContainer, P, useWindowSize, A } from './app-layout';
 import * as selectorUI from './selectorUI';
 import * as playerUI from './playerUI';
+import * as mobileUI from '../../mobile-ui'; ////website
 
 interface Props {
   connectionSettings: () => void
 }
 const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
-
+  const history = useHistory();////website
   const [videoData, setVideoData] = useState(videoControl.getDefaultVideo());
   const videoPlayer = useRef(null);
 
@@ -34,6 +36,8 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
       case selectorUI.fields.next.id:
         onChangeVideoData(videoControl.getNextVideo(videoData));
         break;
+      default:
+      mobileUI.addField.onFieldChange(field,history)////website
     }
 
     switch (mobile.initData.id === playerUI.initDataId && field.id) {
@@ -211,14 +215,14 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
       {(!mobile.isConnected) && (
         <QRCodeContainer>
           <mobile.ConnectQR />
-          <AppFooter>
-            <MessageButton label="Settings" onClick={connectionSettings} />
-            <MessageLink href="https://github.com/global-input/media-player-control-example">Source Code</MessageLink>
-          </AppFooter>
+
         </QRCodeContainer>
       )}
 
-
+      <AppFooter>
+        <MessageButton label="Settings" onClick={connectionSettings} />
+        <MessageLink href="https://github.com/global-input/media-player-control-example">Source Code</MessageLink>
+      </AppFooter>
 
       <P>This example application (with <A href="https://github.com/global-input/media-player-control-example">its source code</A>)
       demonstrate how you can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to extend an existing media application

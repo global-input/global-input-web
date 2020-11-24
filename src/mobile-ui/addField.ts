@@ -1,5 +1,3 @@
-import * as globalInput from 'global-input-react';////global-input-react////
-
 export const home = {
     id: 'back-to-website-home',
     type: 'button',
@@ -7,6 +5,11 @@ export const home = {
     icon: 'home',
     viewId: "row9"
 };
+
+export const add = (inputFields: any) => {
+    inputFields.backToHome = home;
+}
+export const getFields = () => [home];
 
 export const onFieldChange = (field, history) => {
     switch (field.id) {
@@ -17,20 +20,4 @@ export const onFieldChange = (field, history) => {
             return false;
     }
     return true;
-};
-
-const matchIds = ['mobile-encryption-main', 'transfer-form', 'second-screen-video-selector',
-    'game-controller', 'mobile-secure-storage-example', 'content-transfer-example'];
-
-
-export const addToInitData = (initData: globalInput.InitData | (() => globalInput.InitData)): globalInput.InitData => {
-    if (typeof initData === 'function') {
-        initData = initData();
-    }
-    if ((!initData.id) || matchIds.indexOf(initData.id) === -1) {
-        return initData;
-    }
-    const fields = [...initData.form.fields, home];
-    const form = { ...initData.form, fields };
-    return { ...initData, form };
 };

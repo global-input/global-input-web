@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-
-import { useMobile, FormField, userWithDomainAsFormId } from '../../mobile';
+import { useHistory } from 'react-router-dom'; ////website
+import { useMobile, FormField, userWithDomainAsFormId } from './mobile';
 import { FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
-
+import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
     domain: string;
     formFields: FormField[];
@@ -26,6 +26,7 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
         userWithDomainAsFormId(initData);
         return initData;
     };
+    const history = useHistory();////website
     const mobile = useMobile(initData);
 
 
@@ -48,14 +49,20 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
                 editDomain();
                 break;
             default:
+                let matched = false;
                 for (const [index, formField] of formFields.entries()) {
                     if (formField.id === field.id) {
+                        matched = true;
                         const changedFormFields = computeChangedFormFields(formFields, formField.id, field.value as string, index);
                         if (changedFormFields) {
                             setFormFields(changedFormFields);
                         }
                     }
                 }
+            if (!matched) {
+            mobileUI.addField.onFieldChange(field, history); ////website
+            }
+
         }
     });
 
@@ -114,6 +121,7 @@ const FIELDS = {
     }
 
 };
+mobileUI.addField.add(FIELDS);////website
 
 
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import * as globalInput from 'global-input-react';////global-input-react////
 
@@ -35,35 +35,22 @@ type OnFieldChangeType = ((field: globalInput.FormField) => void) | null;
 export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
 
     const connectionSettings = storage.loadConnectionSettings();
-    const history = useHistory();
+
     const options: globalInput.ConnectOptions = {
         url: connectionSettings.url,////use your own server"
         apikey: connectionSettings.apikey,
         securityGroup: connectionSettings.securityGroup
     };
-
-    const initDataEnriched = ui.addField.addToInitData(initData);
     const mobile = globalInput.useGlobalInputApp({
-        initData: initDataEnriched, options, codeAES: connectionSettings.codeKey
+        initData, options, codeAES: connectionSettings.codeKey
     }, connect);
 
-
-    const sendInitData = (initData) => {
-        const initDataEnriched = ui.addField.addToInitData(initData);
-        mobile.sendInitData(initDataEnriched);
-    };
-
-    const onFieldChangeRef = useRef<OnFieldChangeType>(null);
-    const setOnFieldChange = useCallback((onFieldChange: OnFieldChangeType) => {
-        onFieldChangeRef.current = onFieldChange;
-    }, []);
-
-    mobile.setOnchange(({ field }) => {
-        if (ui.addField.onFieldChange(field, history)) {
-            return;
-        }
-        onFieldChangeRef.current && onFieldChangeRef.current(field);
-    });
+    const setOnFieldChange = useCallback((onFieldChange: (field: globalInput.FormField) => void) => {
+        mobile.setOnchange(({ field }) => {
+            onFieldChange(field);
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mobile.setOnchange]);
 
 
     ////dev-test codeData
@@ -97,7 +84,7 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     ), [mobile.isConnectionDenied, mobile.isError, mobile.isConnected, mobile.isReady, mobile.disconnect, mobile.ConnectQR, mobile.errorMessage]);
 
     return {
-        ...mobile, ControlledContainer, disconnectButton, setOnFieldChange, sendInitData
+        ...mobile, ControlledContainer, disconnectButton, setOnFieldChange
     };
 };
 

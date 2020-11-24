@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-
-import { useMobile }from '../../mobile';
+import { useHistory } from 'react-router-dom'; ////website
+import { useGlobalInputApp } from 'global-input-react';
 
 import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
+import * as mobileUI from '../../mobile-ui'; ////website
 
 const App: React.FC = () => {
   const [content, setContent] = useState('');
-  const initData = {
-    id: 'content-transfer-example',
-    form: {
-      title: "Content Transfer",
-      fields: Object.values(FIELDS)
-    }
-  };
-  const mobile = useMobile( initData );
-  mobile.setOnFieldChange(( field ) => {
+  const history = useHistory();////website
+
+  const mobile = useGlobalInputApp({ initData });
+  mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:
         setContent(field.value as string);
         break;
+      default:
+      mobileUI.addField.onFieldChange(field, history); ////website
+
     }
   });
 
@@ -64,6 +63,14 @@ const FIELDS = {
     type: "info",
     value: "You may paste content in the text box above to transfer it into the connected application."
   }
-}
+};
+mobileUI.addField.add(FIELDS);////website
+const initData = {
+  id: 'content-transfer-example',
+  form: {
+    title: "Content Transfer",
+    fields: Object.values(FIELDS)
+  }
+};
 
 export default App;

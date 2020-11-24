@@ -1,8 +1,9 @@
 import React from "react";
-import { useMobile } from '../../mobile';
+import { useHistory } from 'react-router-dom'; ////website
+import { useMobile } from './mobile';
 import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
-
+import * as mobileUI from '../../mobile-ui'; ////website
 
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings }) => {
+    const history = useHistory();////website
     const initData = {
         id: 'mobile-secure-storage-example',
         form: {
@@ -28,6 +30,8 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
             case FIELDS.sendMessage.id:
                 sendMessage();
                 break;
+            default:
+            mobileUI.addField.onFieldChange(field, history); ////website
         }
     });
     return (
@@ -77,7 +81,7 @@ const FIELDS = {
         type: "button"
     }
 };
-
+mobileUI.addField.add(FIELDS);////website
 
 
 export default Home;

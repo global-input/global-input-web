@@ -1,8 +1,11 @@
 import React from 'react';
-import { useMobile } from '../../mobile';
+import { useHistory } from 'react-router-dom'; ////website
+
+import { useMobile } from './mobile';
 
 import { AppFooter, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
 
+import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
     domain: string;
     encryption: () => void;
@@ -10,14 +13,10 @@ interface Props {
     editConnectionSettings: () => void;
     qrCodeGenerator: () => void;
 }
+
+
 const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnectionSettings, qrCodeGenerator }) => {
-    const initData = {
-        id: "mobile-encryption-main",
-        form: {
-            title: "Please Select",
-            fields: Object.values(FIELDS)
-        }
-    };
+    const history = useHistory();////website
     const mobile = useMobile(initData);
     mobile.setOnFieldChange((field) => {
         switch (field.id) {
@@ -31,6 +30,7 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
                 qrCodeGenerator();
                 break;
             default:
+            mobileUI.addField.onFieldChange(field, history); ////website
         }
     });
 
@@ -75,5 +75,14 @@ const FIELDS = {
         viewId: "row2"
     }
 };
+mobileUI.addField.add(FIELDS);////website
+const initData = {
+    id: "mobile-encryption-main",
+    form: {
+        title: "Please Select",
+        fields: Object.values(FIELDS)
+    }
+};
+
 
 export default MainPage;
