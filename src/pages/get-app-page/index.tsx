@@ -11,6 +11,7 @@ import { pagesLinks } from '../../links-components';
 
 
 import * as mobile from '../../mobile';
+import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 
@@ -44,7 +45,7 @@ const GetAppPage = () => {
   usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path}>
-      <mobile.MobileConnect initData={mobile.ui.getIt.initData} onFieldChange={mobile.ui.getIt.onFieldChange} />
+      <mobile.MobileConnect initData={mobileUI.getIt.initData} onFieldChange={mobileUI.getIt.onFieldChange} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}
           title="Global Input App"

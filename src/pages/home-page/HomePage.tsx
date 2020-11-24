@@ -29,6 +29,7 @@ import mobilePersonStorageImage from './images/personal-storage.png';
 import mobileContentTransferImage from './images/transfer.png';
 
 import * as mobile from '../../mobile';
+import * as mobileUI from '../../mobile-ui';
 
 
 
@@ -169,7 +170,7 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
                 <SimpleHeaderBackground>
 
                     <RightPosterImage scWidth={width} />
-                    <mobile.MobileConnect initData={mobile.ui.home.initData} silent={false} onFieldChange={mobile.ui.home.onFieldChange} editConnectionSettings={editConnectionSettings} />
+                    <mobile.MobileConnect initData={mobileUI.home.initData} silent={false} onFieldChange={mobileUI.home.onFieldChange} editConnectionSettings={editConnectionSettings} />
                     <HomeTitleSection
                         title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>

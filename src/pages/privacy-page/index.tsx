@@ -3,6 +3,7 @@ import React from 'react';
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 
 import * as mobile from '../../mobile';
+import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 
@@ -15,7 +16,7 @@ const PrivacyPage: React.FC = () => {
 
   return (
     <Page selected={config.paths.privacy.path}>
-      <mobile.MobileConnect initData={mobile.ui.privacy.initData} onFieldChange={mobile.ui.privacy.onFieldChange} />
+      <mobile.MobileConnect initData={mobileUI.privacy.initData} onFieldChange={mobileUI.privacy.onFieldChange} />
 
       <PageContainer>
         <Title>Privacy Policy</Title>

@@ -6,13 +6,15 @@ import MobilePersonalStorage from './MobilePersonalStorage';
 
 import { usePageTitle } from '../../page-metadata';
 import * as mobile from '../../mobile';
+import * as mobileUI from '../../mobile-ui';
+
 const AboutMobilePersonalStorage = () => {
 
         usePageTitle('Mobile Personal Storage');
 
         return (
                 <theme.Page>
-                        <mobile.MobileConnect initData={mobile.ui.aboutStorage.initData} onFieldChange={mobile.ui.aboutStorage.onFieldChange} />
+                        <mobile.MobileConnect initData={mobileUI.aboutStorage.initData} onFieldChange={mobileUI.aboutStorage.onFieldChange} />
                         <MobilePersonalStorage theme={theme} />
                 </theme.Page>
 

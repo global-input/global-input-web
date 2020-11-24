@@ -5,6 +5,7 @@ import VerticalList from '../../page-components/vertical-list';
 import ContactContainer from './contact-container';
 
 import * as mobile from '../../mobile';
+import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';
 import { useWindowSize } from '../../app-layout';
@@ -19,7 +20,7 @@ const ContactUsPage: React.FC = () => {
     <Page selected={config.paths.contactUs.path}>
       <PageContainer>
         <ContactContainer>
-          <mobile.MobileConnect initData={mobile.ui.contactUs.initData} onFieldChange={mobile.ui.contactUs.onFieldChange} />
+          <mobile.MobileConnect initData={mobileUI.contactUs.initData} onFieldChange={mobileUI.contactUs.onFieldChange} />
           <TitleCenter>{textContent.title}</TitleCenter>
           <VerticalOnMobile>
             <VerticalList title={textContent.address.title} items={textContent.address.content} />
