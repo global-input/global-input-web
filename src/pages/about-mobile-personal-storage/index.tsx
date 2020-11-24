@@ -12,7 +12,7 @@ const AboutMobilePersonalStorage = () => {
 
         return (
                 <theme.Page>
-                        <mobile.MobileConnect initData={mobile.aboutStorage.initData} onFieldChange={mobile.aboutStorage.onFieldChange} />
+                        <mobile.MobileConnect initData={mobile.ui.aboutStorage.initData} onFieldChange={mobile.ui.aboutStorage.onFieldChange} />
                         <MobilePersonalStorage theme={theme} />
                 </theme.Page>
 

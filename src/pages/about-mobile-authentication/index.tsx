@@ -14,7 +14,7 @@ const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
   usePageTitle('Mobile Authentication');
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobile.aboutAuthentication.initData} onFieldChange={mobile.aboutAuthentication.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.aboutAuthentication.initData} onFieldChange={mobile.ui.aboutAuthentication.onFieldChange} />
       <MobileAuthenticationAndBeyond theme={theme} />
     </theme.Page>
   )

@@ -11,7 +11,7 @@ const AboutSecondScreen = () => {
 
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobile.aboutSecondScreen.initData} onFieldChange={mobile.aboutSecondScreen.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.aboutSecondScreen.initData} onFieldChange={mobile.ui.aboutSecondScreen.onFieldChange} />
       <SecondScreenExperience theme={theme} />
     </theme.Page>
   )

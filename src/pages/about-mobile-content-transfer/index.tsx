@@ -9,7 +9,7 @@ const AboutMobileContentTransfer = () => {
   usePageTitle('Mobile Content Transfer');
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobile.aboutContentTransfer.initData} onFieldChange={mobile.aboutContentTransfer.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.aboutContentTransfer.initData} onFieldChange={mobile.ui.aboutContentTransfer.onFieldChange} />
       <MobileContentTransfer theme={theme} />
     </theme.Page>
   )

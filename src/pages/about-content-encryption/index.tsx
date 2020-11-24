@@ -12,7 +12,7 @@ const AboutContentEncryption = () => {
   usePageTitle('Mobile Encryption');
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobile.aboutEncryption.initData} onFieldChange={mobile.aboutEncryption.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.aboutEncryption.initData} onFieldChange={mobile.ui.aboutEncryption.onFieldChange} />
       <ContentEncryption theme={theme} />
     </theme.Page>
   );

@@ -44,7 +44,7 @@ const GetAppPage = () => {
   usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path}>
-      <mobile.MobileConnect initData={mobile.getIt.initData} onFieldChange={mobile.getIt.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.getIt.initData} onFieldChange={mobile.ui.getIt.onFieldChange} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}
           title="Global Input App"

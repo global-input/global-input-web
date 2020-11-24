@@ -9,7 +9,7 @@ const AboutMobileInputControl: React.FC = () => {
   usePageTitle('Mobile Input &amp; Control');
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobile.aboutControl.initData} onFieldChange={mobile.aboutControl.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.aboutControl.initData} onFieldChange={mobile.ui.aboutControl.onFieldChange} />
       <IntroducingMobileInputAndControl theme={theme} />
     </theme.Page>
   )

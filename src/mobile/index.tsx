@@ -13,10 +13,10 @@ import * as storage from '../storage';
 import { AppContainer, RowCenter, FormContainer, TextButton, QRCodeContainer, DisplayErrorMessage, MessageContainer } from '../app-layout';
 
 
-import { addField } from './mobile-fields';
+import * as ui from './mobile-fields';
 
 
-export * from './mobile-fields';
+export { ui };
 
 
 
@@ -42,14 +42,14 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         securityGroup: connectionSettings.securityGroup
     };
 
-    const initDataEnriched = addField.addToInitData(initData);
+    const initDataEnriched = ui.addField.addToInitData(initData);
     const mobile = globalInput.useGlobalInputApp({
         initData: initDataEnriched, options, codeAES: connectionSettings.codeKey
     }, connect);
 
 
     const sendInitData = (initData) => {
-        const initDataEnriched = addField.addToInitData(initData);
+        const initDataEnriched = ui.addField.addToInitData(initData);
         mobile.sendInitData(initDataEnriched);
     };
 
@@ -59,7 +59,7 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     }, []);
 
     mobile.setOnchange(({ field }) => {
-        if (addField.onFieldChange(field, history)) {
+        if (ui.addField.onFieldChange(field, history)) {
             return;
         }
         onFieldChangeRef.current && onFieldChangeRef.current(field);

@@ -19,7 +19,7 @@ const ContactUsPage: React.FC = () => {
     <Page selected={config.paths.contactUs.path}>
       <PageContainer>
         <ContactContainer>
-          <mobile.MobileConnect initData={mobile.contactUs.initData} onFieldChange={mobile.contactUs.onFieldChange} />
+          <mobile.MobileConnect initData={mobile.ui.contactUs.initData} onFieldChange={mobile.ui.contactUs.onFieldChange} />
           <TitleCenter>{textContent.title}</TitleCenter>
           <VerticalOnMobile>
             <VerticalList title={textContent.address.title} items={textContent.address.content} />

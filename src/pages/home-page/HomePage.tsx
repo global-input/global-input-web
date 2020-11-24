@@ -169,7 +169,7 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
                 <SimpleHeaderBackground>
 
                     <RightPosterImage scWidth={width} />
-                    <mobile.MobileConnect initData={mobile.home.initData} silent={false} onFieldChange={mobile.home.onFieldChange} editConnectionSettings={editConnectionSettings} />
+                    <mobile.MobileConnect initData={mobile.ui.home.initData} silent={false} onFieldChange={mobile.ui.home.onFieldChange} editConnectionSettings={editConnectionSettings} />
                     <HomeTitleSection
                         title={headerTextContent.title}
                         subtitle={headerTextContent.subtitle}>

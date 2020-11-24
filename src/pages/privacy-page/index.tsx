@@ -15,7 +15,7 @@ const PrivacyPage: React.FC = () => {
 
   return (
     <Page selected={config.paths.privacy.path}>
-      <mobile.MobileConnect initData={mobile.privacy.initData} onFieldChange={mobile.privacy.onFieldChange} />
+      <mobile.MobileConnect initData={mobile.ui.privacy.initData} onFieldChange={mobile.ui.privacy.onFieldChange} />
 
       <PageContainer>
         <Title>Privacy Policy</Title>
