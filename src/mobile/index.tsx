@@ -13,7 +13,7 @@ import * as storage from '../storage';
 import { AppContainer, RowCenter, FormContainer, TextButton, QRCodeContainer, DisplayErrorMessage, MessageContainer } from '../app-layout';
 
 
-import * as ui from './mobile-fields';
+import * as ui from '../mobile-ui';
 
 
 export { ui };
