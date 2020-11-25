@@ -15,7 +15,7 @@ interface MobileConnectProps {
     onFieldChange?: (field: globalInput.FormField, history) => void;
 }
 
-const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, editConnectionSettings, onFieldChange }) => {
+export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, editConnectionSettings, onFieldChange }) => {
     const [connect, setConnect] = useState(false);
     const mobile = useMobile(initData, connect);
     const history = useHistory();
@@ -48,4 +48,3 @@ const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent = true, 
             errorMessage={mobile.isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session."} />
     );
 };
-export default MobileConnect;

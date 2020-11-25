@@ -1,6 +1,6 @@
 import React from 'react';
 import appIcon from './app-icon.png';
-const ConnectButton = ({ onClick }) => (
+export const ConnectButton = ({ onClick }) => (
     <div style={styles.container}>
         <button style={styles.button} onClick={onClick}>
             <img src={appIcon} alt="global input app icon" />
@@ -8,7 +8,7 @@ const ConnectButton = ({ onClick }) => (
             </button>
     </div>
 );
-export default ConnectButton;
+
 
 const styles = {
     container: {

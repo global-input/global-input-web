@@ -1,6 +1,6 @@
 import * as globalInput from 'global-input-react';////global-input-react////
 
-const userWithDomainAsFormId = (initData: globalInput.InitData) => {
+export const userWithDomainAsFormId = (initData: globalInput.InitData) => {
     if (initData?.form?.domain && initData?.form?.fields?.length) {
         const textFields = initData.form.fields.filter(f => {
             if ((!f.type) || f.type === 'text') {
@@ -17,4 +17,3 @@ const userWithDomainAsFormId = (initData: globalInput.InitData) => {
         initData.form.id = `###${textFields[0].id}###@${initData.form.domain}`;
     }
 };
-export default userWithDomainAsFormId;

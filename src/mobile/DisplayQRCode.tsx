@@ -1,12 +1,12 @@
 import React from 'react';
 import QRCodeLabel from './QRCodeLabel';
 
-const DisplayQRCode = ({ ConnectQR, editConnectionSettings, onClose, restart, errorMessage }) => (
+export const DisplayQRCode = ({ ConnectQR, editConnectionSettings, onClose, restart, errorMessage }) => (
     <div style={styles.container}>
         <ConnectQR label={<QRCodeLabel editConnectionSettings={editConnectionSettings} onClose={onClose} restart={restart} errorMessage={errorMessage} />} />
     </div >
 );
-export default DisplayQRCode;
+
 
 const styles = {
     container: {

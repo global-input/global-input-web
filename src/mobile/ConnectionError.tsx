@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ConnectionError = ({ errorMessage, editConnectionSettings }) => (
+export const ConnectionError = ({ errorMessage, editConnectionSettings }) => (
     <div style={styles.container}>
         <div style={styles.content}>
             <div style={styles.message}>{errorMessage}</div>
@@ -10,7 +10,7 @@ const ConnectionError = ({ errorMessage, editConnectionSettings }) => (
         </div>
     </div>
 );
-export default ConnectionError;
+
 
 
 

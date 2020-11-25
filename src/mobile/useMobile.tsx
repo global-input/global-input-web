@@ -1,10 +1,10 @@
 
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import * as globalInput from 'global-input-react';////global-input-react////
 ////main////
 import * as storage from '../storage';
-const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
     const connectionSettings = storage.loadConnectionSettings();
     const options: globalInput.ConnectOptions = {
         url: connectionSettings.url,////use your own server"
@@ -24,5 +24,3 @@ const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData)
     ////dev-test codeData
     return { ...mobile, setOnFieldChange };
 };
-
-export default useMobile;
