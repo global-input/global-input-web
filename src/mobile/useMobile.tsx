@@ -55,7 +55,10 @@ const styles = {
     } as React.CSSProperties,
     errorMessage: {
         color: 'red',
-        fontSize: 11
+        fontSize: 11,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 10
     }
 };
 

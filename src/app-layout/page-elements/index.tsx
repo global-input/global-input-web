@@ -34,11 +34,6 @@ export const DisplayErrorMessage: React.FC<DisplayErrorMessageProps> = ({ errorM
 );
 
 
-export const QRCodeContainer: React.FC = ({ children }) => (
-    <div style={styles.qrCode}>
-        {children}
-    </div>
-);
 
 
 const AppTitle: React.FC = ({ children }) => {
@@ -186,14 +181,6 @@ const styles = {
         fontSize: 15,
         fontWeight: 100,
         padding: 10
-    },
-    qrCode: {
-        minWidth: 450,
-        minHeight: 450,
-        display: "flex",
-        flexDirection: 'column' as 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     appTitle: {
         minWidth: 100,
