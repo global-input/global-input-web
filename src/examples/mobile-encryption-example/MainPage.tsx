@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile } from './mobile';
 
-import { AppContainer, AppFooter, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
+import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
 
 import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
@@ -34,6 +34,10 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
         }
     });
 
+    const disconnect = () => {
+        mobile.restart();
+
+    }
     return (
         <AppContainer title="Mobile Encryption" domain={domain}>
             <mobile.ConnectQR />
@@ -41,7 +45,9 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
                 <MessageContainer>
                     You can now operate on your mobile.
                 </MessageContainer>
-                <RowCenter>{mobile.disconnectButton}</RowCenter>
+                <RowCenter>
+                    <TextButton label="Disconnect" onClick={disconnect} />
+                </RowCenter>
             </>
             )}
             <AppFooter>
