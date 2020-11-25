@@ -1,11 +1,28 @@
-import React from 'react';
-import QRCodeLabel from './QRCodeLabel';
+import React, { useMemo } from 'react';
+import { QRCodeLabel } from './QRCodeLabel';
+import { ConnectQRProps } from 'global-input-react';
 
-export const DisplayQRCode = ({ ConnectQR, editConnectionSettings, onClose, restart, errorMessage }) => (
-    <div style={styles.container}>
-        <ConnectQR label={<QRCodeLabel editConnectionSettings={editConnectionSettings} onClose={onClose} restart={restart} errorMessage={errorMessage} />} />
-    </div >
-);
+interface Props {
+    ConnectQR: React.FC<ConnectQRProps>;
+    editConnectionSettings?: () => void;
+    onClose?: () => void;
+    restart: () => void;
+    isConnectionDenied: boolean;
+
+}
+
+export const DisplayQRCode: React.FC<Props> = ({ ConnectQR, editConnectionSettings, onClose, restart, isConnectionDenied }) => {
+    const label = useMemo(() => {
+        return (<QRCodeLabel editConnectionSettings={editConnectionSettings} onClose={onClose} restart={restart} errorMessage={isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session."} />);
+    }, [isConnectionDenied, editConnectionSettings, onClose, restart]);
+    return (
+        <div style={styles.container}>
+            <ConnectQR label={label} />
+        </div >
+    );
+
+
+};
 
 
 const styles = {

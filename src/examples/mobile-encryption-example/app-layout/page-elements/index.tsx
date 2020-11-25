@@ -229,21 +229,21 @@ const styles = {
         fontSize: 16,
         fontWeight: 100,
         display: 'flex',
-        flexDirection: 'row' as 'row',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'end',
         width: "100%",
         padding: 10,
         minWidth: "350px"
-    },
+    } as React.CSSProperties,
     messageContainer: {
         minWidth: 300,
         minHeight: 30,
         display: 'flex',
-        flexDirection: 'column' as 'column',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
-    },
+    } as React.CSSProperties,
     messageText: {
         width: "100%",
         color: "#153E85",
@@ -265,34 +265,33 @@ const styles = {
     },
     formContainer: {
         display: 'flex',
-        flexDirection: 'column' as 'column',
+        flexDirection: 'column',
         justifyContent: 'start',
         alignItems: 'start',
         width: "100%",
         minWidth: 300,
         padding: 10
-    },
+    } as React.CSSProperties,
     fields: {
         display: 'flex',
-        flexDirection: 'column' as 'column',
+        flexDirection: 'column',
         justifyContent: 'start',
         alignItems: 'start',
         width: "100%",
-    },
+    } as React.CSSProperties,
     formFooter: {
         display: 'flex',
-        flexDirection: 'row' as 'row',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'end',
         width: "100%",
         padding: 10
-    },
+    } as React.CSSProperties,
     rowCenter: {
         display: 'flex',
-        flexDirection: 'row' as 'row',
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'end',
-        width: "100%"
-    }
+        width: "100%",
+    } as React.CSSProperties
 
 }

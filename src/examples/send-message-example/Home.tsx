@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile } from './mobile';
-import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
+import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink, MessageContainer } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
 import * as mobileUI from '../../mobile-ui'; ////website
 
@@ -22,7 +22,7 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
         }
     };
     const mobile = useMobile(initData);
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.contactInfo.id:
                 companyInfo();
@@ -36,26 +36,12 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
     });
     return (
         <PageContainer>
-            {(!mobile.isConnected) && (
-                <>
-                    <Title>Mobile Secure Storage Example</Title>
-                    <mobile.ConnectQR />
-                    <AppFooter>
-                        <MessageButton label="Settings" onClick={connectionSettings} />
-                        <MessageLink href="https://github.com/global-input/send-message-example">Source Code</MessageLink>
-                    </AppFooter>
-
-                </>
-
-
-
-            )}
-
+            <Title>Mobile Secure Storage Example</Title>
+            <mobile.ConnectQR />
             {mobile.isConnected && (<>
 
                 <SelectionContainer>
-                    <Title>Mobile Storage Example</Title>
-                    <P>Please operate on your mobile.</P>
+                    <P>You can now operate on your mobile.</P>
                     <P>If you click on the "{FIELDS.contactInfo.label}" button, the application sends our contact information to your mobile so you can save it into your mobile personal storage.
     If you click on the "{FIELDS.sendMessage.label}" button, you will be able to use your mobile to fill in a form for sending messages to us.
     You can save the content of the form into your mobile personal storage so that you can speed up the form operation by using the autofill feature.
@@ -63,6 +49,10 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
                     <DisplayApplicationInfo />
                 </SelectionContainer>
             </>)}
+            <AppFooter>
+                <MessageButton label="Settings" onClick={connectionSettings} />
+                <MessageLink href="https://github.com/global-input/send-message-example">Source Code</MessageLink>
+            </AppFooter>
         </PageContainer>
     );
 };

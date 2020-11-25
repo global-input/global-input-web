@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as globalInput from 'global-input-react';////global-input-react////
-import useMobile from './useMobile';
-import DisplayQRCode from './DisplayQRCode';
-import ConnectButton from './connect-button';
-import ConnectionError from './ConnectionError';
+import { useMobile } from './useMobile';
+import { DisplayQRCode } from './DisplayQRCode';
+import { ConnectButton } from './connect-button';
+import { ConnectionError } from './ConnectionError';
 
 interface MobileConnectProps {
     initData: globalInput.InitData;
@@ -20,7 +20,7 @@ export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent =
     const mobile = useMobile(initData, connect);
     const history = useHistory();
 
-    mobile.setOnFieldChange(field => {
+    mobile.setOnchange(({ field }) => {
         onFieldChange && onFieldChange(field, history);
     });
     const enableConnect = useCallback(() => setConnect(true), []);
@@ -45,6 +45,6 @@ export const MobileConnect: React.FC<MobileConnectProps> = ({ initData, silent =
             editConnectionSettings={editConnectionSettings}
             onClose={disableConnect}
             restart={restart}
-            errorMessage={mobile.isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session."} />
+            isConnectionDenied={mobile.isConnectionDenied} />
     );
 };

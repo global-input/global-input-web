@@ -25,7 +25,7 @@ const CreateField: React.FC<Props> = ({ formFields, onFormStructureChanged, back
         }
     }
 
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.type.id:
                 if (!field.value || (!(field.value as string[]).length)) {

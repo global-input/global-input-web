@@ -35,7 +35,7 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
             mobile.sendValue(FIELDS.info.id, 'The content (in the extension window) on your computer is empty. You can  press "Use Mobile" button to use your mobile to provide the content.')
         }
     };
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.cancel.id:
                 cancel();

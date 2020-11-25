@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile, FormField, userWithDomainAsFormId } from './mobile';
-import { FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
+import { AppContainer, FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
 import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
     domain: string;
@@ -37,7 +37,7 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [visibility, mobile.sendValue]);
 
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.visibility.id:
                 toggleVisibility();
@@ -73,27 +73,30 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
             mobile.sendValue(formField.id as string, value, index);
         }
     }
-    const notConnected = (
-        <AppFooter>
-            <MessageButton label="Settings" onClick={editConnectionSettings} />
-            <MessageLink href="https://github.com/global-input/transfer-form-data-example">Source Code</MessageLink>
-        </AppFooter>
-    );
 
     return (
-        <mobile.ControlledContainer title="Form Data Transfer" domain={domain} notConnected={notConnected}>
-            <FormContainer>
-                {formFields.map((formField, index) => (<DisplayInputCopyField
-                    field={formField}
-                    key={formField.id}
-                    hideValue={visibility.value === 0} onChange={value => onFieldChanged(formFields, formField, index, value)} />))}
-            </FormContainer>
+        <AppContainer title="Form Data Transfer" domain={domain}>
+            <mobile.ConnectQR />
+            {mobile.isConnected && (
+                <FormContainer>
+                    {formFields.map((formField, index) => (<DisplayInputCopyField
+                        field={formField}
+                        key={formField.id}
+                        hideValue={visibility.value === 0} onChange={value => onFieldChanged(formFields, formField, index, value)} />))}
+                </FormContainer>
+            )}
             <FormFooter>
                 <TextButton onClick={editDomain} label="Edit Domain" />
-                <TextButton onClick={toggleVisibility} label={visibility.label} />
+                {mobile.isConnected && (
+                    <TextButton onClick={toggleVisibility} label={visibility.label} />
+                )}
                 <TextButton onClick={manageForm} label="Manage" />
             </FormFooter>
-        </mobile.ControlledContainer>);
+            <AppFooter>
+                <MessageButton label="Settings" onClick={editConnectionSettings} />
+                <MessageLink href="https://github.com/global-input/transfer-form-data-example">Source Code</MessageLink>
+            </AppFooter>
+        </AppContainer>);
 
 
 };

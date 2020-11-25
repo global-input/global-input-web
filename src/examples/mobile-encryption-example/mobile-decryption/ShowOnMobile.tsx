@@ -20,7 +20,7 @@ const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnCompu
 
     const mobile = useMobile(initData);
     const restart = () => contentOnComputer('');
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.restart.id:
                 restart();

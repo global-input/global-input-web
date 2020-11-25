@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile } from './mobile';
 
-import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
+import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink, RowCenter, DisplayErrorMessage } from './app-layout';
 
 import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnectionSettings, qrCodeGenerator }) => {
     const history = useHistory();////website
     const mobile = useMobile(initData);
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.encryption.id:
                 encryption();
@@ -45,16 +45,14 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
                 <MessageContainer>
                     You can now operate on your mobile.
                 </MessageContainer>
-                <RowCenter>
-                    <TextButton label="Disconnect" onClick={disconnect} />
-                </RowCenter>
             </>
             )}
+            {(mobile.isConnected || mobile.isConnectionDenied) && (<TextButton label="Disconnect" onClick={disconnect} />)}
             <AppFooter>
                 <MessageButton label="Settings" onClick={editConnectionSettings} />
                 <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
             </AppFooter>
-        </AppContainer>
+        </AppContainer >
     );
 }
 

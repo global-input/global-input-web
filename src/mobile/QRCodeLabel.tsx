@@ -1,17 +1,18 @@
 import React from 'react';
 
-export const QRCodeLabel = ({ editConnectionSettings, onClose, errorMessage, restart }) => {
 
+export const QRCodeLabel = ({ editConnectionSettings, onClose, errorMessage, restart }) => {
+    const disconnect = () => restart();
     return (
         <div style={styles.container}>
             {errorMessage && (
-                <div style={styles.message}>{errorMessage} <button onClick={restart} style={styles.button}>Disconnect</button></div>)}
+                <div style={styles.message}>{errorMessage} <button onClick={disconnect} style={styles.button}>Disconnect</button></div>)}
             <div style={styles.row}>
-                <button style={styles.button} onClick={editConnectionSettings}>Settings</button>
+                {editConnectionSettings && (<button style={styles.button} onClick={editConnectionSettings}>Settings</button>)}
                 <div style={styles.label}>
                     Scan with <a href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</a>
                 </div>
-                <button onClick={onClose} style={styles.button}>Close</button>
+                {onClose && (<button onClick={onClose} style={styles.button}>Close</button>)}
             </div>
         </div>
     );

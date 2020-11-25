@@ -21,7 +21,7 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
     const back = () => {
         contentOnComputer(content);
     }
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.content.id:
                 if (field.value) {

@@ -34,7 +34,7 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
     const back = () => {
         contentOnComputer(content);
     }
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.back.id:
                 back();
@@ -62,8 +62,8 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
 
     return (
         <AppContainer title="Mobile Decryption" domain={domain}>
+            <mobile.ConnectQR />
             <FormContainer title="Provide Content on Mobile">
-                <mobile.ConnectQR />
                 {mobile.isConnected && (
                     <InputWithLabel label="Content to decrypt" id="content"
                         onChange={onContentChange}

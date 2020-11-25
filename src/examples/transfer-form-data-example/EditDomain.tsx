@@ -20,7 +20,7 @@ const EditDomain: React.FC<Props> = ({ domain, changeDomain, back }) => {
         changeDomain(content.trim());
     };
 
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.domain.id:
                 setContent(field.value as string);

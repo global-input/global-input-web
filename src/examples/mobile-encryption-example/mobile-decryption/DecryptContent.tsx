@@ -21,7 +21,7 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
     const back = () => {
         contentOnComputer(content);
     };
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.content.id:
                 if (field.value) {

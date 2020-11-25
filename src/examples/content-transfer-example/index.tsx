@@ -33,6 +33,8 @@ const App: React.FC = () => {
     <PageContainer>
       <Title>Content Transfer Application</Title>
       <mobile.ConnectQR />
+      {mobile.isError && (<P>{mobile.errorMessage}</P>)}
+      {mobile.isConnectionDenied && (<P>You can only use one mobile app per session. Disconnect to start a new session.</P>)}
       {mobile.isConnected && (
         <>
           <TextAreaBox id="textContent" onChange={(evt: any) => {

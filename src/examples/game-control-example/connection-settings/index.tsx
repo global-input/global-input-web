@@ -31,7 +31,7 @@ const ConnectionSettings: React.FC<Props> = ({ back, pairing }) => {
         }
     });
     const mobile = useMobile(initData);
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.url.id:
                 setURL(field.value as string);

@@ -38,7 +38,7 @@ const ContentLabel: React.FC<Props> = ({ back, next }) => {
                 }
 
         }
-        mobile.setOnFieldChange((field) => {
+        mobile.setOnchange(({ field }) => {
                 switch (field.id) {
                         case FIELDS.content.id:
                                 setContent(field.value as string);

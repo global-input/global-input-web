@@ -24,7 +24,7 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
     setVideoData(videoData);
   };
 
-  mobile.setOnFieldChange((field) => {
+  mobile.setOnchange(({ field }) => {
     switch (mobile.initData.id === selectorUI.initDataId && field.id) {
       case selectorUI.fields.play.id:
         videoControl.playVideo(videoPlayer.current);
@@ -182,6 +182,7 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
 
   return (
     <PageContainer>
+
       <video width={videoWidth} height={videoHeight}
         id="videoplayer" autoPlay={false}
         muted={true}
@@ -212,12 +213,13 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
         controls>
         <source src={videoData.video.mp4} type="video/mp4" />
       </video>
-      {(!mobile.isConnected) && (
-        <QRCodeContainer>
-          <mobile.ConnectQR />
+      <QRCodeContainer>
+        <mobile.ConnectQR />
+      </QRCodeContainer>
 
-        </QRCodeContainer>
-      )}
+
+
+
 
       <AppFooter>
         <MessageButton label="Settings" onClick={connectionSettings} />
@@ -228,6 +230,7 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
       demonstrate how you can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to extend an existing media application
       to have <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience</a>
       </P>
+
     </PageContainer>);
 
 

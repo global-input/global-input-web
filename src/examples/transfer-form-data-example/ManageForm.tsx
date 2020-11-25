@@ -37,7 +37,7 @@ const ManagerForm: React.FC<Props> = ({ formFields, onFormStructureChanged, back
             mobile.sendInitData(initData);
         }
     };
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.select.id:
                 const newItems = updateSelection(items, field.value as string[]);

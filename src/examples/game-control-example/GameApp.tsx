@@ -11,7 +11,7 @@ const GameApp: React.FC<Props> = ({ connectionSettings }) => {
     const history = useHistory();////website
     const mobile = useMobile(initData);
 
-    mobile.setOnFieldChange((field) => {////website
+    mobile.setOnchange(({field}) => {////website
     mobileUI.addField.onFieldChange(field, history); ////website
     });////website
 
@@ -65,22 +65,14 @@ const GameApp: React.FC<Props> = ({ connectionSettings }) => {
     return (
         <PageContainer>
             <Title>Global Input App Mobile Control Example</Title>
-            {(!mobile.isConnected) && (
-                <>
-                    <mobile.ConnectQR />
-                    <AppFooter>
-                        <MessageButton label="Settings" onClick={connectionSettings} />
-                        <MessageLink href="https://github.com/global-input/game-control-example">Source Code</MessageLink>
-                    </AppFooter>
-                </>
-            )}
-
-
-
+            <mobile.ConnectQR />
             {mobile.isConnected && (
                 <DisplayCanvas onCanvas={onCanvas} />
             )}
-
+            <AppFooter>
+                <MessageButton label="Settings" onClick={connectionSettings} />
+                <MessageLink href="https://github.com/global-input/game-control-example">Source Code</MessageLink>
+            </AppFooter>
         </PageContainer>
     );
 }
@@ -202,6 +194,13 @@ const initData = {
         title: "Mobile Control Example",
         views: {
             viewIds: {
+                row2: {
+                    style: {
+                        justifyContent: "space-between",
+                        width: "100%",
+                    }
+
+                },
                 footer: {
                     style: {
                         justifyContent: "space-between",

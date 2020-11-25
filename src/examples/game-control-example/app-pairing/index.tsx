@@ -14,7 +14,7 @@ const AppPairing: React.FC<Props> = ({ back }) => {
         }
     }
     const mobile = useMobile(initData);
-    mobile.setOnFieldChange((field) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.back.id:
                 back();
