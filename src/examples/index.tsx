@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import { Page } from "../page-components/themes/blue-background";
+import BasicLayout from "../page-components/themes/basic-layout";
 
 import { usePageTitle } from '../page-metadata';
 import { LoadingCircle } from '../app-layout';
@@ -10,65 +10,65 @@ export const GameControlScreen = () => {
   usePageTitle('Global Input App - Mobile Input & Control Example');
   const GameControlExample = lazy(() => import('./game-control-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <GameControlExample />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 };
 export const MediaPlayerScreen = (props: any) => {
   usePageTitle('Global Input App - Second Screen Example');
   const MediaPlayerControlExample = lazy(() => import('./media-player-control-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <MediaPlayerControlExample />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 }
 
 export const TransferFormDataScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Authentication &amp; Example');
   const TransferFormDataExample = lazy(() => import('./transfer-form-data-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <TransferFormDataExample />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 }
 
 export const ContentTransferScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Content Example');
   const ContentTransferExample = lazy(() => import('./content-transfer-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <ContentTransferExample />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 }
 
 export const MobileEncryptionScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Encryption Example');
   const MobileEncryptionExample = lazy(() => import('./mobile-encryption-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <MobileEncryptionExample />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 }
 
 export const SendMessageScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Personal Storage Example');
   const SendMessageExample = lazy(() => import('./send-message-example'));
   const loader = (<LoadingCircle />);
-  return (<Page>
+  return (<BasicLayout>
     <Suspense fallback={loader}>
       <SendMessageExample sendEmail={sendEmail} />
     </Suspense>
-  </Page>);
+  </BasicLayout>);
 }
 
 

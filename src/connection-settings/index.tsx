@@ -96,7 +96,6 @@ export const ConnectionSettings: React.FC<Props> = ({ back, pairing }) => {
         <BasicLayout>
 
             <FormContainer title="Connection Settings">
-                <Title>Connection Settings</Title>
                 <InputWithLabel label="Proxy URL" id="url"
                     onChange={onURLChange}
                     value={url} />
