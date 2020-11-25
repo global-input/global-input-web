@@ -3,8 +3,8 @@ import React, { useCallback, useState } from 'react';
 import MobileEncryption from './mobile-encryption';
 import MobileDecryption from './mobile-decryption';
 import MainPage from './MainPage';
-import ConnectionSettings from './connection-settings';
-import AppPairing from './app-pairing'
+import { ConnectionSettings } from './connection-settings';
+import { AppPairing } from './app-pairing'
 import QRCodeGenerator from './qr-code-generator';
 
 enum PAGES {

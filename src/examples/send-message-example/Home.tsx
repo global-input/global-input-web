@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile } from './mobile';
-import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink, MessageContainer } from './app-layout';
+import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
 import * as mobileUI from '../../mobile-ui'; ////website
 

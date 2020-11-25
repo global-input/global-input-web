@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GameApp from './GameApp';
-import ConnectionSettings from './connection-settings';
-import AppPairing from './app-pairing';
+import { ConnectionSettings } from './connection-settings';
+import { AppPairing } from './app-pairing';
 
 enum PAGES {
     GAME_APP,

@@ -9,8 +9,8 @@ import ManageForm from './ManageForm';
 import TransferFormData from './TransferFormData';
 import EditDomain from './EditDomain';
 import { loadFormFromQuery } from './url-query';
-import ConnectionSettings from './connection-settings';
-import AppPairing from './app-pairing'
+import { ConnectionSettings } from './connection-settings';
+import { AppPairing } from './app-pairing'
 
 export enum PAGES {
     TRANSFER_FORM_DATA,

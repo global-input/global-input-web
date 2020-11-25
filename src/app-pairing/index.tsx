@@ -6,7 +6,7 @@ interface Props {
     back: () => void;
 }
 
-const AppPairing: React.FC<Props> = ({ back }) => {
+export const AppPairing: React.FC<Props> = ({ back }) => {
     const initData = {
         form: {
             title: "Pairing",
@@ -14,7 +14,7 @@ const AppPairing: React.FC<Props> = ({ back }) => {
         }
     }
     const mobile = useMobile(initData);
-    mobile.setOnchange(({field}) => {
+    mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.back.id:
                 back();
@@ -58,4 +58,3 @@ const FIELDS = {
 
 
 }
-export default AppPairing;

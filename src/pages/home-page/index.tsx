@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
-import EditConnectionSettings from '../../connection-settings';
-import AppPairing from '../../app-pairing';
+import { ConnectionSettings } from '../../connection-settings';
+import { AppPairing } from '../../app-pairing';
 import HomePage from './HomePage';
 
 
@@ -18,7 +18,7 @@ const Main: React.FC = () => {
 
   switch (page) {
     case PAGES.EDIT_CONNECTION_SETTINGS:
-      return (<EditConnectionSettings back={home} pairing={pairing} />);
+      return (<ConnectionSettings back={home} pairing={pairing} />);
     case PAGES.PAIRING:
       return (<AppPairing back={home} />)
     case PAGES.HOME:

@@ -4,8 +4,8 @@ import SendMessage from './SendMessage';
 import CompanyInfo from './CompanyInfo';
 import MessageSent from './MessageSent';
 import Home from './Home';
-import ConnectionSettings from './connection-settings';
-import AppPairing from './app-pairing';
+import {ConnectionSettings} from './connection-settings';
+import {AppPairing} from './app-pairing';
 
 
 enum PAGES {
