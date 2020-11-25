@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 
-import { InputWithLabel, P, FormContainer, FormFooter, TextButton, DisplayErrorMessage } from '../app-layout';
+import { AppContainer, InputWithLabel, P, FormContainer, FormFooter, TextButton, DisplayErrorMessage } from '../app-layout';
 import { useMobile } from '../mobile';
 
 interface Props {
@@ -58,25 +58,27 @@ const ContentLabel: React.FC<Props> = ({ back, next }) => {
                 }
         });
         return (
-                <mobile.ControlledContainer title="QR Code Generator" domain="">
+                <AppContainer title="QR Code Generator" domain="">
+                        <mobile.ConnectQR />
                         <FormContainer>
-                                <P>Please provide the content for the QR Code. </P>
-                                <P>You can encrypt content using your mobile and send the encrypted content to this application for generating an Encrypted QR Code with it</P>
-                                <InputWithLabel label="Content to decrypt" id="content"
-                                        onChange={onContentChange}
-                                        type="textarea"
-                                        value={content} />
+                                {mobile.isConnected && (<>
+                                        <P>Please provide the content for the QR Code. </P>
+                                        <P>You can encrypt content using your mobile and send the encrypted content to this application for generating an Encrypted QR Code with it</P>
+                                        <InputWithLabel label="Content to decrypt" id="content"
+                                                onChange={onContentChange}
+                                                type="textarea"
+                                                value={content} />
 
-                                <InputWithLabel id="label" value={label} label="Label" type="text" onChange={onLabelChanged} />
+                                        <InputWithLabel id="label" value={label} label="Label" type="text" onChange={onLabelChanged} />
+                                </>)}
                                 {errorMessage && (<DisplayErrorMessage errorMessage={errorMessage} />)}
-
                         </FormContainer>
                         <FormFooter>
                                 <TextButton onClick={back} label='Back' />
-                                <TextButton onClick={onNext} label='Next' />
+                                {mobile.isConnected && (<TextButton onClick={onNext} label='Next' />)}
                         </FormFooter>
 
-                </mobile.ControlledContainer>
+                </AppContainer>
 
         );
 };

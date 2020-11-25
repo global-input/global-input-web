@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMobile } from '../mobile';
-import { MessageContainer, FormContainer } from '../app-layout';
+import { AppContainer, FormFooter, TextButton, DisplayErrorMessage, MessageContainer, FormContainer } from '../app-layout';
 
 interface Props {
     content: string;
@@ -18,7 +18,9 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
         }
     });
     const mobile = useMobile(initData);
-
+    const back = () => {
+        contentOnComputer(content);
+    }
     mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.content.id:
@@ -31,19 +33,23 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
                 }
                 break;
             case FIELDS.back.id:
-                contentOnComputer(content);
+                back();
                 break;
         }
     });
     return (
-        <mobile.ControlledContainer title="Mobile Encryption" domain={domain} errorMessage={errorMessage}>
+        <AppContainer title="Mobile Encryption" domain={domain}>
+            {<mobile.ConnectQR />}
             <FormContainer>
-                <MessageContainer title="Encrypting Content">
+                <DisplayErrorMessage errorMessage={errorMessage} />
+                {mobile.isConnected && (<MessageContainer title="Encrypting Content">
                     Follow the instruction on your mobile to encrypt content.
-            </MessageContainer>
+                </MessageContainer>)}
             </FormContainer>
-
-        </mobile.ControlledContainer>
+            <FormFooter>
+                <TextButton onClick={back} label='Back' />
+            </FormFooter>
+        </AppContainer>
     );
 
 };

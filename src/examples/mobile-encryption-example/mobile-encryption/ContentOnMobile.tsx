@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useMobile } from '../mobile';
-import { InputWithLabel, TextButton, DisplayErrorMessage, FormContainer, FormFooter } from '../app-layout';
+import { AppContainer, InputWithLabel, TextButton, DisplayErrorMessage, FormContainer, FormFooter } from '../app-layout';
 
 interface PROPS {
     initialContent: string;
@@ -60,20 +60,23 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
 
 
     return (
-        <mobile.ControlledContainer title="Mobile Encryption" domain={domain}>
+        <AppContainer title="Mobile Encryption" domain={domain}>
+            {<mobile.ConnectQR />}
             <FormContainer title="Provide Content on Mobile">
-                <InputWithLabel label="Content to encrypt" id="content"
-                    onChange={onContentChange}
-                    type="textarea"
-                    value={content} />
+                {mobile.isConnected && (
+                    <InputWithLabel label="Content to encrypt" id="content"
+                        onChange={onContentChange}
+                        type="textarea"
+                        value={content} />
+                )}
                 <DisplayErrorMessage errorMessage={errorMessage} />
                 <FormFooter>
                     <TextButton onClick={back} label='Back' />
                     <TextButton onClick={cancel} label='Cancel' />
-                    <TextButton onClick={onEncrypt} label='Encrypt' />
+                    {mobile.isConnected && (<TextButton onClick={onEncrypt} label='Encrypt' />)}
                 </FormFooter>
             </FormContainer>
-        </mobile.ControlledContainer>
+        </AppContainer>
     );
 
 };

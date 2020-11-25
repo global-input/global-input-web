@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile } from './mobile';
 
-import { AppFooter, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
+import { AppContainer, AppFooter, MessageContainer, MessageButton, MessageLink, RowCenter } from './app-layout';
 
 import * as mobileUI from '../../mobile-ui'; ////website
 interface Props {
@@ -34,20 +34,21 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
         }
     });
 
-    const NotConnected = () => (
-        <AppFooter>
-            <MessageButton label="Settings" onClick={editConnectionSettings} />
-            <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
-        </AppFooter>
-    )
-
     return (
-        <mobile.ControlledContainer title="Mobile Encryption" domain={domain} notConnected={<NotConnected />}>
-            <MessageContainer>
-                You can now operate on your mobile.
-            </MessageContainer>
-            <RowCenter>{mobile.disconnectButton}</RowCenter>
-        </mobile.ControlledContainer>
+        <AppContainer title="Mobile Encryption" domain={domain}>
+            <mobile.ConnectQR />
+            {mobile.isConnected && (<>
+                <MessageContainer>
+                    You can now operate on your mobile.
+                </MessageContainer>
+                <RowCenter>{mobile.disconnectButton}</RowCenter>
+            </>
+            )}
+            <AppFooter>
+                <MessageButton label="Settings" onClick={editConnectionSettings} />
+                <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
+            </AppFooter>
+        </AppContainer>
     );
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMobile } from '../mobile';
 import QRCode from "qrcode.react";
 import './no-print.css';
-import { P, A } from '../app-layout';
+import { P, A, AppContainer, FormFooter, TextButton } from '../app-layout';
 
 
 const GenerateQRCode = ({ content, label, back }) => {
@@ -34,11 +34,18 @@ const GenerateQRCode = ({ content, label, back }) => {
     });
 
     return (
-        <mobile.ControlledContainer title="Mobile Encryption" domain="">
+        <AppContainer title="Mobile Encryption" domain="">
             <P>{label}</P>
             <QRCode value={content} level={level} size={size} />
             <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
-        </mobile.ControlledContainer>
+            <FormFooter>
+                <TextButton onClick={back} label='Back' />
+                <TextButton onClick={() => {
+                    window.print();
+                }} label='Print' />
+            </FormFooter>
+
+        </AppContainer>
 
 
     )

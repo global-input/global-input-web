@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMobile } from '../mobile';
-import { MessageContainer, FormContainer } from '../app-layout';
+import { FormFooter, TextButton, DisplayErrorMessage, AppContainer, MessageContainer, FormContainer } from '../app-layout';
 
 interface Props {
     content: string;
@@ -18,6 +18,9 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
         }
     }
     const mobile = useMobile(initData);
+    const back = () => {
+        contentOnComputer(content);
+    };
     mobile.setOnFieldChange((field) => {
         switch (field.id) {
             case FIELDS.content.id:
@@ -30,19 +33,23 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
                 }
                 break;
             case FIELDS.back.id:
-                contentOnComputer(content);
+                back();
                 break;
         }
     });
     return (
-        <mobile.ControlledContainer title="Mobile Decryption" domain={domain} errorMessage={errorMessage}>
+        <AppContainer title="Mobile Decryption" domain={domain}>
+            <mobile.ConnectQR />
             <FormContainer>
-                <MessageContainer title="Decrypting Content">
+                <DisplayErrorMessage errorMessage={errorMessage} />
+                {mobile.isConnected && (<MessageContainer title="Decrypting Content">
                     Follow the instruction on your mobile to decrypt content.
-            </MessageContainer>
+                </MessageContainer>)}
             </FormContainer>
-
-        </mobile.ControlledContainer>
+            <FormFooter>
+                <TextButton onClick={back} label='Back' />
+            </FormFooter>
+        </AppContainer>
     );
 
 };

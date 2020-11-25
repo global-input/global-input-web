@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMobile } from '../mobile';
-import { InputWithCopy, TextButton, FormContainer, FormFooter } from '../app-layout';
+import { AppContainer, InputWithCopy, TextButton, FormContainer, FormFooter } from '../app-layout';
 
 
 interface Props {
@@ -36,7 +36,8 @@ const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnCompu
     });
 
     return (
-        <mobile.ControlledContainer title="Mobile Encryption" domain={domain}>
+        <AppContainer title="Mobile Encryption" domain={domain}>
+            <mobile.ConnectQR />
             <FormContainer title="Encrypted Content">
                 <InputWithCopy id="encryptedContent" readOnly={true}
                     label="Encrypted Content"
@@ -47,7 +48,7 @@ const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnCompu
                     <TextButton onClick={finish} label='Finish' />
                 </FormFooter>
             </FormContainer>
-        </mobile.ControlledContainer>
+        </AppContainer>
 
     );
 
