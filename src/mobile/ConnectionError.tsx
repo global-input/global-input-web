@@ -32,7 +32,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         padding: 20
-    },
+    } as React.CSSProperties,
     message: {
         backGroundColor: 'white',
         color: 'red'
