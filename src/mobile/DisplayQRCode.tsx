@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { QRCodeLabel } from './QRCodeLabel';
-import { ConnectQRProps } from 'global-input-react';
+import { ConnectQRProps } from 'global-input-react';////global-input-react////
 
 interface Props {
     ConnectQR: React.FC<ConnectQRProps>;
