@@ -137,6 +137,12 @@ interface MessageButtonProp {
 
 export const MessageButton: React.FC<MessageButtonProp> = ({ label, onClick }) => (<button style={styles.messageAlink} onClick={onClick}>{label}</button>)
 
+export const TextAreaBox = ({ value, id, onChange }) => (
+    <textarea id={id} style={styles.textArea}
+        onChange={onChange} value={value} />
+);
+
+
 
 const styles = {
     title: {
@@ -296,6 +302,11 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'end',
         width: "100%"
+    },
+    textArea: {
+        width: "100%",
+        minHeight: 200,
+        border: "1px solid #888888"
     }
 
 }
