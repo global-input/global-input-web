@@ -5,9 +5,9 @@ import ButtonsContainer from '../../page-components/buttons-container';
 
 import { pagesLinks } from '../../page-components/links-components';
 
+import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
 
-
-const { CopyContentAppButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
+const { CopyContentAppButton } = pagesLinks.buttons;
 
 const FooterButtons = props => {
 

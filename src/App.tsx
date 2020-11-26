@@ -16,7 +16,7 @@ import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
 import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 
-import * as examples from './examples';
+import * as examples from './page-components/examples';
 const App: React.FC = () => (
   <Router>
     <Switch>

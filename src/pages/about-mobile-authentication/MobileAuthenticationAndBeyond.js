@@ -4,12 +4,12 @@ import { externalsLinks, pagesLinks } from '../../page-components/links-componen
 
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
-
+import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
 
 
 const { ChromeExtension, FirefoxExtension, ReactJSExtension } = externalsLinks;
 
-const { TransferFormDataButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
+const { TransferFormDataButton } = pagesLinks.buttons;
 
 
 const AuthenticationButtons = props => {

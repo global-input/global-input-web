@@ -15,7 +15,8 @@ import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 import { useWindowSize } from '../../app-layout';
-const { AppStoreButton, PlayStoreButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
+import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
+const { AppStoreButton, PlayStoreButton } = pagesLinks.buttons;
 
 
 const images = {

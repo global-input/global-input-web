@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { withResponsiveComponent } from '../../../app-layout/screen-media';
 import { TopHeaderSection } from '../../top-header-section';
 import { styles } from './styles';
 import PageFooter from '../page-footer';

@@ -2,9 +2,11 @@ import React from 'react';
 import { pagesLinks } from '../../page-components/links-components';
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
+import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
 
 
-const { MobileEncryptionAppButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
+
+const { MobileEncryptionAppButton } = pagesLinks.buttons;
 
 const FooterButtons = props => {
 
