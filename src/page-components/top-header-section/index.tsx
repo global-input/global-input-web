@@ -9,8 +9,8 @@ import appIcon from './images/app-icon.png';
 import companyIcon from './images/company-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
 
-const webSiteTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
-const websiteIcon = config.id === 'iterative' ? companyIcon : appIcon;
+const appTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
+const appLogo = config.id === 'iterative' ? companyIcon : appIcon;
 
 var menus = [{
   link: config.paths.home.path,
@@ -35,35 +35,16 @@ interface Menu {
   linkText: string;
 }
 
-interface TopMenuProps {
-  menus: Menu[];
-  selected: Menu | null;
-  appLogo: string;
-  appTitle: string;
-  appSubtitle?: string;
-}
 
 
 export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
-  const matched = menus.filter(m => m.link === selected);
-
-  const first = matched.length ? matched[0] : null;
-
-  return (<TopMenu appTitle={webSiteTitle}
-    menus={menus}
-    selected={first} appLogo={websiteIcon} />)
-};
-
-const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle }) => {
   const [menuPressed, setMenuPressed] = useState(false);
-
   const [refresh, setRefresh] = useState(0);
-
   const bgs = screenMedia.biggerThan(600);
   const containerStyle = bgs ? styles.topNavContainer.desktop : styles.topNavContainer.mobile
   const navStyle = bgs ? styles.topNav.desktop : styles.topNav.mobile
   const titleStyle = bgs ? styles.appDesktopTitle : styles.appMobileTitle;
-  const subTitleStyle = bgs ? styles.subtitleDesktopContainer : styles.subtitleMobileContainer;
+
   console.log("render menu:" + refresh);
   useEffect(() => {
     const onWindowResize = () => {
@@ -95,7 +76,6 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
         <img src={appLogo} style={styles.logo} alt="App Logo" />
         <div style={styles.appTitleContainer}>
           <div style={titleStyle}>{appTitle}</div>
-          {appSubtitle && (<div style={subTitleStyle}>{appSubtitle}</div>)}
         </div>
         {bgs && (
           <div style={styles.menuItemsDesktop}>
@@ -120,7 +100,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
 
 interface MenuItemProps {
   menu: Menu;
-  selected: Menu | null;
+  selected?: string | null;
 }
 const MenuItem: React.FC<MenuItemProps> = ({ menu, selected }) => {
   const [hover, setHover] = useState(false);
@@ -131,7 +111,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ menu, selected }) => {
     link = "/";
   }
   let linkText = menu.linkText;
-  let isSelected = selected && menu.link === selected.link;
+  let isSelected = selected && menu.link === selected;
 
   const getMenuItemStyle = () => {
     if (hover) return styles.menuItem.get('hover');
@@ -240,22 +220,6 @@ export const styles = {
     fontSize: 12,
     color: "#5291CD",
     marginLeft: 10
-  },
-  subtitleDesktopContainer: {
-    display: "flex",
-    flexDirection: "row" as 'row',
-    justifyContent: "flex-end",
-    fontFamily: fontFamily,
-    color: "#5291CD",
-    fontSize: 12,
-  },
-  subtitleMobileContainer: {
-    display: "flex",
-    flexDirection: "row" as 'row',
-    justifyContent: "flex-end",
-    fontFamily: fontFamily,
-    color: "#5291CD",
-    fontSize: 12,
   },
 
   mobileMenu: {

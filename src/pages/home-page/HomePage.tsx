@@ -17,7 +17,7 @@ import RightPosterImage from './right-poster-image';
 import { HomeTitleSection } from '../../page-components/text-title-sections';
 import SmallText from './SmallText';
 import ButtonsContainer from '../../page-components/buttons-container';
-import { pagesLinks } from "../../links-components";
+import { pagesLinks } from "../../page-components/links-components";
 
 
 import { useWindowSize } from '../../app-layout';

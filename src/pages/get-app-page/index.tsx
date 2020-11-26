@@ -7,7 +7,7 @@ import { withScrollToTop } from "../../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
-import { pagesLinks } from '../../links-components';
+import { pagesLinks } from '../../page-components/links-components';
 
 
 import * as mobile from '../../mobile';

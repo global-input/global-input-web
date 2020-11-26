@@ -1,6 +1,6 @@
 import React from 'react';
-import { config } from '../configs';
-import { WhiteRoundButton, ImageButton, TransparentButton } from '../page-components/round-buttons';
+import { config } from '../../configs';
+import { WhiteRoundButton, ImageButton, TransparentButton } from '../round-buttons';
 
 const images = {
   chrome: require("./images/web-store.png"),

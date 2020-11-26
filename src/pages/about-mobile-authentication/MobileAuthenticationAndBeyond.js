@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { externalsLinks, pagesLinks } from '../../links-components';
+import { externalsLinks, pagesLinks } from '../../page-components/links-components';
 
 import SimpleContainer from '../../page-components/section-containers/simple-container';
 import ButtonsContainer from '../../page-components/buttons-container';
