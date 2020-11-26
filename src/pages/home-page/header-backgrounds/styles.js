@@ -1,4 +1,4 @@
-import { styleMatchingScreenSize } from "../../../components/screen-media";
+import { styleMatchingScreenSize } from "../../../app-layout/screen-media";
 const images = {
   simple: {
     background: require("./images/simple/background.svg"),

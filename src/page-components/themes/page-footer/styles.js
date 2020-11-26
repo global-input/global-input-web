@@ -1,4 +1,4 @@
-import { styleMatchingScreenSize } from "../../../components/screen-media";
+import { styleMatchingScreenSize } from "../../../app-layout/screen-media";
 export const images = {
   footerBackground: require("./images/footer-background.svg"),
   footerBackground2: require("./images/footer-background2.svg"),

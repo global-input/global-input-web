@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { withResponsiveComponent } from '../../../components/screen-media';
-import TopHeaderSection from '../../../pages/home-page/top-header-section';
+import { withResponsiveComponent } from '../../../app-layout/screen-media';
+import { TopHeaderSection } from '../../top-header-section';
 import { styles } from './styles';
 
 

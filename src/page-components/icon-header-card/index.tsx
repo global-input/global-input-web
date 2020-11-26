@@ -2,7 +2,7 @@ import React from 'react';
 import { styles, images } from './styles';
 import { Link } from 'react-router-dom';
 
-import { withResponsiveComponent } from '../../components/screen-media';
+import { withResponsiveComponent } from '../../app-layout/screen-media';
 
 const renderFooter = (link, footerContent) => {
     if (link) {
@@ -32,7 +32,15 @@ const renderContent = (content, children) => {
     }
 };
 
-const IconHeaderCard = ({ titleIcon, title, content, link, children, footerContent }) => (
+interface Props {
+    titleIcon?: string;
+    title?: string;
+    content?: string[],
+    link?: string,
+    footerContent?: React.ReactNode;
+    scWidth?: number;
+}
+const IconHeaderCard: React.FC<Props> = ({ titleIcon, title, content, link, children, footerContent, scWidth }) => (
     <div style={styles.card.get()}>
         <div style={styles.icon.container}>
             <img src={titleIcon} style={styles.icon.img} alt="title icon" /></div>
@@ -44,4 +52,4 @@ const IconHeaderCard = ({ titleIcon, title, content, link, children, footerConte
     </div>);
 
 
-export default withResponsiveComponent(IconHeaderCard);
+export default IconHeaderCard;

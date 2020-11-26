@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { styleMatchingScreenSize } from "../../components/screen-media";
+import { styleMatchingScreenSize } from "../../app-layout/screen-media";
 
 
 export const images = {

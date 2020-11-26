@@ -1,13 +1,34 @@
-import React, { useState, useEffect, useCallback } from 'react'
 
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom'
+import { screenMedia, styleMatchingScreenSize } from "../../app-layout/screen-media";
 
-import { screenMedia, styleMatchingScreenSize } from "../screen-media";
 
+import { config } from "../../configs";
+import appIcon from './images/app-icon.png';
+import companyIcon from './images/company-icon.png';
+import menuSymbol from './images/menu-symbol.svg';
 
-const images = {
-  menuSymbol: require('./menu-symbol.svg')
-};
+const webSiteTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
+const websiteIcon = config.id === 'iterative' ? companyIcon : appIcon;
+
+var menus = [{
+  link: config.paths.home.path,
+  linkText: "HOME"
+}, {
+  link: config.paths.privacy.path,
+  linkText: "PRIVACY POLICY"
+}, {
+  link: config.paths.contactUs.path,
+  linkText: "CONTACT US"
+}, {
+  link: config.paths.getAppScreen.path,
+  linkText: "GET IT FREE"
+}];
+
+interface Props {
+  selected?: string | null;
+}
 
 interface Menu {
   link: string;
@@ -21,6 +42,17 @@ interface TopMenuProps {
   appTitle: string;
   appSubtitle?: string;
 }
+
+
+export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
+  const matched = menus.filter(m => m.link === selected);
+
+  const first = matched.length ? matched[0] : null;
+
+  return (<TopMenu appTitle={webSiteTitle}
+    menus={menus}
+    selected={first} appLogo={websiteIcon} />)
+};
 
 const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, appSubtitle }) => {
   const [menuPressed, setMenuPressed] = useState(false);
@@ -55,7 +87,7 @@ const TopMenu: React.FC<TopMenuProps> = ({ menus, selected, appLogo, appTitle, a
             <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={() => {
               setMenuPressed(!menuPressed);
             }}>
-              {menuPressed ? '☓' : (<img src={images.menuSymbol} alt="Close" />)}
+              {menuPressed ? '☓' : (<img src={menuSymbol} alt="Close" />)}
             </a>
 
           </div>
@@ -317,5 +349,3 @@ export const styles = {
   }
 
 };
-
-export default TopMenu;

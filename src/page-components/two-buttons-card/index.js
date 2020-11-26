@@ -1,7 +1,7 @@
 import React from 'react';
 import { styles } from './styles';
 
-import { withResponsiveComponent } from '../../components/screen-media';
+import { withResponsiveComponent } from '../../app-layout/screen-media';
 import { BlueRoundButton } from '../round-buttons';
 const TwoButtonsCard = props => (
     <div style={styles.card.get()}>

@@ -46,22 +46,25 @@ const textContent = {
             buttons: [{ path: config.paths.examples.mobileEncryption.path, label: "TRY NOW" }, { path: config.paths.aboutContentEncryption.path, label: "Read More" }]
       }
 }
-const FeaturesSection: React.FC = () => (
+interface Props {
+      scWidth: number
+}
+const FeaturesSection: React.FC<Props> = ({ scWidth }) => (
       <FeaturesContainer title="Try Our Features">
             <FeatureRow>
-                  <TwoButtonsCard data={textContent.mobileEncryption} />
-                  <TwoButtonsCard data={textContent.mobileAuthentication} />
+                  <TwoButtonsCard data={textContent.mobileEncryption} scWidth={scWidth} />
+                  <TwoButtonsCard data={textContent.mobileAuthentication} scWidth={scWidth} />
 
             </FeatureRow>
             <FeatureRow>
-                  <TwoButtonsCard data={textContent.secondScreenInput} />
-                  <TwoButtonsCard data={textContent.mobileControl} />
+                  <TwoButtonsCard data={textContent.secondScreenInput} scWidth={scWidth} />
+                  <TwoButtonsCard data={textContent.mobileControl} scWidth={scWidth} />
             </FeatureRow>
 
             <FeatureRow>
-                  <TwoButtonsCard data={textContent.mobilePersonalStorage} />
+                  <TwoButtonsCard data={textContent.mobilePersonalStorage} scWidth={scWidth} />
 
-                  <TwoButtonsCard data={textContent.mobileContentTransfer} />
+                  <TwoButtonsCard data={textContent.mobileContentTransfer} scWidth={scWidth} />
             </FeatureRow>
 
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Page } from "../../page-components/themes/blue-background";
 
-import { withScrollToTop } from "../../components/screen-media";
+import { withScrollToTop } from "../../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
@@ -14,7 +14,7 @@ import * as mobile from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
-
+import { useWindowSize } from '../../app-layout';
 const { AppStoreButton, PlayStoreButton, ChromeExtensionButton, FirefoxExtensionButton } = pagesLinks.buttons;
 
 
@@ -41,15 +41,15 @@ const extension = () => (
 
 
 const GetAppPage = () => {
-
+  const [width] = useWindowSize();
   usePageTitle('Global Input App -  Get It Free');
   return (
-    <Page selected={config.paths.getAppScreen.path}>
+    <Page selected={config.paths.getAppScreen.path} scWidth={width}>
       <mobile.MobileConnect initData={mobileUI.getIt.initData} onFieldChange={mobileUI.getIt.onFieldChange} />
       <CardContainer>
         <IconCard titleIcon={images.appIcon}
           title="Global Input App"
-          footerContent={mobileApp()}>
+          footerContent={mobileApp()} scWidth={width}>
           Get our free and open-source mobile app to operate on a multi-device environment.
 
 
@@ -58,10 +58,11 @@ const GetAppPage = () => {
 
         <IconCard titleIcon={images.extension}
           title="Browser Extension"
-          footerContent={extension()}>
+          footerContent={extension()} scWidth={width}>
           Get our browser extension to use your mobile to operate on the
           websites loaded on your computer.
-</IconCard>
+
+        </IconCard>
 
       </CardContainer>
 

@@ -1,30 +1,30 @@
-import {styleMatchingScreenSize} from "../../components/screen-media";
+import { styleMatchingScreenSize } from "../../app-layout/screen-media";
 
-export var styles={
+export var styles = {
 
-  buttonsContainer:{
-      default:{
-        paddingBottom:10,
+  buttonsContainer: {
+    default: {
+      paddingBottom: 10,
 
-        display:"flex",
-        flexDirection:"row",
-        marginTop:5,
-        marginLeft:50,
-      },
-      smallScreen:{
+      display: "flex",
+      flexDirection: "row",
+      marginTop: 5,
+      marginLeft: 50,
+    },
+    smallScreen: {
 
-      },
-      mobile:{
+    },
+    mobile: {
 
-        flexDirection:"column",
-        justifyContent:"space-between",
-        width:"80%",
-        minheight:130,        
-      },
-      bigScreen:{
+      flexDirection: "column",
+      justifyContent: "space-between",
+      width: "80%",
+      minheight: 130,
+    },
+    bigScreen: {
 
-      },
-      get:styleMatchingScreenSize
+    },
+    get: styleMatchingScreenSize
   },
 
 };

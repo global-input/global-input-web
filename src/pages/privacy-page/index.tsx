@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
-
+import { useWindowSize } from '../../app-layout';
 import * as mobile from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
@@ -9,13 +9,13 @@ import { usePageTitle } from '../../page-metadata';
 
 
 const PrivacyPage: React.FC = () => {
-
+  const [width] = useWindowSize();
 
   usePageTitle('Global Input App -  Privacy Policy');
 
 
   return (
-    <Page selected={config.paths.privacy.path}>
+    <Page selected={config.paths.privacy.path} scWidth={width}>
       <mobile.MobileConnect initData={mobileUI.privacy.initData} onFieldChange={mobileUI.privacy.onFieldChange} />
 
       <PageContainer>

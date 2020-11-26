@@ -1,4 +1,4 @@
-import styleMatchingScreenSize from '../styleMatchingScreenSize';
+import { styleMatchingScreenSize } from '../screen-media';
 export var styles = {
     container: {
         display: "flex",

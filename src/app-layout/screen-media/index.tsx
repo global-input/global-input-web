@@ -1,7 +1,8 @@
-let screenMedia = {
-    screenmedias: [] as any[],
-    biggerThan: function (width: number) {
-        var matched = this.screenmedias.filter((s: any) => s.width === width);
+import React from 'react';
+export let screenMedia = {
+    screenmedias: [],
+    biggerThan: function (width) {
+        var matched = this.screenmedias.filter(s => s.width === width);
         if (matched.length) {
             return matched[0].media.matches;
         }
@@ -12,7 +13,7 @@ let screenMedia = {
         this.screenmedias.push(scm);
         return scm.media.matches;
     },
-    getScreenStyle: function (defaultStyle: any, specificStyle: any, target: any, name: string, namedState: string) {
+    getScreenStyle: function (defaultStyle, specificStyle, target, name, namedState) {
 
         if (!target.computedStyles) {
             target.computedStyles = [];
@@ -53,8 +54,7 @@ let screenMedia = {
         }
     }
 };
-
-const styleMatchingScreenSize= function (namedState: any) {
+export const styleMatchingScreenSize = function (namedState?: any) {
 
     if (this.bigScreen) {
 
@@ -100,5 +100,65 @@ const styleMatchingScreenSize= function (namedState: any) {
     }
 
 }
+interface ResponsiveProps {
+    [key: string]: object | string | null | undefined | React.ReactNode | any | ((props: any) => React.ReactNode);
 
-export default styleMatchingScreenSize;
+    screenMedia?: any;
+    data?: object;
+
+}
+
+export const withResponsiveComponent = (WrappedComponent: React.ComponentType<ResponsiveProps>, data?: any): React.ComponentType<ResponsiveProps> => {
+    return class extends React.Component {
+        constructor(props) {
+            super(props);
+            this.onWindowResize = this.onWindowResize.bind(this);
+
+        }
+        componentDidMount() {
+            window.addEventListener("resize", this.onWindowResize);
+            this.scrollTo(data);
+        }
+        componentWillUnmount() {
+            window.removeEventListener("resize", this.onWindowResize);
+        }
+        onWindowResize() {
+            this.forceUpdate();
+        }
+        render() {
+            return <WrappedComponent screenMedia={screenMedia} {...this.props} />;
+        }
+        scrollTo(data) {
+
+            if (data && data.scrollTo) {
+
+                var elmnt = document.getElementById(data.scrollTo);
+                if (elmnt) {
+                    window.scrollBy({ top: -70, behavior: "smooth" });
+                    elmnt.scrollIntoView();
+                }
+            }
+        }
+
+    }
+}
+
+
+export const withScrollToTop = (WrappedComponent, scrollTo) => {
+    return class extends React.Component {
+        componentDidMount() {
+            this.scrollTo(scrollTo);
+        }
+        scrollTo(elementId) {
+            var elmnt = document.getElementById(elementId);
+
+            if (elmnt) {
+                window.scrollBy({ top: -70, behavior: "smooth" });
+                elmnt.scrollIntoView();
+            }
+        }
+        render() {
+            return <WrappedComponent  {...this.props} />;
+        }
+    };
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { styles, images } from './styles';
 
-import { withResponsiveComponent } from '../../../components/screen-media';
+import { withResponsiveComponent } from '../../../app-layout/screen-media';
 
 const HowItWorks = props => {
 

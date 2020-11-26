@@ -66,48 +66,54 @@ const headerTextContent = {
     smallText: "Data Security, Mobile Input & Control for IoT",
     description: "Users Carry Their Around Own Data or their Key "
 };
-const AuthenticationCard = () => (
+const AuthenticationCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={authenticationImage}
         title={textContent.authentication.title}
         content={textContent.authentication.content}
         link={config.paths.mobileAuthentication.path}
+        scWidth={scWidth}
     />
 );
 
-const MobileControlCard = () => (
+const MobileControlCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={mobileControlImage}
         title={textContent.mobileControl.title}
         content={textContent.mobileControl.content}
         link={config.paths.mobileControl.path}
+        scWidth={scWidth}
     />
 
 );
-const SecondScreenCard = () => (
+const SecondScreenCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={secondScreenImage}
         title={textContent.secondScreen.title}
         content={textContent.secondScreen.content}
         link={config.paths.secondScreen.path}
+        scWidth={scWidth}
     />
 );
-const MobileEncryptionCard = () => (
+const MobileEncryptionCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={encryptionImage}
         title={textContent.encryption.title}
         content={textContent.encryption.content}
         link={config.paths.aboutContentEncryption.path}
+        scWidth={scWidth}
     />
 );
-const PersonalStorageCard = () => (
+const PersonalStorageCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={mobilePersonStorageImage}
         title={textContent.mobilePersonStorage.title}
         content={textContent.mobilePersonStorage.content}
         link={config.paths.mobilePersonalStorage.path}
+        scWidth={scWidth}
     />
 );
-const ContentTransferCard = () => (
+const ContentTransferCard = ({ scWidth }) => (
     <IconHeaderCard titleIcon={mobileContentTransferImage}
         title={textContent.mobileContentTransfer.title}
         content={textContent.mobileContentTransfer.content}
         link={config.paths.mobileContentTransfer.path}
+        scWidth={scWidth}
     />
 )
 
@@ -117,14 +123,14 @@ const CardSection = ({ scWidth }) => {
     if (scWidth > 1340) {
         return (<>
             <BasicCardsContainer>
-                <AuthenticationCard />
-                <MobileControlCard />
-                <SecondScreenCard />
+                <AuthenticationCard scWidth={scWidth} />
+                <MobileControlCard scWidth={scWidth} />
+                <SecondScreenCard scWidth={scWidth} />
             </BasicCardsContainer>
             <BasicCardsContainer>
-                <MobileEncryptionCard />
-                <PersonalStorageCard />
-                <ContentTransferCard />
+                <MobileEncryptionCard scWidth={scWidth} />
+                <PersonalStorageCard scWidth={scWidth} />
+                <ContentTransferCard scWidth={scWidth} />
             </BasicCardsContainer></>
         );
     }
@@ -132,23 +138,23 @@ const CardSection = ({ scWidth }) => {
         return (
             <>
                 <BasicCardsContainer>
-                    <AuthenticationCard />
-                    <MobileEncryptionCard />
+                    <AuthenticationCard scWidth={scWidth} />
+                    <MobileEncryptionCard scWidth={scWidth} />
 
 
                 </BasicCardsContainer>
                 <BasicCardsContainer>
-                    <SecondScreenCard />
-                    <MobileControlCard />
+                    <SecondScreenCard scWidth={scWidth} />
+                    <MobileControlCard scWidth={scWidth} />
 
                 </BasicCardsContainer>
                 <BasicCardsContainer>
-                    <PersonalStorageCard />
-                    <ContentTransferCard />
+                    <PersonalStorageCard scWidth={scWidth} />
+                    <ContentTransferCard scWidth={scWidth} />
                 </BasicCardsContainer>
                 <BasicCardsContainer>
-                    <PersonalStorageCard />
-                    <ContentTransferCard />
+                    <PersonalStorageCard scWidth={scWidth} />
+                    <ContentTransferCard scWidth={scWidth} />
                 </BasicCardsContainer>
             </>
         );
@@ -186,7 +192,7 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
                 <CardSection scWidth={width} />
                 <HowItWorks />
             </HomeHeaderBackground>
-            <FeaturesSection />
+            <FeaturesSection scWidth={width} />
             <PageFooter />
 
 

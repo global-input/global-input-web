@@ -2,8 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { withResponsiveComponent } from '../../../components/screen-media';
-import TopHeaderSection from '../../../pages/home-page/top-header-section';
+import { withResponsiveComponent } from '../../../app-layout/screen-media';
+import { TopHeaderSection } from '../../top-header-section';
 import { styles } from './styles';
 import PageFooter from '../page-footer';
 
@@ -58,19 +58,19 @@ export const A = props => (<a href={props.href} style={styles.card.link} target=
 export const Concept = props => (<span style={styles.card.concept}>{props.children}</span>);
 
 
-const _Page = props => (
+export const Page = ({ selected, children, scWidth }) => (
   <div style={styles.container.get()} id="topContent">
 
-    <TopHeaderSection selected={props.selected} />
+    <TopHeaderSection selected={selected} />
 
 
     <div style={styles.card.container.get()}>
-      {props.children}
+      {children}
 
     </div>
     <PageFooter />
   </div>);
-export const Page = withResponsiveComponent(_Page, { scrollTo: "topContent" });
+
 
 
 export const PageContainer = ({ children }) => (

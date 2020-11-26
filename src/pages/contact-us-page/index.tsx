@@ -17,7 +17,7 @@ const ContactUsPage: React.FC = () => {
   console.log(':' + width);
   usePageTitle('Global Input App - Contact Us');
   return (
-    <Page selected={config.paths.contactUs.path}>
+    <Page selected={config.paths.contactUs.path} scWidth={width}>
       <PageContainer>
         <ContactContainer>
           <mobile.MobileConnect initData={mobileUI.contactUs.initData} onFieldChange={mobileUI.contactUs.onFieldChange} />
