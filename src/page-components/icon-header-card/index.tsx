@@ -2,7 +2,6 @@ import React from 'react';
 import { styles, images } from './styles';
 import { Link } from 'react-router-dom';
 
-import { withResponsiveComponent } from '../../app-layout/screen-media';
 
 const renderFooter = (link, footerContent) => {
     if (link) {

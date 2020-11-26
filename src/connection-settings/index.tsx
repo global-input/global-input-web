@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import BasicLayout from "../page-components/themes/basic-layout";
-import { FormContainer, Title, InputWithLabel, FormFooter, TextButton, MessageContainer, MessageLink } from '../app-layout';
+import { FormContainer, InputWithLabel, FormFooter, TextButton, MessageContainer, MessageLink } from '../app-layout';
 import { loadConnectionSettings, saveConnectionSettings } from '../storage';
 
 import { useMobile } from '../mobile';
