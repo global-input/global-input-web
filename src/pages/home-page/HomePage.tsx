@@ -22,8 +22,8 @@ import * as mobileUI from '../../mobile-ui';
 
 const headerTextContent = {
     title: "Mobile Integration",
-    subtitle: "Use Mobiles to Operate on Device and Web Applications",
-    smallText: "Authentication, Encryption and Secure Operation, all in one. "
+    subtitle: "Use Mobiles to Operate on Device Applications",
+    smallText: "Authentication, Encryption, Second Screen & Mobile Input & Control "
 };
 
 interface HomePageProps {

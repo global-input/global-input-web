@@ -9,7 +9,7 @@ import HomePage from "./pages/home-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './pages/privacy-page';
 import ContactUsPage from "./pages/contact-us-page";
-import AboutMobileAuthentication from "./pages/about-mobile-authentication";
+import { AboutMobileAuthentication } from "./pages/about-mobile-authentication";
 import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
 import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
