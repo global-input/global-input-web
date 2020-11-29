@@ -13,7 +13,14 @@ const images = {
 }
 export const externalsLinks = {
 
-
+  FirefoxExtension: props => {
+    const { A } = props.theme;
+    return (<A href={config.links.firefox.url}>{props.children}</A>);
+  },
+  ChromeExtension: props => {
+    const { A } = props.theme;
+    return (<A href={config.links.chromeExtension.url}>{props.children}</A>);
+  },
   JSExtension: props => {
     const { A } = props.theme;
     return (<A href={config.links.jsExtension.url}>{props.children}</A>);

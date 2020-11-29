@@ -27,7 +27,7 @@ const AuthenticationButtons = props => {
 
 
 
-const MobileAuthenticationAndBeyond = props => {
+export const MobileAuthenticationAndBeyond = props => {
 
   const { P, Title, Code, FirstSection, NextSection } = props.theme;
 
@@ -133,6 +133,3 @@ export default ({login})=>{
   );
 
 };
-
-
-export default MobileAuthenticationAndBeyond;

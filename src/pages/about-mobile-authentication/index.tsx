@@ -1,6 +1,6 @@
 import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
-import MobileAuthenticationAndBeyond from './MobileAuthenticationAndBeyond';
+import { MobileAuthenticationAndBeyond } from './MobileAuthenticationAndBeyond';
 
 import * as mobile from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
@@ -10,7 +10,7 @@ interface Props {
   title?: string;
 }
 
-const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
+export const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
 
   usePageTitle('Mobile Authentication');
   return (
@@ -20,5 +20,3 @@ const AboutMobileAuthentication: React.FC<Props> = ({ title }) => {
     </theme.Page>
   )
 };
-
-export default AboutMobileAuthentication;
