@@ -5,8 +5,6 @@ import { WhiteRoundButton, ImageButton, TransparentButton } from '../../page-com
 const images = {
   chrome: require("./images/web-store.png"),
   firefox: require("./images/firefox-addons.png"),
-  appStore: require("./images/app-store.png"),
-  playStore: require("./images/play-store.png"),
   payIcon: require("./images/play.svg"),
   wordpress: require("./images/wordpress.png"),
   watchIntroVideo: require("./images/watch-intro-video.svg"),
@@ -15,14 +13,7 @@ const images = {
 }
 export const externalsLinks = {
 
-  FirefoxExtension: props => {
-    const { A } = props.theme;
-    return (<A href={config.links.firefox.url}>{props.children}</A>);
-  },
-  ChromeExtension: props => {
-    const { A } = props.theme;
-    return (<A href={config.links.chromeExtension.url}>{props.children}</A>);
-  },
+
   JSExtension: props => {
     const { A } = props.theme;
     return (<A href={config.links.jsExtension.url}>{props.children}</A>);
@@ -97,11 +88,7 @@ export const examplesLinks = {
 
 export const pagesLinks = {
   buttons: {
-    AppStoreButton: () => (<ImageButton image={images.appStore} href={config.links.appdownload.appStore} />),
-    PlayStoreButton: () => (<ImageButton image={images.playStore} href={config.links.appdownload.playStore} />),
-    ChromeExtensionButton: props => {
-      return (<ImageButton image={images.chrome} href={config.links.chromeExtension.url} />);
-    },
+
     FirefoxExtensionButton: props => (<ImageButton image={images.firefox} href={config.links.firefox.url} />),
     LearnMoteWhiteButton: props => (<WhiteRoundButton to={config.paths.learnMore.path}>{props.children}</WhiteRoundButton>),
     GetAppButton: props => (<WhiteRoundButton to={config.paths.getAppScreen.path}>{props.children}</WhiteRoundButton>),

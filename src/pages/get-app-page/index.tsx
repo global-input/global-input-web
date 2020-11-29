@@ -7,71 +7,60 @@ import { withScrollToTop } from "../../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
-import { pagesLinks } from '../../page-components/links-components';
-
-
 import * as mobile from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 import { useWindowSize } from '../../app-layout';
-import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
-const { AppStoreButton, PlayStoreButton } = pagesLinks.buttons;
+import {
+  ChromeExtensionButton, FirefoxExtensionButton, AppStoreButton, PlayStoreButton,
+  JSModuleButton, ReactModuleButton
+} from '../../page-components/external-links';
+import appIcon from './images/app-icon.png';
+import extensionIcon from './images/extension.png';
+import moduleIcon from './images/module.png';
 
-
-const images = {
-  appIcon: require('./images/app-icon.png'),
-  extension: require('./images/extension.png'),
-}
-
-
-const mobileApp = () => (
-  <>
-    <AppStoreButton />
-    <PlayStoreButton />
-  </>
-
-);
-const extension = () => (
-  <>
-    <ChromeExtensionButton />
-    <FirefoxExtensionButton />
-  </>
-
-);
-
-
-const GetAppPage = () => {
+const GetAppPage: React.FC = () => {
   const [width] = useWindowSize();
   usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path} scWidth={width}>
       <mobile.MobileConnect initData={mobileUI.getIt.initData} onFieldChange={mobileUI.getIt.onFieldChange} />
       <CardContainer>
-        <IconCard titleIcon={images.appIcon}
+        <IconCard titleIcon={appIcon}
           title="Global Input App"
-          footerContent={mobileApp()} scWidth={width}>
-          Get our free and open-source mobile app to operate on a multi-device environment.
+          footerContent={(<>
+            <AppStoreButton />
+            <PlayStoreButton />
+          </>)} scWidth={width}>
+          Free and open-source mobile app for operating on multi-device environments.
+      </IconCard>
 
+        <IconCard titleIcon={extensionIcon}
+          title="Browser Extensions"
+          footerContent={(<>
+            <ChromeExtensionButton />
+            <FirefoxExtensionButton />
+          </>)} scWidth={width}>
+          Browser extensions for using mobiles to operate on the
+          websites loaded on computers.
 
-
-</IconCard>
-
-        <IconCard titleIcon={images.extension}
-          title="Browser Extension"
-          footerContent={extension()} scWidth={width}>
-          Get our browser extension to use your mobile to operate on the
-          websites loaded on your computer.
-
+        </IconCard>
+      </CardContainer>
+      <CardContainer>
+        <IconCard titleIcon={moduleIcon}
+          title="NPM Modules"
+          footerContent={(<>
+            <JSModuleButton />
+            <ReactModuleButton />
+          </>)} scWidth={width}>
+          Modules for enabling applications to have mobile app interoperability.
         </IconCard>
 
       </CardContainer>
 
-
-
-
-
     </Page>
+
   )
 };
 export default withScrollToTop(GetAppPage, 'topContent');

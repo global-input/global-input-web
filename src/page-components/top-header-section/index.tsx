@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom'
 import { screenMedia, styleMatchingScreenSize } from "../../app-layout/screen-media";
+import useWindowSize from '../../app-layout/use-window-size';
 
 
 import { config } from "../../configs";
@@ -35,29 +36,33 @@ interface Menu {
   linkText: string;
 }
 
+const getMenuItemStyle = (hover, isSelected) => {
+  if (hover) return styles.menuItem.get('hover');
+  if (isSelected) return styles.menuItem.get('selected');
+  return styles.menuItem.get();
+};
 
 
 export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
   const [menuPressed, setMenuPressed] = useState(false);
-  const [refresh, setRefresh] = useState(0);
+  const [hover, setHover] = useState<Menu | null>(null);
   const bgs = screenMedia.biggerThan(600);
   const containerStyle = bgs ? styles.topNavContainer.desktop : styles.topNavContainer.mobile
   const navStyle = bgs ? styles.topNav.desktop : styles.topNav.mobile
   const titleStyle = bgs ? styles.appDesktopTitle : styles.appMobileTitle;
+  const [width] = useWindowSize();
 
-  console.log("render menu:" + refresh);
+
+  console.log("render menu:" + width);
   useEffect(() => {
-    const onWindowResize = () => {
-      setRefresh(refresh => refresh + 1);
-      setMenuPressed(false);
-    }
-    window.addEventListener("resize", onWindowResize);
-    return () => window.removeEventListener("resize", onWindowResize);
-  }, []);
+    setMenuPressed(false);
+  }, [width]);
 
   const hideMenu = () => setMenuPressed(false);
+  const renderedMenu = menus.map((menu, index) => (
+    <Link to={menu.link} style={getMenuItemStyle(hover === menu, selected && menu.link === selected)} key={`${index}_${menu.link}_${menu.linkText}`}
+      onMouseEnter={() => setHover(menu)} onMouseLeave={() => setHover(null)} data-testid="top-menu-item">{menu.linkText}</Link>));
 
-  const renderedMenu = menus.map((menu, index) => (<MenuItem menu={menu} key={`${index}_${menu.link}_${menu.linkText}`} selected={selected} />));
 
 
   return (
@@ -68,7 +73,7 @@ export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
             <a style={styles.mobileMenuIcon} href="#b" data-testid="mobile-to-close-menu" onClick={() => {
               setMenuPressed(!menuPressed);
             }}>
-              {menuPressed ? '☓' : (<img src={menuSymbol} alt="Close" />)}
+              {menuPressed ? '☓' : (<img src={menuSymbol} alt="Menu" />)}
             </a>
 
           </div>
@@ -96,42 +101,6 @@ export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
     </div>
   );
 };
-
-
-interface MenuItemProps {
-  menu: Menu;
-  selected?: string | null;
-}
-const MenuItem: React.FC<MenuItemProps> = ({ menu, selected }) => {
-  const [hover, setHover] = useState(false);
-  const onHover = useCallback(() => setHover(true), []);
-  const offHover = useCallback(() => setHover(false), []);
-  let link = menu.link;
-  if (!link) {
-    link = "/";
-  }
-  let linkText = menu.linkText;
-  let isSelected = selected && menu.link === selected;
-
-  const getMenuItemStyle = () => {
-    if (hover) return styles.menuItem.get('hover');
-    if (isSelected) return styles.menuItem.get('selected');
-    return styles.menuItem.get();
-  };
-  const menuItemStyle = getMenuItemStyle();
-  return (<Link to={link} style={menuItemStyle}
-    onMouseEnter={onHover} onMouseLeave={offHover} data-testid="top-menu-item">
-    {linkText}
-  </Link>);
-
-};
-
-
-
-
-
-
-
 const fontFamily = "Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif";
 export const styles = {
   topNavContainer: {
