@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { withResponsiveComponent } from '../../../app-layout/screen-media';
+import { withResponsiveComponent } from '../../app-layout/screen-media';
 
 import { styles } from './styles';
-import { config } from '../../../configs';
+import { config } from '../../configs';
 
 const PageFooterContainer = ({ screenMedia }) => (
     <div style={styles.container}>
