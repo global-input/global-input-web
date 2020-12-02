@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   BrowserRouter as Router,
   Route, Switch, Redirect
@@ -17,8 +17,17 @@ import AboutContentEncryption from './pages/about-content-encryption';
 import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
 
 import * as examples from './page-components/examples';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 const App: React.FC = () => (
   <Router>
+    <ScrollToTop />
     <Switch>
       <Route path={config.paths.home.path} exact component={HomePage} />
       <Route path={config.paths.getAppScreen.path} component={GetAppPage} />
@@ -41,4 +50,5 @@ const App: React.FC = () => (
     </Switch>
   </Router>
 );
+
 export default App;
