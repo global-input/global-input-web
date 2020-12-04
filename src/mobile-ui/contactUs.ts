@@ -1,5 +1,16 @@
+import { useHistory } from 'react-router-dom';
+import { useConnectToMobile } from '../mobile';
 
-export const FIELDS = {
+export const useMobile = () => {
+    const history = useHistory();
+    const onchange = ({ field }) => {
+        onFieldChange(field, history);
+    }
+    const { MobileConnect } = useConnectToMobile(initData, onchange);
+    return MobileConnect;
+}
+
+const FIELDS = {
     companyName: {
         id: "company_name",
         type: "text",
@@ -49,4 +60,12 @@ export const onFieldChange = (field, history) => {
             return false;
     }
     return true;
+};
+const initData = {
+    id: 'iterative-contact-us',
+    form: {
+        id: "iterative@contact",
+        title: "Contact Us",
+        fields: Object.values(FIELDS)
+    }
 };

@@ -5,17 +5,16 @@ import * as theme from '../../page-components/themes/light-blue-background';
 import MobilePersonalStorage from './MobilePersonalStorage';
 
 import { usePageTitle } from '../../page-metadata';
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+import { useMobile } from '../../mobile-ui/aboutSecureStorage';
 
 const AboutMobilePersonalStorage = () => {
-        const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutStorage.initData, mobileUI.aboutStorage.onFieldChange);
+        const MobileConnect = useMobile();
         usePageTitle('Mobile Personal Storage');
 
         return (
                 <theme.Page>
                         <MobilePersonalStorage theme={theme} />
-                        <DisplayMobileConnect />
+                        <MobileConnect />
                 </theme.Page>
 
         )

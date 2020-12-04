@@ -2,18 +2,15 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 import MobileContentTransfer from './MobileContentTransfer';
 
-
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+import { useMobile } from '../../mobile-ui/aboutContentTransfer';
 import { usePageTitle } from '../../page-metadata';
 const AboutMobileContentTransfer = () => {
-  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutContentTransfer.initData, mobileUI.aboutContentTransfer.onFieldChange);
+  const MobileConnect = useMobile();
   usePageTitle('Mobile Content Transfer');
   return (
     <theme.Page>
-
       <MobileContentTransfer theme={theme} />
-      <DisplayMobileConnect />
+      <MobileConnect />
     </theme.Page>
   )
 };

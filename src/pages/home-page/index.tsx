@@ -16,8 +16,8 @@ import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../page-components/links-components";
 import { CardSection } from './card-section';
 import { useWindowSize } from '../../app-layout';
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+
+import { useMobile } from '../../mobile-ui/home';
 
 
 const headerTextContent = {
@@ -32,7 +32,7 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
   const { GetAppButton } = pagesLinks.buttons;
   const [width] = useWindowSize();
-  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.home.initData, mobileUI.home.onFieldChange);
+  const MobileConnect = useMobile();
 
 
   return (
@@ -41,7 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
         <SimpleHeaderBackground>
 
           <RightPosterImage scWidth={width} />
-          <DisplayMobileConnect />
+          <MobileConnect />
           <HomeTitleSection
             title={headerTextContent.title}
             subtitle={headerTextContent.subtitle}>

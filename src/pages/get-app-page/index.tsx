@@ -7,8 +7,8 @@ import { withScrollToTop } from "../../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+
+import { useMobile } from '../../mobile-ui/getApp';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
 import { useWindowSize } from '../../app-layout';
@@ -22,7 +22,7 @@ import moduleIcon from './images/module.png';
 
 const GetAppPage: React.FC = () => {
   const [width] = useWindowSize();
-  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.getIt.initData, mobileUI.getIt.onFieldChange);
+  const MobileConnect = useMobile();
   usePageTitle('Global Input App -  Get It Free');
   return (
     <Page selected={config.paths.getAppScreen.path} scWidth={width}>
@@ -59,7 +59,7 @@ const GetAppPage: React.FC = () => {
         </IconCard>
 
       </CardContainer>
-      <DisplayMobileConnect />
+      <MobileConnect />
     </Page>
 
   )

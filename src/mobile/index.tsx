@@ -1,51 +1,44 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { useMobile, InitData, FormField } from './useMobile';
-
+import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import { PopupMain } from './popupWindow';
-
 import appIcon from './images/app-icon.png';
 
 
 
-interface DisplayMobileConnectProps {
+interface MobileConnectProps {
     label?: string;
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), onFieldChange?: (field: FormField, history) => void) => {
+export const useConnectToMobile = (initData: InitData | (() => InitData), onchange: OnchangeFunction) => {
     const [connect, setConnect] = useState(false);
-
-    const DisplayMobileConnect: React.FC<DisplayMobileConnectProps> = useCallback(({ label }) => {
+    const MobileConnect: React.FC<MobileConnectProps> = useCallback(({ label }) => {
         const enableConnect = () => setConnect(true);
         const disableConnect = () => setConnect(false);
 
         if (connect) {
-            return (<PopupMain initData={initData} onFieldChange={onFieldChange} close={disableConnect} />);
+            return (<PopupMain initData={initData} onchange={onchange} close={disableConnect} />);
         }
         else {
-            return (<DisplayConnectButton initData={initData} onFieldChange={onFieldChange} onClick={enableConnect} label={label} />);
+            return (<DisplayConnectButton initData={initData} onchange={onchange} onClick={enableConnect} label={label} />);
         }
-    }, [setConnect, connect, onFieldChange, initData]);
+    }, [setConnect, connect, onchange, initData]);
 
-    return { DisplayMobileConnect };
+    return { MobileConnect };
 };
 
 interface DisplayConnectButtonProps {
     initData: InitData | (() => InitData);
-    onFieldChange?: (field: FormField, history) => void;
+    onchange: OnchangeFunction;
     onClick: () => void;
     label?: string;
 
 }
 
 
-const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, onFieldChange, onClick, label = 'Connect' }) => {
+const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, onchange, onClick, label = 'Connect' }) => {
     const mobile = useMobile(initData, false);
-    const history = useHistory();
-    onFieldChange && mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
-    });
+    onchange && mobile.setOnchange(onchange);
     if (mobile.isConnected) {
         return null;
     }

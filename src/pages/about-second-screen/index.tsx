@@ -3,17 +3,17 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 import SecondScreenExperience from './SecondScreenExperience';
 
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+
+import { useMobile } from '../../mobile-ui/aboutSecondScreen';
 import { usePageTitle } from '../../page-metadata';
 const AboutSecondScreen = () => {
-  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutSecondScreen.initData, mobileUI.aboutSecondScreen.onFieldChange);
+  const MobileConnect = useMobile();
   usePageTitle('Second Screen Experience');
 
   return (
     <theme.Page>
       <SecondScreenExperience theme={theme} />
-      <DisplayMobileConnect />
+      <MobileConnect />
     </theme.Page>
   )
 };

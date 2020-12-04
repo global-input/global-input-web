@@ -3,20 +3,21 @@ import * as theme from '../../page-components/themes/light-blue-background';
 
 import ContentEncryption from './ContentEncryption';
 
-import { useConnectToMobile } from '../../mobile';
-import * as mobileUI from '../../mobile-ui';
+
+
+import { useMobile } from '../../mobile-ui/aboutEncryption';
 import { usePageTitle } from '../../page-metadata';
 
 
 const AboutContentEncryption = () => {
-  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutEncryption.initData, mobileUI.aboutEncryption.onFieldChange);
+  const MobileConnect = useMobile();
 
   usePageTitle('Mobile Encryption');
   return (
     <theme.Page>
 
       <ContentEncryption theme={theme} />
-      <DisplayMobileConnect />
+      <MobileConnect />
     </theme.Page>
   );
 };

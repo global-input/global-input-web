@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { useMobile, InitData, FormField } from './useMobile';
+import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import { SettingsEditor } from './settingsEditor';
 
 
@@ -12,7 +11,7 @@ import settingsIcon from './images/settings.png';
 
 interface Props {
     initData: InitData | (() => InitData);
-    onFieldChange?: (field: FormField, history) => void;
+    onchange: OnchangeFunction;
     close: () => void;
 }
 enum PAGES {
@@ -23,14 +22,14 @@ enum PAGES {
 
 
 
-export const PopupMain: React.FC<Props> = ({ initData, onFieldChange, close }) => {
+export const PopupMain: React.FC<Props> = ({ initData, onchange, close }) => {
     const [page, setPage] = useState(PAGES.CONNECT_QR);
     const editSettings = useCallback(() => setPage(PAGES.SETTINGS), []);
     const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
     const connectQR = useCallback(() => setPage(PAGES.CONNECT_QR), []);
     switch (page) {
         case PAGES.CONNECT_QR:
-            return (<DisplayConnectQRCode close={close} editSettings={editSettings} initData={initData} onFieldChange={onFieldChange} />);
+            return (<DisplayConnectQRCode close={close} editSettings={editSettings} initData={initData} onchange={onchange} />);
         case PAGES.SETTINGS:
             return (<DisplaySettingsEditor close={close} back={connectQR} pairing={pairing} />);
         case PAGES.PAIRING:
@@ -43,15 +42,12 @@ export const PopupMain: React.FC<Props> = ({ initData, onFieldChange, close }) =
 
 
 
-const DisplayConnectQRCode = ({ close, editSettings, initData, onFieldChange }) => {
+const DisplayConnectQRCode = ({ close, editSettings, initData, onchange }) => {
     const popup = useRef(null);
     const mobile = useMobile(initData, true);
-    const history = useHistory();
     useClickedOutside(popup, close);
 
-    onFieldChange && mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
-    });
+    onchange && mobile.setOnchange(onchange);
     if (mobile.isConnected) {
         return null;
     }
