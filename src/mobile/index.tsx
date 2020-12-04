@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import * as globalInput from 'global-input-react';////global-input-react////

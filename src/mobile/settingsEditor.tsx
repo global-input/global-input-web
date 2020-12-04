@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import * as globalInput from 'global-input-react';////global-input-react////
 import * as storage from './storage';
 import { useMobile } from './useMobile';
 
@@ -78,6 +77,9 @@ export const SettingsEditor = ({ back, pairing }) => {
             case FIELDS.securityGroup.id:
                 setSecurityGroup(field.value as string);
                 break;
+            case FIELDS.codeKey.id:
+                setCodeKey(field.value as string);
+                break;
             case FIELDS.back.id:
                 back();
                 break;
@@ -99,23 +101,8 @@ export const SettingsEditor = ({ back, pairing }) => {
     }, [mobile.disconnect, back, setting]);
 
 
-    const onAPIKey = useCallback((apikey: string) => {
-        setAPIKey(apikey);
-        mobile.sendValue(FIELDS.apikey.id, apikey);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.sendValue]);
 
-    const onSecurityGroupChanged = useCallback((securityGroup: string) => {
-        setSecurityGroup(securityGroup);
-        mobile.sendValue(FIELDS.securityGroup.id, securityGroup);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.sendValue]);
 
-    const onCodeKeyChanged = useCallback((codeKey: string) => {
-        setCodeKey(codeKey);
-        mobile.sendValue(FIELDS.codeKey.id, codeKey);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.sendValue]);
     return (
         <Form>
             <Field>
@@ -148,7 +135,7 @@ export const SettingsEditor = ({ back, pairing }) => {
             <Field>
                 <Input id="codeKey"
                     onChange={evt => {
-                        setSecurityGroup(evt.target.value);
+                        setCodeKey(evt.target.value);
                         mobile.sendValue(FIELDS.codeKey.id, evt.target.value);
                     }}
                     value={codeKey} placeholder="Code Key" />

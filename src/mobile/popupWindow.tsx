@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import * as globalInput from 'global-input-react';////global-input-react////
-import { useMobile } from './useMobile';
+import { useMobile, InitData, FormField } from './useMobile';
 import { SettingsEditor } from './settingsEditor';
 
 
@@ -14,8 +13,8 @@ import settingsIcon from './images/settings.png';
 interface ConnectQRProps {
     close: () => void;
     editSettings: () => void;
-    initData: globalInput.InitData | (() => globalInput.InitData);
-    onFieldChange: (field: globalInput.FormField, history) => void;
+    initData: InitData | (() => InitData);
+    onFieldChange: (field: FormField, history) => void;
 }
 export const DisplayConnectQRCode = ({ close, editSettings, initData, onFieldChange }) => {
     const popup = useRef(null);
@@ -195,55 +194,6 @@ const LeftButtonContainer = styled.div`
 `;
 
 
-const Field = styled.div`
-    position: relative;
-    margin: 20px auto;
-`;
-const Input = styled.input`
-    display: block;
-    line-height: 2em;
-    margin: 0;
-    padding-left: 10px;
-    width: 100%;
-    font-size: medium;
-    border: 1px solid #f4f4f4;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-weight: 500;
-    &:focus {
-        border: 1px solid #2c7ac9;
-    }
-    &:placeholder-shown + .control-label {
-        visibility: hidden;
-        z-index: -1;
-        transition: 0.2s ease-in-out;
-
-    }
-    &:not(:placeholder-shown) + .control-label,
-    .form-control:focus:not(:placeholder-shown) + .control-label {
-        visibility: visible;
-        z-index: 1;
-        opacity: 1;
-        transform: translateY(-5px);
-        transition: 0.2s ease-in-out transform;
-    }
-
-`;
-const Label = styled.label.attrs(props => ({
-    className: "control-label"
-
-}))`
-    display: block;
-    position: absolute;
-    opacity: 0;
-    bottom: 1.9rem;
-    color: #5d5d5d;
-    transition: 0.2s ease-in-out transform;
-    font-size: 12px;
-`;
 
 
 const Title = styled.div`
