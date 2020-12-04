@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import * as globalInput from 'global-input-react';////global-input-react////
-import * as storage from '../../storage';
 import { useMobile } from './useMobile';
 import { SettingsEditor } from './settingsEditor';
 
@@ -253,40 +252,3 @@ const Title = styled.div`
         font-weight: 100;
         white-space: nowrap;
 `;
-
-const SETTING_FIELDS = {
-    url: {
-        id: "proxy-url",
-        type: 'text',
-        value: '',
-    },
-    apikey: {
-        id: "apikey",
-        type: 'text',
-        value: '',
-    },
-    securityGroup: {
-        id: "securityGroup",
-        type: 'text',
-        value: '',
-    },
-    codeKey: {
-        id: "codeKey",
-        type: 'text',
-        value: '',
-    },
-    back: {
-        id: 'back',
-        type: 'button',
-        label: 'Back',
-        viewId: "row1"
-    },
-    save: {
-        id: 'saveSettings',
-        type: 'button',
-        label: 'Save',
-        viewId: "row1"
-    },
-
-
-}
