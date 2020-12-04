@@ -53,7 +53,7 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
 
         return (
             <QRCodeContainer>
-                <mobile.ConnectQR />
+                <mobile.ConnectQR {...props} />
                 <ErrorMessage>{errorMessage}</ErrorMessage>
             </QRCodeContainer>
         );

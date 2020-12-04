@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import { SettingsEditor } from './settingsEditor';
-
+import { ParingApp } from './pairingApp';
 
 import closeIcon from './images/close.png';
 import settingsIcon from './images/settings.png';
@@ -33,7 +33,7 @@ export const PopupMain: React.FC<Props> = ({ initData, onchange, close }) => {
         case PAGES.SETTINGS:
             return (<DisplaySettingsEditor close={close} back={connectQR} pairing={pairing} />);
         case PAGES.PAIRING:
-            return (<DisplayParing />);
+            return (<DisplayParing close={close} back={connectQR} />);
         default:
             return null;
     }
@@ -98,8 +98,26 @@ const DisplaySettingsEditor = ({ back, close, pairing }) => {
     );
 };
 
-const DisplayParing = () => {
-    return null;
+const DisplayParing = ({ back, close }) => {
+    const popup = useRef(null);
+    useClickedOutside(popup, close);
+    return (
+        <PopupContainer>
+            <PopupWindow ref={popup}>
+                <TopBar>
+                    <LeftButtonContainer>
+                    </LeftButtonContainer>
+                    <Title>Scan To Pair</Title>
+                    <Button onClick={close}>
+                        <Image src={closeIcon} alt="Close" />
+                    Close</Button>
+                </TopBar>
+                <PopupBody>
+                    <ParingApp back={back} />
+                </PopupBody>
+            </PopupWindow>
+        </PopupContainer>
+    );
 };
 
 
