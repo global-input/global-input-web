@@ -1,16 +1,19 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import * as globalInput from 'global-input-react';////global-input-react////
-import { useMobile } from './useMobile';
+import { useMobile, InitData, FormField } from './useMobile';
 
-import { DisplayConnectQRCode, DisplaySettingsEditor, DisplayParing } from './popupWindow';
+import { PopupMain } from './popupWindow';
 
 import appIcon from './images/app-icon.png';
+
+
+
 interface DisplayMobileConnectProps {
     label?: string;
 }
-export const useConnectToMobile = (initData: globalInput.InitData | (() => globalInput.InitData), onFieldChange?: (field: globalInput.FormField, history) => void) => {
+
+export const useConnectToMobile = (initData: InitData | (() => InitData), onFieldChange?: (field: FormField, history) => void) => {
     const [connect, setConnect] = useState(false);
 
     const DisplayMobileConnect: React.FC<DisplayMobileConnectProps> = useCallback(({ label }) => {
@@ -18,7 +21,7 @@ export const useConnectToMobile = (initData: globalInput.InitData | (() => globa
         const disableConnect = () => setConnect(false);
 
         if (connect) {
-            return (<DisplayConnect initData={initData} onFieldChange={onFieldChange} close={disableConnect} />);
+            return (<PopupMain initData={initData} onFieldChange={onFieldChange} close={disableConnect} />);
         }
         else {
             return (<DisplayConnectButton initData={initData} onFieldChange={onFieldChange} onClick={enableConnect} label={label} />);
@@ -29,8 +32,8 @@ export const useConnectToMobile = (initData: globalInput.InitData | (() => globa
 };
 
 interface DisplayConnectButtonProps {
-    initData: globalInput.InitData | (() => globalInput.InitData);
-    onFieldChange?: (field: globalInput.FormField, history) => void;
+    initData: InitData | (() => InitData);
+    onFieldChange?: (field: FormField, history) => void;
     onClick: () => void;
     label?: string;
 
@@ -40,8 +43,6 @@ interface DisplayConnectButtonProps {
 const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, onFieldChange, onClick, label = 'Connect' }) => {
     const mobile = useMobile(initData, false);
     const history = useHistory();
-
-
     onFieldChange && mobile.setOnchange(({ field }) => {
         onFieldChange(field, history);
     });
@@ -53,35 +54,7 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
 };
 
 
-interface DisplayConnectProps {
-    initData: globalInput.InitData | (() => globalInput.InitData);
-    onFieldChange?: (field: globalInput.FormField, history) => void;
-    close: () => void;
-}
-enum PAGES {
-    CONNECT_QR,
-    SETTINGS,
-    PAIRING
-}
 
-
-
-const DisplayConnect: React.FC<DisplayConnectProps> = ({ initData, onFieldChange, close }) => {
-    const [page, setPage] = useState(PAGES.CONNECT_QR);
-    const editSettings = useCallback(() => setPage(PAGES.SETTINGS), []);
-    const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
-    const connectQR = useCallback(() => setPage(PAGES.CONNECT_QR), []);
-    switch (page) {
-        case PAGES.CONNECT_QR:
-            return (<DisplayConnectQRCode close={close} editSettings={editSettings} initData={initData} onFieldChange={onFieldChange} />);
-        case PAGES.SETTINGS:
-            return (<DisplaySettingsEditor close={close} back={connectQR} pairing={pairing} />);
-        case PAGES.PAIRING:
-            return (<DisplayParing />);
-        default:
-            return null;
-    }
-}
 
 const Button = styled.button`
     text-decoration: none;

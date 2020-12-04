@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useMobile, InitData, FormField } from './useMobile';
@@ -10,13 +10,40 @@ import settingsIcon from './images/settings.png';
 
 
 
-interface ConnectQRProps {
-    close: () => void;
-    editSettings: () => void;
+interface Props {
     initData: InitData | (() => InitData);
-    onFieldChange: (field: FormField, history) => void;
+    onFieldChange?: (field: FormField, history) => void;
+    close: () => void;
 }
-export const DisplayConnectQRCode = ({ close, editSettings, initData, onFieldChange }) => {
+enum PAGES {
+    CONNECT_QR,
+    SETTINGS,
+    PAIRING
+}
+
+
+
+export const PopupMain: React.FC<Props> = ({ initData, onFieldChange, close }) => {
+    const [page, setPage] = useState(PAGES.CONNECT_QR);
+    const editSettings = useCallback(() => setPage(PAGES.SETTINGS), []);
+    const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
+    const connectQR = useCallback(() => setPage(PAGES.CONNECT_QR), []);
+    switch (page) {
+        case PAGES.CONNECT_QR:
+            return (<DisplayConnectQRCode close={close} editSettings={editSettings} initData={initData} onFieldChange={onFieldChange} />);
+        case PAGES.SETTINGS:
+            return (<DisplaySettingsEditor close={close} back={connectQR} pairing={pairing} />);
+        case PAGES.PAIRING:
+            return (<DisplayParing />);
+        default:
+            return null;
+    }
+}
+
+
+
+
+const DisplayConnectQRCode = ({ close, editSettings, initData, onFieldChange }) => {
     const popup = useRef(null);
     const mobile = useMobile(initData, true);
     const history = useHistory();
@@ -53,7 +80,7 @@ export const DisplayConnectQRCode = ({ close, editSettings, initData, onFieldCha
 };
 
 
-export const DisplaySettingsEditor = ({ back, close, pairing }) => {
+const DisplaySettingsEditor = ({ back, close, pairing }) => {
     const popup = useRef(null);
     useClickedOutside(popup, close);
     return (
@@ -75,7 +102,7 @@ export const DisplaySettingsEditor = ({ back, close, pairing }) => {
     );
 };
 
-export const DisplayParing = () => {
+const DisplayParing = () => {
     return null;
 };
 
@@ -124,16 +151,7 @@ const PopupWindow = styled.div`
         min-height: 350px;
 
 `;
-const ErrorMessage = styled.div`
-        color: red;
-        font-size: 11;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px;
-        max-width:  350px;
-        max-height: 100px;
-        overflow: scroll;
-`;
+
 
 const TopBar = styled.div`
         display: flex;
