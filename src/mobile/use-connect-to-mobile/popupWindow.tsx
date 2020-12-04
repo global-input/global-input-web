@@ -107,6 +107,7 @@ const PopupContainer = styled.div`
         position: fixed;
         top: 90px;
         left: 0;
+        z-index:200;
 `;
 
 const PopupWindow = styled.div`

@@ -6,7 +6,7 @@ import * as globalInput from 'global-input-react';////global-input-react////
 ////main////
 import * as storage from '../../storage';
 
-export * from 'global-input-react';////global-input-react////
+
 
 
 const QRCodeContainer = styled.div`

@@ -4,7 +4,7 @@ import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-c
 import VerticalList from '../../page-components/vertical-list';
 import ContactContainer from './contact-container';
 
-import * as mobile from '../../mobile';
+import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';
@@ -13,14 +13,14 @@ import { useWindowSize } from '../../app-layout';
 
 const ContactUsPage: React.FC = () => {
   const [width] = useWindowSize();
-
+  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.contactUs.initData, mobileUI.contactUs.onFieldChange);
   console.log(':' + width);
   usePageTitle('Global Input App - Contact Us');
   return (
     <Page selected={config.paths.contactUs.path} scWidth={width}>
       <PageContainer>
         <ContactContainer>
-          <mobile.MobileConnect initData={mobileUI.contactUs.initData} onFieldChange={mobileUI.contactUs.onFieldChange} />
+
           <TitleCenter>{textContent.title}</TitleCenter>
           <VerticalOnMobile>
             <VerticalList title={textContent.address.title} items={textContent.address.content} />
@@ -29,6 +29,7 @@ const ContactUsPage: React.FC = () => {
               <VerticalList title={textContent.email.title} items={textContent.email.content} />
             </VerticalList>
           </VerticalOnMobile>
+          <DisplayMobileConnect />
         </ContactContainer>
       </PageContainer>
     </Page>

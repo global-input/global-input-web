@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 import { useWindowSize } from '../../app-layout';
-import * as mobile from '../../mobile';
+import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';
@@ -10,13 +10,12 @@ import { usePageTitle } from '../../page-metadata';
 
 const PrivacyPage: React.FC = () => {
   const [width] = useWindowSize();
-
+  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.privacy.initData, mobileUI.privacy.onFieldChange);
   usePageTitle('Global Input App -  Privacy Policy');
 
 
   return (
     <Page selected={config.paths.privacy.path} scWidth={width}>
-      <mobile.MobileConnect initData={mobileUI.privacy.initData} onFieldChange={mobileUI.privacy.onFieldChange} />
 
       <PageContainer>
         <Title>Privacy Policy</Title>
@@ -38,7 +37,7 @@ const PrivacyPage: React.FC = () => {
 </P>
 
 
-
+        <DisplayMobileConnect />
       </PageContainer>
 
 

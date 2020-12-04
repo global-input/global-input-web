@@ -7,10 +7,13 @@ import { useMobile } from './useMobile';
 import { DisplayConnectQRCode, DisplaySettingsEditor, DisplayParing } from './popupWindow';
 
 import appIcon from './images/app-icon.png';
+interface DisplayMobileConnectProps {
+    label?: string;
+}
 export const useConnectToMobile = (initData: globalInput.InitData | (() => globalInput.InitData), onFieldChange?: (field: globalInput.FormField, history) => void) => {
     const [connect, setConnect] = useState(false);
 
-    const DisplayMobileConnect = useCallback(() => {
+    const DisplayMobileConnect: React.FC<DisplayMobileConnectProps> = useCallback(({ label }) => {
         const enableConnect = () => setConnect(true);
         const disableConnect = () => setConnect(false);
 
@@ -18,7 +21,7 @@ export const useConnectToMobile = (initData: globalInput.InitData | (() => globa
             return (<DisplayConnect initData={initData} onFieldChange={onFieldChange} close={disableConnect} />);
         }
         else {
-            return (<DisplayConnectButton initData={initData} onFieldChange={onFieldChange} onClick={enableConnect} />);
+            return (<DisplayConnectButton initData={initData} onFieldChange={onFieldChange} onClick={enableConnect} label={label} />);
         }
     }, [setConnect, connect, onFieldChange, initData]);
 
@@ -29,11 +32,12 @@ interface DisplayConnectButtonProps {
     initData: globalInput.InitData | (() => globalInput.InitData);
     onFieldChange?: (field: globalInput.FormField, history) => void;
     onClick: () => void;
+    label?: string;
 
 }
 
 
-const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, onFieldChange, onClick }) => {
+const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, onFieldChange, onClick, label = 'Connect' }) => {
     const mobile = useMobile(initData, false);
     const history = useHistory();
 
@@ -45,7 +49,7 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
         return null;
     }
     return (<Button onClick={onClick}>
-        <Image src={appIcon} alt="global input app icon" />Demo</Button>);
+        <Image src={appIcon} alt="global input app icon" />{label}</Button>);
 };
 
 

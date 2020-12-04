@@ -2,16 +2,17 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 
 import IntroducingMobileInputAndControl from './IntroducingMobileInputAndControl';
-import * as mobile from '../../mobile';
+import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 
 const AboutMobileInputControl: React.FC = () => {
   usePageTitle('Mobile Input &amp; Control');
+  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutControl.initData, mobileUI.aboutControl.onFieldChange);
   return (
     <theme.Page>
-      <mobile.MobileConnect initData={mobileUI.aboutControl.initData} onFieldChange={mobileUI.aboutControl.onFieldChange} />
       <IntroducingMobileInputAndControl theme={theme} />
+      <DisplayMobileConnect />
     </theme.Page>
   )
 };
