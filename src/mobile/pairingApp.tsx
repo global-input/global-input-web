@@ -50,11 +50,12 @@ const initData = {
 }
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: flex-start;
-    align-items:center;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding:10px;
 `;
 
 const Button = styled.button`
