@@ -2,7 +2,8 @@ import React from 'react';
 import { Page, Items, Item } from './layout';
 import { config } from '../../configs';
 
-import * as mobile from '../../mobile';
+//import * as mobile from '../../mobile';
+import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 
@@ -27,12 +28,13 @@ const tickImage = {
 const title = "Use Mobile for Subscription, Signing in and Beyond";
 
 export const AboutMobileAuthentication: React.FC = () => {
-
   usePageTitle('Mobile Authentication');
+  const { DisplayMobileConnect } = useConnectToMobile(mobileUI.aboutAuthentication.initData, mobileUI.aboutAuthentication.onFieldChange);
+
   return (
     <Page selected={config.paths.mobileAuthentication.path} title={title}
       image={oneClickSignInImage}>
-      <mobile.MobileConnect initData={mobileUI.aboutAuthentication.initData} onFieldChange={mobileUI.aboutAuthentication.onFieldChange} />
+
       <Items>
         <Item image={tickImage}>Enhancing the security of the existing password-based authentications — No Architectural changes required </Item>
         <Item image={tickImage}>Randomising passwords or using key-based authentications.</Item>
@@ -41,12 +43,8 @@ export const AboutMobileAuthentication: React.FC = () => {
         <Item image={tickImage}>One-click subscription</Item>
         <Item image={tickImage}>One-click sign In</Item>
         <Item image={tickImage}>Secure mobile operation on devices</Item>
-
-
-
-
-
       </Items>
+      <DisplayMobileConnect />
 
     </Page >
   )

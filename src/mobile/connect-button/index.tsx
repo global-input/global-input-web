@@ -1,38 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
 import appIcon from './app-icon.png';
-export const ConnectButton = ({ onClick }) => (
-    <div style={styles.container}>
-        <button style={styles.button} onClick={onClick}>
-            <img src={appIcon} alt="global input app icon" />
-            Connect
-            </button>
-    </div>
+
+const Button = styled.button`
+    text-decoration: none;
+    font-size: 11px;
+    border-radius: 4px;
+    color: #4281BD;
+    background-color: white;
+    white-space: nowrap;
+    padding: 5px;
+    min-width: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: ${props => props.show ? 'flex' : 'none'};
+`;
+
+const Image = styled.img`
+margin - right: 5px;
+`;
+
+export const ConnectButton = ({ onClick, label = "Connect", show = true }) => (
+    <Button onClick={onClick} show={show}>
+        <Image src={appIcon} alt="global input app icon" />
+        {label}
+    </Button>
 );
-
-
-const styles = {
-    container: {
-        flex: 'display',
-        flexDirection: 'row' as 'row',
-        justifyContent: 'flex-start',
-        width: "100%"
-    },
-    button: {
-        textDecoration: "none",
-        fontSize: 11,
-        borderRadius: 4,
-        color: "#4281BD",
-        backgroundColor: "white",
-        whiteSpace: "nowrap" as 'nowrap',
-        padding: 5,
-        minWidth: 20,
-        marginLeft: 20,
-        marginTop: 20,
-        display: "flex",
-        flexDirection: "row" as 'row',
-        justifyContent: "center",
-        alignItems: "center"
-    },
-
-
-}
