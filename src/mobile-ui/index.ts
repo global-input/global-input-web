@@ -1,8 +1,8 @@
 import * as exampleFields from './exampleFields';
 import * as contactUsFields from './contactUsFields';
 import * as pageMenu from './pageMenu';
-import * as addField from './addField';
-export { addField };
+
+
 
 export const home = {
     initData: {

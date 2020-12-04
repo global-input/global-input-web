@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import BasicLayout from "../themes/basic-layout";
+import BasicLayout from "../../page-components/themes/basic-layout";
 
 import { usePageTitle } from '../../page-metadata';
 import { LoadingCircle } from '../../app-layout';

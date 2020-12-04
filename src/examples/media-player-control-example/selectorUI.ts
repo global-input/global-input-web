@@ -1,4 +1,4 @@
-import * as mobileUI from '../../mobile-ui'; ////website
+import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
 
 export const initDataId = "second-screen-video-selector";
 
@@ -44,7 +44,7 @@ export const fields = {
         type: "button",
         icon: "select",
         viewId: "row3"
-    },backToWebsiteHome:mobileUI.addField.home////website
+    },backToWebsiteHome:mobileUI.home////website
 };
 
 const titleValue = (title: string) => {

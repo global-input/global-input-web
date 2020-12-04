@@ -5,7 +5,7 @@ import { useMobile } from './mobile';
 
 import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink } from './app-layout';
 
-import * as mobileUI from '../../mobile-ui'; ////website
+import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
 interface Props {
     domain: string;
     encryption: () => void;
@@ -30,7 +30,7 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
                 qrCodeGenerator();
                 break;
             default:
-            mobileUI.addField.onFieldChange(field, history); ////website
+            mobileUI.onFieldChange(field, history); ////website
         }
     });
 
@@ -80,7 +80,7 @@ const FIELDS = {
         viewId: "row2"
     }
 };
-mobileUI.addField.add(FIELDS);////website
+mobileUI.add(FIELDS);////website
 const initData = {
     id: "mobile-encryption-main",
     form: {

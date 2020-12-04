@@ -5,7 +5,7 @@ import * as videoControl from './videoControl';
 import { AppFooter, MessageButton, MessageLink, PageContainer, QRCodeContainer, P, useWindowSize, A } from './app-layout';
 import * as selectorUI from './selectorUI';
 import * as playerUI from './playerUI';
-import * as mobileUI from '../../mobile-ui'; ////website
+import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
 
 interface Props {
   connectionSettings: () => void
@@ -37,7 +37,7 @@ const VideoApp: React.FC<Props> = ({ connectionSettings }) => {
         onChangeVideoData(videoControl.getNextVideo(videoData));
         break;
       default:
-      mobileUI.addField.onFieldChange(field,history)////website
+      mobileUI.onFieldChange(field,history)////website
     }
 
     switch (mobile.initData.id === playerUI.initDataId && field.id) {

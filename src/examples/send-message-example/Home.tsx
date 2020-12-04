@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 import { useMobile } from './mobile';
 import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
-import * as mobileUI from '../../mobile-ui'; ////website
+import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
 
 
 interface Props {
@@ -31,7 +31,7 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
                 sendMessage();
                 break;
             default:
-            mobileUI.addField.onFieldChange(field, history); ////website
+            mobileUI.onFieldChange(field, history); ////website
         }
     });
     return (
@@ -71,7 +71,7 @@ const FIELDS = {
         type: "button"
     }
 };
-mobileUI.addField.add(FIELDS);////website
+mobileUI.add(FIELDS);////website
 
 
 export default Home;
