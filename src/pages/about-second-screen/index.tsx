@@ -3,7 +3,7 @@ import React from 'react';
 import * as theme from '../../page-components/themes/light-blue-background';
 import SecondScreenExperience from './SecondScreenExperience';
 
-import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
+import { useConnectToMobile } from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 const AboutSecondScreen = () => {

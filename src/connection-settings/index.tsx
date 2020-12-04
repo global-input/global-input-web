@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import BasicLayout from "../page-components/themes/basic-layout";
 import { FormContainer, InputWithLabel, FormFooter, TextButton, MessageContainer, MessageLink } from '../app-layout';
-import { loadConnectionSettings, saveConnectionSettings } from '../storage';
+import { loadConnectionSettings, saveConnectionSettings } from '../mobile/storage';
 
 import { useMobile } from '../mobile';
 interface Props {

@@ -4,7 +4,7 @@ import { TitleCenter, Page, VerticalOnMobile, PageContainer } from "../../page-c
 import VerticalList from '../../page-components/vertical-list';
 import ContactContainer from './contact-container';
 
-import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
+import { useConnectToMobile } from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 import { config } from '../../configs';

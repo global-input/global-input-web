@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
 import { useWindowSize } from '../../app-layout';
-import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
+import { useConnectToMobile } from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';

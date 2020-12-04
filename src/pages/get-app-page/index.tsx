@@ -7,7 +7,7 @@ import { withScrollToTop } from "../../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
-import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
+import { useConnectToMobile } from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { config } from '../../configs';
 import { usePageTitle } from '../../page-metadata';

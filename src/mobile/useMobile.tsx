@@ -1,10 +1,37 @@
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
+
 import * as globalInput from 'global-input-react';////global-input-react////
 
 ////main////
-import * as storage from '../storage';
+import * as storage from './storage';
 
 export * from 'global-input-react';////global-input-react////
+
+
+const QRCodeContainer = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-center;
+        align-items: flex-start;
+        margin: 0;
+        padding:0;
+`;
+
+
+const ErrorMessage = styled.div`
+        color: red;
+        font-size: 11;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        max-width:  350px;
+        max-height: 100px;
+        overflow: scroll;
+`;
+
+
+
 
 export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
     const connectionSettings = storage.loadConnectionSettings();
@@ -22,60 +49,16 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         if (mobile.isError) {
             errorMessage = mobile.errorMessage;
         }
+
+
         return (
-            <div style={styles.container}>
-                <div style={styles.content}>
-                    <mobile.ConnectQR {...props} />
-                    {errorMessage && (<div style={styles.errorMessage}>{errorMessage}</div>)}
-                </div>
-            </div>
+            <QRCodeContainer>
+                <mobile.ConnectQR />
+                <ErrorMessage>{errorMessage}</ErrorMessage>
+            </QRCodeContainer>
         );
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mobile.isError, mobile.isConnectionDenied, mobile.ConnectQR]);
     return { ...mobile, ConnectQR };
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        width: '100%',
-        margin: 0,
-        padding: 0
-    } as React.CSSProperties,
-    content: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-center',
-        alignItems: 'flex-start',
-        backgroundColor: 'white',
-        margin: 0,
-        padding: 0
-    } as React.CSSProperties,
-    errorMessage: {
-        color: 'red',
-        fontSize: 11,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 10
-    }
-};
-
-export const userWithDomainAsFormId = (initData: globalInput.InitData) => {
-    if (initData?.form?.domain && initData?.form?.fields?.length) {
-        const textFields = initData.form.fields.filter(f => {
-            if ((!f.type) || f.type === 'text') {
-                if (f.nLines && f.nLines > 1) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        });
-        if (!textFields.length) {
-            return null;
-        }
-        initData.form.id = `###${textFields[0].id}###@${initData.form.domain}`;
-    }
 };

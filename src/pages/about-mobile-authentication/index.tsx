@@ -3,7 +3,7 @@ import { Page, Items, Item } from './layout';
 import { config } from '../../configs';
 
 //import * as mobile from '../../mobile';
-import { useConnectToMobile } from '../../mobile/use-connect-to-mobile';
+import { useConnectToMobile } from '../../mobile';
 import * as mobileUI from '../../mobile-ui';
 import { usePageTitle } from '../../page-metadata';
 
