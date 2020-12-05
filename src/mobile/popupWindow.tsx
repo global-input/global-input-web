@@ -11,7 +11,7 @@ import settingsIcon from './images/settings.png';
 
 interface Props {
     initData: InitData | (() => InitData);
-    onchange: OnchangeFunction;
+    onchange?: OnchangeFunction;
     close: () => void;
 }
 enum PAGES {
@@ -41,7 +41,13 @@ export const PopupMain: React.FC<Props> = ({ initData, onchange, close }) => {
 
 
 
+interface DisplayConnectQRCodeProps {
+    close: () => void;
+    editSettings: () => void;
+    initData: InitData | (() => InitData);
+    onchange?: OnchangeFunction;
 
+}
 const DisplayConnectQRCode = ({ close, editSettings, initData, onchange }) => {
     const popup = useRef(null);
     const mobile = useMobile(initData, true);

@@ -10,7 +10,7 @@ interface MobileConnectProps {
     label?: string;
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), onchange: OnchangeFunction) => {
+export const useConnectToMobile = (initData: InitData | (() => InitData), onchange?: OnchangeFunction) => {
     const [connect, setConnect] = useState(false);
     const MobileConnect: React.FC<MobileConnectProps> = useCallback(({ label }) => {
         const enableConnect = () => setConnect(true);
@@ -29,7 +29,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), onchan
 
 interface DisplayConnectButtonProps {
     initData: InitData | (() => InitData);
-    onchange: OnchangeFunction;
+    onchange?: OnchangeFunction;
     onClick: () => void;
     label?: string;
 
