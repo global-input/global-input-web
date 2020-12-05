@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'; ////website
-import { useMobile } from '../../mobile';
+import { useConnectToMobile } from '../../mobile';
 
 import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
 import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [content, setContent] = useState('');
   const history = useHistory();////website
 
-  const mobile = useMobile(initData);
+  const { mobile, ConnectToMobile } = useConnectToMobile(initData);
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:
@@ -32,7 +32,7 @@ const App: React.FC = () => {
   return (
     <PageContainer>
       <Title>Content Transfer Application</Title>
-      <mobile.ConnectQR />
+      <ConnectToMobile />
       {mobile.isConnected && (
         <>
           <TextAreaBox id="textContent" onChange={(evt: any) => {
