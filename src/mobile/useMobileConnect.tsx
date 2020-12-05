@@ -1,9 +1,14 @@
 import React, { useState, useCallback } from 'react';
-
+import * as storage from './storage';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
-import { ConnectButton, PopupWindow, SettingsButton } from './layout';
-import { ParingApp } from './pairingApp';
-import { SettingsEditor } from './settingsEditor';
+import {
+    ConnectButton, PopupWindow, SettingsButton,
+    Form, InputField, Footer, BackButton, SaveButton
+} from './layout';
+
+
+import * as mobileSettings from './mobile-ui/settings';
+import * as mobilePairing from './mobile-ui/pairing';
 
 interface MobileConnectProps {
     label?: string;
@@ -98,14 +103,63 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
 
 
 const PopupParingCode = ({ back, close }) => {
+    const mobile = useMobile(mobilePairing.initData, true);
+    mobilePairing.setOnchange({ mobile, back });
+
     return (<PopupWindow close={close} title='Scan To Pair'>
-        <ParingApp back={back} />
+        <Form>
+            <mobile.PairingQR label="" />;
+            <Footer>
+                <BackButton onClick={back} />
+            </Footer>
+        </Form>
     </PopupWindow >);
 };
 
 
-const PopupSettingsEditor = ({ back, close, pairing }) => (
-    <PopupWindow close={close} title='Settings'>
-        <SettingsEditor back={back} pairing={pairing} />
-    </PopupWindow >
-);
+const PopupSettingsEditor = ({ back, close, pairing }) => {
+    const [setting, setSettings] = useState(() => storage.loadConnectionSettings());
+    const mobile = useMobile(mobileSettings.initData(setting));
+    const onSave = () => {
+        mobile.disconnect();
+        if (storage.saveConnectionSettings(setting)) {
+            pairing();
+        }
+        else {
+            back();
+        }
+    };
+
+    mobileSettings.setOnchange({ mobile, setSettings, back, onSave });
+    const url = setting.url ? setting.url : '';
+    const apikey = setting.apikey ? setting.apikey : '';
+    const securityGroup = setting.securityGroup ? setting.securityGroup : '';
+    const codeKey = setting.codeKey ? setting.codeKey : '';
+
+    return (
+        <PopupWindow close={close} title='Settings'>
+            <Form>
+                <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
+                    setSettings(setting => ({ ...setting, url: value }));
+                    mobile.sendValue(mobileSettings.FIELDS.url.id, value);
+                }} />
+                <InputField id="apiKey" label="API Key" value={apikey} onChange={(value) => {
+                    setSettings(setting => ({ ...setting, apikey: value }));
+                    mobile.sendValue(mobileSettings.FIELDS.apikey.id, value);
+                }} />
+                <InputField id="securityGroup" label="Security Group Key" value={securityGroup} onChange={(value) => {
+                    setSettings(setting => ({ ...setting, securityGroup: value }));
+                    mobile.sendValue(mobileSettings.FIELDS.securityGroup.id, value);
+                }} />
+                <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
+                    setSettings(setting => ({ ...setting, codeKey: value }));
+                    mobile.sendValue(mobileSettings.FIELDS.codeKey.id, value);
+                }} />
+                <Footer>
+                    <BackButton onClick={back} />
+                    <SaveButton onClick={onSave} />
+                </Footer>
+            </Form>
+        </PopupWindow >
+    )
+};
