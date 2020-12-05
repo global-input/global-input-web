@@ -1,2 +1,2 @@
 export * from './useMobile';
-export * from './useConnectToMobile';
+export * from './useMobileConnect';

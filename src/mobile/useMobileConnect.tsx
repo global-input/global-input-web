@@ -10,7 +10,7 @@ interface MobileConnectProps {
     label?: string;
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), onchange?: OnchangeFunction) => {
+export const useMobileConnect = (initData: InitData | (() => InitData), onchange?: OnchangeFunction) => {
     const [connect, setConnect] = useState(false);
     const MobileConnect: React.FC<MobileConnectProps> = useCallback(({ label }) => {
         const enableConnect = () => setConnect(true);

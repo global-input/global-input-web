@@ -67,18 +67,16 @@ const DisplayConnectQRCode = ({ close, editSettings, initData, onchange }) => {
                     <Button onClick={editSettings}>
                         <Image src={settingsIcon} alt="Settings" />
                 Settings</Button>
-                    <LeftButtonContainer>
-                        <Button onClick={close}>
-                            <Image src={closeIcon} alt="Close" />
+
+                    <Button onClick={close}>
+                        <Image src={closeIcon} alt="Close" />
             Close</Button>
-                    </LeftButtonContainer>
+
                 </TopBar>
                 <ConnectQR />
             </PopupWindow>
         </PopupContainer>
     );
-
-
 };
 
 
@@ -224,7 +222,6 @@ const Image = styled.img`
 
 
 const LeftButtonContainer = styled.div`
-    min-width: 50px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

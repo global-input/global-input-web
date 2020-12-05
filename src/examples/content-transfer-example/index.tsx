@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'; ////website
-import { useGlobalInputApp } from 'global-input-react';
+import { useMobile } from '../../mobile';
 
 import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
 import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
@@ -9,14 +9,14 @@ const App: React.FC = () => {
   const [content, setContent] = useState('');
   const history = useHistory();////website
 
-  const mobile = useGlobalInputApp({ initData });
+  const mobile = useMobile(initData);
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:
         setContent(field.value as string);
         break;
       default:
-      mobileUI.onFieldChange(field, history); ////website
+        mobileUI.onFieldChange(field, history); ////website
 
     }
   });
@@ -33,8 +33,6 @@ const App: React.FC = () => {
     <PageContainer>
       <Title>Content Transfer Application</Title>
       <mobile.ConnectQR />
-      {mobile.isError && (<P>{mobile.errorMessage}</P>)}
-      {mobile.isConnectionDenied && (<P>You can only use one mobile app per session. Disconnect to start a new session.</P>)}
       {mobile.isConnected && (
         <>
           <TextAreaBox id="textContent" onChange={(evt: any) => {
