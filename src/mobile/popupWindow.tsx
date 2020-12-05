@@ -66,11 +66,13 @@ const DisplayConnectQRCode = ({ close, editSettings, initData, onchange }) => {
                 <TopBar>
                     <Button onClick={editSettings}>
                         <Image src={settingsIcon} alt="Settings" />
-                Settings</Button>
+                        Settings
+                     </Button>
 
                     <Button onClick={close}>
                         <Image src={closeIcon} alt="Close" />
-            Close</Button>
+                        Close
+                    </Button>
 
                 </TopBar>
                 <ConnectQR />
@@ -87,8 +89,7 @@ const DisplaySettingsEditor = ({ back, close, pairing }) => {
         <PopupContainer>
             <PopupWindow ref={popup}>
                 <TopBar>
-                    <LeftButtonContainer>
-                    </LeftButtonContainer>
+                    <div></div>
                     <Title>Settings</Title>
                     <Button onClick={close}>
                         <Image src={closeIcon} alt="Close" />
@@ -109,12 +110,11 @@ const DisplayParing = ({ back, close }) => {
         <PopupContainer>
             <PopupWindow ref={popup}>
                 <TopBar>
-                    <LeftButtonContainer>
-                    </LeftButtonContainer>
+                    <div></div>
                     <Title>Scan To Pair</Title>
                     <Button onClick={close}>
-                        <Image src={closeIcon} alt="Close" />
-                    Close</Button>
+                        <Image src={closeIcon} alt="Close" />Close
+                    </Button>
                 </TopBar>
                 <PopupBody>
                     <ParingApp back={back} />
@@ -221,12 +221,6 @@ const Image = styled.img`
 
 
 
-const LeftButtonContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-`;
 
 
 
