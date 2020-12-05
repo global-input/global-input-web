@@ -5,8 +5,6 @@ import { ConnectButton, PopupWindow, SettingsButton } from './layout';
 import { ParingApp } from './pairingApp';
 import { SettingsEditor } from './settingsEditor';
 
-
-
 interface MobileConnectProps {
     label?: string;
 }
