@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [content, setContent] = useState('');
   const history = useHistory();////website
 
-  const { mobile, ConnectToMobile } = useConnectToMobile(initData);
+  const { mobile, ConnectToMobile } = useConnectToMobile(initData, true, true);
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:

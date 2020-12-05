@@ -157,10 +157,14 @@ interface PopupWindowProps {
     close: () => void;
     left?: React.ReactNode;
     title?: string;
+    modal?: boolean;
 }
-export const PopupWindow: React.FC<PopupWindowProps> = ({ left, title, children, close }) => {
+export const PopupWindow: React.FC<PopupWindowProps> = ({ left, title, children, close, modal = false }) => {
     const popup = useRef(null);
-    useClickedOutside(popup, close);
+    const onClose = () => (!modal) && close();
+
+
+    useClickedOutside(popup, onClose);
     return (
         <PopupContainer>
             <PopupContent ref={popup}>
@@ -168,10 +172,10 @@ export const PopupWindow: React.FC<PopupWindowProps> = ({ left, title, children,
                     <TopItem>{left}</TopItem>
                     <Title>{title}</Title>
                     <TopItem>
-                        <Button onClick={close}>
+                        {(!modal) && (<Button onClick={onClose}>
                             <Image src={closeIcon} alt="Close" />
                                 Close
-                        </Button>
+                        </Button>)}
                     </TopItem>
                 </TopBar>
                 <PopupBody>
