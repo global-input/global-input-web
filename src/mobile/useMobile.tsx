@@ -33,7 +33,7 @@ const ErrorMessage = styled.div`
 
 
 
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true) => {
+export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true, configId?: any) => {
     const connectionSettings = storage.loadConnectionSettings();
     const options: globalInput.ConnectOptions = {
         url: connectionSettings.url,////use your own server"
@@ -43,23 +43,23 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
     console.log("=======apikey:" + connectionSettings.apikey + ":" + connect);
     const mobile = globalInput.useGlobalInputApp({
         initData, options, codeAES: connectionSettings.codeKey
-    }, connect);
+    }, connect, configId);
     ////dev-test codeData
-    const ConnectQR = useCallback((props: globalInput.ConnectQRProps) => {
-        let errorMessage = mobile.isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session.";
-        if (mobile.isError) {
-            errorMessage = mobile.errorMessage;
+
+    const { isError, isConnectionDenied, ConnectQR, errorMessage } = mobile;
+
+    const NewConnectQR = useCallback((props: globalInput.ConnectQRProps) => {
+        let message = isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session.";
+        if (isError) {
+            message = errorMessage;
         }
-
-
         return (
             <QRCodeContainer>
-                <mobile.ConnectQR {...props} />
-                <ErrorMessage>{errorMessage}</ErrorMessage>
+                <ConnectQR {...props} />
+                <ErrorMessage>{message}</ErrorMessage>
             </QRCodeContainer>
         );
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mobile.isError, mobile.isConnectionDenied, mobile.ConnectQR]);
-    return { ...mobile, ConnectQR };
+    }, [isError, errorMessage, isConnectionDenied, ConnectQR]);
+    return { ...mobile, ConnectQR: NewConnectQR };
 };

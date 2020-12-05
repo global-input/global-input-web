@@ -15,20 +15,19 @@ enum PAGES {
 
 export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = true) => {
     const [connect, setConnect] = useState(initialConnect);
+    const [configId, setConFigId] = useState(1);
     const enableConnect = useCallback(() => setConnect(true), []);
     const disableConnect = useCallback(() => setConnect(false), []);
-    const mobile = useMobile(initData, connect);
+    const mobile = useMobile(initData, connect, configId);
     const [page, setPage] = useState(PAGES.CONNECT_QR);
     const editSettings = useCallback(() => setPage(PAGES.SETTINGS), []);
     const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
     const connectQR = useCallback(() => setPage(PAGES.CONNECT_QR), []);
-    const { isConnected, ConnectQR, PairingQR, restart } = mobile;
+    const { isConnected, ConnectQR, PairingQR, disconnect } = mobile;
     const onSettingChanged = useCallback(() => {
-
-        restart();
-
-        setConnect(false);
-    }, [restart, page, setPage]);
+        disconnect();
+        setConFigId(configId => configId + 1);
+    }, [disconnect]);
 
 
 
@@ -121,7 +120,7 @@ const PopupParingCode = ({ back, close, PairingQR }) => {
     return (
         <PopupWindow close={close} title='Scan To Pair'>
             <Form>
-                <PairingQR label="" />;
+                <PairingQR label="" />
                 <Footer>
                     <BackButton onClick={back} />
                 </Footer>
