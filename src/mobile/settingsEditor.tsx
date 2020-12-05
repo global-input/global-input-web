@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
 import * as storage from './storage';
 import { useMobile } from './useMobile';
-
+import { Form, InputField, Footer, BackButton, SaveButton } from './layout';
 const FIELDS = {
     url: {
         id: "proxy-url",
@@ -105,135 +104,26 @@ export const SettingsEditor = ({ back, pairing }) => {
 
     return (
         <Form>
-            <Field>
-                <Input id="url"
-                    onChange={evt => {
-                        setURL(evt.target.value);
-                        mobile.sendValue(FIELDS.url.id, evt.target.value);
-                    }}
-                    value={url} placeholder="Proxy URL" />
-                <Label htmlFor="url">Proxy URL</Label>
-            </Field>
-            <Field>
-                <Input id="apiKey"
-                    onChange={evt => {
-                        setAPIKey(evt.target.value);
-                        mobile.sendValue(FIELDS.apikey.id, evt.target.value);
-                    }}
-                    value={apikey} placeholder="API Key" />
-                <Label htmlFor="apiKey">API Key</Label>
-            </Field>
-            <Field>
-                <Input id="securityGroup"
-                    onChange={evt => {
-                        setSecurityGroup(evt.target.value);
-                        mobile.sendValue(FIELDS.securityGroup.id, evt.target.value);
-                    }}
-                    value={securityGroup} placeholder="Security Group Key" />
-                <Label htmlFor="securityGroup">API Key</Label>
-            </Field>
-            <Field>
-                <Input id="codeKey"
-                    onChange={evt => {
-                        setCodeKey(evt.target.value);
-                        mobile.sendValue(FIELDS.codeKey.id, evt.target.value);
-                    }}
-                    value={codeKey} placeholder="Code Key" />
-                <Label htmlFor="codeKey">API Key</Label>
-            </Field>
+            <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
+                setURL(value);
+                mobile.sendValue(FIELDS.url.id, value);
+            }} />
+            <InputField id="apiKey" label="API Key" value={apikey} onChange={(value) => {
+                setAPIKey(value);
+                mobile.sendValue(FIELDS.apikey.id, value);
+            }} />
+            <InputField id="securityGroup" label="Security Group Key" value={securityGroup} onChange={(value) => {
+                setSecurityGroup(value);
+                mobile.sendValue(FIELDS.securityGroup.id, value);
+            }} />
+            <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
+                setCodeKey(value);
+                mobile.sendValue(FIELDS.codeKey.id, value);
+            }} />
             <Footer>
-                <Button onClick={back}>Back</Button>
-                <Button onClick={onSave}>Save</Button>
+                <BackButton onClick={back} />
+                <SaveButton onClick={onSave} />
             </Footer>
         </Form>
     );
 };
-
-const Form = styled.div`
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    justify-content:flex-start;
-    align-items:flex-start;
-    padding:10px;
-`;
-
-const Button = styled.button`
-    text-decoration: none;
-    font-size: 11px;
-    border-radius: 4px;
-    color: #4281BD;
-    background-color: white;
-    white-space: nowrap;
-    padding: 5px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-color:#EEEEEE;
-    margin-left:20px;
-    display:flex;
-`;
-
-
-
-const Field = styled.div`
-    position: relative;
-    margin: 20px auto;
-    width:100%;
-
-`;
-const Input = styled.input`
-    display: block;
-    line-height: 2em;
-    margin: 0;
-    padding-left: 10px;
-    width: 100%;
-    font-size: medium;
-    border: 1px solid #f4f4f4;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-weight: 500;
-    &:focus {
-        border: 1px solid #2c7ac9;
-    }
-    &:placeholder-shown + .control-label {
-        visibility: hidden;
-        z-index: -1;
-        transition: 0.2s ease-in-out;
-
-    }
-    &:not(:placeholder-shown) + .control-label,
-    .form-control:focus:not(:placeholder-shown) + .control-label {
-        visibility: visible;
-        z-index: 1;
-        opacity: 1;
-        transform: translateY(-5px);
-        transition: 0.2s ease-in-out transform;
-    }
-
-`;
-const Label = styled.label.attrs(props => ({
-    className: "control-label"
-
-}))`
-    display: block;
-    position: absolute;
-    opacity: 0;
-    bottom: 1.9rem;
-    color: #5d5d5d;
-    transition: 0.2s ease-in-out transform;
-    font-size: 12px;
-`;
-
-
-const Footer = styled.div`
-        display: flex;
-        margin:0;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-`;

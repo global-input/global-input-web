@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
+
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
-import { PopupMain } from './popupWindow';
-import appIcon from './images/app-icon.png';
+import { ConnectButton, PopupWindow, SettingsButton } from './layout';
+import { ParingApp } from './pairingApp';
+import { SettingsEditor } from './settingsEditor';
 
 
 
@@ -42,30 +43,71 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
     if (mobile.isConnected) {
         return null;
     }
-    return (<Button onClick={onClick}>
-        <Image src={appIcon} alt="global input app icon" />{label}</Button>);
+    return (<ConnectButton onClick={onClick} />);
+}
+
+
+
+enum PAGES {
+    CONNECT_QR,
+    SETTINGS,
+    PAIRING
+}
+interface PopupMainProps {
+    initData: InitData | (() => InitData);
+    onchange?: OnchangeFunction;
+    close: () => void;
+}
+
+
+const PopupMain: React.FC<PopupMainProps> = ({ initData, onchange, close }) => {
+    const [page, setPage] = useState(PAGES.CONNECT_QR);
+    const editSettings = useCallback(() => setPage(PAGES.SETTINGS), []);
+    const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
+    const connectQR = useCallback(() => setPage(PAGES.CONNECT_QR), []);
+    switch (page) {
+        case PAGES.CONNECT_QR:
+            return (<PopupConnectQRCode close={close} editSettings={editSettings} initData={initData} onchange={onchange} />);
+        case PAGES.SETTINGS:
+            return (<PopupSettingsEditor close={close} back={connectQR} pairing={pairing} />);
+        case PAGES.PAIRING:
+            return (<PopupParingCode close={close} back={connectQR} />);
+        default:
+            return null;
+    }
 };
 
 
+interface PopupConnectQRCodeProps {
+    close: () => void;
+    editSettings: () => void;
+    initData: InitData | (() => InitData);
+    onchange?: OnchangeFunction;
+
+}
+const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSettings, initData, onchange }) => {
+    const mobile = useMobile(initData, true);
+    onchange && mobile.setOnchange(onchange);
+    if (mobile.isConnected) {
+        return null;
+    }
+    const { ConnectQR } = mobile;
+    const left = (<SettingsButton onClick={editSettings} />);
+    return (<PopupWindow left={left} close={close} >
+        <ConnectQR />
+    </PopupWindow >);
+};
 
 
-const Button = styled.button`
-    text-decoration: none;
-    font-size: 11px;
-    border-radius: 4px;
-    color: #4281BD;
-    background-color: white;
-    white-space: nowrap;
-    padding: 5px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-color:#EEEEEE;
-    margin-left:20px;
-    display:flex;
-    visibility: ${props => props.hide ? 'hidden' : 'visible'};
-`;
+const PopupParingCode = ({ back, close }) => {
+    return (<PopupWindow close={close} title='Scan To Pair'>
+        <ParingApp back={back} />
+    </PopupWindow >);
+};
 
-const Image = styled.img`
-    margin-right: 5px;
-`;
+
+const PopupSettingsEditor = ({ back, close, pairing }) => (
+    <PopupWindow close={close} title='Settings'>
+        <SettingsEditor back={back} pairing={pairing} />
+    </PopupWindow >
+);

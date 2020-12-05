@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMobile } from './useMobile';
-import styled from 'styled-components';
+import { BackButton, Form, Footer } from './layout';
 interface Props {
     back: () => void;
 }
@@ -14,12 +14,13 @@ export const ParingApp: React.FC<Props> = ({ back }) => {
             default:
         }
     });
-    return (<Container>
-        <mobile.PairingQR label="" />;
-        <Footer>
-            <Button onClick={back}>Back</Button>
-        </Footer>
-    </Container>)
+    return (
+        <Form>
+            <mobile.PairingQR label="" />;
+            <Footer>
+                <BackButton onClick={back} />
+            </Footer>
+        </Form>)
 
 }
 
@@ -48,37 +49,3 @@ const initData = {
         fields: Object.values(FIELDS)
     }
 }
-
-const Container = styled.div`
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    justify-content:flex-start;
-    align-items:flex-start;
-    padding:10px;
-`;
-
-const Button = styled.button`
-    text-decoration: none;
-    font-size: 11px;
-    border-radius: 4px;
-    color: #4281BD;
-    background-color: white;
-    white-space: nowrap;
-    padding: 5px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-color:#EEEEEE;
-    margin-left:20px;
-    display:flex;
-`;
-
-const Footer = styled.div`
-        display: flex;
-        margin:0;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-`;
