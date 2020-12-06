@@ -43,10 +43,7 @@ const TopBar = styled.div`
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        padding-left:10px;
-        padding-right:10px;
-        padding-bottom:10px;
-        padding: 10px;
+        padding:5px;
         background: #f1f1f1;
 `;
 const PopupBody = styled.div`
@@ -96,7 +93,6 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
     border-color:#EEEEEE;
-    margin-left:20px;
     display:flex;
 `;
 
@@ -156,7 +152,7 @@ export const SaveButton: React.FC<ConnectProps> = ({ onClick }) => (
 interface PopupWindowProps {
     close: () => void;
     left?: React.ReactNode;
-    title?: string;
+    title?: React.ReactNode;
     modal?: boolean;
 }
 export const PopupWindow: React.FC<PopupWindowProps> = ({ left, title, children, close, modal = false }) => {
@@ -280,3 +276,13 @@ export const InputField = ({ id, onChange, label, value }) => {
     </Field>
     );
 }
+
+const ScanLabel = styled.div`
+font-size: 14px;
+color:#4880ED`;
+const ScanLabelA = styled.a``;
+
+
+export const scanQRCodeLabel = (<ScanLabel>
+    Scan with <ScanLabelA href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</ScanLabelA>
+</ScanLabel>)

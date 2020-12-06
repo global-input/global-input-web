@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { ConnectButton, PopupWindow, SettingsButton, Form, InputField, Footer, BackButton, SaveButton } from './layout';
+import {
+    ConnectButton, PopupWindow, SettingsButton, Form, InputField,
+    Footer, BackButton, SaveButton, scanQRCodeLabel
+} from './layout';
 
 import { useMobile, InitData, ConnectQRProps } from './useMobile';
 
@@ -67,8 +70,8 @@ interface PopupConnectQRCodeProps {
 }
 const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSettings, ConnectQR, modal }) => {
     const left = (<SettingsButton onClick={editSettings} />);
-    return (<PopupWindow left={left} close={close} modal={modal}>
-        <ConnectQR />
+    return (<PopupWindow left={left} close={close} modal={modal} title={scanQRCodeLabel}>
+        <ConnectQR label="" />
     </PopupWindow >);
 };
 

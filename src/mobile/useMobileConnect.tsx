@@ -3,7 +3,8 @@ import * as storage from './storage';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
     ConnectButton, PopupWindow, SettingsButton,
-    Form, InputField, Footer, BackButton, SaveButton
+    Form, InputField, Footer, BackButton, SaveButton,
+    scanQRCodeLabel
 } from './layout';
 
 
@@ -96,8 +97,8 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
     }
     const { ConnectQR } = mobile;
     const left = (<SettingsButton onClick={editSettings} />);
-    return (<PopupWindow left={left} close={close} >
-        <ConnectQR />
+    return (<PopupWindow left={left} close={close} title={scanQRCodeLabel}>
+        <ConnectQR label="" />
     </PopupWindow >);
 };
 
