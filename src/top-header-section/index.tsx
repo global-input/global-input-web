@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { config } from "../../configs";
+import { config } from "../configs";
 import appIcon from './images/app-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
 
