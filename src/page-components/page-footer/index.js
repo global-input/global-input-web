@@ -17,12 +17,12 @@ const PageFooterContainer = ({ screenMedia }) => (
 
 export default withResponsiveComponent(PageFooterContainer);
 
-const _FooterItem = ({ href, label, isLast }) => (
+const FooterItem = ({ href, label, isLast }) => (
     <div style={isLast ? styles.footer.lastItem.get() : styles.footer.item.get()}>
         <Link to={href} style={styles.footer.link}>{label}</Link>
     </div>
 );
-const FooterItem = withResponsiveComponent(_FooterItem);
+
 
 const FooterMobileAuthentication = ({ isLast = false }) => (
     <FooterItem href={config.paths.mobileAuthentication.path}
