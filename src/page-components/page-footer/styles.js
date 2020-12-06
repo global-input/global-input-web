@@ -1,25 +1,9 @@
 import { styleMatchingScreenSize } from "../../app-layout/screen-media";
-export const images = {
-  footerBackground: require("./images/footer-background.svg"),
-  footerBackground2: require("./images/footer-background2.svg"),
-}
 
 export const styles = {
 
   footer: {
-    container: {
-      flex: 1,
-      backgroundImage: "url(" + images.footerBackground + ")",
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: "cover",
-      width: "100%",
-      color: "white",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      paddingBottom: 20,
-    },
+
     content: {
       get: styleMatchingScreenSize,
       default: {
