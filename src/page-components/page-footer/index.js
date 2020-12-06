@@ -179,8 +179,5 @@ export const PageFooter = () => {
         <Container>
             <PageFooterContent width={width} />
         </Container>
-
-
-
     )
 };
