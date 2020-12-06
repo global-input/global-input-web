@@ -5,19 +5,6 @@ export const images = {
 }
 
 export const styles = {
-  container: {
-    paddingTop: 100,
-    backgroundImage: "url(" + images.footerBackground2 + ")",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: "cover",
-    width: "100%",
-    minHeight: 400,
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
 
   footer: {
     container: {
@@ -32,7 +19,6 @@ export const styles = {
       justifyContent: "flex-end",
       alignItems: "center",
       paddingBottom: 20,
-
     },
     content: {
       get: styleMatchingScreenSize,

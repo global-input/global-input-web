@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { styles } from './styles';
 import { config } from '../../configs';
 import { useWindowSize } from './useWindowSize';
-
-
-
+import styled from 'styled-components';
+import footerBackground2 from "./images/footer-background2.svg";
+import footerBackground from './images/footer-background.svg';
 const FooterItem = ({ href, label, isLast }) => (
     <div style={isLast ? styles.footer.lastItem.get() : styles.footer.item.get()}>
         <Link to={href} style={styles.footer.link}>{label}</Link>
@@ -155,14 +155,36 @@ const PageFooterContent = ({ width }) => {
 
 };
 
+
+
+const Container = styled.div`
+    padding-top: 100px;
+    background-image: url(${footerBackground2});
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 400px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+`;
+
+const Container2 = styled(Container)`
+      flex: 1;
+      background-image: url(${footerBackground});
+`;
+
+
 export const PageFooter = () => {
     const [width] = useWindowSize();
     return (
-        <div style={styles.container}>
-            <div style={styles.footer.container}>
-                <PageFooterContent width={width} />
-            </div>
-        </div>
+        <Container>
+            <PageFooterContent width={width} />
+        </Container>
+
+
 
     )
 };
