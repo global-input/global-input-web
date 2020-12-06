@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TopHeaderSection } from '../../../top-header-section';
 import { styles } from './styles';
-import PageFooter from '../../page-footer';
+import { PageFooter } from '../../page-footer';
 
 export const P = ({ children }) => (<div style={styles.card.paragraph.get()}>{children}</div>);
 export const Title = ({ children }) => (<div style={styles.card.title.get()}>{children}</div>);

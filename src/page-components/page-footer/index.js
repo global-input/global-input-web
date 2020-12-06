@@ -1,27 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { withResponsiveComponent } from '../../app-layout/screen-media';
-
 import { styles } from './styles';
 import { config } from '../../configs';
+import { useWindowSize } from './useWindowSize';
 
-const PageFooterContainer = ({ screenMedia }) => (
-    <div style={styles.container}>
-        <div style={styles.footer.container}>
-            <PageFooterContent screenMedia={screenMedia} />
-        </div>
-    </div>
 
-);
-
-export default withResponsiveComponent(PageFooterContainer);
 
 const FooterItem = ({ href, label, isLast }) => (
     <div style={isLast ? styles.footer.lastItem.get() : styles.footer.item.get()}>
         <Link to={href} style={styles.footer.link}>{label}</Link>
     </div>
 );
+
+
+
+
+
+
 
 
 const FooterMobileAuthentication = ({ isLast = false }) => (
@@ -65,8 +60,8 @@ const FooterContactUs = ({ isLast = false }) => (
         label="Contact Us" isLast={isLast} />
 );
 
-const PageFooterContent = ({ screenMedia }) => {
-    if (screenMedia.biggerThan(1204)) {
+const PageFooterContent = ({ width }) => {
+    if (width > 1204) {
         return (
 
             <div style={styles.footer.content.get()}>
@@ -86,7 +81,7 @@ const PageFooterContent = ({ screenMedia }) => {
 
         );
     }
-    else if (screenMedia.biggerThan(900)) {
+    else if (width > 900) {
         return (
 
 
@@ -111,7 +106,7 @@ const PageFooterContent = ({ screenMedia }) => {
 
         );
     }
-    else if (screenMedia.biggerThan(600)) {
+    else if (width > 600) {
         return (
             <div style={styles.footer.content.get()}>
                 <div style={styles.footer.items}>
@@ -158,4 +153,16 @@ const PageFooterContent = ({ screenMedia }) => {
         );
     }
 
+};
+
+export const PageFooter = () => {
+    const [width] = useWindowSize();
+    return (
+        <div style={styles.container}>
+            <div style={styles.footer.container}>
+                <PageFooterContent width={width} />
+            </div>
+        </div>
+
+    )
 };

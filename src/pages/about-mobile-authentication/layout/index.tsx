@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TopHeaderSection } from '../../../top-header-section';
-import PageFooter from '../../../page-components/page-footer';
+import {PageFooter} from '../../../page-components/page-footer';
 
 
 const PageContainer = styled.div`

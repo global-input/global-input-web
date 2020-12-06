@@ -6,7 +6,7 @@ import { HomeHeaderBackground } from "./header-backgrounds";
 import HowItWorks from "./how-it-works";
 
 import FeaturesSection from './features-section';
-import PageFooter from '../../page-components/page-footer';
+import {PageFooter} from '../../page-components/page-footer';
 import { config } from '../../configs';
 import { SimpleHeaderBackground } from './header-backgrounds';
 import RightPosterImage from './right-poster-image';
