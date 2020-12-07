@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withResponsiveComponent } from '../../../app-layout/screen-media';
 import { TopHeaderSection } from '../../../top-header-section';
 import { styles } from './styles';
-import {PageFooter} from '../../page-footer';
+import { PageFooter } from '../../../page-footer';
 
 const _Page = props => (
   <div style={styles.container} id="topContent">

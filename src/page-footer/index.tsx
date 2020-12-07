@@ -1,87 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { styles } from './styles';
-import { config } from '../../configs';
+import { config } from '../configs';
 import { useWindowSize } from './useWindowSize';
 import styled from 'styled-components';
 
 import footerBackground from './images/footer-background.svg';
 
-const Item = styled.div`
-      padding-left: 10px;
-      width: 250px;
-      border-right: ${props => props.isLast ? 'none' : '1px solid white'};
-      padding-bottom: 10px;
-      @media only screen and (max-width:599px){
-        width: 190px;
-      }
-      @media only screen and (max-width:360px){
-        width: 150px;
-        padding-left:5px;
-      }
-`;
-const ItemLink = styled(Link)`
-  color:white;
-`;
+
+export const PageFooter = () => {
+    const [width] = useWindowSize();
+    return (
+        <Container>
+            <Content>
+                <PageFooterContent width={width} />
+            </Content>
+
+        </Container>
+    )
+};
 
 
-const FooterItem = ({ href, label, isLast }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={href}>{label}</ItemLink>
-    </Item>
-);
-
-const FooterMobileAuthentication = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileAuthentication.path}>Mobile Authentication</ItemLink>
-    </Item>
-);
-const FooterMobileEncryption = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.aboutContentEncryption.path}>Mobile Encryption</ItemLink>
-    </Item>
-);
-const FooterMobileInputControl = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileControl.path}>Mobile Input &amp; Control</ItemLink>
-    </Item>
-);
-
-const FooterSecondScreen = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.secondScreen.path}>Second Screen</ItemLink>
-    </Item>
-);
-const FooterMobilePersonalStorage = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobilePersonalStorage.path}>Mobile Personal Storage</ItemLink>
-    </Item>
-);
-const FooterMobileContentTransfer = ({ isLast = false }) => (
-
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileContentTransfer.path}>Content Transfer</ItemLink>
-    </Item>
-);
-
-const FooterPrivacyPolicy = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.privacy.path}>Privacy Policy</ItemLink>
-    </Item>
-);
-
-const FooterDownload = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.getAppScreen.path}>Get It Free</ItemLink>
-    </Item>
-);
-
-const FooterContactUs = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.contactUs.path}>Contact Us</ItemLink>
-    </Item>
-
-);
 
 const PageFooterContent = ({ width }) => {
     if (width > 1204) {
@@ -174,15 +112,70 @@ const PageFooterContent = ({ width }) => {
 
 };
 
+const FooterMobileAuthentication = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.mobileAuthentication.path}>Mobile Authentication</ItemLink>
+    </Item>
+);
+const FooterMobileEncryption = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.aboutContentEncryption.path}>Mobile Encryption</ItemLink>
+    </Item>
+);
+const FooterMobileInputControl = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.mobileControl.path}>Mobile Input &amp; Control</ItemLink>
+    </Item>
+);
+
+const FooterSecondScreen = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.secondScreen.path}>Second Screen</ItemLink>
+    </Item>
+);
+const FooterMobilePersonalStorage = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.mobilePersonalStorage.path}>Mobile Personal Storage</ItemLink>
+    </Item>
+);
+const FooterMobileContentTransfer = ({ isLast = false }) => (
+
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.mobileContentTransfer.path}>Content Transfer</ItemLink>
+    </Item>
+);
+
+const FooterPrivacyPolicy = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.privacy.path}>Privacy Policy</ItemLink>
+    </Item>
+);
+
+const FooterDownload = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.getAppScreen.path}>Get It Free</ItemLink>
+    </Item>
+);
+
+const FooterContactUs = ({ isLast = false }) => (
+    <Item isLast={isLast}>
+        <ItemLink to={config.paths.contactUs.path}>Contact Us</ItemLink>
+    </Item>
+
+);
+
 
 
 const Container = styled.div`
-    padding-top: 100px;
+    padding-top: 50px;
     background-image: url(${footerBackground});
     background-repeat: no-repeat;
     background-size: cover;
+    @media only screen and (max-width: 599px){
+        background-size: auto;
+    }
     width: 100%;
-    min-height: 400px;
+    min-height: 300px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -225,14 +218,22 @@ const Row = styled.div`
 
 
 
-export const PageFooter = () => {
-    const [width] = useWindowSize();
-    return (
-        <Container>
-            <Content>
-                <PageFooterContent width={width} />
-            </Content>
 
-        </Container>
-    )
-};
+
+
+const Item = styled.div`
+      padding-left: 10px;
+      width: 250px;
+      border-right: ${props => props.isLast ? 'none' : '1px solid white'};
+      padding-bottom: 10px;
+      @media only screen and (max-width:599px){
+        width: 190px;
+      }
+      @media only screen and (max-width:360px){
+        width: 150px;
+        padding-left:5px;
+      }
+`;
+const ItemLink = styled(Link)`
+  color:white;
+`;
