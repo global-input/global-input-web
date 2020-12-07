@@ -10,9 +10,6 @@ import FeaturesSection from './features-section';
 import {PageFooter} from '../../page-footer';
 import { config } from '../../configs';
 
-
-import { HomeTitleSection } from './text-title-sections';
-import SmallText from './SmallText';
 import ButtonsContainer from '../../page-components/buttons-container';
 import { pagesLinks } from "../../page-components/links-components";
 import { CardSection } from './card-section';
@@ -47,17 +44,16 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
         <PageHeader selected={config.paths.home.path}/>
         <HeadBackGround>
           <PosterImage/>
-          <MobileConnect />
-          <HomeTitleSection
-            title={headerTextContent.title}
-            subtitle={headerTextContent.subtitle}>
+          <TitleSection>
+                <MobileConnect />
+                <Title>{headerTextContent.title}</Title>
+                <Subtitle>{headerTextContent.subtitle}</Subtitle>
+                <SmallTitle>{headerTextContent.smallText}</SmallTitle>
 
-            <SmallText content={headerTextContent.smallText} scWidth={width} />
-
-            <ButtonsContainer>
-              <GetAppButton>Get It Free</GetAppButton>
-            </ButtonsContainer>
-          </HomeTitleSection>
+                <ButtonsContainer>
+                  <GetAppButton>Get It Free</GetAppButton>
+                </ButtonsContainer>
+          </TitleSection>
 
 
         <CardSection scWidth={width} />
@@ -94,14 +90,14 @@ const HeadBackGround=styled.div`
     background-image: url(${headerBackground1440});
     background-color: rgb(114,164,210);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    @media only screen and (max-width: 700px){
-      background-size: auto;
+    @media only screen and (min-width: 700px){
+      background-size: cover;
     }
 `
 
@@ -111,7 +107,7 @@ const PosterImage=styled.div`
       top: 50px;
       right: 50px;
       display:none;
-      @media only screen and (min-width:750px){
+      @media only screen and (min-width:650px){
         display:block;
         background-image:url(${posterImage200});
         background-repeat: no-repeat;
@@ -119,7 +115,7 @@ const PosterImage=styled.div`
         height:183px;
 
       }
-      @media only screen and (min-width:800px){
+      @media only screen and (min-width:900px){
         display:block;
         background-image:url(${posterImage350});
         background-repeat: no-repeat;
@@ -137,3 +133,42 @@ const PosterImage=styled.div`
 
 
 `;
+
+
+
+
+    const TitleSection =styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      color: white;
+      width: 100%;
+      padding:10px;
+      margin-top:70px;
+      @media only screen and (min-width:650px){
+        margin-bottom:10px;
+      }
+      @media only screen and (min-width:900px){
+        margin-bottom:50px;
+      }
+      @media only screen and (min-width:1258px){
+        margin-bottom:220px;
+      }
+`;
+
+
+
+
+
+    const Title=styled.div`
+        font-size: 40px;
+    `;
+    const Subtitle=styled.div`
+      font-size: 20px;
+    `;
+    const SmallTitle=styled.div`
+      font-size: 14px;
+      margin-top:10px;
+      margin-bottom:10px;
+    `;
