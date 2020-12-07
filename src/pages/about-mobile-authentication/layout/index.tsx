@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TopHeaderSection } from '../../../top-header-section';
+import { TopHeaderSection } from '../../../page-header';
 import {PageFooter} from '../../../page-footer';
 
 

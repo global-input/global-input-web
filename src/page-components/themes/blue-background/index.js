@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TopHeaderSection } from '../../../top-header-section';
+import { TopHeaderSection } from '../../../page-header';
 import { styles } from './styles';
 import { PageFooter } from '../../../page-footer';
 

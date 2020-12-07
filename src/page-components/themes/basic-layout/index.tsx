@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import { TopHeaderSection } from "../../../top-header-section";
+import { TopHeaderSection } from "../../../page-header";
 
 interface Props {
         selected?: string;
