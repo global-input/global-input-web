@@ -156,17 +156,17 @@ const MenuItem = styled(Link)`
         fontWeight: 300,
         textDecoration: "underline"
       }
-      @media (min-width: 601px){
+      @media only screen and (min-width: 601px){
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         margin-bottom: 10px;
         font-size: 12px;
         color: #5291CD;
       }
-      @media (min-width: 800px){
+      @media only screen and (min-width: 800px){
         font-size: 15px;
       }
-      @media (max-width: 599px){
+      @media only screen and (max-width: 599px){
         text-align: left;
         background-color: #FFFFFF;
         border-bottom-color: #BBBBBB;
@@ -233,7 +233,7 @@ const Mobile = styled.div`
     top: 24px;
     justify-content: flex-end;
     padding-right: 10vw;
-    @media (max-width: 599px){
+    @media only screen and (max-width: 599px){
         display: flex;
         background-color: rgba(0,0,0,0);
     }
