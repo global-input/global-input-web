@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TopHeaderSection } from '../../../page-header';
+import { PageHeader } from '../../../page-header';
 import { styles } from './styles';
 import { PageFooter } from '../../../page-footer';
 
@@ -59,7 +59,7 @@ export const Concept = props => (<span style={styles.card.concept}>{props.childr
 export const Page = ({ selected, children, scWidth }) => (
   <div style={styles.container.get()} id="topContent">
 
-    <TopHeaderSection selected={selected} />
+    <PageHeader selected={selected} />
 
 
     <div style={styles.card.container.get()}>

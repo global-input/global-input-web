@@ -1,14 +1,14 @@
 import React from 'react'
 
 
-import { TopHeaderSection } from "../../../page-header";
+import { PageHeader } from "../../../page-header";
 
 interface Props {
         selected?: string;
 }
 const BasicLayout: React.FC<Props> = ({ selected, children }) => (
         <div style={styles.content} id="topContent">
-                <TopHeaderSection selected={selected} />
+                <PageHeader selected={selected} />
                 {children}
         </div>
 );

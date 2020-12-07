@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TopHeaderSection } from '../../../page-header';
+import { PageHeader } from '../../../page-header';
 import {PageFooter} from '../../../page-footer';
 
 
@@ -74,7 +74,7 @@ interface Props {
 
 export const Page: React.FC<Props> = ({ selected, title, children, image }) => (
     <PageContainer id="top">
-        <TopHeaderSection selected={selected} />
+        <PageHeader selected={selected} />
         <PageContent>
             <Row>
                 <Column>

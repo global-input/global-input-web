@@ -8,7 +8,7 @@ import menuSymbol from './images/menu-symbol.svg';
 interface Props {
   selected?: string | null;
 }
-export const TopHeaderSection: React.FC<Props> = ({ selected }) => {
+export const PageHeader: React.FC<Props> = ({ selected }) => {
   const [menuPressed, setMenuPressed] = useState(false);
 
   const mobileMenuContainer=useRef(null);

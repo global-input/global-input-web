@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { withResponsiveComponent } from '../../../app-layout/screen-media';
-import { TopHeaderSection } from '../../../page-header';
+import { PageHeader } from '../../../page-header';
 import { styles } from './styles';
 
 
 const Page = props => (<div style={styles.container} id="topContent">
-      <TopHeaderSection selected={props.selected} />
+      <PageHeader selected={props.selected} />
       <div style={styles.content}>
             <div style={styles.card.container.get()}>
                   {props.children}
