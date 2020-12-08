@@ -32,9 +32,9 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
       <TopBar>
           <Logo />
           <Title>{appTitle}</Title>
-        <Desktop>
+        <DesktopMenuContainer>
               {listMenu}
-        </Desktop>
+        </DesktopMenuContainer>
         <Icon onClick={toggle}>
                 <CloseIcon show={menuPressed}>X</CloseIcon>
                 <OpenIcon show={!menuPressed}/>
@@ -59,6 +59,15 @@ const Title = styled.div`
     font-weight: 300;
     padding-left: 10px;
     font-family: Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif;
+    @media only screen and (min-width:600px){
+        position:absolute;
+        top:15px;
+        left:50px;
+        font-size: 15px;
+    }
+    @media only screen and (min-width:720px){
+        font-size: 20px;
+    }
 `;
 const appTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
 
@@ -109,6 +118,9 @@ const TopBar = styled.div`
       background-color:white;
 
       @media only screen and (min-width: 600px){
+        padding-right: 0px;
+      }
+      @media only screen and (min-width: 700px){
         padding-right: 50px;
       }
 
@@ -218,13 +230,15 @@ display:${props=>props.show?'block':'none'};
 
 
 
-const Desktop = styled.div`
+const DesktopMenuContainer = styled.div`
   flex-direction:row;
   margin:0;
   padding:0;
   display:none;
+
   @media only screen and (min-width: 600px){
     display:flex;
+
   }
 `;
 
