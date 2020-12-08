@@ -2,8 +2,8 @@ import React from 'react';
 
 
 import TwoButtonsCard from "../../../page-components/two-buttons-card";
-import FeaturesContainer from "../../../page-components/section-containers/feature-container";
-import FeatureRow from "../../../page-components/section-containers/feature-row";
+import FeaturesContainer from "../feature-container";
+import FeatureRow from "../feature-row";
 
 
 
