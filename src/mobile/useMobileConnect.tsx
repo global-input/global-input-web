@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import * as storage from './storage';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
-    ConnectButton, PopupWindow, SettingsButton,
+    SeeInInActionButton, PopupWindow, SettingsButton,
     Form, InputField, Footer, BackButton, SaveButton,
     scanQRCodeLabel
 } from './layout';
@@ -47,7 +47,7 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
     if (mobile.isConnected) {
         return null;
     }
-    return (<ConnectButton onClick={onClick} />);
+    return (<SeeInInActionButton onClick={onClick} />);
 }
 
 

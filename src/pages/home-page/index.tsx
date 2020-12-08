@@ -35,12 +35,13 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
         <HeadBackGround>
           <PosterImage/>
           <TitleSection>
-                <MobileConnect />
+
                 <Title>{headerTextContent.title}</Title>
                 <Subtitle>{headerTextContent.subtitle}</Subtitle>
                 <SmallTitle>{headerTextContent.smallText}</SmallTitle>
                 <ButtonContainer>
                   <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
+                  <MobileConnect />
                 </ButtonContainer>
           </TitleSection>
 
@@ -49,7 +50,6 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
       </HeadBackGround>
       <PageFooter />
     </Container>
-
   )
 };
 

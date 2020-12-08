@@ -16,12 +16,18 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       color: white;
       width: 100%;
-      padding:10px;
+
       margin-top:70px;
-      margin-bottom:50px;
+
+      padding:0;
+      @media only screen and (min-width:650px){
+        align-items: flex-start;
+        margin-bottom:50px;
+        padding:10px;
+      }
       @media only screen and (min-width:1258px){
         margin-bottom:220px;
       }
@@ -39,7 +45,7 @@ export  const Subtitle=styled.div`
     `;
 export const SmallTitle=styled.div`
       font-size: 14px;
-      margin-top:10px;
+      margin-top:25px;
       margin-bottom:10px;
     `;
 
@@ -47,7 +53,9 @@ export const SmallTitle=styled.div`
 export const ButtonContainer=styled.div`
         display: flex;
         flex-direction: row;
-        margin-top: 5px;
+        justify-content:space-between;
+        margin-top: 30px;
+        width: 370px;
 `
 
 export const LinkButton=styled(Link)`
@@ -63,7 +71,7 @@ export const LinkButton=styled(Link)`
     white-space: nowrap;
     padding: 10px;
     min-width: 120px;
-    margin-left: 20px;
+
     display: flex;
     flex-direction: row;
     justify-content: center;

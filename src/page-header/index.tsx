@@ -11,8 +11,8 @@ interface Props {
 export const PageHeader: React.FC<Props> = ({ selected }) => {
   const [menuPressed, setMenuPressed] = useState(false);
 
-  const mobileMenuContainer=useRef(null);
-  useClickedOutside(mobileMenuContainer, ()=>{
+  const menuRef=useRef(null);
+  useClickedOutside(menuRef, ()=>{
     if(menuPressed){
       setMenuPressed(false);
     }
@@ -30,19 +30,19 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
   return (
     <Container>
       <TopBar>
-          <Icon onClick={toggle}>
-                <CloseIcon show={menuPressed}>X</CloseIcon>
-                <OpenIcon show={!menuPressed}/>
-          </Icon>
           <Logo />
-          <AppTitle />
+          <Title>{appTitle}</Title>
         <Desktop>
               {listMenu}
         </Desktop>
+        <Icon onClick={toggle}>
+                <CloseIcon show={menuPressed}>X</CloseIcon>
+                <OpenIcon show={!menuPressed}/>
+          </Icon>
       </TopBar>
-      {menuPressed && (<Mobile ref={mobileMenuContainer}>
+      {menuPressed && (<MobileMenuContainer ref={menuRef}>
               {listMenu}
-      </Mobile>)}
+      </MobileMenuContainer>)}
     </Container>
   );
 };
@@ -53,7 +53,7 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
 
 
 const Title = styled.div`
-    font-size: 20;
+    font-size: 20px;
     color: #5291CD;
     white-space: nowrap;
     font-weight: 300;
@@ -61,9 +61,6 @@ const Title = styled.div`
     font-family: Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif;
 `;
 const appTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
-export const AppTitle: React.FC = () => (
-  <Title>{appTitle}</Title>
-);
 
 
 export const Logo = styled.img.attrs({
@@ -95,7 +92,7 @@ const Container = styled.div`
 `;
 
 const TopBar = styled.div`
-      padding-right: 30px;
+
       position: static;
       padding-top: 10px;
       width: 100%;
@@ -104,12 +101,17 @@ const TopBar = styled.div`
       justify-content: space-between;
       align-items: center;
       padding-top: 5px;
-      padding-right: 50px;
+
       border-bottom-color: #EEEEEE;
       border-bottom-style: solid;
       border-bottom-width: 1px;
       box-shadow: 0 -5px 5px -5px #333;
       background-color:white;
+
+      @media only screen and (min-width: 600px){
+        padding-right: 50px;
+      }
+
 `;
 
 
@@ -226,15 +228,14 @@ const Desktop = styled.div`
   }
 `;
 
-const Mobile = styled.div`
+const MobileMenuContainer = styled.div`
     display: none;
     flex-direction: column;
-    right: 0;
-    top: 24px;
-    justify-content: flex-end;
-    padding-right: 10vw;
+    position:absolute;
     @media only screen and (max-width: 599px){
         display: flex;
         background-color: rgba(0,0,0,0);
+        top:54px;
+        right:0;
     }
 `;

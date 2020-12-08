@@ -95,6 +95,25 @@ const Button = styled.button`
     border-color:#EEEEEE;
     display:flex;
 `;
+const BigButton = styled.button`
+    text-decoration: none;
+    font-size: 11px;
+    border-radius: 8px;
+    color: #4281BD;
+    background-color: white;
+    white-space: nowrap;
+    padding: 5px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-color:#EEEEEE;
+    border-width:0;
+    padding: 10px;
+    min-width: 120px;
+    font-size: 15px;
+
+    display:flex;
+`;
 
 
 
@@ -129,6 +148,11 @@ export const ConnectButton: React.FC<ConnectProps> = ({ onClick, label = 'Connec
     <Button onClick={onClick}>
         <Image src={appIcon} alt="Connect" />{label}
     </Button>
+);
+export const SeeInInActionButton: React.FC<ConnectProps> = ({ onClick, label = 'See It In Action' }) => (
+    <BigButton onClick={onClick}>
+        {label}
+    </BigButton>
 );
 
 export const SettingsButton: React.FC<ConnectProps> = ({ onClick }) => (
