@@ -84,7 +84,7 @@ const Title = styled.div`
 const Button = styled.button`
     text-decoration: none;
     font-size: 11px;
-    border-radius: 4px;
+    border-radius: 8px;
     color: #4281BD;
     background-color: white;
     white-space: nowrap;
