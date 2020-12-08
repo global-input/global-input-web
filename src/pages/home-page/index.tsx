@@ -16,7 +16,7 @@ import { useWindowSize } from '../../app-layout';
 
 import { useMobile } from '../../mobile-ui/home';
 
-import {CardSection} from './cards';
+import {CardSection} from './card-section';
 
 import headerBackground1440 from './images/headerBackground-1440.svg';
 import posterImage552 from './images/right-poster-552-505.png';
