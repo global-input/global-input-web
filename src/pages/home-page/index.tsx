@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {PageHeader} from '../../page-header';
 
@@ -10,14 +11,12 @@ import FeaturesSection from './features-section';
 import {PageFooter} from '../../page-footer';
 import { config } from '../../configs';
 
-import ButtonsContainer from '../../page-components/buttons-container';
-import { pagesLinks } from "../../page-components/links-components";
-import { CardSection } from './card-section';
+
 import { useWindowSize } from '../../app-layout';
 
 import { useMobile } from '../../mobile-ui/home';
 
-
+import {CardSection} from './cards';
 
 import headerBackground1440 from './images/headerBackground-1440.svg';
 import posterImage552 from './images/right-poster-552-505.png';
@@ -34,7 +33,6 @@ interface HomePageProps {
   editConnectionSettings: () => void;
 }
 const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
-  const { GetAppButton } = pagesLinks.buttons;
   const [width] = useWindowSize();
   const MobileConnect = useMobile();
 
@@ -49,26 +47,17 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
                 <Title>{headerTextContent.title}</Title>
                 <Subtitle>{headerTextContent.subtitle}</Subtitle>
                 <SmallTitle>{headerTextContent.smallText}</SmallTitle>
-
-                <ButtonsContainer>
-                  <GetAppButton>Get It Free</GetAppButton>
-                </ButtonsContainer>
+                <ButtonContainer>
+                  <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
+                </ButtonContainer>
           </TitleSection>
 
-
-        <CardSection scWidth={width} />
+        <CardSection/>
         <HowItWorks />
       </HeadBackGround>
       <FeaturesSection scWidth={width} />
       <PageFooter />
     </Container>
-
-
-
-
-
-
-
 
   )
 };
@@ -146,12 +135,8 @@ const PosterImage=styled.div`
       width: 100%;
       padding:10px;
       margin-top:70px;
-      @media only screen and (min-width:650px){
-        margin-bottom:10px;
-      }
-      @media only screen and (min-width:900px){
-        margin-bottom:50px;
-      }
+      margin-bottom:50px;
+
       @media only screen and (min-width:1258px){
         margin-bottom:220px;
       }
@@ -171,4 +156,31 @@ const PosterImage=styled.div`
       font-size: 14px;
       margin-top:10px;
       margin-bottom:10px;
+    `;
+
+
+const ButtonContainer=styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-top: 5px;
+`
+
+const LinkButton=styled(Link)`
+    text-decoration: none;
+    &: hover{
+      text-decoration: none;
+      font-weight: 500;
+    }
+    font-size: 15px;
+    border-radius: 8px;
+    color: #4281BD;
+    background-color: white;
+    white-space: nowrap;
+    padding: 10px;
+    min-width: 120px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     `;
