@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { config } from "../configs";
 import appIcon from './images/app-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
+import closeSymbol from './images/close.png';
 
 interface Props {
   selected?: string | null;
@@ -36,7 +37,7 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
               {listMenu}
         </DesktopMenuContainer>
         <Icon onClick={toggle}>
-                <CloseIcon show={menuPressed}>X</CloseIcon>
+                <CloseIcon show={menuPressed}/>
                 <OpenIcon show={!menuPressed}/>
           </Icon>
       </TopBar>
@@ -206,7 +207,8 @@ const Icon = styled.button`
     text-decoration: none;
     border: none;
     background-color:white;
-    min-width:50px;
+    min-width:60px;
+
     &: focus {
         outline:0;
     }
@@ -215,12 +217,18 @@ const Icon = styled.button`
       display:block;
     }
 `;
-const CloseIcon = styled.div`
-    font-size:24px;
-    display:${props=>props.show?'block':'none'};
+
+const CloseIcon = styled.img.attrs({
+  alt:'Close Menu',
+  src:closeSymbol,
+  width:22,
+  height:20
+})`
+display:${props=>props.show?'block':'none'};
 `;
+
 const OpenIcon = styled.img.attrs({
-    alt:'Menu',
+    alt:'Open Menu',
     src:menuSymbol,
     width:22,
     height:20
