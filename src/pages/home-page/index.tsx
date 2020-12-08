@@ -7,9 +7,6 @@ import {HowItWorks} from "./how-it-works";
 import {PageFooter} from '../../page-footer';
 import { config } from '../../configs';
 
-
-import { useWindowSize } from '../../app-layout';
-
 import { useMobile } from '../../mobile-ui/home';
 
 import {CardSection} from './card-section';
@@ -29,9 +26,8 @@ interface HomePageProps {
   editConnectionSettings: () => void;
 }
 const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
-  const [width] = useWindowSize();
-  const MobileConnect = useMobile();
 
+  const MobileConnect = useMobile();
 
   return (
     <Container>

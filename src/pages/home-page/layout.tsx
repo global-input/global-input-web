@@ -2,17 +2,14 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
-
-
 export const Container = styled.div`
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: "100%",
+  width: 100%;
+  background-color:rgb(66,132,196);
 `;
 
  export   const TitleSection =styled.div`
@@ -25,7 +22,6 @@ export const Container = styled.div`
       padding:10px;
       margin-top:70px;
       margin-bottom:50px;
-
       @media only screen and (min-width:1258px){
         margin-bottom:220px;
       }
