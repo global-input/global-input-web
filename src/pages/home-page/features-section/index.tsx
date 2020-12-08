@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styled from 'styled-components';
 
 import TwoButtonsCard from "../../../page-components/two-buttons-card";
 import FeaturesContainer from "../feature-container";
@@ -49,12 +49,12 @@ const textContent = {
 interface Props {
       scWidth: number
 }
-const FeaturesSection: React.FC<Props> = ({ scWidth }) => (
-      <FeaturesContainer title="Try Our Features">
+export const FeaturesSection: React.FC<Props> = ({ scWidth }) => (
+      <Container>
+                  <Title>Examples</Title>
             <FeatureRow>
                   <TwoButtonsCard data={textContent.mobileEncryption} scWidth={scWidth} />
                   <TwoButtonsCard data={textContent.mobileAuthentication} scWidth={scWidth} />
-
             </FeatureRow>
             <FeatureRow>
                   <TwoButtonsCard data={textContent.secondScreenInput} scWidth={scWidth} />
@@ -66,12 +66,56 @@ const FeaturesSection: React.FC<Props> = ({ scWidth }) => (
 
                   <TwoButtonsCard data={textContent.mobileContentTransfer} scWidth={scWidth} />
             </FeatureRow>
+      </Container>
 
-
-
-
-      </FeaturesContainer>
 
 );
 
-export default FeaturesSection;
+const Container=styled.div`
+      color:#5291CD;
+      width:100%;
+      padding-top:50px;
+`;
+const Title=styled.div`
+display:flex;
+flex-direction:row;
+justify-content: center;
+font-size:40px;
+margin-bottom:80px;
+`;
+
+
+const Feature=styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      color: #5291CD;
+      width: 30%;
+      position: relative;
+      margin-bottom: 120px;
+
+      mobile: {
+            width: "100%",
+            maxWidth: "90%",
+          }
+          desktop: {
+            width: "45%",
+            minHeight: 280,
+          },
+`
+
+    },
+
+    smallScreen: {
+      width: "45%",
+    },
+    screen1080: {
+      width: "40%",
+    },
+    screen1245: { width: "30%" },
+
+
+
+
+  },

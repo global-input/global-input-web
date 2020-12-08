@@ -2,7 +2,8 @@ import React from 'react';
 import {PageHeader} from '../../page-header';
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
-import FeaturesSection from './features-section';
+
+
 import {PageFooter} from '../../page-footer';
 import { config } from '../../configs';
 
@@ -50,7 +51,6 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
         <CardSection/>
         <HowItWorks />
       </HeadBackGround>
-      <FeaturesSection scWidth={width} />
       <PageFooter />
     </Container>
 
