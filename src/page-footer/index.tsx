@@ -1,179 +1,46 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { config } from '../configs';
-import { useWindowSize } from './useWindowSize';
-import styled from 'styled-components';
-
 import footerBackground from './images/footer-background.svg';
 
-
 export const PageFooter = () => {
-    const [width] = useWindowSize();
     return (
         <Container>
             <Content>
-                <PageFooterContent width={width} />
+                    <FooterMobileAuthentication />
+                    <FooterMobileEncryption />
+                    <FooterSecondScreen />
+                    <FooterMobileInputControl/>
+                    <FooterMobilePersonalStorage />
+                    <FooterMobileContentTransfer/>
+                    <FooterDownload />
+                    <FooterPrivacyPolicy />
+                    <FooterContactUs/>
+                    <VerticalCover/>
             </Content>
-
         </Container>
     )
 };
 
+const FooterMobileAuthentication =  () => (<Item1 to={config.paths.mobileAuthentication.path}>Mobile Authentication</Item1>);
+const FooterMobileEncryption =      () => (<Item2 to={config.paths.aboutContentEncryption.path}>Mobile Encryption</Item2>);
+const FooterMobileInputControl =    () => (<Item3 to={config.paths.mobileControl.path}>Mobile Input &amp; Control</Item3>);
 
+const FooterSecondScreen =          () => (<Item4 to={config.paths.secondScreen.path}>Second Screen</Item4>);
+const FooterMobilePersonalStorage = () => (<Item5 to={config.paths.mobilePersonalStorage.path}>Mobile Personal Storage</Item5>);
+const FooterMobileContentTransfer = () => (<Item6 to={config.paths.mobileContentTransfer.path}>Content Transfer</Item6>);
 
-const PageFooterContent = ({ width }) => {
-    if (width > 1204) {
-        return (
-            <>
-                <Row>
-                    <FooterMobileAuthentication />
-                    <FooterMobileEncryption />
-                    <FooterSecondScreen />
-                    <FooterMobileInputControl isLast={true} />
-                </Row>
-                <Row>
-                    <FooterMobilePersonalStorage />
-                    <FooterDownload />
-                    <FooterPrivacyPolicy />
-                    <FooterContactUs isLast={true} />
-                </Row>
-            </>
+const FooterPrivacyPolicy =         () => (<Item7 to={config.paths.privacy.path}>Privacy Policy</Item7>);
 
-        );
-    }
-    else if (width > 900) {
-        return (
-            <>
-                <Row>
-                    <FooterMobileAuthentication />
-                    <FooterMobileEncryption />
-                    <FooterMobileInputControl isLast={true} />
-                </Row>
-                <Row>
-                    <FooterSecondScreen />
-                    <FooterMobilePersonalStorage />
-                    <FooterMobileContentTransfer isLast={true} />
-                </Row>
-                <Row>
-                    <FooterDownload />
-                    <FooterPrivacyPolicy />
-                    <FooterContactUs isLast={true} />
-                </Row>
-            </>
+const FooterDownload =              () => (<Item8 to={config.paths.getAppScreen.path}>Get It Free</Item8>);
 
-        );
-    }
-    else if (width > 600) {
-        return (
-            <>
-                <Row>
-                    <FooterMobileAuthentication />
-                    <FooterMobileEncryption isLast={true} />
-                </Row>
-                <Row>
-                    <FooterMobileInputControl />
-                    <FooterSecondScreen isLast={true} />
-                </Row>
-                <Row>
-                    <FooterMobilePersonalStorage />
-                    <FooterMobileContentTransfer isLast={true} />
-                </Row>
-                <Row>
-                    <FooterPrivacyPolicy />
-                    <FooterContactUs isLast={true} />
-                </Row>
-            </>
-        );
-    }
-    else {
-        return (
-
-            <>
-                <Row>
-                    <FooterMobileAuthentication />
-                    <FooterMobileEncryption isLast={true} />
-                </Row>
-                <Row>
-                    <FooterMobileInputControl />
-                    <FooterSecondScreen isLast={true} />
-                </Row>
-                <Row>
-                    <FooterMobilePersonalStorage />
-                    <FooterMobileContentTransfer isLast={true} />
-                </Row>
-                <Row>
-                    <FooterPrivacyPolicy />
-                    <FooterContactUs isLast={true} />
-                </Row>
-            </>
-
-        );
-    }
-
-};
-
-const FooterMobileAuthentication = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileAuthentication.path}>Mobile Authentication</ItemLink>
-    </Item>
-);
-const FooterMobileEncryption = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.aboutContentEncryption.path}>Mobile Encryption</ItemLink>
-    </Item>
-);
-const FooterMobileInputControl = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileControl.path}>Mobile Input &amp; Control</ItemLink>
-    </Item>
-);
-
-const FooterSecondScreen = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.secondScreen.path}>Second Screen</ItemLink>
-    </Item>
-);
-const FooterMobilePersonalStorage = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobilePersonalStorage.path}>Mobile Personal Storage</ItemLink>
-    </Item>
-);
-const FooterMobileContentTransfer = ({ isLast = false }) => (
-
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.mobileContentTransfer.path}>Content Transfer</ItemLink>
-    </Item>
-);
-
-const FooterPrivacyPolicy = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.privacy.path}>Privacy Policy</ItemLink>
-    </Item>
-);
-
-const FooterDownload = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.getAppScreen.path}>Get It Free</ItemLink>
-    </Item>
-);
-
-const FooterContactUs = ({ isLast = false }) => (
-    <Item isLast={isLast}>
-        <ItemLink to={config.paths.contactUs.path}>Contact Us</ItemLink>
-    </Item>
-
-);
-
-
+const FooterContactUs =             () => (<Item9 to={config.paths.contactUs.path}>Contact Us</Item9>);
 
 const Container = styled.div`
     padding-top: 50px;
     background-image: url(${footerBackground});
     background-repeat: no-repeat;
-    background-size: cover;
-    @media only screen and (max-width: 599px){
-        background-size: auto;
-    }
     width: 100%;
     min-height: 300px;
     color: white;
@@ -181,59 +48,79 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    background-size: auto;
+    @media only screen and (min-width: 600px){
+        background-size: cover;
+    }
 `;
 
 const Content = styled.div`
+      flex-wrap:wrap;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #FFFFFF;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      width: 95%;
-    @media only screen and (min-width: 1440px){
-        width: 1200px;
-    }
-    @media only screen and (min-width: 1245px){
-        width: 1000px;
-    }
-    @media only screen and (max-width: 360px){
-        font-size: 12px
-    }
-    @media only screen and (max-width: 599px){
-        font-size: 14px
-    }
-`;
-
-const Row = styled.div`
-      display: flex;
+      margin-bottom:10px;
+      position:relative;
       flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
+      width: 100%;
+      justify-content:space-between;
+      @media only screen and (min-width: 1245px){
+            width: 1000px;
+      }
+      @media only screen and (min-width: 1440px){
+            width: 1200px;
+      }
+
 `;
+const Item = styled(Link)`
 
-
-
-
-
-
-
-
-
-const Item = styled.div`
-      padding-left: 10px;
-      width: 250px;
-      border-right: ${props => props.isLast ? 'none' : '1px solid white'};
       padding-bottom: 10px;
-      @media only screen and (max-width:599px){
-        width: 190px;
-      }
-      @media only screen and (max-width:360px){
+      padding-left:5px;
+
+      width: 120px;
+      font-size: 8px;
+      color:white;
+      border-left: 1px solid white;
+      @media only screen and (min-width:310px){
         width: 150px;
-        padding-left:5px;
+        font-size: 12px;
+      }
+      @media only screen and (min-width:360px){
+        width: 190px;
+        padding-left: 10px;
+        font-size: 14px;
+      }
+      @media only screen and (min-width:600px){
+        width: 250px;
       }
 `;
-const ItemLink = styled(Link)`
-  color:white;
+
+
+const Item1=styled(Item)`
+`;
+const Item2=styled(Item)`
+`;
+const Item3=styled(Item)`
+`;
+const Item4=styled(Item)`
+`;
+const Item5=styled(Item)`
+`;
+const Item6=styled(Item)`
+  display:none;
+`;
+const Item7=styled(Item)`
+`;
+const Item8=styled(Item)`
+`;
+const Item9=styled(Item)`
+`;
+
+const VerticalCover=styled.div`
+    height:100%;
+    width:1px;
+    background-color:rgb(66,132,196,0.92);
+    position:absolute;
+    top:0;
+    z-index:4;
+    left:0;
 `;
