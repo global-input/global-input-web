@@ -251,6 +251,7 @@ const MobileMenuContainer = styled.div`
     background-color: white;
     top:54px;
     right:0;
+    z-index:1;
 
     @media only screen and (min-width: 350px){
       min-width:300px;
