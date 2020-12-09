@@ -197,7 +197,7 @@ const CardsContent=styled.div`
    width:100%;
 
 
-   @media only screen and (min-width:650px){
+   @media only screen and (min-width:750px){
      flex-wrap: wrap;
      flex-direction:row;
      justify-content: space-between;
@@ -238,18 +238,8 @@ const Card =styled.div`
       margin-top:10px;
       margin-bottom:10px;
       position: relative;
-      width: 100%;
-      @media only screen and (min-width:300px){
-        width: 280px;
-      }
-
-      @media only screen and (min-width:650px){
-        width: 300px;
-      }
-
-      @media only screen and (min-width:800px){
+      width: 95%;
+      @media only screen and (min-width:400px){
         width: 370px;
       }
-
-
 `;
