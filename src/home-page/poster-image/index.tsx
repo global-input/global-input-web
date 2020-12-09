@@ -5,7 +5,7 @@ import posterImage350 from './images/right-poster-350-320.png';
 
 export const PosterImage=styled.div`
       position: absolute;
-      top: 50px;
+      top: 80px;
       right: 50px;
       display:none;
       @media only screen and (min-width:650px){

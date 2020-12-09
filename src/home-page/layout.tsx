@@ -19,18 +19,20 @@ export const Container = styled.div`
       align-items: center;
       color: white;
       width: 100%;
-
       margin-top:70px;
-
       padding:0;
+      padding:10px;
+
       @media only screen and (min-width:650px){
+        justify-content:flex-end;
         align-items: flex-start;
-        margin-bottom:50px;
-        padding:10px;
+        height:300px;
       }
       @media only screen and (min-width:1258px){
-        margin-bottom:220px;
+
+        height:470px;
       }
+
 `;
 
 
@@ -39,14 +41,20 @@ export const Container = styled.div`
 
 export  const Title=styled.div`
         font-size: 40px;
+        text-align:center;
     `;
 export  const Subtitle=styled.div`
-      font-size: 20px;
+      font-size: 16px;
+      text-align:center;
+      @media only screen and (min-width:650px){
+        font-size: 20px;
+      }
     `;
 export const SmallTitle=styled.div`
       font-size: 14px;
       margin-top:25px;
       margin-bottom:10px;
+      text-align:center;
     `;
 
 
@@ -55,7 +63,10 @@ export const ButtonContainer=styled.div`
         flex-direction: row;
         justify-content:space-between;
         margin-top: 30px;
-        width: 370px;
+        width: 340px;
+        @media only screen and (min-width:650px){
+          width: 370px;
+        }
 `
 
 export const LinkButton=styled(Link)`

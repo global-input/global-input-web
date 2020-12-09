@@ -157,41 +157,40 @@ const menus = [{
   linkText: "GET IT FREE"
 }];
 const MenuItem = styled(Link)`
-      float: left;
       display: block;
-      text-align: center;
-      padding: 8px 16px;
+      padding: 0px 16px;
       text-decoration: none;
       font-size: 15px;
       font-weight: ${props => props.selected ? 500 : 300};
       margin-bottom: 0;
       white-space: nowrap;
       &:hover{
-        color: "#66ccff",
-        fontWeight: 300,
-        textDecoration: "underline"
+        color: #66ccff;
+        fontWeight: 300;
       }
-      @media only screen and (min-width: 601px){
+      text-align: left;
+      border-bottom-color: #BBBBBB;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      @media only screen and (min-width: 600px){
+        border-bottom-width: 0;
+        text-align: center;
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
-        margin-bottom: 10px;
         font-size: 12px;
         color: #5291CD;
       }
       @media only screen and (min-width: 800px){
         font-size: 15px;
       }
-      @media only screen and (max-width: 599px){
-        text-align: left;
-        background-color: #FFFFFF;
-        border-bottom-color: #BBBBBB;
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
+      @media only screen and (min-width: 800px){
+        padding: 0px 30px;
       }
+      @media only screen and (min-width: 1444px){
+        padding: 0px 45px;
+      }
+
 `;
-
-
-
 
 export const listMenus = ({ selected }) => menus.map((menu, index) => (
                 <MenuItem to={menu.link}
@@ -243,21 +242,25 @@ const DesktopMenuContainer = styled.div`
   margin:0;
   padding:0;
   display:none;
-
   @media only screen and (min-width: 600px){
     display:flex;
-
   }
+  @media only screen and (min-width: 1024px){
+    margin-right:150px;
+  }
+
 `;
 
 const MobileMenuContainer = styled.div`
     display: none;
     flex-direction: column;
     position:absolute;
+    background-color: white;
+    top:54px;
+    right:0;
+    min-width:300px;
     @media only screen and (max-width: 599px){
         display: flex;
-        background-color: rgba(0,0,0,0);
-        top:54px;
-        right:0;
+
     }
 `;
