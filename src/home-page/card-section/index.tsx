@@ -228,7 +228,7 @@ const Card =styled.div`
       background-color: #FFFFFF;
       color: #5291CD;
 
-      width: 370px;
+
       height: 300px;
 
       border-radius: 5px;
@@ -238,6 +238,11 @@ const Card =styled.div`
       margin-top:10px;
       margin-bottom:10px;
       position: relative;
+      width: 100%;
+      @media only screen and (min-width:300px){
+        width: 280px;
+      }
+
       @media only screen and (min-width:650px){
         width: 300px;
       }
