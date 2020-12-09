@@ -20,16 +20,18 @@ export const Container = styled.div`
       color: white;
       width: 100%;
       margin-top:70px;
-      padding:0;
       padding:10px;
-
       @media only screen and (min-width:650px){
         justify-content:flex-end;
         align-items: flex-start;
         height:300px;
       }
-      @media only screen and (min-width:1258px){
+      @media only screen and (min-width:800px){
+        padding-left:80px;
+      }
 
+
+      @media only screen and (min-width:1258px){
         height:470px;
       }
 
