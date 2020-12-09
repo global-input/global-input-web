@@ -200,7 +200,7 @@ const Icon = styled.button`
     text-decoration: none;
     border: none;
     background-color:white;
-    min-width:60px;
+
     &: focus {
         outline:0;
     }
