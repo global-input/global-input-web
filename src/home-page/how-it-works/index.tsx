@@ -130,36 +130,40 @@ const StepOne = styled(NoDigit)`
     background-position: 20px 85px;
     top:-50px;
     left:10px;
-    @media only screen and (min-width:1024px){
-        background-image: url(${one});
-        background-position: 10px 70px;
-    }
     @media only screen and (min-width:600px){
         top:0;
         left:0;
     }
+    @media only screen and (min-width:1024px){
+        background-image: url(${one});
+        background-position: 10px 70px;
+    }
+
 `;
 const StepTwo = styled(NoDigit)`
     background-image: url(${twoSmall});
     background-position: 15px 38px;
     top:-120px;
-    left:110px;
-    @media only screen and (min-width:1024px){
-        background-image: url(${two});
-        background-position: 15px 15px;
+    left:50px;
+    @media only screen and (min-width:320px){
+        top:-120px;
+        left:110px;
     }
     @media only screen and (min-width:600px){
         top:0;
         left:0;
     }
-
+    @media only screen and (min-width:1024px){
+        background-image: url(${two});
+        background-position: 15px 15px;
+    }
 `;
 const StepThree = styled(NoDigit)`
     background-image: url(${threeSmall});
     background-position: 35px 33px;
     top:-160px;
-    left:150px;
-    @media only screen and (min-width:300px){
+    left:70px;
+    @media only screen and (min-width:320px){
         top:-200px;
         left:190px;
     }

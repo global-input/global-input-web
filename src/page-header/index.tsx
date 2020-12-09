@@ -245,15 +245,20 @@ const DesktopMenuContainer = styled.div`
 `;
 
 const MobileMenuContainer = styled.div`
-    display: none;
+    display: flex;
     flex-direction: column;
     position:absolute;
     background-color: white;
     top:54px;
     right:0;
-    min-width:300px;
-    @media only screen and (max-width: 599px){
-        display: flex;
+
+    @media only screen and (min-width: 350px){
+      min-width:300px;
+
+    }
+
+    @media only screen and (min-width: 600px){
+        display: none;
 
     }
 `;
