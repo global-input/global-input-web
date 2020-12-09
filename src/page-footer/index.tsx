@@ -28,7 +28,7 @@ const FooterMobileEncryption =      () => (<Item2 to={config.paths.aboutContentE
 const FooterMobileInputControl =    () => (<Item3 to={config.paths.mobileControl.path}>Mobile Input &amp; Control</Item3>);
 
 const FooterSecondScreen =          () => (<Item4 to={config.paths.secondScreen.path}>Second Screen</Item4>);
-const FooterMobilePersonalStorage = () => (<Item5 to={config.paths.mobilePersonalStorage.path}>Mobile Personal Storage</Item5>);
+const FooterMobilePersonalStorage = () => (<Item5 to={config.paths.mobilePersonalStorage.path}>Mobile Secure Storage</Item5>);
 const FooterMobileContentTransfer = () => (<Item6 to={config.paths.mobileContentTransfer.path}>Content Transfer</Item6>);
 
 const FooterPrivacyPolicy =         () => (<Item7 to={config.paths.privacy.path}>Privacy Policy</Item7>);
@@ -62,13 +62,25 @@ const Content = styled.div`
       flex-direction: row;
       align-items: center;
       width: 100%;
+
       justify-content:space-between;
-      @media only screen and (min-width: 1245px){
-            width: 1000px;
+      @media only screen and (min-width: 500px){
+            width: 500px;
       }
-      @media only screen and (min-width: 1440px){
-            width: 1200px;
+      @media only screen and (min-width: 600px){
+        width: 500px;
       }
+      @media only screen and (min-width: 650px){
+        width: 600px;
+      }
+      @media only screen and (min-width: 750px){
+        width: 700px;
+      }
+      @media only screen and (min-width: 850px){
+        width: 800px;
+      }
+
+
 
 `;
 const Item = styled(Link)`
@@ -80,14 +92,27 @@ const Item = styled(Link)`
       font-size: 8px;
       color:white;
       border-left: 1px solid white;
+
+
       @media only screen and (min-width:310px){
         width: 150px;
         font-size: 12px;
       }
       @media only screen and (min-width:360px){
-        width: 190px;
+        width: 170px;
         padding-left: 10px;
+        font-size: 11px;
+      }
+      @media only screen and (min-width:400px){
+        width: 190px;
+
         font-size: 14px;
+
+      }
+      @media only screen and (min-width:500px){
+        width: 250px;
+        font-size: 16px;
+
       }
       @media only screen and (min-width:600px){
         width: 250px;
@@ -107,6 +132,9 @@ const Item5=styled(Item)`
 `;
 const Item6=styled(Item)`
   display:none;
+  @media only screen and (min-width:850px){
+    display:flex;
+  }
 `;
 const Item7=styled(Item)`
 `;
@@ -117,10 +145,9 @@ const Item9=styled(Item)`
 
 const VerticalCover=styled.div`
     height:100%;
-    width:1px;
-    background-color:rgb(66,132,196,0.92);
+    width:4px;
+    background-color:#4f8fd4;
     position:absolute;
     top:0;
-    z-index:4;
-    left:0;
+    left:-1px;
 `;
