@@ -149,6 +149,15 @@ const StepTwo = styled(NoDigit)`
         top:-120px;
         left:110px;
     }
+    @media only screen and (min-width:450px){
+        top:-120px;
+        left:150px;
+    }
+    @media only screen and (min-width:500px){
+        top:-120px;
+        left:200px;
+    }
+
     @media only screen and (min-width:600px){
         top:0;
         left:0;
@@ -164,8 +173,16 @@ const StepThree = styled(NoDigit)`
     top:-160px;
     left:70px;
     @media only screen and (min-width:320px){
-        top:-200px;
-        left:190px;
+        top:-180px;
+        left:170px;
+    }
+    @media only screen and (min-width:450px){
+        top:-180px;
+        left:250px;
+    }
+    @media only screen and (min-width:500px){
+        top:-180px;
+        left:350px;
     }
     @media only screen and (min-width:600px){
         top:0;
