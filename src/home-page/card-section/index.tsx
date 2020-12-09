@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { config } from '../../../configs';
+import { config } from '../../configs';
 
 import authenticationImage from './images/authentication.svg'
 import mobileControlImage from './images/control.svg';

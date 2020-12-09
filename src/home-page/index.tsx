@@ -1,16 +1,12 @@
 import React from 'react';
-import {PageHeader} from '../../page-header';
+import { config } from '../configs';
+import {PageFooter} from '../page-footer';
+import {PageHeader} from '../page-header';
+import { useMobile } from '../mobile-ui/home';
+
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
-
-
-import {PageFooter} from '../../page-footer';
-import { config } from '../../configs';
-
-import { useMobile } from '../../mobile-ui/home';
-
 import {CardSection} from './card-section';
-
 import {HeadBackGround} from './header-backgrounds';
 
 import {Container,TitleSection,Title,Subtitle,SmallTitle,ButtonContainer,LinkButton} from './layout';
@@ -25,7 +21,7 @@ const headerTextContent = {
 interface HomePageProps {
   editConnectionSettings: () => void;
 }
-const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
+export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
 
   const MobileConnect = useMobile();
 
@@ -52,5 +48,3 @@ const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
     </Container>
   )
 };
-
-export default HomePage;

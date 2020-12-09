@@ -5,7 +5,7 @@ import {
   Route, Switch, Redirect
 } from 'react-router-dom';
 import { config } from "./configs";
-import HomePage from "./pages/home-page";
+import {HomePage} from "./home-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './pages/privacy-page';
 import ContactUsPage from "./pages/contact-us-page";
