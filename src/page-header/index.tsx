@@ -105,15 +105,12 @@ const TopBar = styled.div`
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-
-
       border-bottom-color: #EEEEEE;
       border-bottom-style: solid;
       border-bottom-width: 1px;
       box-shadow: 0 -5px 5px -5px #333;
       background-color:white;
       padding-top: 5px;
-      border:1px solid red;
       @media only screen and (min-width: 600px){
         padding-right: 10px;
       }
