@@ -158,7 +158,6 @@ const menus = [{
 }];
 const MenuItem = styled(Link)`
       display: block;
-      padding: 0px 16px;
       text-decoration: none;
       font-size: 15px;
       font-weight: ${props => props.selected ? 500 : 300};
@@ -172,7 +171,9 @@ const MenuItem = styled(Link)`
       border-bottom-color: #BBBBBB;
       border-bottom-style: solid;
       border-bottom-width: 1px;
+      padding: 30px 16px;
       @media only screen and (min-width: 600px){
+        padding: 0px 16px;
         border-bottom-width: 0;
         text-align: center;
         border-top-right-radius: 10px;
