@@ -28,9 +28,6 @@ const PopupContent = styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         display: flex;
-        min-width: 350px;
-        min-height: 350px;
-
 `;
 
 
@@ -49,7 +46,7 @@ const TopBar = styled.div`
 const PopupBody = styled.div`
         flex-direction: column;
         justify-content: flex-center;
-        align-items: flex-start;
+        align-items: center;
         margin: 0;
         padding:0;
         display: flex;
@@ -77,9 +74,9 @@ const Image = styled.img`
 const Title = styled.div`
         font-family: Avenir;
         color: #5291CD;
-        font-size: 20px;
         font-weight: 100;
         white-space: nowrap;
+        font-size: 10px;
 `;
 const Button = styled.button`
     text-decoration: none;
@@ -302,8 +299,15 @@ export const InputField = ({ id, onChange, label, value }) => {
 }
 
 const ScanLabel = styled.div`
-font-size: 14px;
-color:#4880ED`;
+color:#4880ED;
+font-size: 9px;
+
+@media only screen and (min-width: 300px){
+    font-size: 14px;
+}
+
+
+`;
 const ScanLabelA = styled.a``;
 
 
