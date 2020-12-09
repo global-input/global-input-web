@@ -45,6 +45,7 @@ export  const Title=styled.div`
 export  const Subtitle=styled.div`
       font-size: 16px;
       text-align:center;
+      margin-top:10px;
       @media only screen and (min-width:650px){
         font-size: 20px;
       }
