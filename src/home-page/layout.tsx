@@ -19,17 +19,20 @@ export const Container = styled.div`
       color: white;
       width: 100%;
       @media only screen and (min-width:650px){
-        justify-content:flex-end;
+        justify-content:flex-start;
         align-items: flex-start;
         height:300px;
+        margin-left:20px;
+        margin-top:100px;
       }
       @media only screen and (min-width:800px){
-        padding-left:80px;
+          margin-left:80px;
       }
 
 
       @media only screen and (min-width:1258px){
-        height:470px;
+        margin-left:80px;
+        margin-top:250px;
       }
 
 `;
