@@ -150,29 +150,38 @@ const menus = [{
   linkText: "GET IT FREE"
 }];
 const MenuItem = styled(Link)`
-      display: block;
+      color: #5291CD;
+      display: flex;
+      flex-direction:row;
+      justify-content:flex-start;
+      align-items:center;
       text-decoration: none;
       font-size: 15px;
       font-weight: ${props => props.selected ? 500 : 300};
       margin-bottom: 0;
       white-space: nowrap;
-      &:hover{
-        color: #66ccff;
+      &: hover{
+        text-decoration: none;
         fontWeight: 300;
       }
-      text-align: left;
-      border-bottom-color: #BBBBBB;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      padding: 30px 16px;
+
+      min-width:    100px;
+      min-height:   60px;
+      padding-left: 10px;
+      border-bottom:1px solid #EEEEEE;
+
       @media only screen and (min-width: 600px){
-        padding: 0px 16px;
-        border-bottom-width: 0;
-        text-align: center;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        justify-content:center;
+        min-height:   20px;
+        height:30px;
+        border-bottom:1px solid #FFFFFF;
+        &: hover{
+          text-decoration: none;
+          fontWeight: 300;
+          border-color:rgb(52,121,186);
+        }
         font-size: 12px;
-        color: #5291CD;
+
       }
       @media only screen and (min-width: 800px){
         font-size: 15px;
@@ -235,6 +244,8 @@ const DesktopMenuContainer = styled.div`
   margin:0;
   padding:0;
   display:none;
+
+
   @media only screen and (min-width: 600px){
     display:flex;
   }
@@ -252,7 +263,7 @@ const MobileMenuContainer = styled.div`
     top:54px;
     right:0;
     z-index:1;
-
+    border:2px solid #EEEEEE;
     @media only screen and (min-width: 350px){
       min-width:300px;
 
