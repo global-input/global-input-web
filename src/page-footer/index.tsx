@@ -70,14 +70,21 @@ const Content = styled.div`
       @media only screen and (min-width: 600px){
         width: 500px;
       }
-      @media only screen and (min-width: 650px){
+      @media only screen and (min-width: 700px){
         width: 600px;
       }
-      @media only screen and (min-width: 750px){
+      @media only screen and (min-width: 800px){
         width: 700px;
       }
-      @media only screen and (min-width: 850px){
+      @media only screen and (min-width: 900px){
         width: 800px;
+      }
+      @media only screen and (min-width: 1000px){
+        width: 900px;
+      }
+
+      @media only screen and (min-width: 1100px){
+        width: 1000px;
       }
 
 
@@ -116,6 +123,11 @@ const Item = styled(Link)`
       }
       @media only screen and (min-width:600px){
         width: 250px;
+      }
+
+
+      @media only screen and (min-width: 1400px){
+        width: 350px;
       }
 `;
 

@@ -88,38 +88,34 @@ export const Logo = styled.img.attrs({
 
 const Container = styled.div`
       display: flex;
-      @media print{
+      @media only print{
         display:none;
       }
       flex-direction: column;
       width: 100%;
       justify-content: flex-start;
       align-items: flex-start;
-      position: fixed;
-      z-index: 100;
-      top: 0;
-      left: 0;
 `;
 
 const TopBar = styled.div`
 
-      position: static;
       padding-top: 10px;
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding-top: 5px;
+
 
       border-bottom-color: #EEEEEE;
       border-bottom-style: solid;
       border-bottom-width: 1px;
       box-shadow: 0 -5px 5px -5px #333;
       background-color:white;
-
+      padding-top: 5px;
+      border:1px solid red;
       @media only screen and (min-width: 600px){
-        padding-right: 0px;
+        padding-right: 10px;
       }
       @media only screen and (min-width: 700px){
         padding-right: 50px;
@@ -208,7 +204,6 @@ const Icon = styled.button`
     border: none;
     background-color:white;
     min-width:60px;
-
     &: focus {
         outline:0;
     }

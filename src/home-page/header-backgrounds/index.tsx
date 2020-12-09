@@ -6,11 +6,13 @@ export const HeadBackGround=styled.div`
     background-color: rgb(114,164,210);
     background-repeat: no-repeat;
     background-size: auto;
+
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+
     @media only screen and (min-width: 700px){
       background-size: cover;
     }

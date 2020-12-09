@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -19,8 +18,6 @@ export const Container = styled.div`
       align-items: center;
       color: white;
       width: 100%;
-      margin-top:70px;
-      padding:10px;
       @media only screen and (min-width:650px){
         justify-content:flex-end;
         align-items: flex-start;
@@ -65,7 +62,11 @@ export const ButtonContainer=styled.div`
         flex-direction: row;
         justify-content:space-between;
         margin-top: 30px;
-        width: 340px;
+        width: 260px;
+
+        @media only screen and (min-width:500px){
+          width: 340px;
+        }
         @media only screen and (min-width:650px){
           width: 370px;
         }

@@ -100,7 +100,7 @@ const Row = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    width:350px;
+    width:100%;
     @media only screen and (min-width:600px){
         flex-direction: row;
         justify-content: space-between;
@@ -157,16 +157,21 @@ const StepTwo = styled(NoDigit)`
 const StepThree = styled(NoDigit)`
     background-image: url(${threeSmall});
     background-position: 35px 33px;
-    top:-200px;
-    left:190px;
-    @media only screen and (min-width:1024px){
-        background-image: url(${three});
-        background-position: 10px 10px;
+    top:-160px;
+    left:150px;
+    @media only screen and (min-width:300px){
+        top:-200px;
+        left:190px;
     }
     @media only screen and (min-width:600px){
         top:0;
         left:0;
     }
+    @media only screen and (min-width:1024px){
+        background-image: url(${three});
+        background-position: 10px 10px;
+    }
+
 `;
 
 
