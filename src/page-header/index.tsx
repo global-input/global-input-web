@@ -258,17 +258,11 @@ const DesktopMenuContainer = styled.div`
 const MobileMenuContainer = styled.div`
     display: flex;
     flex-direction: column;
-    position:absolute;
     background-color: white;
     top:54px;
     right:0;
-    z-index:1;
     border:2px solid #EEEEEE;
-    @media only screen and (min-width: 350px){
-      min-width:300px;
-
-    }
-
+    width:100%;
     @media only screen and (min-width: 600px){
         display: none;
 
