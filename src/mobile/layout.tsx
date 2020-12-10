@@ -94,7 +94,6 @@ const Button = styled.button`
 `;
 const BigButton = styled.button`
     text-decoration: none;
-    font-size: 11px;
     border-radius: 8px;
     color: #4281BD;
     background-color: white;
@@ -106,9 +105,8 @@ const BigButton = styled.button`
     border-color:#EEEEEE;
     border-width:0;
     padding: 10px;
-    min-width: 120px;
+    max-width: 200px;
     font-size: 15px;
-
     display:flex;
 `;
 
