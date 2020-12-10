@@ -152,45 +152,39 @@ const menus = [{
 const MenuItem = styled(Link)`
       color: #5291CD;
       display: flex;
-      flex-direction:row;
-      justify-content:flex-start;
-      align-items:center;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
       text-decoration: none;
-      font-size: 15px;
-      font-weight: ${props => props.selected ? 500 : 300};
-      margin-bottom: 0;
       white-space: nowrap;
+      padding-left: 10px;
+      border-bottom:1px solid #EEEEEE;
+      font-size: 15px;
+      height:   60px;
+      width: 100%;
+      font-weight: ${props => props.selected ? 500 : 300};
       &: hover{
         text-decoration: none;
         fontWeight: 300;
+        border-color: rgb(52,121,186);
       }
-
-      min-width:    100px;
-      min-height:   60px;
-      padding-left: 10px;
-      border-bottom:1px solid #EEEEEE;
-
       @media only screen and (min-width: 600px){
         justify-content:center;
-        min-height:   20px;
-        height:30px;
+        height: 30px;
+        width: 110px;
         border-bottom:1px solid #FFFFFF;
-        &: hover{
-          text-decoration: none;
-          fontWeight: 300;
-          border-color:rgb(52,121,186);
-        }
         font-size: 12px;
-
       }
       @media only screen and (min-width: 800px){
         font-size: 15px;
+        width: 130px;
       }
-      @media only screen and (min-width: 800px){
-        padding: 0px 30px;
+      @media only screen and (min-width: 1024px){
+        width: 150px;
       }
+
       @media only screen and (min-width: 1444px){
-        padding: 0px 45px;
+        width: 230px;
       }
 
 `;

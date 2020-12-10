@@ -47,7 +47,7 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
     if (mobile.isConnected) {
         return null;
     }
-    return (<SeeInInActionButton onClick={onClick} />);
+    return (<SeeInInActionButton onClick={onClick} label={label}/>);
 }
 
 

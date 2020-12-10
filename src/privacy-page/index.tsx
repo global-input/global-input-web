@@ -1,25 +1,20 @@
 import React from 'react';
+import { config } from '../configs';
+import { useMobile } from '../mobile-ui/privacy';
+import {PageHeader} from '../page-header';
+import {PageFooter} from '../page-footer';
+import { usePageTitle } from '../page-metadata';
 
-import { Title, P, PageContainer, Page } from "../../page-components/themes/blue-background";
-import { useWindowSize } from '../../app-layout';
-
-import { useMobile } from '../../mobile-ui/privacy';
-import { config } from '../../configs';
-import { usePageTitle } from '../../page-metadata';
-
-
+import {Container,Content,Title,P} from './layout';
 const PrivacyPage: React.FC = () => {
-  const [width] = useWindowSize();
   const MobileConnect = useMobile();
   usePageTitle('Global Input App -  Privacy Policy');
 
-
   return (
-    <Page selected={config.paths.privacy.path} scWidth={width}>
-
-      <PageContainer>
-        <Title>Privacy Policy</Title>
-
+    <Container>
+      <PageHeader selected={config.paths.privacy.path}/>
+      <Title>Privacy Policy</Title>
+      <Content>
         <P>
           We do not track your activities and we do not store your data.  We do not even have a server database or cloud storage to store your data.
           </P>
@@ -37,12 +32,14 @@ const PrivacyPage: React.FC = () => {
 </P>
 
 
-        <MobileConnect />
-      </PageContainer>
+        <MobileConnect label="See How It Works"/>
+      </Content>
+      <PageFooter/>
+    </Container>
 
 
 
-    </Page>
+
   )
 };
 
