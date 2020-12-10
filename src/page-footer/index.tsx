@@ -94,11 +94,18 @@ const Item = styled(Link)`
 
       padding-bottom: 10px;
       padding-left:5px;
-
       width: 120px;
       font-size: 8px;
       color:white;
       border-left: 1px solid white;
+
+      &: hover{
+          text-decoration: none;
+          fontWeight: 300;
+          border-bottom: 1px solid white;
+
+          color:white;
+      }
 
 
       @media only screen and (min-width:310px){
