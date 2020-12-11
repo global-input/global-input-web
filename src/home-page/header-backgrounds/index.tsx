@@ -12,6 +12,7 @@ export const HeadBackGround=styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    flex:1;
 
     @media only screen and (min-width: 700px){
       background-size: cover;
