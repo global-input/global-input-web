@@ -49,7 +49,7 @@ export const Content=styled.div`
       padding-right:120px;
     }
 
-`
+`;
 
  export   const TitleSection =styled.div`
       display: flex;
