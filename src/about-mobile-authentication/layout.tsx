@@ -1,10 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PageHeader } from '../../../page-header';
-import {PageFooter} from '../../../page-footer';
+
+import { PageHeader } from '../page-header';
+import {PageFooter} from '../page-footer';
 
 
-const PageContainer = styled.div`
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height:100vh;
+  background-color: rgba(169, 200, 230, 0.3);
+
+`;
+
+
+export const PageContainer = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -17,7 +31,7 @@ const PageContainer = styled.div`
         position: relative;
 `;
 
-const PageContent = styled.div`
+export const PageContent = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -29,17 +43,17 @@ const PageContent = styled.div`
 
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
     font-size:28px;
 `;
 
-const TitleRow = styled.div`
+export const TitleRow = styled.div`
     display:flex;
     width:100%;
     justify-content:center;
 `;
 
-const Row = styled.div`
+export const Row = styled.div`
 
 flex-direction: row;
 display:flex;
@@ -52,7 +66,7 @@ align-items:start;
 
 
 
-const Column = styled.div`
+export const Column = styled.div`
  flex: 1;
 `;
 

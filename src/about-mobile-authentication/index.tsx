@@ -1,11 +1,14 @@
 import React from 'react';
-import { Page, Items, Item } from './layout';
-import { config } from '../../configs';
+import { Container,Page, Items, Item,
+  PageContainer,PageContent,Row, Column,TitleRow,Title } from './layout';
+import { config } from '../configs';
+import { PageHeader } from '../page-header';
+import {PageFooter} from '../page-footer';
 
 
 
-import { useMobile } from '../../mobile-ui/aboutAuthentication';
-import { usePageTitle } from '../../page-metadata';
+import { useMobile } from '../mobile-ui/aboutAuthentication';
+import { usePageTitle } from '../page-metadata';
 
 
 
@@ -32,10 +35,18 @@ export const AboutMobileAuthentication: React.FC = () => {
   const MobileConnect = useMobile();
 
   return (
-    <Page selected={config.paths.mobileAuthentication.path} title={title}
-      image={oneClickSignInImage}>
-
-      <Items>
+    <Container>
+        <PageHeader selected={config.paths.mobileAuthentication.path} />
+        <PageContent>
+            <Row>
+                <Column>
+                    <img src={oneClickSignInImage.src} alt={oneClickSignInImage.alt} width={oneClickSignInImage.width} height={oneClickSignInImage.height} />
+                </Column>
+                <Column collapse='xs'>
+                    <TitleRow>
+                        <Title>{title}</Title>
+                    </TitleRow>
+                    <Items>
         <Item image={tickImage}>Enhancing the security of the existing password-based authentications — No Architectural changes required </Item>
         <Item image={tickImage}>Randomising passwords or using key-based authentications.</Item>
         <Item image={tickImage}>Securing data transfer between mobile and applications with the end-to-end encryption.</Item>
@@ -45,7 +56,15 @@ export const AboutMobileAuthentication: React.FC = () => {
         <Item image={tickImage}>Secure mobile operation on devices</Item>
       </Items>
       <MobileConnect />
+                </Column>
+            </Row>
+        </PageContent>
+        <PageFooter />
+    </Container>
 
-    </Page >
+
+
+
+
   )
 };
