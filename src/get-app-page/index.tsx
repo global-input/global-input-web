@@ -1,67 +1,69 @@
 import React from 'react';
 
+import {PageHeader} from '../page-header';
+import {PageFooter} from '../page-footer';
 
-import { Page } from "../page-components/themes/blue-background";
-
-import { withScrollToTop } from "../app-layout/screen-media";
-
-import IconCard, { CardContainer } from "./icon-card";
 
 
 import { useMobile } from '../mobile-ui/getApp';
 import { config } from '../configs';
 import { usePageTitle } from '../page-metadata';
-import { useWindowSize } from '../app-layout';
-import {
-  ChromeExtensionButton, FirefoxExtensionButton, AppStoreButton, PlayStoreButton,
-  JSModuleButton, ReactModuleButton
-} from '../page-components/external-links';
-import appIcon from './images/app-icon.png';
-import extensionIcon from './images/extension.png';
-import moduleIcon from './images/module.png';
+import {Container,Content,Card,AppIcon,CardTitle,CardContent,CardFooter,
+  ExtensionIcon,AppStoreButton,PlayStoreButton, WebStoreButton,FirefoxButton,
+  ModuleIcon,JSModuleButton,ReactModuleButton} from './layout';
+;
 
-const GetAppPage: React.FC = () => {
-  const [width] = useWindowSize();
-  const MobileConnect = useMobile();
+export const GetAppPage: React.FC = () => {
+
+  useMobile();
   usePageTitle('Global Input App -  Get It Free');
+
   return (
-    <Page selected={config.paths.getAppScreen.path} scWidth={width}>
+    <Container>
+      <PageHeader selected={config.paths.getAppScreen.path}/>
+      <Content>
 
-      <CardContainer>
-        <IconCard titleIcon={appIcon}
-          title="Global Input App"
-          footerContent={(<>
-            <AppStoreButton />
-            <PlayStoreButton />
-          </>)} scWidth={width}>
-          Free and open-source mobile app for operating on multi-device environments.
-      </IconCard>
+      <Card>
+          <AppIcon/>
+          <CardTitle>Global Input App</CardTitle>
+          <CardContent>
+              Free and open-source mobile app for operating on multi-device environments.
+          </CardContent>
+          <CardFooter>
+                <AppStoreButton/>
+                <PlayStoreButton/>
+            </CardFooter>
+        </Card>
+        <Card>
+          <ExtensionIcon/>
+          <CardTitle>Browser Extensions</CardTitle>
+          <CardContent>
+          Browser extensions for using mobiles to operate on the websites loaded on computers.
+          </CardContent>
+          <CardFooter>
+                <WebStoreButton/>
+                <FirefoxButton/>
+            </CardFooter>
+        </Card>
 
-        <IconCard titleIcon={extensionIcon}
-          title="Browser Extensions"
-          footerContent={(<>
-            <ChromeExtensionButton />
-            <FirefoxExtensionButton />
-          </>)} scWidth={width}>
-          Browser extensions for using mobiles to operate on the
-          websites loaded on computers.
-
-        </IconCard>
-      </CardContainer>
-      <CardContainer>
-        <IconCard titleIcon={moduleIcon}
-          title="NPM Modules"
-          footerContent={(<>
-            <JSModuleButton />
-            <ReactModuleButton />
-          </>)} scWidth={width}>
+        <Card>
+          <ModuleIcon/>
+          <CardTitle>NPM Modules</CardTitle>
+          <CardContent>
           Modules for enabling applications to have mobile app interoperability.
-        </IconCard>
+          </CardContent>
+          <CardFooter>
+                <JSModuleButton/>
+                <ReactModuleButton/>
+            </CardFooter>
+        </Card>
 
-      </CardContainer>
-      <MobileConnect />
-    </Page>
+      </Content>
+
+        <PageFooter/>
+    </Container>
 
   )
+
+
 };
-export default withScrollToTop(GetAppPage, 'topContent');

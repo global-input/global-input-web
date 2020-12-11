@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { config } from "./configs";
 import {HomePage} from "./home-page";
-import GetAppPage from './get-app-page';
+import {GetAppPage} from './get-app-page';
 import PrivacyPage from './privacy-page';
 import ContactUsPage from "./contact-us-page";
 import { AboutMobileAuthentication } from "./pages/about-mobile-authentication";
