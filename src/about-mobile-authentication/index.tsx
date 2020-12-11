@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container,Page, Items, Item,
-  PageContainer,PageContent,Row, Column,TitleRow,Title } from './layout';
+import { Container,Content, Items, Item,
+  Row, Column,TitleRow,Title } from './layout';
 import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
@@ -37,7 +37,7 @@ export const AboutMobileAuthentication: React.FC = () => {
   return (
     <Container>
         <PageHeader selected={config.paths.mobileAuthentication.path} />
-        <PageContent>
+        <Content>
             <Row>
                 <Column>
                     <img src={oneClickSignInImage.src} alt={oneClickSignInImage.alt} width={oneClickSignInImage.width} height={oneClickSignInImage.height} />
@@ -58,7 +58,7 @@ export const AboutMobileAuthentication: React.FC = () => {
       <MobileConnect />
                 </Column>
             </Row>
-        </PageContent>
+        </Content>
         <PageFooter />
     </Container>
 

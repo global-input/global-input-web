@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { PageHeader } from '../page-header';
-import {PageFooter} from '../page-footer';
-
-
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,31 +12,24 @@ export const Container = styled.div`
 
 `;
 
-
-export const PageContainer = styled.div`
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items:center;
-        background-color: rgba(169, 200, 230, 0.3);
-        width: 100%;
-        min-height: ${window.innerHeight}px;
-        color: #5291CD;
-        padding-top: 100px;
-        position: relative;
+export const Content=styled.div`
+    display: flex;
+    flex-direction: column;
+    justifyContent: flex-start;
+    alignItems: center;
+    width:90%;
+    margin:20px;
+    flex:1;
+    @media only screen and (min-width:1000px){
+        width:900px;
+    }
 `;
 
-export const PageContent = styled.div`
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: "center";
-        flex: 1;
-        margin-top: 70px;
-        max-width: 1000px;
 
-`;
+
+
+
+
 
 export const Title = styled.div`
     font-size:28px;
@@ -86,25 +74,6 @@ interface Props {
 }
 
 
-export const Page: React.FC<Props> = ({ selected, title, children, image }) => (
-    <PageContainer id="top">
-        <PageHeader selected={selected} />
-        <PageContent>
-            <Row>
-                <Column>
-                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
-                </Column>
-                <Column collapse='xs'>
-                    <TitleRow>
-                        <Title>{title}</Title>
-                    </TitleRow>
-                    {children}
-                </Column>
-            </Row>
-        </PageContent>
-        <PageFooter />
-    </PageContainer>
-);
 
 
 
