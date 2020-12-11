@@ -7,9 +7,9 @@ import { useMobile } from '../mobile-ui/home';
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
 import {CardSection} from './card-section';
-import {HeadBackGround} from './header-backgrounds';
 
-import {Container,TitleSection,Title,Subtitle,SmallTitle,ButtonContainer,LinkButton} from './layout';
+
+import {Container,Content,TitleSection,Title,Subtitle,SmallTitle,ButtonContainer,LinkButton} from './layout';
 
 
 const headerTextContent = {
@@ -28,7 +28,7 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
   return (
     <Container>
         <PageHeader selected={config.paths.home.path}/>
-        <HeadBackGround>
+        <Content>
           <PosterImage/>
           <TitleSection>
 
@@ -43,7 +43,7 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
 
         <CardSection/>
         <HowItWorks />
-      </HeadBackGround>
+      </Content>
       <PageFooter />
     </Container>
   )

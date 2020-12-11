@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import headerBackground1440 from './images/headerBackground-1440.svg';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -96,3 +96,24 @@ export const LinkButton=styled(Link)`
     justify-content: center;
     align-items: center;
     `;
+
+
+
+    export const Content=styled.div`
+    background-image: url(${headerBackground1440});
+    background-color: rgb(114,164,210);
+    background-repeat: no-repeat;
+    background-size: auto;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex:1;
+
+
+    @media only screen and (min-width: 700px){
+      background-size: cover;
+    }
+`

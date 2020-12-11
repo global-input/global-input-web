@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { styleMatchingScreenSize } from '../../../app-layout/screen-media';
+import { styleMatchingScreenSize } from '../../app-layout/screen-media';
 
-import { withResponsiveComponent } from '../../../app-layout/screen-media';
+import { withResponsiveComponent } from '../../app-layout/screen-media';
 
 interface Props {
      titleIcon?: string;

@@ -1,21 +1,21 @@
 import React from 'react';
 
 
-import { Page } from "../../page-components/themes/blue-background";
+import { Page } from "../page-components/themes/blue-background";
 
-import { withScrollToTop } from "../../app-layout/screen-media";
+import { withScrollToTop } from "../app-layout/screen-media";
 
 import IconCard, { CardContainer } from "./icon-card";
 
 
-import { useMobile } from '../../mobile-ui/getApp';
-import { config } from '../../configs';
-import { usePageTitle } from '../../page-metadata';
-import { useWindowSize } from '../../app-layout';
+import { useMobile } from '../mobile-ui/getApp';
+import { config } from '../configs';
+import { usePageTitle } from '../page-metadata';
+import { useWindowSize } from '../app-layout';
 import {
   ChromeExtensionButton, FirefoxExtensionButton, AppStoreButton, PlayStoreButton,
   JSModuleButton, ReactModuleButton
-} from '../../page-components/external-links';
+} from '../page-components/external-links';
 import appIcon from './images/app-icon.png';
 import extensionIcon from './images/extension.png';
 import moduleIcon from './images/module.png';
