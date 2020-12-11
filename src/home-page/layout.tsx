@@ -9,8 +9,41 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   min-height:100vh;
-  background-color:rgb(66,132,196);
+  background-image: url(${headerBackground1440});
+  background-repeat: no-repeat;
+  background-size: auto;
+  @media only screen and (min-width: 700px){
+      background-size: cover;
+  }
 `;
+
+export const Content=styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex:1;
+    @media only screen and (min-width:650px){
+      padding-top:100px;
+      padding-left:20px;
+      padding-right:20px;
+    }
+    @media only screen and (min-width:800px){
+      padding-left:80px;
+      padding-right:80px;
+    }
+    @media only screen and (min-width:1258px){
+      padding-top:250px;
+      padding-left:80px;
+      padding-right:80px;
+    }
+    @media only screen and (min-width:1700px){
+      padding-left:120px;
+      padding-right:120px;
+    }
+
+`
 
  export   const TitleSection =styled.div`
       display: flex;
@@ -18,23 +51,12 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       color: white;
-      width: 100%;
       @media only screen and (min-width:650px){
         justify-content:flex-start;
         align-items: flex-start;
-        height:300px;
-        margin-left:20px;
-        margin-top:100px;
-      }
-      @media only screen and (min-width:800px){
-          margin-left:80px;
       }
 
 
-      @media only screen and (min-width:1258px){
-        margin-left:80px;
-        margin-top:250px;
-      }
 
 `;
 
@@ -96,24 +118,3 @@ export const LinkButton=styled(Link)`
     justify-content: center;
     align-items: center;
     `;
-
-
-
-    export const Content=styled.div`
-    background-image: url(${headerBackground1440});
-    background-color: rgb(114,164,210);
-    background-repeat: no-repeat;
-    background-size: auto;
-
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex:1;
-
-
-    @media only screen and (min-width: 700px){
-      background-size: cover;
-    }
-`
