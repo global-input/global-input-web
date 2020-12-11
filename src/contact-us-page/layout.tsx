@@ -1,21 +1,32 @@
 import backgroundImage from './images/background.svg';
 import styled from 'styled-components';
 
+
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height:100vh;
+  color:white;
+  background-color: rgb(97,136,204);
+  @media only screen and (min-width:880px){
+    background-color: white;
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
     background-size: cover;
-    color:white;
-    @media only screen and (min-width:1500px){
-        background-size: 150%;
-    }
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  @media only screen and (min-width:1900px){
+    background-size: 150%;
+  }
+
 `;
+
 export const Content=styled.div`
     display: flex;
     flex-direction: column;
