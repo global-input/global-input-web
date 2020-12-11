@@ -89,6 +89,8 @@ const Content = styled.div`
 
 
 
+
+
 `;
 const Item = styled(Link)`
 
@@ -132,10 +134,21 @@ const Item = styled(Link)`
         width: 250px;
       }
 
-
-      @media only screen and (min-width: 1400px){
-        width: 350px;
+      @media only screen and (min-width:700px){
+        width: 300px;
       }
+      @media only screen and (min-width:800px){
+        width: 200px;
+      }
+      @media only screen and (min-width:900px){
+        width: 250px;
+      }
+      @media only screen and (min-width:1000px){
+        width: 300px;
+      }
+
+
+
 `;
 
 
@@ -151,7 +164,10 @@ const Item5=styled(Item)`
 `;
 const Item6=styled(Item)`
   display:none;
-  @media only screen and (min-width:850px){
+  @media only screen and (min-width:800px){
+    display:flex;
+  }
+  @media only screen and (min-width: 1400px){
     display:flex;
   }
 `;

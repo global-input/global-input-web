@@ -12,6 +12,10 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   color:white;
+  min-height:100vh;
+  @media only screen and (min-width:1900px){
+    background-size: 150%;
+  }
 `;
 
 export const Content=styled.div`
@@ -21,6 +25,7 @@ export const Content=styled.div`
     alignItems: center;
     width:90%;
     margin:20px;
+    flex:1;
     @media only screen and (min-width:1000px){
         width:900px;
     }

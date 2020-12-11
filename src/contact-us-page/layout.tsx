@@ -7,12 +7,15 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height:100vh;
+    min-height:100vh;
     background-color:rgb(66,132,196);
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
     background-size: cover;
     color:white;
+    @media only screen and (min-width:1500px){
+        background-size: 150%;
+    }
 `;
 export const Content=styled.div`
     display: flex;
