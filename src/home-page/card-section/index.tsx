@@ -45,9 +45,12 @@ export const CardSection=()=>(
                 <AuthenticationCard/>
                 <MobileControlCard/>
                 <SecondScreenCard />
+
                 <MobileEncryptionCard />
+
                 <PersonalStorageCard/>
                 <ContentTransferCard/>
+
 
         </CardsContent>
 

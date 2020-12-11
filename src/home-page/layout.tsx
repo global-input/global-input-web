@@ -9,12 +9,18 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   min-height:100vh;
-  background-image: url(${headerBackground1440});
-  background-repeat: no-repeat;
-  background-size: auto;
-  @media only screen and (min-width: 700px){
-      background-size: cover;
+  background-color: rgb(114,164,210);
+  @media only screen and (min-width:880px){
+    background-color: white;
+    background-image: url(${headerBackground1440});
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
+
 `;
 
 export const Content=styled.div`

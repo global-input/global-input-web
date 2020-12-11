@@ -42,7 +42,9 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
           </TitleSection>
 
         <CardSection/>
+
         <HowItWorks />
+
       </Content>
       <PageFooter />
     </Container>

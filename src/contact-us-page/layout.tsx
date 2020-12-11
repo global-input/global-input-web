@@ -8,7 +8,6 @@ export const Container = styled.div`
     align-items: center;
     width: 100%;
     min-height:100vh;
-    background-color:rgb(66,132,196);
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
     background-size: cover;
