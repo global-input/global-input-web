@@ -21,6 +21,9 @@ export const Content=styled.div`
     alignItems: center;
     width:90%;
     margin:20px;
+    @media only screen and (min-width:1000px){
+        width:900px;
+    }
 `;
 
 

@@ -8,7 +8,7 @@ import { config } from "./configs";
 import {HomePage} from "./home-page";
 import GetAppPage from './pages/get-app-page';
 import PrivacyPage from './privacy-page';
-import ContactUsPage from "./pages/contact-us-page";
+import ContactUsPage from "./contact-us-page";
 import { AboutMobileAuthentication } from "./pages/about-mobile-authentication";
 import AboutMobileInputControl from './pages/about-mobile-input-control';
 import AboutSecondScreen from './pages/about-second-screen';
