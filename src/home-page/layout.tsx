@@ -57,9 +57,16 @@ export const Content=styled.div`
       justify-content: center;
       align-items: center;
       color: white;
+
+      padding:10px;
       @media only screen and (min-width:650px){
         justify-content:flex-start;
         align-items: flex-start;
+        margin-left:20px;
+      }
+      @media only screen and (min-width:1200px){
+
+        margin-left:50px;
       }
 
 
@@ -95,8 +102,9 @@ export const ButtonContainer=styled.div`
         flex-direction: row;
         justify-content:space-between;
         margin-top: 30px;
-        width: 260px;
-
+        @media only screen and (min-width:300px){
+          width: 260px;
+        }
         @media only screen and (min-width:500px){
           width: 340px;
         }
@@ -117,8 +125,7 @@ export const LinkButton=styled(Link)`
     background-color: white;
     white-space: nowrap;
     padding: 10px;
-    min-width: 120px;
-
+    margin-right:5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
