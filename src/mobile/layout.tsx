@@ -15,6 +15,7 @@ const PopupContainer = styled.div`
         top: 90px;
         left: 0;
         z-index:10;
+
 `;
 
 const PopupContent = styled.div`
@@ -28,6 +29,8 @@ const PopupContent = styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         display: flex;
+        width:90vw;
+        max-width:400px;
 `;
 
 
@@ -219,6 +222,8 @@ const Field = styled.div`
     margin: 20px auto;
     width:100%;
 
+
+
 `;
 const Input = styled.input`
     display: block;
@@ -227,8 +232,8 @@ const Input = styled.input`
     padding-left: 10px;
     width: 100%;
     font-size: medium;
-    border: 1px solid #f4f4f4;
-    background-color: #f4f4f4;
+    border: 2px solid rgb(230,230,230);
+    background-color: rgb(249,249,249);
     border-radius: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

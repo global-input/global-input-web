@@ -108,12 +108,12 @@ const PopupParingCode = ({ back, close }) => {
     mobilePairing.setOnchange({ mobile, back });
 
     return (<PopupWindow close={close} title='Scan To Pair'>
-        <Form>
+
             <mobile.PairingQR label="" />
             <Footer>
                 <BackButton onClick={back} />
             </Footer>
-        </Form>
+
     </PopupWindow >);
 };
 
