@@ -11,7 +11,7 @@ export const Container = styled.div`
   min-height:100vh;
   color:white;
   background-color: rgb(97,136,204);
-  @media only screen and (min-width:880px){
+  @media and (min-width:600px) and (max-width:800){
     background-color: white;
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
@@ -21,9 +21,8 @@ export const Container = styled.div`
     -o-background-size: cover;
     background-size: cover;
   }
-  @media only screen and (min-width:1900px){
-    background-size: 150%;
-  }
+
+
 
 `;
 

@@ -14,7 +14,7 @@ const PopupContainer = styled.div`
         position: fixed;
         top: 90px;
         left: 0;
-        z-index:200;
+        z-index:10;
 `;
 
 const PopupContent = styled.div`
@@ -33,15 +33,15 @@ const PopupContent = styled.div`
 
 const TopBar = styled.div`
         display: flex;
-        margin:0;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         flex-direction: row;
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        padding:5px;
+        padding:0px;
         background: #f1f1f1;
+
 `;
 const PopupBody = styled.div`
         flex-direction: column;

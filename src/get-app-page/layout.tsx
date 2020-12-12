@@ -19,14 +19,20 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background-image: url(${backgroundImage});
-  background-repeat: no-repeat;
-  background-size: cover;
   color:white;
+  background-color: rgb(97,136,204);
   min-height:100vh;
-  @media only screen and (min-width:1900px){
-    background-size: 150%;
+  @media (min-width: 600px) and (max-width: 1600px){
+    background-color: white;
+    background-image: url(${backgroundImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
+
 `;
 
 export const Content=styled.div`
@@ -37,6 +43,7 @@ export const Content=styled.div`
     width:90%;
     margin-top:50px;
     flex:1;
+
 
     @media only screen and (min-width:1000px){
         flex-direction: row;
