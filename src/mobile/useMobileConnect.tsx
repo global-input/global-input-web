@@ -99,11 +99,10 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
     return (<PopupWindow onClose={close}>
         <TopBar>
                 <SettingsButton onClick={editSettings} />
-                <ScanLabel>Scan with <GlobalInputApp/></ScanLabel>
                 <CloseButton onClick={close}/>
         </TopBar>
         <PopupContent>
-                <ConnectQR label="" />
+                <ConnectQR/>
         </PopupContent>
     </PopupWindow >);
 };
