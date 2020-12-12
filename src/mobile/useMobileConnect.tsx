@@ -2,9 +2,9 @@ import React, { useState, useCallback } from 'react';
 import * as storage from './storage';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
-    SeeInInActionButton, PopupWindow, SettingsButton,
-    Form, InputField, Footer, BackButton, SaveButton,
-    scanQRCodeLabel
+    PopupWindow, SettingsButton,
+    Form, InputField, Footer, Button,BigButton,
+    TopBar,ScanLabel,GlobalInputApp,CloseButton,PopupContent,Title
 } from './layout';
 
 
@@ -47,7 +47,7 @@ const DisplayConnectButton: React.FC<DisplayConnectButtonProps> = ({ initData, o
     if (mobile.isConnected) {
         return null;
     }
-    return (<SeeInInActionButton onClick={onClick} label={label}/>);
+    return (<BigButton onClick={onClick}>{label}</BigButton>);
 }
 
 
@@ -96,9 +96,15 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
         return null;
     }
     const { ConnectQR } = mobile;
-    const left = (<SettingsButton onClick={editSettings} />);
-    return (<PopupWindow left={left} close={close} title={scanQRCodeLabel}>
-        <ConnectQR label="" />
+    return (<PopupWindow onClose={close}>
+        <TopBar>
+                <SettingsButton onClick={editSettings} />
+                <ScanLabel>Scan with <GlobalInputApp/></ScanLabel>
+                <CloseButton onClick={close}/>
+        </TopBar>
+        <PopupContent>
+                <ConnectQR label="" />
+        </PopupContent>
     </PopupWindow >);
 };
 
@@ -106,15 +112,22 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
 const PopupParingCode = ({ back, close }) => {
     const mobile = useMobile(mobilePairing.initData, true);
     mobilePairing.setOnchange({ mobile, back });
+    return (<PopupWindow onClose={close}>
+        <TopBar>
 
-    return (<PopupWindow close={close} title='Scan To Pair'>
-
+            <Title>Scan To Pair</Title>
+            <CloseButton onClick={close}/>
+    </TopBar>
+    <PopupContent>
             <mobile.PairingQR label="" />
-            <Footer>
-                <BackButton onClick={back} />
-            </Footer>
+    </PopupContent>
+    <Footer>
+        <Button onClick={back}>Back</Button>
+    </Footer>
+</PopupWindow >);
 
-    </PopupWindow >);
+
+
 };
 
 
@@ -138,7 +151,12 @@ const PopupSettingsEditor = ({ back, close, pairing }) => {
     const codeKey = setting.codeKey ? setting.codeKey : '';
 
     return (
-        <PopupWindow close={close} title='Settings'>
+        <PopupWindow onClose={close}>
+             <TopBar>
+                    <Title>Settings</Title>
+                    <CloseButton onClick={close}/>
+            </TopBar>
+            <PopupContent>
             <Form>
                 <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
                     setSettings(setting => ({ ...setting, url: value }));
@@ -157,10 +175,14 @@ const PopupSettingsEditor = ({ back, close, pairing }) => {
                     mobile.sendValue(mobileSettings.FIELDS.codeKey.id, value);
                 }} />
                 <Footer>
-                    <BackButton onClick={back} />
-                    <SaveButton onClick={onSave} />
-                </Footer>
+                    <Button onClick={back}>Back</Button>
+                    <Button onClick={onSave}>Save</Button>
+            </Footer>
             </Form>
+
+            </PopupContent>
+
+
         </PopupWindow >
     )
 };

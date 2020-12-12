@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import {
-    ConnectButton, PopupWindow, SettingsButton, Form, InputField,
-    Footer, BackButton, SaveButton, scanQRCodeLabel
+    PopupWindow, SettingsButton,
+    Form, InputField, Footer,Button,
+    TopBar,ScanLabel,GlobalInputApp,CloseButton,PopupContent,Title
 } from './layout';
 
 import { useMobile, InitData, ConnectQRProps } from './useMobile';
@@ -35,28 +36,28 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
 
 
 
-    const ConnectToMobile = useCallback(({ label }) => {
+    const ConnectToMobile = useCallback(({ label='Connect' }) => {
         if (!connect) {
             if (isConnected) {
                 return null;
             }
-            return (<ConnectButton onClick={enableConnect} label={label} />)
+            return (<Button onClick={enableConnect}>{label}</Button>)
         }
         switch (page) {
             case PAGES.CONNECT_QR:
                 if (isConnected) {
                     return null;
                 }
-                return (<PopupConnectQRCode close={disableConnect} editSettings={editSettings} ConnectQR={ConnectQR} modal={modal} />);
+                return (<PopupConnectQRCode close={disableConnect} editSettings={editSettings} ConnectQR={ConnectQR}/>);
             case PAGES.SETTINGS:
-                return (<PopupSettingsEditor close={disableConnect} back={connectQR} pairing={pairing} onSettingChanged={onSettingChanged} modal={modal} />);
+                return (<PopupSettingsEditor close={disableConnect} back={connectQR} pairing={pairing} onSettingChanged={onSettingChanged} />);
             case PAGES.PAIRING:
-                return (<PopupParingCode close={disableConnect} back={connectQR} PairingQR={PairingQR} modal={modal} />);
+                return (<PopupParingCode close={disableConnect} back={connectQR} PairingQR={PairingQR}/>);
             default:
                 return null;
         }
 
-    }, [connect, isConnected, disableConnect, editSettings, enableConnect, ConnectQR, PairingQR, connectQR, pairing, page]);
+    }, [connect, onSettingChanged,isConnected, disableConnect, editSettings, enableConnect, ConnectQR, PairingQR, connectQR, pairing, page]);
 
     return { mobile, ConnectToMobile };
 };
@@ -66,16 +67,23 @@ interface PopupConnectQRCodeProps {
     close: () => void;
     editSettings: () => void;
     ConnectQR: React.FC<ConnectQRProps>;
-    modal?: boolean;
 }
-const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSettings, ConnectQR, modal }) => {
-    const left = (<SettingsButton onClick={editSettings} />);
-    return (<PopupWindow left={left} close={close} modal={modal} title={scanQRCodeLabel}>
-        <ConnectQR label="" />
-    </PopupWindow >);
+const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSettings, ConnectQR }) => {
+
+return (<PopupWindow onClose={close}>
+    <TopBar>
+            <SettingsButton onClick={editSettings} />
+            <ScanLabel>Scan with <GlobalInputApp/></ScanLabel>
+            <CloseButton onClick={close}/>
+    </TopBar>
+    <PopupContent>
+            <ConnectQR label="" />
+    </PopupContent>
+</PopupWindow >);
+
 };
 
-const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged, modal }) => {
+const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged}) => {
     const [setting, setSettings] = useState(() => storage.loadConnectionSettings());
     const setURL = (url: string) => setSettings(setting => ({ ...setting, url }));
     const setAPIKey = (apikey: string) => setSettings(setting => ({ ...setting, apikey }));
@@ -96,8 +104,14 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged, modal }) 
         }
     };
 
-    return (<PopupWindow close={close} title='Settings' modal={modal}>
-        <Form>
+    return (
+        <PopupWindow onClose={close}>
+        <TopBar>
+               <Title>Settings</Title>
+               <CloseButton onClick={close}/>
+       </TopBar>
+       <PopupContent>
+       <Form>
             <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
                 setURL(value);
             }} />
@@ -110,25 +124,29 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged, modal }) 
             <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
                 setCodeKey(value);
             }} />
+            </Form>
+            </PopupContent>
             <Footer>
-                <BackButton onClick={back} />
-                <SaveButton onClick={onSave} />
+                <Button onClick={back}>Back</Button>
+                <Button onClick={onSave}>Save</Button>
             </Footer>
-        </Form>
     </PopupWindow >);
 };
 
 
 
-const PopupParingCode = ({ back, close, PairingQR, modal }) => {
-    return (
-        <PopupWindow close={close} title='Scan To Pair' modal={modal}>
-            <Form>
-                <PairingQR label="" />
-                <Footer>
-                    <BackButton onClick={back} />
-                </Footer>
-            </Form>
-        </PopupWindow >
-    );
+const PopupParingCode = ({ back, close, PairingQR }) => {
+
+    return (<PopupWindow onClose={close}>
+        <TopBar>
+            <Title>Scan To Pair</Title>
+            <CloseButton onClick={close}/>
+    </TopBar>
+    <PopupContent>
+            <PairingQR label="" />
+    </PopupContent>
+    <Footer>
+        <Button onClick={back}>Back</Button>
+    </Footer>
+</PopupWindow >);
 };

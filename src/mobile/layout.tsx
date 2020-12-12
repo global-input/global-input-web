@@ -1,24 +1,24 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import closeIcon from './images/close.png';
-import appIcon from './images/app-icon.png';
 import settingsIcon from './images/settings.png';
-const PopupContainer = styled.div`
+const PopupGlass = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 100vw;
+        height:100vh;
         margin: 0;
         padding: 0;
         position: fixed;
-        top: 90px;
-        left: 0;
+        top:0;
+        left:0;
         z-index:10;
 
 `;
 
-const PopupContent = styled.div`
+const PopupContainer = styled.div`
         flex-direction: column;
         justify-content: flex-center;
         align-items: flex-start;
@@ -29,12 +29,13 @@ const PopupContent = styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         display: flex;
-        width:90vw;
-        max-width:400px;
+        -moz-box-shadow: 3px 3px 5px #535353;
+    -webkit-box-shadow: 3px 3px 5px #535353;
+    box-shadow: 3px 3px 5px #535353;
 `;
 
 
-const TopBar = styled.div`
+export const TopBar = styled.div`
         display: flex;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
@@ -42,11 +43,12 @@ const TopBar = styled.div`
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        padding:0px;
-        background: #f1f1f1;
+        min-height:30px;
+
+        border-bottom:1px solid rgb(230,230,230);
 
 `;
-const PopupBody = styled.div`
+export const PopupContent = styled.div`
         flex-direction: column;
         justify-content: flex-center;
         align-items: center;
@@ -54,18 +56,16 @@ const PopupBody = styled.div`
         padding:0;
         display: flex;
         width:100%;
+        margin-top:10px;
 `;
 
 
 
-const TopItem = styled.div`
+export const TopItem = styled.div`
     margin:0;
     padding: 0;
 `;
 
-const Image = styled.img`
-    margin-right: 5px;
-`;
 
 
 
@@ -74,14 +74,15 @@ const Image = styled.img`
 
 
 
-const Title = styled.div`
+export const Title = styled.div`
         font-family: Avenir;
         color: #5291CD;
         font-weight: 100;
         white-space: nowrap;
-        font-size: 10px;
+        font-size: 14px;
+        margin-left:20px;
 `;
-const Button = styled.button`
+export const Button = styled.button`
     text-decoration: none;
     font-size: 11px;
     border-radius: 8px;
@@ -94,8 +95,10 @@ const Button = styled.button`
     align-items: center;
     border-color:#EEEEEE;
     display:flex;
+    min-width:50px;
+    max-width:30px;
 `;
-const BigButton = styled.button`
+export const BigButton = styled.button`
     text-decoration: none;
     border-radius: 8px;
     color: #4281BD;
@@ -132,83 +135,44 @@ const useClickedOutside = (element, onClicked) => {
 };
 
 
+export const SettingsButton=styled.input.attrs({
+    type:'image',
+    name:'settings',
+    alt:'Settings',
+    src:settingsIcon
+})`
+margin-left:5px;
+`;
+export const CloseButton=styled.input.attrs({
+    type:'image',
+    name:'close',
+    alt:'Close',
+    src:closeIcon
+})`
+margin-right:5px;
+`;
 
 
 
-
-
-interface ConnectProps {
-    onClick: (event: React.MouseEvent<HTMLElement>) => void;
-    label?: string;
-}
-
-export const ConnectButton: React.FC<ConnectProps> = ({ onClick, label = 'Connect' }) => (
-    <Button onClick={onClick}>
-        <Image src={appIcon} alt="Connect" />{label}
-    </Button>
-);
-export const SeeInInActionButton: React.FC<ConnectProps> = ({ onClick, label = 'See It In Action' }) => (
-    <BigButton onClick={onClick}>
-        {label}
-    </BigButton>
-);
-
-export const SettingsButton: React.FC<ConnectProps> = ({ onClick }) => (
-    <Button onClick={onClick}>
-        <Image src={settingsIcon} alt="settings" />Settings
-    </Button>
-);
-
-export const BackButton: React.FC<ConnectProps> = ({ onClick }) => (
-    <Button onClick={onClick}>
-        Back
-    </Button>
-);
-
-export const SaveButton: React.FC<ConnectProps> = ({ onClick }) => (
-    <Button onClick={onClick}>
-        Save
-    </Button>
-);
 
 interface PopupWindowProps {
-    close: () => void;
-    left?: React.ReactNode;
-    title?: React.ReactNode;
-    modal?: boolean;
+    onClose: () => void;
 }
-export const PopupWindow: React.FC<PopupWindowProps> = ({ left, title, children, close, modal = false }) => {
+export const PopupWindow: React.FC<PopupWindowProps> = ({ children, onClose}) => {
     const popup = useRef(null);
-    const onClose = () => (!modal) && close();
-
-
     useClickedOutside(popup, onClose);
     return (
-        <PopupContainer>
-            <PopupContent ref={popup}>
-                <TopBar>
-                    <TopItem>{left}</TopItem>
-                    <Title>{title}</Title>
-                    <TopItem>
-                        {(!modal) && (<Button onClick={onClose}>
-                            <Image src={closeIcon} alt="Close" />
-                                Close
-                        </Button>)}
-                    </TopItem>
-                </TopBar>
-                <PopupBody>
-                    {children}
-                </PopupBody>
-            </PopupContent>
-        </PopupContainer>
+        <PopupGlass>
+            <PopupContainer ref={popup}>
+                {children}
+            </PopupContainer>
+        </PopupGlass>
     );
 };
-
-
 export const Form = styled.div`
     display:flex;
     flex-direction:column;
-    width:100%;
+    width:95%;
     justify-content:flex-start;
     align-items:flex-start;
     padding:10px;
@@ -256,7 +220,8 @@ const Input = styled.input`
         transform: translateY(-5px);
         transition: 0.2s ease-in-out transform;
     }
-
+    width:95vw;
+    max-width:500px;
 `;
 const Label = styled.label.attrs(props => ({
     className: "control-label"
@@ -301,7 +266,7 @@ export const InputField = ({ id, onChange, label, value }) => {
     );
 }
 
-const ScanLabel = styled.div`
+export const ScanLabel = styled.div`
 color:#4880ED;
 font-size: 9px;
 
@@ -311,9 +276,9 @@ font-size: 9px;
 
 
 `;
-const ScanLabelA = styled.a``;
-
-
-export const scanQRCodeLabel = (<ScanLabel>
-    Scan with <ScanLabelA href="https://globalinput.co.uk/global-input-app/get-app" rel="noopener noreferrer" target="_blank"> Global Input App</ScanLabelA>
-</ScanLabel>)
+export const GlobalInputApp = styled.a.attrs({
+    href:'https://globalinput.co.uk/global-input-app/get-app',
+    rel:'noopener noreferrer',
+    target:"_blank",
+    content: 'Global Input App'
+})``;
