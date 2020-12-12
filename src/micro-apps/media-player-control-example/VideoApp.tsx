@@ -5,7 +5,7 @@ import * as videoControl from './videoControl';
 import { AppFooter, MessageButton, MessageLink, PageContainer, QRCodeContainer, P, useWindowSize, A } from './app-layout';
 import * as selectorUI from './selectorUI';
 import * as playerUI from './playerUI';
-import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
+import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 
 interface Props {
   connectionSettings: () => void

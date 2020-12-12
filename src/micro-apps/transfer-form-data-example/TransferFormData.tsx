@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile, FormField, userWithDomainAsFormId } from './mobile';
 import { AppContainer, FormContainer, DisplayInputCopyField, TextButton, FormFooter, AppFooter, MessageButton, MessageLink } from './app-layout';
-import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
+import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
     domain: string;
     formFields: FormField[];

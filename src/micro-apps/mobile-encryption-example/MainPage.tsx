@@ -5,7 +5,7 @@ import { useMobile } from './mobile';
 
 import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink } from './app-layout';
 
-import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
+import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
     domain: string;
     encryption: () => void;

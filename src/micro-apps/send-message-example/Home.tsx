@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 import { useMobile } from './mobile';
 import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
-import * as mobileUI from '../../pages/examples/mobile-ui'; ////website
+import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 
 
 interface Props {
