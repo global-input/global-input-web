@@ -1,34 +1,13 @@
 import React from 'react';
-import { Container,Content, Items, Item,
-  Row, Column,TitleRow,Title } from './layout';
 import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-
-
 import { useMobile } from '../mobile-ui/aboutAuthentication';
 import { usePageTitle } from '../page-metadata';
 
-
-
-import oneClickSignIn from './images/one-click-sign-in.png';
-import tick from './images/tick.png';
-
-const oneClickSignInImage = {
-  src: oneClickSignIn,
-  alt: 'One Click Sign In',
-  width: 403,
-  height: 477
-};
-
-const tickImage = {
-  src: tick,
-  alt: 'tick',
-  width: 30,
-  height: 30
-}
-const title = "Use Mobile for Subscription, Signing in and Beyond";
+import { Container,Content, SignInGraph,
+  Text,Tick,Column,Title,Row } from './layout';
 
 export const AboutMobileAuthentication: React.FC = () => {
   usePageTitle('Mobile Authentication');
@@ -38,33 +17,43 @@ export const AboutMobileAuthentication: React.FC = () => {
     <Container>
         <PageHeader selected={config.paths.mobileAuthentication.path} />
         <Content>
+            <Title>Use Mobile for Subscription, Signing in and Beyond</Title>
             <Row>
-                <Column>
-                    <img src={oneClickSignInImage.src} alt={oneClickSignInImage.alt} width={oneClickSignInImage.width} height={oneClickSignInImage.height} />
-                </Column>
-                <Column collapse='xs'>
-                    <TitleRow>
-                        <Title>{title}</Title>
-                    </TitleRow>
-                    <Items>
-        <Item image={tickImage}>Enhancing the security of the existing password-based authentications — No Architectural changes required </Item>
-        <Item image={tickImage}>Randomising passwords or using key-based authentications.</Item>
-        <Item image={tickImage}>Securing data transfer between mobile and applications with the end-to-end encryption.</Item>
-        <Item image={tickImage}>Users manage their own data on their own mobile device.</Item>
-        <Item image={tickImage}>One-click subscription</Item>
-        <Item image={tickImage}>One-click sign In</Item>
-        <Item image={tickImage}>Secure mobile operation on devices</Item>
-      </Items>
-      <MobileConnect />
-                </Column>
+                  <SignInGraph/>
+                  <Column>
+                      <Text>
+                        <Tick/>
+                          Enhancing the security of the existing password-based authentications — No Architectural changes required
+                      </Text>
+                    <Text>
+                        <Tick/>
+                        Randomising passwords or using key-based authentications.
+                    </Text>
+                    <Text>
+                        <Tick/>
+                      Securing data transfer between mobile and applications with the end-to-end encryption.
+                    </Text>
+                    <Text>
+                        <Tick/>
+                        Users manage their own data on their own mobile device.
+                    </Text>
+                    <Text>
+                      <Tick/>
+                      One-click subscription
+                    </Text>
+                    <Text>
+                        <Tick/>
+                        One-click sign In
+                    </Text>
+                    <Text>
+                        <Tick/>
+                        Secure mobile operation on devices
+                    </Text>
+                 </Column>
             </Row>
+            <MobileConnect label="See It In Action"/>
         </Content>
         <PageFooter />
     </Container>
-
-
-
-
-
   )
 };
