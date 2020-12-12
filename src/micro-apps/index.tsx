@@ -1,74 +1,118 @@
 import React, { lazy, Suspense } from 'react';
-
-import BasicLayout from "../page-components/themes/basic-layout";
-
 import { usePageTitle } from '../page-metadata';
-import { LoadingCircle } from '../app-layout';
-
+import { PageHeader } from '../page-header';
+import {PageFooter} from '../page-footer';
+import {Container,Content,Loader} from './layout';
+import { config } from '../configs';
 
 export const GameControlScreen = () => {
   usePageTitle('Global Input App - Mobile Input & Control Example');
   const GameControlExample = lazy(() => import('./game-control-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
-      <GameControlExample />
-    </Suspense>
-  </BasicLayout>);
+  return (
+    <Container>
+    <PageHeader selected={config.paths.examples.gameControl.path} />
+    <Content>
+        <Suspense fallback={<Loader/>}>
+          <GameControlExample />
+        </Suspense>
+    </Content>
+    <PageFooter />
+    </Container>
+    );
 };
 export const MediaPlayerScreen = (props: any) => {
   usePageTitle('Global Input App - Second Screen Example');
   const MediaPlayerControlExample = lazy(() => import('./media-player-control-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
-      <MediaPlayerControlExample />
-    </Suspense>
-  </BasicLayout>);
+
+  return (
+    <Container>
+    <PageHeader selected={config.paths.examples.mediaPlayer.path} />
+    <Content>
+        <Suspense fallback={<Loader/>}>
+          <MediaPlayerControlExample />
+        </Suspense>
+    </Content>
+    <PageFooter />
+    </Container>
+    );
+
+
+
+
 }
 
 export const TransferFormDataScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Authentication &amp; Example');
   const TransferFormDataExample = lazy(() => import('./transfer-form-data-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
+
+return (
+  <Container>
+  <PageHeader selected={config.paths.examples.transferForm.path} />
+  <Content>
+      <Suspense fallback={<Loader/>}>
       <TransferFormDataExample />
-    </Suspense>
-  </BasicLayout>);
+      </Suspense>
+  </Content>
+  <PageFooter />
+  </Container>
+  );
+
+
+
+
 }
 
 export const ContentTransferScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Content Example');
   const ContentTransferExample = lazy(() => import('./content-transfer-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
+return (
+  <Container>
+  <PageHeader selected={config.paths.examples.contentTransfer.path} />
+  <Content>
+      <Suspense fallback={<Loader/>}>
       <ContentTransferExample />
-    </Suspense>
-  </BasicLayout>);
+      </Suspense>
+  </Content>
+  <PageFooter />
+  </Container>
+  );
+
 }
 
 export const MobileEncryptionScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Encryption Example');
   const MobileEncryptionExample = lazy(() => import('./mobile-encryption-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
-      <MobileEncryptionExample />
-    </Suspense>
-  </BasicLayout>);
+
+  return (
+    <Container>
+    <PageHeader selected={config.paths.examples.mobileEncryption.path} />
+    <Content>
+        <Suspense fallback={<Loader/>}>
+        <MobileEncryptionExample />
+        </Suspense>
+    </Content>
+    <PageFooter />
+    </Container>
+    );
+
 }
 
 export const SendMessageScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Personal Storage Example');
   const SendMessageExample = lazy(() => import('./send-message-example'));
-  const loader = (<LoadingCircle />);
-  return (<BasicLayout>
-    <Suspense fallback={loader}>
-      <SendMessageExample sendEmail={sendEmail} />
-    </Suspense>
-  </BasicLayout>);
+
+  return (
+    <Container>
+    <PageHeader selected={config.paths.examples.sendMessage.path} />
+    <Content>
+        <Suspense fallback={<Loader/>}>
+        <SendMessageExample sendEmail={sendEmail} />
+        </Suspense>
+    </Content>
+    <PageFooter />
+    </Container>
+    );
+
 }
 
 
