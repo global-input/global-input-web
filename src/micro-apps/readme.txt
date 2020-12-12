@@ -1,0 +1,2 @@
+Do not modify the the micro-apps here, they are generated from the corresponding micro-app's repository. Their source reposirtory reside in separate Github repository and deployed
+during into this folder as part of the deployment process.
