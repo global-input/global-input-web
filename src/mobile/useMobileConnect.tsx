@@ -2,9 +2,9 @@ import React, { useState, useCallback } from 'react';
 import * as storage from './storage';
 import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
-    PopupWindow, SettingsButton,
+    PopupWindow, PopupWindow2,SettingsButton,
     Form, InputField, Footer, Button,BigButton,
-    TopBar,ScanLabel,GlobalInputApp,CloseButton,PopupContent,Title
+    TopBar,CloseButton,PopupContent,Title
 } from './layout';
 
 
@@ -114,11 +114,11 @@ const PopupParingCode = ({ back, close }) => {
     return (<PopupWindow onClose={close}>
         <TopBar>
 
-            <Title>Scan To Pair</Title>
+            <Title>Pair Your App</Title>
             <CloseButton onClick={close}/>
     </TopBar>
     <PopupContent>
-            <mobile.PairingQR label="" />
+            <mobile.PairingQR/>
     </PopupContent>
     <Footer>
         <Button onClick={back}>Back</Button>
@@ -150,7 +150,7 @@ const PopupSettingsEditor = ({ back, close, pairing }) => {
     const codeKey = setting.codeKey ? setting.codeKey : '';
 
     return (
-        <PopupWindow onClose={close}>
+        <PopupWindow2 onClose={close}>
              <TopBar>
                     <Title>Settings</Title>
                     <CloseButton onClick={close}/>
@@ -182,6 +182,6 @@ const PopupSettingsEditor = ({ back, close, pairing }) => {
             </PopupContent>
 
 
-        </PopupWindow >
+        </PopupWindow2>
     )
 };

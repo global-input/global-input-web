@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import {
-    PopupWindow, SettingsButton,
+    PopupWindow, PopupWindow2, SettingsButton,
     Form, InputField, Footer,Button,
-    TopBar,ScanLabel,GlobalInputApp,CloseButton,PopupContent,Title
+    TopBar,CloseButton,PopupContent,Title
 } from './layout';
 
 import { useMobile, InitData, ConnectQRProps } from './useMobile';
@@ -73,11 +73,10 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
 return (<PopupWindow onClose={close}>
     <TopBar>
             <SettingsButton onClick={editSettings} />
-            <ScanLabel>Scan with <GlobalInputApp/></ScanLabel>
             <CloseButton onClick={close}/>
     </TopBar>
     <PopupContent>
-            <ConnectQR label="" />
+            <ConnectQR/>
     </PopupContent>
 </PopupWindow >);
 
@@ -105,7 +104,7 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged}) => {
     };
 
     return (
-        <PopupWindow onClose={close}>
+        <PopupWindow2 onClose={close}>
         <TopBar>
                <Title>Settings</Title>
                <CloseButton onClick={close}/>
@@ -130,7 +129,7 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged}) => {
                 <Button onClick={back}>Back</Button>
                 <Button onClick={onSave}>Save</Button>
             </Footer>
-    </PopupWindow >);
+    </PopupWindow2>);
 };
 
 
@@ -139,11 +138,11 @@ const PopupParingCode = ({ back, close, PairingQR }) => {
 
     return (<PopupWindow onClose={close}>
         <TopBar>
-            <Title>Scan To Pair</Title>
+            <Title>Pair Your App</Title>
             <CloseButton onClick={close}/>
     </TopBar>
     <PopupContent>
-            <PairingQR label="" />
+            <PairingQR/>
     </PopupContent>
     <Footer>
         <Button onClick={back}>Back</Button>

@@ -33,6 +33,10 @@ const PopupContainer = styled.div`
     -webkit-box-shadow: 3px 3px 5px #535353;
     box-shadow: 3px 3px 5px #535353;
 `;
+const PopupContainer2=styled(PopupContainer)`
+    width:90%;
+    max-width:450px;
+`;
 
 
 export const TopBar = styled.div`
@@ -169,6 +173,19 @@ export const PopupWindow: React.FC<PopupWindowProps> = ({ children, onClose}) =>
         </PopupGlass>
     );
 };
+
+export const PopupWindow2: React.FC<PopupWindowProps> = ({ children, onClose}) => {
+    const popup = useRef(null);
+    useClickedOutside(popup, onClose);
+    return (
+        <PopupGlass>
+            <PopupContainer2 ref={popup}>
+                {children}
+            </PopupContainer2>
+        </PopupGlass>
+    );
+};
+
 export const Form = styled.div`
     display:flex;
     flex-direction:column;
@@ -220,8 +237,7 @@ const Input = styled.input`
         transform: translateY(-5px);
         transition: 0.2s ease-in-out transform;
     }
-    width:95vw;
-    max-width:500px;
+    width:100%;
 `;
 const Label = styled.label.attrs(props => ({
     className: "control-label"
@@ -265,20 +281,3 @@ export const InputField = ({ id, onChange, label, value }) => {
     </Field>
     );
 }
-
-export const ScanLabel = styled.div`
-color:#4880ED;
-font-size: 9px;
-
-@media only screen and (min-width: 300px){
-    font-size: 14px;
-}
-
-
-`;
-export const GlobalInputApp = styled.a.attrs({
-    href:'https://globalinput.co.uk/global-input-app/get-app',
-    rel:'noopener noreferrer',
-    target:"_blank",
-    content: 'Global Input App'
-})``;
