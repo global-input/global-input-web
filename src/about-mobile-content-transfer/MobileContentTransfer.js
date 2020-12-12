@@ -1,11 +1,11 @@
 import React from 'react';
 
-import SimpleContainer from '../../page-components/section-containers/simple-container';
-import ButtonsContainer from '../../page-components/buttons-container';
+import SimpleContainer from '../page-components/section-containers/simple-container';
+import ButtonsContainer from '../page-components/buttons-container';
 
-import { pagesLinks } from '../../page-components/links-components';
+import { pagesLinks } from '../page-components/links-components';
 
-import { ChromeExtensionButton, FirefoxExtensionButton } from '../../page-components/external-links';
+import { ChromeExtensionButton, FirefoxExtensionButton } from '../page-components/external-links';
 
 const { CopyContentAppButton } = pagesLinks.buttons;
 

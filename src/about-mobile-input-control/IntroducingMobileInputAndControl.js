@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { externalsLinks, pagesLinks } from '../../page-components/links-components';
-import ButtonsContainer from '../../page-components/buttons-container';
-import SimpleContainer from '../../page-components/section-containers/simple-container';
+import { externalsLinks, pagesLinks } from '../page-components/links-components';
+import ButtonsContainer from '../page-components/buttons-container';
+import SimpleContainer from '../page-components/section-containers/simple-container';
 
 const { JSExtension } = externalsLinks;
 const { MobileGameControlButton } = pagesLinks.buttons;

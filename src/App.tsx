@@ -10,11 +10,11 @@ import {GetAppPage} from './get-app-page';
 import PrivacyPage from './privacy-page';
 import ContactUsPage from "./contact-us-page";
 import { AboutMobileAuthentication } from "./about-mobile-authentication";
-import AboutMobileInputControl from './pages/about-mobile-input-control';
-import AboutSecondScreen from './pages/about-second-screen';
-import AboutMobilePersonalStorage from './pages/about-mobile-personal-storage';
-import AboutContentEncryption from './pages/about-content-encryption';
-import AboutMobileContentTransfer from './pages/about-mobile-content-transfer';
+import AboutMobileInputControl from './about-mobile-input-control';
+import AboutSecondScreen from './about-second-screen';
+import AboutMobilePersonalStorage from './about-mobile-personal-storage';
+import AboutContentEncryption from './about-content-encryption';
+import AboutMobileContentTransfer from './about-mobile-content-transfer';
 
 import * as examples from './pages/examples';
 
