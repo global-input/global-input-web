@@ -12,7 +12,7 @@ import {PageFooter} from '../page-footer';
 import {Container, Content} from './layout';
 
 
-const AboutMobileInputControl: React.FC = () => {
+export const AboutMobileInputControl: React.FC = () => {
   usePageTitle('Mobile Input &amp; Control');
   const MobileConnect = useMobile();
   return (
@@ -27,6 +27,3 @@ const AboutMobileInputControl: React.FC = () => {
     </Container>
   )
 };
-
-
-export default AboutMobileInputControl;
