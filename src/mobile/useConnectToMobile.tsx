@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import {
     PopupWindow, PopupWindow2, SettingsButton,
-    Form, InputField, Footer,Button,
-    TopBar,CloseButton,PopupContent,Title
+    Form, InputField, Footer, Button,
+    TopBar, CloseButton, PopupContent, Title, SettingsHelp
 } from './layout';
 
 import { useMobile, InitData, ConnectQRProps } from './useMobile';
@@ -36,7 +36,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
 
 
 
-    const ConnectToMobile = useCallback(({ label='Connect' }) => {
+    const ConnectToMobile = useCallback(({ label = 'Connect' }) => {
         if (!connect) {
             if (isConnected) {
                 return null;
@@ -48,16 +48,16 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
                 if (isConnected) {
                     return null;
                 }
-                return (<PopupConnectQRCode close={disableConnect} editSettings={editSettings} ConnectQR={ConnectQR}/>);
+                return (<PopupConnectQRCode close={disableConnect} editSettings={editSettings} ConnectQR={ConnectQR} />);
             case PAGES.SETTINGS:
                 return (<PopupSettingsEditor close={disableConnect} back={connectQR} pairing={pairing} onSettingChanged={onSettingChanged} />);
             case PAGES.PAIRING:
-                return (<PopupParingCode close={disableConnect} back={connectQR} PairingQR={PairingQR}/>);
+                return (<PopupParingCode close={disableConnect} back={connectQR} PairingQR={PairingQR} />);
             default:
                 return null;
         }
 
-    }, [connect, onSettingChanged,isConnected, disableConnect, editSettings, enableConnect, ConnectQR, PairingQR, connectQR, pairing, page]);
+    }, [connect, onSettingChanged, isConnected, disableConnect, editSettings, enableConnect, ConnectQR, PairingQR, connectQR, pairing, page]);
 
     return { mobile, ConnectToMobile };
 };
@@ -70,19 +70,19 @@ interface PopupConnectQRCodeProps {
 }
 const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSettings, ConnectQR }) => {
 
-return (<PopupWindow onClose={close}>
-    <TopBar>
+    return (<PopupWindow onClose={close}>
+        <TopBar>
             <SettingsButton onClick={editSettings} />
-            <CloseButton onClick={close}/>
-    </TopBar>
-    <PopupContent>
-            <ConnectQR/>
-    </PopupContent>
-</PopupWindow >);
+            <CloseButton onClick={close} />
+        </TopBar>
+        <PopupContent>
+            <ConnectQR />
+        </PopupContent>
+    </PopupWindow >);
 
 };
 
-const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged}) => {
+const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged }) => {
     const [setting, setSettings] = useState(() => storage.loadConnectionSettings());
     const setURL = (url: string) => setSettings(setting => ({ ...setting, url }));
     const setAPIKey = (apikey: string) => setSettings(setting => ({ ...setting, apikey }));
@@ -105,31 +105,32 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged}) => {
 
     return (
         <PopupWindow2 onClose={close}>
-        <TopBar>
-               <Title>Settings</Title>
-               <CloseButton onClick={close}/>
-       </TopBar>
-       <PopupContent>
-       <Form>
-            <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
-                setURL(value);
-            }} />
-            <InputField id="apiKey" label="API Key" value={apikey} onChange={(value) => {
-                setAPIKey(value);
-            }} />
-            <InputField id="securityGroup" label="Security Group Key" value={securityGroup} onChange={(value) => {
-                setSecurityGroup(value);
-            }} />
-            <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
-                setCodeKey(value);
-            }} />
-            </Form>
+            <TopBar>
+                <Title>Settings</Title>
+                <CloseButton onClick={close} />
+            </TopBar>
+            <PopupContent>
+                <Form>
+                    <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
+                        setURL(value);
+                    }} />
+                    <InputField id="apiKey" label="API Key" value={apikey} onChange={(value) => {
+                        setAPIKey(value);
+                    }} />
+                    <InputField id="securityGroup" label="Security Group Key" value={securityGroup} onChange={(value) => {
+                        setSecurityGroup(value);
+                    }} />
+                    <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
+                        setCodeKey(value);
+                    }} />
+                </Form>
             </PopupContent>
             <Footer>
                 <Button onClick={back}>Back</Button>
                 <Button onClick={onSave}>Save</Button>
             </Footer>
-    </PopupWindow2>);
+            <SettingsHelp/>
+        </PopupWindow2>);
 };
 
 
@@ -139,13 +140,13 @@ const PopupParingCode = ({ back, close, PairingQR }) => {
     return (<PopupWindow onClose={close}>
         <TopBar>
             <Title>Pair Your App</Title>
-            <CloseButton onClick={close}/>
-    </TopBar>
-    <PopupContent>
-            <PairingQR/>
-    </PopupContent>
-    <Footer>
-        <Button onClick={back}>Back</Button>
-    </Footer>
-</PopupWindow >);
+            <CloseButton onClick={close} />
+        </TopBar>
+        <PopupContent>
+            <PairingQR />
+        </PopupContent>
+        <Footer>
+            <Button onClick={back}>Done</Button>
+        </Footer>
+    </PopupWindow >);
 };

@@ -4,7 +4,7 @@ import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
     PopupWindow, PopupWindow2,SettingsButton,
     Form, InputField, Footer, Button,BigButton,
-    TopBar,CloseButton,PopupContent,Title
+    TopBar,CloseButton,PopupContent,Title,SettingsHelp
 } from './layout';
 
 
@@ -121,7 +121,7 @@ const PopupParingCode = ({ back, close }) => {
             <mobile.PairingQR/>
     </PopupContent>
     <Footer>
-        <Button onClick={back}>Back</Button>
+        <Button onClick={back}>Done</Button>
     </Footer>
 </PopupWindow >);
 
@@ -175,8 +175,11 @@ const PopupSettingsEditor = ({ back, close, pairing }) => {
                 }} />
                 <Footer>
                     <Button onClick={back}>Back</Button>
+                    <Button onClick={pairing}>Pair</Button>
+
                     <Button onClick={onSave}>Save</Button>
             </Footer>
+            <SettingsHelp/>
             </Form>
 
             </PopupContent>

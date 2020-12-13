@@ -36,6 +36,8 @@ const PopupContainer = styled.div`
 const PopupContainer2=styled(PopupContainer)`
     width:90%;
     max-width:450px;
+    max-width:90vh;
+    over-flow:scroll;
 `;
 
 
@@ -101,6 +103,8 @@ export const Button = styled.button`
     display:flex;
     min-width:50px;
     max-width:30px;
+    margin-left:5px;
+    margin-right:5px;
 `;
 export const BigButton = styled.button`
     text-decoration: none;
@@ -281,3 +285,48 @@ export const InputField = ({ id, onChange, label, value }) => {
     </Field>
     );
 }
+
+
+const Help=styled.div`
+        margin-top:5px;
+        font-family: Avenir;
+        color: rgb(53,116,230);
+        white-space: wrap;
+        font-size: 10px;
+        max-height:80px;
+        overflow:scroll;
+`;
+
+const WebSocketServer=styled.a.attrs({
+    target:'_blank',
+    rel: 'noopener noreferrer',
+    href:'https://github.com/global-input/global-input-node',
+
+})`
+color: rgb(53,116,230);
+text-decoration:none;
+margin-left:5px;
+`;
+
+
+
+export const SettingsHelp=()=>(
+    <>
+<Help>
+            Proxy URL and API Key are for connecting to the
+            <WebSocketServer>WebSocket server</WebSocketServer> that provides connectivity between your mobile app and the application.
+            You can install your own <WebSocketServer>WebSocket server</WebSocketServer> in an insecure environment thanks to the end-to-end encryption that ensures that the messages are readable only to your mobile app and the application.
+            </Help>
+            <Help>
+
+            Security Group is used by the applications to verify the incoming connection in the same way that API Key is used by a server application to identify a client application making connection.
+            If you change this value, you need to pair your mobile app.
+            </Help>
+            <Help>
+
+            The Code Key is used by the application to encrypt the content of the QR Code being displayed for mobile apps to scan to connect to your extension.
+            If you change this value, you need to pair your mobile app.
+            </Help>
+
+</>
+);
