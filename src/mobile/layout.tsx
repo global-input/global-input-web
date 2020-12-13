@@ -313,19 +313,19 @@ margin-left:5px;
 export const SettingsHelp=()=>(
     <>
 <Help>
-            Proxy URL and API Key are for connecting to the
-            <WebSocketServer>WebSocket server</WebSocketServer> that provides connectivity between your mobile app and the application.
-            You can install your own <WebSocketServer>WebSocket server</WebSocketServer> in an insecure environment thanks to the end-to-end encryption that ensures that the messages are readable only to your mobile app and the application.
+            Proxy URL and API Key are used for connecting to
+            <WebSocketServer>WebSocket servers</WebSocketServer> that provide connectivity between your mobile app and the application.
+            You can install your own <WebSocketServer>WebSocket servers</WebSocketServer> in an insecure environment thanks to the end-to-end encryption that can make the messages readable only to your mobile app.
             </Help>
             <Help>
 
-            Security Group is used by the applications to verify the incoming connection in the same way that API Key is used by a server application to identify a client application making connection.
+            Security Group is used by the applications to verify the incoming connection in the same way that API Key is used by a server application to identify client applications.
             If you change this value, you need to pair your mobile app.
             </Help>
             <Help>
 
             The Code Key is used by the application to encrypt the content of the QR Code being displayed for mobile apps to scan to connect to your extension.
-            If you change this value, you need to pair your mobile app.
+            If you change this value, you need to pair your mobile app so it can decrypt the content of the QR code.
             </Help>
 
 </>
