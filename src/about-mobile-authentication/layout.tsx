@@ -38,6 +38,7 @@ export const Row = styled.div`
         flex: 1;
         max-width: 100%;
         margin-top:30px;
+        margin-bottom:20px;
         @media only screen and (min-width:900px){
             flex-direction: row;
             align-items:flex-start;

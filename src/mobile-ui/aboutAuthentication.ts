@@ -15,7 +15,7 @@ export const useMobile = () => {
 const initData = {
     form: {
         title: "Mobile Authentication",
-        fields: [exampleFields.FIELDS.transferForm, pageMenu.FIELDS.home]
+        fields: [{...exampleFields.FIELDS.transferForm,label:'See It In Action'}, pageMenu.FIELDS.home]
     }
 };
 

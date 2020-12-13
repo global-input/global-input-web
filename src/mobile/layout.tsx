@@ -105,6 +105,7 @@ export const Button = styled.button`
     max-width:30px;
     margin-left:5px;
     margin-right:5px;
+
 `;
 export const BigButton = styled.button`
     text-decoration: none;
@@ -122,6 +123,17 @@ export const BigButton = styled.button`
     max-width: 200px;
     font-size: 15px;
     display:flex;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    &: hover{
+
+        box-shadow: 0px 15px 20px rgba(38, 151, 226, 0.4);
+        transform: translateY(-3px);
+    }
+
+
 `;
 
 
