@@ -5,8 +5,6 @@ import oneClickSignIn250 from './images/one-click-sign-in-250.png';
 import oneClickSignIn350 from './images/one-click-sign-in-350.png';
 import oneClickSignIn400 from './images/one-click-sign-in-400.png';
 
-import tick from './images/tick.png';
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,25 +90,63 @@ export const SignInGraph=()=>(
         <img  alt="Sign In Architecture" src={oneClickSignIn400}/>
     </picture>
 );
-const TickImage=styled.img.attrs({
-    src: tick,
-    alt: 'tick',
-    width: 30,
-    height: 30
-  })``;
 
-export const Tick=styled(TickImage)`
 
-  margin-right:5px;
+const Tick=styled.div`
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right:10px;
+    &: before{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 50%;
+        width: 3px;
+        background-color: rgb(56,160,68);
+        content: "";
+        transform: translateX(10px) rotate(-45deg);
+        transform-origin: left bottom;
+    }
+    &: after{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background-color: rgb(56,160,68);
+        content: "";
+        transform: translateX(10px) rotate(-45deg);
+        transform-origin: left bottom;
+    }
+
+
 `;
 
 
-export const Text = styled.div`
+const Text = styled.div`
     color: rgb(82, 145, 205);
     margin-top:10px;
     margin-bottom:5px;
     @media only screen and (min-width:900px){
         margin-bottom:15px;
     }
-
 `;
+
+const TickContainer=styled.div`
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content:flex-start;
+    align-items:center;
+`;
+
+export const TickText:React.FC=({children})=>(
+    <TickContainer>
+        <Tick/>
+        <Text>
+        {children}
+        </Text>
+    </TickContainer>
+);

@@ -4,7 +4,7 @@ import { useMobile, InitData, OnchangeFunction } from './useMobile';
 import {
     PopupWindow, PopupWindow2,SettingsButton,
     Form, InputField, Footer, Button,BigButton,
-    TopBar,CloseButton,PopupContent,Title,SettingsHelp
+    TopBar,CloseButton,PopupContent,Title,SettingsHelp,disableBodyScroll,enableBodyScroll
 } from './layout';
 
 
@@ -19,9 +19,13 @@ export const useMobileConnect = (initData: InitData | (() => InitData), onchange
     const [connect, setConnect] = useState(false);
     const MobileConnect: React.FC<MobileConnectProps> = useCallback(({ label }) => {
         const enableConnect = () => setConnect(true);
-        const disableConnect = () => setConnect(false);
+        const disableConnect = () =>{
+            setConnect(false);
+            enableBodyScroll();
+        }
 
         if (connect) {
+            disableBodyScroll();
             return (<PopupMain initData={initData} onchange={onchange} close={disableConnect} />);
         }
         else {

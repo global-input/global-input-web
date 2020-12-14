@@ -7,7 +7,7 @@ import { useMobile } from '../mobile-ui/aboutAuthentication';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, SignInGraph,
-  Text,Tick,Column,Title,Row } from './layout';
+  TickText,Column,Title,Row } from './layout';
 
 export const AboutMobileAuthentication: React.FC = () => {
   usePageTitle('Mobile Authentication');
@@ -21,34 +21,24 @@ export const AboutMobileAuthentication: React.FC = () => {
             <Row>
                   <SignInGraph/>
                   <Column>
-                      <Text>
-                        <Tick/>
-                          Enhancing the security of the existing password-based authentications — No Architectural changes required
-                      </Text>
-                    <Text>
-                        <Tick/>
-                        Randomising passwords or using key-based authentications.
-                    </Text>
-                    <Text>
-                        <Tick/>
-                      Securing data transfer between mobile and applications with the end-to-end encryption.
-                    </Text>
-                    <Text>
-                        <Tick/>
-                        Users manage their own data on their own mobile device.
-                    </Text>
-                    <Text>
-                      <Tick/>
-                      One-click subscription
-                    </Text>
-                    <Text>
-                        <Tick/>
-                        One-click sign In
-                    </Text>
-                    <Text>
-                        <Tick/>
-                        Secure mobile operation on devices
-                    </Text>
+                      <TickText>
+      Superior security and improved user experience at the same time.
+                      </TickText>
+                      <TickText>
+                      One-click subscription and sign In with user mobiles.
+                    </TickText>
+                    <TickText>
+                      Secure transfer between user mobiles and applications using end-to-end encryption.
+                    </TickText>
+                    <TickText>
+                        Users manage their own data on their own mobile devices.
+                    </TickText>
+                    <TickText>
+                        Ability to use mobile to securely operate on the application after signing in.
+                    </TickText>
+                    <TickText>
+                        Enhance the existing password-based authentications without using a password manager.
+                    </TickText>
                  </Column>
             </Row>
             <MobileConnect label="See It In Action"/>
