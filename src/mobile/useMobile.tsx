@@ -40,7 +40,6 @@ export const useMobile = (initData: globalInput.InitData | (() => globalInput.In
         apikey: connectionSettings.apikey,
         securityGroup: connectionSettings.securityGroup
     };
-    console.log("=======apikey:" + connectionSettings.apikey + ":" + connect);
     const mobile = globalInput.useGlobalInputApp({
         initData, options, codeAES: connectionSettings.codeKey
     }, connect, configId);
