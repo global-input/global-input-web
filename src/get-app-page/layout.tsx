@@ -194,7 +194,7 @@ export const WebStoreButton=()=>(
 );
 
 export const FirefoxButton=()=>(
-    <ButtonLink href={config.links.chromeExtension.url}>
+    <ButtonLink href={config.links.firefox.url}>
         <FirefoxImage/>
     </ButtonLink>
 );

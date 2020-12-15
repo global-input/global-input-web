@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useMobileConnect } from '../mobile';
-
+import * as exampleFields from './exampleFields';
 import * as pageMenu from './pageMenu';
 
 export const useMobile = () => {
@@ -16,11 +16,14 @@ export const useMobile = () => {
 const initData = {
     form: {
         title: "About Second Screen Experience",
-        fields: Object.values(pageMenu.FIELDS)
+        fields: [{...exampleFields.FIELDS.secondScreen,label:'See It In Action'}, pageMenu.FIELDS.home]
     }
 };
 
 const onFieldChange = (field, history) => {
+    if (exampleFields.onFieldChange(field, history)) {
+        return true;
+    }
     if (pageMenu.onFieldChange(field, history)) {
         return true;
     }
