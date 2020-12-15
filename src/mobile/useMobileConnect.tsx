@@ -97,6 +97,7 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
     const mobile = useMobile(initData, true);
     onchange && mobile.setOnchange(onchange);
     if (mobile.isConnected) {
+        enableBodyScroll();
         return null;
     }
     const { ConnectQR } = mobile;
