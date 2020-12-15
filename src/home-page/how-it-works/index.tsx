@@ -52,6 +52,7 @@ export const HowItWorks = () => (
 
 
 const Container = styled.div`
+    margin: 50px;
     width: 100%;
     height: 500px;
     display: flex;
