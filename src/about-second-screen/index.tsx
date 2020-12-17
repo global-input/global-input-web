@@ -10,7 +10,7 @@ import { Container,Content, SecondScreenGraph,
   TickText,Column,Title,Row } from './layout';
 
 export const AboutSecondScreen: React.FC = () => {
-  usePageTitle('Mobile Authentication');
+  usePageTitle('Second Screen Experience');
   const MobileConnect = useMobile();
 
   return (

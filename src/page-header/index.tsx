@@ -70,7 +70,7 @@ const Title = styled.div`
         font-size: 20px;
     }
 `;
-const appTitle = config.id === 'iterative' ? 'Iterative Solution Limited' : 'Global Input App';
+const appTitle = config.id === 'iterative' ? 'Iterative Solution' : 'Global Input App';
 
 
 export const Logo = styled.img.attrs({
