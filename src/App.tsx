@@ -12,7 +12,7 @@ import ContactUsPage from "./contact-us-page";
 import { AboutMobileAuthentication } from "./about-mobile-authentication";
 import {AboutMobileInputControl} from './about-mobile-input-control';
 import {AboutSecondScreen} from './about-second-screen';
-import AboutMobilePersonalStorage from './about-mobile-personal-storage';
+import {AboutMobileSecureStorage} from './about-mobile-personal-storage';
 import {AboutMobileEncryption} from './about-content-encryption';
 import AboutMobileContentTransfer from './about-mobile-content-transfer';
 
@@ -36,7 +36,7 @@ const App: React.FC = () => (
       <Route path={config.paths.mobileAuthentication.path} component={AboutMobileAuthentication} />
       <Route path={config.paths.mobileControl.path} component={AboutMobileInputControl} />
       <Route path={config.paths.secondScreen.path} component={AboutSecondScreen} />
-      <Route path={config.paths.mobilePersonalStorage.path} component={AboutMobilePersonalStorage} />
+      <Route path={config.paths.mobilePersonalStorage.path} component={AboutMobileSecureStorage} />
       <Route path={config.paths.aboutContentEncryption.path} component={AboutMobileEncryption} />
       <Route path={config.paths.mobileContentTransfer.path} component={AboutMobileContentTransfer} />
       <Route path={config.paths.examples.contentTransfer.path} component={microApps.ContentTransferScreen} />
