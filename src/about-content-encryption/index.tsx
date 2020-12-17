@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutAuthentication';
+import { useMobile } from '../mobile-ui/aboutEncryption';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, EncryptedQRCodeGraph,MobileEncryptionGraphGraph,
