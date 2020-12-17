@@ -3,7 +3,7 @@ import { config } from '../configs';
 import {PageFooter} from '../page-footer';
 import {PageHeader} from '../page-header';
 import { useMobile } from '../mobile-ui/home';
-
+import { usePageTitle } from '../page-metadata';
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
 import {CardSection} from './card-section';
@@ -22,7 +22,7 @@ interface HomePageProps {
   editConnectionSettings: () => void;
 }
 export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
-
+  usePageTitle('Global Input App - Introducing Mobile Interoperability into Web and Device Applications');
   const MobileConnect = useMobile();
 
   return (
