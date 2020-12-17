@@ -49,19 +49,24 @@ const Container = styled.div`
     @media only screen and (min-width: 600px){
         background-size: cover;
     }
+
 `;
 
 const Content = styled.div`
+
       display: flex;
       margin-bottom:10px;
       align-items: center;
-      width: 100%;
       flex-direction:column;
+      width: 100%;
+
       @media only screen and (min-width: 280px){
         justify-content:space-between;
         flex-direction: row;
         flex-wrap:wrap;
+        width:95%;
       }
+
 
 
       @media only screen and (min-width: 500px){
@@ -103,16 +108,17 @@ const Item = styled(Link)`
       @media only screen and (min-width: 280px){
           border-left: 1px solid white;
           width: 120px;
+
       }
 
       @media only screen and (min-width:310px){
-        width: 150px;
+        width: 140px;
         font-size: 12px;
       }
 
 
       @media only screen and (min-width:400px){
-        width: 190px;
+        width: 180px;
         font-size: 14px;
       }
       @media only screen and (min-width:500px){
