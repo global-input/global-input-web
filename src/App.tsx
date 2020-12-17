@@ -14,7 +14,7 @@ import {AboutMobileInputControl} from './about-mobile-input-control';
 import {AboutSecondScreen} from './about-second-screen';
 import {AboutMobileSecureStorage} from './about-mobile-personal-storage';
 import {AboutMobileEncryption} from './about-content-encryption';
-import AboutMobileContentTransfer from './about-mobile-content-transfer';
+import {AboutMobileContentTransfer} from './about-mobile-content-transfer';
 
 import * as microApps from './micro-apps';
 
