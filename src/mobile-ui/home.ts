@@ -16,7 +16,7 @@ export const useMobile = () => {
 const initData = {
     id: "website-home",
     form: {
-        title: "Home",
+        title: "Global Input App",
         views: {
             viewIds: {
                 row9: {
@@ -29,8 +29,8 @@ const initData = {
         },
         fields: [{
             type: "info",
-            value: "Welcome to Global Input App home page!"
-        }, ...Object.values(exampleFields.FIELDS), pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree]
+            value: "Pages to Navigate"
+        },pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree, ...Object.values(exampleFields.FIELDS)]
     }
 };
 
