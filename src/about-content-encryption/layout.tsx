@@ -98,9 +98,6 @@ export const Title = styled.div`
 `;
 
 
-const PictureAtLeft=styled.picture`
-    order:-1;
-`;
 
 
 export const EncryptedQRCodeGraph=()=>(
@@ -111,9 +108,6 @@ export const EncryptedQRCodeGraph=()=>(
     </picture>
 );
 
-const PictureAtRight=styled.picture`
-    order:2;
-`;
 
 export const MobileEncryptionGraphGraph=()=>(
     <picture>

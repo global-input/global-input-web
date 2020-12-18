@@ -103,7 +103,8 @@ const Item = styled(Link)`
       &: hover{
           text-decoration: none;
           font-weight: 500;
-          border-right: 1px solid white;
+          text-shadow: 0 0 50px #ffff;
+
       }
       @media only screen and (min-width: 280px){
           border-left: 1px solid white;

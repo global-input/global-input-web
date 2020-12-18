@@ -135,5 +135,6 @@ export const LinkButton=styled(Link)`
         text-decoration: none;
         box-shadow: 0px 15px 20px rgba(38, 151, 226, 0.4);
         transform: translateY(-3px);
+        box-shadow: 0 0 50px #ffff;
     }
     `;

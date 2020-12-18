@@ -74,8 +74,8 @@ export const Card =styled (Link)`
       max-width: 370px;
       text-decoration:none;
       &: hover{
-        box-shadow:
-          0 0 50px #ffff;
+        box-shadow: 0 0 50px #ffff;
+        transform: translateY(-3px);
       }
 
 `;

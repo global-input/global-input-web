@@ -1,4 +1,3 @@
-import React, { useState, useEffect,useRef} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { config } from "../configs";
@@ -103,7 +102,8 @@ export const MenuItem = styled(Link)`
       &: hover{
         text-decoration: none;
         fontWeight: 300;
-        border-color: rgb(52,121,186);
+        text-shadow: 0 0 50px rgb(10, 62, 145);
+        transform: translateY(-3px);
       }
       @media only screen and (min-width: 600px){
         justify-content:center;

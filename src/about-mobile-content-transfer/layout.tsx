@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import mobileStorage from './images/mobile-storage.png';
 import contentTransfer from './images/content-transfer.png';
 import contentTransfer250 from './images/content-transfer-250.png';
 import contentTransfer200 from './images/content-transfer-200.png';

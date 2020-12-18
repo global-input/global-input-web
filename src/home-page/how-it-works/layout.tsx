@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import one from './images/1.svg';
 import two from './images/2.svg';
