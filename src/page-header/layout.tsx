@@ -1,10 +1,25 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import { Link } from 'react-router-dom';
 import { config } from "../configs";
 import appIcon from './images/app-icon.png';
 import companyIcon from './images/company-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
 import closeSymbol from './images/close.png';
+
+
+const dropDown = keyframes`
+  0% {
+    transform:scaleY(0)
+  }
+  80% {
+    transform:scaleY(1.1)
+  }
+  100%{
+    transform:scaleY(1)
+  }
+`;
+
+
 
 
 export const Title = styled.div`
@@ -187,8 +202,8 @@ export const MobileMenuContainer = styled.div`
     right:0;
     border:2px solid #EEEEEE;
     width:100%;
+    animation: ${dropDown} 300ms ease-in-out forwards;
     @media only screen and (min-width: 600px){
         display: none;
-
     }
 `;
