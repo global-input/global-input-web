@@ -56,7 +56,7 @@ export const Title=styled.div`
       @media only screen and (min-width:600px){
         font-size: 20px;
 `;
-export const Card =styled.div`
+export const Card =styled (Link)`
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -65,13 +65,18 @@ export const Card =styled.div`
       color: #5291CD;
       height: 250px;
       border-radius: 5px;
-      position: relative;
+
       margin-top:10px;
       margin-bottom:10px;
-      position: relative;
+
       width: 95%;
       padding-bottom:30px;
       max-width: 370px;
+      text-decoration:none;
+      &: hover{
+        box-shadow:
+          0 0 50px #ffff;
+      }
 
 `;
 
@@ -89,6 +94,7 @@ export const Content= styled.div`
       width: 90%;
   `;
 
+
   export const Footer=styled.div`
     width: 100%;
     color: #A8A8A8;
@@ -99,7 +105,7 @@ export const Content= styled.div`
 `;
 
 
-export const ALink=styled(Link)`
+const MoreText=styled.div`
       color: #5291CD;
       display: flex;
       flex-direction: row;
@@ -108,14 +114,12 @@ export const ALink=styled(Link)`
       text-decoration: none;
       white-space: nowrap;
       font-size: 15px;
-      &: hover{
-        text-decoration: none;
-        fontWeight: 300;
-        border-bottom: 1px solid rgb(52,121,186);
-      }
-`
-export const More=({to}) => (
-    <ALink to={to}> MORE <ArrowImage/></ALink>
+`;
+
+
+
+export const More=() => (
+    <MoreText> MORE <ArrowImage/></MoreText>
 );
 
 

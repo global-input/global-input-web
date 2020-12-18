@@ -33,66 +33,66 @@ const textContent = {
 
 
 const AuthenticationCard = () => (
-    <Card>
+    <Card to={config.paths.mobileAuthentication.path}>
         <AuthenticationIcon/>
         <Title>{textContent.authentication.title}</Title>
         <Content>{textContent.authentication.content}</Content>
         <Footer>
-            <More to={config.paths.mobileAuthentication.path}/>
+            <More/>
         </Footer>
     </Card>
 );
 
 const MobileControlCard = () => (
-    <Card>
+    <Card to={config.paths.mobileControl.path}>
             <ControlIcon/>
             <Title>{textContent.mobileControl.title}</Title>
             <Content>{textContent.mobileControl.content}</Content>
             <Footer>
-                <More to={config.paths.mobileControl.path}/>
+                <More/>
             </Footer>
     </Card>
 );
 const SecondScreenCard = () => (
-    <Card>
+    <Card to={config.paths.secondScreen.path}>
             <SecondScreenIcon/>
             <Title>{textContent.secondScreen.title}</Title>
             <Content>{textContent.secondScreen.content}</Content>
             <Footer>
-            <More to={config.paths.secondScreen.path}/>
+            <More/>
             </Footer>
 
     </Card>
 );
 const MobileEncryptionCard = () => (
 
-    <Card>
+    <Card to={config.paths.aboutContentEncryption.path}>
             <EncryptionIcon/>
             <Title>{textContent.encryption.title}</Title>
             <Content>{textContent.encryption.content}</Content>
             <Footer>
-            <More to={config.paths.aboutContentEncryption.path}/>
+            <More />
             </Footer>
     </Card>
 );
 const PersonalStorageCard = () => (
-    <Card>
+    <Card to={config.paths.mobilePersonalStorage.path}>
             <StorageIcon/>
             <Title>{textContent.mobilePersonStorage.title}</Title>
             <Content>{textContent.mobilePersonStorage.content}</Content>
             <Footer>
-            <More to={config.paths.mobilePersonalStorage.path}/>
+            <More />
             </Footer>
 
     </Card>
 );
 const ContentTransferCard = () => (
-    <Card>
+    <Card to={config.paths.mobileContentTransfer.path}>
             <TransferIcon/>
             <Title>{textContent.mobileContentTransfer.title}</Title>
             <Content>{textContent.mobileContentTransfer.content}</Content>
             <Footer>
-                <More to={config.paths.mobileContentTransfer.path}/>
+                <More />
             </Footer>
 
     </Card>
@@ -109,8 +109,6 @@ export const CardSection=()=>(
 
                 <PersonalStorageCard/>
                 <ContentTransferCard/>
-
-
         </CardsContent>
 
 
