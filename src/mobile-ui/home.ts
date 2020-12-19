@@ -69,7 +69,7 @@ const initData = {
                     backgroundColor:'rgb(74, 113, 205)'
 
                 },
-                content:'Pages to Navigate'
+                content:'Page Navigation'
             },
         },
         ...Object.values(exampleFields.FIELDS),
