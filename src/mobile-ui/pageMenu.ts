@@ -24,6 +24,42 @@ export const FIELDS = {
         type: 'button',
         label: 'Get It',
         viewId: "row1",
+    },
+    mobileAuthentication:{
+        id: 'about-mobile-authentication',
+        type: 'button',
+        label: 'Mobile Authentication',
+        viewId: "row1"
+    },
+    mobileInputControl:{
+        id: 'about-mobile-input-control',
+        type: 'button',
+        label: 'Mobile Control',
+        viewId: "row1"
+    },
+    secondScreen:{
+        id: 'about-second-screen',
+        type: 'button',
+        label: 'Second Screen',
+        viewId: "row1"
+    },
+    mobileEncryption:{
+        id: 'about-mobile-encryption',
+        type: 'button',
+        label: 'Mobile Encryption',
+        viewId: "row1"
+    },
+    mobileSecureStorage:{
+        id: 'about-mobile-secure-storage',
+        type: 'button',
+        label: 'Mobile Secure Storage',
+        viewId: "row1"
+    },
+    mobileContentTransfer:{
+        id: 'about-mobile-content-transfer',
+        type: 'button',
+        label: 'Mobile Content Transfer',
+        viewId: "row1"
     }
 };
 
@@ -41,6 +77,24 @@ export const onFieldChange = (field, history) => {
             break;
         case FIELDS.getItFree.id:
             history.push(config.paths.getAppScreen.path);
+            break;
+        case FIELDS.mobileAuthentication.id:
+            history.push(config.paths.mobileAuthentication.path);
+            break;
+        case FIELDS.mobileInputControl.id:
+            history.push(config.paths.mobileControl.path);
+            break;
+        case FIELDS.secondScreen.id:
+            history.push(config.paths.secondScreen.path);
+            break;
+        case FIELDS.mobileEncryption.id:
+            history.push(config.paths.aboutContentEncryption.path);
+            break;
+        case FIELDS.mobileSecureStorage.id:
+            history.push(config.paths.mobilePersonalStorage.path);
+            break;
+        case FIELDS.mobileContentTransfer.id:
+            history.push(config.paths.mobileContentTransfer.path);
             break;
         default:
             return false;

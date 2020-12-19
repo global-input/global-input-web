@@ -39,7 +39,22 @@ const initData = {
         },
         fields: [{
             type: "info",
+            viewId:'row2',
+            value:{
+                type: "view",
+                style: {
+                    width:'100%',
+                    display:'flex',
+                    fontSize:20,
+                    color:'white',
+                    flexDirection:'row',
+                    backgroundColor:'rgb(74, 113, 205)'
 
+                },
+                content:'Micro Apps'
+            }
+        },{
+            type: "info",
             viewId:'row1',
             value: {
                 type: "view",
@@ -54,35 +69,10 @@ const initData = {
                 },
                 content:'Pages to Navigate'
             },
-
-
-
         },
-
-        {
-            type: "info",
-
-            viewId:'row2',
-            value:{
-                type: "view",
-                style: {
-                    width:'100%',
-                    display:'flex',
-                    fontSize:20,
-                    color:'white',
-                    flexDirection:'row',
-                    backgroundColor:'rgb(74, 113, 205)'
-
-                },
-                content:'Micro Apps'
-
-            }
-
-        },
-
-
-        pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree,
-        ...Object.values(exampleFields.FIELDS)]
+        ...Object.values(exampleFields.FIELDS),
+        ...Object.values(pageMenu.FIELDS).filter(f=>f.id!==pageMenu.FIELDS.home.id)
+        ]
     }
 };
 
