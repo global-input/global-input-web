@@ -1,14 +1,14 @@
 import { useHistory } from 'react-router-dom';
-import { useMobileConnect } from '../mobile';
+import { useConnectToMobile } from '../mobile';
 import * as pageMenu from './pageMenu';
 
 export const useMobile = () => {
     const history = useHistory();
-    const onchange = ({ field }) => {
-        onFieldChange(field, history);
-    }
-    const { MobileConnect } = useMobileConnect(initData, onchange);
-    return MobileConnect;
+    const { ConnectToMobile,mobile } = useConnectToMobile(initData, false);
+    mobile.setOnchange(({field})=>{
+        onFieldChange(field,history);
+    })
+    return {ConnectToMobile,mobile};
 }
 
 const initData = {

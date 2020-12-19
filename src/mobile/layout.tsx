@@ -96,38 +96,23 @@ export const Button = styled.button`
     color: #4281BD;
     background-color: white;
     white-space: nowrap;
-    padding: 5px;
+
+    padding: 10px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border-color:#EEEEEE;
     display:flex;
     min-width:50px;
-    max-width:30px;
+
+    max-width: 200px;
     margin-left:5px;
     margin-right:5px;
-
-`;
-export const BigButton = styled.button`
-    text-decoration: none;
-    border-radius: 8px;
-    color: #4281BD;
-    background-color: white;
-    white-space: nowrap;
-    padding: 5px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-color:#EEEEEE;
-    border-width:0;
-    padding: 10px;
-    max-width: 200px;
-    font-size: 15px;
-    display:flex;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
+
     &: hover{
 
 
@@ -135,7 +120,10 @@ export const BigButton = styled.button`
         box-shadow: 0 0 50px #ffff;
     }
 
-
+`;
+export const BigButton = styled(Button)`
+    border-width:0;
+    font-size: 15px;
 `;
 
 

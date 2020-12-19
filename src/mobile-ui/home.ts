@@ -19,18 +19,70 @@ const initData = {
         title: "Global Input App",
         views: {
             viewIds: {
-                row9: {
+                row1: {
                     style: {
-                        borderWidth: 1,
-                        borderColor: '#EEEEEE'
+                        borderWidth: 2,
+                        borderColor: '#EEEEEE',
+                        marginBottom:20,
+                        width:'98%'
+                    }
+                },
+                row2: {
+                    style: {
+                        borderWidth: 2,
+                        borderColor: '#EEEEEE',
+                        marginBottom:20,
+                        width:'98%'
                     }
                 }
             }
         },
         fields: [{
             type: "info",
-            value: "Pages to Navigate"
-        },pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree, ...Object.values(exampleFields.FIELDS)]
+
+            viewId:'row1',
+            value: {
+                type: "view",
+                style: {
+                    width:'100%',
+                    display:'flex',
+                    fontSize:20,
+                    color:'white',
+                    flexDirection:'row',
+                    backgroundColor:'rgb(74, 113, 205)'
+
+                },
+                content:'Pages to Navigate'
+            },
+
+
+
+        },
+
+        {
+            type: "info",
+
+            viewId:'row2',
+            value:{
+                type: "view",
+                style: {
+                    width:'100%',
+                    display:'flex',
+                    fontSize:20,
+                    color:'white',
+                    flexDirection:'row',
+                    backgroundColor:'rgb(74, 113, 205)'
+
+                },
+                content:'Micro Apps'
+
+            }
+
+        },
+
+
+        pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs, pageMenu.FIELDS.getItFree,
+        ...Object.values(exampleFields.FIELDS)]
     }
 };
 

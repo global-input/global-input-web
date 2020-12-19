@@ -17,7 +17,7 @@ enum PAGES {
     PAIRING
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = true, modal = false) => {
+export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = true) => {
     const [connect, setConnect] = useState(initialConnect);
     const [configId, setConFigId] = useState(1);
     const enableConnect = useCallback(() => setConnect(true), []);

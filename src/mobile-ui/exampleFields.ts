@@ -6,42 +6,42 @@ export const FIELDS = {
         type: "button",
         label: 'Encryption',
         icon: 'encrypt',
-        viewId: "row8"
+        viewId: "row2"
     },
     transferForm: {
         id: "transfer-form-example",
         type: 'button',
         label: 'Form Data',
         icon: 'send',
-        viewId: "row8"
+        viewId: "row2"
     },
     secondScreen: {
         id: 'second-screen-example',
         type: 'button',
         label: 'Second Screen',
         icon: 'play',
-        viewId: "row8"
+        viewId: "row2"
     },
     game: {
         id: 'game-control-example',
         type: 'button',
         label: 'Game',
         icon: 'play',
-        viewId: "row8"
+        viewId: "row2"
     },
     sendMessage: {
         id: 'send-message-example',
         type: 'button',
         label: 'Mobile Storage',
         icon: 'save',
-        viewId: "row8"
+        viewId: "row2"
     },
     contentTransfer: {
         id: 'content-transfer-example',
         type: 'button',
         label: 'Content Transfer',
         icon: 'right',
-        viewId: "row8"
+        viewId: "row2"
     }
 
 };

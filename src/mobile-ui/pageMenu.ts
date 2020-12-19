@@ -5,25 +5,25 @@ export const FIELDS = {
         id: 'back-to-website-home',
         type: 'button',
         label: 'Home',
-        viewId: "row9"
+        viewId: "row1"
     },
     privacy: {
         id: 'website-privacy',
         type: 'button',
         label: 'Privacy',
-        viewId: "row9",
+        viewId: "row1",
     },
     contactUs: {
         id: 'website-contact-us',
         type: 'button',
         label: 'Contact Us',
-        viewId: "row9",
+        viewId: "row1",
     },
     getItFree: {
         id: 'website-get-it-free',
         type: 'button',
         label: 'Get It',
-        viewId: "row9",
+        viewId: "row1",
     }
 };
 
