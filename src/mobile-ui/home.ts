@@ -24,7 +24,8 @@ const initData = {
                         borderWidth: 2,
                         borderColor: '#EEEEEE',
                         marginBottom:20,
-                        width:'98%'
+                        width:'98%',
+                        backgroundColor:'rgb(225, 235, 245)'
                     }
                 },
                 row2: {
@@ -32,7 +33,8 @@ const initData = {
                         borderWidth: 2,
                         borderColor: '#EEEEEE',
                         marginBottom:20,
-                        width:'98%'
+                        width:'98%',
+                        backgroundColor:'rgb(225, 235, 245)'
                     }
                 }
             }
