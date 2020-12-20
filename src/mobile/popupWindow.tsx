@@ -27,7 +27,6 @@ const PopupContainer = styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         display: flex;
-        max-height:80vh;
         -moz-box-shadow: 3px 3px 5px #535353;
     -webkit-box-shadow: 3px 3px 5px #535353;
     box-shadow: 3px 3px 5px #535353;

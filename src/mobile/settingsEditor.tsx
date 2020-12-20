@@ -26,9 +26,7 @@ const Button = styled.button`
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
 
-    &: hover{
-
-
+    &: hover {
         transform: translateY(-3px);
         box-shadow: 0 0 50px #ffff;
     }
@@ -38,11 +36,13 @@ const Button = styled.button`
 const Form = styled.div`
     display:flex;
     flex-direction:column;
-    width:95%;
     justify-content:flex-start;
     align-items:flex-start;
     padding:10px;
-    max-width:80vw;
+    width:80vw;
+    max-width:400px;
+    height:80vh;
+    max-height:400px;
 `;
 
 
@@ -82,8 +82,9 @@ const Input = styled.input`
         visibility: visible;
         z-index: 1;
         opacity: 1;
-        transform: translateY(-5px);
+        transform: translateX(10px) translateY(-40px);
         transition: 0.2s ease-in-out transform;
+        background-color:white;
     }
     width:100%;
 `;
@@ -102,32 +103,44 @@ const Label = styled.label.attrs(props => ({
 
 
 
-const ProxyField=({url,onChange})=>(
+
+
+const ProxyField=({settings, setSettings})=>(
     <Field>
-                        <Input id="url" onChange={onChange} value={url} placeholder="Proxy URL"/>
+                        <Input id="url" onChange={evt=>{
+                          setSettings(setting => ({ ...setting, url:evt.target.value}));
+                        }} value={settings.url ? settings.url : ''} placeholder="Proxy URL"/>
                         <Label htmlFor="url">Proxy URL</Label>
                         <ProxyURLHelp/>
     </Field>
 );
 
- const APIKeyField=({apikey,onChange}) =>(
+
+ const APIKeyField=({settings, setSettings}) =>(
     <Field>
-                        <Input id="apiKey" onChange={onChange} value={apikey} placeholder="API Key"/>
+                        <Input id="apiKey" onChange={evt=>{
+                          setSettings(setting => ({ ...setting, apikey:evt.target.value}));
+                        }} value={settings.apikey ? settings.apikey : ''} placeholder="API Key"/>
                         <Label htmlFor="apiKey">API Key</Label>
                         <APIKeyHelp/>
     </Field>
 );
 
-const SecurityGroupField=({securityGroup,onChange})=>(
+
+const SecurityGroupField=({settings, setSettings})=>(
     <Field>
-                        <Input id="securityGroup" onChange={onChange} value={securityGroup} placeholder="Security Group Key"/>
+                        <Input id="securityGroup" onChange={evt=>{
+                          setSettings(setting => ({ ...setting, securityGroup:evt.target.value}));
+                        }} value={settings.securityGroup?settings.securityGroup:''} placeholder="Security Group Key"/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
                         <SecurityGroupKeyHelp/>
     </Field>
 );
-const CodeKeyField=({codeKey,onChange})=>(
+const CodeKeyField=({settings, setSettings})=>(
                 <Field>
-                        <Input id="codeKey" onChange={onChange} value={codeKey} placeholder="Code Key"/>
+                        <Input id="codeKey" onChange={evt=>{
+                          setSettings(setting => ({ ...setting, codeKey:evt.target.value}));
+                        }} value={settings.codeKey?settings.codeKey:''} placeholder="Code Key"/>
                         <Label htmlFor="codeKey">Code Key</Label>
                         <CodeKeyHelp/>
                 </Field>
@@ -144,27 +157,37 @@ const Footer = styled.div`
 
 
 export const SettingsEditor = ({ loadSettings,saveSettings}) => {
-    const [setting, setSettings] = useState(loadSettings);
+    const [settings, setSettings] = useState(loadSettings);
     const [help,setHelp]=useState(null);
-    const onSave = () => saveSettings(setting);
-    const url = setting.url ? setting.url : '';
-    const apikey = setting.apikey ? setting.apikey : '';
-    const securityGroup = setting.securityGroup ? setting.securityGroup : '';
-    const codeKey = setting.codeKey ? setting.codeKey : '';
+    const onSave = () => saveSettings(settings);
+    return (
+        <Form>
+            <SecurityGroupField settings={settings} setSettings={setSettings}/>
+            <CodeKeyField settings={settings} setSettings={setSettings}/>
+            <ProxyField settings={settings} setSettings={setSettings}/>
+            <APIKeyField settings={settings} setSettings={setSettings}/>
+            <Footer>
+                <Button onClick={onSave}>Save</Button>
+        </Footer>
 
+        </Form>
+);
+
+
+/*
     return (
             <Form>
-                <SecurityGroupField onChange={(value) => {
-                                setSettings(setting => ({ ...setting, securityGroup: value }));
+                <SecurityGroupField onChange={(securityGroup) => {
+                                setSettings(setting => ({ ...setting, securityGroup}));
                         }} securityGroup={securityGroup}/>
-                <CodeKeyField onChange={(value) => {
-                                setSettings(setting => ({ ...setting, codeKey: value }));
+                <CodeKeyField onChange={(codeKey) => {
+                                setSettings(setting => ({ ...setting, codeKey}));
                         }} codeKey={codeKey}/>
-                <ProxyField onChange={(value) => {
-                                setSettings(setting => ({ ...setting, url: value }));
+                <ProxyField onChange={(url) => {
+                                setSettings(setting => ({ ...setting, url}));
                 }} url={url}/>
-                <APIKeyField onChange={(value) => {
-                                setSettings(setting => ({ ...setting, apikey: value }));
+                <APIKeyField onChange={(apikey) => {
+                                setSettings(setting => ({ ...setting, apikey}));
                 }} apikey={apikey}/>
 
                 <Footer>
@@ -172,5 +195,6 @@ export const SettingsEditor = ({ loadSettings,saveSettings}) => {
             </Footer>
 
             </Form>
-    )
+    );
+    */
 };
