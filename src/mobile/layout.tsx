@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import closeIcon from './images/close.png';
-import settingsIcon from './images/settings.png';
+import settingsImage from './images/settings.png';
+import connectImage from './images/connect.png';
+import pairingImage from './images/pairing.png';
 const PopupGlass = styled.div`
         display: flex;
         flex-direction: column;
@@ -25,14 +27,14 @@ const PopupContainer = styled.div`
         background-color: white;
         margin: 0;
         padding:0;
-        border: 3px solid #f1f1f1;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         display: flex;
-
+        max-height:80vh;
         -moz-box-shadow: 3px 3px 5px #535353;
     -webkit-box-shadow: 3px 3px 5px #535353;
     box-shadow: 3px 3px 5px #535353;
+
 `;
 const PopupContainer2=styled(PopupContainer)`
     width:90%;
@@ -47,12 +49,12 @@ export const TopBar = styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         flex-direction: row;
+        align-items:flex-start;
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        min-height:30px;
-
-        border-bottom:1px solid rgb(230,230,230);
+        min-height:60px;
+        background-color:rgb(220,220,220);
 
 `;
 export const PopupContent = styled.div`
@@ -64,6 +66,7 @@ export const PopupContent = styled.div`
         display: flex;
         width:100%;
         margin-top:10px;
+        overflow:scroll;
 `;
 
 
@@ -134,6 +137,7 @@ const useClickedOutside = (element, onClicked) => {
     useEffect(() => {
         const handleClick = (evt) => {
             if (element.current && (!element.current.contains(evt.target))) {
+                console.log("-----outclicked");
                 onClicked();
             }
         }
@@ -145,14 +149,75 @@ const useClickedOutside = (element, onClicked) => {
 };
 
 
-export const SettingsButton=styled.input.attrs({
-    type:'image',
-    name:'settings',
-    alt:'Settings',
-    src:settingsIcon
-})`
-margin-left:5px;
+export const Tabs=styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    height:100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 `;
+const Tab=styled.div`
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        height:90%;
+        border-width:0px;
+        margin-right:10px;
+        padding:5px;
+`;
+const ActiveTab=styled(Tab)`
+background-color:white;
+height:100%;
+
+`;
+
+
+const TabText=styled.div`
+    color:rgb(21,53,232);
+    font-size:8px;
+`;
+
+
+const SettingsIcon=styled.img.attrs({
+    src:settingsImage,
+    alt:'Settings',
+})``;
+const ConnectIcon=styled.img.attrs({
+    src:connectImage,
+    alt:'Connect',
+})``;
+
+const PairingIcon=styled.img.attrs({
+    src:pairingImage,
+    alt:'Pair',
+})``;
+
+export const SettingsTab=({onClick})=>(
+    <Tab as='button' onClick={onClick}>
+        <SettingsIcon/>
+        <TabText>Settings</TabText>
+    </Tab>
+);
+
+export const ActiveConnectTab=()=>(
+    <ActiveTab>
+           <ConnectIcon/>
+           <TabText>Connect</TabText>
+    </ActiveTab>
+);
+
+export const PairingTab=({onClick})=>(
+    <Tab as='button' onClick={onClick}>
+    <PairingIcon/>
+    <TabText>Pair</TabText>
+</Tab>
+
+
+);
+
+
+
 export const CloseButton=styled.input.attrs({
     type:'image',
     name:'close',
@@ -199,20 +264,19 @@ export const Form = styled.div`
     justify-content:flex-start;
     align-items:flex-start;
     padding:10px;
+    max-width:80vw;
 `;
 
 
 
 
-const Field = styled.div`
+export const Field = styled.div`
     position: relative;
-    margin: 20px auto;
     width:100%;
-
-
+    padding-top:15px;
 
 `;
-const Input = styled.input`
+export const Input = styled.input`
     display: block;
     line-height: 2em;
     margin: 0;
@@ -245,7 +309,7 @@ const Input = styled.input`
     }
     width:100%;
 `;
-const Label = styled.label.attrs(props => ({
+export const Label = styled.label.attrs(props => ({
     className: "control-label"
 
 }))`
@@ -275,14 +339,14 @@ interface InputFieldProps {
     label: string;
 
 }
-export const InputField = ({ id, onChange, label, value }) => {
+export const InputField = ({ id, onChange, label, placeholder,value }) => {
     return (<Field>
         <Input id={id}
             onChange={evt => {
                 onChange(evt.target.value)
             }}
             value={value}
-            placeholder={label} />
+            placeholder={placeholder} />
         <Label htmlFor={id}>{label}</Label>
     </Field>
     );
@@ -299,7 +363,7 @@ const Help=styled.div`
         overflow:scroll;
 `;
 
-const WebSocketServer=styled.a.attrs({
+export const WebSocketServer=styled.a.attrs({
     target:'_blank',
     rel: 'noopener noreferrer',
     href:'https://github.com/global-input/global-input-node',

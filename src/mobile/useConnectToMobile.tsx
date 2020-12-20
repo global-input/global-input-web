@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import {
-    PopupWindow, PopupWindow2, SettingsButton,
+    PopupWindow, PopupWindow2, SettingsTab,
     Form, InputField, Footer, Button,
     TopBar, CloseButton, PopupContent, Title, SettingsHelp
 } from './layout';
+
 
 import { useMobile, InitData, ConnectQRProps } from './useMobile';
 
@@ -72,7 +73,7 @@ const PopupConnectQRCode: React.FC<PopupConnectQRCodeProps> = ({ close, editSett
 
     return (<PopupWindow onClose={close}>
         <TopBar>
-            <SettingsButton onClick={editSettings} />
+            <SettingsTab onClick={editSettings} />
             <CloseButton onClick={close} />
         </TopBar>
         <PopupContent>
@@ -111,16 +112,16 @@ const PopupSettingsEditor = ({ close, back, pairing, onSettingChanged }) => {
             </TopBar>
             <PopupContent>
                 <Form>
-                    <InputField id="url" label="Proxy URL" value={url} onChange={(value) => {
+                    <InputField id="url" label="Proxy URL" placeholder="Proxy URL" value={url} onChange={(value) => {
                         setURL(value);
                     }} />
-                    <InputField id="apiKey" label="API Key" value={apikey} onChange={(value) => {
+                    <InputField id="apiKey" label="API Key" placeholder="API Key" value={apikey} onChange={(value) => {
                         setAPIKey(value);
                     }} />
-                    <InputField id="securityGroup" label="Security Group Key" value={securityGroup} onChange={(value) => {
+                    <InputField id="securityGroup" label="Security Group Key" placeholder="Security Group Key" value={securityGroup} onChange={(value) => {
                         setSecurityGroup(value);
                     }} />
-                    <InputField id="codeKey" label="Code Key" value={codeKey} onChange={(value) => {
+                    <InputField id="codeKey" label="Code Key" placeholder="Code Key" value={codeKey} onChange={(value) => {
                         setCodeKey(value);
                     }} />
                 </Form>
