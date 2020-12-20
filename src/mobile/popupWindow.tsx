@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import closeIcon from './images/close.png';
+
 
 const PopupGlass = styled.div`
         display: flex;
@@ -41,8 +41,8 @@ export const TopBar = styled.div`
         align-items:flex-start;
         justify-content: space-between;
         width: 100%;
-        align-items: center;
-        min-height:60px;
+        align-items: flex-end;
+        min-height:70px;
         background-color:rgb(220,220,220);
 `;
 export const PopupContent = styled.div`
@@ -55,14 +55,6 @@ export const PopupContent = styled.div`
         width:100%;
         margin-top:10px;
         overflow:scroll;
-`;
-export const Footer = styled.div`
-        display: flex;
-        margin:0;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
 `;
 
 export const disableBodyScroll=()=>{
@@ -90,18 +82,10 @@ const useClickedOutside = (element, onClicked) => {
 };
 
 
-export const CloseButton=styled.input.attrs({
-    type:'image',
-    name:'close',
-    alt:'Close',
-    src:closeIcon
-})`
-margin-right:5px;
-`;
 
-export const PopupWindow= ({ children, onClose}) => {
+export const PopupWindow= ({ children}) => {
     const popup = useRef(null);
-    useClickedOutside(popup, onClose);
+    //useClickedOutside(popup, onClose);
     return (
         <PopupGlass>
             <PopupContainer ref={popup}>

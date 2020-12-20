@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import settingsImage from './images/settings.png';
 import connectImage from './images/connect.png';
 import pairingImage from './images/pairing.png';
+import closeImage from './images/close.png';
 
 export enum PAGES {
     CONNECT_QR,
@@ -19,22 +20,28 @@ const TabContainer=styled.div`
     height:100%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    align-items: flex-end;
 `;
 const TabBase=styled.div`
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        height:90%;
         border-width:0px;
         margin-right:10px;
+        margin-left:10px;
         padding:5px;
 `;
 const ActiveTab=styled(TabBase)`
-background-color:white;
-height:100%;
+    background-color:white;
 `;
 const Tab=styled(TabBase).attrs({
     as:`button`
-})``;
+})`
+margin-bottom:10px;
+&: hover{
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px #ffff;
+}
+`;
 
 
 
@@ -46,16 +53,21 @@ const TabText=styled.div`
 
 const SettingsIcon=styled.img.attrs({
     src:settingsImage,
-    alt:'Settings',
+    alt:'Settings'
 })``;
 const ConnectIcon=styled.img.attrs({
     src:connectImage,
-    alt:'Connect',
+    alt:'Connect'
 })``;
 
 const PairingIcon=styled.img.attrs({
     src:pairingImage,
-    alt:'Pair',
+    alt:'Pair'
+})``;
+
+const CloseIcon=styled.img.attrs({
+    src:closeImage,
+    alt:'Close'
 })``;
 
 const SettingsTab=({page,setPage})=>{
@@ -73,6 +85,12 @@ const SettingsTab=({page,setPage})=>{
         </Tab>);
     }
 }
+export const CloseTab=({onClose}) =>(
+    <Tab  onClick={onClose}>
+        <CloseIcon/>
+        <TabText>Close</TabText>
+    </Tab>
+)
 
 
 const ConnectTab=({page,setPage})=>{

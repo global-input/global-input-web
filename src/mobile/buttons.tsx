@@ -25,8 +25,6 @@ export const Button = styled.button`
     font-family: 'Roboto', sans-serif;
 
     &: hover{
-
-
         transform: translateY(-3px);
         box-shadow: 0 0 50px #ffff;
     }

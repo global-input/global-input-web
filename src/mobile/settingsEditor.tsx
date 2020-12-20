@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {ProxyURLHelp,APIKeyHelp,SecurityGroupKeyHelp,CodeKeyHelp} from './help';
 
-export const Button = styled.button`
+const Button = styled.button`
     text-decoration: none;
     font-size: 11px;
     border-radius: 8px;
@@ -35,7 +35,7 @@ export const Button = styled.button`
 
 `;
 
-export const Form = styled.div`
+const Form = styled.div`
     display:flex;
     flex-direction:column;
     width:95%;
@@ -102,7 +102,7 @@ const Label = styled.label.attrs(props => ({
 
 
 
-export const ProxyField=({url,onChange})=>(
+const ProxyField=({url,onChange})=>(
     <Field>
                         <Input id="url" onChange={onChange} value={url} placeholder="Proxy URL"/>
                         <Label htmlFor="url">Proxy URL</Label>
@@ -110,7 +110,7 @@ export const ProxyField=({url,onChange})=>(
     </Field>
 );
 
-export const APIKeyField=({apikey,onChange}) =>(
+ const APIKeyField=({apikey,onChange}) =>(
     <Field>
                         <Input id="apiKey" onChange={onChange} value={apikey} placeholder="API Key"/>
                         <Label htmlFor="apiKey">API Key</Label>
@@ -118,17 +118,59 @@ export const APIKeyField=({apikey,onChange}) =>(
     </Field>
 );
 
-export const SecurityGroupField=({securityGroup,onChange})=>(
+const SecurityGroupField=({securityGroup,onChange})=>(
     <Field>
                         <Input id="securityGroup" onChange={onChange} value={securityGroup} placeholder="Security Group Key"/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
                         <SecurityGroupKeyHelp/>
     </Field>
 );
-export const CodeKeyField=({codeKey,onChange})=>(
+const CodeKeyField=({codeKey,onChange})=>(
                 <Field>
                         <Input id="codeKey" onChange={onChange} value={codeKey} placeholder="Code Key"/>
                         <Label htmlFor="codeKey">Code Key</Label>
                         <CodeKeyHelp/>
                 </Field>
 );
+
+const Footer = styled.div`
+        display: flex;
+        margin:0;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+`;
+
+
+export const SettingsEditor = ({ loadSettings,saveSettings}) => {
+    const [setting, setSettings] = useState(loadSettings);
+    const [help,setHelp]=useState(null);
+    const onSave = () => saveSettings(setting);
+    const url = setting.url ? setting.url : '';
+    const apikey = setting.apikey ? setting.apikey : '';
+    const securityGroup = setting.securityGroup ? setting.securityGroup : '';
+    const codeKey = setting.codeKey ? setting.codeKey : '';
+
+    return (
+            <Form>
+                <SecurityGroupField onChange={(value) => {
+                                setSettings(setting => ({ ...setting, securityGroup: value }));
+                        }} securityGroup={securityGroup}/>
+                <CodeKeyField onChange={(value) => {
+                                setSettings(setting => ({ ...setting, codeKey: value }));
+                        }} codeKey={codeKey}/>
+                <ProxyField onChange={(value) => {
+                                setSettings(setting => ({ ...setting, url: value }));
+                }} url={url}/>
+                <APIKeyField onChange={(value) => {
+                                setSettings(setting => ({ ...setting, apikey: value }));
+                }} apikey={apikey}/>
+
+                <Footer>
+                    <Button onClick={onSave}>Save</Button>
+            </Footer>
+
+            </Form>
+    )
+};
