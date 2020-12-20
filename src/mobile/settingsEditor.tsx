@@ -82,7 +82,7 @@ const Input = styled.input`
         visibility: visible;
         z-index: 1;
         opacity: 1;
-        transform: translateX(10px) translateY(-40px);
+        transform: translateX(10px) translateY(-47px);
         transition: 0.2s ease-in-out transform;
         background-color:white;
     }
@@ -92,13 +92,17 @@ const Label = styled.label.attrs(props => ({
     className: "control-label"
 
 }))`
-    display: block;
-    position: absolute;
+    display: inline-block;
     opacity: 0;
-    bottom: 1.9rem;
-    color: #5d5d5d;
+    color:rgb(53,116,230);
     transition: 0.2s ease-in-out transform;
     font-size: 12px;
+    width:auto;
+    padding-left:5px;
+    padding-right:5px;
+
+
+
 `;
 
 
@@ -173,28 +177,4 @@ export const SettingsEditor = ({ loadSettings,saveSettings}) => {
         </Form>
 );
 
-
-/*
-    return (
-            <Form>
-                <SecurityGroupField onChange={(securityGroup) => {
-                                setSettings(setting => ({ ...setting, securityGroup}));
-                        }} securityGroup={securityGroup}/>
-                <CodeKeyField onChange={(codeKey) => {
-                                setSettings(setting => ({ ...setting, codeKey}));
-                        }} codeKey={codeKey}/>
-                <ProxyField onChange={(url) => {
-                                setSettings(setting => ({ ...setting, url}));
-                }} url={url}/>
-                <APIKeyField onChange={(apikey) => {
-                                setSettings(setting => ({ ...setting, apikey}));
-                }} apikey={apikey}/>
-
-                <Footer>
-                    <Button onClick={onSave}>Save</Button>
-            </Footer>
-
-            </Form>
-    );
-    */
 };

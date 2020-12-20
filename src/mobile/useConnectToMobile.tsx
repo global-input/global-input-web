@@ -13,13 +13,12 @@ interface MobileConnectProps {
     label?: string;
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = true) => {
+export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = false) => {
     const [connect, setConnect] = useState(initialConnect);
     const [configId, setConFigId] = useState(1);
     const [page,setPage]=useState(PAGES.CONNECT_QR);
     const mobile = useMobile(initData, connect, configId);
     const openWindow = useCallback(() => {
-            disableBodyScroll();
             setConnect(true);
     }, []);
     const closeWindow = useCallback(() => {
@@ -47,6 +46,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
             return null;
         }
         if (connect) {
+            disableBodyScroll();
             return (
             <PopupWindow>
                     <TopBar>
