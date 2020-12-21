@@ -73,6 +73,8 @@ export const Card =styled (Link)`
       padding-bottom:30px;
       max-width: 370px;
       text-decoration:none;
+      overflow:scroll;
+
       &: hover{
         box-shadow: 0 0 50px #ffff;
         transform: translateY(-3px);
