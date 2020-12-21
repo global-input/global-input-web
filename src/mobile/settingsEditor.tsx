@@ -41,7 +41,7 @@ const Form = styled.div`
     padding:10px;
     width:80vw;
     max-width:400px;
-    height:80vh;
+    height:65vh;
     max-height:450px;
 `;
 
@@ -153,8 +153,12 @@ const HelpContent=styled.div`
 font-family: Avenir;
     color: rgb(53,116,230);
     white-space: wrap;
-    font-size: 10px;
+    font-size: 12px;
     display:${props=>props.expand?'inline':'none'};
+    @media only screen and (min-width:500px){
+        font-size: 14px;
+    }
+
 `;
 const WebSocketServer=styled.a.attrs({
     target:'_blank',
@@ -192,7 +196,7 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
                         </Label>
                         <Help expandId='url' expand={expand} setExpand={setExpand}>
                                 Proxy URL identifies the <WebSocketServer>WebSocket server</WebSocketServer> responsible for proxying messages between your mobile app and this application.
-            You can install and use your own <WebSocketServer>WebSocket servers</WebSocketServer> that can run in insecure environments thanks to the end-to-end encryption that secures messages between the mobile app and the application.
+            You can install and use your own <WebSocketServer>WebSocket servers</WebSocketServer> that can even run in insecure environments thanks to the end-to-end encryption that secures messages between your mobile app and this application.
                         </Help>
     </Field>
 );
@@ -209,9 +213,9 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
                             API Key
                         </Label>
                         <Help expandId='apikey' expand={expand} setExpand={setExpand}>
-                        API Key is used by <WebSocketServer>WebSocket servers</WebSocketServer> to identify the client application that is making the connection.
-Since the WebSocket servers do not hold any sensitive information, there is no security implications in regards to API Key except for protecting
-the connection resources allocated for the client applications.
+                        API Key is used by the <WebSocketServer>WebSocket servers</WebSocketServer> to identify the incoming connections.
+Since the WebSocket servers do not hold any sensitive information and is only responsible for proxying encrypted messages between your mobile app and this application, there is no security implications of exposing this value except for
+maintaining the optimum performance of the WebSocket server.
                         </Help>
 
 
@@ -228,9 +232,10 @@ const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
                         onFocus={()=>setExpand('securityGroup')}/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
                         <Help expandId='securityGroup' expand={expand} setExpand={setExpand}>
-                        Security Group Key is used by the device application to verify the incoming mobile app connection (via a WebSocket server)
-            in the same way that API Key is used by a server application to identify a client application.
-            If you change this value, you need to pair your mobile app to this application.
+                        Security Group Key is used by this application to verify
+                        the incoming connections coming from your mobile app
+            in the same way that API Keys are used by server applications to identify incoming requests.
+            If you change this value, you need to pair your mobile app.
                         </Help>
 
     </Field>
@@ -243,8 +248,8 @@ const CodeKeyField=({settings, setSettings,expand,setExpand})=>(
                         onFocus={()=>setExpand('codeKey')}/>
                         <Label htmlFor="codeKey">Code Key</Label>
                         <Help expandId='codeKey' expand={expand} setExpand={setExpand}>
-                        Code Key is used by the device application to encrypt the content of the QR Code for mobile apps to connect to this applications.
-            Obviously, if you change this value, you need to pair your mobile app so it can decrypt the content of the QR code it has scanned.
+                        Code Key is used by this application to encrypt the QR Code that it displays for you mobile app to scan to obtain the connection information.
+            If you change this value, you need to pair your mobile app.
 
                         </Help>
 

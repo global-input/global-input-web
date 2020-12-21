@@ -29,6 +29,24 @@ const TabBase=styled.div`
         margin-right:10px;
         margin-left:10px;
         padding:5px;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:center;
+        @media only screen and (min-width:320px){
+            min-width:50px;
+        }
+        @media only screen and (min-width:400px){
+            min-width:70px;
+        }
+        @media only screen and (min-width:600px){
+            min-width:90px;
+        }
+        @media only screen and (min-width:700px){
+            min-width:100px;
+
+        }
+
 `;
 const ActiveTab=styled(TabBase)`
     background-color:white;
@@ -37,6 +55,7 @@ const Tab=styled(TabBase).attrs({
     as:`button`
 })`
 margin-bottom:10px;
+
 &: hover{
     transform: translateY(-3px);
     box-shadow: 0 0 50px #ffff;
@@ -48,6 +67,13 @@ margin-bottom:10px;
 const TabText=styled.div`
     color:rgb(21,53,232);
     font-size:8px;
+    @media only screen and (min-width:280px){
+        font-size:10px;
+    }
+    @media only screen and (min-width:400px){
+        font-size:12px;
+    }
+
 `;
 
 
@@ -58,7 +84,9 @@ const SettingsIcon=styled.img.attrs({
 const ConnectIcon=styled.img.attrs({
     src:connectImage,
     alt:'Connect'
-})``;
+})`
+
+`;
 
 const PairingIcon=styled.img.attrs({
     src:pairingImage,
