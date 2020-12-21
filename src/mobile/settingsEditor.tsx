@@ -114,6 +114,7 @@ const ExpandIcon =styled.div`
     display: inline-block;
     border:1px solid red;
     background-color:white;
+    cursor:pointer;
 
 
     width: 22px;
