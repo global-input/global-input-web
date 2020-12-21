@@ -23,7 +23,6 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
     }, []);
     const closeWindow = useCallback(() => {
         setConnect(false);
-        enableBodyScroll();
     }, []);
     const loadSettings=useCallback(()=>storage.loadConnectionSettings(),[]);
     const {disconnect}=mobile;
@@ -43,6 +42,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
 
     const ConnectToMobile:React.FC<MobileConnectProps> = useCallback(({ label = 'Connect' }) => {
         if (mobile.isConnected) {
+            enableBodyScroll();
             return null;
         }
         if (connect) {
@@ -61,9 +61,11 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
             </PopupWindow >
             );
         }
-        else {
+        else{
+            enableBodyScroll();
             return (<BigButton onClick={openWindow}>{label}</BigButton>);
         }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isConnected,isConnectionDenied, isError, isReady,isDisconnected,isLoading, connect, page, closeWindow, onSaveSettings, loadSettings, openWindow]);
 

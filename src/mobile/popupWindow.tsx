@@ -56,11 +56,19 @@ export const PopupContent = styled.div`
         overflow:scroll;
 `;
 
+let overflowValue:string|null=null;
+
 export const disableBodyScroll=()=>{
-    document.body.style.overflow = 'hidden'
+    if(overflowValue!=='hidden'){
+        overflowValue='hidden';
+        document.body.style.overflow = 'hidden'
+    }
 }
 export const enableBodyScroll=()=>{
-    document.body.style.overflow = 'unset'
+    if(overflowValue==='hidden'){
+        overflowValue='unset';
+        document.body.style.overflow = 'unset'
+    }
 }
 
 
