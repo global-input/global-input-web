@@ -76,6 +76,7 @@ export const Card =styled (Link)`
       &: hover{
         box-shadow: 0 0 50px #ffff;
         transform: translateY(-3px);
+        text-decoration:none;
       }
 
 `;
