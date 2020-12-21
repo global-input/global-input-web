@@ -264,7 +264,7 @@ const Footer = styled.div`
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        padding-bottom:10px;
+        padding-bottom:50px;
 
 `;
 

@@ -42,7 +42,7 @@ export const TopBar = styled.div`
         width: 100%;
         align-items: flex-end;
         min-height:70px;
-        background-color:rgb(220,220,220);
+        background-color:rgba(51, 204, 255,0.3);
 `;
 export const PopupContent = styled.div`
         flex-direction: column;
