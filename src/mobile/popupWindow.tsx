@@ -69,7 +69,6 @@ const useClickedOutside = (element, onClicked) => {
     useEffect(() => {
         const handleClick = (evt) => {
             if (element.current && (!element.current.contains(evt.target))) {
-                console.log("-----outclicked");
                 onClicked();
             }
         }

@@ -42,7 +42,7 @@ const Form = styled.div`
     width:80vw;
     max-width:400px;
     height:80vh;
-    max-height:400px;
+    max-height:450px;
 `;
 
 
@@ -258,6 +258,8 @@ const Footer = styled.div`
         justify-content: space-between;
         width: 100%;
         align-items: center;
+        padding-bottom:10px;
+
 `;
 
 

@@ -54,7 +54,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
                         <CloseTab onClose={closeWindow}/>
                     </TopBar>
                     <PopupContent>
-                        {page===PAGES.CONNECT_QR && (<ConnectQR/>)}
+                        {(page===PAGES.CONNECT_QR||isError) && (<ConnectQR/>)}
                         {page===PAGES.PAIRING && (<PairingQR/>)}
                         {page===PAGES.SETTINGS && (<SettingsEditor saveSettings={onSaveSettings} loadSettings={loadSettings}/>)}
                     </PopupContent>
