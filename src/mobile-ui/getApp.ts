@@ -13,11 +13,11 @@ export const useMobile = () => {
 
 const initData = {
     form: {
-        title: "Get App Page",
+        title: "Get Global Input App Software",
         fields: [{
             type: 'info',
-            value: 'You can install the browser extension to connect your mobile to your browser'
-        }, pageMenu.FIELDS.home, pageMenu.FIELDS.privacy, pageMenu.FIELDS.contactUs]
+            value: 'You need to operate on your computer to download the software.'
+        }, {...pageMenu.FIELDS.home, icon:'home'}]
     }
 };
 
