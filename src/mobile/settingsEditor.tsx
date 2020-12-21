@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {ProxyURLHelp,APIKeyHelp,SecurityGroupKeyHelp,CodeKeyHelp} from './help';
+
 
 const Button = styled.button`
     text-decoration: none;
@@ -53,10 +53,12 @@ const Field = styled.div`
     width:100%;
     padding-top:15px;
 
+
 `;
 const Input = styled.input`
     display: block;
     line-height: 2em;
+    border:1pxz solid red;
     margin: 0;
     padding-left: 10px;
     width: 100%;
@@ -106,47 +108,146 @@ const Label = styled.label.attrs(props => ({
 `;
 
 
+const ExpandIcon =styled.div`
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    border:1px solid red;
+    background-color:white;
 
 
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 100px;
+    top:-5px;
+    color:rgb(77,104,206);
+    margin-right:5px;
+    transform:${props=>props.expand?'rotate(90deg)':'rotate(0deg)'};
+    &::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(-45deg);
+        left: 5px;
+        top: 6px;
+    }
 
-const ProxyField=({settings, setSettings})=>(
+`;
+
+const HelpContainer=styled.div`
+ position:relative;
+ top:-20px;
+ display:flex;
+ flex-direction:row;
+ justify-content:flex-start;
+ align-items:flex-start;
+ flex-wrap:wrap;
+`;
+const HelpContent=styled.div`
+font-family: Avenir;
+    color: rgb(53,116,230);
+    white-space: wrap;
+    font-size: 10px;
+    display:${props=>props.expand?'inline':'none'};
+`;
+const WebSocketServer=styled.a.attrs({
+    target:'_blank',
+    rel: 'noopener noreferrer',
+    href:'https://github.com/global-input/global-input-node',
+
+})`
+color: rgb(53,116,230);
+text-decoration:none;
+margin-left:5px;
+`;
+
+
+const Help=({children,expandId, expand,setExpand})=>{
+    const isExpanded=expand===expandId;
+    const toggle=()=>setExpand(isExpanded?'':expandId);
+    return (
+    <HelpContainer>
+            <ExpandIcon expand={isExpanded} onClick={toggle}/>
+            <HelpContent expand={isExpanded}>
+                {children}
+            </HelpContent>
+    </HelpContainer>
+    );
+}
+
+const ProxyField=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="url" onChange={evt=>{
                           setSettings(setting => ({ ...setting, url:evt.target.value}));
-                        }} value={settings.url ? settings.url : ''} placeholder="Proxy URL"/>
-                        <Label htmlFor="url">Proxy URL</Label>
-                        <ProxyURLHelp/>
+                        }} value={settings.url ? settings.url : ''} placeholder="Proxy URL"
+                        onFocus={()=>setExpand('url')}/>
+                        <Label htmlFor="url">
+                        Proxy URL
+                        </Label>
+                        <Help expandId='url' expand={expand} setExpand={setExpand}>
+                                Proxy URL identifies the <WebSocketServer>WebSocket server</WebSocketServer> responsible for proxying messages between your mobile app and this application.
+            You can install and use your own <WebSocketServer>WebSocket servers</WebSocketServer> that can run in insecure environments thanks to the end-to-end encryption that secures messages between the mobile app and the application.
+                        </Help>
     </Field>
 );
 
 
- const APIKeyField=({settings, setSettings}) =>(
+
+ const APIKeyField=({settings, setSettings,expand,setExpand}) =>(
     <Field>
                         <Input id="apiKey" onChange={evt=>{
                           setSettings(setting => ({ ...setting, apikey:evt.target.value}));
-                        }} value={settings.apikey ? settings.apikey : ''} placeholder="API Key"/>
-                        <Label htmlFor="apiKey">API Key</Label>
-                        <APIKeyHelp/>
+                        }} value={settings.apikey ? settings.apikey : ''} placeholder="API Key"
+                        onFocus={()=>setExpand('apikey')}/>
+                        <Label htmlFor="apiKey">
+                            API Key
+                        </Label>
+                        <Help expandId='apikey' expand={expand} setExpand={setExpand}>
+                        API Key is used by <WebSocketServer>WebSocket servers</WebSocketServer> to identify the client application that is making the connection.
+Since the WebSocket servers do not hold any sensitive information, there is no security implications in regards to API Key except for protecting
+the connection resources allocated for the client applications.
+                        </Help>
+
+
+
     </Field>
 );
 
 
-const SecurityGroupField=({settings, setSettings})=>(
+const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="securityGroup" onChange={evt=>{
                           setSettings(setting => ({ ...setting, securityGroup:evt.target.value}));
-                        }} value={settings.securityGroup?settings.securityGroup:''} placeholder="Security Group Key"/>
+                        }} value={settings.securityGroup?settings.securityGroup:''} placeholder="Security Group Key"
+                        onFocus={()=>setExpand('securityGroup')}/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
-                        <SecurityGroupKeyHelp/>
+                        <Help expandId='securityGroup' expand={expand} setExpand={setExpand}>
+                        Security Group Key is used by the device application to verify the incoming mobile app connection (via a WebSocket server)
+            in the same way that API Key is used by a server application to identify a client application.
+            If you change this value, you need to pair your mobile app to this application.
+                        </Help>
+
     </Field>
 );
-const CodeKeyField=({settings, setSettings})=>(
+const CodeKeyField=({settings, setSettings,expand,setExpand})=>(
                 <Field>
                         <Input id="codeKey" onChange={evt=>{
                           setSettings(setting => ({ ...setting, codeKey:evt.target.value}));
-                        }} value={settings.codeKey?settings.codeKey:''} placeholder="Code Key"/>
+                        }} value={settings.codeKey?settings.codeKey:''} placeholder="Code Key"
+                        onFocus={()=>setExpand('codeKey')}/>
                         <Label htmlFor="codeKey">Code Key</Label>
-                        <CodeKeyHelp/>
+                        <Help expandId='codeKey' expand={expand} setExpand={setExpand}>
+                        Code Key is used by the device application to encrypt the content of the QR Code for mobile apps to connect to this applications.
+            Obviously, if you change this value, you need to pair your mobile app so it can decrypt the content of the QR code it has scanned.
+
+                        </Help>
+
                 </Field>
 );
 
@@ -162,14 +263,14 @@ const Footer = styled.div`
 
 export const SettingsEditor = ({ loadSettings,saveSettings}) => {
     const [settings, setSettings] = useState(loadSettings);
-    const [help,setHelp]=useState(null);
+    const [expand,setExpand]=useState('');
     const onSave = () => saveSettings(settings);
     return (
         <Form>
-            <SecurityGroupField settings={settings} setSettings={setSettings}/>
-            <CodeKeyField settings={settings} setSettings={setSettings}/>
-            <ProxyField settings={settings} setSettings={setSettings}/>
-            <APIKeyField settings={settings} setSettings={setSettings}/>
+            <SecurityGroupField settings={settings} setSettings={setSettings} expand={expand} setExpand={setExpand}/>
+            <CodeKeyField settings={settings} setSettings={setSettings} expand={expand} setExpand={setExpand}/>
+            <ProxyField settings={settings} setSettings={setSettings}  expand={expand} setExpand={setExpand}/>
+            <APIKeyField settings={settings} setSettings={setSettings} expand={expand} setExpand={setExpand}/>
             <Footer>
                 <Button onClick={onSave}>Save</Button>
         </Footer>
