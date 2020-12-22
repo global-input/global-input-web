@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutControl';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, MobileInputGraph,SecureCommunicationGraph,
@@ -11,7 +11,7 @@ import { Container,Content, MobileInputGraph,SecureCommunicationGraph,
 
 export const AboutMobileInputControl: React.FC = () => {
   usePageTitle('Mobile Input &amp; Control');
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
 
   return (
     <Container>
@@ -35,7 +35,8 @@ export const AboutMobileInputControl: React.FC = () => {
 
                  </Column>
             </Row>
-            <MobileConnect label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />
     </Container>

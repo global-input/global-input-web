@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutSecondScreen';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, SecondScreenGraph,
@@ -11,7 +11,7 @@ import { Container,Content, SecondScreenGraph,
 
 export const AboutSecondScreen: React.FC = () => {
   usePageTitle('Second Screen Experience');
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
 
   return (
     <Container>
@@ -44,7 +44,8 @@ export const AboutSecondScreen: React.FC = () => {
 
                  </Column>
             </Row>
-            <MobileConnect label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />
     </Container>

@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutContentTransfer';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, MobileContentTransferGraphGraph,
@@ -11,7 +11,7 @@ import { Container,Content, MobileContentTransferGraphGraph,
 
 export const AboutMobileContentTransfer: React.FC = () => {
   usePageTitle('Mobile Content Transfer');
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
 
   return (
     <Container>
@@ -36,7 +36,9 @@ export const AboutMobileContentTransfer: React.FC = () => {
                  <MobileContentTransferGraphGraph/>
             </Row2>
 
-            <MobileConnect label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectWindow mobile={mobile}/>
+
         </Content>
         <PageFooter />
     </Container>

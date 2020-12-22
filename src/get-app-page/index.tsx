@@ -5,7 +5,7 @@ import {PageFooter} from '../page-footer';
 
 
 
-import { useMobile } from '../mobile-ui/getApp';
+import { useConnectToMobile } from './mobile-ui';
 import { config } from '../configs';
 import { usePageTitle } from '../page-metadata';
 import {Container,Content,Card,AppIcon,CardTitle,CardContent,CardFooter,
@@ -15,7 +15,7 @@ import {Container,Content,Card,AppIcon,CardTitle,CardContent,CardFooter,
 
 export const GetAppPage: React.FC = () => {
 
-  useMobile();
+  useConnectToMobile();
   usePageTitle('Global Input App -  Get It Free');
 
   return (

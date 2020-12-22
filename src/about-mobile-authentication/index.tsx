@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutAuthentication';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, SignInGraph,
@@ -11,7 +11,7 @@ import { Container,Content, SignInGraph,
 
 export const AboutMobileAuthentication: React.FC = () => {
   usePageTitle('Mobile Authentication');
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
 
   return (
     <Container>
@@ -41,7 +41,8 @@ export const AboutMobileAuthentication: React.FC = () => {
                     </TickText>
                  </Column>
             </Row>
-            <MobileConnect label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />
     </Container>

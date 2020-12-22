@@ -1,64 +1,40 @@
-import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import { useState, useCallback } from 'react';
 
-import * as globalInput from 'global-input-react';////global-input-react////
+import {useGlobalInputApp} from 'global-input-react';////global-input-react////
+import type {InitData,ConnectOptions} from 'global-input-react';////global-input-react////
 
 ////main////
+
+
 import * as storage from './storage';
 
-export * from 'global-input-react';////global-input-react////
+import {PAGES} from './pages';
 
-
-const QRCodeContainer = styled.div`
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-center;
-        align-items: flex-start;
-        margin: 0;
-        padding:0;
-`;
-
-
-const ErrorMessage = styled.div`
-        color: red;
-        font-size: 11;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px;
-        max-width:  350px;
-        max-height: 100px;
-        overflow: scroll;
-`;
-
-
-
-
-export const useMobile = (initData: globalInput.InitData | (() => globalInput.InitData), connect: boolean = true, configId?: any) => {
+export const useMobile = (initData: InitData | (() => InitData), showWidgetOnStart=false) => {
+    const [isShowWidget, setShowWidget] = useState(showWidgetOnStart);
+    const [configId, setConFigId] = useState(1);
+    const [page,setPage]=useState(PAGES.CONNECT_QR);
     const connectionSettings = storage.loadConnectionSettings();
-    const options: globalInput.ConnectOptions = {
+    const connectOptions: ConnectOptions = {
         url: connectionSettings.url,////use your own server"
         apikey: connectionSettings.apikey,
         securityGroup: connectionSettings.securityGroup
     };
-    const mobile = globalInput.useGlobalInputApp({
-        initData, options, codeAES: connectionSettings.codeKey
-    }, connect, configId);
+    const mobile = useGlobalInputApp({
+        initData, options:connectOptions, codeAES: connectionSettings.codeKey
+    }, isShowWidget, configId);
     ////dev-test codeData
-
-    const { isError, isConnectionDenied, ConnectQR, errorMessage } = mobile;
-
-    const NewConnectQR = useCallback((props: globalInput.ConnectQRProps) => {
-        let message = isConnectionDenied && "You can only use one mobile app per session. Disconnect to start a new session.";
-        if (isError) {
-            message = errorMessage;
+    const {disconnect}=mobile;
+    const onSaveSettings=useCallback((settings)=>{
+        if (storage.saveConnectionSettings(settings)) {
+            setPage(PAGES.PAIRING);
         }
-        return (
-            <QRCodeContainer>
-                <ConnectQR {...props} />
-                <ErrorMessage>{message}</ErrorMessage>
-            </QRCodeContainer>
-        );
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isError, errorMessage, isConnectionDenied, ConnectQR]);
-    return { ...mobile, ConnectQR: NewConnectQR };
+        else {
+            setPage(PAGES.CONNECT_QR);
+        }
+        setConFigId(configId => configId + 1);
+        disconnect();
+    },[disconnect]);
+    const loadSettings=useCallback(()=>connectionSettings,[connectionSettings]);
+    return {...mobile,isShowWidget,onSaveSettings,loadSettings,page,setPage,setShowWidget};
 };

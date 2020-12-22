@@ -1,13 +1,13 @@
 import React from 'react';
 import { config } from '../configs';
-import { useMobile } from '../mobile-ui/privacy';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import {PageHeader} from '../page-header';
 import {PageFooter} from '../page-footer';
 import { usePageTitle } from '../page-metadata';
 
 import {Container,Content,Title,P} from './layout';
 const PrivacyPage: React.FC = () => {
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
   usePageTitle('Global Input App -  Privacy Policy');
 
   return (
@@ -32,7 +32,8 @@ const PrivacyPage: React.FC = () => {
 </P>
 
 
-        <MobileConnect label="See How It Works"/>
+        <ConnectButton mobile={mobile} label="See How It Works"/>
+        <ConnectWindow mobile={mobile}/>
       </Content>
       <PageFooter/>
     </Container>

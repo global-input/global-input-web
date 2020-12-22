@@ -1,14 +1,14 @@
 import { useHistory } from 'react-router-dom';
-import { useConnectToMobile } from '../mobile';
-
-export const useMobile = () => {
+import {useMobile} from '../../mobile';
+export * from '../../mobile';
+export const useConnectToMobile=()=>{
     const history = useHistory();
-    const { ConnectToMobile,mobile } = useConnectToMobile(initData);
+    const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
         onFieldChange(field, history);
     });
-    return ConnectToMobile;
-}
+    return mobile;
+};
 
 const FIELDS = {
     companyName: {
@@ -50,6 +50,14 @@ const FIELDS = {
     }
 };
 
+const initData = {
+    id: 'iterative-contact-us',
+    form: {
+        id: "iterative@contact",
+        title: "Contact Us",
+        fields: Object.values(FIELDS)
+    }
+};
 
 export const onFieldChange = (field, history) => {
     switch (field.id) {
@@ -60,12 +68,4 @@ export const onFieldChange = (field, history) => {
             return false;
     }
     return true;
-};
-const initData = {
-    id: 'iterative-contact-us',
-    form: {
-        id: "iterative@contact",
-        title: "Contact Us",
-        fields: Object.values(FIELDS)
-    }
 };

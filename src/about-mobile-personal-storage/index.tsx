@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 
-import { useMobile } from '../mobile-ui/aboutSecureStorage';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
 import { Container,Content, MobileStorageGraphGraph,
@@ -12,7 +12,7 @@ import { Container,Content, MobileStorageGraphGraph,
 
 export const AboutMobileSecureStorage: React.FC = () => {
   usePageTitle('Mobile Authentication');
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
 
   return (
     <Container>
@@ -64,10 +64,8 @@ export const AboutMobileSecureStorage: React.FC = () => {
 
             </Row>
 
-
-
-
-            <MobileConnect label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />
     </Container>

@@ -5,13 +5,13 @@ import {PageFooter} from '../page-footer';
 import {Container, Content,Title, PageTitle, Line, Row, Column } from './layout';
 
 
-import { useMobile } from '../mobile-ui/contactUs';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 
 import { usePageTitle } from '../page-metadata';
 import { config } from '../configs';
 
 const ContactUsPage: React.FC = () => {
-  const MobileConnect = useMobile();
+  const mobile = useConnectToMobile();
   usePageTitle('Global Input App - Contact Us');
 
   return (
@@ -35,7 +35,8 @@ const ContactUsPage: React.FC = () => {
                 <Line>info@iterativesolution.co.uk</Line>
             </Column>
           </Row>
-          <MobileConnect />
+          <ConnectButton mobile={mobile} label="Connect"/>
+          <ConnectWindow mobile={mobile}/>
         </Content>
 
       <PageFooter/>
