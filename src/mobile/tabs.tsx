@@ -4,13 +4,7 @@ import settingsImage from './images/settings.png';
 import connectImage from './images/connect.png';
 import pairingImage from './images/pairing.png';
 import closeImage from './images/close.png';
-
-export enum PAGES {
-    CONNECT_QR,
-    SETTINGS,
-    PAIRING
-}
-
+import {PAGES} from './pages';
 
 const TabContainer=styled.div`
     display:flex;

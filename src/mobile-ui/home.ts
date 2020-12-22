@@ -1,17 +1,17 @@
 import { useHistory } from 'react-router-dom';
-import { useConnectToMobile } from '../mobile';
+import { useConnectToMobile2 } from '../mobile';
 
 import * as exampleFields from './exampleFields';
 import * as pageMenu from './pageMenu';
 
-
+export * from '../mobile';
 export const useMobile = () => {
     const history = useHistory();
-    const { ConnectToMobile,mobile  } = useConnectToMobile(initData);
+    const mobile = useConnectToMobile2(initData);
     mobile.setOnchange(({ field }) => {
         onFieldChange(field, history);
     });
-    return ConnectToMobile;
+    return mobile;
 }
 const initData = {
     id: "website-home",

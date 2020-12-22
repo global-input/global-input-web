@@ -2,7 +2,7 @@ import React from 'react';
 import { config } from '../configs';
 import {PageFooter} from '../page-footer';
 import {PageHeader} from '../page-header';
-import { useMobile } from '../mobile-ui/home';
+import { useMobile,ConnectWindow,ConnectButton } from '../mobile-ui/home';
 import { usePageTitle } from '../page-metadata';
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
@@ -23,7 +23,7 @@ interface HomePageProps {
 }
 export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) => {
   usePageTitle('Global Input App - Introducing Mobile Interoperability into Web and Device Applications');
-  const MobileConnect = useMobile();
+  const mobile = useMobile();
 
   return (
     <Container>
@@ -37,13 +37,14 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
                 <SmallTitle>{headerTextContent.smallText}</SmallTitle>
                 <ButtonContainer>
                   <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
-                  <MobileConnect />
+                  <ConnectButton mobile={mobile}/>
                 </ButtonContainer>
           </TitleSection>
 
         <CardSection/>
 
         <HowItWorks />
+        <ConnectWindow mobile={mobile}/>
 
       </Content>
       <PageFooter />

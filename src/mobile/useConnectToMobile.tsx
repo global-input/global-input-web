@@ -7,13 +7,14 @@ import {
 
 import {TopBar,PopupContent,PopupWindow,disableBodyScroll,enableBodyScroll} from './popupWindow'
 
-import {Tabs,PAGES,CloseTab} from './tabs';
+import {Tabs,CloseTab} from './tabs';
+import {PAGES} from './pages';
 import {SettingsEditor} from './settingsEditor';
 interface MobileConnectProps {
     label?: string;
 }
 
-export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect: boolean = false) => {
+export const useConnectToMobile = (initData: InitData | (() => InitData), initialConnect = false, allowClose=true) => {
     const [connect, setConnect] = useState(initialConnect);
     const [configId, setConFigId] = useState(1);
     const [page,setPage]=useState(PAGES.CONNECT_QR);
@@ -51,7 +52,7 @@ export const useConnectToMobile = (initData: InitData | (() => InitData), initia
             <PopupWindow>
                     <TopBar>
                         <Tabs  page={page} setPage={setPage}/>
-                        <CloseTab onClose={closeWindow}/>
+                        {allowClose && (<CloseTab onClose={closeWindow}/>)}
                     </TopBar>
                     <PopupContent>
                         {(page===PAGES.CONNECT_QR||isError) && (<ConnectQR/>)}
