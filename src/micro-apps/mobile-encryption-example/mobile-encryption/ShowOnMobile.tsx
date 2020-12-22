@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMobile } from '../mobile';
+import { useMobile,ConnectWidget } from '../mobile';
 import { AppContainer, InputWithCopy, TextButton, FormContainer, FormFooter } from '../app-layout';
 
 
@@ -17,7 +17,7 @@ const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnCompu
             fields: [FIELDS.info, { ...FIELDS.content, value: content }, FIELDS.showOnComputer, FIELDS.restart, FIELDS.finish]
         }
     });
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     const restart = () => contentOnComputer('');
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
@@ -37,7 +37,7 @@ const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnCompu
 
     return (
         <AppContainer title="Mobile Encryption" domain={domain}>
-            <mobile.ConnectQR />
+            <ConnectWidget mobile={mobile}/>
             <FormContainer title="Encrypted Content">
                 <InputWithCopy id="encryptedContent" readOnly={true}
                     label="Encrypted Content"

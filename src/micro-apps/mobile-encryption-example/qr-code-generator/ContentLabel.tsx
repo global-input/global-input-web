@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 import { AppContainer, InputWithLabel, P, FormContainer, FormFooter, TextButton, DisplayErrorMessage } from '../app-layout';
-import { useMobile } from '../mobile';
+import { useMobile,ConnectWidget } from '../mobile';
 
 interface Props {
         back: () => void;
@@ -20,7 +20,7 @@ const ContentLabel: React.FC<Props> = ({ back, next }) => {
                         fields: Object.values(FIELDS)
                 }
         }
-        const mobile = useMobile(initData);
+        const mobile = useMobile(initData, true);
         const onContentChange = (content: string) => {
                 setContent(content);
                 mobile.sendValue(FIELDS.content.id, content);
@@ -59,7 +59,7 @@ const ContentLabel: React.FC<Props> = ({ back, next }) => {
         });
         return (
                 <AppContainer title="QR Code Generator" domain="">
-                        <mobile.ConnectQR />
+                        <ConnectWidget mobile={mobile}/>
                         <FormContainer>
                                 {mobile.isConnected && (<>
                                         <P>Please provide the content for the QR Code. </P>

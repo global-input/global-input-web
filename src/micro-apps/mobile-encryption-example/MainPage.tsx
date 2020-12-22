@@ -1,23 +1,22 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 
-import { useMobile } from './mobile';
+import { useMobile, ConnectWidget} from './mobile';
 
-import { AppContainer, AppFooter, TextButton, MessageContainer, MessageButton, MessageLink } from './app-layout';
+import { AppContainer, AppFooter, TextButton, MessageContainer,  MessageLink } from './app-layout';
 
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
     domain: string;
     encryption: () => void;
     decryption: () => void;
-    editConnectionSettings: () => void;
     qrCodeGenerator: () => void;
 }
 
 
-const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnectionSettings, qrCodeGenerator }) => {
+const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCodeGenerator }) => {
     const history = useHistory();////website
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.encryption.id:
@@ -40,7 +39,7 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
     }
     return (
         <AppContainer title="Mobile Encryption" domain={domain}>
-            <mobile.ConnectQR />
+            <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (<>
                 <MessageContainer>
                     You can now operate on your mobile.
@@ -48,10 +47,7 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, editConnect
             </>
             )}
             {(mobile.isConnected || mobile.isConnectionDenied) && (<TextButton label="Disconnect" onClick={disconnect} />)}
-            <AppFooter>
-                <MessageButton label="Settings" onClick={editConnectionSettings} />
-                <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
-            </AppFooter>
+
         </AppContainer >
     );
 }

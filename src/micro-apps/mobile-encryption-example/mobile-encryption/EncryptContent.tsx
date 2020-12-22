@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMobile } from '../mobile';
+import { useMobile,ConnectWidget } from '../mobile';
 import { AppContainer, FormFooter, TextButton, DisplayErrorMessage, MessageContainer, FormContainer } from '../app-layout';
 
 interface Props {
@@ -17,7 +17,7 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
             fields: [{ ...FIELDS.content, value: content }, FIELDS.info, FIELDS.back]
         }
     });
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     const back = () => {
         contentOnComputer(content);
     }
@@ -39,7 +39,7 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
     });
     return (
         <AppContainer title="Mobile Encryption" domain={domain}>
-            {<mobile.ConnectQR />}
+            {<ConnectWidget mobile={mobile}/>}
             <FormContainer>
                 <DisplayErrorMessage errorMessage={errorMessage} />
                 {mobile.isConnected && (<MessageContainer title="Encrypting Content">

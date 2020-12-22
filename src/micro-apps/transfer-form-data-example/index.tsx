@@ -9,16 +9,13 @@ import ManageForm from './ManageForm';
 import TransferFormData from './TransferFormData';
 import EditDomain from './EditDomain';
 import { loadFormFromQuery } from './url-query';
-import { ConnectionSettings } from './connection-settings';
-import { AppPairing } from './app-pairing'
+
 
 export enum PAGES {
     TRANSFER_FORM_DATA,
     MANAGER_FORM,
     CREATE_FIELD,
-    EDIT_DOMAIN,
-    EDIT_CONNECTION_SETTINGS,
-    PAIRING
+    EDIT_DOMAIN
 };
 
 interface Props {
@@ -37,8 +34,8 @@ const MainControl: React.FC<Props> = ({ location }) => {
     const manageForm = useCallback(() => setPage(PAGES.MANAGER_FORM), []);
     const createField = useCallback(() => setPage(PAGES.CREATE_FIELD), []);
     const editDomain = useCallback(() => setPage(PAGES.EDIT_DOMAIN), []);
-    const pairing = useCallback(() => setPage(PAGES.PAIRING), []);
-    const editConnectionSettings = useCallback(() => setPage(PAGES.EDIT_CONNECTION_SETTINGS), []);
+
+
     const changeDomain = useCallback((domain) => {
         setDomain(domain);
         storage.setDomain(domain);
@@ -66,17 +63,13 @@ const MainControl: React.FC<Props> = ({ location }) => {
 
     switch (page) {
         case PAGES.TRANSFER_FORM_DATA:
-            return (<TransferFormData domain={domain} formFields={formFields} setFormFields={setFormFields} manageForm={manageForm} editDomain={editDomain} editConnectionSettings={editConnectionSettings} />);
+            return (<TransferFormData domain={domain} formFields={formFields} setFormFields={setFormFields} manageForm={manageForm} editDomain={editDomain}/>);
         case PAGES.MANAGER_FORM:
             return (<ManageForm formFields={formFields} onFormStructureChanged={onFormStructureChanged} back={transferFormData} createField={createField} />);
         case PAGES.CREATE_FIELD:
             return (<CreateField formFields={formFields} onFormStructureChanged={onFormStructureChanged} back={manageForm} />);
         case PAGES.EDIT_DOMAIN:
             return (<EditDomain back={transferFormData} domain={domain} changeDomain={changeDomain} />);
-        case PAGES.EDIT_CONNECTION_SETTINGS:
-            return (<ConnectionSettings back={transferFormData} pairing={pairing} />);
-        case PAGES.PAIRING:
-            return (<AppPairing back={transferFormData} />);
         default:
     }
     return null

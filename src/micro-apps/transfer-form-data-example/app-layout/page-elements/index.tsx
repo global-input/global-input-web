@@ -48,7 +48,7 @@ interface AppContainerProps {
 export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
     <div style={styles.content}>
         <AppTitle>{title}</AppTitle>
-        <div style={styles.domain}>{domain}</div>
+        <MessageLink href="https://github.com/global-input/transfer-form-data-example">Source Code</MessageLink>
         {children}
     </div>
 );

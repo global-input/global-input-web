@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from 'react-router-dom'; ////website
-import { useMobile } from './mobile';
+import { useMobile, ConnectWidget } from './mobile';
 import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
@@ -9,10 +9,9 @@ import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
     companyInfo: () => void;
     sendMessage: () => void;
-    connectionSettings: () => void;
 }
 
-const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings }) => {
+const Home: React.FC<Props> = ({ companyInfo, sendMessage }) => {
     const history = useHistory();////website
     const initData = {
         id: 'mobile-secure-storage-example',
@@ -21,7 +20,7 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
             fields: Object.values(FIELDS)
         }
     };
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.contactInfo.id:
@@ -37,7 +36,8 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
     return (
         <PageContainer>
             <Title>Mobile Secure Storage Example</Title>
-            <mobile.ConnectQR />
+            <MessageLink href="https://github.com/global-input/send-message-example">Source Code</MessageLink>
+            <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (<>
 
                 <SelectionContainer>
@@ -49,10 +49,7 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage, connectionSettings })
                     <DisplayApplicationInfo />
                 </SelectionContainer>
             </>)}
-            <AppFooter>
-                <MessageButton label="Settings" onClick={connectionSettings} />
-                <MessageLink href="https://github.com/global-input/send-message-example">Source Code</MessageLink>
-            </AppFooter>
+
         </PageContainer>
     );
 };

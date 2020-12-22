@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'; ////website
-import { useGlobalInputApp } from 'global-input-react';
+/*
+import { useGlobalInputApp,ConnectQR } from 'global-input-react';
+*/
+import { useMobile,ConnectWidget } from '../../mobile';
 
 import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
@@ -8,8 +11,10 @@ import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 const App: React.FC = () => {
   const [content, setContent] = useState('');
   const history = useHistory();////website
-
+/*
   const mobile = useGlobalInputApp({ initData });
+*/
+ const mobile = useMobile(initData, true);
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.contentField.id:
@@ -28,11 +33,11 @@ const App: React.FC = () => {
     }
     document.execCommand("Copy");
   }
-
+const ConnectQR=ConnectWidget;
   return (
     <PageContainer>
       <Title>Content Transfer Application</Title>
-      <mobile.ConnectQR />
+      <ConnectQR mobile={mobile}/>
       {mobile.isError && (<P>{mobile.errorMessage}</P>)}
       {mobile.isConnectionDenied && (<P>You can only use one mobile app per session. Disconnect to start a new session.</P>)}
       {mobile.isConnected && (

@@ -16,7 +16,7 @@ const CreateField: React.FC<Props> = ({ formFields, onFormStructureChanged, back
             fields: Object.values(FIELDS)
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     const onCreateNew = () => {
         const newFormFields = createNewFormFields(formFields, label, fieldType);
         if (newFormFields) {

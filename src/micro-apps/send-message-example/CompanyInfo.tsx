@@ -1,5 +1,5 @@
 import React from "react";
-import { useMobile } from './mobile';
+import { useMobile, ConnectWidget } from './mobile';
 import { Title, P, PageContainer } from './app-layout';
 
 
@@ -15,7 +15,7 @@ const CompanyInfo: React.FC<Props> = ({ back }) => {
             fields: Object.values(FIELDS)
         }
     };
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.back.id:
@@ -25,7 +25,7 @@ const CompanyInfo: React.FC<Props> = ({ back }) => {
     return (
         <PageContainer>
             <Title>Our Contact Details</Title>
-            <mobile.ConnectQR />
+            <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (<>
 
                 <P>Our contact details are displayed on your mobile screen. You can save it into your mobile storage by pressing the "save" button</P>

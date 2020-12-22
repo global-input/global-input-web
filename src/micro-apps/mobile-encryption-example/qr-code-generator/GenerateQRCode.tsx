@@ -14,7 +14,7 @@ const GenerateQRCode = ({ content, label, back }) => {
             fields: Object.values(FIELDS)
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.size.id:

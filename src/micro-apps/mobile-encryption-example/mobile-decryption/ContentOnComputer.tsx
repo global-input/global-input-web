@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useMobile } from '../mobile';
+import {useMobile} from '../mobile';
 import {
     InputWithLabel, BasicLayout, FormContainer, DisplayErrorMessage,
     TextButton, FormFooter
@@ -21,7 +21,7 @@ const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnM
             fields: Object.values(FIELDS)
         }
     }
-    const mobile = useMobile(initData);
+    const mobile =useMobile (initData, true);
 
     const onContentChange = useCallback((value: string) => {
         setErrorMessage('');

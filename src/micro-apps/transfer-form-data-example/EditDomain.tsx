@@ -15,7 +15,7 @@ const EditDomain: React.FC<Props> = ({ domain, changeDomain, back }) => {
             fields: [{ ...FIELDS.domain, value: domain }, FIELDS.back, FIELDS.createField]
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData,true );
     const onDomainChanged = () => {
         changeDomain(content.trim());
     };

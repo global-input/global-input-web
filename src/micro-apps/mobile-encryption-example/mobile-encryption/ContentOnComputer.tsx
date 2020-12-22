@@ -21,7 +21,7 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
             fields: Object.values(FIELDS)
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     const onContentChange = useCallback((value: string) => {
         setErrorMessage('');
         setContent(value);

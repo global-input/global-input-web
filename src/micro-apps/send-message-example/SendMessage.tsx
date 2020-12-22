@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMobile } from './mobile';
+import { useMobile, ConnectWidget } from './mobile';
 import { Title, P, PageContainer, InputWithLabel } from './app-layout';
 
 interface Props {
@@ -20,7 +20,7 @@ const SendMessage: React.FC<Props> = ({ back, onSendMessage }) => {
             fields: Object.values(FIELDS)
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.cancel.id:
@@ -49,7 +49,7 @@ const SendMessage: React.FC<Props> = ({ back, onSendMessage }) => {
     });
     return (
         <PageContainer>
-            <mobile.ConnectQR />
+            <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (<>
 
                 <Title>Send Message</Title>

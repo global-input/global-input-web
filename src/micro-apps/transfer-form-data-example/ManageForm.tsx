@@ -20,7 +20,7 @@ const ManagerForm: React.FC<Props> = ({ formFields, onFormStructureChanged, back
             fields: [{ ...FIELDS.select, items }, FIELDS.back, FIELDS.delete, FIELDS.create]
         }
     });
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
 
     const onDelete = () => {
         const newFormFields = deleteFormFields(formFields, items);

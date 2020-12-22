@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMobile } from '../mobile';
+import { useMobile, ConnectWidget } from '../mobile';
 import { FormFooter, TextButton, DisplayErrorMessage, AppContainer, MessageContainer, FormContainer } from '../app-layout';
 
 interface Props {
@@ -17,7 +17,7 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
             fields: [{ ...FIELDS.content, value: content }, FIELDS.info, FIELDS.back]
         }
     }
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
     const back = () => {
         contentOnComputer(content);
     };
@@ -39,7 +39,7 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
     });
     return (
         <AppContainer title="Mobile Decryption" domain={domain}>
-            <mobile.ConnectQR />
+            <ConnectWidget mobile={mobile}/>
             <FormContainer>
                 <DisplayErrorMessage errorMessage={errorMessage} />
                 {mobile.isConnected && (<MessageContainer title="Decrypting Content">

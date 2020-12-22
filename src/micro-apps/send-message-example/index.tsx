@@ -4,17 +4,12 @@ import SendMessage from './SendMessage';
 import CompanyInfo from './CompanyInfo';
 import MessageSent from './MessageSent';
 import Home from './Home';
-import {ConnectionSettings} from './connection-settings';
-import {AppPairing} from './app-pairing';
-
 
 enum PAGES {
     HOME,
     COMPANY_INFO,
     SEND_MESSAGE,
-    MESSAGE_SENT,
-    CONNECTION_SETTINGS,
-    APP_PAIRING
+    MESSAGE_SENT
 };
 interface EmailMessage {
     firstName: string;
@@ -34,8 +29,7 @@ const SendMessageApp: React.FC<Props> = ({ sendEmail }) => {
     const companyInfo = useCallback(() => setPage(PAGES.COMPANY_INFO), [setPage]);
     const sendMessage = useCallback(() => setPage(PAGES.SEND_MESSAGE), [setPage]);
     const messageSent = useCallback(() => setPage(PAGES.MESSAGE_SENT), [setPage]);
-    const pairing = useCallback(() => setPage(PAGES.APP_PAIRING), [setPage]);
-    const connectionSettings = useCallback(() => setPage(PAGES.CONNECTION_SETTINGS), [setPage]);
+
 
     const onSendMessage = useCallback((firstName: string, lastName: string, email: string, phone: string, message: string) => {
         if (sendEmail) {
@@ -51,17 +45,13 @@ const SendMessageApp: React.FC<Props> = ({ sendEmail }) => {
 
     switch (page) {
         case PAGES.HOME:
-            return (<Home companyInfo={companyInfo} sendMessage={sendMessage} connectionSettings={connectionSettings} />);
+            return (<Home companyInfo={companyInfo} sendMessage={sendMessage}/>);
         case PAGES.COMPANY_INFO:
             return (<CompanyInfo back={home} />);
         case PAGES.SEND_MESSAGE:
             return (<SendMessage back={home} onSendMessage={onSendMessage} />);
         case PAGES.MESSAGE_SENT:
             return (<MessageSent back={home} />);
-        case PAGES.APP_PAIRING:
-            return (<AppPairing back={home} />);
-        case PAGES.CONNECTION_SETTINGS:
-            return (<ConnectionSettings back={home} pairing={pairing} />);
         default:
             return null;
     }

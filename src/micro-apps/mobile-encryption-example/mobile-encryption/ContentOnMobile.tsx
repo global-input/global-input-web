@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useMobile } from '../mobile';
+import { useMobile,ConnectWidget } from '../mobile';
 import { AppContainer, InputWithLabel, TextButton, DisplayErrorMessage, FormContainer, FormFooter } from '../app-layout';
 
 interface PROPS {
@@ -19,7 +19,7 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
             fields: [FIELDS.info, { ...FIELDS.content, value: initialContent }, FIELDS.back, FIELDS.cancel, FIELDS.encrypt]
         }
     })
-    const mobile = useMobile(initData);
+    const mobile = useMobile(initData, true);
 
     const onEncrypt = () => {
         if (content.trim()) {
@@ -61,7 +61,7 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
 
     return (
         <AppContainer title="Mobile Encryption" domain={domain}>
-            {<mobile.ConnectQR />}
+            <ConnectWidget mobile={mobile}/>
             <FormContainer title="Provide Content on Mobile">
                 {mobile.isConnected && (
                     <InputWithLabel label="Content to encrypt" id="content"

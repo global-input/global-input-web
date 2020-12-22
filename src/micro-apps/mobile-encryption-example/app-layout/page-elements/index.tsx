@@ -54,6 +54,7 @@ interface AppContainerProps {
 export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
     <div style={styles.content}>
         <AppTitle>{title}</AppTitle>
+        <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
         <div style={styles.domain}>{domain}</div>
         {children}
     </div>
