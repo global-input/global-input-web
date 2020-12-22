@@ -6,7 +6,15 @@ export const useConnectToMobile=()=>{
     const history = useHistory();
     const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
+        switch (field.id) {
+            case FIELDS.home.id:
+                history.push('/');
+                break;
+            case FIELDS.contentTransfer.id:
+                    history.push(config.paths.examples.contentTransfer.path);
+                    break;
+            default:
+        }
     });
     return mobile;
 };
@@ -51,19 +59,3 @@ const initData = {
         fields:Object.values(FIELDS)
     }
 };
-
-
-
-const onFieldChange = (field, history) => {
-    switch (field.id) {
-        case FIELDS.home.id:
-            history.push('/');
-            break;
-        case FIELDS.contentTransfer.id:
-                history.push(config.paths.examples.contentTransfer.path);
-                break;
-
-        default:
-    }
-    return false;
-}

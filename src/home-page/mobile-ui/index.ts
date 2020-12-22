@@ -7,7 +7,12 @@ export const useConnectToMobile=()=>{
     const history = useHistory();
     const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
+        if (exampleFields.onFieldChange(field, history)) {
+            return true;
+        }
+        if (pageMenu.onFieldChange(field, history)) {
+            return true;
+        }
     });
     return mobile;
 };
@@ -75,14 +80,4 @@ const initData = {
         ...Object.values(pageMenu.FIELDS).filter(f=>f.id!==pageMenu.FIELDS.home.id)
         ]
     }
-};
-
-const onFieldChange = (field, history) => {
-    if (exampleFields.onFieldChange(field, history)) {
-        return true;
-    }
-    if (pageMenu.onFieldChange(field, history)) {
-        return true;
-    }
-    return false;
 };

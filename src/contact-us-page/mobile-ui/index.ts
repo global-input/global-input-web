@@ -5,7 +5,13 @@ export const useConnectToMobile=()=>{
     const history = useHistory();
     const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
+        switch (field.id) {
+            case FIELDS.back.id:
+                history.push('/');
+                break;
+            default:
+                return false;
+        }
     });
     return mobile;
 };
@@ -57,15 +63,4 @@ const initData = {
         title: "Contact Us",
         fields: Object.values(FIELDS)
     }
-};
-
-export const onFieldChange = (field, history) => {
-    switch (field.id) {
-        case FIELDS.back.id:
-            history.push('/');
-            break;
-        default:
-            return false;
-    }
-    return true;
 };

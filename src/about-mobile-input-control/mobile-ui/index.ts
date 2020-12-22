@@ -6,7 +6,15 @@ export const useConnectToMobile=()=>{
     const history = useHistory();
     const mobile = useMobile(initData);
     mobile.setOnchange(({ field }) => {
-        onFieldChange(field, history);
+        switch (field.id) {
+            case FIELDS.home.id:
+                history.push('/');
+                break;
+            case FIELDS.game.id:
+                    history.push(config.paths.examples.gameControl.path);
+                    break;
+            default:
+        }
     });
     return mobile;
 };
@@ -33,7 +41,7 @@ const FIELDS={
 const initData = {
     id: 'about-mobile-input-control',
     form: {
-        title: "Mobile Authentication",
+        title: "Mobile Input Control",
         views: {
             viewIds: {
                 row1: {
@@ -51,18 +59,3 @@ const initData = {
         fields:Object.values(FIELDS)
     }
 };
-
-
-
-const onFieldChange = (field, history) => {
-    switch (field.id) {
-        case FIELDS.home.id:
-            history.push('/');
-            break;
-        case FIELDS.game.id:
-                history.push(config.paths.examples.gameControl.path);
-                break;
-        default:
-    }
-    return false;
-}
