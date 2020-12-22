@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import {Tabs, CloseTab} from './tabs';
 import {PAGES} from './pages';
+import {ConnectQR, PairingQR} from 'global-input-react';////global-input-react////
 
 import {SettingsEditor} from './settingsEditor';
 const Button = styled.button`
@@ -108,7 +109,7 @@ const PopupGlass = styled.div`
 
 
 export const ConnectWidget=({mobile,isAllowClose=false})=>{
-        const {page,setPage,ConnectQR,PairingQR,errorMessage,onSaveSettings,loadSettings,isConnected,isShowWidget,setShowWidget,isConnectionDenied,
+        const {page,setPage,errorMessage,onSaveSettings,loadSettings,isConnected,isShowWidget,setShowWidget,isConnectionDenied,
                 isError}=mobile;
         if (isConnected) {
             return null;
@@ -128,8 +129,8 @@ export const ConnectWidget=({mobile,isAllowClose=false})=>{
                     {isAllowClose && (<CloseTab onClose={()=>setShowWidget(false)}/>)}
                 </TopBar>
                 <Content>
-                    {page===PAGES.CONNECT_QR &&(<ConnectQR/>)}
-                    {page===PAGES.PAIRING && (<PairingQR/>)}
+                    {page===PAGES.CONNECT_QR &&(<ConnectQR mobile={mobile}/>)}
+                    {page===PAGES.PAIRING && (<PairingQR mobile={mobile}/>)}
                     {page===PAGES.SETTINGS && (<SettingsEditor saveSettings={onSaveSettings} loadSettings={loadSettings}/>)}
                     {message && (<ErrorMessage>{message}</ErrorMessage>)}
                 </Content>
