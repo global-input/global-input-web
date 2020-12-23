@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {Tabs, CloseTab} from './tabs';
+import {Tabs} from './tabs';
 import {PAGES} from './pages';
 import {ConnectQR, PairingQR} from 'global-input-react';////global-input-react////
 
@@ -51,8 +51,15 @@ const Container = styled.div`
         border-top-right-radius: 4px;
         display: flex;
         -moz-box-shadow: 3px 3px 5px #535353;
-    -webkit-box-shadow: 3px 3px 5px #535353;
-    box-shadow: 3px 3px 5px #535353;
+        -webkit-box-shadow: 3px 3px 5px #535353;
+        box-shadow: 3px 3px 5px #535353;
+        background-color:rgb(74, 93, 126);
+        padding-bottom:10px;
+        @media only screen and (min-width:500px){
+                padding-left:10px;
+                padding-right:10px;
+
+        }
 `;
 
 const TopBar = styled.div`
@@ -65,7 +72,7 @@ const TopBar = styled.div`
         width: 100%;
         align-items: flex-end;
         min-height:70px;
-        background-color:rgba(51, 204, 255,0.3);
+        background-color:rgb(74, 93, 126);
 `;
 const Content = styled.div`
         flex-direction: column;
@@ -75,7 +82,6 @@ const Content = styled.div`
         padding:0;
         display: flex;
         width:100%;
-        margin-top:10px;
         overflow:scroll;
 `;
 const PopupGlass = styled.div`
@@ -104,11 +110,64 @@ const PopupGlass = styled.div`
         overflow: scroll;
 `;
 
+const PopUpWindow=styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    position:relative;
+`;
+export const CloseIcon=styled.button`
+    position:absolute;
+    cursor:pointer;
+    color: #ffff;
+    border: 1px solid #AEAEAE;
+    border-radius:50%;
+
+    background: red;
+    font-size: 40px;
+    line-height:0;
+    font-weight: bold;
+    display: inline-block;
+
+    padding: 11px 3px;
+    width:45px;
+    height:45px;
+    top:-40px;
+    right:0;
+    @media screen and (min-width:280px){
+        top:-30px;
+        right:-15px;
+    }
+    @media screen and (min-width:500px){
+        top:-25px;
+        right:-25px;
+    }
+    @media screen and (max-width:550px) and (max-height:550px){
+        position:relative;
+        align-self:flex-start;
+    }
+    @media screen and (min-width:250px) and (max-height:550px){
+        position:relative;
+        align-self:flex-end;
+        top:-20px;
+    }
 
 
 
 
-export const ConnectWidget=({mobile,isAllowClose=false})=>{
+    &:before {
+        content: "×";
+    }
+    &: hover{
+        transform: translateY(-3px);
+        box-shadow: 0 0 50px #ffff;
+    }
+`;
+
+
+
+export const ConnectWidget=({mobile})=>{
         const {page,setPage,errorMessage,onSaveSettings,loadSettings,isConnected,isShowWidget,setShowWidget,isConnectionDenied,
                 isError}=mobile;
         if (isConnected) {
@@ -126,7 +185,6 @@ export const ConnectWidget=({mobile,isAllowClose=false})=>{
             <Container>
                 <TopBar>
                     <Tabs  page={page} setPage={setPage}/>
-                    {isAllowClose && (<CloseTab onClose={()=>setShowWidget(false)}/>)}
                 </TopBar>
                 <Content>
                     {page===PAGES.CONNECT_QR &&(<ConnectQR mobile={mobile}/>)}
@@ -159,7 +217,10 @@ export const ConnectWindow=({mobile})=>{
 
         return(
                 <PopupGlass>
-                        <ConnectWidget mobile={mobile} isAllowClose={true}/>
+                        <PopUpWindow>
+                                <ConnectWidget mobile={mobile}/>
+                                <CloseIcon onClick={()=>mobile.setShowWidget(false)}/>
+                        </PopUpWindow>
                 </PopupGlass>
         );
 
@@ -172,4 +233,15 @@ export const ConnectButton=({mobile,label='Connect'})=>{
         }
 
         return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
+};
+
+
+export const DisConnectButton=({mobile,label='Disconnect'})=>{
+        const {isConnected,isConnectionDenied, disconnect}=mobile;
+        if(isConnected || isConnectionDenied){
+                return (<BigButton onClick={()=>disconnect()}>{label}</BigButton>);
+        }
+        else{
+                return null;
+        }
 };

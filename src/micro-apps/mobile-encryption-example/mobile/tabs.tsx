@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import settingsImage from './images/settings.png';
 import connectImage from './images/connect.png';
 import pairingImage from './images/pairing.png';
-import closeImage from './images/close.png';
+
 import {PAGES} from './pages';
 
 const TabContainer=styled.div`
@@ -27,11 +27,21 @@ const TabBase=styled.div`
         flex-direction:column;
         justify-content:flex-start;
         align-items:center;
-        @media only screen and (min-width:320px){
+        @media only screen and (min-width:300px){
             min-width:50px;
         }
-        @media only screen and (min-width:400px){
+
+        @media only screen and (min-width:300px){
+            min-width:50px;
+        }
+        @media only screen and (min-width:320px){
+            min-width:60px;
+        }
+        @media only screen and (min-width:360px){
             min-width:70px;
+        }
+        @media only screen and (min-width:400px){
+            min-width:80px;
         }
         @media only screen and (min-width:600px){
             min-width:90px;
@@ -49,7 +59,8 @@ const Tab=styled(TabBase).attrs({
     as:`button`
 })`
 margin-bottom:10px;
-
+cursor:pointer;
+background-color:#DDDDDD;
 &: hover{
     transform: translateY(-3px);
     box-shadow: 0 0 50px #ffff;
@@ -87,10 +98,6 @@ const PairingIcon=styled.img.attrs({
     alt:'Pair'
 })``;
 
-const CloseIcon=styled.img.attrs({
-    src:closeImage,
-    alt:'Close'
-})``;
 
 const SettingsTab=({page,setPage})=>{
     if(page===PAGES.SETTINGS){
@@ -107,12 +114,6 @@ const SettingsTab=({page,setPage})=>{
         </Tab>);
     }
 }
-export const CloseTab=({onClose}) =>(
-    <Tab  onClick={onClose}>
-        <CloseIcon/>
-        <TabText>Close</TabText>
-    </Tab>
-)
 
 
 const ConnectTab=({page,setPage})=>{

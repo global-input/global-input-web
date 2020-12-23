@@ -2,18 +2,35 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Content=styled.div`
+export const Content=styled.div`
     min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    backgroundColor: white;
+    backgroundColor: rgb(219,240,240);
     align-items: center;
     @media only screen and (min-height:650px){
         margin:30px;
     }
-
 `;
+export const AppTitle=styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-size: 1em;
+    color: #445566;
+    font-family: Georgia, Times, Serif;
+    @media screen and (min-width:300px){
+        font-size:1.5em;
+
+    }
+    @media screen and (min-width:400px){
+        font-size:2em;
+
+    }
+},`;
 
 
 export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
@@ -67,12 +84,7 @@ export const QRCodeContainer: React.FC = ({ children }) => (
 );
 
 
-const AppTitle: React.FC = ({ children }) => {
-    if (!children) {
-        return null;
-    }
-    return (<div style={styles.appTitle}>{children}</div>);
-};
+
 
 interface AppContainerProps {
     children: React.ReactNode;
@@ -208,32 +220,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    appTitle: {
-        minWidth: 100,
-        minHeight: 20,
-        width: "100%",
-        display: "flex",
-        flexDirection: 'row' as 'row',
-        justifyContent: "center",
-        fontFamily: "Avenir",
-        color: "#5291CD",
-        fontSize: 20,
-        fontWeight: 100,
-        whiteSpace: 'nowrap' as 'nowrap',
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 30,
-        paddingRight: 30
-    },
-    content: {
-        width: "100%",
-        minHeight: 100,
-        display: "flex",
-        flexDirection: "column" as 'column',
-        justifyContent: "flex-start",
-        backgroundColor: "white",
-        alignItems: 'center'
-    },
+
     domain: {
         width: "100%",
         fontFamily: "Avenir",

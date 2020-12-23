@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 
-import { useMobile, ConnectWidget} from './mobile';
+import { useMobile, ConnectWidget,DisConnectButton} from './mobile';
 
-import { AppContainer, AppFooter, TextButton, MessageContainer,  MessageLink } from './app-layout';
+import { Content,AppTitle, MessageContainer } from './app-layout';
 
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
@@ -38,17 +38,17 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCodeGener
 
     }
     return (
-        <AppContainer title="Mobile Encryption" domain={domain}>
+        <Content>
+            <AppTitle>Mobile Encryption</AppTitle>
             <ConnectWidget mobile={mobile}/>
-            {mobile.isConnected && (<>
+            {mobile.isConnected && (
                 <MessageContainer>
                     You can now operate on your mobile.
                 </MessageContainer>
-            </>
             )}
-            {(mobile.isConnected || mobile.isConnectionDenied) && (<TextButton label="Disconnect" onClick={disconnect} />)}
+            <DisConnectButton mobile={mobile}/>
 
-        </AppContainer >
+        </Content>
     );
 }
 
