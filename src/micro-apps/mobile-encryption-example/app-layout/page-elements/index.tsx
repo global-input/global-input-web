@@ -1,4 +1,33 @@
 import React from 'react';
+import styled from 'styled-components';
+
+
+const Content=styled.div`
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    backgroundColor: white;
+    align-items: center;
+    @media only screen and (min-height:650px){
+        margin:30px;
+    }
+
+`;
+
+
+export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
+    <Content>
+            <AppTitle>{title}</AppTitle>
+                <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
+                <div style={styles.domain}>{domain}</div>
+        {children}
+    </Content>
+
+);
+
+
+
 
 export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
 
@@ -51,14 +80,6 @@ interface AppContainerProps {
     title: string;
 
 }
-export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
-    <div style={styles.content}>
-        <AppTitle>{title}</AppTitle>
-        <MessageLink href="https://github.com/global-input/mobile-encryption">Source Code</MessageLink>
-        <div style={styles.domain}>{domain}</div>
-        {children}
-    </div>
-);
 
 export const AppFooter: React.FC = ({ children }) => (
     <div style={styles.appFooter}>

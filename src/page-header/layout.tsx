@@ -23,21 +23,28 @@ const dropDown = keyframes`
 
 
 export const Title = styled.div`
-    font-size: 20px;
+    font-size: 10px;
     color: #5291CD;
     white-space: nowrap;
     font-weight: 300;
     padding-left: 10px;
     font-family: Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif;
-    @media only screen and (min-width:600px){
-        position:absolute;
-        top:15px;
-        left:50px;
-        font-size: 15px;
+    @media only screen and (min-width:250px){
+      font-size: 12px;
     }
-    @media only screen and (min-width:720px){
-        font-size: 20px;
+    @media only screen and (min-width:300px){
+      font-size: 14px;
     }
+    @media only screen and (min-width:360px){
+      font-size: 16px;
+    }
+    @media only screen and (min-width:400px){
+      font-size: 18px;
+    }
+    @media only screen and (min-width:500px){
+      font-size: 20px;
+    }
+
 `;
 export const appTitle = config.id === 'iterative' ? 'Iterative Solution' : 'Global Input App';
 
@@ -148,13 +155,23 @@ export const Icon = styled.button`
     text-decoration: none;
     border: none;
     background-color:white;
+    margin-right:5px;
+    @media only screen and (min-width:250px){
+      margin-right:10px;
+    }
 
     &: focus {
         outline:0;
+        box-shadow: 0 0 50px #ffff;
     }
-    display:none;
-    @media only screen and (max-width: 599px) {
-      display:block;
+    display:block;
+    @media only screen and (min-width: 600px) {
+      display:none;
+    }
+
+    &: hover{
+
+      box-shadow: 0 0 50px #ffff;
     }
 `;
 
