@@ -60,6 +60,7 @@ const Tab=styled(TabBase).attrs({
 })`
 margin-bottom:10px;
 cursor:pointer;
+background-color:#DDDDDD;
 &: hover{
     transform: translateY(-3px);
     box-shadow: 0 0 50px #ffff;

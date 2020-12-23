@@ -234,3 +234,14 @@ export const ConnectButton=({mobile,label='Connect'})=>{
 
         return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
 };
+
+
+export const DisConnectButton=({mobile,label='Disconnect'})=>{
+        const {isConnected,isConnectionDenied, disconnect}=mobile;
+        if(isConnected || isConnectionDenied){
+                return (<BigButton onClick={()=>disconnect()}>{label}</BigButton>);
+        }
+        else{
+                return null;
+        }
+};
