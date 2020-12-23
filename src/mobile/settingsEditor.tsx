@@ -43,6 +43,7 @@ const Form = styled.div`
     max-width:400px;
     height:65vh;
     max-height:450px;
+    background-color:white;
 `;
 
 
