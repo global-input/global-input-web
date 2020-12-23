@@ -135,15 +135,25 @@ export const CloseIcon=styled.button`
     height:45px;
     top:-40px;
     right:0;
-    @media only screen and (min-width:280px){
+    @media screen and (min-width:280px){
         top:-30px;
         right:-15px;
     }
-    @media only screen and (min-width:500px){
-
+    @media screen and (min-width:500px){
         top:-25px;
         right:-25px;
     }
+    @media screen and (max-width:550px) and (max-height:550px){
+        position:relative;
+        align-self:flex-start;
+    }
+    @media screen and (min-width:250px) and (max-height:550px){
+        position:relative;
+        align-self:flex-end;
+        top:-20px;
+    }
+
+
 
 
     &:before {
@@ -208,8 +218,8 @@ export const ConnectWindow=({mobile})=>{
         return(
                 <PopupGlass>
                         <PopUpWindow>
-                                <CloseIcon onClick={()=>mobile.setShowWidget(false)}/>
                                 <ConnectWidget mobile={mobile}/>
+                                <CloseIcon onClick={()=>mobile.setShowWidget(false)}/>
                         </PopUpWindow>
                 </PopupGlass>
         );
