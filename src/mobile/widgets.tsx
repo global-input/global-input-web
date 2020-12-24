@@ -237,9 +237,9 @@ export const ConnectButton=({mobile,label='Connect'})=>{
 
 
 export const DisConnectButton=({mobile,label='Disconnect'})=>{
-        const {isConnected,isConnectionDenied, disconnect}=mobile;
+        const {isConnected,isConnectionDenied, restart}=mobile;
         if(isConnected || isConnectionDenied){
-                return (<BigButton onClick={()=>disconnect()}>{label}</BigButton>);
+                return (<BigButton onClick={()=>restart()}>{label}</BigButton>);
         }
         else{
                 return null;
