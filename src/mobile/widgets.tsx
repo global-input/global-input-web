@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {Tabs} from './tabs';
-import {PAGES} from './pages';
 import {ConnectQR, PairingQR} from 'global-input-react';////global-input-react////
 
+import {WidgetState, MobileData} from './commons';
+
+
+import settingsImage from './images/settings.png';
+import connectImage from './images/connect.png';
+import disconnectImage from './images/disconnect.png';
+import pairingImage from './images/pairing.png';
+
 import {SettingsEditor} from './settingsEditor';
+
+
+
 const Button = styled.button`
     text-decoration: none;
     font-size: 11px;
@@ -40,6 +49,11 @@ const BigButton = styled(Button)`
     border-width:0;
     font-size: 15px;
 `;
+const DarkButton = styled(BigButton)`
+        background-color:rgb(208, 226, 247);
+
+`;
+
 const Container = styled.div`
         flex-direction: column;
         justify-content: flex-center;
@@ -166,9 +180,173 @@ export const CloseIcon=styled.button`
 `;
 
 
+const TabContainer=styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    height:100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    align-items: flex-end;
+`;
+const TabBase=styled.div`
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-width:0px;
+        margin-right:10px;
+        margin-left:10px;
+        padding:5px;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:center;
+        @media only screen and (min-width:300px){
+            min-width:50px;
+        }
 
-export const ConnectWidget=({mobile})=>{
-        const {page,setPage,errorMessage,onSaveSettings,loadSettings,isConnected,isShowWidget,setShowWidget,isConnectionDenied,
+        @media only screen and (min-width:300px){
+            min-width:50px;
+        }
+        @media only screen and (min-width:320px){
+            min-width:60px;
+        }
+        @media only screen and (min-width:360px){
+            min-width:70px;
+        }
+        @media only screen and (min-width:400px){
+            min-width:80px;
+        }
+        @media only screen and (min-width:600px){
+            min-width:90px;
+        }
+        @media only screen and (min-width:700px){
+            min-width:100px;
+
+        }
+
+`;
+const ActiveTab=styled(TabBase)`
+    background-color:white;
+`;
+const Tab=styled(TabBase).attrs({
+    as:`button`
+})`
+margin-bottom:10px;
+cursor:pointer;
+background-color:#DDDDDD;
+&: hover{
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px #ffff;
+}
+`;
+
+
+
+const TabText=styled.div`
+    color:rgb(21,53,232);
+    font-size:8px;
+    @media only screen and (min-width:280px){
+        font-size:10px;
+    }
+    @media only screen and (min-width:400px){
+        font-size:12px;
+    }
+
+`;
+
+
+const SettingsIcon=styled.img.attrs({
+    src:settingsImage,
+    alt:'Settings'
+})``;
+const ConnectIcon=styled.img.attrs({
+    src:connectImage,
+    alt:'Connect'
+})`
+`;
+
+const DisconnectIcon=styled.img.attrs({
+        src:disconnectImage,
+        alt:'Disconnect'
+    })`
+    `;
+
+
+
+const PairingIcon=styled.img.attrs({
+    src:pairingImage,
+    alt:'Pair'
+})``;
+
+interface TabProps{
+        widgetState:WidgetState;
+        setWidgetState:(widgetState:WidgetState)=>void;
+}
+const SettingsTab:React.FC<TabProps>=({widgetState,setWidgetState})=>{
+    if(widgetState===WidgetState.SETTINGS){
+        return (<ActiveTab>
+            <SettingsIcon/>
+            <TabText>Settings</TabText>
+        </ActiveTab>);
+    }
+    else{
+        return  (
+        <Tab  onClick={()=>setWidgetState(WidgetState.SETTINGS)}>
+                <SettingsIcon/>
+                <TabText>Settings</TabText>
+        </Tab>);
+    }
+}
+
+
+const ConnectTab:React.FC<TabProps>=({widgetState,setWidgetState})=>{
+    if(widgetState===WidgetState.CONNECT_QR){
+        return (<ActiveTab>
+            <ConnectIcon/>
+            <TabText>Connect</TabText>
+        </ActiveTab>);
+    }
+    else{
+        return  (
+        <Tab  onClick={()=>setWidgetState(WidgetState.CONNECT_QR)}>
+                <ConnectIcon/>
+                <TabText>Connect</TabText>
+        </Tab>);
+    }
+};
+
+
+const PairingTab:React.FC<TabProps>=({widgetState,setWidgetState})=>{
+    if(widgetState===WidgetState.PAIRING){
+        return (<ActiveTab>
+            <PairingIcon/>
+            <TabText>Pair</TabText>
+        </ActiveTab>);
+    }
+    else{
+        return  (
+        <Tab onClick={()=>setWidgetState(WidgetState.PAIRING)}>
+                <PairingIcon/>
+                <TabText>Pair</TabText>
+        </Tab>);
+    }
+};
+
+
+const Tabs:React.FC<TabProps>=(props)=>(
+    <TabContainer>
+                <ConnectTab {...props}/>
+                <SettingsTab {...props}/>
+                <PairingTab  {...props}/>
+    </TabContainer>
+);
+
+interface ConnectWidgetProps{
+       mobile:MobileData;
+}
+export const ConnectWidget:React.FC<ConnectWidgetProps>=({mobile})=>{
+        const {widgetState,setWidgetState,errorMessage,onSaveSettings,loadSettings,isConnected,isShowWidget,isConnectionDenied,
                 isError}=mobile;
         if (isConnected) {
             return null;
@@ -184,19 +362,19 @@ export const ConnectWidget=({mobile})=>{
         return(
             <Container>
                 <TopBar>
-                    <Tabs  page={page} setPage={setPage}/>
+                    <Tabs  widgetState={widgetState} setWidgetState={setWidgetState}/>
                 </TopBar>
                 <Content>
-                    {page===PAGES.CONNECT_QR &&(<ConnectQR mobile={mobile}/>)}
-                    {page===PAGES.PAIRING && (<PairingQR mobile={mobile}/>)}
-                    {page===PAGES.SETTINGS && (<SettingsEditor saveSettings={onSaveSettings} loadSettings={loadSettings}/>)}
+                    {widgetState===WidgetState.CONNECT_QR &&(<ConnectQR mobile={mobile}/>)}
+                    {widgetState===WidgetState.PAIRING && (<PairingQR mobile={mobile}/>)}
+                    {widgetState===WidgetState.SETTINGS && (<SettingsEditor saveSettings={onSaveSettings} loadSettings={loadSettings}/>)}
                     {message && (<ErrorMessage>{message}</ErrorMessage>)}
                 </Content>
             </Container >
         );
     };
 
-export const ConnectWindow=({mobile})=>{
+export const ConnectWindow:React.FC<ConnectWidgetProps>=({mobile})=>{
         const {isConnected,isShowWidget}=mobile;
         useEffect(()=>{
                 let scrollDisabled=false;
@@ -226,20 +404,50 @@ export const ConnectWindow=({mobile})=>{
 
 };
 
-export const ConnectButton=({mobile,label='Connect'})=>{
+const ConnectLabel=styled.div`
+     padding-left:5px;
+     font-size:12px;
+     @media screen and (min-width:250px){
+             font-size:20px;
+     }
+`;
+
+interface ButtonProps{
+        label?:string;
+        skin?:string;
+        mobile:MobileData;
+}
+export const ConnectButton:React.FC<ButtonProps>=({mobile,label='Connect', skin})=>{
         const {setShowWidget, isConnected, isShowWidget}=mobile;
         if(isConnected || isShowWidget){
                 return null;
         }
+        if(skin==='white'){
+                return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
+        }
+        return (<DarkButton onClick={()=>setShowWidget(true)}>
+                <ConnectIcon/>
+                       <ConnectLabel>{label}</ConnectLabel>
+                </DarkButton>
+        );
 
-        return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
 };
 
 
-export const DisConnectButton=({mobile,label='Disconnect'})=>{
+
+export const DisConnectButton:React.FC<ButtonProps>=({mobile,label='Disconnect',skin})=>{
         const {isConnected,isConnectionDenied, restart}=mobile;
         if(isConnected || isConnectionDenied){
-                return (<BigButton onClick={()=>restart()}>{label}</BigButton>);
+                if(skin==='white'){
+                        return (<BigButton onClick={()=>restart()}>{label}</BigButton>);
+                }
+                else{
+                        return(
+                        <DarkButton onClick={()=>restart()}>
+                        <DisconnectIcon/>
+                               <ConnectLabel>{label}</ConnectLabel>
+                        </DarkButton>   );
+                }
         }
         else{
                 return null;

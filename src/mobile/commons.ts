@@ -1,0 +1,15 @@
+import {GlobalInputData} from 'global-input-react';
+import type {ConnectionSettings} from './storage';
+export enum WidgetState {
+    CONNECT_QR,
+    SETTINGS,
+    PAIRING
+}
+export interface MobileData extends GlobalInputData{
+    isShowWidget:boolean;
+    onSaveSettings:(settings:ConnectionSettings) =>void;
+    loadSettings:()=>ConnectionSettings;
+    widgetState:WidgetState;
+    setWidgetState:(widgetState:WidgetState)=>void;
+    setShowWidget:(boolean)=>void;
+}

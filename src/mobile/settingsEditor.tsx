@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-
+import type {ConnectionSettings} from './storage';
 
 const Button = styled.button`
     text-decoration: none;
@@ -269,8 +269,11 @@ const Footer = styled.div`
 
 `;
 
-
-export const SettingsEditor = ({ loadSettings,saveSettings}) => {
+interface Props{
+    loadSettings:()=>ConnectionSettings;
+    saveSettings:(settings:ConnectionSettings)=>void;
+}
+export const SettingsEditor:React.FC<Props> = ({ loadSettings,saveSettings}) => {
     const [settings, setSettings] = useState(loadSettings);
     const [expand,setExpand]=useState('');
     const onSave = () => saveSettings(settings);

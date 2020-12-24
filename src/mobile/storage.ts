@@ -62,7 +62,7 @@ const setCodeKey = (codeKey: string | null | undefined) => {
 
 
 
-interface ConnectionSettings {
+export interface ConnectionSettings {
     url?: string;
     apikey?: string;
     securityGroup?: string;
