@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile, ConnectWidget,DisConnectButton} from './mobile';
 
-import { Content,AppTitle, MessageContainer } from './app-layout';
+import {Container, Content,AppTitle, P,SourceLink } from './app-layout';
 
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
@@ -33,22 +33,21 @@ const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCodeGener
         }
     });
 
-    const disconnect = () => {
-        mobile.restart();
 
-    }
     return (
+        <Container>
         <Content>
             <AppTitle>Mobile Encryption</AppTitle>
+            <SourceLink>Source Code</SourceLink>
             <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (
-                <MessageContainer>
+                <P>
                     You can now operate on your mobile.
-                </MessageContainer>
+                </P>
             )}
             <DisConnectButton mobile={mobile}/>
-
         </Content>
+        </Container>
     );
 }
 

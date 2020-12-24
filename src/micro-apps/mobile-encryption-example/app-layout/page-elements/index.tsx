@@ -1,17 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const Container =styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:100vw;
+    height:100vh;
+`;
 
 export const Content=styled.div`
-    min-height: 100px;
+    width:95%;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     backgroundColor: rgb(219,240,240);
     align-items: center;
-    @media only screen and (min-height:650px){
-        margin:30px;
-    }
+    padding:10px;
+
 `;
 export const AppTitle=styled.div`
     width: 100%;
@@ -24,13 +32,35 @@ export const AppTitle=styled.div`
     font-family: Georgia, Times, Serif;
     @media screen and (min-width:300px){
         font-size:1.5em;
-
     }
     @media screen and (min-width:400px){
         font-size:2em;
-
     }
 },`;
+export const SourceLink=styled.a.attrs({
+    href:'https://github.com/global-input/mobile-encryption',
+    rel:'noreferrer noopener',
+    target:'_blank'})`
+    color: #153E85;
+    font-weight: 100;
+    font-family: Georgia, Times, Serif;
+    font-size: 0.8em;
+    @media screen and (min-width:300px){
+        font-size:1em;
+    }
+    @media screen and (min-width:400px){
+        font-size:1.5em;
+    }
+
+    `;
+
+
+export const P = styled.div`
+    font-size: 16px;
+`;
+
+
+
 
 
 export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, title }) => (
@@ -46,7 +76,7 @@ export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, ti
 
 
 
-export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
+
 
 export const Title: React.FC = ({ children }) => (
     <div style={styles.title}>{children}</div>
@@ -180,15 +210,7 @@ const styles = {
         padding: 10,
         color: "#153E85"
     },
-    paragraph: {
-        fontSize: 16,
-        display: "block",
-        marginBottom: 20,
-        marginTop: 20,
-        color: "#5291CD",
-        maxWidth: 900
 
-    },
     link: {
         fontWeight: 50,
         color: "#6666ff"
