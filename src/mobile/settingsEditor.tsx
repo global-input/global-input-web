@@ -44,6 +44,8 @@ const Form = styled.div`
     height:65vh;
     max-height:450px;
     background-color:white;
+    overflow: scroll;
+
 `;
 
 
