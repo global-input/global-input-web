@@ -103,14 +103,20 @@ const PopupGlass = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100vw;
-        height:100vh;
+
+
         margin: 0;
         padding: 0;
         position: fixed;
         top:0;
         left:0;
         z-index:10;
+        @media screen and (min-height:530px){
+                height:100vh;
+        }
+
+        width: 100vw;
+
 `;
 
  const ErrorMessage = styled.div`
@@ -128,7 +134,6 @@ const PopUpWindow=styled.div`
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
-    align-items:center;
     position:relative;
 `;
 export const CloseIcon=styled.button`
