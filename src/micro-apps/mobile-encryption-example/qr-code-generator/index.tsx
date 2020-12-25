@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ContentLabel from './ContentLabel';
+import {ContentLabel} from './ContentLabel';
 import GenerateQRCode from './GenerateQRCode';
 
 const pages = {
