@@ -89,9 +89,10 @@ const Container =styled.div`
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    width:100vw;
+
     height:100vh;
     backgroundColor: rgb(219,240,240);
+
 `;
 
 const Content=styled.div`

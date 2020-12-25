@@ -8,10 +8,10 @@ export const Form = styled.div`
     align-items:flex-start;
     padding:10px;
     width:80vw;
-    max-width:400px;
-    height:65vh;
-    max-height:450px;
-    background-color:white;
+    border:1px solid #DDDDDD;
+
+
+
     overflow: scroll;
 
 `;

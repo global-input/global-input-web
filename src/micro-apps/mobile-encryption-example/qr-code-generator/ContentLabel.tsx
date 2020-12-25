@@ -4,7 +4,10 @@ import styled from 'styled-components';
 
 
 import { useMobile,ConnectWidget} from '../mobile';
-import importEncryptOnMobileImage from './images/encrypt-on-mobile.png';
+import encryptOnMobileImage from './images/encrypt-on-mobile.png';
+import keysOnMobileImage from './images/keys-on-mobile.png';
+import settingsOnMobileImage from './images/settings-on-mobile.png';
+
 import {ContentLabelForm, Footer, DarkButton,Form} from './forms';
 
 
@@ -65,23 +68,54 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                 <Content>
                         <Title>Encrypting Content for QR Code</Title>
                         <ConnectWidget mobile={mobile}/>
-                        {mobile.isConnected &&(<>
-                                <P>You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
-                                </P>
-                                <Form>
-                                        <P>The mobile app sends
-                                        the encrypted content generated on your mobile to this application, which displays the received content in the text box above.
-                                        </P>
-                                        <ContentLabelForm content={content} label={label} onContentChanged={onContentChanged} onLabelChanged={onLabelChanged}/>
-                                </Form>
-                        </>)}
+                        {mobile.isConnected &&(
+                        <ConnectedInstruction>
+                                You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
+                        </ConnectedInstruction>)}
                         <Form>
-                        <Footer>
-                                <DarkButton onClick={back}>Back</DarkButton>
-                                {mobile.isConnected && (<DarkButton onClick={onNext}>Next</DarkButton>)}
-                                </Footer>
-                        </Form>
 
+                                {mobile.isConnected &&(<>
+                                <ContentLabelForm content={content} label={label} onContentChanged={onContentChanged} onLabelChanged={onLabelChanged}/>
+                                        <MoreInfo>The mobile app sends
+                                        the encrypted content generated on your mobile to this application, which displays the received content in the text box above.
+                                        </MoreInfo>
+                                </>)}
+                                <Footer>
+                                        <DarkButton onClick={back}>Back</DarkButton>
+                                        {mobile.isConnected && (<DarkButton onClick={onNext}>Next</DarkButton>)}
+                                </Footer>
+                                <Tips>
+
+                                      <TipTitle>
+                                        To create an encrypted QR Code, press the buttons on your mobile as shown below:
+                                      </TipTitle>
+                                      <Tip>
+                                        <EncryptOnMobileIcon/>
+                                        <TipContent>
+                                        Create a backup of a disaster recovery password in the form of an encrypted QR Code so you can scan to decrypt it with your mobile when you need it.
+
+                                        </TipContent>
+                                      </Tip>
+
+                                      <Tip>
+                                                <BackupKeysIcon/>
+                                                <TipContent>
+                                                        Export your encryption keys in your mobile as encrypted QR Code that you can easily import back in your new mobile any time in the future.
+                                                </TipContent>
+                                      </Tip>
+                                      <Tip>
+                                                <BackupSettingsIcon/>
+                                                <TipContent>
+                                                        Exports your connection settings of your mobile app.
+                                                </TipContent>
+                                      </Tip>
+
+
+
+
+                                </Tips>
+
+                        </Form>
                 </Content>
 
 
@@ -134,18 +168,37 @@ const Container =styled.div`
     justify-content:center;
     align-items:center;
     width:100vw;
-    height:100vh;
+
     backgroundColor: rgb(219,240,240);
-    @media screen and (min-height:250px){
+    @media screen and (min-height:1000px){
         padding-top:30px;
+        height:100vh;
    }
 `;
 
 
-const P = styled.div`
+const MoreInfo = styled.div`
     font-size: 16px;
     align-self:flex-start;
+    @media screen and (min-height:310px){
+         margin-bottom:10px;
+
+    }
 `;
+
+const ConnectedInstruction=styled.div`
+    font-size: 10px;
+    align-self:flex-start;
+    @media screen and (min-height:250px){
+        font-size: 16px;
+    }
+    @media screen and (min-height:380px){
+        font-size: 16px;
+        margin-bottom:10px;
+    }
+
+`;
+
 
 
 const AppTitle=styled.div`
@@ -157,18 +210,19 @@ const AppTitle=styled.div`
     font-size: 1em;
     color: #445566;
     font-family: Georgia, Times, Serif;
-    @media screen and (min-width:250px) and (min-height:250px){
+    @media screen and (min-height:200px){
         font-size:1.5em;
-        margin-bottom:10px;
     }
 
-    @media screen and (min-width:400px){
+    @media screen and (min-height:400px){
         font-size:2em;
+        margin-bottom:10px;
     }
 },`;
 const Title=styled(AppTitle)`
     color: #445566;
     justify-content: flex-start;
+
 
 `;
 
@@ -180,11 +234,11 @@ const SourceLink=styled.a.attrs({
         font-weight: 100;
         font-family: Georgia, Times, Serif;
         font-size: 0.8em;
-        @media screen and (min-width:250px) and (min-height:250px){
+        @media screen and (min-height:200px){
             font-size:1em;
             margin-bottom:10px;
         }
-        @media screen and (min-width:400px){
+        @media screen and (min-height:400px){
             font-size:1.5em;
         }
 
@@ -202,6 +256,40 @@ const Content=styled.div`
 `;
 
 const EncryptOnMobileIcon=styled.img.attrs({
-    src:importEncryptOnMobileImage,
+    src:encryptOnMobileImage,
     alt:'Encrypt'
 })``;
+const BackupKeysIcon=styled.img.attrs({
+        src:keysOnMobileImage,
+        alt:'Backup Keys'
+})``;
+
+const BackupSettingsIcon=styled.img.attrs({
+        src:settingsOnMobileImage,
+        alt:'Backup Settings'
+})``;
+
+
+const Tips = styled.div`
+    display:flex;
+    flex-direction:column;
+
+
+`;
+const Tip=styled.div`
+        display: flex;
+        flex-direction:row;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top:5px;
+        padding-bottom:5px;
+
+`;
+const TipTitle=styled.div`
+        font-size: 12px;
+`;
+
+const TipContent=styled.div`
+    font-size: 12px;
+    padding-left:5px;
+`;
