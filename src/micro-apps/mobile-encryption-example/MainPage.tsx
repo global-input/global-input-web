@@ -91,6 +91,7 @@ const Container =styled.div`
     align-items:center;
     width:100vw;
     height:100vh;
+    backgroundColor: rgb(219,240,240);
 `;
 
 const Content=styled.div`
@@ -99,7 +100,7 @@ const Content=styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    backgroundColor: rgb(219,240,240);
+
     align-items: center;
     padding:10px;
 

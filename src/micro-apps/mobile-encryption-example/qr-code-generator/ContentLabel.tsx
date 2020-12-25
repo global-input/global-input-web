@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { InputWithLabel, FormContainer, FormFooter, TextButton, DisplayErrorMessage } from '../app-layout';
+
 import { useMobile,ConnectWidget} from '../mobile';
 import importEncryptOnMobileImage from './images/encrypt-on-mobile.png';
+import {ContentLabelForm, Footer, DarkButton,Form} from './forms';
+
 
 interface Props {
         back: () => void;
@@ -13,7 +15,7 @@ interface Props {
 export const ContentLabel: React.FC<Props> = ({ back, next }) => {
         const [content, setContent] = useState('');
         const [label, setLabel] = useState('');
-        const [expand,setExpand]=useState('');
+
 
         const initData = {
                 dataType: "qrcode",
@@ -26,7 +28,11 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
 
         const onLabelChanged = (label: string) => {
                 setLabel(label);
-                mobile.sendValue(FIELDS.label.id, content);
+                mobile.sendValue(FIELDS.label.id, label);
+        }
+        const onContentChanged=(content:string)=>{
+                setContent(content);
+                mobile.sendValue(FIELDS.content.id, content);
         }
         const onNext = () => {
                 if (content.trim().length) {
@@ -57,27 +63,25 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                         <AppTitle>Mobile Encryption</AppTitle>
                 <SourceLink>Source Code</SourceLink>
                 <Content>
-                        <Title>Encrypt a content on your mobile</Title>
+                        <Title>Encrypting Content for QR Code</Title>
                         <ConnectWidget mobile={mobile}/>
-                        {mobile.isConnected && (<>
-                                <P>You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information. The mobile app sends
-                                the encrypted content generated on your mobile to this application, which displays the received content in the following text box.</P>
+                        {mobile.isConnected &&(<>
+                                <P>You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
+                                </P>
+                                <Form>
+                                        <P>The mobile app sends
+                                        the encrypted content generated on your mobile to this application, which displays the received content in the text box above.
+                                        </P>
+                                        <ContentLabelForm content={content} label={label} onContentChanged={onContentChanged} onLabelChanged={onLabelChanged}/>
+                                </Form>
+                        </>)}
                         <Form>
-                                        <ContentInput content={content} setContent={content=>{
-                                        setContent(content);
-                                        mobile.sendValue(FIELDS.content.id, content);
-                                }} expand={expand} setExpand={setExpand}/>
-                                <LabelInput label={label} setLabel={label=>{
-                                        setLabel(label);
-                                        mobile.sendValue(FIELDS.label.id, label);
-                                }} expand={expand} setExpand={setExpand}/>
+                        <Footer>
+                                <DarkButton onClick={back}>Back</DarkButton>
+                                {mobile.isConnected && (<DarkButton onClick={onNext}>Next</DarkButton>)}
+                                </Footer>
                         </Form>
 
-                            </>)}
-                        <FormFooter>
-                                <TextButton onClick={back} label='Back' />
-                                {mobile.isConnected && (<TextButton onClick={onNext} label='Next' />)}
-                        </FormFooter>
                 </Content>
 
 
@@ -132,11 +136,15 @@ const Container =styled.div`
     width:100vw;
     height:100vh;
     backgroundColor: rgb(219,240,240);
+    @media screen and (min-height:250px){
+        padding-top:30px;
+   }
 `;
 
 
 const P = styled.div`
     font-size: 16px;
+    align-self:flex-start;
 `;
 
 
@@ -158,16 +166,10 @@ const AppTitle=styled.div`
         font-size:2em;
     }
 },`;
-const Title=styled.div`
+const Title=styled(AppTitle)`
     color: #445566;
-    font-family: Georgia, Times, Serif;
-    font-size: 1em;
-    @media screen and (min-width:250px) and (min-height:250px){
-        font-size:1.4em;
-    }
-    @media screen and (min-width:400px){
-            font-size:1.3em;
-     }
+    justify-content: flex-start;
+
 `;
 
 const SourceLink=styled.a.attrs({
@@ -190,230 +192,16 @@ const SourceLink=styled.a.attrs({
 
 const Content=styled.div`
     width:95%;
+    max-height:90%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items:flex-start
-    align-items: center;
-    padding:10px;
+    justify-content: center;
+    align-items:center;
+    overflow:scrolls;
+
 `;
 
 const EncryptOnMobileIcon=styled.img.attrs({
     src:importEncryptOnMobileImage,
     alt:'Encrypt'
 })``;
-
-const Form = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:flex-start;
-    padding:10px;
-    width:80vw;
-    max-width:400px;
-    height:65vh;
-    max-height:450px;
-    background-color:white;
-    overflow: scroll;
-
-`;
-
-
-const Field = styled.div`
-    position: relative;
-    width:100%;
-    padding-top:15px;
-
-
-`;
-const TextArea = styled.textarea`
-    display: block;
-    line-height: 2em;
-    border:1pxz solid red;
-    margin: 0;
-    padding-left: 10px;
-    width: 100%;
-    height:100px;
-    font-size: medium;
-    border: 2px solid rgb(230,230,230);
-    background-color: rgb(249,249,249);
-    border-radius: 5px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-weight: 500;
-    &:focus {
-        border: 1px solid #2c7ac9;
-    }
-    &:placeholder-shown + .control-label {
-        visibility: hidden;
-        z-index: -1;
-        transition: 0.2s ease-in-out;
-
-    }
-    &:not(:placeholder-shown) + .control-label,
-    .form-control:focus:not(:placeholder-shown) + .control-label {
-        visibility: visible;
-        z-index: 1;
-        opacity: 1;
-        transform: translateX(10px) translateY(-115px);
-        transition: 0.2s ease-in-out transform;
-        background-color:white;
-    }
-    width:100%;
-`;
-
-const Input = styled.input`
-    display: block;
-    line-height: 2em;
-    border:1pxz solid red;
-    margin: 0;
-    padding-left: 10px;
-    width: 100%;
-    font-size: medium;
-    border: 2px solid rgb(230,230,230);
-    background-color: rgb(249,249,249);
-    border-radius: 5px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-weight: 500;
-    &:focus {
-        border: 1px solid #2c7ac9;
-    }
-    &:placeholder-shown + .control-label {
-        visibility: hidden;
-        z-index: -1;
-        transition: 0.2s ease-in-out;
-
-    }
-    &:not(:placeholder-shown) + .control-label,
-    .form-control:focus:not(:placeholder-shown) + .control-label {
-        visibility: visible;
-        z-index: 1;
-        opacity: 1;
-        transform: translateX(10px) translateY(-52px);
-        transition: 0.2s ease-in-out transform;
-        background-color:white;
-    }
-    width:100%;
-`;
-const Label = styled.label.attrs(props => ({
-    className: "control-label"
-
-}))`
-    display: inline-block;
-    opacity: 0;
-    color:rgb(53,116,230);
-    transition: 0.2s ease-in-out transform;
-    font-size: 12px;
-    width:auto;
-    padding-left:5px;
-    padding-right:5px;
-
-
-
-`;
-
-
-const ContentInput=({content, setContent,expand,setExpand})=>(
-        <Field>
-                            <TextArea id="inputContent" onChange={evt=>{
-                              setContent(evt.target.value);
-                            }} value={content} placeholder="Content Received from your mobile will be placed here."
-                            onFocus={()=>setExpand('inputContent')}/>
-                            <Label htmlFor="inputContent">Content</Label>
-                            <Help expandId='inputContent' expand={expand} setExpand={setExpand}>
-                            The encrypted content received from your mobile app will be displayed in this text box.
-                            Since the key that has encrypted the content never leaves your mobile app and the encryption takes place inside your mobile app,
-                            this application is not able to decrypt the content.
-                            </Help>
-
-        </Field>
-    );
-
-
-    const LabelInput=({label, setLabel,expand,setExpand})=>(
-        <Field>
-                            <Input id="inputLabel" onChange={evt=>{
-                              setLabel(evt.target.value);
-                            }} value={label} placeholder="Label for the content above."
-                            onFocus={()=>setExpand('inputLabel')}/>
-                            <Label htmlFor="inputLabel">Label</Label>
-                            <Help expandId='inputLabel' expand={expand} setExpand={setExpand}>
-                            The label you would to use to identify the encrypted content.
-                            The label will be placed the underneath the QR Code you are going to generate in the next step.
-                            </Help>
-
-        </Field>
-    );
-
-
-    const Help=({children,expandId, expand,setExpand})=>{
-        const isExpanded=expand===expandId;
-        const toggle=()=>setExpand(isExpanded?'':expandId);
-        return (
-        <HelpContainer>
-                <ExpandIcon expand={isExpanded} onClick={toggle}/>
-                <HelpContent expand={isExpanded}>
-                    {children}
-                </HelpContent>
-        </HelpContainer>
-        );
-    }
-
-    const HelpContainer=styled.div`
- position:relative;
-
- top:-32px;
- display:flex;
- flex-direction:row;
- justify-content:flex-start;
- align-items:flex-start;
- flex-wrap:wrap;
-`;
-const HelpContent=styled.div`
-font-family: Avenir;
-    color: rgb(53,116,230);
-    white-space: wrap;
-    font-size: 12px;
-    display:${props=>props.expand?'inline':'none'};
-    @media only screen and (min-width:500px){
-        font-size: 14px;
-    }
-
-`;
-
-
-const ExpandIcon =styled.div`
-    box-sizing: border-box;
-    position: relative;
-    display: inline-block;
-    border:1px solid red;
-    background-color:white;
-    cursor:pointer;
-
-
-    width: 22px;
-    height: 22px;
-    border: 2px solid;
-    border-radius: 100px;
-    top:-5px;
-    color:rgb(77,104,206);
-    margin-right:5px;
-    transform:${props=>props.expand?'rotate(90deg)':'rotate(0deg)'};
-    &::after {
-        content: "";
-        display: block;
-        box-sizing: border-box;
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        border-bottom: 2px solid;
-        border-right: 2px solid;
-        transform: rotate(-45deg);
-        left: 5px;
-        top: 6px;
-    }
-
-`;
