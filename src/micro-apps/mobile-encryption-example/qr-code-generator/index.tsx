@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {ContentLabel} from './ContentLabel';
-import GenerateQRCode from './GenerateQRCode';
+import {GenerateQRCode} from './GenerateQRCode';
 
 const pages = {
     CONTENT_LABEL: "content-label",
@@ -9,7 +9,7 @@ const pages = {
 interface Props{
     back:()=>void;
 }
-const QRCodeGenerator:React.FC<Props> = ({ back }) => {
+export const QRCodeGenerator:React.FC<Props> = ({ back }) => {
     const [page, setPage] = useState({ id: pages.CONTENT_LABEL, content: '', label: '' });
     const gotoGenerateQRCode = (content, label) => {
         content = content.trim();
@@ -36,5 +36,3 @@ const QRCodeGenerator:React.FC<Props> = ({ back }) => {
 
 
 };
-
-export default QRCodeGenerator;

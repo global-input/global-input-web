@@ -9,10 +9,10 @@ export const Form = styled.div`
     padding:10px;
     width:80vw;
     border:1px solid #DDDDDD;
-
-
-
     overflow: scroll;
+    @media print {
+        display:none;
+    }
 
 `;
 

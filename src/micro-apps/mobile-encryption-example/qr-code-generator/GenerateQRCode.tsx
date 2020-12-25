@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { useMobile } from '../mobile';
 import QRCode from "qrcode.react";
-import './no-print.css';
-import { P, A, AppContainer, FormFooter, TextButton } from '../app-layout';
+import {AppTitle, SourceLink,Title} from '../commons';
+import {Form, Footer, DarkButton} from '../formLayouts';
 
 
-const GenerateQRCode = ({ content, label, back }) => {
+export const GenerateQRCode = ({ content, label, back }) => {
     const [size, setSize] = useState(300);
     const [level, setLevel] = useState('H');
     const initData = {
@@ -34,18 +35,30 @@ const GenerateQRCode = ({ content, label, back }) => {
     });
 
     return (
-        <AppContainer title="Mobile Encryption" domain="">
-            <P>{label}</P>
-            <QRCode value={content} level={level} size={size} />
-            <P>Scan with <A href="https://globalinput.co.uk/">Global Input App</A></P>
-            <FormFooter>
-                <TextButton onClick={back} label='Back' />
-                <TextButton onClick={() => {
-                    window.print();
-                }} label='Print' />
-            </FormFooter>
+        <Container>
+                        <AppTitle>Mobile Encryption</AppTitle>
+                <SourceLink>Source Code</SourceLink>
+                <Content>
+                        <Title>QR Code From the Content</Title>
 
-        </AppContainer>
+
+            <ContentLabel>{label}</ContentLabel>
+            <QRCode value={content} level={level} size={size} />
+            <QRCodeLabel>Scan with <LinkInLabel>Global Input App</LinkInLabel></QRCodeLabel>
+            <Form>
+            <Footer>
+                <DarkButton onClick={back}>Back</DarkButton>
+                <DarkButton onClick={() => {
+                    window.print();
+                }}>Print</DarkButton>
+            </Footer>
+
+            </Form>
+
+
+        </Content>
+        </Container>
+
 
 
     )
@@ -98,4 +111,52 @@ const FIELDS = {
     }
 };
 
-export default GenerateQRCode;
+
+
+const Container =styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:100vw;
+
+    backgroundColor: rgb(219,240,240);
+    @media screen and (min-height:1000px){
+        padding-top:30px;
+        height:100vh;
+   }
+`;
+
+
+const Content=styled.div`
+    width:95%;
+    max-height:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    overflow:scrolls;
+
+`;
+
+
+const QRCodeLabel = styled.div`
+    padding-top: 20px;
+    color: #A9C8E6;
+
+`;
+const ContentLabel =styled.div`
+    color: #153E85;
+    font-weight: 100;
+    font-family: Georgia, Times, Serif;
+    font-size: 20px;
+`;
+
+const  LinkInLabel=styled.a.attrs({
+    href:'https://globalinput.co.uk/',
+    rel:"noopener noreferrer",
+    target:"_blank"
+})`
+    font-weight: 50;
+    color: #6666ff;
+`;
