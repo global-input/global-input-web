@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Form, Field, TextArea, Input, Label, Help} from '../formLayouts';
-export * from '../formLayouts';
+import {Field, TextArea, Input, Label} from './formElements';
+import {Help} from './help';
+import {CopyToClipboardButton} from './copyButton';
 
 const ContentInput=({content, onContentChanged,expand,setExpand})=>(
   <Field>
@@ -42,4 +43,44 @@ export const ContentLabelForm=({content,onContentChanged,label, onLabelChanged})
   <LabelInput label={label} onLabelChanged={onLabelChanged} expand={expand} setExpand={setExpand}/>
   </>
   );
+};
+
+
+const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
+  <Field>
+                      <TextArea id="contentToEncrypt" onChange={evt=>{
+                        onContentChanged(evt.target.value);
+                      }} value={content} placeholder="Place here the content you would like to encrypt."
+                      onFocus={()=>setExpand('contentToEncrypt')}/>
+                      <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+
+  </Field>
+);
+
+
+
+
+export const ContentEncryptionForm=({content,onContentChanged})=>{
+  const [expand,setExpand]=useState('');
+  return  (
+  <ContentToEncrypt content={content} onContentChanged={onContentChanged} expand={expand} setExpand={setExpand}/>
+  );
+};
+
+
+const ContentToCopy=({content})=>(
+  <Field>
+                      <TextArea id="contentToEncrypt"  value={content} placeholder=""
+                      onFocus={()=>()=>{}} readOnly={true}/>
+                      <Label htmlFor="contentToCopy">Content to Copy</Label>
+                      <CopyToClipboardButton value={content}>Copy</CopyToClipboardButton>
+  </Field>
+);
+
+
+export const CopyContentForm=({content})=>{
+
+  return (
+  <ContentToCopy content={content}/>);
+
 }

@@ -471,3 +471,16 @@ export const DisConnectButton:React.FC<ButtonProps>=({mobile,label='Disconnect',
                 return null;
         }
 };
+
+
+interface WhenProps{
+        mobile:MobileData;
+}
+export const WhenConnected:React.FC<WhenProps> = ({mobile,children})=>{
+     if(mobile.isConnected){
+             return (<>{children}</>);
+     }
+     else{
+             return null;
+     }
+}

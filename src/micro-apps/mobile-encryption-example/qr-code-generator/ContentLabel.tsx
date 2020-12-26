@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 
-import { useMobile,ConnectWidget} from '../mobile';
+import { useMobile,ConnectWidget, WhenConnected} from '../mobile';
 import encryptOnMobileImage from './images/encrypt-on-mobile.png';
 import keysOnMobileImage from './images/keys-on-mobile.png';
 import settingsOnMobileImage from './images/settings-on-mobile.png';
 
-import {ContentLabelForm, Footer, DarkButton,Form} from './forms';
-import {SourceLink,AppTitle, Title} from '../commons';
+
+import {AppContainer, Title,ConnectedInstruction,MoreInfo,
+        ContentLabelForm, Footer, DarkButton,Form} from '../elements';
 
 
 interface Props {
@@ -63,24 +64,21 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                 }
         });
         return (
-                <Container>
-                        <AppTitle>Mobile Encryption</AppTitle>
-                <SourceLink>Source Code</SourceLink>
-                <Content>
+                <AppContainer>
                         <Title>Encrypting Content for QR Code</Title>
                         <ConnectWidget mobile={mobile}/>
-                        {mobile.isConnected &&(
-                        <ConnectedInstruction>
-                                You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
-                        </ConnectedInstruction>)}
+                        <ConnectedInstruction mobile={mobile}>
+                                        You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
+                        </ConnectedInstruction>
                         <Form>
 
-                                {mobile.isConnected &&(<>
-                                <ContentLabelForm content={content} label={label} onContentChanged={onContentChanged} onLabelChanged={onLabelChanged}/>
+                                <WhenConnected mobile={mobile}>
+                                        <ContentLabelForm content={content} label={label} onContentChanged={onContentChanged} onLabelChanged={onLabelChanged}/>
                                         <MoreInfo>The mobile app sends
                                         the encrypted content generated on your mobile to this application, which displays the received content in the text box above.
                                         </MoreInfo>
-                                </>)}
+
+                                </WhenConnected>
                                 <Footer>
                                         <DarkButton onClick={back}>Back</DarkButton>
                                         {mobile.isConnected && (<DarkButton onClick={onNext}>Next</DarkButton>)}
@@ -117,16 +115,7 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                                 </Tips>
 
                         </Form>
-                </Content>
-
-
-
-
-
-
-                </Container>
-
-
+                </AppContainer>
         );
 };
 
@@ -163,59 +152,12 @@ const FIELDS = {
 };
 
 
-const Container =styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    width:100vw;
-
-    backgroundColor: rgb(219,240,240);
-    @media screen and (min-height:1000px){
-        padding-top:30px;
-        height:100vh;
-   }
-`;
-
-
-const MoreInfo = styled.div`
-    font-size: 16px;
-    align-self:flex-start;
-    @media screen and (min-height:310px){
-         margin-bottom:10px;
-
-    }
-`;
-
-const ConnectedInstruction=styled.div`
-    font-size: 10px;
-    align-self:flex-start;
-    @media screen and (min-height:250px){
-        font-size: 16px;
-    }
-    @media screen and (min-height:380px){
-        font-size: 16px;
-        margin-bottom:10px;
-    }
-
-`;
 
 
 
 
 
 
-
-const Content=styled.div`
-    width:95%;
-    max-height:90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    overflow:scrolls;
-
-`;
 
 const EncryptOnMobileIcon=styled.img.attrs({
     src:encryptOnMobileImage,

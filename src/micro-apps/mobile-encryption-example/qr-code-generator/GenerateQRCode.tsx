@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile } from '../mobile';
 import QRCode from "qrcode.react";
-import {AppTitle, SourceLink,Title} from '../commons';
-import {Form, Footer, DarkButton} from '../formLayouts';
+
+import {Form, Footer, DarkButton,AppContainer,Title} from '../elements';
 
 
 export const GenerateQRCode = ({ content, label, back }) => {
@@ -35,10 +35,7 @@ export const GenerateQRCode = ({ content, label, back }) => {
     });
 
     return (
-        <Container>
-                        <AppTitle>Mobile Encryption</AppTitle>
-                <SourceLink>Source Code</SourceLink>
-                <Content>
+        <AppContainer>
                         <Title>QR Code From the Content</Title>
 
 
@@ -52,14 +49,8 @@ export const GenerateQRCode = ({ content, label, back }) => {
                     window.print();
                 }}>Print</DarkButton>
             </Footer>
-
             </Form>
-
-
-        </Content>
-        </Container>
-
-
+        </AppContainer>
 
     )
 
@@ -113,31 +104,7 @@ const FIELDS = {
 
 
 
-const Container =styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    width:100vw;
 
-    backgroundColor: rgb(219,240,240);
-    @media screen and (min-height:1000px){
-        padding-top:30px;
-        height:100vh;
-   }
-`;
-
-
-const Content=styled.div`
-    width:95%;
-    max-height:90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    overflow:scrolls;
-
-`;
 
 
 const QRCodeLabel = styled.div`

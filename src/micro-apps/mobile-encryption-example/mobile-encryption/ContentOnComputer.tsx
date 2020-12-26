@@ -1,9 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useMobile } from '../mobile';
-import {
-    InputWithLabel, BasicLayout, FormContainer, DisplayErrorMessage,
-    TextButton, FormFooter
-} from '../app-layout'
+import {AppContainer, Title,
+    ContentEncryptionForm,Footer,DarkButton} from '../elements';
 
 interface PROPS {
     initialContent: string;
@@ -12,8 +10,8 @@ interface PROPS {
     cancel: () => void;
     domain: string;
 }
-const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, startEncrypt, cancel, domain }) => {
-    const [errorMessage, setErrorMessage] = useState<string>('');
+export const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, startEncrypt, cancel, domain }) => {
+
     const [content, setContent] = useState(initialContent);
     const initData = {
         form: {
@@ -22,8 +20,8 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
         }
     }
     const mobile = useMobile(initData, true);
-    const onContentChange = useCallback((value: string) => {
-        setErrorMessage('');
+    const onContentChanged = useCallback((value: string) => {
+
         setContent(value);
     }, []);
     const onEncrypt = () => {
@@ -31,7 +29,6 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
             startEncrypt(content.trim());
         }
         else {
-            setErrorMessage('Content missing!');
             mobile.sendValue(FIELDS.info.id, 'The content (in the extension window) on your computer is empty. You can  press "Use Mobile" button to use your mobile to provide the content.')
         }
     };
@@ -52,19 +49,14 @@ const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, s
 
 
     return (
-        <BasicLayout title="Mobile Encryption">
-            <FormContainer title="Provide Content to Encrypt">
-                <InputWithLabel label="Content to encrypt" id="content"
-                    onChange={onContentChange}
-                    type="textarea"
-                    value={content} />
-                <DisplayErrorMessage errorMessage={errorMessage} />
-                <FormFooter>
-                    <TextButton onClick={cancel} label='Cancel' />
-                    <TextButton onClick={onEncrypt} label='Encrypt' />
-                </FormFooter>
-            </FormContainer>
-        </BasicLayout>
+        <AppContainer>
+            <Title>Content To Encrypt</Title>
+            <ContentEncryptionForm content={content} onContentChanged={onContentChanged}/>
+                <Footer>
+                    <DarkButton onClick={cancel}>Cancel</DarkButton>
+                    <DarkButton onClick={onEncrypt}>Encrypt</DarkButton>
+                </Footer>
+        </AppContainer>
     );
 
 
@@ -98,6 +90,3 @@ const FIELDS = {
         viewId: "row1"
     }
 }
-
-
-export default ContentOnComputer;

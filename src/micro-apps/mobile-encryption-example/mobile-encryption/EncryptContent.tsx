@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useMobile,ConnectWidget } from '../mobile';
-import { AppContainer, FormFooter, TextButton, DisplayErrorMessage, MessageContainer, FormContainer } from '../app-layout';
+import { useMobile,ConnectWidget} from '../mobile';
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../elements';
+
+
 
 interface Props {
     content: string;
@@ -9,7 +11,7 @@ interface Props {
     domain: string;
 }
 
-const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, showOnComputer }) => {
+export const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, showOnComputer }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const initData = () => ({
         form: {
@@ -38,17 +40,20 @@ const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, s
         }
     });
     return (
-        <AppContainer title="Mobile Encryption" domain={domain}>
-            {<ConnectWidget mobile={mobile}/>}
-            <FormContainer>
-                <DisplayErrorMessage errorMessage={errorMessage} />
-                {mobile.isConnected && (<MessageContainer title="Encrypting Content">
-                    Follow the instruction on your mobile to encrypt content.
-                </MessageContainer>)}
-            </FormContainer>
-            <FormFooter>
-                <TextButton onClick={back} label='Back' />
-            </FormFooter>
+        <AppContainer>
+            <ConnectWidget mobile={mobile}/>
+            <Title>Encrypting Content On your Mobile</Title>
+            {errorMessage && (<Error>{errorMessage}</Error>)}
+            <ConnectedInstruction mobile={mobile}>
+
+            Follow the instruction on your mobile to encrypt content.
+
+
+
+            </ConnectedInstruction>
+            <Footer>
+                <DarkButton onClick={back}>Back</DarkButton>
+            </Footer>
         </AppContainer>
     );
 
@@ -73,5 +78,3 @@ const FIELDS = {
         viewId: "row1"
     }
 };
-
-export default EncryptContent;
