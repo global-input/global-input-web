@@ -7,13 +7,12 @@ const ContentInput=({content, onContentChanged,expand,setExpand})=>(
   <Field>
                       <TextArea id="inputContent" onChange={evt=>{
                         onContentChanged(evt.target.value);
-                      }} value={content} placeholder="Content Received from your mobile will be placed here."
+                      }} value={content} placeholder="Content Received from your mobile will be displayed here."
                       onFocus={()=>setExpand('inputContent')}/>
                       <Label htmlFor="inputContent">Content</Label>
                       <Help expandId='inputContent' expand={expand} setExpand={setExpand}>
-                      The encrypted content received from your mobile app will be displayed in this text box.
-                      Since the key that has encrypted the content never leaves your mobile app and the encryption takes place inside your mobile app,
-                      this application is not able to decrypt the content.
+                      The encrypted content received from your mobile app will be displayed in the text box above. Note that only
+                      your mobile app can decrypt the data. This application uses the encrypted data received to create an encrypted QR code in the next step.
                       </Help>
 
   </Field>
@@ -28,8 +27,8 @@ const LabelInput=({label, onLabelChanged,expand,setExpand})=>(
                       onFocus={()=>setExpand('inputLabel')}/>
                       <Label htmlFor="inputLabel">Label</Label>
                       <Help expandId='inputLabel' expand={expand} setExpand={setExpand}>
-                      The label you would to use to identify the encrypted content.
-                      The label will be placed the underneath the QR Code you are going to generate in the next step.
+                      This will be placed above the QR Code as a label to help you identify it.
+                      This is especially useful when printing the encrypted QR codes for filing purposes.
                       </Help>
 
   </Field>
@@ -53,6 +52,10 @@ const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
                       }} value={content} placeholder="Place here the content you would like to encrypt."
                       onFocus={()=>setExpand('contentToEncrypt')}/>
                       <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+                      <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                      This content will be sent to your mobile app for encryption. Your mobile app then sends the encrypted
+                      content back to this application.
+                      </Help>
 
   </Field>
 );

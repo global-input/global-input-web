@@ -10,7 +10,7 @@ interface Props {
     showOnComputer: (content: string) => void;
     domain: string;
 }
-const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, finish, domain }) => {
+export const ShowOnMobile: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, finish, domain }) => {
     const initData = {
         form: {
             title: "Decryption Completed",
@@ -88,5 +88,3 @@ const FIELDS = {
         viewId: "row1"
     },
 };
-
-export default ShowOnMobile;

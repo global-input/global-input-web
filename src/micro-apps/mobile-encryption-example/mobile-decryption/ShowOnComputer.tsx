@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMobile } from '../mobile';
-import { InputWithCopy, TextButton, BasicLayout, FormContainer, FormFooter } from '../app-layout';
+import {AppContainer,CopyContentForm,DarkButton,Footer} from '../elements';
 
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
     showOnMobile: (content: string) => void;
     domain: string;
 }
-const ShowOnComputer: React.FC<Props> = ({ content, contentOnComputer, showOnMobile, finish, domain }) => {
+export const ShowOnComputer: React.FC<Props> = ({ content, contentOnComputer, showOnMobile, finish, domain }) => {
     const initData = {
         form: {
             title: "Decryption Completed",
@@ -35,19 +35,13 @@ const ShowOnComputer: React.FC<Props> = ({ content, contentOnComputer, showOnMob
     });
 
     return (
-        <BasicLayout title="Mobile Decryption">
-            <FormContainer title="Decrypted Content">
-                <InputWithCopy id="decryptedContent" readOnly={true}
-                    label="Decrypted Content"
-                    type={"textarea"}
-                    value={content} />
-                <FormFooter>
-                    <TextButton onClick={restart} label='Restart' />
-                    <TextButton onClick={finish} label='Finish' />
-                </FormFooter>
-            </FormContainer>
-        </BasicLayout>
-
+        <AppContainer>
+            <CopyContentForm content={content}/>
+            <Footer>
+                <DarkButton onClick={restart}>Restart</DarkButton>
+                <DarkButton onClick={finish}>Finish</DarkButton>
+            </Footer>
+        </AppContainer>
     );
 
 
@@ -79,5 +73,3 @@ const FIELDS = {
         viewId: "row1"
     },
 };
-
-export default ShowOnComputer;

@@ -38,12 +38,10 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
     return (
         <AppContainer>
             <ConnectWidget mobile={mobile}/>
-            <ConnectedInstruction mobile={mobile}>
-            You can now operate on your mobile.
+            <ConnectedInstruction mobile={mobile} center={true}>
+                Please select a service on your mobile.
             </ConnectedInstruction>
-
             <DisConnectButton mobile={mobile}/>
-
         </AppContainer>
     );
 }

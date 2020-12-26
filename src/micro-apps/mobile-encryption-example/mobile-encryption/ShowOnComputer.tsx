@@ -44,11 +44,6 @@ export const ShowOnComputer: React.FC<Props> = ({ content, contentOnComputer, sh
             </Footer>
         </AppContainer>
 
-
-
-
-
-
     );
 
 

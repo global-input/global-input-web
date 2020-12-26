@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useMobile, ConnectWidget } from '../mobile';
-import { AppContainer, InputWithLabel, TextButton, DisplayErrorMessage, FormContainer, FormFooter } from '../app-layout';
+import { useMobile,ConnectWidget, WhenConnected } from '../mobile';
+import {AppContainer,ContentEncryptionForm,Footer,DarkButton, Form} from '../elements';
 
 interface PROPS {
     initialContent: string;
@@ -10,8 +10,7 @@ interface PROPS {
     domain: string;
 }
 
-const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, cancel, startDecrypt, domain }) => {
-    const [errorMessage, setErrorMessage] = useState('');
+export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, cancel, startDecrypt, domain }) => {
     const [content, setContent] = useState<string>(initialContent);
     const initData = () => ({
         form: {
@@ -27,7 +26,7 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
             startDecrypt(content.trim());
         }
         else {
-            setErrorMessage('Content missing!');
+
             mobile.sendValue(FIELDS.info.id, { style: { color: "red" }, content: "Content required!" });
         }
     };
@@ -40,7 +39,6 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
                 back();
                 break;
             case FIELDS.content.id:
-                setErrorMessage('');
                 setContent(field.value as string);
                 break;
             case FIELDS.cancel.id:
@@ -53,34 +51,31 @@ const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, c
         }
     });
     const { sendValue } = mobile;
-    const onContentChange = useCallback((value: string) => {
-        setErrorMessage('');
+    const onContentChanged = useCallback((value: string) => {
         setContent(value);
         sendValue(FIELDS.content.id, value);
     }, [sendValue]);
 
-
     return (
-        <AppContainer title="Mobile Decryption" domain={domain}>
+        <AppContainer>
             <ConnectWidget mobile={mobile}/>
-            <FormContainer title="Provide Content on Mobile">
-                {mobile.isConnected && (
-                    <InputWithLabel label="Content to decrypt" id="content"
-                        onChange={onContentChange}
-                        type="textarea"
-                        value={content} />
-                )}
-                <DisplayErrorMessage errorMessage={errorMessage} />
-                <FormFooter>
-                    <TextButton onClick={back} label='Back' />
-                    <TextButton onClick={cancel} label='Cancel' />
-                    {mobile.isConnected && (
-                        <TextButton onClick={onDecrypt} label='Decrypt' />
-                    )}
-                </FormFooter>
-            </FormContainer>
+            <Form>
+                <WhenConnected mobile={mobile}>
+                    <ContentEncryptionForm content={content}
+                            onContentChanged={onContentChanged}/>
+                </WhenConnected>
+                <Footer>
+                    <DarkButton onClick={back}>Back</DarkButton>
+                    <DarkButton onClick={cancel}>Cancel</DarkButton>
+                    <WhenConnected mobile={mobile}>
+                        <DarkButton onClick={onDecrypt}>Encrypt</DarkButton>
+                    </WhenConnected>
+                </Footer>
+            </Form>
         </AppContainer>
     );
+
+
 
 };
 
@@ -115,5 +110,3 @@ const FIELDS = {
         viewId: "row1"
     }
 }
-
-export default ContentOnMobile;

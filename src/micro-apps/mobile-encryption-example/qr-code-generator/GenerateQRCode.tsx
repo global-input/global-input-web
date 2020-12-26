@@ -36,7 +36,7 @@ export const GenerateQRCode = ({ content, label, back }) => {
 
     return (
         <AppContainer>
-                        <Title>QR Code From the Content</Title>
+                        <Title>QR Code Generated</Title>
 
 
             <ContentLabel>{label}</ContentLabel>

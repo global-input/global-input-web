@@ -1,10 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import {useMobile} from '../mobile';
-import {
-    InputWithLabel, BasicLayout, FormContainer, DisplayErrorMessage,
-    TextButton, FormFooter
-} from '../app-layout'
-
+import {AppContainer, Title,
+    ContentEncryptionForm,Footer,DarkButton} from '../elements';
 interface PROPS {
     initialContent: string;
     contentOnMobile: (content: string) => void;
@@ -12,8 +9,7 @@ interface PROPS {
     cancel: () => void;
     domain: string;
 }
-const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnMobile, startDecrypt, cancel }) => {
-    const [errorMessage, setErrorMessage] = useState<string>('');
+export const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnMobile, startDecrypt, cancel }) => {
     const [content, setContent] = useState(initialContent);
     const initData = {
         form: {
@@ -23,8 +19,7 @@ const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnM
     }
     const mobile =useMobile (initData, true);
 
-    const onContentChange = useCallback((value: string) => {
-        setErrorMessage('');
+    const onContentChanged = useCallback((value: string) => {
         setContent(value);
     }, []);
     const onDecrypt = () => {
@@ -32,7 +27,6 @@ const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnM
             startDecrypt(content.trim());
         }
         else {
-            setErrorMessage('Content missing!');
             mobile.sendValue(FIELDS.info.id, 'The content (in the extension window) on your computer is empty. You can  press "Use Mobile" button to use your mobile to provide the content.')
         }
     };
@@ -51,24 +45,16 @@ const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnM
         }
     });
 
-
     return (
-        <BasicLayout title="Mobile Decryption">
-            <FormContainer title="Provide Content to Decrypt">
-                <InputWithLabel label="Content to decrypt" id="content"
-                    onChange={onContentChange}
-                    type="textarea"
-                    value={content} />
-                <DisplayErrorMessage errorMessage={errorMessage} />
-                <FormFooter>
-                    <TextButton onClick={cancel} label='Cancel' />
-                    <TextButton onClick={onDecrypt} label='Decrypt' />
-                </FormFooter>
-            </FormContainer>
-        </BasicLayout>
+        <AppContainer>
+            <Title>Content To Decrypt</Title>
+            <ContentEncryptionForm content={content} onContentChanged={onContentChanged}/>
+                <Footer>
+                    <DarkButton onClick={cancel}>Cancel</DarkButton>
+                    <DarkButton onClick={onDecrypt}>Decrypt</DarkButton>
+                </Footer>
+        </AppContainer>
     );
-
-
 
 };
 
@@ -99,6 +85,3 @@ const FIELDS = {
         viewId: "row1"
     }
 }
-
-
-export default ContentOnComputer;

@@ -31,18 +31,18 @@ const ExpandIcon =styled.div`
         left: 5px;
         top: 6px;
     }
+    position:relative;
+    top:-32px;
 
 `;
 
 const HelpContainer=styled.div`
- position:relative;
-
- top:-32px;
  display:flex;
  flex-direction:row;
  justify-content:flex-start;
  align-items:flex-start;
  flex-wrap:wrap;
+
 `;
 const HelpContent=styled.div`
 font-family: Avenir;
@@ -53,6 +53,8 @@ font-family: Avenir;
     @media only screen and (min-width:500px){
         font-size: 14px;
     }
+    position:relative;
+    top:-25px;
 
 `;
 export const Help=({children,expandId, expand,setExpand})=>{

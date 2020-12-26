@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {WhenConnected} from '../mobile';
+import type {MobileData} from '../mobile';
 
 const AppTitle=styled.div`
     display: flex;
@@ -140,7 +141,7 @@ export const MoreInfo = styled.div`
 
 const Instruction=styled.div`
     font-size: 10px;
-    align-self:flex-start;
+    align-self:${props=>props.center?'center':'flex-start'};
     @media screen and (min-height:250px){
         font-size: 16px;
     }
@@ -153,12 +154,16 @@ const Instruction=styled.div`
 
 
 
+interface ConnectedInstructionProps{
+    mobile:MobileData;
+    center?:boolean;
+}
 
 
-export const ConnectedInstruction=({children, mobile})=>(
+export const ConnectedInstruction:React.FC<ConnectedInstructionProps>=({children, mobile, center=false})=>(
 
 <WhenConnected mobile={mobile}>
-                <Instruction>
+                <Instruction center={center}>
                     {children}
                 </Instruction>
             </WhenConnected>

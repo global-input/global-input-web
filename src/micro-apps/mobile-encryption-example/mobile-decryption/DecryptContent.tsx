@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMobile, ConnectWidget } from '../mobile';
-import { FormFooter, TextButton, DisplayErrorMessage, AppContainer, MessageContainer, FormContainer } from '../app-layout';
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../elements';
 
 interface Props {
     content: string;
@@ -9,7 +9,7 @@ interface Props {
     domain: string;
 }
 
-const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, domain }) => {
+export const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, domain }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const initData = {
         form: {
@@ -38,20 +38,22 @@ const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnCom
         }
     });
     return (
-        <AppContainer title="Mobile Decryption" domain={domain}>
+        <AppContainer>
             <ConnectWidget mobile={mobile}/>
-            <FormContainer>
-                <DisplayErrorMessage errorMessage={errorMessage} />
-                {mobile.isConnected && (<MessageContainer title="Decrypting Content">
-                    Follow the instruction on your mobile to decrypt content.
-                </MessageContainer>)}
-            </FormContainer>
-            <FormFooter>
-                <TextButton onClick={back} label='Back' />
-            </FormFooter>
+            <Title>Decrypting Content On your Mobile</Title>
+            {errorMessage && (<Error>{errorMessage}</Error>)}
+            <ConnectedInstruction mobile={mobile}>
+
+            Follow the instruction on your mobile to decrypt content.
+
+
+
+            </ConnectedInstruction>
+            <Footer>
+                <DarkButton onClick={back}>Back</DarkButton>
+            </Footer>
         </AppContainer>
     );
-
 };
 
 const FIELDS = {
@@ -73,5 +75,3 @@ const FIELDS = {
         viewId: "row1"
     }
 };
-
-export default DecryptContent;

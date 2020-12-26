@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import ContentOnComputer from './ContentOnComputer';
-import ContentOnMobile from './ContentOnMobile';
-import DecryptContent from './DecryptContent';
-import ShowOnComputer from './ShowOnComputer';
-import ShowOnMobile from './ShowOnMobile';
+import {ContentOnComputer} from './ContentOnComputer';
+import {ContentOnMobile} from './ContentOnMobile';
+import {DecryptContent} from './DecryptContent';
+import {ShowOnComputer} from './ShowOnComputer';
+import {ShowOnMobile} from './ShowOnMobile';
 enum PAGES {
     CONTENT_ON_COMPUTER,
     CONTENT_ON_MOBILE,

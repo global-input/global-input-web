@@ -65,7 +65,7 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
         });
         return (
                 <AppContainer>
-                        <Title>Encrypting Content for QR Code</Title>
+                        <Title>Creating an Encrypted QR Code</Title>
                         <ConnectWidget mobile={mobile}/>
                         <ConnectedInstruction mobile={mobile}>
                                         You can now press <EncryptOnMobileIcon/> button on your mobile to encrypt a piece of information.
@@ -86,12 +86,12 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                                 <Tips>
 
                                       <TipTitle>
-                                        To create an encrypted QR Code, press the buttons on your mobile as shown below:
+                                        To create an encrypted QR Code, press the corresponding buttons on your mobile:
                                       </TipTitle>
                                       <Tip>
                                         <EncryptOnMobileIcon/>
                                         <TipContent>
-                                        Create a backup of a disaster recovery password in the form of an encrypted QR Code so you can scan to decrypt it with your mobile when you need it.
+                                        This button provides you with an option of recording a disaster recovery root password. You can scan the encrypted QR code to decrypt it with your mobile when you need it.
 
                                         </TipContent>
                                       </Tip>
@@ -99,13 +99,17 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
                                       <Tip>
                                                 <BackupKeysIcon/>
                                                 <TipContent>
-                                                        Export your encryption keys in your mobile as encrypted QR Code that you can easily import back in your new mobile any time in the future.
+                                                      This button allows you to export any one of your encryption keys in your mobile app as an encrypted QR Code.
+                                                      You can import back in your app by scanning it.
+                                                      The QR code will be protected with a phrase that you need to provide when you are exporting the encryption key.
+
                                                 </TipContent>
                                       </Tip>
                                       <Tip>
                                                 <BackupSettingsIcon/>
                                                 <TipContent>
-                                                        Exports your connection settings of your mobile app.
+                                                      This button allows you to export your connection settings of your mobile app. This is useful if you have
+                                                      different applications with different connection settings.
                                                 </TipContent>
                                       </Tip>
 
