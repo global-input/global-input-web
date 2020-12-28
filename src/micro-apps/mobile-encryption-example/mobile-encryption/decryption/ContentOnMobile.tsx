@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { useMobile,ConnectWidget, WhenConnected } from '../mobile';
-import {AppContainer,ContentEncryptionForm,Footer,DarkButton, Form} from '../elements';
+import { useMobile,ConnectWidget, WhenConnected } from '../../mobile';
+import {AppContainer, Form,Title,
+    Footer,DarkButton, Field,TextArea, Label,Help} from '../../elements';
+
 
 interface PROPS {
     initialContent: string;
@@ -12,6 +14,7 @@ interface PROPS {
 
 export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, cancel, startDecrypt, domain }) => {
     const [content, setContent] = useState<string>(initialContent);
+    const [expand,setExpand]=useState('');
     const initData = () => ({
         form: {
             title: "Content To Decrypt",
@@ -61,8 +64,7 @@ export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComp
             <ConnectWidget mobile={mobile}/>
             <Form>
                 <WhenConnected mobile={mobile}>
-                    <ContentEncryptionForm content={content}
-                            onContentChanged={onContentChanged}/>
+                <ContentToEncrypt content={content} onContentChanged={onContentChanged} expand={expand} setExpand={setExpand}/>
                 </WhenConnected>
                 <Footer>
                     <DarkButton onClick={back}>Back</DarkButton>
@@ -110,3 +112,18 @@ const FIELDS = {
         viewId: "row1"
     }
 }
+
+const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
+    <Field>
+                        <TextArea id="contentToEncrypt" onChange={evt=>{
+                          onContentChanged(evt.target.value);
+                        }} value={content} placeholder="Place here the content you would like to encrypt."
+                        onFocus={()=>setExpand('contentToEncrypt')}/>
+                        <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+                        <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                        This content will be sent to your mobile app for encryption. Your mobile app then sends the encrypted
+                        content back to this application.
+                        </Help>
+
+    </Field>
+  );

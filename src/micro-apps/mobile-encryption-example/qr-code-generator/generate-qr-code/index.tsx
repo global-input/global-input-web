@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useMobile } from '../mobile';
+import { useMobile } from '../../mobile';
 import QRCode from "qrcode.react";
 
-import {Form, Footer, DarkButton,AppContainer,Title} from '../elements';
+import {Form, Footer, DarkButton,AppContainer,MoreInfo} from '../../elements';
 
 
 export const GenerateQRCode = ({ content, label, back }) => {
@@ -36,20 +36,20 @@ export const GenerateQRCode = ({ content, label, back }) => {
 
     return (
         <AppContainer>
-                        <Title>QR Code Generated</Title>
+                        <MoreInfo>QR Code generated from the content received from your mobile app:</MoreInfo>
 
 
             <ContentLabel>{label}</ContentLabel>
             <QRCode value={content} level={level} size={size} />
             <QRCodeLabel>Scan with <LinkInLabel>Global Input App</LinkInLabel></QRCodeLabel>
-            <Form>
+
             <Footer>
                 <DarkButton onClick={back}>Back</DarkButton>
                 <DarkButton onClick={() => {
                     window.print();
                 }}>Print</DarkButton>
             </Footer>
-            </Form>
+
         </AppContainer>
 
     )

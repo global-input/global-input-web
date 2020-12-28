@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile, ConnectWidget,DisConnectButton} from './mobile';
 import {AppContainer,ConnectedInstruction} from './elements';
-
+import {TipsOnButton} from './tips';
 
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
@@ -39,7 +39,7 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
         <AppContainer>
             <ConnectWidget mobile={mobile}/>
             <ConnectedInstruction mobile={mobile} center={true}>
-                Please select a service on your mobile.
+                <TipsOnButton/>
             </ConnectedInstruction>
             <DisConnectButton mobile={mobile}/>
         </AppContainer>
@@ -48,6 +48,10 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
 
 
 const FIELDS = {
+    info:{
+        type:'info',
+        value:'Encrypting content using your mobile'
+    },
     qrCodeGenerator: {
         id: 'qr-code-generator',
         type: "button",
@@ -74,7 +78,7 @@ mobileUI.add(FIELDS);////website
 const initData = {
     id: "mobile-encryption-main",
     form: {
-        title: "Please Select",
+        title: "Mobile Encryption",
         fields: Object.values(FIELDS)
     }
 };

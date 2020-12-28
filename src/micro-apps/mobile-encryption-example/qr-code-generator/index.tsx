@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {ContentLabel} from './ContentLabel';
-import {GenerateQRCode} from './GenerateQRCode';
+import {ContentLabel} from './content-label';
+import {GenerateQRCode} from './generate-qr-code';
 
 const pages = {
     CONTENT_LABEL: "content-label",

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useMobile, ConnectWidget } from '../mobile';
-import { AppContainer, InputWithCopy, TextButton, FormContainer, FormFooter } from '../app-layout';
+import { useMobile, ConnectWidget } from '../../mobile';
+import { AppContainer, InputWithCopy, TextButton, FormContainer, FormFooter } from '../../app-layout';
 
 
 interface Props {

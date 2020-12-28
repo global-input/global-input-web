@@ -168,5 +168,8 @@ export const Footer = styled.div`
         width: 100%;
         align-items: center;
         padding-bottom:50px;
+        @media print {
+            display:none;
+        }
 
 `;

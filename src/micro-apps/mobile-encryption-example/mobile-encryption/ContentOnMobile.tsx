@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useMobile,ConnectWidget, WhenConnected } from '../mobile';
-import {AppContainer,ContentEncryptionForm,Footer,DarkButton, Form} from '../elements';
+import {AppContainer,Footer,DarkButton, Form,Field,TextArea, Label,Help} from '../elements';
 
 interface PROPS {
     initialContent: string;
@@ -11,12 +11,28 @@ interface PROPS {
 }
 
 export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComputer, cancel, startEncrypt, domain }) => {
-
+    const [expand,setExpand]=useState('');
     const [content, setContent] = useState<string>(initialContent);
     const initData = () => ({
         form: {
             title: "Content To Encrypt",
-            fields: [FIELDS.info, { ...FIELDS.content, value: initialContent }, FIELDS.back, FIELDS.cancel, FIELDS.encrypt]
+            views: {
+                viewIds: {
+                    row1:{
+                        style:{
+                            display:'flex',
+                            justifyContent:'space-between',
+
+                            width:'100%',
+
+
+                        }
+
+
+                    }
+                                    }
+            },
+            fields: [{ ...FIELDS.content, value: initialContent }, FIELDS.info,FIELDS.back, FIELDS.cancel, FIELDS.encrypt]
         }
     })
     const mobile = useMobile(initData, true);
@@ -26,7 +42,10 @@ export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComp
             startEncrypt(content.trim());
         }
         else {
-            mobile.sendValue(FIELDS.info.id, { style: { color: "red" }, content: "Content required!" });
+            mobile.sendValue(FIELDS.info.id, {
+                content: 'Please provide the content to encrypt using the application connected to your mobile app.',
+                style:{color:'red'}
+             });
         }
     };
     const back = () => {
@@ -61,8 +80,8 @@ export const ContentOnMobile: React.FC<PROPS> = ({ initialContent, contentOnComp
             <ConnectWidget mobile={mobile}/>
             <Form>
                 <WhenConnected mobile={mobile}>
-                    <ContentEncryptionForm content={content}
-                            onContentChanged={onContentChanged}/>
+                <ContentToEncrypt content={content} onContentChanged={onContentChanged} expand={expand} setExpand={setExpand}/>
+
                 </WhenConnected>
                 <Footer>
                     <DarkButton onClick={back}>Back</DarkButton>
@@ -81,7 +100,7 @@ const FIELDS = {
     info: {
         id: "info",
         type: "info",
-        value: 'Please type below to provide the content for encryption'
+        value: ''
     },
     content: {
         id: "contentOnMobile",
@@ -93,18 +112,37 @@ const FIELDS = {
         id: 'backToComposeOnComputer',
         type: 'button',
         label: 'Back',
-        viewId: "row1"
+        viewId: "row1",
+        icon:'back'
     },
     cancel: {
         id: 'cancel',
         type: 'button',
         label: 'Cancel',
-        viewId: "row1"
+        viewId: "row1",
+        icon:'cancel'
     },
+
     encrypt: {
         id: "toEncrypt",
         type: "button",
         label: "Encrypt",
-        viewId: "row1"
-    }
+        viewId: "row1",
+        icon:'encrypt'
+    },
+
 }
+const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
+    <Field>
+                        <TextArea id="contentToEncrypt" onChange={evt=>{
+                          onContentChanged(evt.target.value);
+                        }} value={content} placeholder="Content you typed on your mobile will be displayed here"
+                        onFocus={()=>setExpand('contentToEncrypt')}/>
+                        <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+                        <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                        You can type the content your want to encrypt on your mobile, while this application receives the content
+                        and place it in the text box above. You can also type inn the above text box.
+                        </Help>
+
+    </Field>
+  );

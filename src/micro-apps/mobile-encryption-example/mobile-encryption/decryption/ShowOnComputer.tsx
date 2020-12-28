@@ -1,6 +1,6 @@
 import React from 'react';
-import { useMobile } from '../mobile';
-import {AppContainer,CopyContentForm,DarkButton,Footer} from '../elements';
+import { useMobile } from '../../mobile';
+import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton} from '../../elements';
 
 
 interface Props {
@@ -36,7 +36,7 @@ export const ShowOnComputer: React.FC<Props> = ({ content, contentOnComputer, sh
 
     return (
         <AppContainer>
-            <CopyContentForm content={content}/>
+            <ContentToCopy content={content}/>);
             <Footer>
                 <DarkButton onClick={restart}>Restart</DarkButton>
                 <DarkButton onClick={finish}>Finish</DarkButton>
@@ -73,3 +73,13 @@ const FIELDS = {
         viewId: "row1"
     },
 };
+
+
+const ContentToCopy=({content})=>(
+    <Field>
+                        <TextArea id="contentToEncrypt"  value={content} placeholder=""
+                        onFocus={()=>()=>{}} readOnly={true}/>
+                        <Label htmlFor="contentToCopy">Content to Copy</Label>
+                        <CopyToClipboardButton value={content}>Copy</CopyToClipboardButton>
+    </Field>
+  );

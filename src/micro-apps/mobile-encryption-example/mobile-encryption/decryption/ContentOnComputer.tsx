@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import {useMobile} from '../mobile';
+import {useMobile} from '../../mobile';
 import {AppContainer, Title,
-    ContentEncryptionForm,Footer,DarkButton} from '../elements';
+    Footer,DarkButton, Field,TextArea, Label,Help} from '../../elements';
+
 interface PROPS {
     initialContent: string;
     contentOnMobile: (content: string) => void;
@@ -11,6 +12,7 @@ interface PROPS {
 }
 export const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, contentOnMobile, startDecrypt, cancel }) => {
     const [content, setContent] = useState(initialContent);
+    const [expand,setExpand]=useState('');
     const initData = {
         form: {
             title: "Mobile Decryption",
@@ -48,7 +50,7 @@ export const ContentOnComputer: React.FC<PROPS> = ({ domain, initialContent, con
     return (
         <AppContainer>
             <Title>Content To Decrypt</Title>
-            <ContentEncryptionForm content={content} onContentChanged={onContentChanged}/>
+            <ContentToEncrypt content={content} onContentChanged={onContentChanged} expand={expand} setExpand={setExpand}/>
                 <Footer>
                     <DarkButton onClick={cancel}>Cancel</DarkButton>
                     <DarkButton onClick={onDecrypt}>Decrypt</DarkButton>
@@ -85,3 +87,17 @@ const FIELDS = {
         viewId: "row1"
     }
 }
+const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
+    <Field>
+                        <TextArea id="contentToEncrypt" onChange={evt=>{
+                          onContentChanged(evt.target.value);
+                        }} value={content} placeholder="Place here the content you would like to encrypt."
+                        onFocus={()=>setExpand('contentToEncrypt')}/>
+                        <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+                        <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                        This content will be sent to your mobile app for encryption. Your mobile app then sends the encrypted
+                        content back to this application.
+                        </Help>
+
+    </Field>
+  );

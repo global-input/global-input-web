@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useMobile } from '../mobile';
 import {AppContainer, Title,
-    ContentEncryptionForm,Footer,DarkButton} from '../elements';
+    Footer,DarkButton, Field,TextArea, Label,Help} from '../elements';
 
 interface PROPS {
     initialContent: string;
@@ -13,9 +13,38 @@ interface PROPS {
 export const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMobile, startEncrypt, cancel, domain }) => {
 
     const [content, setContent] = useState(initialContent);
+    const [expand,setExpand]=useState('');
     const initData = {
         form: {
             title: "Mobile Encryption",
+            views: {
+                viewIds: {
+                    info: {
+                        style: {
+
+                            marginBottom:20,
+                            display:'flex',
+                            flexDirection:'column',
+                            justifyContent:'center'
+
+
+                        }
+                    },
+                    row1:{
+                        style:{
+                            display:'flex',
+                            justifyContent:'space-between',
+
+                            width:'100%',
+
+
+                        }
+
+
+                    }
+                                    }
+            },
+
             fields: Object.values(FIELDS)
         }
     }
@@ -29,7 +58,10 @@ export const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMo
             startEncrypt(content.trim());
         }
         else {
-            mobile.sendValue(FIELDS.info.id, 'The content (in the extension window) on your computer is empty. You can  press "Use Mobile" button to use your mobile to provide the content.')
+            mobile.sendValue(FIELDS.info.id, {
+               content: 'Please provide the content to encrypt using the application connected to your mobile app.',
+               style:{color:'red'}
+            });
         }
     };
     mobile.setOnchange(({ field }) => {
@@ -51,7 +83,7 @@ export const ContentOnComputer: React.FC<PROPS> = ({ initialContent, contentOnMo
     return (
         <AppContainer>
             <Title>Content To Encrypt</Title>
-            <ContentEncryptionForm content={content} onContentChanged={onContentChanged}/>
+            <ContentToEncrypt content={content} onContentChanged={onContentChanged} expand={expand} setExpand={setExpand}/>
                 <Footer>
                     <DarkButton onClick={cancel}>Cancel</DarkButton>
                     <DarkButton onClick={onEncrypt}>Encrypt</DarkButton>
@@ -68,25 +100,48 @@ const FIELDS = {
     info: {
         id: "info",
         type: 'info',
-        value: ['You can now provide content for encryption on your computer (in the extension window).',
-            'Or alternative, you can press the "Use Mobile" button to provide the content on your mobile.']
+        value: ['Waiting for content from the application.'],
+        viewId:'info'
     },
     cancel: {
         id: "cancel",
         type: "button",
         label: "Cancel",
-        viewId: "row1"
+        viewId: "row1",
+        icon:'cancel'
     },
     contentOnMobile: {
         id: "contentOnMobile",
         type: "button",
-        label: "Use Mobile",
-        viewId: "row1"
+        label: "Press here if you would like to use your mobile to input content",
+        viewId: "row2",
+        style:{
+            maxWidth:180,
+            padding:20,
+            backgroundColor:'#EEEEEE'
+        },
+
     },
     startEncrypt: {
         id: "startEncrypt",
         type: "button",
+        icon:'encrypt',
         label: "Encrypt",
         viewId: "row1"
     }
 }
+
+  const ContentToEncrypt=({content, onContentChanged,expand,setExpand})=>(
+    <Field>
+                        <TextArea id="contentToEncrypt" onChange={evt=>{
+                          onContentChanged(evt.target.value);
+                        }} value={content} placeholder="Place here the content you would like to encrypt."
+                        onFocus={()=>setExpand('contentToEncrypt')}/>
+                        <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
+                        <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                        This content will be sent to your mobile app for encryption. Your mobile app then sends the encrypted
+                        content back to this application.
+                        </Help>
+
+    </Field>
+  );

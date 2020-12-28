@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useMobile, ConnectWidget } from '../mobile';
-import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../elements';
+import { useMobile, ConnectWidget } from '../../mobile';
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../elements';
 
 interface Props {
     content: string;

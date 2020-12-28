@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import MobileEncryption from './mobile-encryption';
-import MobileDecryption from './mobile-decryption';
+import MobileDecryption from './mobile-encryption/decryption';
 import {MainPage} from './MainPage';
 import {QRCodeGenerator} from './qr-code-generator';
 

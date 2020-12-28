@@ -115,10 +115,10 @@ export const Title=styled.div`
     align-self:flex-start;
     font-family: Georgia, Times, Serif;
     @media screen and (min-height:150px){
-        font-size:20px;
+        font-size:16px;
     }
     @media screen and (min-height:400px){
-        font-size:28px;
+        font-size:20px;
         margin-bottom:10px;
     }
     @media print{
@@ -136,6 +136,9 @@ export const MoreInfo = styled.div`
     @media screen and (min-height:310px){
          margin-bottom:10px;
 
+    }
+    @media print {
+        display:none;
     }
 `;
 
