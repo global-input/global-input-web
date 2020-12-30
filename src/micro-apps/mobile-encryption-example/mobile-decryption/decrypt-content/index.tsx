@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
-import { useMobile, ConnectWidget } from '../../mobile';
+import styled from 'styled-components';
+import { useMobile,ConnectWidget} from '../../mobile';
 import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../elements';
+
+import decryptImage from './images/decrypt-icon.png';
+import showImage from './images/show-icon.png';
+import sendImage from './images/send-icon.png';
+
+
+
 
 interface Props {
     content: string;
@@ -9,18 +17,18 @@ interface Props {
     domain: string;
 }
 
-export const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, showOnComputer, domain }) => {
+export const DecryptContent: React.FC<Props> = ({ domain, content, contentOnComputer, showOnComputer }) => {
     const [errorMessage, setErrorMessage] = useState('');
-    const initData = {
+    const initData = () => ({
         form: {
             title: "Mobile Decryption",
             fields: [{ ...FIELDS.content, value: content }, FIELDS.info, FIELDS.back]
         }
-    }
+    });
     const mobile = useMobile(initData, true);
     const back = () => {
         contentOnComputer(content);
-    };
+    }
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.content.id:
@@ -43,17 +51,19 @@ export const DecryptContent: React.FC<Props> = ({ content, contentOnComputer, sh
             <Title>Decrypting Content On your Mobile</Title>
             {errorMessage && (<Error>{errorMessage}</Error>)}
             <ConnectedInstruction mobile={mobile}>
+                    The content is now sent to your mobile app for decryption.
+                    On your mobile, you can press <ShowIcon/>
+                    to inspect the content received. Then, press <DecryptIcon/> to start decrypting it.
+                    In the next screen on your mobile, you will be presented with the decrypted content,
+                    you can press <ShowIcon/> to inspect the decrypted content before pressing <SendIcon/> to send it to this application.
+    </ConnectedInstruction>
 
-            Follow the instruction on your mobile to decrypt content.
-
-
-
-            </ConnectedInstruction>
             <Footer>
                 <DarkButton onClick={back}>Back</DarkButton>
             </Footer>
         </AppContainer>
     );
+
 };
 
 const FIELDS = {
@@ -75,3 +85,15 @@ const FIELDS = {
         viewId: "row1"
     }
 };
+const DecryptIcon = styled.img.attrs({
+    src: decryptImage,
+    alt: 'Decrypt'
+})``;
+const ShowIcon = styled.img.attrs({
+    src: showImage,
+    alt: 'Encrypt'
+})``;
+const SendIcon = styled.img.attrs({
+    src: sendImage,
+    alt: 'Send'
+})``;

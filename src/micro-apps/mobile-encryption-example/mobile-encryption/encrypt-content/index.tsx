@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { useMobile,ConnectWidget} from '../mobile';
-import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../elements';
+import styled from 'styled-components';
+import { useMobile,ConnectWidget} from '../../mobile';
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../elements';
+
+import encryptImage from './images/encrypt-icon.png';
+import showImage from './images/show-icon.png';
+import sendImage from './images/send-icon.png';
+
 
 
 
@@ -45,12 +51,13 @@ export const EncryptContent: React.FC<Props> = ({ domain, content, contentOnComp
             <Title>Encrypting Content On your Mobile</Title>
             {errorMessage && (<Error>{errorMessage}</Error>)}
             <ConnectedInstruction mobile={mobile}>
+                    The content is now sent to your mobile app for encryption.
+                    On your mobile, you can press <ShowIcon/>
+                    to inspect the content received. Then, press <EncryptIcon/> to start encrypting it.
+                    In the next screen on your mobile, you will be presented with the encrypted content,
+                    you can press <ShowIcon/> to inspect the encrypted content before pressing <SendIcon/> to send it to this application.
+    </ConnectedInstruction>
 
-            Follow the instruction on your mobile to encrypt content.
-
-
-
-            </ConnectedInstruction>
             <Footer>
                 <DarkButton onClick={back}>Back</DarkButton>
             </Footer>
@@ -78,3 +85,15 @@ const FIELDS = {
         viewId: "row1"
     }
 };
+const EncryptIcon = styled.img.attrs({
+    src: encryptImage,
+    alt: 'Encrypt'
+})``;
+const ShowIcon = styled.img.attrs({
+    src: showImage,
+    alt: 'Encrypt'
+})``;
+const SendIcon = styled.img.attrs({
+    src: sendImage,
+    alt: 'Send'
+})``;

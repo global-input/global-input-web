@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import {ContentOnComputer} from './ContentOnComputer';
-import {ContentOnMobile} from './ContentOnMobile';
-import {EncryptContent} from './EncryptContent';
-import {ShowOnComputer} from './ShowOnComputer';
-import ShowOnMobile from './ShowOnMobile';
+import {ContentOnComputer,ContentOnMobile} from './provide-content';
+import {EncryptContent} from './encrypt-content';
+import {ShowResultOnMobile,ShowResultOnComputer} from './result';
+
 enum PAGES {
     CONTENT_ON_COMPUTER,
     CONTENT_ON_MOBILE,
@@ -45,13 +44,13 @@ const MobileEncryption: React.FC<MobileEncryptionProps> = ({ domain, back }) => 
         case PAGES.CONTENT_ON_COMPUTER:
             return (<ContentOnComputer domain={domain} initialContent={content} cancel={back} contentOnMobile={contentOnMobile} startEncrypt={startEncrypt} />);
         case PAGES.CONTENT_ON_MOBILE:
-            return (<ContentOnMobile domain={domain} initialContent={content} cancel={back} contentOnComputer={contentOnComputer} startEncrypt={startEncrypt} />);
+            return (<ContentOnMobile domain={domain} initialContent={content} cancel={back} startEncrypt={startEncrypt} />);
         case PAGES.START_ENCRYPT:
             return (<EncryptContent domain={domain} content={content} showOnComputer={showOnComputer} contentOnComputer={contentOnComputer} />);
         case PAGES.SHOW_ON_COMPUTER:
-            return (<ShowOnComputer domain={domain} content={content} contentOnComputer={contentOnComputer} finish={back} showOnMobile={showOnMobile} />)
+            return (<ShowResultOnComputer domain={domain} content={content} contentOnComputer={contentOnComputer} finish={back} showOnMobile={showOnMobile} />)
         case PAGES.SHOW_ON_MOBILE:
-            return (<ShowOnMobile  domain={domain} content={content} contentOnComputer={contentOnComputer} finish={back} showOnComputer={showOnComputer} />)
+            return (<ShowResultOnMobile   domain={domain} content={content}  contentOnComputer={contentOnComputer} finish={back}/>)
 
 
 

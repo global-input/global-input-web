@@ -48,10 +48,7 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
 
 
 const FIELDS = {
-    info:{
-        type:'info',
-        value:'Encrypting content using your mobile'
-    },
+
     qrCodeGenerator: {
         id: 'qr-code-generator',
         type: "button",
@@ -79,6 +76,25 @@ const initData = {
     id: "mobile-encryption-main",
     form: {
         title: "Mobile Encryption",
+        views: {
+            viewIds: {
+                row1:{
+                    style:{
+                        display:'flex',
+                        justifyContent:'center',
+                        width:'100%',
+                    }
+                },
+                row2:{
+                    style:{
+                        display:'flex',
+                        justifyContent:'space-between',
+                        padding:20,
+                        width:'100%',
+                    }
+                }
+            }
+        },
         fields: Object.values(FIELDS)
     }
 };
