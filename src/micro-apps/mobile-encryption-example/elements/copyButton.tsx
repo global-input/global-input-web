@@ -10,15 +10,21 @@ const CopyContainer=styled.div`
     align-self:flex-end;
     align-items:center;
     position:relative;
-    top:-32px;
+    top:-16px;
+    background-color: white;
+    z-Index:5;
+    padding-left:5px;
+    border:${props=>props.show?'1px dotted #4040bf':''};
+
+
 `;
 const CopyContent=styled.div`
     font-family: Avenir;
-    color: rgb(53,116,230);
+    color: #4040bf;
     white-space: wrap;
     font-size: 12px;
     padding-right:10px;
-    display:${props=>props.show?'inline':'none'};
+    display:${props=>props.show?'block':'none'};
 `;
 
 const Button = styled.button`
@@ -37,11 +43,13 @@ const Button = styled.button`
     transition: all 0.3s ease 0s;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
+
     &: hover{
         transform: translateY(-3px);
         box-shadow: 0 0 50px #ffff;
     }
-    display:${props=>props.show?'flex':'none'};
+    display:flex;
+    visibility:${props=>props.show?'visible':'hidden'};
 
 `;
 
@@ -68,7 +76,7 @@ export const CopyToClipboardButton=({children,value})=>{
     }, 2000);
   }
     return (
-    <CopyContainer>
+    <CopyContainer show={copying}>
             <CopyContent show={copying}>
                 copied into your clipboard
             </CopyContent>

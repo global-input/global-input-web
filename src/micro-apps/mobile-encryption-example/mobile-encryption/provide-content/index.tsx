@@ -77,10 +77,14 @@ const RenderContentForm=({content,onContentChanged,cancel,onEncrypt})=>{
                     }} value={content} placeholder="Place here the content to encrypt."
                     onFocus={()=>setExpand('contentToEncrypt')}/>
                     <Label htmlFor="contentToEncrypt">Content to Encrypt</Label>
-                    <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
-                    The content you have provided will be sent to your mobile app.
-                    You mobile app will encrypt it and send back the result to this application.
-                    </Help>
+
+                        <Help expandId='contentToEncrypt' expand={expand} setExpand={setExpand}>
+                        The content you have provided will be sent to your mobile app.
+                        You mobile app will encrypt it and send back the result to this application.
+                        </Help>
+
+
+
 
             </Field>
             <Footer>

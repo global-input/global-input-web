@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import * as onComputer from './mobile-ui/onComputer';
 import * as onMobile from './mobile-ui/onMobile';
 
-import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title, Help} from '../../elements';
+import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title, Help2} from '../../elements';
 interface Props {
     domain: string;
     content: string;
@@ -47,9 +47,9 @@ const RenderContentForm=({content,restart,finish})=>{
                     onFocus={()=>setExpand('decryptedContent')} readOnly={true}/>
                     <Label htmlFor="decryptedContent">Decrypted Content</Label>
                     <CopyToClipboardButton value={content}>Copy</CopyToClipboardButton>
-                    <Help expand={expand} expandId="decryptedContent"  setExpand={setExpand}>
+                    <Help2 expand={expand} expandId="decryptedContent"  setExpand={setExpand}>
                         This decrypted content is received from your mobile app as it is.
-                    </Help>
+                    </Help2>
         </Field>
         <Footer>
             <DarkButton onClick={restart}>Decrypt Another Content</DarkButton>

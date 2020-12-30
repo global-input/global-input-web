@@ -25,10 +25,8 @@ export const Field = styled.div`
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
-
-
-
 `;
+
 export const TextArea = styled.textarea`
     display: block;
     line-height: 2em;
@@ -59,7 +57,7 @@ export const TextArea = styled.textarea`
         visibility: visible;
         z-index: 1;
         opacity: 1;
-        transform: translateX(10px) translateY(-115px);
+        transform: translateX(10px) translateY(-110px);
         transition: 0.2s ease-in-out transform;
         background-color:white;
     }
@@ -95,7 +93,7 @@ export const Input = styled.input`
         visibility: visible;
         z-index: 1;
         opacity: 1;
-        transform: translateX(10px) translateY(-52px);
+        transform: translateX(10px) translateY(-48px);
         transition: 0.2s ease-in-out transform;
         background-color:white;
     }
@@ -171,5 +169,4 @@ export const Footer = styled.div`
         @media print {
             display:none;
         }
-
 `;

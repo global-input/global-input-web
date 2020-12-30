@@ -32,18 +32,22 @@ const ExpandIcon =styled.div`
         top: 6px;
     }
     position:relative;
-    top:-32px;
+    top:-18px;
 
 `;
 
 const HelpContainer=styled.div`
  display:flex;
- flex-direction:row;
+ flex-direction:column;
  justify-content:flex-start;
  align-items:flex-start;
- flex-wrap:wrap;
-
 `;
+const HelpContainer2=styled(HelpContainer)`
+    position:relative;
+    top:-25px;
+    padding-right:100px;
+`;
+
 const HelpContent=styled.div`
 font-family: Avenir;
     color: rgb(53,116,230);
@@ -54,7 +58,10 @@ font-family: Avenir;
         font-size: 14px;
     }
     position:relative;
-    top:-25px;
+    top:-35px;
+    left:30px;
+
+
 
 `;
 export const Help=({children,expandId, expand,setExpand})=>{
@@ -67,5 +74,19 @@ export const Help=({children,expandId, expand,setExpand})=>{
                 {children}
             </HelpContent>
     </HelpContainer>
+    );
+};
+
+
+export const Help2=({children,expandId, expand,setExpand})=>{
+    const isExpanded=expand===expandId;
+    const toggle=()=>setExpand(isExpanded?'':expandId);
+    return (
+    <HelpContainer2>
+            <ExpandIcon expand={isExpanded} onClick={toggle}/>
+            <HelpContent expand={isExpanded}>
+                {children}
+            </HelpContent>
+    </HelpContainer2>
     );
 };

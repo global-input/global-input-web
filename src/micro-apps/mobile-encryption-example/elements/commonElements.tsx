@@ -90,6 +90,13 @@ const Content=styled.div`
 
 const TitleSection=styled.div`
    display:block;
+   padding-top:0;
+   @media screen and (min-height:340px){
+    padding-top:10px;
+   }
+   @media screen and (min-height:500px){
+    padding-top:40px;
+   }
 `;
 
 
