@@ -86,6 +86,7 @@ const TopBar = styled.div`
         justify-content: space-between;
         width: 100%;
         align-items: flex-end;
+        padding-top:10px;
 
         background-color:rgb(74, 93, 126);
 

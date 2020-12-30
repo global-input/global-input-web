@@ -172,9 +172,9 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
                             API Key
                         </Label>
                         <Help expandId='apikey' expand={expand} setExpand={setExpand}>
-                        API Key is used by the <WebSocketServer>WebSocket servers</WebSocketServer> to identify the incoming connections.
-Since the WebSocket servers do not hold any sensitive information and is only responsible for proxying encrypted messages between your mobile app and this application, there is no security implications of exposing this value except for
-maintaining the optimum performance of the WebSocket server.
+API Key is used by the <WebSocketServer>WebSocket servers</WebSocketServer> to identify the incoming connections.
+There is no security implications for exposing this value except for
+the possible impact on the performance of the WebSocket server due to its increased workload, since a WebSocket server does not hold any sensitive information and is only responsible for proxying encrypted messages (encrypted with end-to-end encryption) between your mobile app and this application,
                         </Help>
 
 
@@ -191,10 +191,10 @@ const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
                         onFocus={()=>setExpand('securityGroup')}/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
                         <Help expandId='securityGroup' expand={expand} setExpand={setExpand}>
-                        Security Group Key is used by this application to verify
+                        Security Group Key is used by this client application to verify
                         the incoming connections coming from your mobile app
-            in the same way that API Keys are used by server applications to identify incoming requests.
-            If you change this value, you need to pair your mobile app.
+            in the same way that API Keys are used by server applications to identify incoming requests on the server side.
+            You need to pair your mobile app on the "Pair" tab every time after you have modified this value to be able connect to this application.
                         </Help>
 
     </Field>
@@ -207,9 +207,9 @@ const CodeKeyField=({settings, setSettings,expand,setExpand})=>(
                         onFocus={()=>setExpand('codeKey')}/>
                         <Label htmlFor="codeKey">Code Key</Label>
                         <Help expandId='codeKey' expand={expand} setExpand={setExpand}>
-                        Code Key is used by this application to encrypt the QR Code that it displays for you mobile app to scan to obtain the connection information.
-            If you change this value, you need to pair your mobile app.
-
+                        Code Key is used by this application to encrypt the content of the QR Code it displays.
+                        In order for your mobile app to be able to decrypt content of the QR code,
+                        you need to pair your mobile app on the "Pair" tab every time after you have modified it.
                         </Help>
 
                 </Field>
