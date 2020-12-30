@@ -11,7 +11,7 @@ const CopyContainer=styled.div`
     align-items:center;
     position:relative;
     top:-16px;
-    background-color: white;
+    background-color: ${props=>props.show?'white':''};
     z-Index:5;
     padding-left:5px;
     border:${props=>props.show?'1px dotted #4040bf':''};
