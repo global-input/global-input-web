@@ -104,21 +104,23 @@ const Content = styled.div`
 const PopupGlass = styled.div`
         display: flex;
         flex-direction: column;
-        justify-content: center;
+
         align-items: center;
 
 
         margin: 0;
         padding: 0;
         position: fixed;
-        top:0;
+        top:10px;
         left:0;
         z-index:10;
+        width: 100vw;
         @media screen and (min-height:530px){
+                top:0;
                 height:100vh;
+                justify-content: center;
         }
 
-        width: 100vw;
 
 `;
 
@@ -262,7 +264,7 @@ const SettingsIcon=styled.img.attrs({
     alt:'Settings'
 })`
 display:none;
-@media screen and (min-height:400px){
+@media screen and (min-height:530px){
         display:block;
 }
 `;
@@ -271,7 +273,7 @@ const PairingIcon=styled.img.attrs({
         alt:'Pair'
     })`
     display:none;
-    @media screen and (min-height:400px){
+    @media screen and (min-height:530px){
             display:block;
     }
     `;
@@ -281,7 +283,7 @@ const ConnectIcon=styled.img.attrs({
     alt:'Connect'
 })`
 display:none;
-@media screen and (min-height:400px){
+@media screen and (min-height:530px){
         display:block;
 }
 `;
