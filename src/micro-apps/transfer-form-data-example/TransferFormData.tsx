@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile, ConnectWidget,FormField, InitData} from './mobile';
-import { AppContainer, FormContainer, DisplayInputCopyField, TextButton, FormFooter} from './app-layout';
+import { TextButton} from './app-layout';
+import {AppContainer,Title,Form,ConnectedInstruction,Field,Input,TextArea,Label,CopyToClipboardButton,Footer, DarkButton} from './elements';
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {
     domain: string;
@@ -66,6 +67,7 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
     });
 
     const onFieldChanged = (formFields: FormField[], formField: FormField, index: number, value: string) => {
+
         const changedFormFields = computeChangedFormFields(formFields, formField.id, value, index);
         if (changedFormFields) {
             setFormFields(changedFormFields);
@@ -74,28 +76,56 @@ const TransferFormData: React.FC<Props> = ({ domain, formFields, setFormFields, 
     }
 
     return (
-        <AppContainer title="Form Data Transfer" domain={domain}>
+        <AppContainer>
+            <Title>{domain}</Title>
+
             <ConnectWidget mobile={mobile}/>
             {mobile.isConnected && (
-                <FormContainer>
-                    {formFields.map((formField, index) => (<DisplayInputCopyField
+                <Form>
+                    {formFields.map((formField, index) => (<DisplayInputField  key={formField.id} index={index}
+                        formField={formField} onFieldChanged={onFieldChanged} formFields={formFields} visibility={visibility}/>
+                ))}
+        {/*
+                    <DisplayInputCopyField
                         field={formField}
                         key={formField.id}
                         hideValue={visibility.value === 0} onChange={value => onFieldChanged(formFields, formField, index, value)} />))}
-                </FormContainer>
+            */}
+                </Form>
             )}
-            <FormFooter>
-                <TextButton onClick={editDomain} label="Edit Domain" />
+            <Footer>
+                <DarkButton onClick={editDomain}>Edit Domain</DarkButton>
                 {mobile.isConnected && (
-                    <TextButton onClick={toggleVisibility} label={visibility.label} />
+                    <DarkButton onClick={toggleVisibility}>{visibility.label}</DarkButton>
                 )}
-                <TextButton onClick={manageForm} label="Manage" />
-            </FormFooter>
+                <DarkButton onClick={manageForm}>Manage</DarkButton>
+            </Footer>
 
         </AppContainer>);
 
 
 };
+const DisplayInputField=({formFields,formField,index,onFieldChanged,visibility})=>{
+
+    if(visibility.value === 0 || (!formField.nLines) || formField.nLines <=1){
+        return (<Field>
+            <Input id={formField.id}  type={visibility.value === 0?'password':'text'} value={formField.value} placeholder={formField.label}
+            onChange={(evt)=>onFieldChanged(formFields, formField, index, evt.target.value)}/>
+            <Label htmlFor="decryptedContent">{formField.label}</Label>
+            <CopyToClipboardButton value={formField.value}>Copy</CopyToClipboardButton>
+            </Field>);
+    }
+    else{
+        return (<Field>
+            <TextArea id={formField.id} value={formField.value} placeholder={formField.label}
+                onChange={(evt)=>onFieldChanged(formFields, formField, index, evt.target.value)}/>
+                <Label htmlFor="decryptedContent">{formField.label}</Label>
+                <CopyToClipboardButton value={formField.value}>Copy</CopyToClipboardButton>
+        </Field>);
+    }
+}
+
+
 
 
 const FIELDS = {
