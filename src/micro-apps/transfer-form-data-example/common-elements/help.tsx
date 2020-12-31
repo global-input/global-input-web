@@ -36,17 +36,27 @@ const ExpandIcon =styled.div`
 
 `;
 
-const HelpContainer=styled.div`
+const HelpContainer1=styled.div`
  display:flex;
  flex-direction:column;
  justify-content:flex-start;
  align-items:flex-start;
 `;
-const HelpContainer2=styled(HelpContainer)`
+const HelpContainer2=styled(HelpContainer1)`
     position:relative;
     top:-25px;
     padding-right:100px;
 `;
+const HelpContainer=({position=1,children})=>{
+    if(position===2){
+        return (<HelpContainer2>{children}</HelpContainer2>)
+    }
+    else{
+        return (<HelpContainer>{children}</HelpContainer>)
+    }
+
+
+}
 
 const HelpContent=styled.div`
 font-family: Avenir;
@@ -64,29 +74,15 @@ font-family: Avenir;
 
 
 `;
-export const Help=({children,expandId, expand,setExpand})=>{
+export const Help=({children,expandId, expand,setExpand, position=1})=>{
     const isExpanded=expand===expandId;
     const toggle=()=>setExpand(isExpanded?'':expandId);
     return (
-    <HelpContainer>
+    <HelpContainer position={position}>
             <ExpandIcon expand={isExpanded} onClick={toggle}/>
             <HelpContent expand={isExpanded}>
                 {children}
             </HelpContent>
     </HelpContainer>
-    );
-};
-
-
-export const Help2=({children,expandId, expand,setExpand})=>{
-    const isExpanded=expand===expandId;
-    const toggle=()=>setExpand(isExpanded?'':expandId);
-    return (
-    <HelpContainer2>
-            <ExpandIcon expand={isExpanded} onClick={toggle}/>
-            <HelpContent expand={isExpanded}>
-                {children}
-            </HelpContent>
-    </HelpContainer2>
     );
 };

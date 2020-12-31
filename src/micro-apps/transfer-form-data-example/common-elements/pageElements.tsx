@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {WhenConnected} from '../mobile';
 import type {MobileData} from '../mobile';
 
-const AppTitle=styled.div`
+export const AppTitle=styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -26,10 +26,7 @@ const AppTitle=styled.div`
     }
 },`;
 
-const SourceLink=styled.a.attrs({
-    href:'https://github.com/global-input/mobile-encryption',
-    rel:'noreferrer noopener',
-    target:'_blank'})`
+export const SourceLinkElement=styled.a`
     color: #153E85;
     font-weight: 100;
     font-family: Georgia, Times, Serif;
@@ -47,12 +44,7 @@ const SourceLink=styled.a.attrs({
    }
     `;
 
-
-
-
-
-
-const Container =styled.div`
+export const AppContainerElement =styled.div`
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
@@ -62,7 +54,7 @@ const Container =styled.div`
     backgroundColor: rgb(219,240,240);
 `;
 
-const Body=styled.div`
+export const AppBody=styled.div`
     width:100%;
     display: flex;
     flex-direction: column;
@@ -77,7 +69,7 @@ const Body=styled.div`
     padding:10px;
     flex:1;
 `;
-const Content=styled.div`
+export const AppContent=styled.div`
     width:95%;
     display: flex;
     flex-direction: column;
@@ -88,7 +80,7 @@ const Content=styled.div`
 `;
 
 
-const TitleSection=styled.div`
+export const AppTitleSection=styled.div`
    display:block;
    padding-top:0;
    @media screen and (min-height:340px){
@@ -99,22 +91,6 @@ const TitleSection=styled.div`
    }
 `;
 
-
-
-export  const AppContainer:React.FC=({children})=>(
-    <Container>
-            <TitleSection>
-                <AppTitle>Mobile Encryption</AppTitle>
-                <SourceLink>Source Code</SourceLink>
-            </TitleSection>
-            <Body>
-                <Content>
-                {children}
-                </Content>
-
-            </Body>
-        </Container>
-);
 
 export const Title=styled.div`
     font-size: 12px;
@@ -149,7 +125,7 @@ export const MoreInfo = styled.div`
     }
 `;
 
-const Instruction=styled.div`
+export const Instruction=styled.div`
     font-size: 10px;
     align-self:${props=>props.center?'center':'flex-start'};
     @media screen and (min-height:250px){

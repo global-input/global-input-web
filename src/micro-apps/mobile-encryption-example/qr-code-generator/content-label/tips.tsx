@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Tips, TipTitle, Tip, TipContent,ConnectedInstruction } from '../../elements';
+import { Tips, TipTitle, Tip, TipContent,ConnectedInstruction } from '../../components';
 
 import encryptOnMobileImage from './images/encrypt-on-mobile.png';
 import keysOnMobileImage from './images/keys-on-mobile.png';

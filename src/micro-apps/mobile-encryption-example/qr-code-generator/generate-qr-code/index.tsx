@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useMobile } from '../../mobile';
 import QRCode from "qrcode.react";
 
-import {Footer, DarkButton,AppContainer,MoreInfo} from '../../elements';
+import {Footer, DarkButton,AppContainer,MoreInfo} from '../../components';
 
 
 export const GenerateQRCode = ({ content, label, back }) => {

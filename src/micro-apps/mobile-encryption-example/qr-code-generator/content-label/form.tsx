@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Field,TextArea,Label,Help, Input} from '../../elements';
+import {Field,TextArea,Label,Help, Input} from '../../components';
 
 export const CONTENT_ID='inputContent';
 export const LABEL_ID='inputLabel';

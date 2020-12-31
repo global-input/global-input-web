@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import * as onComputer from './mobile-ui/onComputer';
 import * as onMobile from './mobile-ui/onMobile';
 
-import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title,Help2} from '../../elements';
+import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title,Help2} from '../../components';
 interface Props {
     domain: string;
     content: string;

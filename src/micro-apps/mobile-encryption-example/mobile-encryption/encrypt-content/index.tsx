@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile,ConnectWidget} from '../../mobile';
-import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../elements';
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../components';
 
 import encryptImage from './images/encrypt-icon.png';
 import showImage from './images/show-icon.png';

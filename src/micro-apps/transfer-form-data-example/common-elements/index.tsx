@@ -1,4 +1,4 @@
-export * from './commonElements';
+export * from './pageElements';
 export * from './formElements';
 export * from './copyButton';
 export * from './tips';

@@ -7,7 +7,7 @@ import { useMobile,ConnectWidget, WhenConnected} from '../../mobile';
 import {GeneralTips,FirstTip} from './tips';
 
 import {AppContainer, Title,MoreInfo,
-        Footer, DarkButton,Form} from '../../elements';
+        Footer, DarkButton,Form} from '../../components';
 
 import {ContentInput,LabelInput, CONTENT_ID, LABEL_ID} from './form';
 

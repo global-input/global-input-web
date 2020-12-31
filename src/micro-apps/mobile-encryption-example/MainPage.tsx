@@ -3,8 +3,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 
 import { useMobile, ConnectWidget,DisConnectButton} from './mobile';
-import {AppContainer,ConnectedInstruction} from './elements';
-import {TipsOnButton} from './tips';
+import {AppContainer,ConnectedInstruction,TipsOnButton} from './components';
+
 
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 interface Props {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 
-const CopyContainer=styled.div`
+const CopyContainer1=styled.div`
     display:inline-flex;
     flex-direction:row;
     position:relative;
@@ -15,9 +15,21 @@ const CopyContainer=styled.div`
     z-Index:5;
     padding-left:5px;
     border:${props=>props.show?'1px dotted #4040bf':''};
-
-
 `;
+const CopyContainer2=styled(CopyContainer1)`
+
+    top:-28px;
+`;
+
+const CopyContainer=({position=1,children,show})=>{
+    if(position===2){
+        return (<CopyContainer2 show={show}>{children}</CopyContainer2>);
+    }
+    else{
+        return (<CopyContainer1 show={show}>{children}</CopyContainer1>);
+    }
+}
+
 const CopyContent=styled.div`
     font-family: Avenir;
     color: #4040bf;
@@ -54,7 +66,7 @@ const Button = styled.button`
 `;
 
 
-export const CopyToClipboardButton=({children,value})=>{
+export const CopyToClipboardButton=({children,value,position=1})=>{
     const [copying,setCopying]=useState(false);
     const timerHandler = useRef<ReturnType<typeof setTimeout> | null>(null);
     useEffect(() => {
@@ -76,7 +88,7 @@ export const CopyToClipboardButton=({children,value})=>{
     }, 2000);
   }
     return (
-    <CopyContainer show={copying}>
+    <CopyContainer show={copying} position={position}>
             <CopyContent show={copying}>
                 copied into your clipboard
             </CopyContent>

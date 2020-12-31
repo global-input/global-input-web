@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import * as onComputer from './mobile-ui/onComputer';
 import * as onMobile from './mobile-ui/onMobile';
 import {AppContainer, Title,
-    Footer,DarkButton, Field,TextArea, Label,Help} from '../../elements';
+    Footer,DarkButton, Field,TextArea, Label,Help} from '../../components';
 
 interface PROPS{
     initialContent: string;

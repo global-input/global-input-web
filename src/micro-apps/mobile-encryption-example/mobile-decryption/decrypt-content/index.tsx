@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile,ConnectWidget} from '../../mobile';
-import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction} from '../../elements';
-
-import decryptImage from './images/decrypt-icon.png';
-import showImage from './images/show-icon.png';
-import sendImage from './images/send-icon.png';
-
-
-
+import {AppContainer,Error,Footer, DarkButton,Title,ConnectedInstruction,DecryptIcon,
+    ShowIcon,SendIcon} from '../../components';
 
 interface Props {
     content: string;
@@ -85,15 +79,3 @@ const FIELDS = {
         viewId: "row1"
     }
 };
-const DecryptIcon = styled.img.attrs({
-    src: decryptImage,
-    alt: 'Decrypt'
-})``;
-const ShowIcon = styled.img.attrs({
-    src: showImage,
-    alt: 'Encrypt'
-})``;
-const SendIcon = styled.img.attrs({
-    src: sendImage,
-    alt: 'Send'
-})``;
