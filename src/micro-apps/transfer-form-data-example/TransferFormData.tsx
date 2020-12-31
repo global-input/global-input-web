@@ -120,7 +120,7 @@ const DisplayInputField=({formFields,formField,index,onFieldChanged,visibility})
             <TextArea id={formField.id} value={formField.value} placeholder={formField.label}
                 onChange={(evt)=>onFieldChanged(formFields, formField, index, evt.target.value)}/>
                 <Label htmlFor="decryptedContent">{formField.label}</Label>
-                <CopyToClipboardButton value={formField.value}>Copy</CopyToClipboardButton>
+                <CopyToClipboardButton value={formField.value} position={2}>Copy</CopyToClipboardButton>
         </Field>);
     }
 }
