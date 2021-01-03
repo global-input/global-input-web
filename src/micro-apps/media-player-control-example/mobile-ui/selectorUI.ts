@@ -1,4 +1,4 @@
-import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
+import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website
 
 export const initDataId = "second-screen-video-selector";
 

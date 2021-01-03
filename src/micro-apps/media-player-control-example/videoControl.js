@@ -35,7 +35,7 @@ const startSkipProcess = (videoPlayer, onFinish) => {
 
 export const setPlayVideoSource = (videoPlayer, video) => {
   if (videoPlayer) {
-    console.log("****changed video source:::"+video.mp4);
+    console.log("****changed video source:::" + video.mp4);
     videoPlayer.pause();
     videoPlayer.childNodes[0].setAttribute('src', video.mp4);
     videoPlayer.load();
@@ -49,11 +49,18 @@ export const playVideo = videoPlayer => {
     videoPlayer.play();
     videoPlayer.playbackRate = 1;
     console.log("*********video is playing.....");
+
   }
   else {
     console.log("videoPlayer is empty");
   }
 };
+
+export const setMuted = (videoPlayer, muted) => {
+  videoPlayer.muted = muted;
+};
+
+
 export const pauseVideo = videoPlayer => {
   stopSkipProcess({ videoPlayer });
   if (videoPlayer) {
@@ -137,13 +144,13 @@ const videos = [{
 const buildVideo = index => {
   return {
     index,
-    video:videos[index]
+    video: videos[index]
   };
 };
 
 
 
-const decreaseVideoIndex =videoIndex => {
+const decreaseVideoIndex = videoIndex => {
   if (videoIndex <= 0) {
     return videos.length - 1;
   }
@@ -151,7 +158,7 @@ const decreaseVideoIndex =videoIndex => {
     return videoIndex - 1;
   }
 };
-const increaseVideoIndex =videoIndex => {
+const increaseVideoIndex = videoIndex => {
   if (videoIndex >= (videos.length - 1)) {
     return 0;
   }
@@ -159,16 +166,16 @@ const increaseVideoIndex =videoIndex => {
     return videoIndex + 1;
   }
 };
-export const getDefaultVideo =()=>{
+export const getDefaultVideo = () => {
   return buildVideo(0);
 };
 
-export const getNextVideo = videoData =>{
-    const index=increaseVideoIndex(videoData.index);
-    return buildVideo(index);
+export const getNextVideo = videoData => {
+  const index = increaseVideoIndex(videoData.index);
+  return buildVideo(index);
 };
-export const getPreviousVideo = videoData =>{
-  const index=decreaseVideoIndex(videoData.index);
+export const getPreviousVideo = videoData => {
+  const index = decreaseVideoIndex(videoData.index);
   return buildVideo(index);
 };
 
@@ -209,13 +216,13 @@ export const throttleSliderValue = (sliderValue) => {
     cache.sliderValueHolder = data;
     return true;
   }
-  else{
-    return false;    
+  else {
+    return false;
   }
 };
 
 
- const buildSliderValue=(currentTime, duration)=>{
+const buildSliderValue = (currentTime, duration) => {
   return {
     value: Math.floor(currentTime * 100 / duration),
     labels: {
@@ -226,27 +233,27 @@ export const throttleSliderValue = (sliderValue) => {
   };
 };
 export const getVideoData = videoPlayer => {
-      const videoData={
-        currentTime:0,
-        duration:0,
-        sliderValue:0
-      }
-      if (!videoPlayer) {
-          return videoData;    
-      }
-      videoData.currentTime = videoPlayer.currentTime;
-      videoData.duration = videoPlayer.duration;
-      if(!videoData.duration){
-        return videoData;
-      }  
-      videoData.sliderValue=buildSliderValue(videoData.currentTime,videoData.duration);  
-      return videoData;
+  const videoData = {
+    currentTime: 0,
+    duration: 0,
+    sliderValue: 0
+  }
+  if (!videoPlayer) {
+    return videoData;
+  }
+  videoData.currentTime = videoPlayer.currentTime;
+  videoData.duration = videoPlayer.duration;
+  if (!videoData.duration) {
+    return videoData;
+  }
+  videoData.sliderValue = buildSliderValue(videoData.currentTime, videoData.duration);
+  return videoData;
 };
 
 
 
 
-const buildTimeString= timestamp => {
+const buildTimeString = timestamp => {
   var mininutes = Math.floor(timestamp / 60) % 60;
   var hours = Math.floor(timestamp / 3600);
   var minutesString = mininutes.toString().length < 2 ? '0' + mininutes : mininutes.toString();
