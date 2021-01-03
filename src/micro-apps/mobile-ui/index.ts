@@ -1,9 +1,12 @@
 export const home = {
     id: 'back-to-website-home',
     type: 'button',
-    label: 'Home',
-    icon: 'home',
-    viewId: "row9"
+    label: 'Back to Home',
+    viewId: "row10",
+    icon:'home',
+    style:{
+        backgroundColor:'rgb(220,220,220)'
+    }
 };
 
 export const add = (inputFields: any) => {

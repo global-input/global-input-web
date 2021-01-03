@@ -49,7 +49,7 @@ export const useConnectMobile = ({domain,formFields,configId,visibility, setVisi
                 title: domain,
                 domain: domain,
                 label: domain,
-                fields: [...formFields,FIELDS.visibility]
+                fields: [...formFields,...Object.values(FIELDS)]
             }
         }
         userWithDomainAsFormId(initData);
