@@ -1,10 +1,9 @@
 import { decrypt } from 'global-input-react';
+import type {FormField} from '../mobile-ui';
 
 const encryptionKey = 'TDwtv0dV6u';
-export const loadFormFromQuery = (location: any) => {
-    if (!location || !location.search) {
-        return null;
-    }
+const loadFormFromQuery = (location: any) => {
+
     const formDataString = getQueryParam(location.search, "formData");
     if (!formDataString) {
         return null;
@@ -37,3 +36,27 @@ const getQueryParam = (query: string, variable: string) => {
     }
     return null;
 };
+
+
+export const loadFormFromQueryString=(setDomain:(domain:string)=>void, onFormModified:(formFields: FormField[], isStructureChanged:boolean)=>void,location?:any) => {
+    if (!location || !location.search) {
+        return null;
+    }
+    const formData = loadFormFromQuery(location);
+    if(!formData){
+        return;
+    }
+    if (formData.id) {
+        const parts = formData.id.split('@');
+        const domain = parts && parts.length && parts[parts.length - 1];
+        if (domain) {
+                    setDomain(domain);
+        }
+        else {
+                    setDomain(formData.id.replace('@'));
+        }
+    }
+    if (formData.fields) {
+        onFormModified(formData.fields,true);
+    }
+}

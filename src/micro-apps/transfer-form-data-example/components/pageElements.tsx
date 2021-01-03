@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {SourceLinkElement,AppContainerElement,AppTitleSection,AppTitle,AppBody,AppContent} from '../common-elements';
+import {Field,SourceLinkElement,AppContainerElement,AppTitleSection,AppTitle,AppBody,AppContent} from '../common-elements';
 
 
 const SourceLink=styled(SourceLinkElement).attrs({
@@ -23,3 +23,8 @@ const SourceLink=styled(SourceLinkElement).attrs({
                 </AppBody>
         </AppContainerElement>
     );
+
+    export const DomainField=styled(Field)`
+        max-width:300px;
+
+    `;

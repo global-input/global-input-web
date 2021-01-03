@@ -1,102 +1,136 @@
 import React, { useCallback, useState, useEffect } from 'react';
 
 import * as storage from './storage';
+import {useConnectMobile,getNextVisibilityValue,sendVisibility,buildFormFields,FIELDS} from './mobile-ui';
+import type { FormField } from './mobile-ui';
+import {ConnectWidget} from './mobile-ui';
 
-import { FormField } from './mobile';
+import { loadFormFromQueryString } from './url-query';
+import {AppContainer,Form,Field,Input,Label,Footer, DarkButton,Help,
+    ConnectContainer,DomainField} from './components';
 
-import CreateField from './CreateField';
-import ManageForm from './ManageForm';
-import TransferFormData from './TransferFormData';
-import EditDomain from './EditDomain';
-import { loadFormFromQuery } from './url-query';
+import {DisplayInputField,AddNewField} from './forms';
 
-
-export enum PAGES {
-    TRANSFER_FORM_DATA,
-    MANAGER_FORM,
-    CREATE_FIELD,
-    EDIT_DOMAIN
-};
 
 interface Props {
     location?: any;
 
 }
-const MainControl: React.FC<Props> = ({ location }) => {
+const App: React.FC<Props> = ({ location }) => {
     const [domain, setDomain] = useState(loadDomain);
-    const [page, setPage] = useState(PAGES.TRANSFER_FORM_DATA);
+    const [configId,setConfigId]=useState(0);
+    const [selectedFields, setSelectedFields]=useState<FormField[]>([]);
     const [formFields, setFormFields] = useState(() => buildFormFields(domain));
-    const onFormStructureChanged = (formFields: FormField[]) => {
-        setFormFields(formFields);
-        storage.saveFormFields(domain, formFields);
-    };
-    const transferFormData = useCallback(() => setPage(PAGES.TRANSFER_FORM_DATA), []);
-    const manageForm = useCallback(() => setPage(PAGES.MANAGER_FORM), []);
-    const createField = useCallback(() => setPage(PAGES.CREATE_FIELD), []);
-    const editDomain = useCallback(() => setPage(PAGES.EDIT_DOMAIN), []);
+    const [visibility, setVisibility] = useState(FIELDS.visibility.options[0]);
+    const [expand,setExpand]=useState('');
 
+    const onFormModified=(formFields: FormField[], isStructureChanged:boolean) => {
+        if(isStructureChanged){
+            storage.saveFormFields(domain, formFields);
+            setConfigId(configId=>configId+1);
+        }
+        setSelectedFields([]);
+        setFormFields(formFields);
+    }
 
     const changeDomain = useCallback((domain) => {
         setDomain(domain);
         storage.setDomain(domain);
-        transferFormData();
-    }, [transferFormData]);
+        onFormModified(buildFormFields(domain),true);
+    }, []);
+
+    const canDelete=!!selectedFields.length;
+    const onDeleteSelected=()=>{
+        const newFormFields=formFields.filter(f=>selectedFields.indexOf(f)===-1);
+        onFormModified(newFormFields,true);
+    };
+
+
+
+    const mobile =useConnectMobile({domain,formFields,configId,visibility,setVisibility,onFormModified})
+
 
     useEffect(() => {
-        const formData = loadFormFromQuery(location);
-        if (formData) {
-            if (formData.id) {
-                const parts = formData.id.split('@');
-                const domain = parts && parts.length && parts[parts.length - 1];
-                if (domain) {
-                    setDomain(domain);
-                }
-                else {
-                    setDomain(formData.id.replace('@'));
-                }
-            }
-            if (formData.fields) {
-                setFormFields(formData.fields);
-            }
-        }
+        loadFormFromQueryString(setDomain,onFormModified,location);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
-    switch (page) {
-        case PAGES.TRANSFER_FORM_DATA:
-            return (<TransferFormData domain={domain} formFields={formFields} setFormFields={setFormFields} manageForm={manageForm} editDomain={editDomain}/>);
-        case PAGES.MANAGER_FORM:
-            return (<ManageForm formFields={formFields} onFormStructureChanged={onFormStructureChanged} back={transferFormData} createField={createField} />);
-        case PAGES.CREATE_FIELD:
-            return (<CreateField formFields={formFields} onFormStructureChanged={onFormStructureChanged} back={manageForm} />);
-        case PAGES.EDIT_DOMAIN:
-            return (<EditDomain back={transferFormData} domain={domain} changeDomain={changeDomain} />);
-        default:
-    }
-    return null
+
+    return (
+        <AppContainer>
+            <DomainField>
+                <Input id='changeDomain'  type="text"
+                value={domain} placeholder="Domain"
+                onChange={(evt)=>changeDomain(evt.target.value)}/>
+                <Label htmlFor="changeDomain">Domain</Label>
+                <Help expand={expand} setExpand={setExpand} expandId="changeDomain">
+    This value is used when locating data in your mobile secure storage.
+    It is also used to identify the form structure you have created in this application.
+                </Help>
+
+            </DomainField>
+
+
+
+                <Form>
+                    {formFields.map((formField, index) => (
+                    <DisplayInputField  key={formField.id}
+                        formField={formField} onChange={(evt)=>{
+                            const newFormFields=formFields.map(f=>{
+                                if (f === formField) {
+                                    return {...f,value:evt.target.value};
+                                }
+                                else{
+                                    return f;
+                                }
+                            });
+                            onFormModified(newFormFields,false);
+                            mobile.sendValue(formField.id as string, evt.target.value, index);
+                        }}  visibility={visibility}
+                        selectedFields={selectedFields} setSelectedFields={setSelectedFields}/>
+                ))}
+                </Form>
+
+
+
+
+
+
+
+            <Footer>
+
+                {canDelete && (<DarkButton onClick={onDeleteSelected}>Deleted Selected</DarkButton>)}
+                <DarkButton onClick={()=>{
+                    const vis = getNextVisibilityValue(visibility);
+                    setVisibility(vis);
+                    sendVisibility(mobile,vis);
+                }}>{visibility.label}</DarkButton>
+                {mobile.isConnected && (<DarkButton onClick={()=>mobile.restart()}>Disconnect</DarkButton>)}
+
+
+            </Footer>
+
+
+
+            <AddNewField formFields={formFields} onFormModified={onFormModified}/>
+
+
+            <ConnectContainer>
+                    <ConnectWidget mobile={mobile}/>
+            </ConnectContainer>
+
+
+        </AppContainer>);
+
+
+
+
+
+
 };
 
-const defaultFormFields = [{
-    id: "username",
-    label: "Username",
-    value: ''
-}, {
-    id: "password",
-    label: "Password",
-    type: "secret",
-    value: ''
-}, {
-    id: "note",
-    label: "Note",
-    nLines: 5, value: '',
-}];
 
-const buildFormFields = (domain: string) => {
-    let fields = storage.loadSavedFormFields(domain);
-    if (!fields) {
-        fields = defaultFormFields;
-    }
-    return fields;
-};
+
 
 const loadDomain = () => {
     const domain = storage.getDomain();
@@ -106,4 +140,4 @@ const loadDomain = () => {
 
 
 
-export default MainControl;
+export default App;

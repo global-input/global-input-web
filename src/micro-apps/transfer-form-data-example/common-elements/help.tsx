@@ -47,15 +47,20 @@ const HelpContainer2=styled(HelpContainer1)`
     top:-25px;
     padding-right:100px;
 `;
+const HelpContainer3=styled(HelpContainer1)`
+    position:relative;
+    top:-12px;
+`;
 const HelpContainer=({position=1,children})=>{
     if(position===2){
         return (<HelpContainer2>{children}</HelpContainer2>)
     }
-    else{
-        return (<HelpContainer>{children}</HelpContainer>)
+    else if(position==3){
+        return (<HelpContainer3>{children}</HelpContainer3>)
     }
-
-
+    else{
+        return (<HelpContainer1>{children}</HelpContainer1>)
+    }
 }
 
 const HelpContent=styled.div`
