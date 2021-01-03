@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-
-import type { FormField} from './mobile';
 import {
     Field, Input, TextArea, Label, CopyToClipboardButton,
     InputGroup, CheckBox,Form,Form2,Title,Select,Option,DarkButton,Footer2
@@ -122,7 +120,7 @@ export const AddNewField=({formFields,onFormModified})=>{
                         <Label htmlFor="addFieldLabel">Field Name</Label>
             </Field>
             <Select value={fieldType.value} onChange={onSelectChange}>
-                {FIELD_TYPES.map(f=>( <Option value={f.value}>{f.label}</Option>))}
+                {FIELD_TYPES.map(f=>( <Option key={f.value} value={f.value}>{f.label}</Option>))}
               </Select>
               <Footer2>
             <DarkButton onClick={onAddNewField}>Add</DarkButton>

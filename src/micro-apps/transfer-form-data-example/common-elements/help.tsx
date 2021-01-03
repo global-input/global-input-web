@@ -55,7 +55,7 @@ const HelpContainer=({position=1,children})=>{
     if(position===2){
         return (<HelpContainer2>{children}</HelpContainer2>)
     }
-    else if(position==3){
+    else if(position===3){
         return (<HelpContainer3>{children}</HelpContainer3>)
     }
     else{

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import * as storage from './storage';
 import {useConnectMobile,getNextVisibilityValue,sendVisibility,buildFormFields,FIELDS} from './mobile-ui';
@@ -6,7 +6,7 @@ import type { FormField } from './mobile-ui';
 import {ConnectWidget} from './mobile-ui';
 
 import { loadFormFromQueryString } from './url-query';
-import {AppContainer,Form,Field,Input,Label,Footer, DarkButton,Help,
+import {AppContainer,Form,Input,Label,Footer, DarkButton,Help,
     ConnectContainer,DomainField} from './components';
 
 import {DisplayInputField,AddNewField} from './forms';
@@ -33,11 +33,12 @@ const App: React.FC<Props> = ({ location }) => {
         setFormFields(formFields);
     }
 
-    const changeDomain = useCallback((domain) => {
+    const changeDomain = (domain) => {
         setDomain(domain);
         storage.setDomain(domain);
         onFormModified(buildFormFields(domain),true);
-    }, []);
+    };
+
 
     const canDelete=!!selectedFields.length;
     const onDeleteSelected=()=>{

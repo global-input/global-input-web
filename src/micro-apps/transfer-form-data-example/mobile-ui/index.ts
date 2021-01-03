@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'; ////website
 import { useMobile} from '../mobile';
 import type {InitData} from '../mobile';
 import * as storage from '../storage';
-import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website
+import * as microAppsUI from '../../../micro-apps/mobile-ui'; ////website
 export * from '../mobile';
 
 
@@ -36,7 +36,7 @@ export const FIELDS = {
     }
 
 };
-mobileUI.add(FIELDS);////website
+microAppsUI.add(FIELDS);////website
 
 
 export const useConnectMobile = ({domain,formFields,configId,visibility, setVisibility,onFormModified})=>{
@@ -78,7 +78,7 @@ export const useConnectMobile = ({domain,formFields,configId,visibility, setVisi
                     onFormModified(newFormFields,false);
                 }
                 if (!fieldModified) {
-                mobileUI.onFieldChange(field, history); ////website
+                microAppsUI.onFieldChange(field, history); ////website
                 }
         }
     });
