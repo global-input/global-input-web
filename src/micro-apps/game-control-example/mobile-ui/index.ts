@@ -2,7 +2,7 @@ import {useState} from 'react';
 import { useHistory } from 'react-router-dom'; ////website
 import { useMobile, ConnectWindow, ConnectButton } from '../mobile';
 
-import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
+import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website
 import * as game from "../game";
 
 export * from '../mobile';
