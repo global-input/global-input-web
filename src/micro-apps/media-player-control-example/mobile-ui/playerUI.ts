@@ -5,19 +5,13 @@ export const statusValue = (title: string, message: string) => {
     return {
         type: "view",
         style: {
-            borderColor: "#rgba(72,128,237,0.5)",
-            backgroundColor: "#rgba(72,128,237,0.5)",
-            borderWidth: 1,
-            marginTop: 5,
-            minWidth: "100%",
-            minHeight: 80,
         },
         content: [{
             type: "text",
             content: title,
             style: {
                 fontSize: 18,
-                color: "white"
+                color: "black"
             }
         }, {
             type: "text",
@@ -31,12 +25,7 @@ export const statusValue = (title: string, message: string) => {
     };
 };
 export const fields = {
-    selector: {
-        id: "videoSelector",
-        type: "button",
-        label: "Play Different Video",
-        viewId: "row1"
-    },
+
     mute: {
         id: "mute-unmute",
         type: "button",
@@ -92,6 +81,13 @@ export const fields = {
         icon: "skip-to-end",
         viewId: "row4"
     },
+    selector: {
+        id: "videoSelector",
+        type: "button",
+        label: "Back",
+        icon:'back',
+        viewId: "row5"
+    },
     playPause: {
         id: "playPauseButton",
         type: "button",
@@ -113,6 +109,23 @@ export const initData = (videoData) => {
     return {
         id: 'video-player',
         form: {
+            views:{
+                viewIds:{
+                    row5:{
+                        style: {
+                            width:'98%',
+                            justifyContent:'space-between'
+                        }
+                    },
+                    row4:{
+                        style: {
+                            width:'98%',
+                            justifyContent:'space-between'
+                        }
+                    }
+
+                }
+            },
             title:videoData.title,
             fields: Object.values(fields)
         }

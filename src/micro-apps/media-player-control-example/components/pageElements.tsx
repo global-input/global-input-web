@@ -13,17 +13,15 @@ const SourceLink=styled(SourceLinkElement).attrs({
         <AppContainerElement>
                 <AppTitleSection>
                     <AppTitle>Form Data Transfer</AppTitle>
-                    <SourceLink>Source Code</SourceLink>
                 </AppTitleSection>
                 <AppBody>
                     <AppContent>
                     {children}
                     </AppContent>
-
+                    <SourceLink>Source Code</SourceLink>
                 </AppBody>
         </AppContainerElement>
     );
-
     export const DomainField=styled(Field)`
         max-width:300px;
 

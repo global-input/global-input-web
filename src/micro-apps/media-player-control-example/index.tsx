@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import * as videoControl from './videoControl';
-import { AppFooter,  MessageLink, PageContainer, P, useWindowSize, A } from './app-layout';
+
+import {AppContainer,Footer,useWindowSize} from './components';
 import {useConnectMobile,ConnectWindow, ConnectButton} from './mobile-ui';
 
 const VideoApp: React.FC = () => {
@@ -40,8 +41,8 @@ const VideoApp: React.FC = () => {
 
   };
   return (
-    <PageContainer>
-        <MessageLink href="https://github.com/global-input/media-player-control-example">Source Code</MessageLink>
+    <AppContainer>
+
 
       <video width={videoWidth} height={videoHeight}
         onClick={onVideoClicked}
@@ -74,15 +75,13 @@ const VideoApp: React.FC = () => {
         <source src={videoData.mp4} type="video/mp4" />
       </video>
       <ConnectWindow mobile={mobile}/>
-      <AppFooter>
+      <Footer>
               <ConnectButton mobile={mobile}/>
-      </AppFooter>
-      <P>This example application (with <A href="https://github.com/global-input/media-player-control-example">its source code</A>)
-      demonstrate how you can use the <A href="https://github.com/global-input/global-input-react">extension library</A> to extend an existing media application
-      to have <a href="https://globalinput.co.uk/global-input-app/second-screen-experience">Second Screen Experience</a>
-      </P>
+      </Footer>
 
-    </PageContainer>);
+
+
+    </AppContainer>);
 
 
 };
