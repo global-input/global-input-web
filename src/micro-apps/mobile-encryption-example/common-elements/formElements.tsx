@@ -1,5 +1,7 @@
-
 import styled from 'styled-components';
+
+
+export * from './checkbox';
 
 export const Form = styled.div`
     display:flex;
@@ -8,7 +10,6 @@ export const Form = styled.div`
     align-items:flex-start;
     padding:10px;
     width:80vw;
-    border:1px solid #DDDDDD;
     overflow: scroll;
     @media print {
         display:none;
@@ -20,11 +21,11 @@ export const Form = styled.div`
 export const Field = styled.div`
     position: relative;
     width:100%;
-    padding-top:15px;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
+
 `;
 
 export const TextArea = styled.textarea`
@@ -169,4 +170,12 @@ export const Footer = styled.div`
         @media print {
             display:none;
         }
+`;
+export const InputGroup=styled.div`
+display:flex;
+flex-direction:row;
+width:100%;
+padding-top:20px;
+
+
 `;

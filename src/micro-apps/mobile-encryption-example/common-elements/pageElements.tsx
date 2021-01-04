@@ -109,6 +109,22 @@ export const Title=styled.div`
     }
 `;
 
+export const FormTitle=styled.div`
+    font-size: 10px;
+    color: #445566;
+    align-self:flex-start;
+    font-family: Georgia, Times, Serif;
+    @media screen and (min-height:150px){
+        font-size:12px;
+    }
+    @media screen and (min-height:400px){
+        font-size:16px;
+        margin-bottom:10px;
+    }
+    @media print{
+        display:none;
+    }
+`;
 
 
 
@@ -166,4 +182,13 @@ export const Error = styled.div`
         max-width:  350px;
         max-height: 100px;
         overflow: scroll;
+`;
+
+export const ConnectContainer=styled.div`
+    display:flex;
+    flex-direction:column;
+
+    min-width:50px;
+
+    padding-bottom:30px;
 `;

@@ -3,21 +3,45 @@ import styled from 'styled-components';
 
 
 
-const CopyContainer=styled.div`
+const CopyContainer1=styled.div`
     display:inline-flex;
     flex-direction:row;
     position:relative;
     align-self:flex-end;
     align-items:center;
-    position:relative;
     top:-16px;
     background-color: ${props=>props.show?'white':''};
     z-Index:5;
     padding-left:5px;
     border:${props=>props.show?'1px dotted #4040bf':''};
+`;
+const CopyContainer2=styled(CopyContainer1)`
+
+    top:-28px;
+`;
+const CopyContainer3=styled.div`
+    display:flex;
+    flex-direction:row;
+    position:relative;
+    align-items:flex-start;
+    background-color: ${props=>props.show?'white':''};
+    z-Index:5;
 
 
 `;
+
+const CopyContainer=({position=1,children,show})=>{
+    if(position===2){
+        return (<CopyContainer2 show={show}>{children}</CopyContainer2>);
+    }
+    else if(position===3){
+        return (<CopyContainer3 show={show}>{children}</CopyContainer3>);
+    }
+    else{
+        return (<CopyContainer1 show={show}>{children}</CopyContainer1>);
+    }
+}
+
 const CopyContent=styled.div`
     font-family: Avenir;
     color: #4040bf;
@@ -54,7 +78,7 @@ const Button = styled.button`
 `;
 
 
-export const CopyToClipboardButton=({children,value})=>{
+export const CopyToClipboardButton=({children,value,position=1})=>{
     const [copying,setCopying]=useState(false);
     const timerHandler = useRef<ReturnType<typeof setTimeout> | null>(null);
     useEffect(() => {
@@ -76,7 +100,7 @@ export const CopyToClipboardButton=({children,value})=>{
     }, 2000);
   }
     return (
-    <CopyContainer show={copying}>
+    <CopyContainer show={copying} position={position}>
             <CopyContent show={copying}>
                 copied into your clipboard
             </CopyContent>

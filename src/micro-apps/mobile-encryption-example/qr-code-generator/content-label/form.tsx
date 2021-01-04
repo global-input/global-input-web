@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Field,TextArea,Label,Help, Input} from '../../components';
 
-export const CONTENT_ID='inputContent';
-export const LABEL_ID='inputLabel';
+export const CONTENT_ID='content';
+export const LABEL_ID='label';
 
 export const ContentInput=({content, onContentChanged,expand,setExpand})=>(
     <Field>

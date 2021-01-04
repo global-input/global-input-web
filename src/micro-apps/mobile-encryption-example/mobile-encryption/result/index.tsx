@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import * as onComputer from './mobile-ui/onComputer';
 import * as onMobile from './mobile-ui/onMobile';
 
-import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title,Help2} from '../../components';
+import {AppContainer,DarkButton,Footer, Field,TextArea, Label,CopyToClipboardButton, Title,Help} from '../../components';
 interface Props {
     domain: string;
     content: string;
@@ -48,13 +48,13 @@ const RenderContentForm=({content,restart,finish})=>{
 
                     <Label htmlFor="encryptedContent">Encrypted Content</Label>
                     <CopyToClipboardButton value={content}>Copy</CopyToClipboardButton>
-                    <Help2 expandId='encryptedContent' expand={expand} setExpand={setExpand}>
+                    <Help expandId='encryptedContent' expand={expand} setExpand={setExpand} position={2}>
                     You can now store this encrypted content into a storage you prefer with the confidence that only you can decrypt using your mobile.
                     Note that considering you may loose your phone, you should export the encryption key used in the encryption as an encrypted QR code.
                     Alternatively, you can use another mobile to scan the encryption key to have a backup.
 
 
-                    </Help2>
+                    </Help>
 
         </Field>
         <Footer>
