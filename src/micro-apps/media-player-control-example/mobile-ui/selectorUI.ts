@@ -50,13 +50,13 @@ export const fields = {
 const titleValue = (title: string) => {
     return { ...fields.title.value, content: title };
 }
-export const initData = (title: string, synopsis: string) => ({
+export const initData = (videoData) => ({
     id: initDataId,
     form: {
         title: "Select Video to Play",
         fields: [
-            { ...fields.title, value: titleValue(title) },
-            { ...fields.synopsis, value: synopsis },
+            { ...fields.title, value: titleValue(videoData.title) },
+            { ...fields.synopsis, value: videoData.synopsis },
             fields.previous,
             fields.next,
             fields.play

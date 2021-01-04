@@ -1,10 +1,10 @@
 
 
-let threadForSkip = null;
+let threadForSkip:number = 0;
 const stopSkipProcess = videoPlayer => {
   if (threadForSkip) {
     clearInterval(threadForSkip);
-    threadForSkip = null;
+    threadForSkip = 0;
     if (videoPlayer) {
       videoPlayer.playbackRate = 1;
     }
@@ -18,7 +18,7 @@ const startSkipProcess = (videoPlayer, onFinish) => {
   }
   let nextPosition = videoPlayer.currentTime - 0.1;
 
-  threadForSkip = setInterval(() => {
+  threadForSkip = window.setInterval(() => {
     if (nextPosition <= 0) {
       videoPlayer.currentTime = 0;
       stopSkipProcess(videoPlayer);
@@ -100,14 +100,14 @@ export const rewindVideo = (videoPlayer, onFinish) => {
 };
 
 export const fastForwardVideo = videoPlayer => {
-  stopSkipProcess();
+  stopSkipProcess(videoPlayer);
   videoPlayer.playbackRate++;
   if (videoPlayer) {
     videoPlayer.play();
   }
 }
 export const skipToBegin = videoPlayer => {
-  stopSkipProcess();
+  stopSkipProcess(videoPlayer);
   videoPlayer.playbackRate = 1;
   if (videoPlayer) {
     videoPlayer.currentTime = 0;
@@ -115,7 +115,7 @@ export const skipToBegin = videoPlayer => {
 }
 
 export const skipToEnd = videoPlayer => {
-  stopSkipProcess();
+  stopSkipProcess(videoPlayer);
   videoPlayer.playbackRate = 1;
   if (videoPlayer) {
     if (videoPlayer.duration && videoPlayer.duration > 2) {
@@ -125,9 +125,13 @@ export const skipToEnd = videoPlayer => {
   }
 };
 
+export interface VideoData{
+  title:string;
+  synopsis:string;
+  mp4:string;
+}
 
-
-const videos = [{
+const videos:VideoData[] = [{
   title: "Tutorial Part 1",
   synopsis: "In this Global Input App tutorial video, you will learn how to install the Chrome extension and then use ir to sign in to web applications quickly and securely. You can subscribe and sign in to web applications without worrying about remembering your passwords for they are stored automatically into your phone",
   mp4: "https://media.iterativesolution.co.uk/video/global_input_sign_in.mp4"
@@ -141,42 +145,35 @@ const videos = [{
   mp4: "https://media.iterativesolution.co.uk/video/copy-and-paste.mp4"
 }];
 
-const buildVideo = index => {
-  return {
-    index,
-    video: videos[index]
-  };
-};
 
 
 
-const decreaseVideoIndex = videoIndex => {
-  if (videoIndex <= 0) {
-    return videos.length - 1;
-  }
-  else {
-    return videoIndex - 1;
-  }
-};
-const increaseVideoIndex = videoIndex => {
-  if (videoIndex >= (videos.length - 1)) {
-    return 0;
-  }
-  else {
-    return videoIndex + 1;
-  }
-};
+
 export const getDefaultVideo = () => {
-  return buildVideo(0);
+  return videos[0];
 };
 
 export const getNextVideo = videoData => {
-  const index = increaseVideoIndex(videoData.index);
-  return buildVideo(index);
+    const index=videos.indexOf(videoData);
+    if(index===-1){
+      console.warn("failed to find the next video");
+      return videoData;
+    }
+    if((index+1)<videos.length){
+        return videos[index+1];
+    }
+    return videos[0];
 };
 export const getPreviousVideo = videoData => {
-  const index = decreaseVideoIndex(videoData.index);
-  return buildVideo(index);
+  const index=videos.indexOf(videoData);
+    if(index===-1){
+      console.warn("failed to find the previous video");
+      return videoData;
+    }
+    if((index-1)>=0){
+        return videos[index-1];
+    }
+    return videos[videos.length-1];
 };
 
 
@@ -204,16 +201,18 @@ export const setCurrentTimeWithSlider = (videoPlayer, sliderPosition) => {
 
 
 
-let cache = {
-  sliderValueHolder: null
-};
+let cachedSliderValueHolder:any= null
+
 export const throttleSliderValue = (sliderValue) => {
   var data = {
     sliderValue,
     timestamp: (new Date()).getTime()
   };
-  if ((!cache.sliderValueHolder) || (data.timestamp - cache.sliderValueHolder.timestamp) > 2000 || Math.abs(data.sliderValue.value - cache.sliderValueHolder.sliderValue.value) >= 5) {
-    cache.sliderValueHolder = data;
+  if(!cachedSliderValueHolder){
+    cachedSliderValueHolder = data;
+  }
+  else if ((data.timestamp - cachedSliderValueHolder.timestamp) > 2000 || Math.abs(data.sliderValue.value - cachedSliderValueHolder.sliderValue.value) >= 5) {
+    cachedSliderValueHolder = data;
     return true;
   }
   else {
@@ -232,24 +231,23 @@ const buildSliderValue = (currentTime, duration) => {
     }
   };
 };
-export const getVideoData = videoPlayer => {
-  const videoData = {
+export const getVideoPlayerData = videoPlayer => {
+  const videoPlayerData = {
     currentTime: 0,
     duration: 0,
-    sliderValue: 0
+    sliderValue: {}
   }
   if (!videoPlayer) {
-    return videoData;
+    return videoPlayerData;
   }
-  videoData.currentTime = videoPlayer.currentTime;
-  videoData.duration = videoPlayer.duration;
-  if (!videoData.duration) {
-    return videoData;
+  videoPlayerData.currentTime = videoPlayer.currentTime;
+  videoPlayerData.duration = videoPlayer.duration;
+  if (!videoPlayerData.duration) {
+    return videoPlayerData;
   }
-  videoData.sliderValue = buildSliderValue(videoData.currentTime, videoData.duration);
-  return videoData;
-};
-
+  videoPlayerData.sliderValue = buildSliderValue(videoPlayerData.currentTime, videoPlayerData.duration);
+  return videoPlayerData;
+}
 
 
 

@@ -1,4 +1,5 @@
-export const initDataId = 'video-player';
+
+
 
 export const statusValue = (title: string, message: string) => {
     return {
@@ -36,6 +37,17 @@ export const fields = {
         label: "Play Different Video",
         viewId: "row1"
     },
+    mute: {
+        id: "mute-unmute",
+        type: "button",
+        value: 0,
+        options: [{ value: 0, label: "🔇"}, { value: 1, label: "🔈"}],
+    },
+    errorMessage:{
+       id:"errorMessage",
+       type:'info',
+       value:''
+    },
     status: {
         id: "playerStatus",
         type: "info",
@@ -51,20 +63,18 @@ export const fields = {
         step: 1,
         viewId: "row3"
     },
+    begin: {
+        id: "skipToBeginButton",
+        type: "button",
+        label: "Begin",
+        icon: "skip-to-begin",
+        viewId: "row4"
+    },
     rw: {
         id: "rwButton",
         type: "button",
         label: "RW",
         icon: "rw",
-        viewId: "row4"
-    },
-    playPause: {
-        id: "playPauseButton",
-        type: "button",
-        value: 0,
-        label: "Play",
-        icon: "play",
-        options: [{ value: 0, label: "Play", icon: "play" }, { value: 1, label: "Pause", icon: "pause" }],
         viewId: "row4"
     },
     ff: {
@@ -74,30 +84,36 @@ export const fields = {
         icon: "ff",
         viewId: "row4"
     },
-    begin: {
-        id: "skipToBeginButton",
-        type: "button",
-        label: "Begin",
-        icon: "skip-to-begin",
-        viewId: "row5"
-    },
+
     end: {
         id: "skipToEndButton",
         type: "button",
         label: "End",
         icon: "skip-to-end",
+        viewId: "row4"
+    },
+    playPause: {
+        id: "playPauseButton",
+        type: "button",
+        value: 0,
+        label: "Play",
+        icon: "play",
+        options: [{ value: 0, label: "Play", icon: "play" }, { value: 1, label: "Pause", icon: "pause" }],
         viewId: "row5"
-    }
+    },
+
+
 
 
 };
 
 
-export const initData = (title: string) => {
+export const initData = (videoData) => {
+
     return {
-        id: initDataId,
+        id: 'video-player',
         form: {
-            title,
+            title:videoData.title,
             fields: Object.values(fields)
         }
     };
@@ -120,3 +136,23 @@ export const sendPauseButton = (mobile) => {
 export const sendSliderValue = (mobile, sliderValue) => {
     mobile.sendValue(fields.slider.id, sliderValue);
 };
+
+
+export const sendUnmuteButton = (mobile) => {
+    mobile.sendValue(fields.mute.id, fields.mute.options[0].value);
+};
+export const sendMuteButton = (mobile) => {
+    mobile.sendValue(fields.mute.id, fields.mute.options[1].value);
+};
+
+export const displayClickOnVideoMessage=(mobile)=>{
+    mobile.sendValue(fields.errorMessage.id, {
+        content:'Please click on the video to enable audio control',
+        style:{
+            color:'red'
+        }
+    });
+}
+export const clearClickOnVideoMessage=(mobile)=>{
+    mobile.sendValue(fields.errorMessage.id, '');
+}

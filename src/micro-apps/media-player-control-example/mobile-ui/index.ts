@@ -13,14 +13,13 @@ export enum Mode {
     PLAY_VIDEO
 }
 
-const buildInitData=(videoData,mode,configId)=>{
+const buildInitData=(videoData,mode)=>{
     switch(mode){
-
           case  Mode.PLAY_VIDEO:
-            return  playerUI.initData(videoData.video.title);
+            return  playerUI.initData(videoData);
             case Mode.SELECT_VIDEO:
             default:
-                return selectorUI.initData(videoData.video.title, videoData.video.synopsis);
+                return selectorUI.initData(videoData);
     }
 
 }
@@ -28,18 +27,19 @@ const buildInitData=(videoData,mode,configId)=>{
 export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,allowAudio})=>{
         const [configId, setConfigId]=useState(1);
         const [mode,setMode] = useState(Mode.SELECT_VIDEO);
+
         const changeMode=(mode)=>{
             setMode(mode);
             setConfigId(configId=>configId+1);
         };
 
-        const mobile = useMobile(() => buildInitData(videoData,mode, configId), true,configId);
+        const mobile = useMobile(() => buildInitData(videoData,mode), true,configId);
         const history = useHistory();////website
         const onChangeVideoData = videoData => {
-            videoControl.setPlayVideoSource(videoPlayer.current, videoData.video);
+            videoControl.setPlayVideoSource(videoPlayer.current, videoData);
             if(mode===Mode.SELECT_VIDEO){
-                selectorUI.sendTitle(mobile, videoData.video.title);
-                selectorUI.sendSynopsis(mobile, videoData.video.synopsis);
+                selectorUI.sendTitle(mobile, videoData.title);
+                selectorUI.sendSynopsis(mobile, videoData.synopsis);
             }
             setVideoData(videoData);
         };
@@ -57,6 +57,7 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
                                     case selectorUI.fields.next.id:
                                             onChangeVideoData(videoControl.getNextVideo(videoData));
                                             break;
+
                                     default:
                                             mobileUI.onFieldChange(field,history)////website
                             }
@@ -87,6 +88,30 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
                                             playerUI.sendPauseButton(mobile);
                                     }
                                     break;
+                                case playerUI.fields.mute.id:
+                                    if(!videoPlayer.current){
+                                          break;
+                                    }
+                                    if (field.value) {
+                                            if(!videoPlayer.current.muted){
+                                                videoControl.setMuted(videoPlayer.current,true);
+                                                playerUI.sendUnmuteButton(mobile);
+                                            }
+                                    }
+                                    else {
+                                        if(videoPlayer.current.muted){
+                                            if(allowAudio){
+                                                videoControl.setMuted(videoPlayer.current,false);
+                                                playerUI.sendMuteButton(mobile);
+                                            }
+                                            else{
+                                                playerUI.displayClickOnVideoMessage(mobile);
+
+                                            }
+                                        }
+                                    }
+                                break;
+
                                 case playerUI.fields.ff.id:
                                     if (videoPlayer.current) {
                                             videoControl.fastForwardVideo(videoPlayer.current);
@@ -117,15 +142,27 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
     return {mobile,
         handlers:{
             onPlay:() => {
-                    playerUI.sendStatus(mobile, 'Playing', '');
-                    playerUI.sendPauseButton(mobile);
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
+                playerUI.sendStatus(mobile, 'Playing', '');
+                playerUI.sendPauseButton(mobile);
+
+
             },
             onPause :() => {
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
                 playerUI.sendStatus(mobile, 'Paused', '');
                 playerUI.sendPlayButton(mobile);
+
             },
             onTimeUpdate:(videoPlayer)=>{
-                const { duration, sliderValue } = videoControl.getVideoData(videoPlayer.current);
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
+                const { duration, sliderValue } = videoControl.getVideoPlayerData(videoPlayer.current);
                 if (!duration) {
                     return;
                 }
@@ -134,21 +171,39 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
                 }
             },
             onAbort : () => {
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
                 playerUI.sendStatus(mobile, 'Aborted', '');
                 playerUI.sendPlayButton(mobile);
             },
             onEnded : () => {
                 videoControl.skipToBegin(videoPlayer.current);
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
                 playerUI.sendStatus(mobile, 'Completed', '');
                 playerUI.sendPlayButton(mobile);
             },
             onError:()=>{
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
                 playerUI.sendStatus(mobile, 'Error', 'Something wrong in player');
                 playerUI.sendPlayButton(mobile);
             },
             onPlaying:() => {
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
                 playerUI.sendStatus(mobile, 'Playing', '');
                 playerUI.sendPauseButton(mobile);
+            },
+            audioEnabled:()=>{
+                if(mode!==Mode.PLAY_VIDEO){
+                    return;
+                }
+                playerUI.clearClickOnVideoMessage(mobile);
             }
 
         }

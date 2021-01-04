@@ -5,8 +5,9 @@ import {useConnectMobile,ConnectWindow, ConnectButton} from './mobile-ui';
 
 const VideoApp: React.FC = () => {
   const [videoData, setVideoData] = useState(videoControl.getDefaultVideo());
-  const videoPlayer = useRef(null);
+  const videoPlayer = useRef<HTMLVideoElement>(null);
   const [allowAudio,setAllowAudio]=useState(false);
+
   const {mobile, handlers} = useConnectMobile({videoPlayer,videoData,setVideoData,videoControl,allowAudio});
   const onPlay = () => handlers.onPlay();
   const onPause = () => handlers.onPause();
@@ -34,7 +35,9 @@ const VideoApp: React.FC = () => {
   const [w, h] = useWindowSize();
   const { videoWidth, videoHeight } = videoControl.calculateWatchWindowSize(w, h);
   const onVideoClicked=()=>{
-      setAllowAudio(true);
+       setAllowAudio(true);
+       handlers.audioEnabled();
+
   };
   return (
     <PageContainer>
@@ -68,7 +71,7 @@ const VideoApp: React.FC = () => {
         onVolumeChange={onVolumeChange}
         onWaiting={onWaiting}
         controls>
-        <source src={videoData.video.mp4} type="video/mp4" />
+        <source src={videoData.mp4} type="video/mp4" />
       </video>
       <ConnectWindow mobile={mobile}/>
       <AppFooter>
