@@ -13,7 +13,7 @@ const initGameState = () => {
 
     myGamePiece = new GameComponent(canvas, canvasContext, 30, 30, "red", 10, 120, 'rect');
     myGamePiece.gravity = 0.05;
-    myScore = new GameComponent(canvas, canvasContext, "30px", "Consolas", "black", 280, 40, "text");
+   // myScore = new GameComponent(canvas, canvasContext, "30px", "Consolas", "black", 280, 40, "text");
     frameNo = 0;
     myObstacles = [];
     updateGameArea();
@@ -81,6 +81,17 @@ const clearGame = () => {
         canvasContext.clearRect(0, 0, canvas.width, canvas.height);
     }
 };
+
+let lastFrameUpdate:null|number=null;
+const shouldUpdate=(period)=>{
+    const now=new Date().getTime();
+    if(lastFrameUpdate === null || (now-lastFrameUpdate)>period){
+        lastFrameUpdate=now;
+        return true;
+    }
+    return false;
+}
+
 const updateGameArea = () => {
     if (!canvas) {
         return;
@@ -108,10 +119,13 @@ const updateGameArea = () => {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    if (myScore) {
-        myScore.text = "SCORE: " + frameNo;
-        myScore.update();
+    if(shouldUpdate(500)){
+        eventListeners.onFrameNo(frameNo);
     }
+    // if (myScore) {
+    //     myScore.text = "SCORE: " + frameNo;
+    //     myScore.update();
+    // }
 
     //myGamePiece.newPos();
     myGamePiece && myGamePiece.update();
