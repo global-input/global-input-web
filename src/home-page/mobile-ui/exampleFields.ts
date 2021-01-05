@@ -29,17 +29,11 @@ export const FIELDS = {
         icon: 'play',
         viewId: "row2"
     },
-    sendMessage: {
-        id: 'send-message-example',
-        type: 'button',
-        label: 'Mobile Storage',
-        icon: 'save',
-        viewId: "row2"
-    },
+
     contentTransfer: {
         id: 'content-transfer-example',
         type: 'button',
-        label: 'Content Transfer',
+        label: 'Simple Transfer',
         icon: 'right',
         viewId: "row2"
     }
@@ -61,14 +55,9 @@ export const onFieldChange = (field, history) => {
         case FIELDS.game.id:
             history.push(config.paths.examples.gameControl.path);
             break;
-        case FIELDS.sendMessage.id:
-            history.push(config.paths.examples.sendMessage.path);
-            break;
         case FIELDS.contentTransfer.id:
             history.push(config.paths.examples.contentTransfer.path);
             break;
-
-
         default:
             return false;
     }

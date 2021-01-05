@@ -29,7 +29,8 @@ const initData = {
                         borderColor: '#EEEEEE',
                         marginBottom:20,
                         width:'98%',
-                        backgroundColor:'rgb(225, 235, 245)'
+                        backgroundColor:'rgb(225, 235, 245)',
+                        justifyContent:'space-between'
                     }
                 },
                 row2: {
@@ -38,7 +39,8 @@ const initData = {
                         borderColor: '#EEEEEE',
                         marginBottom:20,
                         width:'98%',
-                        backgroundColor:'rgb(225, 235, 245)'
+                        backgroundColor:'rgb(225, 235, 245)',
+                        justifyContent:'space-between'
                     }
                 }
             }
