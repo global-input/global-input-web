@@ -35,6 +35,17 @@ export const GetAppPage: React.FC = () => {
             </CardFooter>
         </Card>
         <Card>
+          <ModuleIcon/>
+          <CardTitle>NPM Modules</CardTitle>
+          <CardContent>
+          Modules for enabling applications to have mobile app interoperability.
+          </CardContent>
+          <CardFooter>
+                <JSModuleButton/>
+                <ReactModuleButton/>
+            </CardFooter>
+        </Card>
+        <Card>
           <ExtensionIcon/>
           <CardTitle>Browser Extensions</CardTitle>
           <CardContent>
@@ -46,17 +57,7 @@ export const GetAppPage: React.FC = () => {
             </CardFooter>
         </Card>
 
-        <Card>
-          <ModuleIcon/>
-          <CardTitle>NPM Modules</CardTitle>
-          <CardContent>
-          Modules for enabling applications to have mobile app interoperability.
-          </CardContent>
-          <CardFooter>
-                <JSModuleButton/>
-                <ReactModuleButton/>
-            </CardFooter>
-        </Card>
+
 
       </Content>
 
