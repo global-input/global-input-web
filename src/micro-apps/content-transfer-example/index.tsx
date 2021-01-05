@@ -1,83 +1,160 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'; ////website
-/*
-import { useGlobalInputApp,ConnectQR } from 'global-input-react';
-*/
-import { useMobile,ConnectWidget } from '../../mobile';
+import styled from 'styled-components';
+import { useConnectMobile,ConnectWidget } from './mobile-ui';
 
-import { PageContainer, Title, P, A, TextAreaBox, TextButton } from './app-layout';
-import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
+
+
 
 const App: React.FC = () => {
   const [content, setContent] = useState('');
-  const history = useHistory();////website
-/*
-  const mobile = useGlobalInputApp({ initData });
-*/
- const mobile = useMobile(initData, true);
-  mobile.setOnchange(({ field }) => {
-    switch (field.id) {
-      case FIELDS.contentField.id:
-        setContent(field.value as string);
-        break;
-      default:
-      mobileUI.onFieldChange(field, history); ////website
-
-    }
-  });
+  const {mobile,onContentChanged} = useConnectMobile({setContent});
 
   const copyToClipboard = () => {
-    const el = document.getElementById("textContent") as HTMLInputElement;
-    if (el) {
-      el.select();
-    }
-    document.execCommand("Copy");
+      navigator.clipboard.writeText(content);
   }
-const ConnectQR=ConnectWidget;
-  return (
-    <PageContainer>
-      <Title>Content Transfer Application</Title>
-      <ConnectQR mobile={mobile}/>
-      {mobile.isError && (<P>{mobile.errorMessage}</P>)}
-      {mobile.isConnectionDenied && (<P>You can only use one mobile app per session. Disconnect to start a new session.</P>)}
-      {mobile.isConnected && (
-        <>
-          <TextAreaBox id="textContent" onChange={(evt: any) => {
-            setContent(evt.target.value);
-            mobile.sendValue(FIELDS.contentField.id, evt.target.value);
-          }} value={content} />
-          <TextButton label="Copy" onClick={copyToClipboard} />
-        </>
-      )}
 
-      <P>This example application (with its <A href="https://github.com/global-input/content-transfer-example">source code</A>) demonstrate how you can use the <a href="https://github.com/global-input/global-input-react">extension library</a> to provide <A href="https://globalinput.co.uk/global-input-app/mobile-content-transfer">Mobile Content Transfer</A> functionality on a multi-device environment.
-            Because of its simplicity, you may consider it as an "Hello World" example of the Mobile Integration offered by Global Input App.
-            </P>
-    </PageContainer>
+  return (
+    <Container>
+      <Title>A Mobile Interoperability Example</Title>
+      <SourceCodeLink>source code</SourceCodeLink>
+      <ConnectWidget mobile={mobile}/>
+      <Form>
+        <TextArea id="textContent" onChange={(evt: any) => {
+            setContent(evt.target.value);
+            onContentChanged(evt.target.value);
+          }} value={content} />
+          <Button  onClick={copyToClipboard}>Copy</Button>
+
+
+      <Text>This example application serves as a 'Hello World' example of how to use the <LibraryLink>global-input-react</LibraryLink> library to achieve the mobile interoperability.
+            </Text>
+
+      </Form>
+
+    </Container>
   );
 
 };
 
-const FIELDS = {
-  contentField: {
-    id: "content",
-    label: "Content",
-    value: "",
-    nLines: 10
-  },
-  info: {
-    id: "info",
-    type: "info",
-    value: "You may paste content in the text box above to transfer it into the connected application."
-  }
-};
-mobileUI.add(FIELDS);////website
-const initData = {
-  id: 'content-transfer-example',
-  form: {
-    title: "Content Transfer",
-    fields: Object.values(FIELDS)
-  }
-};
 
 export default App;
+
+
+export const Container =styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    width:100%;
+`;
+
+const Title=styled.div`
+font-size: 12px;
+    color: #445566;
+    font-family: Georgia, Times, Serif;
+
+
+    @media screen and (min-height:150px){
+        font-size:26px;
+    }
+
+    @media screen and (min-height:400px){
+        font-size:32px;
+        margin-bottom:10px;
+    }
+    @media print{
+        display:none;
+    }
+`;
+
+
+const Button = styled.button`
+    text-decoration: none;
+    font-size: 11px;
+    border-radius: 8px;
+    color: #4281BD;
+    background-color: white;
+    white-space: nowrap;
+
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-color:#EEEEEE;
+    display:flex;
+    min-width:50px;
+
+    max-width: 200px;
+    margin-left:5px;
+    margin-right:5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+
+    &: hover{
+        transform: translateY(-3px);
+        box-shadow: 0 0 50px #ffff;
+    }
+
+`;
+
+
+export const TextArea = styled.textarea`
+    display: block;
+    line-height: 2em;
+    border:1pxz solid red;
+    margin: 0;
+    padding-left: 10px;
+    font-size: medium;
+    border: 2px solid rgb(230,230,230);
+    background-color: rgb(249,249,249);
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-weight: 500;
+    &:focus {
+        border: 1px solid #2c7ac9;
+    }
+
+    width:100%;
+
+    height:100px;
+`;
+
+export const Form = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding:10px;
+    width:90%;
+    width:90%;
+    overflow: scroll;
+    max-width:700px;
+`;
+
+
+
+const Text=styled.div`
+    font-size: 16px;
+`;
+
+const A=styled.a`
+   color: #153E85;
+    font-weight: 100;
+    font-family: Georgia, Times, Serif;
+`;
+
+const SourceCodeLink=styled(A).attrs({
+  href:'https://github.com/global-input/content-transfer-example',
+  rel:'noreferrer noopener',
+  target:'_blank'})``;
+
+
+const LibraryLink=styled(A).attrs({
+    href:'https://github.com/global-input/global-input-react',
+    rel:'noreferrer noopener',
+    target:'_blank'})``;
