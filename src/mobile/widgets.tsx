@@ -451,14 +451,16 @@ export const ConnectButton:React.FC<ButtonProps>=({mobile,label='Connect', skin}
                        <ConnectLabel>{label}</ConnectLabel>
                 </DarkButton>
         );
-
 };
 
 
 
+
+
+
 export const DisConnectButton:React.FC<ButtonProps>=({mobile,label='Disconnect',skin})=>{
-        const {isConnected,isConnectionDenied, restart}=mobile;
-        if(isConnected || isConnectionDenied){
+        const {isConnected,isConnectionDenied, isDisconnected, restart}=mobile;
+        if(isConnected || isConnectionDenied || isDisconnected){
                 if(skin==='white'){
                         return (<BigButton onClick={()=>restart()}>{label}</BigButton>);
                 }

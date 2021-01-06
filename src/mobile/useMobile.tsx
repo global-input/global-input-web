@@ -25,7 +25,7 @@ export const useMobile = (initData: InitData | (() => InitData), showWidgetOnSta
         initData, options:connectOptions, codeAES: connectionSettings.codeKey
     }, isShowWidget, `${settingsConfig}-${configId}`);
     ////dev-test codeData
-    const {disconnect}=mobile;
+    const {close}=mobile;
     const onSaveSettings=useCallback((settings)=>{
         if (storage.saveConnectionSettings(settings)) {
             setWidgetState(WidgetState.PAIRING);
@@ -34,8 +34,8 @@ export const useMobile = (initData: InitData | (() => InitData), showWidgetOnSta
             setWidgetState(WidgetState.CONNECT_QR);
         }
         setSettingsConfigId(configId => configId + 1);
-        disconnect();
-    },[disconnect]);
+        close();
+    },[close]);
     const loadSettings=useCallback(()=>connectionSettings,[connectionSettings]);
     return {...mobile,isShowWidget,onSaveSettings,loadSettings,widgetState,setWidgetState,setShowWidget};
 };
