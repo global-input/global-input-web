@@ -32,7 +32,8 @@ const PrivacyPage: React.FC = () => {
 </P>
 
 
-        <ConnectButton mobile={mobile} label="See How It Works"/>
+
+        <ConnectButton mobile={mobile} skin='white'/>
         <ConnectWindow mobile={mobile}/>
       </Content>
       <PageFooter/>
