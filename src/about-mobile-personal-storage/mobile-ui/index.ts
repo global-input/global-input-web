@@ -10,8 +10,8 @@ export const useConnectToMobile=()=>{
             case FIELDS.home.id:
                 history.push('/');
                 break;
-            case FIELDS.sendMessage.id:
-                    history.push(config.paths.examples.sendMessage.path);
+            case FIELDS.transferForm.id:
+                    history.push(config.paths.examples.transferForm.path);
                     break;
             default:
         }
@@ -20,8 +20,8 @@ export const useConnectToMobile=()=>{
 };
 
 const FIELDS={
-    sendMessage: {
-        id: 'send-message-example',
+    transferForm: {
+        id: 'transfer-form-example',
         type: 'button',
         label: 'See It In Action',
         icon: 'save',
