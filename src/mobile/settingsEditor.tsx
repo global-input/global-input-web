@@ -145,14 +145,15 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="url" onChange={evt=>{
                           setSettings(setting => ({ ...setting, url:evt.target.value}));
-                        }} value={settings.url ? settings.url : ''} placeholder="Proxy URL"
+                        }} value={settings.url ? settings.url : ''} placeholder="Websocket Server URL"
                         onFocus={()=>setExpand('url')}/>
                         <Label htmlFor="url">
-                        Proxy URL
+                        WebSocket Server URL
                         </Label>
                         <Help expandId='url' expand={expand} setExpand={setExpand}>
-                                Proxy URL identifies the <WebSocketServer>WebSocket server</WebSocketServer> responsible for proxying messages between your mobile app and this application.
-            You can install and use your own <WebSocketServer>WebSocket servers</WebSocketServer> that can even run in insecure environments thanks to the end-to-end encryption that secures messages between your mobile app and this application.
+                        WebSocket Server URL specifies the <WebSocketServer>WebSocket server</WebSocketServer> that is routing (proxying) messages between your mobile app and this application.
+                If you leave it blank, it uses the default value, which is provided by us. You can certainly install and
+                use your own <WebSocketServer>WebSocket servers</WebSocketServer> that can even run in an insecure environment thanks to the end-to-end encryption that secures messages between your mobile app and this application.
                         </Help>
     </Field>
 );
@@ -169,9 +170,10 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
                             API Key
                         </Label>
                         <Help expandId='apikey' expand={expand} setExpand={setExpand}>
-API Key is used by the <WebSocketServer>WebSocket servers</WebSocketServer> to identify the incoming connections.
+API Key is used by the <WebSocketServer>WebSocket server</WebSocketServer> (specified above) to identify the incoming connections.
 There is no security implications for exposing this value except for
-the possible impact on the performance of the WebSocket server due to its increased workload, since a WebSocket server does not hold any sensitive information and is only responsible for proxying encrypted messages (encrypted with end-to-end encryption) between your mobile app and this application,
+the possible impact on the performance of the WebSocket server due to its increased workload, since a WebSocket server does not hold any sensitive information and is only responsible for proxying encrypted messages (encrypted with end-to-end encryption) between your mobile app and this application.
+If you leave it blank, it uses the default value set by our WebSocket server.
                         </Help>
 
 
@@ -190,8 +192,9 @@ const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
                         <Help expandId='securityGroup' expand={expand} setExpand={setExpand}>
                         Security Group Key is used by this client application to verify
                         the incoming connections coming from your mobile app
-            in the same way that API Keys are used by server applications to identify incoming requests on the server side.
-            You need to pair your mobile app on the "Pair" tab every time after you have modified this value to be able connect to this application.
+            in the same way that API Keys are used by server applications on the server side to identify (authenticate) incoming requests.
+            Upon modifying it, you need to pair your mobile app using the "Pair" tab so you can connect to this application. If you leave it blank,
+            it uses the default value that comes with the installation of Global Input App.
                         </Help>
 
     </Field>
@@ -205,8 +208,9 @@ const CodeKeyField=({settings, setSettings,expand,setExpand})=>(
                         <Label htmlFor="codeKey">Code Key</Label>
                         <Help expandId='codeKey' expand={expand} setExpand={setExpand}>
                         Code Key is used by this application to encrypt the content of the QR Code it displays.
-                        In order for your mobile app to be able to decrypt content of the QR code,
-                        you need to pair your mobile app on the "Pair" tab every time after you have modified it.
+                        Obviously, you need to pair your mobile app using the "Pair" tab when you have modified its value.
+                        If you leave it blank,
+            it uses the default value that comes with the installation of Global Input App.
                         </Help>
 
                 </Field>
