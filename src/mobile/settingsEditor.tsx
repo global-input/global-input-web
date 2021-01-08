@@ -45,7 +45,6 @@ const Form = styled.div`
     overflow: scroll;
     height:65vh;
     @media screen and (min-height:370px){
-
         height:300px;
     }
     @media screen and (min-height:400px){
@@ -59,9 +58,7 @@ const Form = styled.div`
     @media screen and (min-height:600px){
         height:425px;
     }
-    @media screen and (min-height:700px){
-        height:500px;
-    }
+
 
 
 `;
