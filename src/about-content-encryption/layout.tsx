@@ -12,6 +12,12 @@ import mobileEncryption250 from './images/mobile-encryption-250.png';
 import mobileEncryption200 from './images/mobile-encryption-200.png';
 
 
+import keyCloud400 from './images/key-cloud-400.png';
+import keyCloud350 from './images/key-cloud-350.png';
+import keyCloud250 from './images/key-cloud-250.png';
+import keyCloud200 from './images/key-cloud-200.png';
+
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,6 +124,16 @@ export const MobileEncryptionGraphGraph=()=>(
     </picture>
 );
 
+export const KeyCloudGraphGraph=()=>(
+    <picture>
+
+
+        <source media="(max-width:250px)" srcSet={keyCloud200}/>
+        <source media="(max-width:350px)" srcSet={keyCloud250}/>
+        <source media="(max-width:400px)" srcSet={keyCloud350}/>
+        <img  alt="Mobile Encryption" src={keyCloud400}/>
+    </picture>
+);
 
 
 const Tick=styled.div`

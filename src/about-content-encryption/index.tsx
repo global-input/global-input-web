@@ -6,7 +6,7 @@ import {PageFooter} from '../page-footer';
 import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
-import { Container,Content, EncryptedQRCodeGraph,MobileEncryptionGraphGraph,
+import { Container,Content, EncryptedQRCodeGraph,MobileEncryptionGraphGraph,KeyCloudGraphGraph,
   TickText,Column,Title,Row,Row2 } from './layout';
 
 export const AboutMobileEncryption: React.FC = () => {
@@ -63,6 +63,28 @@ export const AboutMobileEncryption: React.FC = () => {
 
 
             </Row2>
+
+            <Row>
+                  <Column>
+                      <Title>Encrypting Keys in Key Vaults.</Title>
+                      <TickText>
+                      Physical Separations Keys from Data Access
+                      </TickText>
+                      <TickText>
+                      Access Control with Encryption
+                    </TickText>
+                    <TickText>
+                      Increased Accountability in Data Access.
+                    </TickText>
+                    <TickText>
+                      Access Permission Granted at the point of each Use
+                    </TickText>
+
+
+                 </Column>
+                 <KeyCloudGraphGraph/>
+            </Row>
+
             <ConnectButton mobile={mobile} label="See It In Action"/>
             <ConnectWindow mobile={mobile}/>
         </Content>

@@ -4,6 +4,7 @@ import oneClickSignIn200 from './images/one-click-sign-in-200.png';
 import oneClickSignIn250 from './images/one-click-sign-in-250.png';
 import oneClickSignIn350 from './images/one-click-sign-in-350.png';
 import oneClickSignIn400 from './images/one-click-sign-in-400.png';
+import multiFactor from './images/multi-factor.png';
 
 export const Container = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ export const Content=styled.div`
 `;
 
 export const Row = styled.div`
+        padding-top:50px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -42,7 +44,14 @@ export const Row = styled.div`
             align-items:flex-start;
             justify-content:space-between;
         }
+`;
 
+export const Row2=styled(Row)`
+    @media only screen and (min-width:900px){
+        & picture {
+            order:-1;
+        }
+    }
 `;
 
 export const Column = styled.div`
@@ -91,6 +100,12 @@ export const SignInGraph=()=>(
     </picture>
 );
 
+export const MultiFactorGraph=()=>(
+    <picture>
+
+        <img  alt="Multi Factor Authentication" src={multiFactor}/>
+    </picture>
+);
 
 const Tick=styled.div`
     position: relative;

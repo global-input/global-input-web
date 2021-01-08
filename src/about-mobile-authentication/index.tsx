@@ -6,8 +6,8 @@ import {PageFooter} from '../page-footer';
 import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 
-import { Container,Content, SignInGraph,
-  TickText,Column,Title,Row } from './layout';
+import { Container,Content, SignInGraph,MultiFactorGraph,
+  TickText,Column,Title,Row, Row2 } from './layout';
 
 export const AboutMobileAuthentication: React.FC = () => {
   usePageTitle('Mobile Authentication');
@@ -18,8 +18,8 @@ export const AboutMobileAuthentication: React.FC = () => {
         <PageHeader selected={config.paths.mobileAuthentication.path} />
         <Content>
             <Title>Use Mobile for Subscription, Signing in and Beyond</Title>
-            <Row>
-                  <SignInGraph/>
+            <Row2>
+
                   <Column>
                       <TickText>
       Superior security and improved user experience at the same time.
@@ -40,6 +40,31 @@ export const AboutMobileAuthentication: React.FC = () => {
                         Enhance the existing password-based authentications without using a password manager.
                     </TickText>
                  </Column>
+                 <SignInGraph/>
+            </Row2>
+            <Row>
+
+                  <Column>
+                      <TickText>
+                      All In One: Multi Factor Authentication, Password Sign In, Change Password with Random Passwords
+                      </TickText>
+                    <TickText>
+                       Single Mobile App solution for Sign In, Subscriptions and Secure Mobile Operations.
+                    </TickText>
+                    <TickText>
+                       Encryption Based authentication and Access Control.
+                    </TickText>
+                    <TickText>
+                       Self-service and reduce the need for IT Support calls
+                    </TickText>
+
+                    <TickText>
+                      Flexible Integration to Business Applications.
+                    </TickText>
+
+
+                 </Column>
+                 <MultiFactorGraph/>
             </Row>
             <ConnectButton mobile={mobile} label="See It In Action"/>
             <ConnectWindow mobile={mobile}/>
