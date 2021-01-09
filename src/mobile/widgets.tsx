@@ -104,26 +104,40 @@ const Content = styled.div`
 `;
 const PopupGlass = styled.div`
         display: flex;
-        flex-direction: column;
-
-        align-items: center;
-
-
         margin: 0;
         padding: 0;
         position: fixed;
-        top:10px;
-        left:0;
         z-index:10;
         width: 100vw;
-        @media screen and (min-height:530px){
-                top:0;
-                height:100vh;
-                justify-content: center;
+        flex-direction: column;
+        justify-content:flex-start;
+        align-items: center;
+        top:0;
+        left:0;
+        @media screen and (min-height:520px) and (min-width:520px){
+            top:20px;
+        }
+        @media screen and (min-height:580px) {
+            top:30px;
+        }
+
+        @media screen and (min-height:700px) {
+            top:150px;
         }
 
 
+
+
+
+
+
+
 `;
+// @media screen and (min-height:530px){
+//     top:0;
+//     height:100vh;
+//     justify-content: center;
+// }
 
  const ErrorMessage = styled.div`
         color: red;
