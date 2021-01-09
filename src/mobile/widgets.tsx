@@ -120,6 +120,9 @@ const PopupGlass = styled.div`
         @media screen and (min-height:580px) {
             top:30px;
         }
+        @media screen and (min-height:600px) {
+            top:60px;
+        }
 
         @media screen and (min-height:700px) {
             top:150px;
