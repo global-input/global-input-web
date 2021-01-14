@@ -11,5 +11,5 @@ export interface MobileData extends GlobalInputData{
     loadSettings:()=>ConnectionSettings;
     widgetState:WidgetState;
     setWidgetState:(widgetState:WidgetState)=>void;
-    setShowWidget:(boolean)=>void;
+    setShowWidget:(isShowWidget:boolean)=>void;
 }
