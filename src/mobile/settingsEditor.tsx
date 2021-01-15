@@ -139,9 +139,15 @@ margin-left:5px;
 `;
 
 
+type setSettingsParams=ConnectionSettings| ((settings:ConnectionSettings)=>ConnectionSettings);
 
-
-const ProxyField=({settings, setSettings,expand,setExpand})=>(
+interface SettingsFieldProp{
+    settings:ConnectionSettings;
+    setSettings:(settings:setSettingsParams)=>void;
+    expand:string;
+    setExpand:(expand:string)=>void;
+}
+const ProxyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="url" onChange={evt=>{
                           setSettings(setting => ({ ...setting, url:evt.target.value}));
@@ -160,7 +166,7 @@ const ProxyField=({settings, setSettings,expand,setExpand})=>(
 
 
 
- const APIKeyField=({settings, setSettings,expand,setExpand}) =>(
+ const APIKeyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand}) =>(
     <Field>
                         <Input id="apiKey" onChange={evt=>{
                           setSettings(setting => ({ ...setting, apikey:evt.target.value}));
@@ -182,7 +188,7 @@ If you leave it blank, it uses the default value set by our WebSocket server.
 );
 
 
-const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
+const SecurityGroupField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="securityGroup" onChange={evt=>{
                           setSettings(setting => ({ ...setting, securityGroup:evt.target.value}));
@@ -199,7 +205,7 @@ const SecurityGroupField=({settings, setSettings,expand,setExpand})=>(
 
     </Field>
 );
-const CodeKeyField=({settings, setSettings,expand,setExpand})=>(
+const CodeKeyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
                 <Field>
                         <Input id="codeKey" onChange={evt=>{
                           setSettings(setting => ({ ...setting, codeKey:evt.target.value}));

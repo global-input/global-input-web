@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 
-
-const ExpandIcon =styled.div`
+interface ExpandProp{
+    expand:boolean;
+}
+const ExpandIcon =styled.div<ExpandProp>`
     box-sizing: border-box;
     position: relative;
     display: inline-block;
@@ -45,7 +47,7 @@ const HelpContainer=styled.div`
  align-items:flex-start;
  flex-wrap:wrap;
 `;
-const HelpContent=styled.div`
+const HelpContent=styled.div<ExpandProp>`
 font-family: Avenir;
     color: rgb(53,116,230);
     white-space: wrap;
@@ -57,8 +59,12 @@ font-family: Avenir;
 
 `;
 
-
-export const Help=({children,expandId, expand,setExpand})=>{
+interface Props{
+    expandId:string;
+    expand:string;
+    setExpand:(expand:string)=>void;
+}
+export const Help:React.FC<Props>=({children,expandId, expand,setExpand})=>{
     const isExpanded=expand===expandId;
     const toggle=()=>setExpand(isExpanded?'':expandId);
     return (
