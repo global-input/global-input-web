@@ -2,8 +2,12 @@ import React, {useState, useRef,useEffect} from 'react';
 import styled from 'styled-components';
 
 
+interface CopyElementProps{
+    show:boolean;
+    position?:number;
 
-const CopyContainer1=styled.div`
+}
+const CopyContainer1=styled.div<CopyElementProps>`
     display:inline-flex;
     flex-direction:row;
     position:relative;
@@ -19,7 +23,7 @@ const CopyContainer2=styled(CopyContainer1)`
 
     top:-28px;
 `;
-const CopyContainer3=styled.div`
+const CopyContainer3=styled.div<CopyElementProps>`
     display:flex;
     flex-direction:row;
     position:relative;
@@ -30,7 +34,7 @@ const CopyContainer3=styled.div`
 
 `;
 
-const CopyContainer=({position=1,children,show})=>{
+const CopyContainer:React.FC<CopyElementProps>=({position=1,children,show})=>{
     if(position===2){
         return (<CopyContainer2 show={show}>{children}</CopyContainer2>);
     }
@@ -42,7 +46,7 @@ const CopyContainer=({position=1,children,show})=>{
     }
 }
 
-const CopyContent=styled.div`
+const CopyContent=styled.div<CopyElementProps>`
     font-family: Avenir;
     color: #4040bf;
     white-space: wrap;
@@ -51,7 +55,7 @@ const CopyContent=styled.div`
     display:${props=>props.show?'block':'none'};
 `;
 
-const Button = styled.button`
+const Button = styled.button<CopyElementProps>`
     text-decoration: none;
     font-size: 10px;
     border-radius: 8px;
@@ -77,8 +81,13 @@ const Button = styled.button`
 
 `;
 
+interface Props{
+    value:string;
+    position?:number;
 
-export const CopyToClipboardButton=({children,value,position=1})=>{
+}
+
+export const CopyToClipboardButton:React.FC<Props>=({children,value,position=1})=>{
     const [copying,setCopying]=useState(false);
     const timerHandler = useRef<ReturnType<typeof setTimeout> | null>(null);
     useEffect(() => {
@@ -104,7 +113,7 @@ export const CopyToClipboardButton=({children,value,position=1})=>{
             <CopyContent show={copying}>
                 copied into your clipboard
             </CopyContent>
-            <Button onClick={onCopy} show={(!copying) && navigator.clipboard && value}>Copy</Button>
+            <Button onClick={onCopy} show={(!copying) && !!navigator.clipboard && !!value}>Copy</Button>
 
     </CopyContainer>
     );

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ExpandIcon =styled.div`
+interface ExpandProp{
+    expand?:boolean;
+    position?:number;
+}
+const ExpandIcon =styled.div<ExpandProp>`
     box-sizing: border-box;
     position: relative;
     display: inline-block;
@@ -51,7 +55,7 @@ const HelpContainer3=styled(HelpContainer1)`
     position:relative;
     top:-12px;
 `;
-const HelpContainer=({position=1,children})=>{
+const HelpContainer:React.FC<ExpandProp>=({position=1,children})=>{
     if(position===2){
         return (<HelpContainer2>{children}</HelpContainer2>)
     }
@@ -63,7 +67,7 @@ const HelpContainer=({position=1,children})=>{
     }
 }
 
-const HelpContent=styled.div`
+const HelpContent=styled.div<ExpandProp>`
 font-family: Avenir;
     color: rgb(53,116,230);
     white-space: wrap;
@@ -79,7 +83,14 @@ font-family: Avenir;
 
 
 `;
-export const Help=({children,expandId, expand,setExpand, position=1})=>{
+
+interface Prop{
+    expandId:string;
+    expand:string;
+    setExpand:(expand:string)=>void;
+    position?:number;
+}
+export const Help:React.FC<Prop>=({children,expandId, expand,setExpand, position=1})=>{
     const isExpanded=expand===expandId;
     const toggle=()=>setExpand(isExpanded?'':expandId);
     return (

@@ -140,8 +140,10 @@ export const MoreInfo = styled.div`
         display:none;
     }
 `;
-
-export const Instruction=styled.div`
+interface InstructionProps{
+    center?:boolean;
+}
+export const Instruction=styled.div<InstructionProps>`
     font-size: 10px;
     align-self:${props=>props.center?'center':'flex-start'};
     @media screen and (min-height:250px){

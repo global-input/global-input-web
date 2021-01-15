@@ -1,4 +1,5 @@
-import React from 'react';
+import React  from 'react';
+import type {ChangeEvent} from 'react';
 import styled from 'styled-components';
 
 const Input=styled.input.attrs({
@@ -60,7 +61,13 @@ ${Input}:checked ~ &:after {
 }
 
 `;
-export const CheckBox=({label='',checked,onChange})=>(
+
+interface CheckBoxProps{
+    label:string;
+    checked:boolean;
+    onChange:(evt:ChangeEvent<HTMLInputElement>)=>void;
+}
+export const CheckBox:React.FC<CheckBoxProps>=({label='',checked,onChange})=>(
  <Label>
      {label}
      <Input checked={checked} onChange={onChange}/>
