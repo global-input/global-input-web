@@ -15,7 +15,7 @@ interface MobileDecryptionProps {
     domain: string;
     back: () => void;
 }
-const MobileEncryption: React.FC<MobileDecryptionProps> = ({ domain, back }) => {
+const MobileDecryption: React.FC<MobileDecryptionProps> = ({ domain, back }) => {
     const [page, setPage] = useState(PAGES.CONTENT_ON_COMPUTER);
     const [content, setContent] = useState('');
     const contentOnMobile = useCallback((content: string) => {
@@ -59,4 +59,4 @@ const MobileEncryption: React.FC<MobileDecryptionProps> = ({ domain, back }) => 
 };
 
 
-export default MobileEncryption;
+export default MobileDecryption;

@@ -38,7 +38,7 @@ export const DisplayInputField = ({
     if (visibility.value === 0 || (!formField.nLines) || formField.nLines <= 1) {
         return (
             <InputGroup>
-                {showCheckbox && (<CheckBox checked={checked} onChange={toggleSelect} />)}
+                {showCheckbox && (<CheckBox label="" checked={checked} onChange={toggleSelect} />)}
                 <Field>
                     <Input id={formField.id} type={type}
                     value={formField.value}
