@@ -9,7 +9,7 @@ const ExpandIcon =styled.div<ExpandProp>`
     box-sizing: border-box;
     position: relative;
     display: inline-block;
-    border:1px solid red;
+
     background-color:white;
     cursor:pointer;
 

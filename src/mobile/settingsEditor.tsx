@@ -150,7 +150,8 @@ interface SettingsFieldProp{
 const ProxyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="url" onChange={evt=>{
-                          setSettings(setting => ({ ...setting, url:evt.target.value}));
+                            const url=evt.target.value;
+                          setSettings(setting => ({ ...setting, url}));
                         }} value={settings.url ? settings.url : ''} placeholder="Websocket Server URL"
                         onFocus={()=>setExpand('url')}/>
                         <Label htmlFor="url">
@@ -169,7 +170,8 @@ const ProxyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setE
  const APIKeyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand}) =>(
     <Field>
                         <Input id="apiKey" onChange={evt=>{
-                          setSettings(setting => ({ ...setting, apikey:evt.target.value}));
+                            const apikey=evt.target.value;
+                            setSettings(setting => ({ ...setting, apikey}));
                         }} value={settings.apikey ? settings.apikey : ''} placeholder="API Key"
                         onFocus={()=>setExpand('apikey')}/>
                         <Label htmlFor="apiKey">
@@ -191,7 +193,8 @@ If you leave it blank, it uses the default value set by our WebSocket server.
 const SecurityGroupField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
     <Field>
                         <Input id="securityGroup" onChange={evt=>{
-                          setSettings(setting => ({ ...setting, securityGroup:evt.target.value}));
+                          const securityGroup=evt.target.value;
+                          setSettings(setting => ({ ...setting, securityGroup}));
                         }} value={settings.securityGroup?settings.securityGroup:''} placeholder="Security Group Key"
                         onFocus={()=>setExpand('securityGroup')}/>
                         <Label htmlFor="securityGroup">Security Group Key</Label>
@@ -199,7 +202,7 @@ const SecurityGroupField:React.FC<SettingsFieldProp>=({settings, setSettings,exp
                         Security Group Key is used by this client application to verify
                         the incoming connections coming from your mobile app
             in the same way that API Keys are used by server applications on the server side to identify (authenticate) incoming requests.
-            Upon modifying it, you need to pair your mobile app using the "Pair" tab so you can connect to this application. If you leave it blank,
+            Upon modifying it, you need to pair your mobile app on the "Pair" tab so you can connect to this application. If you leave it blank,
             it uses the default value that comes with the installation of Global Input App.
                         </Help>
 
@@ -208,13 +211,14 @@ const SecurityGroupField:React.FC<SettingsFieldProp>=({settings, setSettings,exp
 const CodeKeyField:React.FC<SettingsFieldProp>=({settings, setSettings,expand,setExpand})=>(
                 <Field>
                         <Input id="codeKey" onChange={evt=>{
-                          setSettings(setting => ({ ...setting, codeKey:evt.target.value}));
+                            const codeKey=evt.target.value;
+                          setSettings(setting => ({ ...setting, codeKey}));
                         }} value={settings.codeKey?settings.codeKey:''} placeholder="Code Key"
                         onFocus={()=>setExpand('codeKey')}/>
                         <Label htmlFor="codeKey">Code Key</Label>
                         <Help expandId='codeKey' expand={expand} setExpand={setExpand}>
                         Code Key is used by this application to encrypt the content of the QR Code it displays.
-                        Obviously, you need to pair your mobile app using the "Pair" tab when you have modified its value.
+                        Obviously, you need to pair your mobile app on the "Pair" tab when you have modified its value.
                         If you leave it blank,
             it uses the default value that comes with the installation of Global Input App.
                         </Help>
