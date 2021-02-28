@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom'; ////website
 
-import { useMobile, ConnectWidget,DisConnectButton} from './mobile';
+import { useMobile, ConnectWidget,DisconnectButton} from './mobile';
 import {AppContainer,ConnectedInstruction,TipsOnButton} from './components';
 
 
@@ -41,7 +41,7 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
             <ConnectedInstruction mobile={mobile} center={true}>
                 <TipsOnButton/>
             </ConnectedInstruction>
-            <DisConnectButton mobile={mobile}/>
+            <DisconnectButton mobile={mobile}/>
         </AppContainer>
     );
 }
