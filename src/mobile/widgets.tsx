@@ -475,7 +475,7 @@ export const ConnectButton:React.FC<ButtonProps>=({mobile,label='Connect', skin}
 
 
 
-export const DisConnectButton:React.FC<ButtonProps>=({mobile,label='Disconnect',skin})=>{
+export const DisconnectButton:React.FC<ButtonProps>=({mobile,label='Disconnect',skin})=>{
         const {isConnected,isConnectionDenied, isDisconnected, restart}=mobile;
         if(isConnected || isConnectionDenied || isDisconnected){
                 if(skin==='white'){
