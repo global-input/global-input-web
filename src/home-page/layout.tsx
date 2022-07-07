@@ -63,11 +63,26 @@ export  const Title=styled.div`
         font-size: 65px;
         padding-bottom: 30px;
         line-height: 65px;
+        width: 25vw;
+
+        @media only screen and (max-width:1258px){
+          font-size: 40px;
+          line-height: 40px;
+        }
+
+        @media only screen and (max-width:900px){
+          width: 50vw;
+        }
     `;
 export  const Subtitle=styled.div`
       font-size: 20px;
       padding-bottom: 3px;
       line-height: 28px;
+      width: 25vw;
+
+      @media only screen and (max-width:900px){
+        width: 50vw;
+      }
     `;
 
 
