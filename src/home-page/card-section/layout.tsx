@@ -61,6 +61,8 @@ export const Card =styled (Link)`
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      text-align: center;
+
       background-color: #FFFFFF;
       color: #5291CD;
       height: 250px;
@@ -73,11 +75,13 @@ export const Card =styled (Link)`
       padding-bottom:30px;
       max-width: 370px;
       text-decoration:none;
-      overflow:scroll;
+
+      transition: all 0.15s ease-out;
 
       &: hover{
-        box-shadow: 0 0 50px #ffff;
+        box-shadow: 0 0 30px #0003;
         transform: translateY(-3px);
+        transition: all 0.15s ease-out;
         text-decoration:none;
       }
 
@@ -89,7 +93,6 @@ export const Content= styled.div`
       flex:1;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 20px;
