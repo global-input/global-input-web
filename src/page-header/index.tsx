@@ -25,7 +25,6 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
 
   const listMenu=(menus.map((menu, index) => (
     <MenuItem to={menu.link}
-        selected={menu.link === selected}
         key={`${index}_${menu.link}_${menu.linkText}`}>
         { menu.linkText}
    </MenuItem >
