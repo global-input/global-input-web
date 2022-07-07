@@ -31,7 +31,6 @@ export const Content=styled.div`
     align-items: flex-start;
     flex:1;
     @media only screen and (min-width:650px){
-      padding-top:100px;
       padding-left:20px;
       padding-right:20px;
     }
@@ -40,7 +39,6 @@ export const Content=styled.div`
       padding-right:80px;
     }
     @media only screen and (min-width:1258px){
-      padding-top:250px;
       padding-left:80px;
       padding-right:80px;
     }
@@ -55,45 +53,17 @@ export const Content=styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       color: white;
-
-      padding:10px;
-      @media only screen and (min-width:650px){
-        justify-content:flex-start;
-        align-items: flex-start;
-        margin-left:20px;
-      }
-      @media only screen and (min-width:1200px){
-
-        margin-left:50px;
-      }
-
-
-
+      height: 100vh;
+      margin-left: 20vw;
 `;
-
-
-
-
 
 export  const Title=styled.div`
         font-size: 40px;
-        text-align:center;
     `;
 export  const Subtitle=styled.div`
-      font-size: 16px;
-      text-align:center;
-      margin-top:10px;
-      @media only screen and (min-width:650px){
-        font-size: 20px;
-      }
-    `;
-export const SmallTitle=styled.div`
       font-size: 14px;
-      margin-top:25px;
-      margin-bottom:10px;
-      text-align:center;
+      padding-bottom: 3px;
     `;
 
 

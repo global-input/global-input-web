@@ -135,7 +135,6 @@ export const Cards=styled.div`
    justify-content:flex-start;
    align-items:center;
    width:100%;
-   margin-top:60px;
 `;
 export const CardsContent=styled.div`
    display: flex;
