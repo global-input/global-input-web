@@ -5,7 +5,7 @@ import { config } from "../configs";
 
 
 import {Title,appTitle,Logo,Container,TopBar,Icon,
-  MenuItem,CloseIcon,OpenIcon,DesktopMenuContainer,MobileMenuContainer} from './layout';
+  MenuItem,CloseIcon,OpenIcon,DesktopMenuContainer,MobileMenuContainer, LogoAndName} from './layout';
 
 
 
@@ -33,8 +33,9 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
   return (
     <Container>
       <TopBar>
-          <Logo />
-          <Title>{appTitle}</Title>
+        <LogoAndName>
+          <Logo/><Title>{appTitle}</Title>
+        </LogoAndName>
         <DesktopMenuContainer>
               {listMenu}
         </DesktopMenuContainer>
