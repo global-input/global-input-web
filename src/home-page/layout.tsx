@@ -127,14 +127,10 @@ export const LinkButton=styled(Link)`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     &: hover{
-        text-decoration: none;
-        box-shadow: 0px 15px 20px rgba(38, 151, 226, 0.4);
-        transform: translateY(-3px);
-        box-shadow: 0 0 50px #ffff;
+        background-color: #e3e3e3;
     }
     `;

@@ -24,14 +24,12 @@ const Button = styled.button`
     max-width: 200px;
     margin-left:5px;
     margin-right:5px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
 
     &: hover{
-        transform: translateY(-3px);
-        box-shadow: 0 0 50px #ffff;
+        background-color: #e3e3e3;
     }
 
 `;
