@@ -9,7 +9,7 @@ import {HowItWorks} from "./how-it-works";
 import {CardSection} from './card-section';
 
 
-import {Container,Content,TitleSection,Title,Subtitle,ButtonContainer,LinkButton} from './layout';
+import {Container,Content,TitleSection,Title,Subtitle,ButtonContainer,LinkButton, SecondaryButton} from './layout';
 
 
 const headerTextContent = {
@@ -34,8 +34,8 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
                 <Title>{headerTextContent.title}</Title>
                 <Subtitle>{headerTextContent.subtitle}</Subtitle>
                 <ButtonContainer>
-                  <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
-                  <ConnectButton mobile={mobile}/>
+                  <LinkButton to={config.paths.getAppScreen.path}>Get it free</LinkButton>
+                  <ConnectButton label="Try it out" mobile={mobile} Component={SecondaryButton}/>
                 </ButtonContainer>
           </TitleSection>
 

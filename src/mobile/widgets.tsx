@@ -7,7 +7,7 @@ import {ConnectQR, PairingQR} from 'global-input-react';////global-input-react//
 import {SettingsEditor} from './settingsEditor';
 const Button = styled.button`
     text-decoration: none;
-    font-size: 11px;
+    font-size: 15px;
     border-radius: 8px;
     color: #4281BD;
     background-color: white;
@@ -17,7 +17,7 @@ const Button = styled.button`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-color:#EEEEEE;
+    border: none;
     display:flex;
     min-width:50px;
 
@@ -26,7 +26,7 @@ const Button = styled.button`
     margin-right:5px;
     transition: all 0.3s ease 0s;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 
     &: hover{
         background-color: #e3e3e3;
@@ -38,6 +38,7 @@ const BigButton = styled(Button)`
     border-width:0;
     font-size: 15px;
 `;
+
 const Container = styled.div`
         flex-direction: column;
         justify-content: flex-center;
@@ -163,11 +164,11 @@ export const ConnectWindow=({mobile})=>{
 
 };
 
-export const ConnectButton=({mobile,label='Connect'})=>{
+export const ConnectButton=({mobile,label='Connect your phone',Component=BigButton})=>{
         const {setShowWidget, isConnected, isShowWidget}=mobile;
         if(isConnected || isShowWidget){
                 return null;
         }
 
-        return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
+        return (<Component onClick={()=>setShowWidget(true)}>{label}</Component>);
 };
