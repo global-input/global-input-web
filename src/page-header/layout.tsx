@@ -23,36 +23,31 @@ const dropDown = keyframes`
 
 
 
-export const Title = styled.div`
+export const Title = styled.h3`
     font-size: 20px;
     color: #5291CD;
     white-space: nowrap;
     font-weight: 300;
     padding-left: 10px;
     font-family: Tisa-Sans-Pro, Elysio-Light, Helvetica, Arial, sans-serif;
-    @media only screen and (min-width:600px){
-        position:absolute;
-        top:15px;
-        left:50px;
-        font-size: 15px;
-    }
-    @media only screen and (min-width:720px){
-        font-size: 20px;
-    }
 `;
 export const appTitle = config.id === 'iterative' ? 'Iterative Solution' : 'Global Input App';
 
+
+
+export const LogoAndName = styled.p`
+    margin-left: 15%;
+    margin: 0 0 0 15%;
+    display: flex;
+    flex-direction: row;
+`
 
 
 export const AppLogo = styled.img.attrs({
   alt: 'App Logo',
   src: appIcon,
 })`
-  max-width: 80px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  object-fit: none;
   `;
   const CompanyLogo=styled(AppLogo).attrs({
     alt: 'Company Logo',
@@ -70,6 +65,7 @@ export const Container = styled.div`
         display:none;
       }
       flex-direction: column;
+      background-color:white;
       width: 100%;
       justify-content: flex-start;
       align-items: flex-start;
@@ -77,18 +73,15 @@ export const Container = styled.div`
 
 export const TopBar = styled.div`
       width: 100%;
-      padding: 6px 0 6px 0;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      box-shadow: 0 -5px 5px -5px #333;
-      background-color:white;
       font-size: 12px;
       @media only screen and (min-width: 600px){
         padding-right: 10px;
       }
       @media only screen and (min-width: 700px){
-        padding-right: 50px;
+        margin: 6px 0 6px 0;
       }
 
 `;
@@ -111,7 +104,7 @@ export const MenuItem = styled(Link)`
       }
       @media only screen and (min-width: 600px){
         justify-content:center;
-        margin-left: 40px;
+        margin-left: 30px;
       }
 `;
 
@@ -156,14 +149,11 @@ export const DesktopMenuContainer = styled.div`
   flex-direction:row;
   margin:0;
   padding:0;
-  display:none;
-
-
   @media only screen and (min-width: 600px){
     display:flex;
   }
   @media only screen and (min-width: 1024px){
-    margin-right: 150px;
+    margin-right: 15%;
   }
 
 `;
