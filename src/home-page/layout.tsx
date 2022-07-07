@@ -53,17 +53,21 @@ export const Content=styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
+      white-space: pre-wrap;
       color: white;
       height: 100vh;
       margin-left: 20vw;
 `;
 
 export  const Title=styled.div`
-        font-size: 40px;
+        font-size: 65px;
+        padding-bottom: 30px;
+        line-height: 65px;
     `;
 export  const Subtitle=styled.div`
-      font-size: 14px;
+      font-size: 20px;
       padding-bottom: 3px;
+      line-height: 28px;
     `;
 
 

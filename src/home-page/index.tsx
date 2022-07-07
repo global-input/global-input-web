@@ -13,9 +13,8 @@ import {Container,Content,TitleSection,Title,Subtitle,ButtonContainer,LinkButton
 
 
 const headerTextContent = {
-  title: "Mobile Integration",
-  subtitleLine1: "Use your phone to authenticate, encrypt and remotely",
-  subtitleLine2: "control applications."
+  title: "Mobile\nIntegration",
+  subtitle: "Use your phone to authenticate, encrypt and remotely\ncontrol applications.",
 };
 
 interface HomePageProps {
@@ -33,9 +32,7 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
           <TitleSection>
 
                 <Title>{headerTextContent.title}</Title>
-                <br/>
-                <Subtitle>{headerTextContent.subtitleLine1}</Subtitle>
-                <Subtitle>{headerTextContent.subtitleLine2}</Subtitle>
+                <Subtitle>{headerTextContent.subtitle}</Subtitle>
                 <ButtonContainer>
                   <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
                   <ConnectButton mobile={mobile}/>
