@@ -5,6 +5,7 @@ import appIcon from './images/app-icon.png';
 import companyIcon from './images/company-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
 import closeSymbol from './images/close.png';
+import { LinkButton } from '../home-page/layout';
 
 
 const dropDown = keyframes`
@@ -75,19 +76,14 @@ export const Container = styled.div`
 `;
 
 export const TopBar = styled.div`
-
-      padding-top: 10px;
       width: 100%;
+      padding: 6px 0 6px 0;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      border-bottom-color: #EEEEEE;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
       box-shadow: 0 -5px 5px -5px #333;
       background-color:white;
-      padding-top: 5px;
+      font-size: 12px;
       @media only screen and (min-width: 600px){
         padding-right: 10px;
       }
@@ -101,44 +97,22 @@ export const TopBar = styled.div`
 
 
 export const MenuItem = styled(Link)`
-      color: #5291CD;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
+      background-color: white;
       text-decoration: none;
+      color: #5291CD;
+      text-align: center;
       white-space: nowrap;
       padding-left: 10px;
-      border-bottom:1px solid #EEEEEE;
       font-size: 15px;
-      height:   60px;
-      width: 100%;
-      font-weight: ${props => props.selected ? 500 : 300};
+      display: flex;
+      flex-direction: column;
       &: hover{
-        text-decoration: none;
-        fontWeight: 300;
-        text-shadow: 0 0 50px rgb(10, 62, 145);
-        transform: translateY(-3px);
+        color: #74b3fe;
       }
       @media only screen and (min-width: 600px){
         justify-content:center;
-        height: 30px;
-        width: 110px;
-        border-bottom:1px solid #FFFFFF;
-        font-size: 12px;
+        margin-left: 40px;
       }
-      @media only screen and (min-width: 800px){
-        font-size: 15px;
-        width: 130px;
-      }
-      @media only screen and (min-width: 1024px){
-        width: 150px;
-      }
-
-      @media only screen and (min-width: 1444px){
-        width: 230px;
-      }
-
 `;
 
 export const Icon = styled.button`
@@ -189,7 +163,7 @@ export const DesktopMenuContainer = styled.div`
     display:flex;
   }
   @media only screen and (min-width: 1024px){
-    margin-right:150px;
+    margin-right: 150px;
   }
 
 `;
