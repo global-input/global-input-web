@@ -61,6 +61,8 @@ export const Card =styled (Link)`
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      text-align: center;
+
       background-color: #FFFFFF;
       color: #5291CD;
       height: 250px;
@@ -88,7 +90,6 @@ export const Content= styled.div`
       flex:1;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 20px;
