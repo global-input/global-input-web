@@ -76,9 +76,12 @@ export const Card =styled (Link)`
       max-width: 370px;
       text-decoration:none;
 
+      transition: all 0.15s ease-out;
+
       &: hover{
         box-shadow: 0 0 50px #ffff;
         transform: translateY(-3px);
+        transition: all 0.15s ease-out;
         text-decoration:none;
       }
 
