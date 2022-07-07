@@ -10,13 +10,10 @@ import { LinkButton } from '../home-page/layout';
 
 const dropDown = keyframes`
   0% {
-    transform:scaleY(0)
-  }
-  80% {
-    transform:scaleY(1.1)
+    transform:translateY(-100%)
   }
   100%{
-    transform:scaleY(1)
+    transform:translateY(0%)
   }
 `;
 
@@ -36,10 +33,12 @@ export const appTitle = config.id === 'iterative' ? 'Iterative Solution' : 'Glob
 
 
 export const LogoAndName = styled.p`
-    margin-left: 15%;
-    margin: 0 0 0 15%;
+    margin: 0 0 0 5vw;
     display: flex;
     flex-direction: row;
+    @media only screen and (min-width: 1024px){
+      margin-left: 15vw
+    }
 `
 
 
@@ -77,13 +76,13 @@ export const TopBar = styled.div`
       flex-direction: row;
       justify-content: space-between;
       font-size: 12px;
-      @media only screen and (min-width: 600px){
+      @media only screen and (min-width: 800px){
         padding-right: 10px;
       }
-      @media only screen and (min-width: 700px){
+      @media only screen and (min-width: 800px){
         margin: 6px 0 6px 0;
       }
-
+      z-index: 20;
 `;
 
 
@@ -99,28 +98,30 @@ export const MenuItem = styled(Link)`
       font-size: 15px;
       display: flex;
       flex-direction: column;
+      padding: 20px;
       &: hover{
         color: #74b3fe;
       }
-      @media only screen and (min-width: 600px){
+      @media only screen and (min-width: 800px){
+        padding: 0;
         justify-content:center;
         margin-left: 30px;
       }
 `;
 
 export const Icon = styled.button`
+    margin-right: 5vw;
     font-weight: normal;
     color: #5291CD;
     font-style: normal;
     text-decoration: none;
     border: none;
     background-color:white;
-
     &: focus {
         outline:0;
     }
     display:none;
-    @media only screen and (max-width: 599px) {
+    @media only screen and (max-width: 800px) {
       display:block;
     }
 `;
@@ -146,28 +147,30 @@ display:${props=>props.show?'block':'none'};
 
 
 export const DesktopMenuContainer = styled.div`
+  display: none;
   flex-direction:row;
   margin:0;
   padding:0;
-  @media only screen and (min-width: 600px){
+  @media only screen and (min-width: 800px){
     display:flex;
+    margin-right: 5vw
   }
   @media only screen and (min-width: 1024px){
-    margin-right: 15%;
+    margin-right: 15vw;
   }
-
 `;
 
 export const MobileMenuContainer = styled.div`
     display: flex;
+    position: absolute;
+    z-index: 19;
     flex-direction: column;
     background-color: white;
     top:54px;
     right:0;
-    border:2px solid #EEEEEE;
     width:100%;
-    animation: ${dropDown} 300ms ease-in-out forwards;
-    @media only screen and (min-width: 600px){
+    animation: ${dropDown} 300ms ease-out;
+    @media only screen and (min-width: 800px){
         display: none;
     }
 `;

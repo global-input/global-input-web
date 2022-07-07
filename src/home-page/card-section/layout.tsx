@@ -141,7 +141,7 @@ export const CardsContent=styled.div`
    flex-direction:column;
    justify-content:flex-start;
    align-items:center;
-   width:100%;
+   max-width:780px;
 
    @media only screen and (min-width:800px){
      flex-wrap: wrap;
@@ -150,16 +150,8 @@ export const CardsContent=styled.div`
      padding:20px;
    }
 
-
-   @media only screen and (min-width:800px){
-    max-width:800px;
-
-  }
-  @media only screen and (min-width:1024px){
-    max-width:900px;
-  }
   @media only screen and (min-width:1400px){
-    max-width:1350px;
+    max-width:1200px;
   }
 
 
