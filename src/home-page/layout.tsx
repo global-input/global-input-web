@@ -62,16 +62,8 @@ export  const Title=styled.div`
         font-size: 40px;
     `;
 export  const Subtitle=styled.div`
-      font-size: 16px;
-      margin-top:10px;
-      @media only screen and (min-width:650px){
-        font-size: 20px;
-      }
-    `;
-export const SmallTitle=styled.div`
       font-size: 14px;
-      margin-top:25px;
-      margin-bottom:10px;
+      padding-bottom: 3px;
     `;
 
 
