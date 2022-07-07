@@ -79,7 +79,7 @@ export const Card =styled (Link)`
       transition: all 0.15s ease-out;
 
       &: hover{
-        box-shadow: 0 0 50px #ffff;
+        box-shadow: 0 0 30px #0003;
         transform: translateY(-3px);
         transition: all 0.15s ease-out;
         text-decoration:none;
