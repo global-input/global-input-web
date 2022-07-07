@@ -55,12 +55,13 @@ export const Content=styled.div`
       justify-content: center;
       white-space: pre-wrap;
       color: white;
-      height: 100vh;
+      height: 90vh;
       margin-left: 20vw;
 `;
 
 export  const Title=styled.div`
         font-size: 65px;
+        font-weight: 1000;
         padding-bottom: 30px;
         line-height: 65px;
         width: 25vw;
@@ -74,11 +75,12 @@ export  const Title=styled.div`
           width: 50vw;
         }
     `;
-export  const Subtitle=styled.div`
+export const Subtitle=styled.div`
       font-size: 20px;
       padding-bottom: 3px;
       line-height: 28px;
       width: 25vw;
+      color: #fffe;
 
       @media only screen and (max-width:900px){
         width: 50vw;

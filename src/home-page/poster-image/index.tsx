@@ -5,7 +5,7 @@ import posterImage350 from './images/right-poster-350-320.png';
 
 export const PosterImage=styled.div`
       position: absolute;
-      top: 30vh;
+      top: 20vh;
       left: 50vw;
       overflow: hide;
       display:none;
