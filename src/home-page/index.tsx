@@ -13,8 +13,8 @@ import {Container,Content,TitleSection,Title,Subtitle,ButtonContainer,LinkButton
 
 
 const headerTextContent = {
-  title: "Mobile\nIntegration",
-  subtitle: "Use your phone to authenticate, encrypt and remotely\ncontrol applications.",
+  title: "Mobile Integration",
+  subtitle: "Use your phone to authenticate, encrypt and remotely control applications.",
 };
 
 interface HomePageProps {
