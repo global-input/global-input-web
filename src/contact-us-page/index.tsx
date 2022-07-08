@@ -24,7 +24,7 @@ const ContactUsPage: React.FC = () => {
                 <Title>Address</Title>
                 <Line>Iterative Solution Limited</Line>
                 <Line>Kemp House</Line>
-                <Line>152 - 160 City Road</Line>
+                <Line>124 City Road</Line>
                 <Line>London</Line>
                  <Line>EC1V 2NX</Line>
             </Column>
@@ -35,8 +35,7 @@ const ContactUsPage: React.FC = () => {
                 <Line>info@iterativesolution.co.uk</Line>
             </Column>
           </Row>
-
-
+          <ConnectButton mobile={mobile} label="Get details on your phone"/>
           <ConnectWindow mobile={mobile}/>
         </Content>
         <Row>

@@ -5,25 +5,23 @@ import appIcon from './images/app-icon.png';
 import companyIcon from './images/company-icon.png';
 import menuSymbol from './images/menu-symbol.svg';
 import closeSymbol from './images/close.png';
+import { LinkButton } from '../home-page/layout';
 
 
 const dropDown = keyframes`
   0% {
-    transform:scaleY(0)
-  }
-  80% {
-    transform:scaleY(1.1)
+    transform:translateY(-100%)
   }
   100%{
-    transform:scaleY(1)
+    transform:translateY(0%)
   }
 `;
 
 
 
 
-export const Title = styled.div`
-    font-size: 10px;
+export const Title = styled.h3`
+    font-size: 20px;
     color: #5291CD;
     white-space: nowrap;
     font-weight: 300;
@@ -50,15 +48,21 @@ export const appTitle = config.id === 'iterative' ? 'Iterative Solution' : 'Glob
 
 
 
+export const LogoAndName = styled.p`
+    margin: 0 0 0 5vw;
+    display: flex;
+    flex-direction: row;
+    @media only screen and (min-width: 1024px){
+      margin-left: 15vw
+    }
+`
+
+
 export const AppLogo = styled.img.attrs({
   alt: 'App Logo',
   src: appIcon,
 })`
-  max-width: 80px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  object-fit: none;
   `;
   const CompanyLogo=styled(AppLogo).attrs({
     alt: 'Company Logo',
@@ -76,79 +80,47 @@ export const Container = styled.div`
         display:none;
       }
       flex-direction: column;
+      background-color:white;
       width: 100%;
       justify-content: flex-start;
       align-items: flex-start;
 `;
 
 export const TopBar = styled.div`
-
-      padding-top: 10px;
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      border-bottom-color: #EEEEEE;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      box-shadow: 0 -5px 5px -5px #333;
-      background-color:white;
-      padding-top: 5px;
-      @media only screen and (min-width: 600px){
-        padding-right: 10px;
-      }
-      @media only screen and (min-width: 700px){
-        padding-right: 50px;
-      }
-
+      font-size: 12px;
+      z-index: 20;
 `;
 
 
 
 
 export const MenuItem = styled(Link)`
-      color: #5291CD;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
+      background-color: white;
       text-decoration: none;
+      color: #5291CD;
+      text-align: center;
       white-space: nowrap;
       padding-left: 10px;
-      border-bottom:1px solid #EEEEEE;
       font-size: 15px;
-      height:   60px;
-      width: 100%;
-      font-weight: ${props => props.selected ? 500 : 300};
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
       &: hover{
-        text-decoration: none;
-        fontWeight: 300;
-        text-shadow: 0 0 50px rgb(10, 62, 145);
-        transform: translateY(-3px);
-      }
-      @media only screen and (min-width: 600px){
-        justify-content:center;
-        height: 30px;
-        width: 110px;
-        border-bottom:1px solid #FFFFFF;
-        font-size: 12px;
+        color: #74b3fe;
       }
       @media only screen and (min-width: 800px){
-        font-size: 15px;
-        width: 130px;
+        padding: 0;
+        justify-content:center;
+        margin-left: 30px;
       }
-      @media only screen and (min-width: 1024px){
-        width: 150px;
-      }
-
-      @media only screen and (min-width: 1444px){
-        width: 230px;
-      }
-
 `;
 
 export const Icon = styled.button`
+    margin-right: 5vw;
     font-weight: normal;
     color: #5291CD;
     font-style: normal;
@@ -196,31 +168,30 @@ display:${props=>props.show?'block':'none'};
 
 
 export const DesktopMenuContainer = styled.div`
+  display: none;
   flex-direction:row;
   margin:0;
   padding:0;
-  display:none;
-
-
-  @media only screen and (min-width: 600px){
+  @media only screen and (min-width: 800px){
     display:flex;
+    margin-right: 5vw
   }
   @media only screen and (min-width: 1024px){
-    margin-right:150px;
+    margin-right: 15vw;
   }
-
 `;
 
 export const MobileMenuContainer = styled.div`
     display: flex;
+    position: absolute;
+    z-index: 19;
     flex-direction: column;
     background-color: white;
     top:54px;
     right:0;
-    border:2px solid #EEEEEE;
     width:100%;
-    animation: ${dropDown} 300ms ease-in-out forwards;
-    @media only screen and (min-width: 600px){
+    animation: ${dropDown} 300ms ease-out;
+    @media only screen and (min-width: 800px){
         display: none;
     }
 `;

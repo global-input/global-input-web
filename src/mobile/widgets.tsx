@@ -16,31 +16,29 @@ import {SettingsEditor} from './settingsEditor';
 
 const Button = styled.button`
     text-decoration: none;
-    font-size: 11px;
+    font-size: 15px;
     border-radius: 8px;
     color: #4281BD;
     background-color: white;
     white-space: nowrap;
 
-    padding: 10px;
+    padding: 15px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-color:#EEEEEE;
+    border: none;
     display:flex;
     min-width:50px;
 
     max-width: 200px;
     margin-left:5px;
     margin-right:5px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 
     &: hover{
-        transform: translateY(-3px);
-        box-shadow: 0 0 50px #ffff;
+        background-color: #e3e3e3;
     }
 
 `;
@@ -49,6 +47,7 @@ const BigButton = styled(Button)`
     border-width:0;
     font-size: 15px;
 `;
+
 const DarkButton = styled(BigButton)`
         background-color:rgb(208, 226, 247);
 
@@ -441,7 +440,6 @@ export const ConnectWindow:React.FC<ConnectWidgetProps>=({mobile})=>{
         );
 
 };
-
 const ConnectLabel=styled.div`
      padding-left:5px;
      font-size:12px;
@@ -451,23 +449,23 @@ const ConnectLabel=styled.div`
 `;
 
 interface ButtonProps{
-        label?:string;
-        skin?:string;
-        mobile:MobileData;
+    label?:string;
+    skin?:string;
+    mobile:MobileData;
 }
 export const ConnectButton:React.FC<ButtonProps>=({mobile,label='Connect', skin})=>{
-        const {setShowWidget, isConnected, isShowWidget}=mobile;
-        if(isConnected || isShowWidget){
-                return null;
-        }
-        if(skin==='white'){
-                return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
-        }
-        return (<DarkButton onClick={()=>setShowWidget(true)}>
-                <ConnectIcon/>
-                       <ConnectLabel>{label}</ConnectLabel>
-                </DarkButton>
-        );
+    const {setShowWidget, isConnected, isShowWidget}=mobile;
+    if(isConnected || isShowWidget){
+            return null;
+    }
+    if(skin==='white'){
+            return (<BigButton onClick={()=>setShowWidget(true)}>{label}</BigButton>);
+    }
+    return (<DarkButton onClick={()=>setShowWidget(true)}>
+            <ConnectIcon/>
+                   <ConnectLabel>{label}</ConnectLabel>
+            </DarkButton>
+    );
 };
 
 
