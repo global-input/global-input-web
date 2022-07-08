@@ -5,10 +5,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  width: 100%;
+  max-width: 100%;
   min-height:100vh;
   background-color: rgb(97,136,204);
+  padding: 100px 8vw 0 8vw;
   @media only screen and (min-width:880px){
     background-color: white;
     background-image: url(${backgroundImage});
@@ -18,6 +18,8 @@ export const Container = styled.div`
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding-left: 20vw;
+    padding-right: 20vw;
   }
   @media only screen and (min-width:1900px){
     background-size: 150%;
@@ -28,30 +30,22 @@ export const Container = styled.div`
 
 export const Content=styled.div`
     color:white;
-    display: flex;
-    flex-direction: column;
-    justifyContent: flex-start;
-    alignItems: center;
-    width:90%;
-    margin:20px;
-    flex:1;
-    @media only screen and (min-width:1000px){
-        width:900px;
-    }
 `;
 
-
 export const Title=styled.div`
-    font-size: 25px;
-    margin-top: 30px;
-    display: block;
-    color:white;
-    @media only screen and (min-width:600px){
-        font-size:40px;
+    font-size: 65px;
+    font-weight: 1000;
+    padding-bottom: 50px;
+    line-height: 65px;
+
+    @media only screen and (max-width:1258px){
+      font-size: 40px;
+      line-height: 40px;
     }
+      
 `;
 
 export const P = styled.div`
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 30px;
 `;
