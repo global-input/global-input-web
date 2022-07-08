@@ -9,13 +9,12 @@ import {HowItWorks} from "./how-it-works";
 import {CardSection} from './card-section';
 
 
-import {Container,Content,TitleSection,Title,Subtitle,SmallTitle,ButtonContainer,LinkButton} from './layout';
+import {Container,Content,TitleSection,Title,Subtitle,ButtonContainer,LinkButton, SecondaryButton} from './layout';
 
 
 const headerTextContent = {
   title: "Mobile Integration",
-  subtitle: "Use Mobiles to Operate on Device Applications",
-  smallText: "Authentication, Encryption, Second Screen & Mobile Input & Control "
+  subtitle: "Use your phone to authenticate, encrypt and remotely control applications.",
 };
 
 interface HomePageProps {
@@ -34,11 +33,9 @@ export const HomePage: React.FC<HomePageProps> = ({ editConnectionSettings }) =>
 
                 <Title>{headerTextContent.title}</Title>
                 <Subtitle>{headerTextContent.subtitle}</Subtitle>
-                <SmallTitle>{headerTextContent.smallText}</SmallTitle>
                 <ButtonContainer>
-                  <LinkButton to={config.paths.getAppScreen.path}>Get It Free</LinkButton>
-                  <ConnectButton mobile={mobile} skin='white'/>
-                  <DisConnectButton mobile={mobile} skin='white'/>
+                  <LinkButton to={config.paths.getAppScreen.path}>Get it free</LinkButton>
+                  <ConnectButton label="Try it out" mobile={mobile} Component={SecondaryButton}/>
                 </ButtonContainer>
           </TitleSection>
 
