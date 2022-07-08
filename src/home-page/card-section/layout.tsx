@@ -69,11 +69,11 @@ export const Card =styled (Link)`
       border-radius: 5px;
 
       margin-top:10px;
-      margin-bottom:10px;
+      margin-bottom:50px;
 
       width: 95%;
       padding-bottom:30px;
-      max-width: 370px;
+      max-width: 330px;
       text-decoration:none;
 
       transition: all 0.15s ease-out;
@@ -83,6 +83,10 @@ export const Card =styled (Link)`
         transform: translateY(-3px);
         transition: all 0.15s ease-out;
         text-decoration:none;
+      }
+
+      @media only screen and (max-width:800px){
+        margin-bottom: 10px;
       }
 
 `;
@@ -135,7 +139,6 @@ export const Cards=styled.div`
    justify-content:flex-start;
    align-items:center;
    width:100%;
-   height: 100vh;
 `;
 export const CardsContent=styled.div`
    display: flex;
@@ -147,7 +150,7 @@ export const CardsContent=styled.div`
    @media only screen and (min-width:800px){
      flex-wrap: wrap;
      flex-direction:row;
-     justify-content: space-between;
+     justify-content: space-around;
      padding:20px;
    }
 
