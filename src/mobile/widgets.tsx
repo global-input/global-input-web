@@ -30,7 +30,7 @@ const Button = styled.button`
     display:flex;
     min-width:50px;
 
-    max-width: 200px;
+    max-width: 300px;
     margin-left:5px;
     margin-right:5px;
     transition: all 0.3s ease 0s;
@@ -46,9 +46,11 @@ const Button = styled.button`
 const BigButton = styled(Button)`
     border-width:0;
     font-size: 15px;
+    
 `;
 const DarkButton = styled(BigButton)`
         background-color:rgb(208, 226, 247);
+        
 
 `;
 
