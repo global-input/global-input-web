@@ -1,14 +1,8 @@
 import styled from 'styled-components';
 import backgroundImage from './images/background.svg';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  max-width: 100%;
-  min-height:100vh;
-  background-color: rgb(97,136,204);
-  padding: 100px 8vw 0 8vw;
+export const Background = styled.div`
+  background-color: rgb(114,164,210);
   @media only screen and (min-width:880px){
     background-color: white;
     background-image: url(${backgroundImage});
@@ -18,13 +12,23 @@ export const Container = styled.div`
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding-left: 20vw;
-    padding-right: 20vw;
   }
   @media only screen and (min-width:1900px){
     background-size: 150%;
   }
+`;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+  min-height:100vh;
+  padding: 100px 8vw 0 8vw;
+  @media only screen and (min-width:880px){
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
 `;
 
 
@@ -34,7 +38,7 @@ export const Content=styled.div`
 
 export const Title=styled.div`
     font-size: 65px;
-    font-weight: 1000;
+    font-weight: 900;
     padding-bottom: 50px;
     line-height: 65px;
 
@@ -48,4 +52,5 @@ export const Title=styled.div`
 export const P = styled.div`
     font-size: 18px;
     margin-bottom: 30px;
+    color: #FFFE
 `;
