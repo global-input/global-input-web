@@ -76,12 +76,6 @@ export const TopBar = styled.div`
       flex-direction: row;
       justify-content: space-between;
       font-size: 12px;
-      @media only screen and (min-width: 800px){
-        padding-right: 10px;
-      }
-      @media only screen and (min-width: 800px){
-        margin: 6px 0 6px 0;
-      }
       z-index: 20;
 `;
 
