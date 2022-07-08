@@ -127,23 +127,13 @@ export const Icon = styled.button`
     text-decoration: none;
     border: none;
     background-color:white;
-    margin-right:5px;
-    @media only screen and (min-width:250px){
-      margin-right:10px;
-    }
-
     &: focus {
         outline:0;
         box-shadow: 0 0 50px #ffff;
     }
-    display:block;
-    @media only screen and (min-width: 600px) {
-      display:none;
-    }
-
-    &: hover{
-
-      box-shadow: 0 0 50px #ffff;
+    display:none;
+    @media only screen and (max-width: 800px) {
+      display:block;
     }
 `;
 

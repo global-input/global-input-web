@@ -2,7 +2,7 @@ import React from 'react';
 import { config } from '../configs';
 import {PageFooter} from '../page-footer';
 import {PageHeader} from '../page-header';
-import { useConnectToMobile,ConnectWindow,ConnectButton, DisconnectButton } from './mobile-ui';
+import { useConnectToMobile,ConnectWindow,ConnectButton } from './mobile-ui';
 import { usePageTitle } from '../page-metadata';
 import {PosterImage} from './poster-image';
 import {HowItWorks} from "./how-it-works";
@@ -35,8 +35,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 <Subtitle>{headerTextContent.subtitle}</Subtitle>
                 <ButtonContainer>
                   <LinkButton to={config.paths.getAppScreen.path}>Get it free</LinkButton>
-                  <ConnectButton label="Try it out" mobile={mobile}/>
-                  <DisconnectButton mobile={mobile} skin='white'/>
+                  <ConnectButton label="Try it out" mobile={mobile} />
                 </ButtonContainer>
           </TitleSection>
 

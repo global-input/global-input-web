@@ -47,7 +47,6 @@ const BigButton = styled(Button)`
     border-width:0;
     font-size: 15px;
 `;
-
 const DarkButton = styled(BigButton)`
         background-color:rgb(208, 226, 247);
 
