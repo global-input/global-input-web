@@ -2,19 +2,20 @@ import styled from 'styled-components';
 import backgroundImage from './images/background.svg';
 
 export const Background = styled.div`
-@media only screen and (min-width:880px){
-  background-color: white;
-  background-image: url(${backgroundImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-@media only screen and (min-width:1900px){
-  background-size: 150%;
-}
+  background-color: rgb(114,164,210);
+  @media only screen and (min-width:880px){
+    background-color: white;
+    background-image: url(${backgroundImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  @media only screen and (min-width:1900px){
+    background-size: 150%;
+  }
 `;
 
 export const Container = styled.div`
