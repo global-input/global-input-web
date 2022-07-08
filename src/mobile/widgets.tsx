@@ -13,7 +13,7 @@ const Button = styled.button`
     background-color: white;
     white-space: nowrap;
 
-    padding: 10px;
+    padding: 15px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
