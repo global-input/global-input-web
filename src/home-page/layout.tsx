@@ -24,29 +24,12 @@ export const Container = styled.div`
 `;
 
 export const Content=styled.div`
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     flex:1;
-    @media only screen and (min-width:650px){
-      padding-left:20px;
-      padding-right:20px;
-    }
-    @media only screen and (min-width:800px){
-      padding-left:80px;
-      padding-right:80px;
-    }
-    @media only screen and (min-width:1258px){
-      padding-left:80px;
-      padding-right:80px;
-    }
-    @media only screen and (min-width:1700px){
-      padding-left:120px;
-      padding-right:120px;
-    }
-
 `;
 
  export   const TitleSection =styled.div`
