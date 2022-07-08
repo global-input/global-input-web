@@ -35,7 +35,7 @@ const ContactUsPage: React.FC = () => {
                 <Line>info@iterativesolution.co.uk</Line>
             </Column>
           </Row>
-          <ConnectButton mobile={mobile} label="Connect"/>
+          <ConnectButton mobile={mobile} label="Get details on your phone"/>
           <ConnectWindow mobile={mobile}/>
         </Content>
 
