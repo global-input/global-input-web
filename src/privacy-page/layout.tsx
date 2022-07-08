@@ -38,7 +38,7 @@ export const Content=styled.div`
 
 export const Title=styled.div`
     font-size: 65px;
-    font-weight: 1000;
+    font-weight: 900;
     padding-bottom: 50px;
     line-height: 65px;
 
