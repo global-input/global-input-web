@@ -5,7 +5,7 @@ import { config } from "../configs";
 
 
 import {Title,appTitle,Logo,Container,TopBar,Icon,
-  MenuItem,CloseIcon,OpenIcon,DesktopMenuContainer,MobileMenuContainer} from './layout';
+  MenuItem,CloseIcon,OpenIcon,DesktopMenuContainer,MobileMenuContainer, LogoAndName} from './layout';
 
 
 
@@ -25,7 +25,6 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
 
   const listMenu=(menus.map((menu, index) => (
     <MenuItem to={menu.link}
-        selected={menu.link === selected}
         key={`${index}_${menu.link}_${menu.linkText}`}>
         { menu.linkText}
    </MenuItem >
@@ -34,8 +33,9 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
   return (
     <Container>
       <TopBar>
-          <Logo />
-          <Title>{appTitle}</Title>
+        <LogoAndName>
+          <Logo/><Title>{appTitle}</Title>
+        </LogoAndName>
         <DesktopMenuContainer>
               {listMenu}
         </DesktopMenuContainer>

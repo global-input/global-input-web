@@ -61,24 +61,32 @@ export const Card =styled (Link)`
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      text-align: center;
+
       background-color: #FFFFFF;
       color: #5291CD;
       height: 250px;
       border-radius: 5px;
 
       margin-top:10px;
-      margin-bottom:10px;
+      margin-bottom:50px;
 
       width: 95%;
       padding-bottom:30px;
-      max-width: 370px;
+      max-width: 330px;
       text-decoration:none;
-      overflow:scroll;
+
+      transition: all 0.15s ease-out;
 
       &: hover{
-        box-shadow: 0 0 50px #ffff;
+        box-shadow: 0 0 30px #0003;
         transform: translateY(-3px);
+        transition: all 0.15s ease-out;
         text-decoration:none;
+      }
+
+      @media only screen and (max-width:800px){
+        margin-bottom: 10px;
       }
 
 `;
@@ -89,7 +97,6 @@ export const Content= styled.div`
       flex:1;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 20px;
@@ -132,32 +139,23 @@ export const Cards=styled.div`
    justify-content:flex-start;
    align-items:center;
    width:100%;
-   margin-top:60px;
 `;
 export const CardsContent=styled.div`
    display: flex;
    flex-direction:column;
    justify-content:flex-start;
    align-items:center;
-   width:100%;
+   max-width:780px;
 
    @media only screen and (min-width:800px){
      flex-wrap: wrap;
      flex-direction:row;
-     justify-content: space-between;
+     justify-content: space-around;
      padding:20px;
    }
 
-
-   @media only screen and (min-width:800px){
-    max-width:800px;
-
-  }
-  @media only screen and (min-width:1024px){
-    max-width:900px;
-  }
   @media only screen and (min-width:1400px){
-    max-width:1350px;
+    max-width:1200px;
   }
 
 

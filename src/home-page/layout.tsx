@@ -30,77 +30,50 @@ export const Content=styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     flex:1;
-    @media only screen and (min-width:650px){
-      padding-top:100px;
-      padding-left:20px;
-      padding-right:20px;
-    }
-    @media only screen and (min-width:800px){
-      padding-left:80px;
-      padding-right:80px;
-    }
-    @media only screen and (min-width:1258px){
-      padding-top:250px;
-      padding-left:80px;
-      padding-right:80px;
-    }
-    @media only screen and (min-width:1700px){
-      padding-left:120px;
-      padding-right:120px;
-    }
-
 `;
 
  export   const TitleSection =styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      white-space: pre-wrap;
       color: white;
-
-      padding:10px;
-      @media only screen and (min-width:650px){
-        justify-content:flex-start;
-        align-items: flex-start;
-        margin-left:20px;
-      }
-      @media only screen and (min-width:1200px){
-
-        margin-left:50px;
-      }
-
-
-
+      height: 90vh;
+      margin-left: 20vw;
 `;
 
-
-
-
-
 export  const Title=styled.div`
-        font-size: 40px;
-        text-align:center;
+        font-size: 65px;
+        font-weight: 900;
+        padding-bottom: 30px;
+        line-height: 65px;
+        width: 25vw;
+
+        @media only screen and (max-width:1258px){
+          font-size: 40px;
+          line-height: 40px;
+        }
+
+        @media only screen and (max-width:900px){
+          width: 50vw;
+        }
     `;
-export  const Subtitle=styled.div`
-      font-size: 16px;
-      text-align:center;
-      margin-top:10px;
-      @media only screen and (min-width:650px){
-        font-size: 20px;
+export const Subtitle=styled.div`
+      font-size: 20px;
+      padding-bottom: 3px;
+      line-height: 28px;
+      width: 25vw;
+      color: #fffe;
+
+      @media only screen and (max-width:900px){
+        width: 50vw;
       }
-    `;
-export const SmallTitle=styled.div`
-      font-size: 14px;
-      margin-top:25px;
-      margin-bottom:10px;
-      text-align:center;
     `;
 
 
 export const ButtonContainer=styled.div`
         display: flex;
         flex-direction: row;
-        justify-content:space-between;
         margin-top: 30px;
         @media only screen and (min-width:300px){
           width: 260px;
@@ -121,20 +94,26 @@ export const LinkButton=styled(Link)`
     color: #4281BD;
     background-color: white;
     white-space: nowrap;
-    padding: 10px;
+    padding: 15px;
     margin-right:5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
     &: hover{
-        text-decoration: none;
-        box-shadow: 0px 15px 20px rgba(38, 151, 226, 0.4);
-        transform: translateY(-3px);
-        box-shadow: 0 0 50px #ffff;
+        background-color: #e3e3e3;
     }
     `;
+
+
+export const SecondaryButton = styled(LinkButton)`
+    border-width:0;
+    background-color: #0000;
+    color: white;
+    &: hover{
+            background-color: #fff2;
+    }
+`

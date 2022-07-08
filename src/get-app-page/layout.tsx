@@ -56,11 +56,13 @@ export const Content=styled.div`
 
 
 export const Card=styled.div`
+        padding: 15px 5px 5px 5px;
          margin-top:50px;
          display: flex;
          flex-direction: column;
          justify-content: flex-start;
          align-items: center;
+         text-align: center;
          background-color: #FFFFFF;
          color: #5291CD;
          width: 100%;
@@ -170,10 +172,7 @@ const ButtonLink=styled.a.attrs({
     target:'_blank',
     rel:`noopener noreferrer`
 })`
-    padding:0;
-    box-shadow: 3px 3px 3px #cccccc;
-    border: 1px solid #eeeeee;
-    border-radius: 8px;
+    margin: 0;
 `;
 
 export const AppStoreButton=()=>(

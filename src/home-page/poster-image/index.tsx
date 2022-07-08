@@ -5,17 +5,11 @@ import posterImage350 from './images/right-poster-350-320.png';
 
 export const PosterImage=styled.div`
       position: absolute;
-      top: 80px;
-      right: 50px;
+      top: 20vh;
+      left: 50vw;
+      overflow: hide;
       display:none;
-      @media only screen and (min-width:650px){
-        display:block;
-        background-image:url(${posterImage200});
-        background-repeat: no-repeat;
-        width:200px;
-        height:183px;
 
-      }
       @media only screen and (min-width:900px){
         display:block;
         background-image:url(${posterImage350});
