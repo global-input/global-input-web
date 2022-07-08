@@ -13,6 +13,7 @@
     "@types/react-dom": "^16.9.8",
     "bootstrap": "^4.5.3",
     "global-input-react": "^4.6.0",
+    "qrcode.react": "^3.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
@@ -44,6 +45,6 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.6",
     "faker": "^5.1.0",
-    "puppeteer": "^5.3.1"
+    "puppeteer": "^15.3.2"
   }
 }
