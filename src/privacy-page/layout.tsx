@@ -52,4 +52,5 @@ export const Title=styled.div`
 export const P = styled.div`
     font-size: 18px;
     margin-bottom: 30px;
+    color: #FFFE
 `;
