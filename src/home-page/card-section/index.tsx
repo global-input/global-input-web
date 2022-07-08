@@ -6,28 +6,28 @@ import {Title,Card,Content,Cards,CardsContent,More, Footer,
 
 const textContent = {
     authentication: {
-        title: "Mobile Authentication",
-        content: ["Authentication on shared devices in public view, No need to hide screen, keyboard even mobile screen when signing in on a shared device"],
+        title: "Authentication",
+        content: ["There's no need to hide your screen - authenticate securely on a device in public."],
     },
     mobileControl: {
-        title: "Mobile Input & Control",
-        content: ["Extends applications to allows users to use smartphones to operate and transfer data securely."],
+        title: "Input and Control",
+        content: ["Extends applications to let users securely transfer their data across devices."],
     },
     secondScreen: {
         title: "Second Screen",
-        content: ["A simple and innovative solution to introduce the Second Screen Experience to the Smart TV applications"],
+        content: ["A simple yet innovative solution, introducing the Second Screen Experience across your phone and your TV."],
     },
     encryption: {
-        title: "Mobile Encryption",
-        content: ["Applications send content to your mobile device for encryption/decryption, so your encryption keys never leaves your device."],
+        title: "Encrypt",
+        content: ["Allows applications to send content to your phone for encryption/decryption, so your encryption keys stay on your device."],
     },
     mobilePersonStorage: {
-        title: "Mobile Personal Storage",
-        content: ["Applications does not have store personal in their databases, because they can request on-demand from the connected mobile app"],
+        title: "Personal Storage",
+        content: ["There's no need for apps to store your personal info, when you can securely hold it yourself."],
     },
     mobileContentTransfer: {
-        title: "Mobile Content Transfer",
-        content: ["You can transfer content securely from your mobile device over to computers or other smart devices or vise versa"],
+        title: "Transfer Content",
+        content: ["Securely move content from your phone to your PC, tablet, or TV - and vice versa."],
     }
 };
 
