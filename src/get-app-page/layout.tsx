@@ -181,8 +181,11 @@ export const AppStoreButton=()=>(
         <AppStoreImage/>
     </ButtonLink>
 );
+/*
+<ButtonLink href={config.links.appdownload.playStore}>
+*/
 export const PlayStoreButton=()=>(
-    <ButtonLink href={config.links.appdownload.playStore}>
+    <ButtonLink >
         <PlayStoreImage/>
     </ButtonLink>
 );
