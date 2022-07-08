@@ -5,13 +5,13 @@ import {PageHeader} from '../page-header';
 import {PageFooter} from '../page-footer';
 import { usePageTitle } from '../page-metadata';
 
-import {Container,Content,Title,P} from './layout';
+import {Container,Content,Title,P, Background} from './layout';
 const PrivacyPage: React.FC = () => {
   const mobile = useConnectToMobile();
   usePageTitle('Global Input App -  Privacy Policy');
 
   return (
-    <div>
+    <Background>
       <PageHeader selected={config.paths.privacy.path}/>
       <Container>
         <Content>
@@ -36,9 +36,9 @@ const PrivacyPage: React.FC = () => {
           <ConnectButton mobile={mobile} label="See how it works"/>
           <ConnectWindow mobile={mobile}/>
         </Content>
-        <PageFooter/>
       </Container>
-    </div>
+      <PageFooter/>
+    </Background>
 
 
 

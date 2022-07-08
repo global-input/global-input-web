@@ -1,30 +1,33 @@
 import styled from 'styled-components';
 import backgroundImage from './images/background.svg';
 
+export const Background = styled.div`
+@media only screen and (min-width:880px){
+  background-color: white;
+  background-image: url(${backgroundImage});
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+@media only screen and (min-width:1900px){
+  background-size: 150%;
+}
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   max-width: 100%;
   min-height:100vh;
-  background-color: rgb(97,136,204);
   padding: 100px 8vw 0 8vw;
   @media only screen and (min-width:880px){
-    background-color: white;
-    background-image: url(${backgroundImage});
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     padding-left: 20vw;
     padding-right: 20vw;
   }
-  @media only screen and (min-width:1900px){
-    background-size: 150%;
-  }
-
 `;
 
 
