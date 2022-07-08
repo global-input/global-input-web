@@ -22,17 +22,15 @@ export const PageFooter = () => {
     )
 };
 
-const FooterMobileAuthentication =  () => (<Item1 to={config.paths.mobileAuthentication.path}>Mobile Authentication</Item1>);
-const FooterMobileEncryption =      () => (<Item2 to={config.paths.aboutContentEncryption.path}>Mobile Encryption</Item2>);
-const FooterSecondScreen =          () => (<Item3 to={config.paths.secondScreen.path}>Second Screen</Item3>);
-const FooterMobileInputControl =    () => (<Item4 to={config.paths.mobileControl.path}>Mobile Input &amp; Control</Item4>);
-
-
-const FooterMobilePersonalStorage = () => (<Item5 to={config.paths.mobilePersonalStorage.path}>Mobile Secure Storage</Item5>);
-const FooterMobileContentTransfer = () => (<Item6 to={config.paths.mobileContentTransfer.path}>Content Transfer</Item6>);
-const FooterDownload =              () => (<Item7 to={config.paths.getAppScreen.path}>Get It Free</Item7>);
-const FooterPrivacyPolicy =         () => (<Item8 to={config.paths.privacy.path}>Privacy Policy</Item8>);
-const FooterContactUs =             () => (<Item9 to={config.paths.contactUs.path}>Contact Us</Item9>);
+const FooterMobileAuthentication =  () => (<Item to={config.paths.mobileAuthentication.path}>Mobile Authentication</Item>);
+const FooterMobileEncryption =      () => (<Item to={config.paths.aboutContentEncryption.path}>Mobile Encryption</Item>);
+const FooterSecondScreen =          () => (<Item to={config.paths.secondScreen.path}>Second Screen</Item>);
+const FooterMobileInputControl =    () => (<Item to={config.paths.mobileControl.path}>Mobile Input &amp; Control</Item>);
+const FooterMobilePersonalStorage = () => (<Item to={config.paths.mobilePersonalStorage.path}>Mobile Secure Storage</Item>);
+const FooterMobileContentTransfer = () => (<Item2 to={config.paths.mobileContentTransfer.path}>Content Transfer</Item2>);
+const FooterDownload =              () => (<Item to={config.paths.getAppScreen.path}>Get It Free</Item>);
+const FooterPrivacyPolicy =         () => (<Item to={config.paths.privacy.path}>Privacy Policy</Item>);
+const FooterContactUs =             () => (<Item to={config.paths.contactUs.path}>Contact Us</Item>);
 
 const Container = styled.div`
     padding-top: 50px;
@@ -55,10 +53,9 @@ const Container = styled.div`
 const Content = styled.div`
 
       display: flex;
-      margin-bottom:10px;
+      margin-bottom:30px;
       align-items: center;
       flex-direction:column;
-      width: 100%;
 
       @media only screen and (min-width: 280px){
         justify-content:space-between;
@@ -66,124 +63,54 @@ const Content = styled.div`
         flex-wrap:wrap;
         width:95%;
       }
-
-
-
       @media only screen and (min-width: 500px){
-            width: 500px;
+        width: 400px;
       }
       @media only screen and (min-width: 600px){
-        width: 600px;
-      }
-
-      @media only screen and (min-width: 900px){
-        width: 800px;
+        width: 500px;
       }
       @media only screen and (min-width: 1000px){
-        width: 900px;
+        width: 600px;
       }
-
-      @media only screen and (min-width: 1100px){
-        width: 1000px;
-      }
-
-
-
-
-
 `;
 const Item = styled(Link)`
 
-      padding-bottom: 10px;
-      padding-left:5px;
+      margin-bottom: 10px;
       font-size: 8px;
       color:white;
-
       text-decoration:none;
+
+      transition: all 0.3s ease 0s;
+
       &: hover{
-          text-decoration: none;
-          font-weight: 500;
-          text-shadow: 0 0 50px #ffff;
-
-      }
-      @media only screen and (min-width: 280px){
-          border-left: 1px solid white;
-          width: 120px;
-
+        color: #e3e3e3;
       }
 
-      @media only screen and (min-width:310px){
-        width: 140px;
-        font-size: 12px;
+    }
+    @media only screen and (min-width: 280px){
+        width: 120px;
+    }
+
+    @media only screen and (min-width:310px){
+      width: 140px;
+      font-size: 10px;
+    }
+
+
+    @media only screen and (min-width:400px){
+      width: 180px;
+      font-size: 12px;
+    }
+    @media only screen and (min-width:500px){
+      font-size: 14px;
+    }
+    @media only screen and (min-width:1000px){
+      width: 200px;
+    }
+`;
+
+const Item2 = styled(Item)`
+      @media only screen and (max-width:1000px){
+        display:none;
       }
-
-
-      @media only screen and (min-width:400px){
-        width: 180px;
-        font-size: 14px;
-      }
-      @media only screen and (min-width:500px){
-        width: 240px;
-        font-size: 16px;
-      }
-      @media only screen and (min-width:600px){
-        width: 250px;
-      }
-
-`;
-
-
-const Item1=styled(Item)`
-
-@media only screen and (min-width: 280px){
-    border-left: 0px solid white;
-}
-
-`;
-const Item2=styled(Item)`
-`;
-const Item3=styled(Item)`
-@media only screen and (min-width: 280px){
-  border-left: 0px solid white;
-}
-@media only screen and (min-width: 900px){
-  border-left: 1px solid white;
-}
-`;
-const Item4=styled(Item)`
-@media only screen and (min-width: 900px){
-  border-left: 0px solid white;
-}
-`;
-const Item5=styled(Item)`
-@media only screen and (min-width: 280px){
-  border-left: 0px solid white;
-}
-@media only screen and (min-width: 900px){
-  border-left: 1px solid white;
-}
-`;
-const Item6=styled(Item)`
-  display:none;
-
-
-  @media only screen and (min-width:900px){
-    display:flex;
-  }
-
-`;
-const Item7=styled(Item)`
-@media only screen and (min-width: 900px){
-  border-left: 0px solid white;
-}
-`;
-const Item8=styled(Item)`
-@media only screen and (min-width: 280px){
-  border-left: 0px solid white;
-}
-@media only screen and (min-width: 900px){
-  border-left: 1px solid white;
-}
-`;
-const Item9=styled(Item)`
 `;
