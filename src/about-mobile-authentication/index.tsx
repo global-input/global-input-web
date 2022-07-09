@@ -17,10 +17,10 @@ export const AboutMobileAuthentication: React.FC = () => {
     <Container>
         <PageHeader selected={config.paths.mobileAuthentication.path} />
         <Content>
-            <Title>Use your phone to sign in to websites and more</Title>
             <Row2>
 
                   <Column>
+                    <Title>Use your phone to sign in and more</Title>
                       <TickText>
                       Massively improved security and user experience
                       </TickText>
@@ -45,8 +45,9 @@ export const AboutMobileAuthentication: React.FC = () => {
             <Row>
 
                   <Column>
+                  <Title>Convienient authentication</Title>
                     <TickText>
-                       Authentication, subscription and more with just one mobile app
+                       Signing in, subscribing to services and more with just one mobile app
                     </TickText>
                     <TickText>
                        Reduces the need for customer support calls with self-service

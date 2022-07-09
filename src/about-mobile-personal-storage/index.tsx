@@ -39,8 +39,9 @@ export const AboutMobileSecureStorage: React.FC = () => {
             </Row2>
             <Row>
               <Column>
+              <Title>Greater flexibility</Title>
               <TickText>
-                Allows for personalized services   user data
+                Allows for personalized services without collecting user data
               </TickText>
               <TickText>
                 Allows a customer to give their personal details securely and remotely
