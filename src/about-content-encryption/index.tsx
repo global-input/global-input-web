@@ -19,42 +19,33 @@ export const AboutMobileEncryption: React.FC = () => {
         <Content>
             <Row>
                   <Column>
-                      <Title>Secure Sharing Secrets</Title>
+                      <Title>Share your secrets securely</Title>
                       <TickText>
-                        Exchange secrets via Encrypted QR Codes.
+                        Exchange secrets via encrypted QR codes.
                       </TickText>
                       <TickText>
-                        Protect confidentiality when working in public places or with shared screens.
+                        Allows for confidentiality in public places
                     </TickText>
                     <TickText>
-                        Print secrets ans decrypt with scanning.
-                    </TickText>
-                    <TickText>
-                        Protecting QR Codes using encryption and keys.
-                    </TickText>
-                    <TickText>
-                      Complete solution for data backup and secure data transfer.
+                        Secure backup and transfer of data 
                     </TickText>
                  </Column>
                  <EncryptedQRCodeGraph/>
             </Row>
             <Row2>
               <Column>
-               <Title>Encrypting/Decrypting Using Mobiles</Title>
+               <Title>Encryption with your phone</Title>
               <TickText>
-                        Protecting encryption keys inside mobiles.
+                        Encryption keys are stored on your device
                       </TickText>
                       <TickText>
-                        Giving user full control over data encryption processes.
+                        Users have full control over the encryption process
                     </TickText>
                     <TickText>
-                        Encryption is the default state of the confidential data.
+                        Confidential data can be encrypted by default
                     </TickText>
                     <TickText>
-                        Allowing users to manage keys in the mobiles.
-                    </TickText>
-                    <TickText>
-                        Allow multiple layers of encryption.
+                        Allows for multiple layers of encryption
                     </TickText>
               </Column>
               <MobileEncryptionGraphGraph/>
@@ -66,18 +57,15 @@ export const AboutMobileEncryption: React.FC = () => {
 
             <Row>
                   <Column>
-                      <Title>Encrypting Keys in Key Vaults.</Title>
+                      <Title>Encrypting keys in vaults</Title>
                       <TickText>
-                      Physical Separations Keys from Data Access
-                      </TickText>
-                      <TickText>
-                      Access Control with Encryption
+                      Control and protect access to data
                     </TickText>
                     <TickText>
-                      Increased Accountability in Data Access.
+                      See exactly who's accessing your data
                     </TickText>
                     <TickText>
-                      Access Permission Granted at the point of each Use
+                      Easily grant permission to those requesting access
                     </TickText>
 
 
