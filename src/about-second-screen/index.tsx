@@ -22,22 +22,19 @@ export const AboutSecondScreen: React.FC = () => {
                   <SecondScreenGraph/>
                   <Column>
                       <TickText>
-          No need to develop a separate mobile app.
+                        Removes the need to develop a standalone mobile app
                       </TickText>
                     <TickText>
-                      No need to implement specific server architecture.
+                        Removes the need to change your server architecture
                     </TickText>
                     <TickText>
-                      Simplest and most flexible solution for second screen experience.
+                        Centralises your client functionalities into a single device
                     </TickText>
                     <TickText>
-                      Centralize the client functionalities into one device while having the ability to operate using multiple devices.
+                        Allows for a native mobile app with little development effort
                     </TickText>
                     <TickText>
-                        Subscription, sign In, mobile control, second screen experience, all in one place.
-                    </TickText>
-                    <TickText>
-                      Native mobile app solution but without specific mobile app development.
+                        The simplest yet most flexible solution
                     </TickText>
 
 
