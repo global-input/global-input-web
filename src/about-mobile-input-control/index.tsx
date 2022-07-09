@@ -34,7 +34,7 @@ export const AboutMobileInputControl: React.FC = () => {
 
                  </Column>
             </Row>
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />

@@ -36,7 +36,7 @@ export const AboutMobileContentTransfer: React.FC = () => {
                  <MobileContentTransferGraphGraph/>
             </Row2>
 
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
 
         </Content>
