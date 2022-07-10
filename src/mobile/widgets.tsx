@@ -57,16 +57,19 @@ const DarkButton = styled(BigButton)`
 `;
 
 const Container = styled.div`
-
         flex-direction: column;
         justify-content: flex-center;
         align-items: flex-start;
         margin: 0;
         padding:0;
-        border-radius: 12px;
         display: flex;
         background-color:white;
         padding: 20px;
+        border-radius: 12px 12px 0 0;
+
+        @media screen and (min-width:800px){
+            border-radius: 12px;
+        }
 `;
 
 const TopBar = styled.div`
@@ -98,15 +101,14 @@ const PopupGlass = styled.div`
         height: 100vh;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         top:0;
         left:0;
+
+        @media screen and (min-width:800px){
+            justify-content: center;
+        }
 `;
-// @media screen and (min-height:530px){
-//     top:0;
-//     height:100vh;
-//     justify-content: center;
-// }
 
  const ErrorMessage = styled.div`
         color: red;
