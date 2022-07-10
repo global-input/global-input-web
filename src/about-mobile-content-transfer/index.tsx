@@ -19,24 +19,24 @@ export const AboutMobileContentTransfer: React.FC = () => {
         <Content>
             <Row2>
                   <Column>
-                      <Title>Mobile Content Transfer</Title>
+                      <Title>Transfer content with your phone</Title>
                       <TickText>
-                        Secure transfer content across devices using end-to-end encryption.
+                        Securely transfer content across devices using end-to-end encryption
                       </TickText>
                       <TickText>
-                        Point-to-point transfer with no subscription and no services between.
+                        Point-to-point transfer with no subscriptions or services in between
                     </TickText>
                     <TickText>
-                        Applications can request on-demand content from the mobile app.
+                        Applications can request content from the mobile app
                     </TickText>
                     <TickText>
-                        Designed for transfer content to/form devices that are shared in public or workplaces.
+                        Transfer content securely between publicly shared devices
                     </TickText>
                  </Column>
                  <MobileContentTransferGraphGraph/>
             </Row2>
 
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
 
         </Content>

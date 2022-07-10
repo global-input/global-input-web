@@ -71,7 +71,6 @@ export const Column = styled.div`
 
 export const Title = styled.div`
     font-size:20px;
-    text-align:center;
     margin-top:50px;
     margin-bottom:20px;
     width:95%;

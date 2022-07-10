@@ -17,7 +17,7 @@ export const AboutMobileInputControl: React.FC = () => {
     <Container>
         <PageHeader selected={config.paths.mobileControl.path} />
         <Content>
-            <Title>Providing Mobile Input and Control to Devices</Title>
+            <Title>Control other devices with your phone</Title>
             <Row>
             <Column>
                   <SecureCommunicationGraph/>
@@ -25,17 +25,16 @@ export const AboutMobileInputControl: React.FC = () => {
             </Column>
 
                   <Column>
-                        <TickText>End-to-End encryption with secure key transfer.</TickText>
-                        <TickText>Same mobile app across all applications and devices.</TickText>
-                        <TickText>Introducing  mobile features into business applications</TickText>
-                        <TickText>No Changes to the existing application architecture.</TickText>
-                        <TickText>Mobile Integration at the edge.</TickText>
-                        <TickText>Reduced costs for businesses.</TickText>
-                        <TickText>Increased convenience for users.</TickText>
+                        <TickText>Secure communication with end-to-end encryption</TickText>
+                        <TickText>One mobile app for all applications and devices</TickText>
+                        <TickText>Brings the convenience of a mobile phone into applications</TickText>
+                        <TickText>Works seamlessly with your existing application architecture</TickText>
+                        <TickText>Reduced costs for businesses</TickText>
+                        <TickText>Increased convenience for users</TickText>
 
                  </Column>
             </Row>
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />

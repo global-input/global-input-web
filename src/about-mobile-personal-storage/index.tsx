@@ -20,21 +20,18 @@ export const AboutMobileSecureStorage: React.FC = () => {
         <Content>
             <Row2>
                   <Column>
-                      <Title>Mobile Secure Storage</Title>
+                      <Title>Super secure storage on your phone</Title>
                       <TickText>
-                        Data stays protected in storage, memory and transfer with encryption.
+                        Data stays well protected and is tranferred with encryption
                       </TickText>
                       <TickText>
-                        Data decrypted only at the point of use.
+                        Data is decrypted only when needed
                     </TickText>
                     <TickText>
-                        Encrypted keys stays encrypted in mobile and never leaves the device.
+                        Keys stay encrypted and will never leave your device
                     </TickText>
                     <TickText>
-                        User owns their own data and and the encryption that protects the data.
-                    </TickText>
-                    <TickText>
-                      Complete solution for data backup and secure data transfer.
+                        The user is completely responsible for their own data
                     </TickText>
 
                  </Column>
@@ -42,20 +39,15 @@ export const AboutMobileSecureStorage: React.FC = () => {
             </Row2>
             <Row>
               <Column>
+              <Title>Greater flexibility</Title>
               <TickText>
-              Ability to provide personalized services without collecting users' data.
+                Allows for personalized services without collecting user data
               </TickText>
               <TickText>
-                Ability serve enter customer details customers while keeping  distance.
+                Allows a customer to give their personal details securely and remotely
               </TickText>
               <TickText>
-                Achieving customer collaborations through visiting customer's phone.
-              </TickText>
-              <TickText>
-                Allowing customers to lock their own their data through their smart phones.
-              </TickText>
-              <TickText>
-                No longer need for a shared input device or touch screen.
+                Removes the need for a shared input device
               </TickText>
 
 
@@ -64,7 +56,7 @@ export const AboutMobileSecureStorage: React.FC = () => {
 
             </Row>
 
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />

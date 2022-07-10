@@ -17,27 +17,27 @@ export const AboutMobileAuthentication: React.FC = () => {
     <Container>
         <PageHeader selected={config.paths.mobileAuthentication.path} />
         <Content>
-            <Title>Use Mobile for Subscription, Signing in and Beyond</Title>
             <Row2>
 
                   <Column>
+                    <Title>Use your phone to sign in and more</Title>
                       <TickText>
-      Superior security and improved user experience at the same time.
+                      Massively improved security and user experience
                       </TickText>
                       <TickText>
-                      One-click subscription and sign In with user mobiles.
+                      Just one click to sign in with your phone
                     </TickText>
                     <TickText>
-                      Secure transfer between user mobiles and applications using end-to-end encryption.
+                      Secure transfer of infomation using end-to-end encryption
                     </TickText>
                     <TickText>
-                        Users manage their own data on their own mobile devices.
+                      Users are responsible for their own data
                     </TickText>
                     <TickText>
-                        Ability to use mobile to securely operate on the application after signing in.
+                      Securely interact with the application using your phone after signing in
                     </TickText>
                     <TickText>
-                        Enhance the existing password-based authentications without using a password manager.
+                        Enhances the existing password-based authentication flow
                     </TickText>
                  </Column>
                  <SignInGraph/>
@@ -45,28 +45,22 @@ export const AboutMobileAuthentication: React.FC = () => {
             <Row>
 
                   <Column>
-                      <TickText>
-                      All In One: Multi Factor Authentication, Password Sign In, Change Password with Random Passwords
-                      </TickText>
+                  <Title>Convienient authentication</Title>
                     <TickText>
-                       Single Mobile App solution for Sign In, Subscriptions and Secure Mobile Operations.
+                       Signing in, subscribing to services and more with just one mobile app
                     </TickText>
                     <TickText>
-                       Encryption Based authentication and Access Control.
+                       Reduces the need for customer support calls with self-service
                     </TickText>
                     <TickText>
-                       Self-service and reduce the need for IT Support calls
-                    </TickText>
-
-                    <TickText>
-                      Flexible Integration to Business Applications.
+                       Easy and flexible integration into businesses.
                     </TickText>
 
 
                  </Column>
                  <MultiFactorGraph/>
             </Row>
-            <ConnectButton mobile={mobile} label="See It In Action"/>
+            <ConnectButton mobile={mobile} label="See it in action"/>
             <ConnectWindow mobile={mobile}/>
         </Content>
         <PageFooter />
