@@ -39,7 +39,6 @@ const ContactUsPage: React.FC = () => {
           <ConnectWindow mobile={mobile}/>
         </Content>
         <Row>
-        <ConnectButton mobile={mobile} skin='white'/>
         </Row>
 
       <PageFooter/>

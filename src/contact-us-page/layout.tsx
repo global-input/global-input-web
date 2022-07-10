@@ -35,6 +35,7 @@ export const Content=styled.div`
     width:100%;
 `;
 export const Row=styled.div`
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -52,9 +53,15 @@ export const Row=styled.div`
 
 `;
 export const PageTitle=styled.div`
-    font-size: 40px;
     margin-top: 100px;
-    display: block;
+    font-size: 65px;
+    font-weight: 900;
+    line-height: 65px;
+
+    @media only screen and (max-width:1258px){
+        font-size: 40px;
+        line-height: 40px;
+    }
 `;
 
 export const Column=styled.div`
