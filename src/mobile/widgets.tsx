@@ -49,8 +49,10 @@ const BigButton = styled(Button)`
     
 `;
 const DarkButton = styled(BigButton)`
-        background-color:rgb(208, 226, 247);
-        
+        background-color: rgb(208, 226, 247);
+        &: hover{
+            background-color: rgb(188, 206, 217)
+        }
 
 `;
 
@@ -300,10 +302,9 @@ const ConnectIcon=styled.img.attrs({
     src:connectImage,
     alt:'Connect'
 })`
-display:none;
-@media screen and (min-height:530px){
-        display:block;
-}
+    display:block;
+    width: 22px;
+    height: auto;
 `;
 
 
@@ -311,8 +312,11 @@ display:none;
 const DisconnectIcon=styled.img.attrs({
         src:disconnectImage,
         alt:'Disconnect'
-    })`
-    `;
+})`
+    display:block;
+    width: 22px;
+    height: auto;
+`;
 
 
 
@@ -442,11 +446,8 @@ export const ConnectWindow:React.FC<ConnectWidgetProps>=({mobile})=>{
 
 };
 const ConnectLabel=styled.div`
-     padding-left:5px;
-     font-size:12px;
-     @media screen and (min-width:250px){
-             font-size:20px;
-     }
+     padding-left:6px;
+     font-size:15px;
 `;
 
 interface ButtonProps{

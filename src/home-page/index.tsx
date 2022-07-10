@@ -36,7 +36,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 <ButtonContainer>
                   <LinkButton to={config.paths.getAppScreen.path}>Get it free</LinkButton>
                   <ConnectButton label="Try it out" mobile={mobile} />
-                  <DisconnectButton mobile={mobile} skin='white'/>
+                  <DisconnectButton mobile={mobile} />
                 </ButtonContainer>
           </TitleSection>
 
