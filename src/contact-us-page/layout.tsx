@@ -1,6 +1,5 @@
-import backgroundImage from './images/background.svg';
-import styled from 'styled-components';
-
+import backgroundImage from "./images/background.svg";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -8,10 +7,10 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-height:100vh;
-  color:white;
-  background-color: rgb(97,136,204);
-  @media and (min-width:600px) and (max-width:800){
+  min-height: 100vh;
+  color: white;
+  background-color: rgb(97, 136, 204);
+  @media and (min-width: 600px) and (max-width: 800) {
     background-color: white;
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
@@ -21,64 +20,61 @@ export const Container = styled.div`
     -o-background-size: cover;
     background-size: cover;
   }
-
-
-
 `;
 
-export const Content=styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex:1;
-    width:100%;
-`;
-export const Row=styled.div`
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items:center;
-    width:100%;
-    @media only screen and (min-width:600px){
-        flex-direction: row;
-        justify-content:space-between;
-        width:500px;
-    }
-    @media only screen and (min-width:1024px){
-        width:700px;
-    }
-
-
-`;
-export const PageTitle=styled.div`
-    margin-top: 100px;
-    font-size: 65px;
-    font-weight: 900;
-    line-height: 65px;
-
-    @media only screen and (max-width:1258px){
-        font-size: 40px;
-        line-height: 40px;
-    }
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  width: 100%;
 `;
 
-export const Column=styled.div`
-    display: flex;
-    flex-direction: column;
+export const Row = styled.div`
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 500px;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 700px;
+  }
 `;
 
-export const Title=styled.div`
-        margin-top:50px;
-        font-size: 26px;
-        margin-bottom: 15px;
-`;
-export const Line=styled.div`
-        font-size: 15px;
-        margin-bottom:10px;
+export const PageTitle = styled.div`
+  margin-top: 100px;
+  font-size: 65px;
+  font-weight: 900;
+  line-height: 65px;
+
+  @media only screen and (max-width: 1258px) {
+    font-size: 40px;
+    line-height: 40px;
+  }
 `;
 
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Title = styled.div`
+  margin-top: 50px;
+  font-size: 26px;
+  margin-bottom: 15px;
+`;
+
+export const Line = styled.div`
+  font-size: 15px;
+  margin-bottom: 10px;
+`;
 
 /*
     return (

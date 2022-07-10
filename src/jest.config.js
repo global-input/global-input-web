@@ -1,10 +1,10 @@
-const {defaults} = require('jest-config');
+const { defaults } = require("jest-config");
 module.exports = {
   // ...
-  verbose:true,
+  verbose: true,
 
-  setupFiles: [...defaults.setupFilesAfterEnv,"./src/tests/mocks.js"],
-  setupTestFrameworkScriptFile:"./src/tests/mocks.js"
+  setupFiles: [...defaults.setupFilesAfterEnv, "./src/tests/mocks.js"],
+  setupTestFrameworkScriptFile: "./src/tests/mocks.js",
 
   // ...
 };

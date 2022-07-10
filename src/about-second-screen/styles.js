@@ -2,12 +2,10 @@ import { styleMatchingScreenSize } from "../app-layout/screen-media";
 export const images = {
   headerBackground: require("./images/top-background.svg"),
 
-  computer: require("./images/computer.png")
-}
+  computer: require("./images/computer.png"),
+};
 
 export const styles = {
-
-
   content: {
     display: "flex",
     flexDirection: "column",
@@ -16,12 +14,10 @@ export const styles = {
     backgroundColor: "#A9C8E6", //#4880ED
     width: "100%",
     backgroundImage: "url(" + images.headerBackground + ")",
-    backgroundRepeat: 'no-repeat',
+    backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     minHeight: window.innerHeight,
-
   },
-
 
   tv: {
     container: {
@@ -35,38 +31,33 @@ export const styles = {
       },
       smallScreen: {
         right: 0,
-
       },
       desktop: {
         position: "relative",
         top: 100,
-        left: 20
+        left: 20,
       },
-
 
       mobile: {
         position: "relative",
         top: 100,
-        left: 20
-
-      }
-
+        left: 20,
+      },
     },
     inner: {
-      display: "static"
+      display: "static",
     },
     screen: {
       width: 405,
       position: "relative",
       top: 23,
-      left: 25
+      left: 25,
     },
     img: {
       position: "absolute",
       top: 0,
       left: 0,
     },
-
   },
   textContent: {
     paddingTop: 150,
@@ -78,10 +69,8 @@ export const styles = {
       color: "white",
       paddingLeft: "7vw",
     },
-    mobile: {
-
-    },
-    get: styleMatchingScreenSize
+    mobile: {},
+    get: styleMatchingScreenSize,
   },
   subtitle: {
     default: {
@@ -89,10 +78,8 @@ export const styles = {
       color: "white",
       paddingLeft: "7vw",
     },
-    mobile: {
-
-    },
-    get: styleMatchingScreenSize
+    mobile: {},
+    get: styleMatchingScreenSize,
   },
   description: {
     default: {
@@ -101,13 +88,11 @@ export const styles = {
       paddingLeft: "7vw",
       width: "50%",
       marginTop: 10,
-
     },
     mobile: {
       fontSize: "6vw",
-
     },
-    get: styleMatchingScreenSize
+    get: styleMatchingScreenSize,
   },
   card: {
     get: styleMatchingScreenSize,
@@ -124,7 +109,7 @@ export const styles = {
       paddingTop: 20,
       paddingLeft: 15,
       paddingRight: 5,
-      marginBottom: 50
+      marginBottom: 50,
     },
     title: {
       color: "#5291CD", //#4880ED
@@ -135,7 +120,7 @@ export const styles = {
       fontSize: 16,
     },
     paragraph: {
-      marginBottom: 10
+      marginBottom: 10,
     },
   },
   cardContainer: {
@@ -146,23 +131,20 @@ export const styles = {
       alignItems: "center",
       width: "100%",
       marginTop: 100,
-      marginBottom: 50
+      marginBottom: 50,
     },
   },
   code: {
     border: "2px dashed #888888",
-    padding: 10
+    padding: 10,
   },
-  exampleContainer: {
-
-  },
+  exampleContainer: {},
   selected: {
     color: "#002080",
-    fontWeight: 500
+    fontWeight: 500,
   },
   hover: {
     color: "#66ccff",
-    fontWeight: 300
-  }
-
-}
+    fontWeight: 300,
+  },
+};
