@@ -352,10 +352,9 @@ export const ConnectWindow:React.FC<ConnectWidgetProps>=({mobile})=>{
         }
 
         return(
-                <PopupGlass>
+                <PopupGlass onClick={()=>mobile.setShowWidget(false)}>
                         <PopUpWindow>
                                 <ConnectWidget mobile={mobile}/>
-                                <CloseIcon onClick={()=>mobile.setShowWidget(false)}/>
                         </PopUpWindow>
                 </PopupGlass>
         );
