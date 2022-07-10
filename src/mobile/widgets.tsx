@@ -61,37 +61,21 @@ const Container = styled.div`
         flex-direction: column;
         justify-content: flex-center;
         align-items: flex-start;
-        background-color: white;
         margin: 0;
         padding:0;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-radius: 12px;
         display: flex;
-        -moz-box-shadow: 3px 3px 5px #535353;
-        -webkit-box-shadow: 3px 3px 5px #535353;
-        box-shadow: 3px 3px 5px #535353;
-        background-color:rgb(74, 93, 126);
-        padding-bottom:10px;
-        @media only screen and (min-width:500px){
-                padding-left:10px;
-                padding-right:10px;
-
-        }
+        background-color:white;
+        padding: 20px;
 `;
 
 const TopBar = styled.div`
         display: flex;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
         flex-direction: row;
         align-items:flex-start;
         justify-content: space-between;
         width: 100%;
         align-items: flex-end;
-        padding-top:10px;
-
-        background-color:rgb(74, 93, 126);
-
 `;
 const Content = styled.div`
         flex-direction: column;
@@ -102,41 +86,21 @@ const Content = styled.div`
         display: flex;
         width:100%;
         overflow:scroll;
-        background-color:white;
 `;
 const PopupGlass = styled.div`
+        background-color: #0009;
         display: flex;
         margin: 0;
         padding: 0;
         position: fixed;
         z-index:10;
         width: 100vw;
+        height: 100vh;
         flex-direction: column;
-        justify-content:flex-start;
         align-items: center;
+        justify-content: center;
         top:0;
         left:0;
-        @media screen and (min-height:520px) and (min-width:520px){
-            top:20px;
-        }
-        @media screen and (min-height:580px) {
-            top:30px;
-        }
-        @media screen and (min-height:600px) {
-            top:60px;
-        }
-
-        @media screen and (min-height:700px) {
-            top:150px;
-        }
-
-
-
-
-
-
-
-
 `;
 // @media screen and (min-height:530px){
 //     top:0;
@@ -160,45 +124,26 @@ const PopUpWindow=styled.div`
     flex-direction:column;
     justify-content:center;
     position:relative;
-
 `;
 export const CloseIcon=styled.button`
     position:absolute;
     cursor:pointer;
-    color: #ffff;
-    border: 1px solid #AEAEAE;
+    color: white;
+    border: none;
     border-radius:50%;
-
-    background: red;
+    background-color: #ff6b6b;
     font-size: 40px;
     line-height:0;
     font-weight: bold;
     display: inline-block;
-
-    padding: 11px 3px;
+    text-align: center;
     width:45px;
     height:45px;
-    top:-25px;
-    right:-25px;
-
-    @media screen and (max-height:590px){
-        position:relative;
-        align-self:flex-end;
-        top:-40px;
-    }
-    @media screen and (max-width:490px){
-        right:-0;
-    }
-
-
-
+    top:-60px;
+    right:15px;
 
     &:before {
         content: "×";
-    }
-    &: hover{
-        transform: translateY(-3px);
-        box-shadow: 0 0 50px #ffff;
     }
 `;
 
@@ -206,76 +151,47 @@ export const CloseIcon=styled.button`
 const TabContainer=styled.div`
     display:flex;
     flex-direction:row;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:center;
     height:100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    align-items: flex-end;
+    width:100%;
+    margin-bottom: 12px;
 `;
 const TabBase=styled.div`
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-radius: 30px;
         border-width:0px;
-        margin-right:10px;
-        margin-left:10px;
-        padding:5px;
+        margin-right:7px;
+        margin-left:7px;
+        padding:15px;
         display:flex;
         flex-direction:column;
-        justify-content:flex-start;
+        justify-content:center;
+        width: 110px;
+        height: 60px;
         align-items:center;
-        @media only screen and (min-width:300px){
-            min-width:50px;
+        cursor:pointer;
+        &: hover{
+            background-color:#efefef;
         }
-
-        @media only screen and (min-width:300px){
-            min-width:50px;
-        }
-        @media only screen and (min-width:320px){
-            min-width:60px;
-        }
-        @media only screen and (min-width:360px){
-            min-width:70px;
-        }
-        @media only screen and (min-width:400px){
-            min-width:80px;
-        }
-        @media only screen and (min-width:600px){
-            min-width:90px;
-        }
-        @media only screen and (min-width:700px){
-            min-width:100px;
-
-        }
-
 `;
-const ActiveTab=styled(TabBase)`
-    background-color:white;
+const ActiveTab=styled(TabBase).attrs({
+    as:`button`
+})`
+background-color:#eeeeee;
 `;
 const Tab=styled(TabBase).attrs({
     as:`button`
 })`
-margin-bottom:10px;
-cursor:pointer;
-background-color:#DDDDDD;
-&: hover{
-    transform: translateY(-3px);
-    box-shadow: 0 0 50px #ffff;
-}
+
+background-color:#dedede;
 `;
 
 
 
 const TabText=styled.div`
-    color:rgb(21,53,232);
-    font-size:8px;
-    @media only screen and (min-width:280px){
-        font-size:10px;
-    }
-    @media only screen and (min-width:400px){
-        font-size:12px;
-    }
-
+    color:#4872d3;
+    font-size:12px;
+    font-weight: 600;
 `;
 
 

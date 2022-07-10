@@ -92,7 +92,7 @@ export const TopBar = styled.div`
       flex-direction: row;
       justify-content: space-between;
       font-size: 12px;
-      z-index: 20;
+      z-index: 5;
 `;
 
 
@@ -174,7 +174,7 @@ export const DesktopMenuContainer = styled.div`
 export const MobileMenuContainer = styled.div`
     display: flex;
     position: absolute;
-    z-index: 19;
+    z-index: 4;
     flex-direction: column;
     background-color: white;
     top:54px;
