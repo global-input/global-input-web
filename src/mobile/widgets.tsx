@@ -98,10 +98,24 @@ const PopupGlass = styled.div`
   justify-content: flex-end;
   top: 0;
   left: 0;
+  animation: fadeIn 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
 
   @media screen and (min-width: 800px) {
     justify-content: center;
   }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(1.25);
+      -webkit-transform: scale(1.25);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
+ }
 `;
 
 const ErrorMessage = styled.div`
