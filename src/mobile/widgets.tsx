@@ -10,6 +10,7 @@ import disconnectImage from "./images/disconnect.png";
 import pairingImage from "./images/pairing.png";
 
 import { SettingsEditor } from "./settingsEditor";
+import { LinkButton } from "../home-page/layout";
 
 const Button = styled.button`
   text-decoration: none;
@@ -128,6 +129,12 @@ const ErrorMessage = styled.div`
   max-height: 100px;
   overflow: scroll;
 `;
+
+const BlueLink = styled.a.attrs()`
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+`
 
 const PopUpWindow = styled.div`
   display: flex;
@@ -313,6 +320,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
     errorMessage,
     onSaveSettings,
     loadSettings,
+    restart,
     isConnected,
     isShowWidget,
     isConnectionDenied,
@@ -324,11 +332,11 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
   if (!isShowWidget) {
     return null;
   }
+
   let message =
-    isConnectionDenied &&
-    "You can only use one mobile app per session. Disconnect to start a new session.";
+    isConnectionDenied && <ErrorMessage>You can only use one mobile app per session. <BlueLink onClick={() => restart()}>Click here</BlueLink> to start a new session.</ErrorMessage>
   if (isError) {
-    message = errorMessage;
+    message = <ErrorMessage>errorMessage</ErrorMessage>;
   }
 
   return (
