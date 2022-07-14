@@ -120,18 +120,19 @@ const PopupGlass = styled.div`
 `;
 
 const ErrorMessage = styled.div`
-  color: red;
+  color: white;
   font-size: 11;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 6px;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #ff8786;
   max-width: 350px;
   max-height: 100px;
   overflow: scroll;
 `;
 
 const BlueLink = styled.a.attrs()`
-  color: blue;
+  color: #0984e3;
   cursor: pointer;
   text-decoration: underline;
 `
