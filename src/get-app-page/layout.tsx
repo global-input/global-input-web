@@ -128,10 +128,18 @@ const AppStoreImage = styled.img.attrs({
 const PlayStoreImage = styled.img.attrs({
   src: playStore,
   alt: "Play Store",
-})`
-  opacity: 0.35;
-  cursor: not-allowed;
+})`  
 `;
+
+
+// const PlayStoreImage = styled.img.attrs({
+//   src: playStore,
+//   alt: "Play Store",
+// })`
+//   opacity: 0.35;
+//   cursor: not-allowed;
+// `;
+
 
 const WebStoreImage = styled.img.attrs({
   src: webStore,
@@ -167,7 +175,7 @@ export const AppStoreButton = () => (
 );
 
 export const PlayStoreButton = () => (
-  <ButtonLink>
+  <ButtonLink  href={config.links.appdownload.playStore}>
     <PlayStoreImage />
   </ButtonLink>
 );

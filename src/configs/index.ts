@@ -89,7 +89,7 @@ export const config = {
       appStore:
         "https://itunes.apple.com/us/app/global-input-app/id1269541616?mt=8&ign-mpt=uo%3D4",
       playStore:
-        "https://play.google.com/store/apps/details?id=uk.co.globalinput&hl=en_GB",
+        "https://play.google.com/store/apps/details?id=uk.co.globalinput2",
     },
   },
 };
