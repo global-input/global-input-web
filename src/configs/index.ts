@@ -1,5 +1,5 @@
 export const config = {
-  id: "globalInputApp",
+  id: 'globalInputApp',
   paths: {
     examples: {
       contentTransfer: {
