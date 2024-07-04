@@ -19,22 +19,22 @@
       "type": "image/x-icon"
     },
     {
-      "src": "globalInput-144.png",
+      "src": "globalinput-144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "globalInput-48.png",
+      "src": "globalinput-48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "globalInput-32.png",
+      "src": "globalinput-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "globalInput-16.png",
+      "src": "globalinput-16.png",
       "sizes": "16x16",
       "type": "image/png"
     }
