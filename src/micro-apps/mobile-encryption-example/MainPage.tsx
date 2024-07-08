@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from 'react-router-dom'; ////website
 
 import { useMobile, ConnectWidget,DisconnectButton} from './mobile';
 import {AppContainer,ConnectedInstruction,TipsOnButton} from './components';
@@ -16,7 +16,7 @@ interface Props {
 
 
 export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCodeGenerator }) => {
-    const history = useHistory();////website
+    const navigate = useNavigate();////website
     const mobile = useMobile(initData, true);
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
@@ -30,7 +30,7 @@ export const MainPage: React.FC<Props> = ({ domain, encryption, decryption, qrCo
                 qrCodeGenerator();
                 break;
             default:
-            mobileUI.onFieldChange(field, history); ////website
+            mobileUI.onFieldChange(field, navigate); ////website
         }
     });
 

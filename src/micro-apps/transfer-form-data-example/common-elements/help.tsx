@@ -4,6 +4,7 @@ import styled from 'styled-components';
 interface ExpandProp{
     expand?:boolean;
     position?:number;
+    children?: React.ReactNode;
 }
 const ExpandIcon =styled.div<ExpandProp>`
     box-sizing: border-box;
@@ -89,6 +90,7 @@ interface Prop{
     expand:string;
     setExpand:(expand:string)=>void;
     position?:number;
+    children?: React.ReactNode;
 }
 export const Help:React.FC<Prop>=({children,expandId, expand,setExpand, position=1})=>{
     const isExpanded=expand===expandId;

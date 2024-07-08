@@ -2,8 +2,13 @@ import React, {useState, useRef,useEffect} from 'react';
 import styled from 'styled-components';
 
 
+interface ShowProps{
+    show:boolean;
 
-const CopyContainer1=styled.div`
+
+
+}
+const CopyContainer1=styled.div<ShowProps>`
     display:inline-flex;
     flex-direction:row;
     position:relative;
@@ -19,7 +24,7 @@ const CopyContainer2=styled(CopyContainer1)`
 
     top:-28px;
 `;
-const CopyContainer3=styled.div`
+const CopyContainer3=styled.div<ShowProps>`
     display:flex;
     flex-direction:row;
     position:relative;
@@ -42,7 +47,7 @@ const CopyContainer=({position=1,children,show})=>{
     }
 }
 
-const CopyContent=styled.div`
+const CopyContent=styled.div<ShowProps>`
     font-family: Avenir;
     color: #4040bf;
     white-space: wrap;
@@ -50,8 +55,11 @@ const CopyContent=styled.div`
     padding-right:10px;
     display:${props=>props.show?'block':'none'};
 `;
+interface ShowProps{
+    show:boolean;
 
-const Button = styled.button`
+}
+const Button = styled.button<ShowProps>`
     text-decoration: none;
     font-size: 10px;
     border-radius: 8px;

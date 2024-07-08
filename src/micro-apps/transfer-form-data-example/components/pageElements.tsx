@@ -8,8 +8,10 @@ const SourceLink=styled(SourceLinkElement).attrs({
     rel:'noreferrer noopener',
     target:'_blank'})``;
 
-
-    export  const AppContainer:React.FC=({children})=>(
+interface AppContainerProps{
+    children:React.ReactNode;
+}
+    export  const AppContainer:React.FC<AppContainerProps>=({children})=>(
         <AppContainerElement>
                 <AppTitleSection>
                     <AppTitle>Form Data Transfer</AppTitle>

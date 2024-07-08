@@ -138,8 +138,11 @@ const TickContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
+interface Props {
+  children: React.ReactNode;
+}
 
-export const TickText: React.FC = ({ children }) => (
+export const TickText: React.FC<Props> = ({ children }) => (
   <TickContainer>
     <Tick />
     <Text>{children}</Text>

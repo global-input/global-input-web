@@ -10,7 +10,11 @@ const SourceLink=styled(SourceLinkElement).attrs({
     target:'_blank'})``;
 
 
-    export  const AppContainer:React.FC=({children})=>(
+    interface ChildrenProps{
+
+    children:React.ReactNode;
+    }
+    export  const AppContainer:React.FC<ChildrenProps>=({children})=>(
         <AppContainerElement>
                 <AppTitleSection>
                     <AppTitle>Mobile Control Example</AppTitle>

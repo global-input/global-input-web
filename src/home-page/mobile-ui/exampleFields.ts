@@ -39,22 +39,22 @@ export const FIELDS = {
   },
 };
 
-export const onFieldChange = (field, history) => {
+export const onFieldChange = (field, navigate) => {
   switch (field.id) {
     case FIELDS.encryption.id:
-      history.push(config.paths.examples.mobileEncryption.path);
+      navigate(config.paths.examples.mobileEncryption.path);
       break;
     case FIELDS.transferForm.id:
-      history.push(config.paths.examples.transferForm.path);
+      navigate(config.paths.examples.transferForm.path);
       break;
     case FIELDS.secondScreen.id:
-      history.push(config.paths.examples.mediaPlayer.path);
+      navigate(config.paths.examples.mediaPlayer.path);
       break;
     case FIELDS.game.id:
-      history.push(config.paths.examples.gameControl.path);
+      navigate(config.paths.examples.gameControl.path);
       break;
     case FIELDS.contentTransfer.id:
-      history.push(config.paths.examples.contentTransfer.path);
+      navigate(config.paths.examples.contentTransfer.path);
       break;
     default:
       return false;

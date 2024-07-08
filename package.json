@@ -1,25 +1,25 @@
 {
   "name": "global-input-web",
-  "version": "3.1.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.9",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.2",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "bootstrap": "^4.5.3",
+    "@material-ui/core": "^4.12.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.101",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "bootstrap": "^5.3.3",
     "global-input-react": "^4.6.7",
-    "qrcode.react": "^3.1.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
-    "styled-components": "^5.2.1",
-    "typescript": "~4.0.3"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.1.11",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,7 +28,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -41,10 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/react-router-dom": "^5.1.6",
-    "faker": "^5.1.0",
-    "puppeteer": "^15.3.2"
   }
 }

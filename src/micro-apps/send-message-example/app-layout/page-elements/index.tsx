@@ -1,6 +1,9 @@
 import React from 'react';
 
-export const Title: React.FC = ({ children }) => (
+interface TitleProps {
+    children: React.ReactNode;
+}
+export const Title: React.FC<TitleProps> = ({ children }) => (
     <div style={styles.title}>{children}</div>
 );
 export const P = ({ children }) => (<div style={styles.paragraph}>{children}</div>);
@@ -21,6 +24,7 @@ export const LoadingCircle = () => (
 
 interface DisplayErrorMessageProps {
     errorMessage: string | null;
+    children?: React.ReactNode;
 }
 export const DisplayErrorMessage: React.FC<DisplayErrorMessageProps> = ({ errorMessage, children }) => (
     <div style={styles.errorMessage}>
@@ -30,14 +34,20 @@ export const DisplayErrorMessage: React.FC<DisplayErrorMessageProps> = ({ errorM
 );
 
 
-export const QRCodeContainer: React.FC = ({ children }) => (
+interface QRCodeProps {
+    children: React.ReactNode;
+}
+export const QRCodeContainer: React.FC<AppContainerProps> = ({ children }) => (
     <div style={styles.qrCode}>
         {children}
     </div>
 );
 
 
-const AppTitle: React.FC = ({ children }) => {
+interface AppTitleProps {
+    children: React.ReactNode;
+}
+const AppTitle: React.FC<AppTitleProps> = ({ children }) => {
     if (!children) {
         return null;
     }
@@ -58,7 +68,10 @@ export const AppContainer: React.FC<AppContainerProps> = ({ children, domain, ti
     </div>
 );
 
-export const AppFooter: React.FC = ({ children }) => (
+interface AppBodyProps {
+    children: React.ReactNode;
+}
+export const AppFooter: React.FC<AppBodyProps> = ({ children }) => (
     <div style={styles.appFooter}>
         {children}
     </div>
@@ -70,6 +83,7 @@ interface BasicLayoutProps {
     title: string;
     domain?: string;
     errorMessage?: string | null;
+    children: React.ReactNode;
 }
 
 export const BasicLayout: React.FC<BasicLayoutProps> = ({ title, domain, errorMessage, children }) => (
@@ -81,6 +95,7 @@ export const BasicLayout: React.FC<BasicLayoutProps> = ({ title, domain, errorMe
 
 interface MessageProps {
     title?: string;
+    children: React.ReactNode;
 }
 
 export const MessageContainer: React.FC<MessageProps> = ({ children, title }) => (
@@ -95,6 +110,7 @@ export const MessageContainer: React.FC<MessageProps> = ({ children, title }) =>
 interface FormContainerProps {
     domain?: string;
     title?: string;
+    children: React.ReactNode;
 }
 export const FormContainer: React.FC<FormContainerProps> = ({ children, title }) => {
     return (<div style={styles.formContainer}>
@@ -105,13 +121,20 @@ export const FormContainer: React.FC<FormContainerProps> = ({ children, title })
     </div>);
 };
 
-export const FormFooter: React.FC = ({ children }) => (
+interface FormFieldProps {
+    children: React.ReactNode;
+}
+
+export const FormFooter: React.FC<FormFieldProps> = ({ children }) => (
     <div style={styles.formFooter}>
         {children}
     </div>
 );
 
-export const RowCenter: React.FC = ({ children }) => (
+interface FormFieldProps {
+    children: React.ReactNode;
+}
+export const RowCenter: React.FC<FormFieldProps> = ({ children }) => (
     <div style={styles.rowCenter}>
         {children}
     </div>
@@ -120,6 +143,7 @@ export const RowCenter: React.FC = ({ children }) => (
 interface MessageLinkProps {
     href?: string;
     onClick?: () => void;
+    children: React.ReactNode;
 }
 
 export const MessageLink: React.FC<MessageLinkProps> = ({ href, onClick, children }) => {

@@ -1,11 +1,11 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMobile } from "../../mobile";
 export * from "../../mobile";
 export const useConnectToMobile = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobile = useMobile(initData);
   mobile.setOnchange(({ field }) => {
-    onFieldChange(field, history);
+    onFieldChange(field, navigate);
   });
   return mobile;
 };
@@ -100,10 +100,10 @@ const initData = {
   },
 };
 
-const onFieldChange = (field, history) => {
+const onFieldChange = (field, navigate) => {
   switch (field.id) {
     case FIELDS.home.id:
-      history.push("/");
+      navigate("/");
       break;
     default:
   }

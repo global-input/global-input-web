@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ExpandIcon =styled.div`
+interface ExpnadProps{
+    expand?:boolean;
+    children?:React.ReactNode;
+
+}
+
+const ExpandIcon =styled.div<ExpnadProps>`
     box-sizing: border-box;
     position: relative;
     display: inline-block;
@@ -63,7 +69,7 @@ const HelpContainer=({position=1,children})=>{
     }
 }
 
-const HelpContent=styled.div`
+const HelpContent=styled.div<ExpnadProps>`
 font-family: Avenir;
     color: rgb(53,116,230);
     white-space: wrap;

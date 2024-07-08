@@ -141,7 +141,11 @@ export const MoreInfo = styled.div`
     }
 `;
 
-export const Instruction=styled.div`
+interface CenterProps{
+    center?:boolean;
+}
+
+export const Instruction=styled.div<CenterProps>`
     font-size: 10px;
     align-self:${props=>props.center?'center':'flex-start'};
     @media screen and (min-height:250px){
@@ -159,6 +163,7 @@ export const Instruction=styled.div`
 interface ConnectedInstructionProps{
     mobile:MobileData;
     center?:boolean;
+    children?:React.ReactNode;
 }
 
 

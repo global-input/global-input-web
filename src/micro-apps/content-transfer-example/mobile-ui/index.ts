@@ -1,5 +1,5 @@
 
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from "react-router-dom"; ////website
 
 /*
 import { useGlobalInputApp,ConnectQR} from 'global-input-react';
@@ -42,7 +42,7 @@ const initData = {
  };
 
 export const useConnectMobile = ({setContent}) => {
-  const history = useHistory();////website
+  const navigate = useNavigate();////website
 /*
   const mobile = useGlobalInputApp({ initData });
 */
@@ -53,7 +53,7 @@ export const useConnectMobile = ({setContent}) => {
         setContent(field.value as string);
         break;
       default:
-      mobileUI.onFieldChange(field, history); ////website
+      mobileUI.onFieldChange(field, navigate); ////website
 
     }
   });

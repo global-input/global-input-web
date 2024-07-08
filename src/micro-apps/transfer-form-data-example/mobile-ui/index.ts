@@ -1,5 +1,5 @@
 
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from 'react-router-dom'; ////website
 import { useMobile} from '../mobile';
 import type {InitData} from '../mobile';
 import * as storage from '../storage';
@@ -40,7 +40,7 @@ microAppsUI.add(FIELDS);////website
 
 
 export const useConnectMobile = ({domain,formFields,configId,visibility, setVisibility,onFormModified})=>{
-     const history = useHistory();////website
+     const navigate = useNavigate();////website
 
      const initData = () => {
         const initData = {
@@ -78,7 +78,7 @@ export const useConnectMobile = ({domain,formFields,configId,visibility, setVisi
                     onFormModified(newFormFields,false);
                 }
                 if (!fieldModified) {
-                microAppsUI.onFieldChange(field, history); ////website
+                microAppsUI.onFieldChange(field, navigate); ////website
                 }
         }
     });

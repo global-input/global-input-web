@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from 'react-router-dom'; ////website
 import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website
 import { useMobile } from '../mobile';
 
@@ -34,7 +34,7 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
         };
 
         const mobile = useMobile(() => buildInitData(videoData,mode), true,configId);
-        const history = useHistory();////website
+        const navigate = useNavigate();////website
         const onChangeVideoData = videoData => {
             videoControl.setPlayVideoSource(videoPlayer.current, videoData);
             if(mode===Mode.SELECT_VIDEO){
@@ -59,7 +59,7 @@ export const useConnectMobile=({videoPlayer,videoData,setVideoData,videoControl,
                                             break;
 
                                     default:
-                                            mobileUI.onFieldChange(field,history)////website
+                                            mobileUI.onFieldChange(field,navigate)////website
                             }
                 }
                 else if(mode===Mode.PLAY_VIDEO){

@@ -1,16 +1,16 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMobile } from "../../mobile";
 import * as exampleFields from "./exampleFields";
 import * as pageMenu from "./pageMenu";
 export * from "../../mobile";
 export const useConnectToMobile = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobile = useMobile(initData);
   mobile.setOnchange(({ field }) => {
-    if (exampleFields.onFieldChange(field, history)) {
+    if (exampleFields.onFieldChange(field, navigate)) {
       return true;
     }
-    if (pageMenu.onFieldChange(field, history)) {
+    if (pageMenu.onFieldChange(field, navigate)) {
       return true;
     }
   });

@@ -30,7 +30,7 @@ const headerTextContent = {
 };
 
 interface HomePageProps {
-  editConnectionSettings: () => void;
+  
 }
 export const HomePage: React.FC<HomePageProps> = () => {
   usePageTitle(

@@ -124,12 +124,16 @@ export const Icon = styled.button`
   }
 `;
 
+interface IconProps {
+  show: boolean;
+}
+
 export const CloseIcon = styled.img.attrs({
   alt: "Close Menu",
   src: closeSymbol,
   width: 22,
-  height: 20,
-})`
+  height: 20,  
+})<IconProps>`
   display: ${(props) => (props.show ? "block" : "none")};
 `;
 
@@ -138,7 +142,7 @@ export const OpenIcon = styled.img.attrs({
   src: menuSymbol,
   width: 22,
   height: 20,
-})`
+})<IconProps>`
   display: ${(props) => (props.show ? "block" : "none")};
 `;
 

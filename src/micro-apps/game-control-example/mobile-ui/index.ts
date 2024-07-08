@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from 'react-router-dom'; ////website
 import { useMobile, ConnectWindow, ConnectButton } from '../mobile';
 
 import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website
@@ -143,12 +143,12 @@ const initData = {
 
 
 export const useConnectMobile =() => {
-    const history = useHistory();////website
+    const navigate = useNavigate();////website
     const mobile = useMobile(initData, true);
     const [score,setScore]=useState(0);
 
     mobile.setOnchange(({field}) => {////website
-    mobileUI.onFieldChange(field, history); ////website
+    mobileUI.onFieldChange(field, navigate); ////website
     });////website
 
 

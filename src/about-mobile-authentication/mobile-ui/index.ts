@@ -1,17 +1,17 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { config } from "../../configs";
 import { useMobile } from "../../mobile";
 export * from "../../mobile";
 export const useConnectToMobile = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobile = useMobile(initData);
   mobile.setOnchange(({ field }) => {
     switch (field.id) {
       case FIELDS.home.id:
-        history.push("/");
+        navigate("/");
         break;
       case FIELDS.transferForm.id:
-        history.push(config.paths.examples.transferForm.path);
+        navigate(config.paths.examples.transferForm.path);
         break;
       default:
     }

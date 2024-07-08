@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from 'react-router-dom'; ////website
+import { useNavigate } from 'react-router-dom'; ////website
 import { useMobile, ConnectWidget } from './mobile';
 import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ companyInfo, sendMessage }) => {
-    const history = useHistory();////website
+    const navigate = useNavigate();////website
     const initData = {
         id: 'mobile-secure-storage-example',
         form: {
@@ -30,7 +30,7 @@ const Home: React.FC<Props> = ({ companyInfo, sendMessage }) => {
                 sendMessage();
                 break;
             default:
-            mobileUI.onFieldChange(field, history); ////website
+            mobileUI.onFieldChange(field, navigate); ////website
         }
     });
     return (

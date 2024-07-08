@@ -3,8 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect,
+  Routes,  
 } from "react-router-dom";
 import { config } from "./configs";
 import { HomePage } from "./home-page";
@@ -30,65 +29,65 @@ const ScrollToTop = () => {
 const App: React.FC = () => (
   <Router>
     <ScrollToTop />
-    <Switch>
-      <Route path={config.paths.home.path} exact component={HomePage} />
-      <Route path={config.paths.getAppScreen.path} component={GetAppPage} />
-      <Route path={config.paths.privacy.path} component={PrivacyPage} />
-      <Route path={config.paths.contactUs.path} component={ContactUsPage} />
+    <Routes>
+      <Route path={config.paths.home.path}  element={<HomePage/>} />
+      <Route path={config.paths.getAppScreen.path} element={<GetAppPage/>} />
+      <Route path={config.paths.privacy.path} element={<PrivacyPage/>} />
+      <Route path={config.paths.contactUs.path} element={<ContactUsPage/>} />
       <Route
         path={config.paths.mobileAuthentication.path}
-        component={AboutMobileAuthentication}
+        element={<AboutMobileAuthentication/>}
       />
       <Route
         path={config.paths.mobileControl.path}
-        component={AboutMobileInputControl}
+        element={<AboutMobileInputControl/>}
       />
       <Route
         path={config.paths.secondScreen.path}
-        component={AboutSecondScreen}
+        element={<AboutSecondScreen/>}
       />
       <Route
         path={config.paths.mobilePersonalStorage.path}
-        component={AboutMobileSecureStorage}
+        element={<AboutMobileSecureStorage/>}
       />
       <Route
         path={config.paths.aboutContentEncryption.path}
-        component={AboutMobileEncryption}
+        element={<AboutMobileEncryption/>}
       />
       <Route
         path={config.paths.mobileContentTransfer.path}
-        component={AboutMobileContentTransfer}
+        element={<AboutMobileContentTransfer/>}
       />
       <Route
         path={config.paths.examples.contentTransfer.path}
-        component={microApps.ContentTransferScreen}
+        element={<microApps.ContentTransferScreen/>}
       />
       <Route
         path={config.paths.examples.gameControl.path}
-        component={microApps.GameControlScreen}
+        element={<microApps.GameControlScreen/>}
       />
       <Route
         path={config.paths.examples.mediaPlayer.path}
-        component={microApps.MediaPlayerScreen}
+        element={<microApps.MediaPlayerScreen/>}
       />
       <Route
         path={config.paths.examples.mobileEncryption.path}
-        component={microApps.MobileEncryptionScreen}
+        element={<microApps.MobileEncryptionScreen/>}
       />
       <Route
         path={config.paths.examples.transferForm.path}
-        component={microApps.TransferFormDataScreen}
+        element={<microApps.TransferFormDataScreen/>}
       />
       <Route
         path={config.paths.examples.sendMessage.path}
-        component={microApps.SendMessageScreen}
+        element={<microApps.SendMessageScreen/>}
       />
       <Route
         path={config.paths.examples.mobileEncryption.oldPath}
-        component={microApps.MobileEncryptionScreen}
+        element={<microApps.MobileEncryptionScreen/>}
       />
-      <Redirect to={config.paths.home.path} />
-    </Switch>
+      
+    </Routes>
   </Router>
 );
 

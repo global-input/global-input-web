@@ -161,6 +161,7 @@ export const Instruction=styled.div<InstructionProps>`
 interface ConnectedInstructionProps{
     mobile:MobileData;
     center?:boolean;
+    children?:React.ReactNode;
 }
 
 

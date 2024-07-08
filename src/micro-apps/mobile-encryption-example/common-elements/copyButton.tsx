@@ -5,6 +5,9 @@ import styled from 'styled-components';
 interface CopyElementProps{
     show:boolean;
     position?:number;
+    children?: React.ReactNode;
+    
+    
 
 }
 const CopyContainer1=styled.div<CopyElementProps>`
@@ -84,6 +87,7 @@ const Button = styled.button<CopyElementProps>`
 interface Props{
     value:string;
     position?:number;
+    children:React.ReactNode;
 
 }
 

@@ -18,7 +18,7 @@ export const onServiceWorkerUpdate = (
 
 const reloadPage = () => {
   postSkipWaiting();
-  window.location.reload(true);
+  window.location.reload();
 };
 
 type ReloadPage = () => void;

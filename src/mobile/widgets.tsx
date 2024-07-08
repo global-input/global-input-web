@@ -131,7 +131,7 @@ const ErrorMessage = styled.div`
   overflow: scroll;
 `;
 
-const BlueLink = styled.a.attrs()`
+const BlueLink = styled.a.attrs(() => ({}))`
   color: #0984e3;
   cursor: pointer;
   text-decoration: underline;
@@ -445,6 +445,7 @@ export const DisconnectButton: React.FC<ButtonProps> = ({
 
 interface WhenProps {
   mobile: MobileData;
+  children: React.ReactNode;
 }
 export const WhenConnected: React.FC<WhenProps> = ({ mobile, children }) => {
   if (mobile.isConnected) {

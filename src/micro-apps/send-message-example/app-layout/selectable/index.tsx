@@ -1,5 +1,10 @@
 import React from 'react';
-export const SelectionContainer: React.FC = ({ children }) => {
+
+interface SelectionContainerProps {
+    children: React.ReactNode;
+}
+
+export const SelectionContainer: React.FC<SelectionContainerProps> = ({ children }) => {
     return (
         <div style={styles.multiline.container}>
             {children}
