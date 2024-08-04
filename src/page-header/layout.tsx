@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { config } from "../configs";
-import appIcon from "./images/app-icon.png";
+import appIcon from "./images/small-app-icon.png";
 import companyIcon from "./images/company-icon.png";
 import menuSymbol from "./images/menu-symbol.svg";
 import closeSymbol from "./images/close.png";
@@ -15,7 +15,13 @@ const dropDown = keyframes`
     transform:translateY(0%)
   }
 `;
-
+export const LogoSection= styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 5vw;
+`;
 export const Title = styled.h3`
   font-size: 20px;
   color: #5291cd;
@@ -39,16 +45,26 @@ export const Title = styled.h3`
     font-size: 20px;
   }
 `;
+export const Pipe=styled.div`
+  border-left: 1px solid ;
+  height: 50px;
+  margin: 0 10px;
+  
+`;
 export const appTitle =
   config.id === "iterative" ? "Iterative Solution" : "Global Input App";
 
-export const LogoAndName = styled.p`
-  margin: 0 0 0 5vw;
+export const LogoAndName = styled.div`
+  
   display: flex;
-  flex-direction: row;
-  @media only screen and (min-width: 1024px) {
-    margin-left: 15vw;
-  }
+  flex-direction: row;    
+`;
+
+export const LogoAndNameLink = styled.a`
+  
+  display: flex;
+  flex-direction: row;    
+  text-decoration: none;
 `;
 
 export const AppLogo = styled.img.attrs({
@@ -57,12 +73,12 @@ export const AppLogo = styled.img.attrs({
 })`
   object-fit: none;
 `;
-const CompanyLogo = styled(AppLogo).attrs({
+export const CompanyLogo = styled(AppLogo).attrs({
   alt: "Company Logo",
   src: companyIcon,
 })``;
 
-export let Logo = config.id === "iterative" ? CompanyLogo : AppLogo;
+// export let Logo = config.id === "iterative" ? CompanyLogo : AppLogo;
 
 export const Container = styled.div`
   display: flex;

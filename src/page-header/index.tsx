@@ -5,7 +5,7 @@ import { config } from "../configs";
 import {
   Title,
   appTitle,
-  Logo,
+  AppLogo,
   Container,
   TopBar,
   Icon,
@@ -15,6 +15,10 @@ import {
   DesktopMenuContainer,
   MobileMenuContainer,
   LogoAndName,
+  CompanyLogo,
+  LogoAndNameLink,
+  LogoSection,
+  Pipe
 } from "./layout";
 
 interface Props {
@@ -40,10 +44,19 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
   return (
     <Container>
       <TopBar>
-        <LogoAndName>
-          <Logo />
+        <LogoSection>
+        <LogoAndNameLink href="https://iterativesolution.co.uk">
+          <CompanyLogo/>
+          <Title>Iterative Solution</Title>          
+        </LogoAndNameLink>
+        <Pipe />
+        <LogoAndNameLink href="/">          
+          <AppLogo />
           <Title>{appTitle}</Title>
-        </LogoAndName>
+        </LogoAndNameLink>
+
+        </LogoSection>
+        
         <DesktopMenuContainer>{listMenu}</DesktopMenuContainer>
         <Icon onClick={toggle}>
           <CloseIcon show={menuPressed} />
