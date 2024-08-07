@@ -13,8 +13,7 @@ const reloader = (needsToReload, reloadPage) => {
   return (
     <Snackbar
       open={needsToReload}
-      message="new version is available!"
-      onClick={reloadPage}
+      message="New version is available!"
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
       action={
         <Button color="inherit" size="small" onClick={reloadPage}>
