@@ -13,10 +13,10 @@ export const add = (inputFields: any) => {
     inputFields.backToHome = home;
 }
 
-export const onFieldChange = (field, history) => {
+export const onFieldChange = (field, navigate) => {
     switch (field.id) {
         case home.id:
-            history.push('/');
+            navigate('/');
             break;
         default:
             return false;

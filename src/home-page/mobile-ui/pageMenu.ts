@@ -90,47 +90,47 @@ export const FIELDS = {
   },
 };
 
-export const onFieldChange = (field, history) => {
+export const onFieldChange = (field, navigate) => {
   switch (field.id) {
     case FIELDS.home.id:
-      history.push("/");
+      navigate("/");
       break;
     case FIELDS.privacy.id:
-      history.push(config.paths.privacy.path);
+      navigate(config.paths.privacy.path);
       break;
     case FIELDS.contactUs.id:
-      history.push(config.paths.contactUs.path);
+      navigate(config.paths.contactUs.path);
       break;
     case FIELDS.getItFree.id:
-      history.push(config.paths.getAppScreen.path);
+      navigate(config.paths.getAppScreen.path);
       break;
     case FIELDS.mobileAuthentication.id:
-      history.push(config.paths.mobileAuthentication.path);
+      navigate(config.paths.mobileAuthentication.path);
       break;
     case FIELDS.mobileInputControl.id:
-      history.push(config.paths.mobileControl.path);
+      navigate(config.paths.mobileControl.path);
       break;
     case FIELDS.secondScreen.id:
-      history.push(config.paths.secondScreen.path);
+      navigate(config.paths.secondScreen.path);
       break;
     case FIELDS.mobileEncryption.id:
-      history.push(config.paths.aboutContentEncryption.path);
+      navigate(config.paths.aboutContentEncryption.path);
       break;
     case FIELDS.mobileSecureStorage.id:
-      history.push(config.paths.mobilePersonalStorage.path);
+      navigate(config.paths.mobilePersonalStorage.path);
       break;
     case FIELDS.mobileContentTransfer.id:
-      history.push(config.paths.mobileContentTransfer.path);
+      navigate(config.paths.mobileContentTransfer.path);
       break;
     default:
       return false;
   }
   return true;
 };
-export const onHomeFieldChange = (field, history) => {
+export const onHomeFieldChange = (field, navigate) => {
   switch (field.id) {
     case FIELDS.home.id:
-      history.push("/");
+      navigate("/");
       break;
     default:
       return false;
