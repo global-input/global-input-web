@@ -349,7 +349,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
         {widgetState === WidgetState.CONNECT_QR && (
           <ConnectQR mobile={mobile} hspace={100}/>
         )}
-        {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} />}
+        {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100}/>}
         {widgetState === WidgetState.SETTINGS && (
           <SettingsEditor
             saveSettings={onSaveSettings}
