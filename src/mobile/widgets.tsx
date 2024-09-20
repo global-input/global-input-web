@@ -347,7 +347,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
       </TopBar>
       <Content>
         {widgetState === WidgetState.CONNECT_QR && (
-          <ConnectQR mobile={mobile} />
+          <ConnectQR mobile={mobile} hspace={100}/>
         )}
         {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} />}
         {widgetState === WidgetState.SETTINGS && (
