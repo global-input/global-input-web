@@ -52,3 +52,17 @@ export const P = styled.div`
   margin-bottom: 30px;
   color: #fffe;
 `;
+
+export const ContactInfo = styled.div`
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+`;
+
+export const ContactItem = styled.div`
+  margin-bottom: 10px;
+  a {
+    color: #fffe;
+    text-decoration: underline;
+  }
+`;
