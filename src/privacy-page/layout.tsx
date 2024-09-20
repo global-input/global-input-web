@@ -47,16 +47,36 @@ export const Title = styled.div`
   }
 `;
 
+export const SubTitle = styled.div`
+  font-size: 30px;
+  font-weight: 700;
+  padding-bottom: 20px;
+  line-height: 30px;
+  
+`;
+
+export const Address=styled.div`    
+  
+  
+  margin-left: 50px;
+`;
+export const AddressLine=styled.div`    
+  margin-bottom: 5px;
+  
+`;
+
+
 export const P = styled.div`
   font-size: 18px;
   margin-bottom: 30px;
   color: #fffe;
 `;
 
-export const ContactInfo = styled.div`
-  margin-top: 20px;
+export const ContactInfo = styled.div`  
   font-size: 16px;
   line-height: 1.6;
+  margin-left: 50px;
+  margin-bottom: 80px;
 `;
 
 export const ContactItem = styled.div`
