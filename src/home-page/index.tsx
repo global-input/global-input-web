@@ -26,7 +26,7 @@ import {
 const headerTextContent = {
   title: "Mobile Integration",
   subtitle:
-    "Use your phone to authenticate, encrypt and remotely control applications.",
+    "Use your phone to authenticate, encrypt data, and remotely control applications running on other devices.",
 };
 
 interface HomePageProps {
@@ -48,9 +48,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
           <Subtitle>{headerTextContent.subtitle}</Subtitle>
           <ButtonContainer>
             <LinkButton to={config.paths.getAppScreen.path}>
-              Get it free
+            Get it Free
             </LinkButton>
-            <ConnectButton label="Try it out" mobile={mobile} />
+            <ConnectButton label="Try Now" mobile={mobile} />
             <DisconnectButton mobile={mobile} />
           </ButtonContainer>
         </TitleSection>

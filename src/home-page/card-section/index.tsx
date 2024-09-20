@@ -20,7 +20,7 @@ const textContent = {
   authentication: {
     title: "Authentication",
     content: [
-      "There's no need to hide your screen - authenticate securely on a device in public.",
+      "Securely sign in, manage your data, and interact with applications using your phone—no need to hide your screen in public.",
     ],
   },
   mobileControl: {
