@@ -30,7 +30,10 @@ const App: React.FC = () => (
   <Router>
     <ScrollToTop />
     <Routes>
+      
       <Route path={config.paths.home.path}  element={<HomePage/>} />
+      <Route path="/global-input-app/about"  element={<HomePage/>} />
+      
       <Route path={config.paths.getAppScreen.path} element={<GetAppPage/>} />
       <Route path={config.paths.privacy.path} element={<PrivacyPage/>} />
       <Route path={config.paths.contactUs.path} element={<ContactUsPage/>} />
@@ -87,6 +90,9 @@ const App: React.FC = () => (
         element={<microApps.MobileEncryptionScreen/>}
       />
       
+      <Route path="*" element={<HomePage/>} />
+      
+
     </Routes>
   </Router>
 );
