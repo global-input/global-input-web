@@ -127,7 +127,7 @@ const MoreText = styled.div`
 export const More = () => (
   <MoreText>
     {" "}
-    MORE <ArrowImage />
+    Learn More <ArrowImage />
   </MoreText>
 );
 

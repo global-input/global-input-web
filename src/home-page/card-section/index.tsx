@@ -26,31 +26,31 @@ const textContent = {
   mobileControl: {
     title: "Input and Control",
     content: [
-      "Extends applications to let users securely transfer their data across devices.",
+      "Use your phone to securely control applications and devices, transferring data seamlessly with end-to-end encryption—one app for all your needs.",
     ],
   },
   secondScreen: {
-    title: "Second Screen",
+    title: "Screen Experience",
     content: [
-      "A simple yet innovative solution, introducing the Second Screen Experience across your phone and your TV.",
+      "Effortlessly synchronise content and interactions between your phone and TV, all without changing your existing setup—no additional apps or infrastructure needed.",
     ],
   },
   encryption: {
-    title: "Encrypt",
+    title: "Secure Encryption",
     content: [
-      "Allows applications to send content to your phone for encryption/decryption, so your encryption keys stay on your device.",
+      " Keep your encryption keys safe on your device and secure sensitive data with robust mobile encryption—no server access needed.",
     ],
   },
   mobilePersonStorage: {
-    title: "Personal Storage",
+    title: "Personal Data Vault",
     content: [
-      "There's no need for apps to store your personal info, when you can securely hold it yourself.",
+      "Keep your personal information secure and private on your device, under your control, with encrypted storage and GDPR compliance—no third-party storage needed.",
     ],
   },
   mobileContentTransfer: {
-    title: "Transfer Content",
+    title: "Content Transfer",
     content: [
-      "Securely move content from your phone to your PC, tablet, or TV - and vice versa.",
+      "Seamlessly move content across devices with end-to-end encryption—no intermediaries, just secure, direct transfer from your phone to your PC, tablet, or TV.",
     ],
   },
 };

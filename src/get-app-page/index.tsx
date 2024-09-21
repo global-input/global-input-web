@@ -35,8 +35,7 @@ export const GetAppPage: React.FC = () => {
           <AppIcon />
           <CardTitle>Global Input App</CardTitle>
           <CardContent>
-            Get the free and open-source mobile app for operating in
-            multi-device environments.
+          Free and open-source mobile app to seamlessly operate and control multi-device environments.
           </CardContent>
           <CardFooter>
             <AppStoreButton />
@@ -47,8 +46,7 @@ export const GetAppPage: React.FC = () => {
           <ModuleIcon />
           <CardTitle>NPM Modules</CardTitle>
           <CardContent>
-            Use these JavaScript modules to add mobile interoperability to your
-            own applications.
+          JavaScript modules to integrate mobile interoperability into your applications seamlessly.
           </CardContent>
           <CardFooter>
             <JSModuleButton />
@@ -59,8 +57,7 @@ export const GetAppPage: React.FC = () => {
           <ExtensionIcon />
           <CardTitle>Browser Extensions</CardTitle>
           <CardContent>
-            Get the extension to interact with your desktop browser on your
-            phone.
+          Install the extension to securely interact with desktop browsers using your phone.
           </CardContent>
           <CardFooter>
             <WebStoreButton />

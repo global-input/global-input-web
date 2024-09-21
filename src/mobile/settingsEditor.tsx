@@ -148,14 +148,7 @@ const ProxyField: React.FC<SettingsFieldProp> = ({
     />
     <Label htmlFor="url">WebSocket Server URL</Label>
     <Help expandId="url" expand={expand} setExpand={setExpand}>
-      WebSocket Server URL specifies the{" "}
-      <WebSocketServer>WebSocket server</WebSocketServer> that is routing
-      (proxying) messages between your mobile app and this application. If you
-      leave it blank, it uses the default value, which is provided by us. You
-      can certainly install and use your own{" "}
-      <WebSocketServer>WebSocket servers</WebSocketServer> that can even run in
-      an insecure environment thanks to the end-to-end encryption that secures
-      messages between your mobile app and this application.
+    The WebSocket Server URL determines the WebSocket server that routes messages between your mobile app and this application. If left blank, the default server provided by us will be used. You can also set up your own WebSocket server, even in an insecure environment, as end-to-end encryption secures the messages exchanged between your mobile app and this application.
     </Help>
   </Field>
 );
@@ -179,14 +172,7 @@ const APIKeyField: React.FC<SettingsFieldProp> = ({
     />
     <Label htmlFor="apiKey">API Key</Label>
     <Help expandId="apikey" expand={expand} setExpand={setExpand}>
-      API Key is used by the <WebSocketServer>WebSocket server</WebSocketServer>{" "}
-      (specified above) to identify the incoming connections. There is no
-      security implications for exposing this value except for the possible
-      impact on the performance of the WebSocket server due to its increased
-      workload, since a WebSocket server does not hold any sensitive information
-      and is only responsible for proxying encrypted messages (encrypted with
-      end-to-end encryption) between your mobile app and this application. If
-      you leave it blank, it uses the default value set by our WebSocket server.
+    The API Key is used by the WebSocket server (specified above) to identify incoming connections. While there are no security implications in exposing this value, it may affect the WebSocket server’s performance due to an increased workload. The WebSocket server does not store any sensitive information and only proxies encrypted messages between your mobile app and this application. If left blank, the default API Key set by our WebSocket server will be used.
     </Help>
   </Field>
 );
@@ -210,13 +196,7 @@ const SecurityGroupField: React.FC<SettingsFieldProp> = ({
     />
     <Label htmlFor="securityGroup">Security Group Key</Label>
     <Help expandId="securityGroup" expand={expand} setExpand={setExpand}>
-      Security Group Key is used by this client application to verify the
-      incoming connections coming from your mobile app in the same way that API
-      Keys are used by server applications on the server side to identify
-      (authenticate) incoming requests. Upon modifying it, you need to pair your
-      mobile app on the "Pair" tab so you can connect to this application. If
-      you leave it blank, it uses the default value that comes with the
-      installation of Global Input App.
+    The Security Group Key functions similarly to an API key, allowing this client application to authenticate incoming connections from your mobile app. If you change this key, remember to re-pair your mobile app in the “Pair” tab to maintain connectivity. Leaving this field blank will use the default key provided with the Global Input App installation.
     </Help>
   </Field>
 );
@@ -239,10 +219,7 @@ const CodeKeyField: React.FC<SettingsFieldProp> = ({
     />
     <Label htmlFor="codeKey">Code Key</Label>
     <Help expandId="codeKey" expand={expand} setExpand={setExpand}>
-      Code Key is used by this application to encrypt the content of the QR Code
-      it displays. Obviously, you need to pair your mobile app on the "Pair" tab
-      when you have modified its value. If you leave it blank, it uses the
-      default value that comes with the installation of Global Input App.
+    The Code Key encrypts the QR Code content displayed by this application. If you change this key, you’ll need to re-pair your mobile app in the “Pair” tab. Leaving this field blank will use the default value provided with the Global Input App installation.
     </Help>
   </Field>
 );
