@@ -28,34 +28,33 @@ export const AboutMobileAuthentication: React.FC = () => {
       <Content>
         <Row2>
           <Column>
-            <Title>Use your phone to sign in and more</Title>
-            <TickText>Massively improved security and user experience</TickText>
-            <TickText>Just one click to sign in with your phone</TickText>
+            <Title> Seamless and Secure Authentication</Title>
+            <TickText>Boost the security without compromising on convenience.</TickText>
+            <TickText>Sign in with just a tap, eliminating the need for cumbersome passwords</TickText>
             <TickText>
-              Secure transfer of infomation using end-to-end encryption
+            Safeguard authentication from storage to the application.
             </TickText>
-            <TickText>Users are responsible for their own data</TickText>
+            <TickText>Keep control of your data in your hands, and no central storage.</TickText>
             <TickText>
-              Securely interact with the application using your phone after
-              signing in
+              Securely operate on the application after signing in.
             </TickText>
             <TickText>
-              Enhances the existing password-based authentication flow
+            Extra layer of security to the current password-based systems without the need for extensive re-engineering or sacrificing user experience.
             </TickText>
           </Column>
           <SignInGraph />
         </Row2>
         <Row>
           <Column>
-            <Title>Convienient authentication</Title>
+            <Title>Simplifying Authentication for Business and Users</Title>
             <TickText>
-              Signing in, subscribing to services and more with just one mobile
-              app
+            Unified app from signing in to subscribing and to operate on the applications and devices securely on all platforms.
             </TickText>
             <TickText>
-              Reduces the need for customer support calls with self-service
+             No more customer support calls for password resets etc and no more password fatigue for users, and no more password storage and management for businesses.
             </TickText>
-            <TickText>Easy and flexible integration into businesses.</TickText>
+            <TickText>No more development overhead and operational complexity thanks to straightforward and intuitive integration.
+              </TickText>
           </Column>
           <MultiFactorGraph />
         </Row>
