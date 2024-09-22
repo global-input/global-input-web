@@ -29,18 +29,29 @@ export const AboutSecondScreen: React.FC = () => {
           <SecondScreenGraph />
           <Column>
             <TickText>
-              Removes the need to develop a standalone mobile app
+            Eliminates the Need for Multiple Apps: Operate all your applications and devices from a single mobile app.
             </TickText>
             <TickText>
-              Removes the need to change your server architecture
+            No Server-Side Changes Required: Operate on the client side, simplifying the integration process.
             </TickText>
             <TickText>
-              Centralises your client functionalities into a single device
+            Flexible and Adaptable: Customize the mobile app to suit your needs and preferences.
             </TickText>
             <TickText>
-              Allows for a native mobile app with little development effort
+            Reduced Development Overhead: No need for extensive re-engineering or additional hardware.
             </TickText>
-            <TickText>The simplest yet most flexible solution</TickText>
+            <TickText>Real-Time Synchronisation: Provides real-time updates and synchronisation across devices, offering a cohesive and interactive user experience.
+
+
+            </TickText>
+            
+            
+            <TickText>
+            Improved User Engagement: Delivers a unified, seamless experience, driving higher user engagement across platforms.
+            </TickText>
+            
+
+
           </Column>
         </Row>
         <ConnectButton mobile={mobile} label="See it in action" />

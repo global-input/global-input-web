@@ -69,6 +69,8 @@ export const ContentLabel: React.FC<Props> = ({ back, next }) => {
         return (
                 <AppContainer>
                         <Title>Creating an Encrypted QR Code</Title>
+                        
+
                         <ConnectWidget mobile={mobile}/>
                         <FirstTip mobile={mobile}/>
                         <Form>

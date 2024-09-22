@@ -38,7 +38,7 @@ const textContent = {
   encryption: {
     title: "Secure Encryption",
     content: [
-      " Keep your encryption keys safe on your device and secure sensitive data with robust mobile encryption—no server access needed.",
+      "Keep your encryption keys safe on your device and secure sensitive data with robust mobile encryption—no server access needed.",
     ],
   },
   mobilePersonStorage: {

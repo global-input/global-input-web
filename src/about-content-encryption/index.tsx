@@ -29,33 +29,34 @@ export const AboutMobileEncryption: React.FC = () => {
       <Content>
         <Row>
           <Column>
-            <Title>Share your secrets securely</Title>
-            <TickText>Exchange secrets via encrypted QR codes.</TickText>
-            <TickText>Allows for confidentiality in public places</TickText>
-            <TickText>Secure backup and transfer of data</TickText>
+            <Title>Share Your Secrets Securely</Title>
+            <TickText>Encrypted QR Code Transfers: Share sensitive information securely by generating and scanning encrypted QR codes.</TickText>
+            <TickText>Confidentiality in Public Spaces: Keep your data private even in public places, preventing prying eyes from accessing your secrets.</TickText>
+            <TickText>Secure Data Backup and Transfer: Backup and transfer your data with confidence, knowing it’s protected by strong encryption.</TickText>
           </Column>
           <EncryptedQRCodeGraph />
         </Row>
         <Row2>
           <Column>
-            <Title>Encryption with your phone</Title>
-            <TickText>Encryption keys are stored on your device</TickText>
+            <Title>Encryption at Your Fingertips</Title>
+            <TickText>Device-Exclusive Encryption Keys: Your encryption keys are securely stored and managed directly on your mobile device—no cloud needed.</TickText>
             <TickText>
-              Users have full control over the encryption process
+            User-Controlled Encryption: Maintain full control over the encryption process, giving you the power to protect your sensitive data.
             </TickText>
-            <TickText>Confidential data can be encrypted by default</TickText>
-            <TickText>Allows for multiple layers of encryption</TickText>
+            <TickText>Automatic Data Protection: Encrypt confidential data by default, ensuring your information is always protected without extra steps.</TickText>
+            <TickText>Multi-Layered Security: Implement multiple layers of encryption for added security, making your data impenetrable.</TickText>
           </Column>
           <MobileEncryptionGraphGraph />
         </Row2>
 
         <Row>
           <Column>
-            <Title>Encrypting keys in vaults</Title>
-            <TickText>Control and protect access to data</TickText>
-            <TickText>See exactly who's accessing your data</TickText>
+            <Title>Vault-Level Security for Your Keys</Title>
+            <TickText>Granular Data Access Control: Control who can access individual data items by using different encryption keys, ensuring only authorised individuals have permission.</TickText>
+            <TickText>Secure Key Storage: Store encryption keys securely in users' device leading to ultimate security and accountability.</TickText>
+            
             <TickText>
-              Easily grant permission to those requesting access
+            Secure Permission Management: Encryption keys are managed and shared securely on the devices with explicit user permission, ensuring that only authorised users can access sensitive data.
             </TickText>
           </Column>
           <KeyCloudGraphGraph />

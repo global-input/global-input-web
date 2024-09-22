@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import secureCommunication200 from "./images/secure-communication-200.png";
-import secureCommunication250 from "./images/secure-communication-250.png";
-import secureCommunication350 from "./images/secure-communication-350.png";
-import secureCommunication400 from "./images/secure-communication-400.png";
+import secureCommunication200 from "./images/unified-control-200.png";
+import secureCommunication250 from "./images/unified-control-250.png";
+import secureCommunication350 from "./images/unified-control-350.png";
+import secureCommunication400 from "./images/unified-control-400.png";
 
 import mobileInput200 from "./images/mobile-input-200.png";
 import mobileInput250 from "./images/mobile-input-250.png";
@@ -48,6 +48,14 @@ export const Row = styled.div`
     justify-content: space-between;
   }
 `;
+export const Row2 = styled(Row)`
+  @media only screen and (min-width: 900px) {
+    & picture {
+      order: -1;
+    }
+  }
+`;
+
 
 export const Column = styled.div`
   flex: 1;
@@ -106,6 +114,7 @@ const Tick = styled.div`
   display: inline-block;
   width: 20px;
   height: 20px;
+  min-width: 20px;
   margin-right: 10px;
   &: before {
     position: absolute;

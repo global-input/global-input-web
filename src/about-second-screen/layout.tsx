@@ -92,6 +92,7 @@ const Tick = styled.div`
   display: inline-block;
   width: 20px;
   height: 20px;
+  min-width: 20px;
   margin-right: 10px;
   &: before {
     position: absolute;
