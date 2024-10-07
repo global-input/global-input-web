@@ -6,7 +6,7 @@ import {
   Routes,  
 } from "react-router-dom";
 import { config } from "./configs";
-import { HomePage } from "./home-page";
+import { HomePage} from "./home-page";
 import { GetAppPage } from "./get-app-page";
 import PrivacyPage from "./privacy-page";
 import ContactUsPage from "./contact-us-page";
@@ -16,7 +16,6 @@ import { AboutSecondScreen } from "./about-second-screen";
 import { AboutMobileSecureStorage } from "./about-mobile-personal-storage";
 import { AboutMobileEncryption } from "./about-content-encryption";
 import { AboutMobileContentTransfer } from "./about-mobile-content-transfer";
-
 import * as microApps from "./micro-apps";
 
 const ScrollToTop = () => {
@@ -26,13 +25,21 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
+
+
+
+
+
+
+
+
 const App: React.FC = () => (
   <Router>
     <ScrollToTop />
     <Routes>
       
       <Route path={config.paths.home.path}  element={<HomePage/>} />
-      <Route path="/global-input-app/about"  element={<HomePage/>} />
+      
       
       <Route path={config.paths.getAppScreen.path} element={<GetAppPage/>} />
       <Route path={config.paths.privacy.path} element={<PrivacyPage/>} />
@@ -87,10 +94,11 @@ const App: React.FC = () => (
       />
       <Route
         path={config.paths.examples.mobileEncryption.oldPath}
-        element={<microApps.MobileEncryptionScreen/>}
+        element={<microApps.OldMobileEncryptionScreen/>}
       />
       
       <Route path="*" element={<HomePage/>} />
+      <Route path="/global-input-app/*" element={<HomePage/>} />
       
 
     </Routes>

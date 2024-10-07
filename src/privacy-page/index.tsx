@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from 'react-helmet'
 import { config } from "../configs";
 import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
 import { PageHeader } from "../page-header";
@@ -114,3 +115,6 @@ If you wish to delete your data, you can do so directly within the app by deleti
 };
 
 export default PrivacyPage;
+
+
+

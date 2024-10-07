@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useEffect} from "react";
+import { Helmet } from 'react-helmet';
 import { config } from "../configs";
 import { PageFooter } from "../page-footer";
 import { PageHeader } from "../page-header";
@@ -33,12 +34,28 @@ interface HomePageProps {
   
 }
 export const HomePage: React.FC<HomePageProps> = () => {
+  const [canonicalPage, setCanonicalPage] = React.useState(false);
   usePageTitle(
     "Global Input App - Introducing Mobile Interoperability into Web and Device Applications"
   );
   const mobile = useConnectToMobile();
 
+  useEffect(()=>{
+    
+    if(window.location.search){
+      setCanonicalPage(true); 
+    }
+    if(window.location.pathname && window.location.pathname !== "/" && window.location.pathname !== "/index.html"){
+      setCanonicalPage(true); 
+    }
+  }, []);
+
   return (
+    <>
+    {canonicalPage && <Helmet>
+      <link rel="canonical" href="https://globalinput.co.uk/" />
+      </Helmet>
+      }
     <Container>
       <PageHeader selected={config.paths.home.path} />
       <Content>
@@ -62,5 +79,8 @@ export const HomePage: React.FC<HomePageProps> = () => {
       </Content>
       <PageFooter />
     </Container>
+    </>
   );
 };
+
+

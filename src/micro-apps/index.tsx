@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react';
+import { Helmet } from 'react-helmet'
 import { usePageTitle } from '../page-metadata';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
@@ -96,6 +97,22 @@ export const MobileEncryptionScreen = (props: any) => {
     );
 
 }
+
+export const OldMobileEncryptionScreen = (props: any) => {
+  return (
+    <>
+    <Helmet>      
+      <link rel="canonical" href="https://globalinput.co.uk/global-input-app/mobile-encryption" />            
+    </Helmet>    
+    <MobileEncryptionScreen {...props}/>
+    </>
+  );
+  
+  
+}
+
+
+
 
 export const SendMessageScreen = (props: any) => {
   usePageTitle('Global Input App - Mobile Personal Storage Example');
