@@ -48,6 +48,19 @@ export const HomePage: React.FC<HomePageProps> = () => {
     if(window.location.pathname && window.location.pathname !== "/" && window.location.pathname !== "/index.html"){
       setCanonicalPage(true); 
     }
+
+    if (window.location) {
+      const { protocol, hostname } = window.location;
+      
+      if (protocol === "https:" && hostname === "globalinput.co.uk") {
+        return; // Skip setting canonical page if it's already the correct page
+      }
+    
+      console.log("Canonical page is set to true");
+      console.log(`Protocol: ${protocol}, Hostname: ${hostname}`);
+      setCanonicalPage(true);
+    }
+
   }, []);
 
   return (
