@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { Snackbar, Button } from "@material-ui/core";
 
 import "./index.css";
@@ -23,13 +24,15 @@ const reloader = (needsToReload, reloadPage) => {
     />
   );
 };
+const container = document.getElementById('root');
+if(container) {
+  createRoot(container).render(
+    <React.StrictMode>
+      <RenderReloader reloader={reloader} />
+      <App />
+    </React.StrictMode>
+  );
+}
 
-ReactDOM.render(
-  <React.StrictMode>
-    <RenderReloader reloader={reloader} />
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
 
 serviceWorker.register({ onUpdate: onServiceWorkerUpdate });

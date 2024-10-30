@@ -16,6 +16,7 @@ import { AboutSecondScreen } from "./about-second-screen";
 import { AboutMobileSecureStorage } from "./about-mobile-personal-storage";
 import { AboutMobileEncryption } from "./about-content-encryption";
 import { AboutMobileContentTransfer } from "./about-mobile-content-transfer";
+import WebApp from "./web-app";
 import * as microApps from "./micro-apps";
 
 const ScrollToTop = () => {
@@ -96,7 +97,7 @@ const App: React.FC = () => (
         path={config.paths.examples.mobileEncryption.oldPath}
         element={<microApps.OldMobileEncryptionScreen/>}
       />
-      
+      <Route path="/global-input-app/web-app" element={<WebApp/>} />
       <Route path="*" element={<HomePage/>} />
       <Route path="/global-input-app/*" element={<HomePage/>} />
       
