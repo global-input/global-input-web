@@ -1,110 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-<url>
-  <loc>https://globalinput.co.uk/</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>1.00</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/privacy</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/get-app</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-authentication</loc>
-    <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-     <priority>0.90</priority> 
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-input-control</loc>
-  <<lastmod>2020-04-01T10:50:23+00:00</lastmod>
-
-   <priority>0.90</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/second-screen-experience</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-content-encryption</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-personal-storage</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-content-transfer</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/mobile-encryption</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.90</priority>
-</url>
-
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/video-player</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/form-data-transfer</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/game-example</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/send-message</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
-
-
-<url>
-  <loc>https://globalinput.co.uk/global-input-app/content-transfer</loc>
-  <lastmod>2020-04-01T10:50:23+00:00</lastmod>
-   <priority>0.80</priority>
-</url>
-
-
-
-
-
+	<url>
+		<loc>
+			https://globalinput.co.uk/
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			1.00
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/privacy
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/get-app
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-authentication
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-input-control
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/second-screen-experience
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-content-encryption
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-personal-storage
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-content-transfer
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/mobile-encryption
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.90
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/video-player
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.80
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/form-data-transfer
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.80
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/game-example
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.80
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/send-message
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.80
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://globalinput.co.uk/global-input-app/content-transfer
+		</loc>
+		<lastmod>
+			2024-10-01T10:50:23+00:00
+		</lastmod>
+		<priority>
+			0.80
+		</priority>
+	</url>
 </urlset>
