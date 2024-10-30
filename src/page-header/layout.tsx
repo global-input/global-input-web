@@ -141,7 +141,7 @@ export const Icon = styled.button`
 `;
 
 interface IconProps {
-  show: boolean;
+  $show: boolean;
 }
 
 export const CloseIcon = styled.img.attrs({
@@ -150,7 +150,7 @@ export const CloseIcon = styled.img.attrs({
   width: 22,
   height: 20,  
 })<IconProps>`
-  display: ${(props) => (props.show ? "block" : "none")};
+  display: ${(props) => (props.$show ? "block" : "none")};
 `;
 
 export const OpenIcon = styled.img.attrs({
@@ -159,7 +159,7 @@ export const OpenIcon = styled.img.attrs({
   width: 22,
   height: 20,
 })<IconProps>`
-  display: ${(props) => (props.show ? "block" : "none")};
+  display: ${(props) => (props.$show ? "block" : "none")};
 `;
 
 export const DesktopMenuContainer = styled.div`

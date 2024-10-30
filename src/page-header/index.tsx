@@ -59,8 +59,8 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
         
         <DesktopMenuContainer>{listMenu}</DesktopMenuContainer>
         <Icon onClick={toggle}>
-          <CloseIcon show={menuPressed} />
-          <OpenIcon show={!menuPressed} />
+          <CloseIcon $show={menuPressed} />
+          <OpenIcon $show={!menuPressed} />
         </Icon>
       </TopBar>
       {menuPressed && (
