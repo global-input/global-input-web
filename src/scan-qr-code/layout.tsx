@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   color: white;
-  background-color: rgb(97, 136, 204);
+  background-color: black;  
   @media and (min-width: 600px) and (max-width: 800) {
     background-color: white;
     background-image: url(${backgroundImage});
@@ -29,6 +29,8 @@ export const Content = styled.div`
   align-items: center;
   flex: 1;
   width: 100%;
+  
+  
 `;
 
 export const Row = styled.div`
@@ -75,6 +77,25 @@ export const Line = styled.div`
   font-size: 15px;
   margin-bottom: 10px;
 `;
+export const CardsContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 780px;
+
+  @media only screen and (min-width: 800px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+  @media only screen and (min-width: 1400px) {
+    max-width: 1200px;
+  }
+`;
+
 
 /*
     return (
