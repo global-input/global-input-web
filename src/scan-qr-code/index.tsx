@@ -13,6 +13,7 @@ import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
 
 import { usePageTitle } from "../page-metadata";
 import { config } from "../configs";
+import {appdata} from "../appdata";
 
 let lastCodeDataProcessed =null;
 const initialState = {
@@ -49,10 +50,14 @@ const ScanQRCode: React.FC = () => {
   },[]);
   
 
-  const onDataInputSwitchChange =(inputActive) => {
+  const onDataInputSwitchChange =useCallback((inputActive) => {
     console.log("-----:inputActive"+ inputActive);
-    setData({...data, inputActive: !!inputActive});
-  };
+    setData(data=>{
+        return {...data, inputActive: !!inputActive};        
+    });
+    
+  },[]);
+
 
   const handleScan = useCallback((result, error) => {
     if (error) {
@@ -78,7 +83,7 @@ const ScanQRCode: React.FC = () => {
     var currentTime = new Date().getTime()
     if (lastCodeDataProcessed) {      
       if ((currentTime - lastCodeDataProcessed.lastTime) < 2000) {
-        console.log("too quick");
+        
           return
       }      
     } 
@@ -92,16 +97,28 @@ const ScanQRCode: React.FC = () => {
     if(navigator.vibrate){
         navigator.vibrate(200);
     }
+    setData(data=>{
+      if (!data.inputActive) {    
+        return {...data, content:lastCodeDataProcessed.code, message:'QR Code Content'};        
+      }
+      if (appdata.isActiveEncryptionKeyEncryptedMessage(lastCodeDataProcessed.code)) {
+        var decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(lastCodeDataProcessed.code);
+        if (decryptedContent) {
+          setContentAndMessage(decryptedContent, 'Decrypted QR Code Content');
+        } else {
+          setContentAndMessage(lastCodeDataProcessed.code, 'Failed to decrypt the content!');
+        }
+        return;
 
-    // if (!data.inputActive) {    
-        setContentAndMessage(lastCodeDataProcessed.code, 'QR Code Content')
-    // }
-    // else{
-      // console.log("send to mobile:"+data.inputActive);
-    // }
+      }
+
+      return data;
+
+    });
+    
     
 
-  }, [setContentAndMessage, data.inputActive]);
+  }, [setContentAndMessage]);
     
   
 console.log("****data.inputActive="+data.inputActive);
