@@ -158,5 +158,99 @@ export default class ApplicationSettingsData {
       return null
     }
   }
+  resetApp() {
+    userSettings.resetApp(this.store);
+  }
+  isFormDataPasswordProtected() {
+    if (this.getAppLoginContent()) {
+      return true;
+    } else {
+      return this._isActiveEncryptionKeyEncrypted();
+    }
+  }
+  
+  getAppLoginContent() {
+    var ret = userSettings.getAppLoginContent(this.store);
+    if (ret) {
+      return ret;
+    } else {
+      /*
+    In the old version, the variable name is appLoginPassword
+    In the new version, the variable name is appLoginContent
+      */
+      return userSettings.getAppLoginPassword(this.store);
+    }
+  }
+  userAppLogin(password) {
+    if (!password) {
+      console.log('password is empty');
+      return false;
+    }
+    var appLoginContent = this.getAppLoginContent();
+    if (appLoginContent) {
+      try {
+        var userEncryptionKey =
+          this.buildUserEncryptionKeyFromPassword(password);
+        var userinfoString = safeDecrypt(appLoginContent, userEncryptionKey);
+        if (!userinfoString) {
+          console.log('userinfoString is empty');
+          return false;
+        }
+        var loginUserinfo = JSON.parse(userinfoString);
+        if (
+          loginUserinfo.application !== 'GlobalInput' ||
+          loginUserinfo.password !== password
+        ) {
+          console.log('application login is not GlobalInput');
+          return false;
+        }
+        if (this._getActiveEncryptionKeyFromLoginUserInfo(loginUserinfo)) {
+          this._setLoginUserInfo(loginUserinfo);
+          return true;
+        } else {
+          //old version, there is appLoginContent that does not contains the enckey.
+          return this._oldVersionRecoverEncryptionKeyInAppLoginContent(
+            loginUserinfo,
+            userEncryptionKey,
+          );
+        }
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    } else if (this._isActiveEncryptionKeyEncrypted()) {
+      //trying to decrypt the active encryption key.
+      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(password);
+      //appLoginContent is missing, just create one
+      var loginUserinfo = this._createInitialLoginUserInfo(password, null);
+      return this._oldVersionRecoverEncryptionKeyInAppLoginContent(
+        loginUserinfo,
+        userEncryptionKey,
+      );
+    } else {
+      console.log('Needs to set up password first');
+      return false;
+    }
+  }
+  userAppLoginSetup(password) {
+    if (!password) {
+      console.log('password is empty');
+      return false;
+    }
+    var appLoginContent = this.getAppLoginContent();
+    if (appLoginContent) {
+      console.log('appLogin is already set up');
+      return false;
+    }
+    var activeEncryptionKey = this._getActiveEncryptionKey();
+    var loginUserinfo = this._createInitialLoginUserInfo(
+      password,
+      activeEncryptionKey,
+    );
+    this._setLoginUserInfo(loginUserinfo);
+    this._updateAppLoginContentEncrytionListAndForm(loginUserinfo);
+
+    return true;
+  }
   
   }

@@ -1,3 +1,5 @@
+import images from "./images";
+import userLoginText from "./userLoginText";
 export const config = {
   id: 'globalInputApp',
   paths: {
@@ -93,3 +95,5 @@ export const config = {
     },
   },
 };
+
+export {images, userLoginText}
