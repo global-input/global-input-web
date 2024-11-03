@@ -82,7 +82,7 @@ interface UserLoginProps {
   onLoggedIn: () => void;
 }
 
-const UserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
+const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
   const initialData = {
     password: '',
     repeatedPassword: '',
@@ -268,4 +268,4 @@ const UserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
   );
 };
 
-export default UserLogin;
+export default DisplayUserLogin;

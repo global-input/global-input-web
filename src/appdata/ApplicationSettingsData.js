@@ -252,5 +252,13 @@ export default class ApplicationSettingsData {
 
     return true;
   }
+  _isActiveEncryptionKeyEncrypted() {
+    var activeEncruptionKey = this.getDecryptedActiveEncryptionKey();
+    return (
+      activeEncruptionKey &&
+      activeEncruptionKey.startsWith('U2Fsd') &&
+      activeEncruptionKey.length > 25
+    );
+  }
   
   }

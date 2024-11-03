@@ -17,6 +17,7 @@ import { AboutMobileSecureStorage } from "./about-mobile-personal-storage";
 import { AboutMobileEncryption } from "./about-content-encryption";
 import { AboutMobileContentTransfer } from "./about-mobile-content-transfer";
 import ScanQRCode from "./scan-qr-code";
+
 import * as microApps from "./micro-apps";
 
 const ScrollToTop = () => {
@@ -97,7 +98,9 @@ const App: React.FC = () => (
         path={config.paths.examples.mobileEncryption.oldPath}
         element={<microApps.OldMobileEncryptionScreen/>}
       />
-      <Route path="/global-input-app/scan-qr-code" element={<ScanQRCode/>} />
+      <Route path="/global-input-app/mobile/scan-qr-code" element={<ScanQRCode/>} />
+      
+
       <Route path="*" element={<HomePage/>} />
       <Route path="/global-input-app/*" element={<HomePage/>} />
       

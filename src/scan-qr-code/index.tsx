@@ -3,6 +3,7 @@ import Switch from "react-switch";
 import { PageHeader } from "../page-header";
 import { PageFooter } from "../page-footer";
 import { QrReader } from '@blackbox-vision/react-qr-reader';
+import DisplayUserLogin from "../display-user-login";
 import {
   Container,
   Content,
@@ -38,7 +39,7 @@ const MessageContent = ({ data }) => {
   }
 }
 
-const ScanQRCode: React.FC = () => {
+const StartScanQRCode: React.FC = () => {
   const [data, setData] = useState(initialState);
   
   
@@ -151,4 +152,25 @@ console.log("****data.inputActive="+data.inputActive);
   );
 };
 
+
+
+const ScanQRCode: React.FC = () => {
+  
+  const onLoggedIn=useCallback(() => {
+  },[]);
+  return(
+<Container>
+      <PageHeader selected={config.paths.contactUs.path} />
+      
+        <Content>
+    
+  <DisplayUserLogin onLoggedIn={onLoggedIn} />
+  </Content>
+</Container>
+      
+    
+  );
+
+
+}
 export default ScanQRCode;
