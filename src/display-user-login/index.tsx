@@ -5,99 +5,118 @@ import { userLoginText } from '../configs';
 import { appdata } from '../appdata';
 import logo from '../images/logo.png';
 
-
-
 const DialogButton = function ({ buttonText, onClick, position }) {
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <Button onClick={onClick}>{buttonText}</Button>
   );
 }
 
-
 const TextInputField= styled.input`
-  /* Add styles for the input field */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease;
+
+  &:focus {
+    border-color: #007BFF;
+  }
 `;
-// Container for the entire component
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Add other styles as per your original styles.container */
+  padding: 20px;
+  max-width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-// Header component
 const Header = styled.div`
-  /* Add styles for the header */
+  margin-bottom: 20px;
 `;
 
-// Form container
 const Form = styled.div`
   width: 100%;
   max-width: 400px;
-  /* Additional form styles */
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
-// Form item wrapper
 const FormItem = styled.div`
   margin-bottom: 16px;
-  /* Additional styles */code 
 `;
 
-// Error message text
 const ErrorMessage = styled.p`
-  color: red;
+  color: #FF4D4D;
   font-size: 14px;
-  /* Additional styles */
+  text-align: center;
+  font-weight: bold;
 `;
 
-// Title text
 const TitleText = styled.h2`
   text-align: center;
-  margin-bottom: 16px;
-  size: 36px;
-  
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #333;
 `;
 
-// Help text
 const HelpText = styled.p`
   font-size: 14px;
   color: #666;
-  /* Additional styles */
+  text-align: center;
+  margin-top: 8px;
 `;
 
-
-// Content wrapper
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-// Additional styled components as needed...
-interface UserLoginProps {
-  onLoggedIn: () => void;
-}
+const Button = styled.button`
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
-const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const DisplayUserLogin = ({ onLoggedIn }) => {
   const initialData = {
     password: '',
     repeatedPassword: '',
     revealSecret: true,
-    errorMessage: null as string | null,
+    errorMessage: null,
     resettingApp: false,
   };
 
   const [compData, setCompData] = useState(initialData);
 
-  const setPassword = (password: string) =>
+  const setPassword = (password) =>
     setCompData((prev) => ({ ...prev, password }));
-  const setErrorMessage = (errorMessage: string | null) =>
+  const setErrorMessage = (errorMessage) =>
     setCompData((prev) => ({ ...prev, errorMessage }));
-  const setRepeatedPassword = (repeatedPassword: string) =>
+  const setRepeatedPassword = (repeatedPassword) =>
     setCompData((prev) => ({ ...prev, repeatedPassword }));
-  const setRevealSecret = (revealSecret: boolean) =>
+  const setRevealSecret = (revealSecret) =>
     setCompData((prev) => ({ ...prev, revealSecret }));
-  const setResettingApp = (resettingApp: boolean) =>
+  const setResettingApp = (resettingApp) =>
     setCompData((prev) => ({ ...prev, resettingApp }));
 
   const setupPassword = () => {
@@ -129,29 +148,18 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
     }
   };
 
-  const resetApp = () => {
-    setResettingApp(true);
-  };
-
-  const cancelResetApp = () => {
-    setResettingApp(false);
-  };
-
+  const resetApp = () => setResettingApp(true);
+  const cancelResetApp = () => setResettingApp(false);
   const confirmResetApp = () => {
     appdata.resetApp();
     setResettingApp(false);
   };
 
-  const renderErrorMessage = () => {
-    if (compData.errorMessage) {
-      return (
-        <FormItem>
-          <ErrorMessage>{compData.errorMessage}</ErrorMessage>
-        </FormItem>
-      );
-    }
-    return null;
-  };
+  const renderErrorMessage = () => compData.errorMessage && (
+    <FormItem>
+      <ErrorMessage>{compData.errorMessage}</ErrorMessage>
+    </FormItem>
+  );
 
   const renderLoginSetUpPage = () => (
     <Form>
@@ -162,7 +170,7 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
           placeholder={userLoginText.setup.password.placeHolder}
           value={compData.password}
           type={compData.revealSecret ? 'text' : 'password'}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           autoComplete="off"
         />
       </FormItem>
@@ -171,7 +179,7 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
           placeholder={userLoginText.setup.repeatedPassword.placeHolder}
           value={compData.repeatedPassword}
           type={compData.revealSecret ? 'text' : 'password'}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRepeatedPassword(e.target.value)}
+          onChange={(e) => setRepeatedPassword(e.target.value)}
           autoComplete="off"
         />
       </FormItem>
@@ -194,7 +202,7 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
           placeholder={userLoginText.login.password.placeHolder}
           value={compData.password}
           type="password"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           autoComplete="off"
         />
       </FormItem>
@@ -241,11 +249,7 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
 
   const renderContent = () => {
     if (appdata.isFormDataPasswordProtected()) {
-      if (compData.resettingApp) {
-        return resettingAppContent();
-      } else {
-        return renderLoginForm();
-      }
+      return compData.resettingApp ? resettingAppContent() : renderLoginForm();
     } else {
       return renderLoginSetUpPage();
     }
@@ -253,7 +257,6 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
 
   return (
     <Container>
-      {/* If you have a header, include it here */}
       <Header />
       <Content>        
         <TitleText>{userLoginText.app.title}</TitleText>
