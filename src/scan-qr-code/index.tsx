@@ -69,8 +69,7 @@ const StartScanQRCode: React.FC = () => {
         case 'NotReadableError':
           setContentAndMessage('', 'Cannot read the image');
           break;
-        case 'NotFoundException':
-          setContentAndMessage('', 'No QR code found in the image');
+        case 'NotFoundException':          
           break;
         default:
           setContentAndMessage('', error.message);          
@@ -173,6 +172,7 @@ const ScanQRCode: React.FC = () => {
             <PageHeader selected={config.paths.contactUs.path} />       
               <Content>
         <DisplayUserLogin onLoggedIn={onLoggedIn} />
+        
         </Content>
       </Container>                      
         );      

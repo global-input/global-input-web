@@ -172,6 +172,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           type={compData.revealSecret ? 'text' : 'password'}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="off"
+          autoCapitalize="none"
         />
       </FormItem>
       <FormItem>
@@ -181,6 +182,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           type={compData.revealSecret ? 'text' : 'password'}
           onChange={(e) => setRepeatedPassword(e.target.value)}
           autoComplete="off"
+          autoCapitalize="none"
         />
       </FormItem>
       <FormItem>
@@ -204,6 +206,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="off"
+          autoCapitalize="none"
         />
       </FormItem>
       <FormItem>
