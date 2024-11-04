@@ -81,6 +81,13 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
     
 
   },[]);
+  const onError = useCallback((error:unknown) => {
+          
+    setData(data=>{
+      return {...data, content:JSON.stringify(error), message:'Error'};        
+    });
+    
+  },[]);
     
   
 
@@ -99,6 +106,7 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
         
       <Scanner
         onScan={onScanCodes}
+        onError={onError}
         allowMultiple={true}
         scanDelay={1000}
 
