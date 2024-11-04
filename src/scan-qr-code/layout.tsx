@@ -77,24 +77,6 @@ export const Line = styled.div`
   font-size: 15px;
   margin-bottom: 10px;
 `;
-export const CardsContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 780px;
-
-  @media only screen and (min-width: 800px) {
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 20px;
-  }
-
-  @media only screen and (min-width: 1400px) {
-    max-width: 1200px;
-  }
-`;
 
 
 /*

@@ -99,7 +99,7 @@ const Button = styled.button`
 
 const DisplayUserLogin = ({ onLoggedIn }) => {
   const initialData = {
-    password: '',
+    password: 'camilla',
     repeatedPassword: '',
     revealSecret: true,
     errorMessage: null,

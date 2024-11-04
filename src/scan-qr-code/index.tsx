@@ -4,10 +4,10 @@ import { PageHeader } from "../page-header";
 import { PageFooter } from "../page-footer";
 import { QrReader } from '@blackbox-vision/react-qr-reader';
 import DisplayUserLogin from "../display-user-login";
+import DisplayCode from "./DisplayCode";
 import {
   Container,
-  Content,
-  CardsContent
+  Content  
 } from "./layout";
 
 import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
@@ -25,19 +25,6 @@ const initialState = {
   modaldata: {},
 }
 
-const MessageContent = ({ data }) => {
-  if(data.message || data.content){
-    return (
-      <CardsContent>
-        <h2>{data.message}</h2>
-        <p>{data.content}</p>
-        </CardsContent>
-    );
-  }
-  else{
-    return  null;
-  }
-}
 
 const StartScanQRCode: React.FC = () => {
   const [data, setData] = useState(initialState);
@@ -45,8 +32,7 @@ const StartScanQRCode: React.FC = () => {
   
   usePageTitle("Global Input App - Scan QR Code");
 
-  const setContentAndMessage = useCallback((content, message) =>{     
-    console.log("----------setting content:"+content+" message:"+message);
+  const setContentAndMessage = useCallback((content, message) =>{         
     setData (data => ({...data, content, message}));    
   },[]);
   
@@ -64,15 +50,18 @@ const StartScanQRCode: React.FC = () => {
     if (error) {
       switch(error.name){
         case 'NotAllowedError':
+          console.log("---Permission denied");
           setContentAndMessage('', 'Permission denied');
           break;
         case 'NotReadableError':
+          console.log("---Cannot read the image");
           setContentAndMessage('', 'Cannot read the image');
           break;
-        case 'NotFoundException':          
+        case 'NotFoundException':                    
           break;
         default:
-          setContentAndMessage('', error.message);          
+          console.log("---Error:=------"+error.message, error);
+          setContentAndMessage('', error.name);          
         }        
         return;      
     }
@@ -98,18 +87,23 @@ const StartScanQRCode: React.FC = () => {
         navigator.vibrate(200);
     }
     setData(data=>{
-      if (!data.inputActive) {    
+      if (!data.inputActive) { 
+        console.log("------:lastCodeDataProcessed.code"+ lastCodeDataProcessed.code);
+
         return {...data, content:lastCodeDataProcessed.code, message:'QR Code Content'};        
       }
       if (appdata.isActiveEncryptionKeyEncryptedMessage(lastCodeDataProcessed.code)) {
-        var decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(lastCodeDataProcessed.code);
+        const decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(lastCodeDataProcessed.code);
+        console.log("------:decryptedContent"+ decryptedContent);
         if (decryptedContent) {
-          setContentAndMessage(decryptedContent, 'Decrypted QR Code Content');
-        } else {
-          setContentAndMessage(lastCodeDataProcessed.code, 'Failed to decrypt the content!');
-        }
-        return;
+          
+          return {...data, content:decryptedContent, message:'Decrypted QR Code Content'};        
 
+        } else {
+          
+          return {...data, content:lastCodeDataProcessed.code, message:'Failed to decrypt the content!'};        
+
+        }
       }
 
       return data;
@@ -141,8 +135,9 @@ console.log("****data.inputActive="+data.inputActive);
         containerStyle={{ width: '100%' }}
         videoStyle={{ width: '100%' }}
       />
-      {data.content}dddd
-      data.inputActive=[{data.inputActive?'true':'false'}]
+      <DisplayCode  title={data.message} content={data.content}/>
+      
+      
       
 </Content>
 </Container>
