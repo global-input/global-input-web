@@ -181,8 +181,9 @@ export const userSettings = {
           m => m.id !== formData.id,
         )
         return Object.assign({}, state, {savedFormContent})
+      default:
+        return state
     }
-    return state
   },
   actions: {
     appLoginContent: function (

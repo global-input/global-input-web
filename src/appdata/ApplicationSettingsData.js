@@ -871,14 +871,14 @@ export default class ApplicationSettingsData {
     }
   }
 
-  userAppLoginSetup (password) {
+  userAppLoginSetup (password) {    
     if (!password) {
       console.log('password is empty')
       return false
     }
     var appLoginContent = this.getAppLoginContent()
     if (appLoginContent) {
-      console.log('appLogin is already set up')
+      console.log('appLogin is already set up:'+appLoginContent);
       return false
     }
     var activeEncryptionKey = this._getActiveEncryptionKey()

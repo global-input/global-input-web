@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { images, userLoginText } from '../configs';
+import { userLoginText } from '../configs';
 import { appdata } from '../appdata';
 import logo from '../images/logo.png';
 
@@ -53,7 +53,9 @@ const ErrorMessage = styled.p`
 // Title text
 const TitleText = styled.h2`
   text-align: center;
-  /* Additional styles */
+  margin-bottom: 16px;
+  size: 36px;
+  
 `;
 
 // Help text
@@ -63,12 +65,6 @@ const HelpText = styled.p`
   /* Additional styles */
 `;
 
-// Logo image
-const Logo = styled.img`
-  width: 100px;
-  height: auto;
-  margin-bottom: 16px;
-`;
 
 // Content wrapper
 const Content = styled.div`
@@ -259,8 +255,7 @@ const DisplayUserLogin: React.FC<UserLoginProps> = ({ onLoggedIn }) => {
     <Container>
       {/* If you have a header, include it here */}
       <Header />
-      <Content>
-        <Logo src={logo} alt="Logo" />
+      <Content>        
         <TitleText>{userLoginText.app.title}</TitleText>
         {renderContent()}
       </Content>

@@ -155,11 +155,19 @@ console.log("****data.inputActive="+data.inputActive);
 
 
 const ScanQRCode: React.FC = () => {
+  const [isUserConfigured, setUserSetup] = useState(false);
+
   
   const onLoggedIn=useCallback(() => {
+    if (appdata.getLoginUserinfo()) {
+      setUserSetup(true);
+    }
+    else{
+      setUserSetup(false);
+    }
   },[]);
 
-  if (!appdata.getLoginUserinfo()) {
+   if(!isUserConfigured){
     return(
       <Container>
             <PageHeader selected={config.paths.contactUs.path} />       
