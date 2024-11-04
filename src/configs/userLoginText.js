@@ -3,7 +3,7 @@ const userLoginText = {
     title: 'Global Input App',
   },
   errorMessages: {
-    settup: {
+    setup: {
       missingPassword: 'Password required.',
       missingRepeatedPassword:
         'Confirm the password in the second field. This is to make sure you remember your password.',

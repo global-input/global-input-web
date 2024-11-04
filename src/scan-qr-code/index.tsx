@@ -158,18 +158,22 @@ const ScanQRCode: React.FC = () => {
   
   const onLoggedIn=useCallback(() => {
   },[]);
-  return(
-<Container>
-      <PageHeader selected={config.paths.contactUs.path} />
-      
-        <Content>
-    
-  <DisplayUserLogin onLoggedIn={onLoggedIn} />
-  </Content>
-</Container>
-      
-    
+
+  if (!appdata.getLoginUserinfo()) {
+    return(
+      <Container>
+            <PageHeader selected={config.paths.contactUs.path} />       
+              <Content>
+        <DisplayUserLogin onLoggedIn={onLoggedIn} />
+        </Content>
+      </Container>                      
+        );      
+  }
+  return (
+    <StartScanQRCode/>
   );
+
+
 
 
 }
