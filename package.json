@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blackbox-vision/react-qr-reader": "^5.0.0",
     "@material-ui/core": "^4.12.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -12,6 +11,7 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@yudiel/react-qr-scanner": "^2.0.8",
     "bootstrap": "^5.3.3",
     "global-input-react": "^4.6.7",
     "react": "^18.3.1",
