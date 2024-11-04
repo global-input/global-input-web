@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { userLoginText } from '../configs';
-import { appdata } from '../appdata';
+import { userLoginText } from '../../configs';
+import { appdata } from '../../appdata';
 import logo from '../images/logo.png';
 
 const DialogButton = function ({ buttonText, onClick, position }) {

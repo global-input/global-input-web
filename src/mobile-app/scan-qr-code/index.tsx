@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Switch from "react-switch";
-import { PageHeader } from "../page-header";
-import { PageFooter } from "../page-footer";
+import { PageHeader } from "../../page-header";
+import { PageFooter } from "../../page-footer";
 import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 import DisplayUserLogin from "../display-user-login";
 import DisplayCode from "./DisplayCode";
@@ -12,9 +12,9 @@ import {
 
 import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
 
-import { usePageTitle } from "../page-metadata";
-import { config } from "../configs";
-import {appdata} from "../appdata";
+import { usePageTitle } from "../../page-metadata";
+import { config } from "../../configs";
+import {appdata} from "../../appdata";
 
 let lastCodeDataProcessed =null;
 const initialState = {
@@ -109,6 +109,7 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
         onError={onError}
         allowMultiple={true}
         scanDelay={1000}
+        components={{ audio:false}}
 
         
         

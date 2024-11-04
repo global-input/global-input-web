@@ -16,7 +16,7 @@ import { AboutSecondScreen } from "./about-second-screen";
 import { AboutMobileSecureStorage } from "./about-mobile-personal-storage";
 import { AboutMobileEncryption } from "./about-content-encryption";
 import { AboutMobileContentTransfer } from "./about-mobile-content-transfer";
-import ScanQRCode from "./scan-qr-code";
+import ScanQRCode from "./mobile-app/scan-qr-code";
 
 import * as microApps from "./micro-apps";
 
