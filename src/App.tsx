@@ -16,7 +16,7 @@ import { AboutSecondScreen } from "./about-second-screen";
 import { AboutMobileSecureStorage } from "./about-mobile-personal-storage";
 import { AboutMobileEncryption } from "./about-content-encryption";
 import { AboutMobileContentTransfer } from "./about-mobile-content-transfer";
-import ScanQRCode from "./mobile-app/scan-qr-code";
+import MobileApp from "./mobile-app";
 
 import * as microApps from "./micro-apps";
 
@@ -98,11 +98,12 @@ const App: React.FC = () => (
         path={config.paths.examples.mobileEncryption.oldPath}
         element={<microApps.OldMobileEncryptionScreen/>}
       />
-      <Route path="/global-input-app/mobile/scan-qr-code" element={<ScanQRCode/>} />
+      <Route path="/global-input-app/mobile-app" element={<MobileApp/>} />
       
 
-      <Route path="*" element={<HomePage/>} />
+      
       <Route path="/global-input-app/*" element={<HomePage/>} />
+      <Route path="*" element={<HomePage/>} />
       
 
     </Routes>
