@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import menusConfig from "../../configs/menusConfig";
 import PasswordDecrypt from "./PasswordDecrypt";
-// import {ManageKeysView} from "../others/manage-keys"
+import {ManageKeysView} from "../others/manage-keys"
 
 const ACT_TYPE={
   PASSWORD:1,
@@ -35,12 +35,12 @@ const ImportEncryptionKeyView:React.FC<ImportEncryptionKeyViewProps> =({codedata
        };       
        const renderDecryptedView = () => {
             const menuItems=[{menu:menusConfig.back.menu,onPress:toCameraView}];
-            // return (
-            //     <ManageKeysView
-            //       menuItems={menuItems}
-            //       importDecryptedKey={action.decryptedKey}/>
-            // );
-            return null;
+            return (
+                <ManageKeysView
+                  menuItems={menuItems}
+                  importDecryptedKey={action.decryptedKey}/>
+            );
+            
         };
       switch(action.actionType){
             case ACT_TYPE.PASSWORD:return renderDecryptWithPassword();
