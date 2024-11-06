@@ -9,7 +9,12 @@ const ACT_TYPE={
   PASSWORD:1,
   DECRYPTED:2
 };
-const ImportEncryptionKeyView =({codedata,decryptedEncryptionKey,toCameraView})=>{
+interface ImportEncryptionKeyViewProps {
+    codedata: string;
+    decryptedEncryptionKey?: string;
+    toCameraView: () => void;
+}
+const ImportEncryptionKeyView:React.FC<ImportEncryptionKeyViewProps> =({codedata,decryptedEncryptionKey,toCameraView})=>{
       const getStateFromProps = () => {
             let actionType=ACT_TYPE.PASSWORD;    
             var decryptedKey=null;

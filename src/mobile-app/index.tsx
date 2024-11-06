@@ -45,7 +45,21 @@ const MobileApp: React.FC = () => {
             });          
         }
       },[]);
-    
+      
+      const onImportEncryptionKey = useCallback((code) => {
+        setPage({
+            page: Page.ImportEncryptionKey,
+            code: code,
+        });
+    } ,[]);
+
+    const toCameraView
+    =useCallback(() => {
+        setPage({
+            page: Page.ScanQRCode,
+            code: null,
+        });
+    },[]);
     
     
 
@@ -61,8 +75,8 @@ const MobileApp: React.FC = () => {
               <PageHeader selected={config.paths.home.path} />       
                 <Content>
                 {page.page===Page.UserLogin &&(<DisplayUserLogin onLoggedIn={onLoggedIn} />)}
-                {page.page===Page.ScanQRCode &&(<ScanQRCode />)}
-                {/*page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView />)*/}
+                {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey}/>)}
+                {page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView}/>)}
           
           </Content>
         </Container>                      

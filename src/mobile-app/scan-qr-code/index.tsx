@@ -33,7 +33,11 @@ const initialState = {
 }
 
 
-const ScanQRCode: React.FC = () => {
+interface ScanQRCodeProps {
+  onImportEncryptionKey: (codeData: string) => void;
+}
+
+const ScanQRCode: React.FC<ScanQRCodeProps> = ({ onImportEncryptionKey }) => {
   const [data, setData] = useState(initialState);
   
   
@@ -55,28 +59,33 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
     if (code.length > 0) {
       for(let i=0;i<code.length;i++){                
             setData(data=>{
+              const codeData = code[i].rawValue;
               
 
-              if(!code[i].rawValue){
+              if(!codeData){
                 return data;
               }
               
               
               if (!data.inputActive) {                     
-                return {...data, content:code[i].rawValue, message:'QR Code Content'};        
+                return {...data, content:codeData, message:'QR Code Content'};        
               }
-              if (appdata.isActiveEncryptionKeyEncryptedMessage(code[i].rawValue)) {
-                const decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(code[i].rawValue);      
+              if (appdata.isActiveEncryptionKeyEncryptedMessage(codeData)) {
+                const decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(codeData);      
                 if (decryptedContent) {
                   
                   return {...data, content:decryptedContent, message:'Decrypted QR Code Content'};        
           
                 } else {
                   
-                  return {...data, content:code[i].rawValue, message:'Failed to decrypt the content!'};        
+                  return {...data, content:codeData, message:'Failed to decrypt the content!'};        
           
                 }
               }
+             else if (appdata.isProtectedMasterEncryptionKey(codeData)) {
+              onImportEncryptionKey(codeData);
+              return data;
+            }
           
               return data;
           
