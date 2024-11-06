@@ -76,16 +76,16 @@ const EditorWithTabMenu: React.FC<EditorWithTabMenuProps> = ({
   };
 
   const contentContainerStyle = keyboardShowing ? ContentContainer : ContentContainerLandscape;
-
   return (
     <Container>
       <StatusBar />
       {renderHeader()}
-      {renderTab()}
+      
       {renderNotificationBar()}
       <ScrollContainer>
         <ContentContainer>{children}</ContentContainer>
       </ScrollContainer>
+      {renderTab()}
     </Container>
   );
 };
@@ -95,7 +95,7 @@ export default EditorWithTabMenu;
 // Styled Components
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -122,7 +122,7 @@ const TabOnTop = styled(Tab)`
 const ScrollContainer = styled.div`
   display: flex;
   overflow-x: auto;
-  white-space: nowrap;
+  
 `;
 
 const ContentContainer = styled.div`

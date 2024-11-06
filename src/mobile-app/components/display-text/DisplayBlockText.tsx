@@ -33,17 +33,18 @@ const TextBlockContainer = styled.div`
   border-radius: 8px;
   margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #555;
+  lineHeight: 1.5;
+  fontSize: 16px;
+  
 `;
 
 const BlockTitle = styled.h3`
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: '#555',
   margin-bottom: 10px;
+  lineHeight: 1.5;
+  fontSize: 16px;
 `;
 
-const blockContentTextStyle = {
-  fontSize: '16px',
-  color: '#555',
-  lineHeight: '1.5',
-};

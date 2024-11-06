@@ -56,8 +56,10 @@ const PasswordDecrypt: React.FC<PasswordDecryptProps> = ({ codedata, onEncryptio
     { menu: menusConfig.decrypt.menu, onPress: decryptWithPassword },
   ];
 
+
   return (
-    <EditorWithTabMenu title={manageKeysTextConfig.importKey.title} menuItems={menuItems} selected={menusConfig.eye.menu}>
+    <EditorWithTabMenu title={manageKeysTextConfig.importKey.title}
+      menuItems={menuItems} selected={menusConfig.eye.menu}>
       <DisplayBlockText content={manageKeysTextConfig.importKey.content} />
       <InputContainer>
         <TextInputField
@@ -71,8 +73,9 @@ const PasswordDecrypt: React.FC<PasswordDecryptProps> = ({ codedata, onEncryptio
       </InputContainer>
       {renderErrorMessage()}
       <DisplayBlockText content={manageKeysTextConfig.importKey.content2} />
-    </EditorWithTabMenu>
+      </EditorWithTabMenu>
   );
+  
 };
 
 export default PasswordDecrypt;
@@ -82,7 +85,7 @@ const InputContainer = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const ErrorContainer = styled.div`
@@ -98,4 +101,17 @@ const ErrorMessage = styled.p`
   font-size: 14px;
   text-align: center;
   margin: 0;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;  
+  
+    
+    
+    
 `;
