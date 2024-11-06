@@ -1,22 +1,29 @@
 import React, { useState, useCallback } from 'react';
+import styled from "styled-components";
 import Switch from "react-switch";
-import { PageHeader } from "../../page-header";
-import { PageFooter } from "../../page-footer";
-import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
-import DisplayUserLogin from "../display-user-login";
-import DisplayCode from "./DisplayCode";
-import {
-  Container,
-  Content  
-} from "./layout";
 
-import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
+import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
+
+import DisplayCode from "./DisplayCode";
+
+
 
 import { usePageTitle } from "../../page-metadata";
-import { config } from "../../configs";
+
 import {appdata} from "../../appdata";
 
-let lastCodeDataProcessed =null;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  background-color: black;  
+  
+`;
+
 const initialState = {
   message: '',
   content: '',
@@ -26,7 +33,7 @@ const initialState = {
 }
 
 
-const StartScanQRCode: React.FC = () => {
+const ScanQRCode: React.FC = () => {
   const [data, setData] = useState(initialState);
   
   
@@ -92,17 +99,9 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
   
 
   return (
-    <Container>
-      <PageHeader selected={config.paths.contactUs.path} />
-      
-        <Content>
-        <label>
-          <span>Global Input</span>
-          <Switch onChange={onDataInputSwitchChange} checked={data.inputActive} />
-      </label>
-
         
-        
+<Container>
+    
         
       <Scanner
         onScan={onScanCodes}
@@ -110,19 +109,20 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
         allowMultiple={true}
         scanDelay={1000}
         components={{ audio:false}}
-
-        
-        
         // constraints={{ facingMode: 'environment' }}
         // containerStyle={{ width: '100%' }}
         // videoStyle={{ width: '100%' }}
       />
       <DisplayCode  title={data.message} content={data.content}/>
+      <label>
+        <span>Global Input</span>
+        <Switch onChange={onDataInputSwitchChange} checked={data.inputActive} />
+      </label>
+
+
       
+      </Container>        
       
-      
-</Content>
-</Container>
       
     
   );
@@ -130,36 +130,5 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
 
 
 
-const ScanQRCode: React.FC = () => {
-  const [isUserConfigured, setUserSetup] = useState(false);
-
-  
-  const onLoggedIn=useCallback(() => {
-    if (appdata.getLoginUserinfo()) {
-      setUserSetup(true);
-    }
-    else{
-      setUserSetup(false);
-    }
-  },[]);
-
-   if(!isUserConfigured){
-    return(
-      <Container>
-            <PageHeader selected={config.paths.contactUs.path} />       
-              <Content>
-        <DisplayUserLogin onLoggedIn={onLoggedIn} />
-        
-        </Content>
-      </Container>                      
-        );      
-  }
-  return (
-    <StartScanQRCode/>
-  );
-
-
-
-
-}
 export default ScanQRCode;
+

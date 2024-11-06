@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { formDataUtil } from '../../../appdata';
-import { styles, stylesData } from './styles';
+
+
 
 interface DisplayContentProps {
   content: any;
@@ -24,21 +24,21 @@ const DisplayContent: React.FC<DisplayContentProps> = ({ content }) => {
     );
   };
 
-  const renderTextContent = (content: any, textStyle: any, key?: string | number) => {
+  const renderTextContent = (content: any, key?: string | number) => {
     return (
-      <StyledText style={textStyle} key={key}>
+      <StyledText key={key}>
         {typeof content === 'object' ? renderItem(content) : content}
       </StyledText>
     );
   };
 
-  const renderLinkTextContent = (content: any, url: string, textStyle: any, key?: string | number) => {
+  const renderLinkTextContent = (content: any, url: string,  key?: string | number) => {
     if (!isValidURL(url)) {
-      return renderTextContent(content, textStyle, key);
+      return renderTextContent(content,  key);
     }
 
     return (
-      <StyledLink href={url} style={textStyle} key={key} target="_blank" rel="noopener noreferrer">
+      <StyledLink href={url} key={key} target="_blank" rel="noopener noreferrer">
         {typeof content === 'object' ? renderItem(content) : content}
       </StyledLink>
     );
@@ -68,23 +68,23 @@ const DisplayContent: React.FC<DisplayContentProps> = ({ content }) => {
         );
       }
 
-      const textStyle = formDataUtil.getStyleFromItem({ item, styles, data: stylesData, name: 'contentText' });
-      const viewStyle = formDataUtil.getStyleFromItem({ item, styles, data: stylesData, name: 'viewStyle' });
+      
+   
 
       switch (item.type) {
         case 'view':
         case 'row':
         case 'col':
         case 'paragraph':
-          return renderViewContent(item.content, viewStyle, key);
+          return renderViewContent(item.content, key);
         case 'text':
         default:
           return item.url
-            ? renderLinkTextContent(item.content, item.url, textStyle, key)
-            : renderTextContent(item.content, textStyle, key);
+            ? renderLinkTextContent(item.content, item.url,  key)
+            : renderTextContent(item.content, key);
       }
     } else {
-      return renderTextContent(item, styles.contentText, key);
+      return renderTextContent(item,  key);
     }
   };
 
