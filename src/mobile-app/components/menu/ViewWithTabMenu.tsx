@@ -10,7 +10,7 @@ interface ViewWithTabMenuProps {
   menuItems: MenuItemProps[];
   floatingButton?: FloatingButtonProps;
   onPressFloatingIcon?: () => void;
-  content?: string;
+  content?: any;
   message?: string;
   children?: React.ReactNode;
   selected?: any;
@@ -22,7 +22,9 @@ interface MenuItemProps {
     image?: string;
     imageSelected?: string;
   };
-  onPress: () => void;
+  onPress?: () => void;
+  menuItems?: any
+  content?: any;
 }
 
 interface FloatingButtonProps {
