@@ -6,7 +6,6 @@ import {ImportEncryptionKeyView} from './import-encryption-key';
 import {appdata} from "../appdata";
 import { PageHeader } from "../page-header";
 import DisplayUserLogin from "./display-user-login";
-
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
@@ -53,6 +52,18 @@ const MobileApp: React.FC = () => {
         });
     } ,[]);
 
+    const onImportNotProtectedEncryptionKey = useCallback((encryptionKey) => {
+        // todo: implement this
+    },[]);
+
+    const onGlobalInputConnect = useCallback((data) => {
+        //todo: implement this
+
+    },[]);
+    const onImportSettingsData = useCallback((data) => {
+        //todo: implement this
+    },[]);
+
     const toCameraView
     =useCallback(() => {
         setPage({
@@ -60,6 +71,8 @@ const MobileApp: React.FC = () => {
             code: null,
         });
     },[]);
+
+
     
     
 
@@ -75,7 +88,8 @@ const MobileApp: React.FC = () => {
               <PageHeader selected={config.paths.home.path} />       
                 <Content>
                 {page.page===Page.UserLogin &&(<DisplayUserLogin onLoggedIn={onLoggedIn} />)}
-                {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey}/>)}
+                {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey} onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
+                onGlobalInputConnect={onGlobalInputConnect} onImportSettingsData={onImportSettingsData}/>)}
                 {page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView}/>)}
           
           </Content>

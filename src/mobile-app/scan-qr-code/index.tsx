@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import styled from "styled-components";
 import Switch from "react-switch";
 
+
 import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 
 import DisplayCode from "./DisplayCode";
@@ -11,7 +12,13 @@ import DisplayCode from "./DisplayCode";
 import { usePageTitle } from "../../page-metadata";
 
 import {appdata} from "../../appdata";
+import type {CodeData} from "global-input-message";
+import { createMessageConnector } from "global-input-message";
 
+import type {CodeProcessors} from "global-input-message";
+
+
+import eyeTextConfig from '../../configs/eyeTextConfig'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,9 +42,12 @@ const initialState = {
 
 interface ScanQRCodeProps {
   onImportEncryptionKey: (codeData: string) => void;
+  onImportNotProtectedEncryptionKey: (encryptionKey: string) => void;
+  onGlobalInputConnect: (data: CodeData) => void;
+  onImportSettingsData: (data: CodeData) => void;
 }
 
-const ScanQRCode: React.FC<ScanQRCodeProps> = ({ onImportEncryptionKey }) => {
+const ScanQRCode: React.FC<ScanQRCodeProps> = ({ onImportEncryptionKey, onImportNotProtectedEncryptionKey,  onGlobalInputConnect, onImportSettingsData}) => {
   const [data, setData] = useState(initialState);
   
   
@@ -86,6 +96,30 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
               onImportEncryptionKey(codeData);
               return data;
             }
+            else if (appdata.isMasterEncryptionKeyCodedata(codeData)) {
+              var encryptionKeyToBeImported =
+                appdata.decryptExportedEncryptionKey(codeData);
+              if (encryptionKeyToBeImported) {
+                onImportNotProtectedEncryptionKey(encryptionKeyToBeImported);
+                return;
+              }
+            }
+              const connector = createMessageConnector();
+              const codeAES = appdata.getCodeAES();
+              const options: CodeProcessors = {
+                onInputCodeData: onGlobalInputConnect,
+                onPairing: onImportSettingsData,
+                onError: message => {                  
+                          setData(data=>{
+                          return {...data, content:codeData, message: eyeTextConfig.inputDisabled.display};        
+                          });                  
+                }
+              };
+              if (codeAES) {
+                options.codeAES = codeAES;
+              }
+
+              connector.processCodeData(codeData, options);
           
               return data;
           

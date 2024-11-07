@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.3.0",
     "@yudiel/react-qr-scanner": "^2.0.8",
     "bootstrap": "^5.3.3",
+    "global-input-message": "^2.1.7",
     "global-input-react": "^4.6.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
