@@ -256,7 +256,7 @@ const countProcessableFields = initData => {
   return { encryptFieldCount, decryptFieldCount };
 }
 
-export const initDataAction = (initData) => {
+export const initDataAction = (initData) => {  
   const buildErrorAction = message => {
     return { ...loadingData, actionType: ACT_TYPE.ERROR, message };
   };

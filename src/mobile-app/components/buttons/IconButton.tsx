@@ -19,7 +19,7 @@ const IconButton: React.FC<IconButtonProps> = ({ onPress, image, label, labelSty
     <TopIconContainer>
       <IconButtonWrapper onClick={handlePress}>
         {image && <IconImage src={image} alt="icon" />}
-        {label && <IconText light={labelStyle === 'light'}>{label}</IconText>}
+        {label && <IconText $light={labelStyle === 'light'}>{label}</IconText>}
       </IconButtonWrapper>
     </TopIconContainer>
   );
@@ -55,9 +55,9 @@ const IconImage = styled.img`
   margin-bottom: 5px;
 `;
 
-const IconText = styled.p<{ light: boolean }>`
+const IconText = styled.p<{ $light: boolean }>`
   font-size: 14px;
-  color: ${({ light }) => (light ? '#FFF' : '#000')};
+  color: ${props => (props.$light ? '#FFF' : '#000')};
   margin: 0;
   text-align: center;
 `;
