@@ -1,6 +1,3 @@
-import {
-  StyleSheet,Dimensions
-} from 'react-native';
 
 import {commonStyles} from "../../common-styles";
 
@@ -306,7 +303,7 @@ emptyText:{
 };
 
 
-export const styles = StyleSheet.create(Object.assign({},commonStyles,stylesData));
+export const styles = Object.assign({},commonStyles,stylesData);
 export {stylesData};
 
 export function stylesWithNumberOfLines(nlines=1){

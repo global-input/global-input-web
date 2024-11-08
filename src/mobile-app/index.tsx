@@ -6,10 +6,13 @@ import {ImportEncryptionKeyView} from './import-encryption-key';
 import {appdata} from "../appdata";
 import { PageHeader } from "../page-header";
 import DisplayUserLogin from "./display-user-login";
+import GlobalInputConnector from './global-input-connector';
+import menusConfig from '../configs/menusConfig';
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
     ImportEncryptionKey = 'import-encryption-key',
+    GlobalInputConnector = 'global-input-connector',
 
 };
 
@@ -56,8 +59,12 @@ const MobileApp: React.FC = () => {
         // todo: implement this
     },[]);
 
-    const onGlobalInputConnect = useCallback((data) => {
-        //todo: implement this
+    const onGlobalInputConnect = useCallback((codeData) => {
+        setPage({
+            page: Page.GlobalInputConnector,
+            code: codeData,
+        }
+        )
 
     },[]);
     const onImportSettingsData = useCallback((data) => {
@@ -83,6 +90,35 @@ const MobileApp: React.FC = () => {
     //     });
     // },[]);
 
+const toManageFormData = useCallback(() => {},[]);
+const toManageKeys = useCallback(() => {},[]);
+const toEncryptedQRCode = useCallback(() => {},[]);
+const toSettingsScreen = useCallback(() => {},[]);
+
+
+
+    const menuItems= [
+    {
+      menu: menusConfig.eye.menu,
+      onPress: toCameraView,
+    },
+    {
+      menu: menusConfig.manageFormData.menu,
+      onPress: toManageFormData,
+    },
+    {
+      menu: menusConfig.manageKeys.menu,
+      onPress: toManageKeys,
+    },
+    {
+      menu: menusConfig.encryptedQrCode.menu,
+      onPress: toEncryptedQRCode,
+    },
+    {
+      menu: menusConfig.others.menu,
+      onPress: toSettingsScreen,
+    }
+  ]
     return(
         <Container>
               <PageHeader selected={config.paths.home.path} />       
@@ -91,6 +127,7 @@ const MobileApp: React.FC = () => {
                 {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey} onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
                 onGlobalInputConnect={onGlobalInputConnect} onImportSettingsData={onImportSettingsData}/>)}
                 {page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView}/>)}
+                {page.page===Page.GlobalInputConnector &&(<GlobalInputConnector codedata={page.code} toCameraView={toCameraView} menuItems={menuItems}/>)}
           
           </Content>
         </Container>                      

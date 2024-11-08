@@ -1,16 +1,17 @@
-import React, {useState, useRef} from 'react';
-import {Text, View, Image, TouchableHighlight} from 'react-native';
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 
 import searchIcon from '../../images/search.png';
 import folderIcon from '../../images/folders-icon.png';
 
-import {styles} from '../styles';
 
-import {IconButton, TextFieldWithDone, DisplayHeader} from '../../components';
+import IconButton from '../../components/buttons/IconButton';
+import TextFieldWithDone from '../../components/input/TextFieldWithDone';
+import DisplayHeader  from '../../components/menu/DisplayHeader';
 
-const RenderTitleIcon = ({titleIcon}) =>
+const RenderTitleIcon = ({ titleIcon }) =>
   titleIcon ? (
-    <Image source={titleIcon} style={styles.titleIcon} />
+    <TitleIcon src={titleIcon} alt="Title Icon" />
   ) : null;
 
 const renderWithSearchField = ({
@@ -18,10 +19,10 @@ const renderWithSearchField = ({
   onChangeFilterString,
   onBlur,
   onFocus,
-  retrieveSearchFieldReference
+  retrieveSearchFieldReference,
 }) => (
   <DisplayHeader>
-    <View style={styles.searchBlockItemContainer}>
+    <SearchBlockItemContainer>
       <TextFieldWithDone
         placeholder={'Search forms'}
         autoCapitalize={'none'}
@@ -31,74 +32,70 @@ const renderWithSearchField = ({
         onFocus={onFocus}
         ref={retrieveSearchFieldReference}
       />
-    </View>
+    </SearchBlockItemContainer>
   </DisplayHeader>
 );
 
-const renderFilterString = ({displaySearchField, filterString}) => (
+const renderFilterString = ({ displaySearchField, filterString }) => (
   <DisplayHeader>
-    <View style={styles.leftHeader}>
-      <IconButton image={searchIcon} onPress={displaySearchField} />
-      <View style={styles.searchStringContainer}>
-        <TouchableHighlight onPress={displaySearchField}>
-          <Text style={styles.searchString}>{filterString}</Text>
-        </TouchableHighlight>
-      </View>
-    </View>
-    <View style={styles.leftHeader}>
-      <Text style={styles.titleText} allowFontScaling={false}>
-        {'Search Result'}
-      </Text>
-    </View>
+    <LeftHeader>
+      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <SearchStringContainer>
+        <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
+      </SearchStringContainer>
+    </LeftHeader>
+    <LeftHeader>
+      <TitleText>{'Search Result'}</TitleText>
+    </LeftHeader>
   </DisplayHeader>
 );
+
 const renderWithSearchButton = ({
   title,
   displaySearchField,
   filterString,
   titleIcon,
-  toListLabels
+  toListLabels,
 }) => (
   <DisplayHeader>
-    <View style={styles.headerItem}>
-      <IconButton image={searchIcon} onPress={displaySearchField} />
-      <View style={styles.searchStringContainer}>
-        <TouchableHighlight onPress={displaySearchField}>
-          <Text style={styles.searchString}>{filterString}</Text>
-        </TouchableHighlight>
-      </View>
-    </View>
-    <View style={styles.headerItem}>
+    <HeaderItem>
+      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <SearchStringContainer>
+        <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
+      </SearchStringContainer>
+    </HeaderItem>
+    <HeaderItem>
       <RenderTitleIcon titleIcon={titleIcon} />
-      <Text style={styles.titleText} allowFontScaling={false}>
-        {title}
-      </Text>
-    </View>
-    <View style={styles.headerItem}>
-      <IconButton image={folderIcon} onPress={toListLabels} />
-    </View>
+      <TitleText>{title}</TitleText>
+    </HeaderItem>
+    <HeaderItem>
+      <IconButton image={folderIcon} onClick={toListLabels} />
+    </HeaderItem>
   </DisplayHeader>
 );
 
-export default ({
+const ListFormDataHeader = ({
   filterString,
   onChangeFilterString,
   onSearchLooseFocus,
   titleIcon,
   toListLabels,
-  title
+  title,
 }) => {
   const [showSearch, setShowSearch] = useState(false);
   const searchField = useRef(null);
-  const retrieveSearchFieldReference = ref => (searchField.current = ref);
+
+  const retrieveSearchFieldReference = (ref) => (searchField.current = ref);
+
   const onBlur = () => {
     onSearchLooseFocus();
     setShowSearch(false);
   };
+
   const onFocus = () => {
     setShowSearch(true);
-  };;
-  const onBlurretrieveSearchFieldReference= ref=>searchField.current=ref;
+  };
+
   const displaySearchField = () => {
     setShowSearch(true);
 
@@ -113,22 +110,63 @@ export default ({
     return renderWithSearchField({
       filterString,
       onChangeFilterString,
+      onBlur,
       onFocus,
-      onBlurretrieveSearchFieldReference,
-      retrieveSearchFieldReference
+      retrieveSearchFieldReference,
     });
   } else {
     if (filterString) {
-      return renderFilterString({displaySearchField, filterString});
-    } else
+      return renderFilterString({ displaySearchField, filterString });
+    } else {
       return renderWithSearchButton({
         title,
         displaySearchField,
-        displaySearchField,
-        filterString,
         filterString,
         titleIcon,
-        toListLabels
+        toListLabels,
       });
+    }
   }
 };
+
+export default ListFormDataHeader;
+
+// Styled Components
+const TitleIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+`;
+
+const SearchBlockItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+`;
+
+const LeftHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const HeaderItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+`;
+
+const SearchStringContainer = styled.div`
+  margin-left: 8px;
+`;
+
+const ClickableText = styled.span`
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+`;
+
+const TitleText = styled.h2`
+  font-size: 18px;
+  margin: 0;
+`;

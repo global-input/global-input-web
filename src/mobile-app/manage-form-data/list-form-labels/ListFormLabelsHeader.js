@@ -1,164 +1,157 @@
-import React, { Component, PureComponent } from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  ScrollView,
-  FlatList,
-  Image,
-  Button,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  Keyboard,
-  StatusBar
-} from 'react-native';
+// ListFormLabelsHeader.js
 
-import { styles } from "../styles";
-import { appdata, store } from "../../store";
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 
 
-import { images, manageFormDataTextConfig, menusConfig } from "../../configs";
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
+import IconButton from '../../components/buttons/IconButton';
+import TextFieldWithDone from '../../components/input/TextFieldWithDone';
+import DisplayHeader from '../../components/menu/DisplayHeader';
 
-import { IconButton, TextFieldWithDone, DisplayHeader } from "../../components";
+const ListFormLabelsHeader = (props) => {
+  const [showSearch, setShowSearch] = useState(false);
+  const searchFieldRef = useRef(null);
 
-
-
-
-
-export default class ListFormLabelsHeader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getStateFromProps(this.props);
-  }
-  getStateFromProps(props) {
-    return { showSearch: false };
-  }
-  onBlur() {
-    this.props.onSearchLooseFocus();
-    this.setState({ showSearch: false });
-
-  }
-  onFocus() {
-    this.setState({ showSearch: true })
-  }
-
-  render() {
-    if (this.state.showSearch) {
-      return this.renderWithSearchField();
-    }
-    else {
-      var action = this.props.action;
-      if (action.filterString) {
-        return this.renderFilterString();
-      }
-      else if ((action.items && action.items.length > 3) || action.filterString) {
-        return this.renderWithSearchButton();
-      }
-      else {
-        console.log("render without search");
-        return this.renderWithoutSearchButton();
-      }
-    }
-  }
-
-  renderFilterString() {
-    return (
-
-      <DisplayHeader>
-        <View style={styles.leftHeader}>
-          <IconButton image={menusConfig.search.menu.image} onPress={this.displaySearchField.bind(this)} />
-          <View style={styles.searchStringContainer}>
-            <TouchableHighlight onPress={this.displaySearchField.bind(this)}>
-              <Text style={styles.searchString}>{this.props.action.filterString}</Text>
-            </TouchableHighlight>
-          </View>
-
-        </View>
-        <View style={styles.leftHeader}>
-
-          <Text style={styles.titleText} allowFontScaling={false}>{manageFormDataTextConfig.searchResult.title}</Text>
-        </View>
-      </DisplayHeader>
-    );
-  }
-
-  displaySearchField() {
-    this.setState({ showSearch: true });
+  const displaySearchField = () => {
+    setShowSearch(true);
     setTimeout(() => {
-      if (this.searchField) {
-        this.searchField.focus();
+      if (searchFieldRef.current) {
+        searchFieldRef.current.focus();
       }
     }, 200);
+  };
+
+  const onBlur = () => {
+    props.onSearchLooseFocus();
+    setShowSearch(false);
+  };
+
+  const onFocus = () => {
+    setShowSearch(true);
+  };
+
+  const renderFilterString = () => (
+    <DisplayHeader>
+      <LeftHeader>
+        <IconButton image={menusConfig.search.menu.image} onClick={displaySearchField} />
+        <SearchStringContainer>
+          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
+        </SearchStringContainer>
+      </LeftHeader>
+      <LeftHeader>
+        <TitleText>{manageFormDataTextConfig.searchResult.title}</TitleText>
+      </LeftHeader>
+    </DisplayHeader>
+  );
+
+  const renderLabelSwitch = () => (
+    <HeaderItem>
+      <IconButton image={menusConfig.manageFormData.menu.image} onClick={props.toList} />
+    </HeaderItem>
+  );
+
+  const renderWithSearchButton = () => (
+    <DisplayHeader>
+      <HeaderItem>
+        <IconButton image={menusConfig.search.menu.image} onClick={displaySearchField} />
+        <SearchStringContainer>
+          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
+        </SearchStringContainer>
+      </HeaderItem>
+      <HeaderItem>
+        <TitleText>{props.title}</TitleText>
+      </HeaderItem>
+      {renderLabelSwitch()}
+    </DisplayHeader>
+  );
+
+  const renderWithoutSearchButton = () => (
+    <DisplayHeader>
+      <HeaderItem>
+        <SearchStringContainer>
+          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
+        </SearchStringContainer>
+      </HeaderItem>
+      <HeaderItem>
+        <TitleText>{props.title}</TitleText>
+      </HeaderItem>
+      {renderLabelSwitch()}
+    </DisplayHeader>
+  );
+
+  const renderWithSearchField = () => (
+    <DisplayHeader>
+      <SearchBlockItemContainer>
+        <TextFieldWithDone
+          placeholder={manageFormDataTextConfig.searchField.label}
+          autoCapitalize="none"
+          value={props.action.filterString}
+          onChangeTextValue={props.onChangeFilterString}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          ref={searchFieldRef}
+        />
+      </SearchBlockItemContainer>
+    </DisplayHeader>
+  );
+
+  const action = props.action;
+
+  if (showSearch) {
+    return renderWithSearchField();
+  } else {
+    if (action.filterString) {
+      return renderFilterString();
+    } else if ((action.items && action.items.length > 3) || action.filterString) {
+      return renderWithSearchButton();
+    } else {
+      console.log('render without search');
+      return renderWithoutSearchButton();
+    }
   }
-  renderLabelSwitch() {
-    return (
-      <View style={styles.headerItem}>
-        <IconButton image={menusConfig.manageFormData.menu.image} onPress={this.props.toList} />
-      </View>
-    );
-  }
-  renderWithSearchButton() {
-    return (
-      <DisplayHeader>
+};
 
-        <View style={styles.headerItem}>
-          <IconButton image={menusConfig.search.menu.image} onPress={this.displaySearchField.bind(this)} />
+export default ListFormLabelsHeader;
 
-          <View style={styles.searchStringContainer}>
-            <TouchableHighlight onPress={this.displaySearchField.bind(this)}>
-              <Text style={styles.searchString}>{this.props.action.filterString}</Text>
-            </TouchableHighlight>
-          </View>
+// Styled Components
 
-        </View>
-        <View style={styles.headerItem}>
-          <Text style={styles.titleText} allowFontScaling={false}>{this.props.title}</Text>
-        </View>
-        {this.renderLabelSwitch()}
+const LeftHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 
-      </DisplayHeader>
-    );
-  }
-  renderWithoutSearchButton() {
-    return (
-      <DisplayHeader>
+const HeaderItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+`;
 
-        <View style={styles.headerItem}>
+const SearchStringContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  border-bottom: 1px solid white;
+`;
 
+const ClickableText = styled.span`
+  color: #ffffff;
+  cursor: pointer;
+`;
 
-          <View style={styles.searchStringContainer}>
-            <TouchableHighlight onPress={this.displaySearchField.bind(this)}>
-              <Text style={styles.searchString}>{this.props.action.filterString}</Text>
-            </TouchableHighlight>
-          </View>
+const TitleText = styled.h2`
+  color: #ffffff;
+  font-size: 18px;
+  margin: 0;
+`;
 
-        </View>
-        <View style={styles.headerItem}>
-          <Text style={styles.titleText} allowFontScaling={false}>{this.props.title}</Text>
-        </View>
-        {this.renderLabelSwitch()}
-
-      </DisplayHeader>
-    );
-  }
-  renderWithSearchField() {
-    return (
-      <DisplayHeader>
-        <View style={styles.searchBlockItemContainer}>
-          <TextFieldWithDone
-            placeholder={manageFormDataTextConfig.searchField.label}
-            autoCapitalize={'none'}
-            value={this.props.action.filterString}
-            onChangeTextValue={this.props.onChangeFilterString}
-            onBlur={this.onBlur.bind(this)}
-            onFocus={this.onFocus.bind(this)}
-            ref={(searchField) => { this.searchField = searchField }}
-          />
-        </View>
-      </DisplayHeader>
-    );
-
-  }
-
-
-}
+const SearchBlockItemContainer = styled.div`
+  flex: 3;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+`;

@@ -1,25 +1,21 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Clipboard } from 'react-native';
 
-import { generateRandomString } from '../global-input-message';
-import { formDataUtil, appdata, domainForms } from '../store';
-import { deviceInputTextConfig, encryptedQrCodeTextConfig, settingsTextConfig, menusConfig } from "../configs";
+import { formDataUtil, appdata, domainForms } from '../../appdata';
+import deviceInputTextConfig from '../../configs/deviceInputTextConfig';
+import encryptedQrCodeTextConfig from '../../configs/encryptedQrCodeTextConfig';
 
-import { ViewWithTabMenu, DisplayBlockText } from "../components";
+import menusConfig from '../../configs/menusConfig';
 
-import { EncryptContentView } from '../qr-code-encryption';
+import ViewWithTabMenu from "../components/menu/ViewWithTabMenu";
 
-import DeviceInputView from './device-input-view';
+import {EncryptContentView} from '../qr-code-encryption/';
+
 import MessageWithFormData from './message-with-form-data';
-import { ManageFormData } from '../manage-form-data';
-
-
-
+import {ManageFormData} from '../manage-form-data';
 import ACT_TYPE from './ACT_TYPE';
+
 import * as encryptDecryptData from './encrypt-decrypt-data';
 
-import { styles } from './styles';
 
 const MAX_NUMBER_OF_FIELDS = 100;
 
@@ -38,22 +34,23 @@ export const displayNotificationMessage = ({ messageTimerHandler, notificationMe
 
 export const printError = ({ notificationMessage, error, messageTimerHandler, setAction }) => {
   if (error) {
-    console.log(notificationMessage + ":" + error + ":" + error.stack);
-  }
-  else {
+    console.log(`${notificationMessage}: ${error}: ${error.stack}`);
+  } else {
     console.log(notificationMessage);
   }
   if (messageTimerHandler && setAction) {
-    if (error) {
-      displayNotificationMessage({ messageTimerHandler, notificationMessage, setAction });
-    }
-    else {
-      displayNotificationMessage({ messageTimerHandler, notificationMessage, setAction });
-    }
-
+    displayNotificationMessage({ messageTimerHandler, notificationMessage, setAction });
   }
 };
 
+export const copyToClipboard = async (text, setAction) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    setAction({ notificationMessage: 'Copied to clipboard!' });
+  } catch (error) {
+    console.error('Failed to copy text to clipboard:', error);
+  }
+};
 
 export const sessionEndAction = action => ({
   ...action,
@@ -63,7 +60,7 @@ export const sessionEndAction = action => ({
 });
 
 export const finishSessionAction = action => {
-  var formData = getFormDataForSaving(action);
+  const formData = getFormDataForSaving(action);
   if (formData) {
     return {
       ...action,
@@ -75,36 +72,18 @@ export const finishSessionAction = action => {
   return sessionEndAction(action);
 };
 
-
 const changeGlobalInputFields = ({ globalInputdata, fieldIndex, fieldId, value, onFieldChanged }) => {
-
-  if (!globalInputdata || !globalInputdata.length || fieldIndex >= globalInputdata.length) {
+  if (!globalInputdata || fieldIndex >= globalInputdata.length) {
     return globalInputdata;
   }
-  const updatedFields = [];
-  const autoSetDefaultOn = null;
-
-  globalInputdata.forEach((gfield, index) => {
-    if (index === fieldIndex || fieldId && fieldId == gfield.id) {
-      if (gfield.autoSetDefaultOn) {
-        autoSetDefaultOn = gfield.autoSetDefaultOn;
-      }
-      var field = { ...gfield, value };
-      updatedFields.push(field);
-      if (onFieldChanged) {
-        onFieldChanged({ field, index });
-      }
+  const updatedFields = globalInputdata.map((gfield, index) => {
+    if (index === fieldIndex || (fieldId && fieldId === gfield.id)) {
+      const field = { ...gfield, value };
+      if (onFieldChanged) onFieldChanged({ field, index });
+      return field;
     }
-    else {
-      updatedFields.push(gfield);
-    }
+    return gfield;
   });
-  if (autoSetDefaultOn) {
-    const matchedFields = globalInputdata.filter(gf => gf.id === autoSetDefaultOn);
-    if (matchedFields.length) {
-      matchedFields[0].value = value;
-    }
-  }
   return updatedFields;
 };
 const copyFieldsToGlobalInputFields = ({ globalInputdata, fieldvalues, onFieldChanged, isEncrypted = false }) => {
@@ -146,11 +125,9 @@ const copyFieldsToGlobalInputFields = ({ globalInputdata, fieldvalues, onFieldCh
   });
   return updatedFields;
 };
-
 export const fillContentEncryptionForm = ({ content, label, setAction, onFieldChanged }) => {
   setAction(action => {
-
-    var fieldvalues = [
+    const fieldvalues = [
       { label: 'Content', id: "content", value: content },
       { label: 'Label', id: "label", value: label }
     ];
@@ -162,47 +139,33 @@ export const fillContentEncryptionForm = ({ content, label, setAction, onFieldCh
     });
     return { ...action, globalInputdata, actionType: ACT_TYPE.DEVICE_INPUT };
   });
-}
+};
 
 export const changeGlobalInputFieldAction = ({ action, globalInputdata, fieldIndex, fieldId, value, onFieldChanged }) => {  
-  const newglobalInputdata = changeGlobalInputFields({
+  const newGlobalInputdata = changeGlobalInputFields({
     globalInputdata,
     fieldId,
     fieldIndex,
     value,
     onFieldChanged
   });
-  const actionType=ACT_TYPE.DEVICE_INPUT;
-  if(action.actionType ===ACT_TYPE.EXPORT_FORM_DATA ){
-      actionType=ACT_TYPE.EXPORT_FORM_DATA; //TODO:do we need to presever actionType?
-  }    
-  return { ...action, globalInputdata: newglobalInputdata, actionType};
+  return { ...action, globalInputdata: newGlobalInputdata, actionType: ACT_TYPE.DEVICE_INPUT };
 };
 
 export const onInputAction = (message, action) => {
   if (message.initData) {
     return changeInitDataAction(message.initData, action);
   } else if (message.data) {    
-    try {
-      return changeGlobalInputFieldAction({
-        action,
-        globalInputdata: action.globalInputdata,
-        fieldIndex: message.data.index,
-        fieldId: message.data.fieldId,
-        value: message.data.value,
-        onFieldChanged: null
-      });
-    } catch (error) {
-      printError({
-        notificationMessage:
-          'failed to set global input field with received input',
-        error
-      });
-    }
+    return changeGlobalInputFieldAction({
+      action,
+      globalInputdata: action.globalInputdata,
+      fieldIndex: message.data.index,
+      fieldId: message.data.fieldId,
+      value: message.data.value,
+      onFieldChanged: null
+    });
   }
-  else {
-    console.log("ignored the input message");
-  }
+  console.log("Ignored the input message");
   return action;
 };
 
@@ -222,55 +185,57 @@ export const loadingData = {
 
 export const switchToDeviceInput = config => initDataActionForDeviceInput(config.initData);
 
+
+
 const initDataActionForDeviceInput = (initData) => {
-        if (!initData || (!initData.form) || (!initData.form.fields) || (!initData.form.fields.length)) {
-              return { actionType: ACT_TYPE.ERROR, message:'initData/form/fields is missing' };
+  if (!initData || (!initData.form) || (!initData.form.fields) || (!initData.form.fields.length)) {
+        return { actionType: ACT_TYPE.ERROR, message:'initData/form/fields is missing' };
+  }
+
+  var autofill = domainForms.getAutoFillData(initData);
+  
+  var showHideSecret = null;
+  const globalInputdata = initData.form.fields;
+  let exportFormField = null;
+  let importFormField =null;
+
+  globalInputdata.forEach(dataitem => {
+    if (isInputField(dataitem)) {
+      if (!dataitem.value) {
+        if (typeof dataitem.value === 'number') {
+          dataitem.value = 0;
         }
-
-        var autofill = domainForms.getAutoFillData(initData);
-        
-        var showHideSecret = null;
-        globalInputdata = initData.form.fields;
-        let exportFormField = null;
-        let importFormField =null;
-
-        globalInputdata.forEach(dataitem => {
-          if (isInputField(dataitem)) {
-            if (!dataitem.value) {
-              if (typeof dataitem.value === 'number') {
-                dataitem.value = 0;
-              }
-              else {
-                dataitem.value = "";
-              }
-            }
-            if (dataitem.type === 'secret') {
-              showHideSecret = {
-                show: false
-              }
-            }
-          }
-          else if(isExportFormField(dataitem)){
-            exportFormField=dataitem;      
-          }
-          else if(isImportFormField(dataitem)){
-            importFormField=dataitem;
-          }
-        });
-
-        let actionType = ACT_TYPE.DEVICE_INPUT;
-        if(importFormField){
-          actionType=ACT_TYPE.IMPORT_FORM_DATA;
+        else {
+          dataitem.value = "";
         }
-        return {
-          globalInputdata,
-          showHideSecret,
-          autofill,
-          initData,
-          actionType,
-          exportFormField,
-          importFormField
-        };
+      }
+      if (dataitem.type === 'secret') {
+        showHideSecret = {
+          show: false
+        }
+      }
+    }
+    else if(isExportFormField(dataitem)){
+      exportFormField=dataitem;      
+    }
+    else if(isImportFormField(dataitem)){
+      importFormField=dataitem;
+    }
+  });
+
+  let actionType = ACT_TYPE.DEVICE_INPUT;
+  if(importFormField){
+    actionType=ACT_TYPE.IMPORT_FORM_DATA;
+  }
+  return {
+    globalInputdata,
+    showHideSecret,
+    autofill,
+    initData,
+    actionType,
+    exportFormField,
+    importFormField
+  };
 };
 
 const countProcessableFields = initData => {
@@ -334,7 +299,6 @@ const changeInitDataAction = (initData, action) => {
   }  
   return initDataAction(initData, action);  
 };
-
 const buildFormDataFromInput = (initData, globalInputdata) => {
   if (!initData) {
     return null;
@@ -406,46 +370,21 @@ export const saveFormData = action => {
 
 
 
-
 export const renderFormDataList = ({ action, setAction, dataRange, messageTimerHandler, onFieldChanged }) => {
-
   const toDeviceInput = () => setAction({ ...action, actionType: ACT_TYPE.DEVICE_INPUT });
-
   const formDataList = dataRange === 'autofill' ? action.autofill.formDataList : appdata.getSavedFormContent();
 
-  let menuItems = [{
-    menu: menusConfig.back.menu,
-    onPress: toDeviceInput
-  }];
-
-  const formDataStorage = {
-    getSavedFormContent: () => formDataList,
-    getAllLabels: () => formDataUtil.getAllLabelsFromFormDataList(formDataList)
-  };
-
   const autoFillWithFormData = formContent => {
-    try {
-      const globalInputdata = copyFieldsToGlobalInputFields({
-        fieldvalues: formContent.fields,
-        globalInputdata: action.globalInputdata,
-        onFieldChanged,
-        isEncrypted: true
-      });
-      setAction({ ...action, globalInputdata, actionType: ACT_TYPE.DEVICE_INPUT });
-    } catch (error) {
-      printError({
-        notificationMessage: deviceInputTextConfig.decryptFailed.message,
-        error,
-        setAction,
-        messageTimerHandler
-      });
-
-    }
+    const globalInputdata = copyFieldsToGlobalInputFields({
+      fieldvalues: formContent.fields,
+      globalInputdata: action.globalInputdata,
+      onFieldChanged,
+      isEncrypted: true
+    });
+    setAction({ ...action, globalInputdata, actionType: ACT_TYPE.DEVICE_INPUT });
   };
 
-
-
-  let displayFormDataProperties = {
+  const displayFormDataProperties = {
     title: deviceInputTextConfig.formData.title,
     menuItems: [
       {
@@ -455,11 +394,13 @@ export const renderFormDataList = ({ action, setAction, dataRange, messageTimerH
     ]
   };
 
-
   return (
     <ManageFormData
-      menuItems={menuItems}
-      formDataStorage={formDataStorage}
+      menuItems={[{ menu: menusConfig.back.menu, onPress: toDeviceInput }]}
+      formDataStorage={{
+        getSavedFormContent: () => formDataList,
+        getAllLabels: () => formDataUtil.getAllLabelsFromFormDataList(formDataList)
+      }}
       title={deviceInputTextConfig.formData.title}
       displayFormDataProperties={displayFormDataProperties}
       onBack={toDeviceInput}
@@ -467,10 +408,7 @@ export const renderFormDataList = ({ action, setAction, dataRange, messageTimerH
   );
 };
 
-
-
 export const renderSaveFormData = ({ action, setAction }) => {
-
   const gotoNextStep = () => {
     if (action.nextInitData) {
       const initData = action.nextInitData;
@@ -479,59 +417,38 @@ export const renderSaveFormData = ({ action, setAction }) => {
       setAction(sessionEndAction(action));
     }
   };
-  var menuItems = [
-    { menu: menusConfig.discard.menu, onPress: () => gotoNextStep() },
-    {
-      menu: menusConfig.save.menu, onPress: () => {
-        saveFormData(action);
-        gotoNextStep();
-      }
-    }];
-
-  var title = deviceInputTextConfig.saveFormData.title;
-  var content1 = deviceInputTextConfig.saveFormData.content1;
-  var content2 = deviceInputTextConfig.saveFormData.content2;
-
-  if (action.nextInitData) {
-    title = deviceInputTextConfig.nextDataTransfer.title;
-    content1 = deviceInputTextConfig.nextDataTransfer.content1;
-    content2 = deviceInputTextConfig.nextDataTransfer.content2;
-  }
 
   return (
     <MessageWithFormData
-      title={title}
+      title={deviceInputTextConfig.saveFormData.title}
       formData={action.formData}
-      menuItems={menuItems}
-      content1={content1}
-      content2={content2}
+      menuItems={[
+        { menu: menusConfig.discard.menu, onPress: () => gotoNextStep() },
+        {
+          menu: menusConfig.save.menu, onPress: () => {
+            saveFormData(action);
+            gotoNextStep();
+          }
+        }
+      ]}
+      content1={deviceInputTextConfig.saveFormData.content1}
+      content2={deviceInputTextConfig.saveFormData.content2}
     />
   );
 };
 
-
-
-
-
-
-
-
-
-export const renderSessionEnd = ({ menuItems }) => {
-  return (<ViewWithTabMenu
+export const renderSessionEnd = ({ menuItems }) => (
+  <ViewWithTabMenu
     menuItems={menuItems}
     title={deviceInputTextConfig.sessionEnded.title}
-    message={deviceInputTextConfig.sessionEnded.content} />);
-};
-
+    message={deviceInputTextConfig.sessionEnded.content}
+  />
+);
 
 export const renderEncryptSecret = ({ action, setAction, onFieldChanged, messageTimerHandler }) => {
   const toDeviceInput = () => setAction({ ...action, actionType: ACT_TYPE.DEVICE_INPUT });
 
-  let menuItems = [{ menu: menusConfig.back.menu, onPress: toDeviceInput }];
-
   const onEncryptedContent = (content, label) => {
-    console.log("--------content:" + content + " label:" + label);
     try {
       fillContentEncryptionForm({ content, label, setAction, onFieldChanged });
     } catch (error) {
@@ -546,7 +463,7 @@ export const renderEncryptSecret = ({ action, setAction, onFieldChanged, message
 
   return (
     <EncryptContentView
-      menuItems={menuItems}
+      menuItems={[{ menu: menusConfig.back.menu, onPress: toDeviceInput }]}
       title={encryptedQrCodeTextConfig.fillContent.title}
       help={encryptedQrCodeTextConfig.fillContent.content}
       onContentEncrypted={onEncryptedContent}

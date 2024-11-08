@@ -1,74 +1,58 @@
-import React, { Component } from 'react';
-import {View,Image,TouchableHighlight} from 'react-native';
+import React from 'react';
+import styled from 'styled-components';
+import TextInputField from '../../components/input/TextInputField';
+import menusConfig from '../../../configs/menusConfig';
 
+const RenderFieldSelection = ({ dataitem, fieldSelection, onFieldSelected }) => {
+  const isSelected = fieldSelection && fieldSelection.dataitem === dataitem;
+  const icon = isSelected ? menusConfig.checkbox.options[1].image : menusConfig.checkbox.options[0].image;
 
-import {styles} from "../styles";
-import {TextInputField} from "../../components";
-
-
-
-import {menusConfig, images} from "../../configs";
-
-const renderFieldSelection = ({dataitem,fieldSelection,onFieldSelected}) => {
-  var icon=menusConfig.checkbox.options[0].image;
-  var checked=false;  
-  if(fieldSelection && fieldSelection.dataitem===dataitem){
-    icon=menusConfig.checkbox.options[1].image;
-    checked=true;
-  }
-    return(
-      <TouchableHighlight onPress={()=>{
-            if(checked){
-              onFieldSelected(null);
-            }
-            else{              
-              onFieldSelected(dataitem);
-            }
-        }}>
-          <Image source={icon} style={styles.itemIcon}/>
-      </TouchableHighlight>
-
-    );
-}
-
-
-
-export default ({dataitem,fieldSelection, showHideSecret,onFieldChanged,onFieldSelected}) => {
-  const value=dataitem.value?dataitem.value:"";  
-  const secureTextEntry= dataitem && dataitem.type==='secret' && showHideSecret && (!showHideSecret.show)  
-  const nLines = dataitem.nLines?dataitem.nLines:1;  
-  if(nLines>1){
-      return(
-        <TextInputField
-          value={value}
-          label={dataitem.label}
-          dark={true}
-          secureTextEntry={secureTextEntry}                      
-          multiline={true}
-          numberOfLines={nLines}           
-          onFocus={()=>onFieldSelected(null)}           
-          onChangeTextValue={data=>onFieldChanged(data)} placeholder={dataitem.label}>
-             {renderFieldSelection({dataitem,fieldSelection, onFieldSelected})}
-         </TextInputField>
-    );
-  }  
-  else{
-      return(
-        <View style={styles.inputContainer}>
-          <TextInputField
-              value={value}
-              placeholder={dataitem.label}                            
-              dark={true}
-              secureTextEntry={secureTextEntry}
-              onFocus={()=>onFieldSelected(null)}              
-              onChangeTextValue={data=>onFieldChanged(data)}              
-              autoCapitalize={'none'}
-          >
-          {renderFieldSelection({dataitem,fieldSelection, onFieldSelected})}
-        </TextInputField>
-    
-        </View>
-           );
-  }
+  return (
+    <SelectionContainer onClick={() => onFieldSelected(isSelected ? null : dataitem)}>
+      <Icon src={icon} alt={isSelected ? 'checked' : 'unchecked'} />
+    </SelectionContainer>
+  );
 };
 
+const RenderTextField = ({ dataitem, fieldSelection, showHideSecret, onFieldChanged, onFieldSelected }) => {
+  const value = dataitem.value || '';
+  const isSecure = dataitem.type === 'secret' && showHideSecret && !showHideSecret.show;
+  const numberOfLines = dataitem.nLines || 1;
+
+  return (
+    <InputContainer>
+      <TextInputField
+        value={value}
+        placeholder={dataitem.label}
+        dark
+        secureTextEntry={isSecure}
+        multiline={numberOfLines > 1}
+        numberOfLines={numberOfLines}
+        onFocus={() => onFieldSelected(null)}
+        onChangeTextValue={onFieldChanged}
+        autoCapitalize="none"
+      >
+        <RenderFieldSelection dataitem={dataitem} fieldSelection={fieldSelection} onFieldSelected={onFieldSelected} />
+      </TextInputField>
+    </InputContainer>
+  );
+};
+
+export default RenderTextField;
+
+// Styled Components
+const InputContainer = styled.div`
+  margin: 10px 0;
+`;
+
+const SelectionContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 8px;
+`;
+
+const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+`;

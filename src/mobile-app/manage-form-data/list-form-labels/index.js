@@ -1,168 +1,190 @@
+// ListFormLabels.js
+
 import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  Image,
-  TouchableHighlight,
-} from 'react-native';
+import styled from 'styled-components';
 
+import images from '../../../configs/images';
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
 
-import { styles } from "../styles";
+import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
+import ListFormLabelsHeader from './ListFormLabelsHeader';
 
+const EMPTY_ID = 'xspan4dfsabbdfshtr1';
 
-
-import { images, manageFormDataTextConfig, menusConfig } from "../../configs";
-
-import { ViewWithTabMenu } from "../../components";
-import ListFormLabelsHeader from "./ListFormLabelsHeader";
-
-
-const EMPTY_ID = "xspan4dfsabbdfshtr1";
 const createNewAction = () => {
   return {
-    filterString: "",
+    filterString: '',
     startIndex: 0,
     items: [],
     endReached: false,
     numberRocordsInBatch: 20,
-    labels: []
+    labels: [],
   };
 };
 
-const itemKeyExtractor = item => {
-  const key = item.key ? item.key : item.label;
-  return key ? key : EMPTY_ID;
-}
-const populateItemsInAction = action => {
-  if ((!action.labels) || (!action.labels.length)) {
+const populateItemsInAction = (action) => {
+  if (!action.labels || !action.labels.length) {
     return;
   }
-  var labels = action.labels;
-
+  const labels = action.labels;
 
   if (action.items.length > 0) {
     action.items.pop();
   }
-  for (var counter = 0; counter < action.numberRocordsInBatch; counter++) {
+  for (let counter = 0; counter < action.numberRocordsInBatch; counter++) {
     if (action.startIndex >= labels.length) {
       action.endReached = true;
       break;
     }
-    var label = labels[action.startIndex];
+    const label = labels[action.startIndex];
     action.items.push({
       label,
-      key: label
+      key: label,
     });
     action.startIndex++;
   }
   action.items.push({
     label: EMPTY_ID,
-    key: EMPTY_ID
+    key: EMPTY_ID,
   });
 };
 
 const getStateFromProps = ({ labels }) => {
-  var action = createNewAction();
+  const action = createNewAction();
   action.labels = labels;
   populateItemsInAction(action);
   return action;
 };
 
-export default ({ labels, toList, menuItems, onCreateFormData, onLabelSelected }) => {
-
+const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSelected }) => {
   const [data, setData] = useState(() => getStateFromProps({ labels }));
 
   const onChangeFilterString = (filterString) => {
-    var action = createNewAction();
+    const action = createNewAction();
     action.filterString = filterString;
     if (action.filterString) {
-      action.labels = labels.filter(l => l.toLowerCase().startsWith(action.filterString.toLowerCase()));
-    }
-    else {
+      action.labels = labels.filter((l) =>
+        l.toLowerCase().startsWith(action.filterString.toLowerCase())
+      );
+    } else {
       action.labels = labels;
     }
     populateItemsInAction(action);
     setData(action);
   };
+
   const onEndReached = () => {
     if (!data.endReached) {
       populateItemsInAction(data);
       setData({ ...data });
     }
   };
+
   const onSearchLooseFocus = () => {
     if (data.items.length <= 1) {
-      onChangeFilterString("");
+      onChangeFilterString('');
     }
   };
-  const renderItemListItem = ({ item, index }) => {
+
+  const renderItemListItem = (item, index) => {
     if (item.key !== EMPTY_ID) {
-      var labelText = item.label;
+      let labelText = item.label;
       if (!labelText) {
         labelText = manageFormDataTextConfig.labelsSiwtch.root;
       }
       return (
-        <TouchableHighlight onPress={() => {
-          onLabelSelected(item.label);
-        }}>
-          <View style={styles.itemRecord}>
-            <View style={styles.itemRow}>
-              <Image source={images.folder} style={styles.itemIcon} /><Text style={styles.formLabelText}>{labelText}</Text>
-            </View>
-          </View>
-        </TouchableHighlight>
+        <ItemRecord key={item.key} onClick={() => onLabelSelected(item.label)}>
+          <ItemRow>
+            <ItemIcon src={images.folder} alt="Folder Icon" />
+            <FormLabelText>{labelText}</FormLabelText>
+          </ItemRow>
+        </ItemRecord>
       );
-    }
-    else {
-
-      return (<View style={styles.endSpace}></View>);
-    }
-
-  };
-  const renderCreateFormDataIcon = ({ onCreateFormData }) => {
-    if (onCreateFormData) {
-      return (
-        <FloatingIcon image={menusConfig.addRecord.menu.image} label={menusConfig.addRecord.menu.label} onPress={onCreateFormData} />
-      );
-    }
-    else {
-      return null;
+    } else {
+      return <EndSpace key={index} />;
     }
   };
+
   const renderHeader = () => {
     return (
-      <ListFormLabelsHeader action={data}
+      <ListFormLabelsHeader
+        action={data}
         title={manageFormDataTextConfig.labelsSiwtch.title}
         toList={toList}
         onChangeFilterString={onChangeFilterString}
-        onSearchLooseFocus={onSearchLooseFocus} />
+        onSearchLooseFocus={onSearchLooseFocus}
+      />
     );
   };
 
+  let adjustedMenuItems = menuItems;
   if (data.filterString) {
-    menuItems = [{
-      menu: menusConfig.back.menu,
-      onPress: () => { onChangeFilterString(""); }
-    }];
+    adjustedMenuItems = [
+      {
+        menu: menusConfig.back.menu,
+        onPress: () => {
+          onChangeFilterString('');
+        },
+      },
+    ];
   }
 
-
-
-
   return (
-
-    <ViewWithTabMenu menuItems={menuItems} selected={menusConfig.manageFormData.menu}
+    <ViewWithTabMenu
+      menuItems={adjustedMenuItems}
+      selected={menusConfig.manageFormData.menu}
       header={renderHeader()}
       floatingButton={menusConfig.addRecord.menu}
-      onPressFloatingIcon={onCreateFormData}>
-
-      <FlatList
-        keyExtractor={itemKeyExtractor}
-        data={data.items}
-        renderItem={renderItemListItem}
-        onEndReached={onEndReached} />
+      onPressFloatingIcon={onCreateFormData}
+    >
+      <ListContainer onScroll={onEndReached}>
+        {data.items.map((item, index) => renderItemListItem(item, index))}
+      </ListContainer>
     </ViewWithTabMenu>
   );
-
 };
+
+export default ListFormLabels;
+
+// Styled Components
+
+const ItemRecord = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(72, 128, 237, 0.2);
+  padding-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  flex: 1;
+  cursor: pointer;
+`;
+
+const ItemRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+const ItemIcon = styled.img`
+  margin-right: 5px;
+`;
+
+const FormLabelText = styled.p`
+  color: rgba(72, 128, 237, 1);
+  font-family: 'Futura-Medium';
+  font-size: 18px;
+  margin: 0;
+`;
+
+const EndSpace = styled.div`
+  height: 50px;
+`;
+
+const ListContainer = styled.div`
+  overflow-y: auto;
+`;

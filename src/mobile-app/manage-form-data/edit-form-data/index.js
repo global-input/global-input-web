@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
 
-import { manageFormDataTextConfig } from '../../configs';
+import manageFormDataTextConfig  from '../../../configs/manageFormDataTextConfig';
 
 import ACT_TYPE from './ACT_TYPE.js';
 
@@ -10,13 +10,8 @@ import ACT_TYPE from './ACT_TYPE.js';
 import * as globalInput from './globalinput';
 
 import * as formUtil from './formUtil';
-import { LogBox } from 'react-native';
 
-LogBox.ignoreLogs([
-  'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?'
-]);
-
-export default ({ formData, label, updateFormData, createFormData, onBack }) => {
+const EditFormData=  ({ formData, label, updateFormData, createFormData, onBack }) => {
   const globalInputConnector = useRef(null);
   const messageTimerHandler = useRef(null);
   const formIdField = useRef(null);
@@ -74,6 +69,10 @@ export default ({ formData, label, updateFormData, createFormData, onBack }) => 
       const title = formData ? manageFormDataTextConfig.editForm.title : manageFormDataTextConfig.newForm.title;
       var selectTextOnFocusOnId = data.formData.id === defaultFormId.current;
       return formUtil.renderEditor({ menuItems, data, setData, formIdField, title, selectTextOnFocusOnId, onFormFieldChanged });
+    default:
 
   }
+
 };
+
+export default EditFormData;

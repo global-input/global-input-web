@@ -26,7 +26,7 @@ const renderErrorMessage = errorMessage => {
     }
   }
   
-export default ({encryptionKeyItem,nextStep,title,placeHolder,onBack,help1,help2}) => {
+const ManageKeys= ({encryptionKeyItem,nextStep,title,placeHolder,onBack,help1,help2}) => {
     const [password,setPassword]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
     const onNextStep = () => {        
@@ -80,3 +80,4 @@ export default ({encryptionKeyItem,nextStep,title,placeHolder,onBack,help1,help2
 
 }
 
+export default ManageKeys;

@@ -1,13 +1,16 @@
-import React from 'react'
-import {View} from 'react-native'
-import Clipboard from '@react-native-clipboard/clipboard'
-import {styles} from '../styles'
-import {EditorWithTabMenu, ViewWithTabMenu} from '../../components'
-import {images, deviceInputTextConfig, menusConfig} from '../../configs'
-import {generateRandomString} from '../../global-input-message'
-import * as renders from './renders'
-import {appdata} from '../../store'
-import ACT_TYPE from '../ACT_TYPE'
+import React from 'react';
+import styled from 'styled-components';
+
+import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
+import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
+import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import images from "../../../configs/images";
+import deviceInputTextConfig from "../../../configs/deviceInputTextConfig";
+import menusConfig from  "../../../configs/menusConfig";
+import ACT_TYPE from '../ACT_TYPE';
+import { generateRandomString } from 'global-input-message';
+import * as renders from './renders';
+import { appdata } from '../../../appdata';
 
 export const DeviceInputView = ({
   action,
@@ -21,147 +24,116 @@ export const DeviceInputView = ({
   onSaveFormData,
   formDataToSave,
 }) => {
-  const onSelectField = fieldSelection => setAction({...action, fieldSelection})
+  const onSelectField = (fieldSelection) => setAction({ ...action, fieldSelection });
 
   const copyFieldToClipboard = () => {
     if (action.fieldSelection && action.fieldSelection.dataitem.value) {
-      Clipboard.setString(action.fieldSelection.dataitem.value)
-      displayNotificationMessage(deviceInputTextConfig.clipboard.message)
+      navigator.clipboard.writeText(action.fieldSelection.dataitem.value).then(() => {
+        displayNotificationMessage(deviceInputTextConfig.clipboard.message);
+      }).catch((err) => {
+        console.error('Failed to copy text to clipboard', err);
+      });
     }
-  }
-
-  const pasteClipboardToField = () => {
+  };
+  
+  const pasteClipboardToField = async () => {
     if (action.fieldSelection) {
-      Clipboard.getString().then(clipboardContent => {
-        if (clipboardContent && clipboardContent.length > 0) {
-          onGlobalInputDataChanged(
-            clipboardContent,
-            action.fieldSelection.index,
-          )
+      try {
+        const clipboardContent = await navigator.clipboard.readText();
+        if (clipboardContent) {
+          onGlobalInputDataChanged(clipboardContent, action.fieldSelection.index);
         }
-      })
+      } catch (err) {
+        console.error('Failed to read text from clipboard', err);
+      }
     }
-  }
+  };
 
   const randomizeFieldValue = () => {
     if (action.fieldSelection) {
-      var randomValue = generateRandomString(11)
-      onGlobalInputDataChanged(randomValue, action.fieldSelection.index)
+      const randomValue = generateRandomString(11);
+      onGlobalInputDataChanged(randomValue, action.fieldSelection.index);
     }
-  }
+  };
 
   const clearSelectedField = () => {
     if (action.fieldSelection) {
-      onGlobalInputDataChanged('', action.fieldSelection.index)
+      onGlobalInputDataChanged('', action.fieldSelection.index);
     }
-  }
+  };
 
-  const onUnselectField = () => setAction({...action, fieldSelection: null})
+  const onUnselectField = () => setAction({ ...action, fieldSelection: null });
+  const onEncryptSecret = () => setAction({ ...action, actionType: ACT_TYPE.ENCRYPT_SECRET });
+  const onEncryptionKey = () => setAction({ ...action, actionType: ACT_TYPE.MASTER_KEY });
 
-  const onEncryptSecret = () =>
-    setAction({...action, actionType: ACT_TYPE.ENCRYPT_SECRET})
-  const onEncryptionKey = () => {
-    setAction({...action, actionType: ACT_TYPE.MASTER_KEY})
-  }
-
-  const onHideSecret = () => {
-    var showHideSecret = {...action.showHideSecret, show: false}
-    setAction({...action, showHideSecret})
-  }
-  const onShowSecret = () => {
-    var showHideSecret = {...action.showHideSecret, show: true}
-    setAction({...action, showHideSecret})
-  }
-  const onListAllForm = () => {
-    setAction({...action, actionType: ACT_TYPE.ALL_FORMS_DATA})
-  }
-
-  const listMatchedForm = () =>
-    setAction({...action, actionType: ACT_TYPE.MATCHED_FORMS_DATA})
+  const onHideSecret = () => setAction({ ...action, showHideSecret: { show: false } });
+  const onShowSecret = () => setAction({ ...action, showHideSecret: { show: true } });
+  const onListAllForm = () => setAction({ ...action, actionType: ACT_TYPE.ALL_FORMS_DATA });
+  const listMatchedForm = () => setAction({ ...action, actionType: ACT_TYPE.MATCHED_FORMS_DATA });
 
   const exportFormData = () => {
-    const content = appdata.exportFormContentAsText()
-    const exportFormField = action.exportFormField
-    const newField = {...exportFormField, value: content}
-    onFieldChanged({field: newField})
-    setAction({...action, exportFormField: null})
-  }
+    const content = appdata.exportFormContentAsText();
+    const exportFormField = action.exportFormField;
+    const newField = { ...exportFormField, value: content };
+    onFieldChanged({ field: newField });
+    setAction({ ...action, exportFormField: null });
+  };
 
   const buildMenuItemForDeviceInput = () => {
-    let menuItems = null
     if (action.fieldSelection) {
-      menuItems = [
-        {menu: menusConfig.clipboardCopy.menu, onPress: copyFieldToClipboard},
-        {menu: menusConfig.clipboardPaste.menu, onPress: pasteClipboardToField},
-        {menu: menusConfig.random.menu, onPress: randomizeFieldValue},
-        {menu: menusConfig.clearField.menu, onPress: clearSelectedField},
-        {menu: menusConfig.unselect.menu, onPress: onUnselectField},
-      ]
+      return [
+        { menu: menusConfig.clipboardCopy.menu, onPress: copyFieldToClipboard },
+        { menu: menusConfig.clipboardPaste.menu, onPress: pasteClipboardToField },
+        { menu: menusConfig.random.menu, onPress: randomizeFieldValue },
+        { menu: menusConfig.clearField.menu, onPress: clearSelectedField },
+        { menu: menusConfig.unselect.menu, onPress: onUnselectField },
+      ];
     } else {
-      menuItems = [{menu: menusConfig.disconnect.menu, onPress: onDisconnect}]
+      const menuItems = [{ menu: menusConfig.disconnect.menu, onPress: onDisconnect }];
 
       if (action.initData.dataType === 'qrcode') {
-        menuItems.push({
-          menu: menusConfig.encrypt.menu,
-          onPress: onEncryptSecret,
-        })
-        menuItems.push({
-          menu: menusConfig.protectedEncryptionKey.menu,
-          onPress: onEncryptionKey,
-        })
-        menuItems.push({
-          menu: menusConfig.serviceData.menu,
-          onPress: onPairingData,
-        })
+        menuItems.push(
+          { menu: menusConfig.encrypt.menu, onPress: onEncryptSecret },
+          { menu: menusConfig.protectedEncryptionKey.menu, onPress: onEncryptionKey },
+          { menu: menusConfig.serviceData.menu, onPress: onPairingData }
+        );
       }
+
       if (formDataToSave) {
-        menuItems.push({menu: menusConfig.save.menu, onPress: onSaveFormData})
+        menuItems.push({ menu: menusConfig.save.menu, onPress: onSaveFormData });
       }
+
       if (action.showHideSecret) {
         if (action.showHideSecret.show) {
-          menuItems.push({
-            menu: menusConfig.hideSecret.menu,
-            onPress: onHideSecret,
-          })
+          menuItems.push({ menu: menusConfig.hideSecret.menu, onPress: onHideSecret });
         } else {
-          menuItems.push({
-            menu: menusConfig.showSecret.menu,
-            onPress: onShowSecret,
-          })
+          menuItems.push({ menu: menusConfig.showSecret.menu, onPress: onShowSecret });
         }
       }
+
       if (appdata.hasFormContent()) {
         menuItems.push({
           menu: menusConfig.selectFromFormDataList.menu,
           onPress: onListAllForm,
-        })
+        });
         if (action.autofill) {
           menuItems.push({
             menu: menusConfig.selectMatched.menu,
             onPress: listMatchedForm,
-          })
+          });
         }
       }
-    }
-    return menuItems
-  }
-  const buildMenuItemsForExport = () => {
-    let menuItems = [
-      {menu: menusConfig.disconnect.menu, onPress: onDisconnect},
-      {
-        menu: menusConfig.export.menu,
-        onPress: exportFormData,
-      },
-    ]
-    return menuItems
-  }
 
-  const buildMenuItems = () => {
-    if (action.exportFormField) {
-      return buildMenuItemsForExport()
+      return menuItems;
     }
-    return buildMenuItemForDeviceInput()
-  }
+  };
+
+  const buildMenuItemsForExport = () => [
+    { menu: menusConfig.disconnect.menu, onPress: onDisconnect },
+    { menu: menusConfig.export.menu, onPress: exportFormData },
+  ];
+
+  const buildMenuItems = () => (action.exportFormField ? buildMenuItemsForExport() : buildMenuItemForDeviceInput());
 
   if (!action.globalInputdata) {
     return (
@@ -170,32 +142,35 @@ export const DeviceInputView = ({
         title={deviceInputTextConfig.emptyFieldsReceived.title}
         message={deviceInputTextConfig.emptyFieldsReceived.content}
       />
-    )
-  }
-  if (action.initData.action !== 'input') {
-    return (
-      <ViewWithTabMenu menuItems={appMenu} title='Error'>
-        <View style={styles.contentCenter}>
-          <DisplayBlockText
-            title={'Error'}
-            content={'Action not implemented:' + action.initData.action}
-          />
-        </View>
-      </ViewWithTabMenu>
-    )
+    );
   }
 
-  const menuItems = buildMenuItems()
-  var viewIds = new Set()
+  if (action.initData.action !== 'input') {
+    return (
+      <ViewWithTabMenu menuItems={appMenu} title="Error">
+        <ContentCenter>
+          <DisplayBlockText
+            title="Error"
+            content={`Action not implemented: ${action.initData.action}`}
+          />
+        </ContentCenter>
+      </ViewWithTabMenu>
+    );
+  }
+
+  const menuItems = buildMenuItems();
+  const viewIds = new Set();
+
   return (
     <EditorWithTabMenu
       title={deviceInputTextConfig.title}
       titleIcon={images.app.icons.connected}
       menuItems={menuItems}
       selected={menusConfig.eye.menu}
-      notificationMessage={action.notificationMessage}>
-      <View style={styles.content}>
-        {renders.renderFormTitle({initData: action.initData})}
+      notificationMessage={action.notificationMessage}
+    >
+      <Content>
+        {renders.renderFormTitle({ initData: action.initData })}
         {renders.renderGlobalInputFields({
           globalInputdata: action.globalInputdata,
           viewIds,
@@ -213,7 +188,23 @@ export const DeviceInputView = ({
           onSelectField,
           showHideSecret: action.showHideSecret,
         })}
-      </View>
+      </Content>
     </EditorWithTabMenu>
-  )
-}
+  );
+};
+
+// Styled Components
+const ContentCenter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+`;
+
+const Content = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export default DeviceInputView;

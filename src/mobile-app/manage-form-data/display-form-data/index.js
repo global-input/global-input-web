@@ -1,271 +1,324 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import {appdata} from '../../../appdata';
+import images from '../../../configs/images';
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
+import CopyToClipboard from '../../components/buttons/CopyToClipboard';
+import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
+import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 
-import {Text, TextInput, Image, View} from 'react-native'
-
-import {styles} from '../styles'
-import {appdata} from '../../store'
-import {images, manageFormDataTextConfig, menusConfig} from '../../configs'
-import {
-  CopyToClipboard,
-  ViewWithTabMenu,
-  DisplayBlockText,
-} from '../../components'
-
-ACT_TYPE = {
+const ACT_TYPE = {
   DISPLAY: 1,
   CONFIRM_DELETE: 2,
-}
+};
+
 const getMapItemKey = (item, index, label) => {
   if (item.id) {
-    return item.id
+    return item.id;
   } else if (item.label) {
-    return index + '_' + item.label
+    return `${index}_${item.label}`;
   } else if (label) {
-    return index + '_' + label
+    return `${index}_${label}`;
   } else if (item.value) {
-    return index + '_' + item.value
+    return `${index}_${item.value}`;
   } else {
-    return index
+    return index;
   }
-}
+};
 
 const renderAFormFieldWithHideValue = (formField, index, label) => {
-  var displayValue = '*********'
-  var key = getMapItemKey(formField, index, label)
+  const displayValue = '*********';
+  const key = getMapItemKey(formField, index, label);
+
   return (
     <CopyToClipboard
       key={key}
-      style={styles.itemRow}
-      contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={content => appdata.decryptContent(content)}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.valueContainer}>
-        <Text style={styles.valueText}>{displayValue}</Text>
-      </View>
+      convert={(content) => appdata.decryptContent(content)}
+    >
+      <ItemRow>
+        <Label>{label}</Label>
+        <ValueContainer>
+          <ValueText>{displayValue}</ValueText>
+        </ValueContainer>
+      </ItemRow>
     </CopyToClipboard>
-  )
-}
+  );
+};
+
 const renderAFormFieldWithShowValue = (formField, index, label) => {
-  var displayValue = '*********'
-  var errorMessage = null
+  let displayValue = '*********';
+  let errorMessage = null;
   try {
-    displayValue = appdata.decryptContent(formField.value)
+    displayValue = appdata.decryptContent(formField.value);
   } catch (error) {
-    console.log(error)
-    errorMessage = 'failed to decrypt'
+    console.error(error);
+    errorMessage = 'Failed to decrypt';
   }
-  var multiline = false
-  var numberOfLines = 1
-  if (formField.nLines && formField.nLines > 1) {
-    multiline = true
-    numberOfLines = parseInt(formField.nLines)
-    if (!numberOfLines) {
-      numberOfLines = 6
-    }
-  }
-  var key = getMapItemKey(formField, index, label)
+
+  const key = getMapItemKey(formField, index, label);
+
   return (
     <CopyToClipboard
       key={key}
-      style={styles.itemRow}
-      contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={content => appdata.decryptContent(content)}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.valueContainer}>
-        <Text style={styles.valueText}>{displayValue}</Text>
-      </View>
+      convert={(content) => appdata.decryptContent(content)}
+    >
+      <ItemRow>
+        <Label>{label}</Label>
+        <ValueContainer>
+          <ValueText>{displayValue}</ValueText>
+        </ValueContainer>
+      </ItemRow>
     </CopyToClipboard>
-  )
-}
+  );
+};
 
-const RenderErrorMessage = message => {
+const RenderErrorMessage = (message) => {
   if (message) {
-    return <Text style={styles.errorMessage}>{message}</Text>
+    return <ErrorMessage>{message}</ErrorMessage>;
   } else {
-    return null
+    return null;
   }
-}
+};
 
-const RenderFormFields = ({formData, show}) => {
-  var fields = formData.fields
+const RenderFormFields = ({ formData, show }) => {
+  const fields = formData.fields;
 
   if (fields && fields.length) {
     return fields.map((formField, index) => {
-      var label = formField.id
+      let label = formField.id;
       if (formField.label && formField.label.trim().length > 1) {
-        label = formField.label
+        label = formField.label;
       }
       if (show) {
-        return renderAFormFieldWithShowValue(formField, index, label)
+        return renderAFormFieldWithShowValue(formField, index, label);
       } else {
-        return renderAFormFieldWithHideValue(formField, index, label)
+        return renderAFormFieldWithHideValue(formField, index, label);
       }
-    })
+    });
   } else {
-    return null
+    return null;
   }
-}
-const RenderFormLabel = ({formData}) => {
+};
+
+const RenderFormLabel = ({ formData }) => {
   if (formData.label) {
     return (
-      <View style={styles.formEditField}>
-        <Image source={images.folder} style={styles.labelIcon} />
-        <View style={styles.itemRecord}>
-          <Text style={styles.valueText}>{formData.label}</Text>
-        </View>
-      </View>
-    )
+      <FormEditField>
+        <LabelIcon src={images.folder} alt="Folder Icon" />
+        <ItemRecord>
+          <ValueText>{formData.label}</ValueText>
+        </ItemRecord>
+      </FormEditField>
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 
-export default ({
+const DisplayFormData = ({
   onDelete,
   onEdit,
   onBack,
   formData,
   displayFormDataProperties,
 }) => {
-  const [actionType, setActionType] = useState(ACT_TYPE.DISPLAY)
-  const [show, setShow] = useState(false)
-  const onShowChanged = show => {
-    setShow(show)
-  }
+  const [actionType, setActionType] = useState(ACT_TYPE.DISPLAY);
+  const [show, setShow] = useState(false);
+
+  const onShowChanged = (show) => {
+    setShow(show);
+  };
+
   const onDeleteFormData = () => {
-    onDelete(formData)
-  }
+    onDelete(formData);
+  };
+
   const toConfirmDelete = () => {
-    setActionType(ACT_TYPE.CONFIRM_DELETE)
-  }
+    setActionType(ACT_TYPE.CONFIRM_DELETE);
+  };
+
   const toDisplayFormData = () => {
-    setActionType(ACT_TYPE.DISPLAY)
-  }
+    setActionType(ACT_TYPE.DISPLAY);
+  };
 
   const renderDisplayFormData = () => {
-    var menuItems = [
+    const menuItems = [
       {
         menu: menusConfig.back.menu,
         onPress: onBack,
       },
-    ]
+    ];
+
     if (show) {
       menuItems.push({
         menu: menusConfig.hideSecret.menu,
         onPress: () => {
-          onShowChanged(false)
+          onShowChanged(false);
         },
-      })
+      });
     } else {
       menuItems.push({
         menu: menusConfig.showSecret.menu,
         onPress: () => {
-          onShowChanged(true)
+          onShowChanged(true);
         },
-      })
+      });
     }
     if (onDelete) {
       menuItems.push({
         menu: menusConfig.delete.menu,
         onPress: toConfirmDelete,
-      })
+      });
     }
 
     if (onEdit) {
       menuItems.push({
         menu: menusConfig.edit.menu,
         onPress: () => {
-          onEdit(formData)
+          onEdit(formData);
         },
-      })
+      });
     }
-    var title = manageFormDataTextConfig.title
+
+    let title = manageFormDataTextConfig.title;
     if (displayFormDataProperties) {
-      title = displayFormDataProperties.title
-      displayFormDataProperties.menuItems.forEach(m => {
+      title = displayFormDataProperties.title;
+      displayFormDataProperties.menuItems.forEach((m) => {
         m.onPress = () => {
-          m.onSelect(formData)
-        }
-        menuItems.push(m)
-      })
+          m.onSelect(formData);
+        };
+        menuItems.push(m);
+      });
     }
 
     return (
       <ViewWithTabMenu
         menuItems={menuItems}
         selected={menusConfig.manageFormData.menu}
-        title={title}>
-        <View style={styles.content}>
-          <View style={styles.formEditField}>
-            <Image source={images.idIcon} style={styles.labelIcon} />
-            <View style={styles.itemRecord}>
-              <Text style={styles.valueText}>{formData.id}</Text>
-            </View>
-          </View>
+        title={title}
+      >
+        <Content>
+          <FormEditField>
+            <LabelIcon src={images.idIcon} alt="ID Icon" />
+            <ItemRecord>
+              <ValueText>{formData.id}</ValueText>
+            </ItemRecord>
+          </FormEditField>
           <RenderFormLabel formData={formData} />
           <RenderFormFields formData={formData} show={show} />
-        </View>
+        </Content>
       </ViewWithTabMenu>
-    )
-  }
+    );
+  };
 
   const renderConfirmDelete = () => {
-    var menuItems = []
-    menuItems.push({
-      menu: menusConfig.cancel.menu,
-      onPress: toDisplayFormData,
-    })
+    const menuItems = [
+      {
+        menu: menusConfig.cancel.menu,
+        onPress: toDisplayFormData,
+      },
+    ];
 
     if (show) {
       menuItems.push({
         menu: menusConfig.hideSecret.menu,
         onPress: () => {
-          onShowChanged(false)
+          onShowChanged(false);
         },
-      })
+      });
     } else {
       menuItems.push({
         menu: menusConfig.showSecret.menu,
         onPress: () => {
-          onShowChanged(true)
+          onShowChanged(true);
         },
-      })
+      });
     }
     if (onDelete) {
       menuItems.push({
         menu: menusConfig.delete.menu,
         onPress: onDeleteFormData,
-      })
+      });
     }
 
     return (
       <ViewWithTabMenu
         menuItems={menuItems}
         selected={menusConfig.manageFormData.menu}
-        title={manageFormDataTextConfig.confirmDelete.title}>
-        <View style={styles.content}>
+        title={manageFormDataTextConfig.confirmDelete.title}
+      >
+        <Content>
           <DisplayBlockText
             content={manageFormDataTextConfig.confirmDelete.content}
           />
-
-          <View style={styles.formEditField}>
-            <Image source={images.idIcon} style={styles.labelIcon} />
-            <View style={styles.itemRecord}>
-              <Text style={styles.valueText}>{formData.id}</Text>
-            </View>
-          </View>
+          <FormEditField>
+            <LabelIcon src={images.idIcon} alt="ID Icon" />
+            <ItemRecord>
+              <ValueText>{formData.id}</ValueText>
+            </ItemRecord>
+          </FormEditField>
           <RenderFormLabel formData={formData} />
           <RenderFormFields formData={formData} show={show} />
-        </View>
+        </Content>
       </ViewWithTabMenu>
-    )
-  }
+    );
+  };
 
-  if (actionType === this.ACT_TYPE.CONFIRM_DELETE) {
-    return renderConfirmDelete()
+  if (actionType === ACT_TYPE.CONFIRM_DELETE) {
+    return renderConfirmDelete();
   } else {
-    return renderDisplayFormData()
+    return renderDisplayFormData();
   }
-}
+};
+
+export default DisplayFormData;
+
+// Styled Components
+const Content = styled.div`
+  padding: 20px;
+`;
+
+const FormEditField = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const LabelIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+`;
+
+const ItemRecord = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ValueText = styled.p`
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+`;
+
+const ItemRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+  margin-right: 8px;
+`;
+
+const ValueContainer = styled.div`
+  flex: 1;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;

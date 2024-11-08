@@ -1,6 +1,7 @@
 import React  from 'react';
 
-import {DisplayContent} from "../../components";
+import DisplayContent from "../../components/display-text/DisplayContent";
 
 
-export default  ({dataitem}) => (<DisplayContent content={dataitem.value}/>);
+const renderInfoContent=  ({dataitem}) => (<DisplayContent content={dataitem.value}/>);
+export default renderInfoContent;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile } from '../../mobile';
-import QRCode from "qrcode.react";
+import {QRCodeSVG} from "qrcode.react";
 
 import {Footer, DarkButton,AppContainer,MoreInfo} from '../../components';
 
@@ -40,7 +40,7 @@ export const GenerateQRCode = ({ content, label, back }) => {
 
 
             <ContentLabel>{label}</ContentLabel>
-            <QRCode value={content} level={level} size={size} />
+            <QRCodeSVG value={content} level={level as 'L' | 'M' | 'Q' | 'H'} size={size} />
             <QRCodeLabel>Scan with <LinkInLabel>Global Input App</LinkInLabel></QRCodeLabel>
 
             <Footer>

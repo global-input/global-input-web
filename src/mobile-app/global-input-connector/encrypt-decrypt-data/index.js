@@ -1,41 +1,26 @@
 import React from 'react';
-import {Text, View, Image, TouchableHighlight, FlatList} from 'react-native';
+import styled from 'styled-components';
 import ACT_TYPE from '../ACT_TYPE';
-import {menusConfig} from '../../configs';
+import menusConfig from '../../../configs/menusConfig';
 import SelectEncryptionKey from './SelectEncryptionKey';
-import {encryptData, decryptData, appdata} from '../../store';
+import { encryptData, decryptData, appdata } from '../../../appdata';
 
-import {
-  EditorWithTabMenu,
-  DisplayBlockText,
-  TextInputField
-} from '../../components';
+import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
+import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import TextInputField from '../../components/input/TextInputField';
 
-import {styles} from './styles';
-
-/*****************Init Data******Begin*********/
 const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
-  const globalInputdata = initData.form.fields.map(f => {
-    return {...f, value: ''};
-  });
-  
+  const globalInputdata = initData.form.fields.map(f => ({ ...f, value: '' }));
   let encryptionKeyList = appdata.getEncryptionKeyList();
-  
-  let selectedEncryptionKeyItem=null;
-  if(initData.encryptionKey && encryptionKeyList && encryptionKeyList.length){    
-      let matchedKeyItems=encryptionKeyList.filter(ekey=>ekey.name===initData.encryptionKey);    
-      selectedEncryptionKeyItem= matchedKeyItems.length?matchedKeyItems[0]:null;      
+  let selectedEncryptionKeyItem = null;
+  if (initData.encryptionKey && encryptionKeyList?.length) {
+    let matchedKeyItems = encryptionKeyList.filter(ekey => ekey.name === initData.encryptionKey);
+    selectedEncryptionKeyItem = matchedKeyItems.length ? matchedKeyItems[0] : null;
   }
-  if(!selectedEncryptionKeyItem){
+  if (!selectedEncryptionKeyItem) {
     let activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-    selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(
-      activeEncryptionKey
-    );
+    selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
   }
-
-  
-  
-
   return {
     initData,
     globalInputdata,
@@ -43,95 +28,60 @@ const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
     actionType,
     encryptionKeyList,
     selectedEncryptionKeyItem,
-    errorMessage: null
+    errorMessage: null,
   };
 };
 
-export const initDataActionForEncryption = initData =>
-  initDataActionForEncryptionAndDecryption(
-    initData,
-    ACT_TYPE.ENCRYPT_SELECT_KEY
-  );
+export const initDataActionForEncryption = (initData) =>
+  initDataActionForEncryptionAndDecryption(initData, ACT_TYPE.ENCRYPT_SELECT_KEY);
 
-export const initDataActionForDecryption = initData =>
-  initDataActionForEncryptionAndDecryption(
-    initData,
-    ACT_TYPE.DECRYPT_SELECT_KEY
-  );
-
-  /****Init Data *********End*/
-
-
- /*****Utility functions**********Begin********/ 
+export const initDataActionForDecryption = (initData) =>
+  initDataActionForEncryptionAndDecryption(initData, ACT_TYPE.DECRYPT_SELECT_KEY);
 
 const buildDisplayField = (field, value) => {
   if (value && value.length > 255) {
-    return {...field, value: value.slice(0, 255) + '...'};
-  } else {
-    return {...field, value};
+    return { ...field, value: `${value.slice(0, 255)}...` };
   }
+  return { ...field, value };
 };
-
 
 const encryptField = (field, encryptionKeyItem) => {
   if (field.type === 'encrypt' && field.value) {
     const encryptedValue = encryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, encryptedValue);
-  } else {
-    return field;
   }
+  return field;
 };
+
 const decryptField = (field, encryptionKeyItem) => {
   if (field.type === 'decrypt' && field.value) {
     const decryptedValue = decryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, decryptedValue);
-  } else {
-    return field;
   }
+  return field;
 };
 
-
-const getMapItemKey = (item, index) => {
-  if (item.id) {
-    return item.id;
-  } else if (item.label) {
-    return index + '_' + item.label;
-  } else if (item.value) {
-    return index + '_' + item.value;
-  } else {
-    return index;
-  }
-};
-
-const sendEncryptedFieldsToDevice=({action,sendFieldToDevice})=>{
-    action.initData.form.fields.forEach((f,index) => {
-          if (f.type === 'encrypt' && f.value) {        
-            const encryptedContent=encryptData(f.value, action.selectedEncryptionKeyItem);
-            const field={...f,value:encryptedContent};
-            sendFieldToDevice({field, index});
-          }
-        
-    });
-};
-
-const sendDecryptedFieldsToDevice=({action,sendFieldToDevice})=>{
-  action.initData.form.fields.forEach((f,index) => {
-        if (f.type === 'decrypt' && f.value) {        
-          let decryptedContent=null;
-          try{
-            decryptedContent=decryptData(f.value, action.selectedEncryptionKeyItem);
-          }
-          catch(error){
-              console.warn(error+"wailed to decryp content:"+JSON.stringify(f));
-          }          
-          const field={...f,value:decryptedContent};
-          sendFieldToDevice({field, index});
-        }
-      
+const sendEncryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
+  action.initData.form.fields.forEach((f, index) => {
+    if (f.type === 'encrypt' && f.value) {
+      const encryptedContent = encryptData(f.value, action.selectedEncryptionKeyItem);
+      sendFieldToDevice({ field: { ...f, value: encryptedContent }, index });
+    }
   });
 };
 
-/*****Utility functions**********End********/ 
+const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
+  action.initData.form.fields.forEach((f, index) => {
+    if (f.type === 'decrypt' && f.value) {
+      try {
+        const decryptedContent = decryptData(f.value, action.selectedEncryptionKeyItem);
+        sendFieldToDevice({ field: { ...f, value: decryptedContent }, index });
+      } catch (error) {
+        console.warn(`Failed to decrypt content: ${JSON.stringify(f)}`);
+      }
+    }
+  });
+};
 
 
 
@@ -282,33 +232,26 @@ const buildSendEncryptedResultMenu = ({action, setAction,sendFieldToDevice,onFin
 
 /**************Main Renders *******Begin*****/
 
-export const renderEncryptSelectKey = ({
-  action,
-  setAction,
-  onDisconnect  
-}) => {
+
+export const renderEncryptSelectKey = ({ action, setAction, onDisconnect }) => {
   const menuItems = [
-    buildCancelMenu(onDisconnect),
-    buldShowHideMenuForSelectKey({action, setAction}),
-    buildEncryptMenu({action, setAction})
+    { menu: menusConfig.disconnect.menu, onPress: onDisconnect },
+    {
+      menu: action.showContent ? menusConfig.hideSecret.menu : menusConfig.showSecret.menu,
+      onPress: () => setAction({ ...action, showContent: !action.showContent }),
+    },
+    { menu: menusConfig.encrypt.menu, onPress: () => toEncryptSendResult({ action, setAction }) },
   ];
 
-  const fieldType = 'encrypt';
-  const title = 'Data Encryption';
-  const helpOnContent = '1. Data received for encryption:';
-  const helpOnSelectKey = '2. Encryption key to use:';
-  
-  const helpOnContinue =
-    "3. Press the 'Encrypt' button to encrypt.";
   return renderSelectKey({
     action,
     setAction,
-    fieldType,
+    fieldType: 'encrypt',
     menuItems,
-    title,
-    helpOnSelectKey,
-    helpOnContent,
-    helpOnContinue
+    title: 'Data Encryption',
+    helpOnContent: '1. Data received for encryption:',
+    helpOnSelectKey: '2. Encryption key to use:',
+    helpOnContinue: "3. Press the 'Encrypt' button to encrypt.",
   });
 };
 
@@ -340,6 +283,7 @@ export const renderDecryptSelectKey = ({
     helpOnContinue
   });
 };
+
 export const renderEncryptSendResult = ({
   action,
   setAction,
@@ -369,8 +313,6 @@ export const renderEncryptSendResult = ({
     helpOnContinue
   });
 };
-
-
 export const renderDecryptSendResult = ({
   action,
   setAction,
@@ -403,16 +345,6 @@ export const renderDecryptSendResult = ({
 };
 
 
-
-
-/**************Main Renders *******End*****/
-
-
-
-/*********************Render Utils***************Begin*****/
-
-
-
 const renderSelectKey = ({
   action,
   setAction,
@@ -421,41 +353,49 @@ const renderSelectKey = ({
   title,
   helpOnSelectKey,
   helpOnContent,
-  helpOnContinue
+  helpOnContinue,
 }) => {
-  const onEncryptionKeySelected = selectedEncryptionKeyItem => {
-    setAction({...action, selectedEncryptionKeyItem, errorMessage: null});
+  const onEncryptionKeySelected = (selectedEncryptionKeyItem) => {
+    setAction({ ...action, selectedEncryptionKeyItem });
   };
   return (
-    <EditorWithTabMenu
-      title={title}
-      menuItems={menuItems}
-      selected={menusConfig.encryptedQrCode.menu}>
-      <View style={styles.content}>
+    <EditorWithTabMenu title={title} menuItems={menuItems}>
+      <Content>
         <DisplayBlockText content={helpOnContent} />
         {action.globalInputdata.map((dataitem, index) => (
-          <RenderAField
-            key={getMapItemKey(dataitem, index)}
-            dataitem={dataitem}
-            showContent={action.showContent}
-            fieldType={fieldType}
-          />
+          <RenderAField key={index} dataitem={dataitem} showContent={action.showContent} fieldType={fieldType} />
         ))}
-
-      </View>
-      <View style={styles.content}>
-      <DisplayBlockText content={helpOnSelectKey} />
+      </Content>
+      <Content>
+        <DisplayBlockText content={helpOnSelectKey} />
         <SelectEncryptionKey
           onEncryptionKeySelected={onEncryptionKeySelected}
           encryptionKeyList={action.encryptionKeyList}
           selectedEncryptionKeyItem={action.selectedEncryptionKeyItem}
         />
-        </View>
+      </Content>
       <DisplayBlockText content={helpOnContinue} />
       {renderErrorMessage(action.errorMessage)}
     </EditorWithTabMenu>
   );
 };
+
+const RenderAField = ({ dataitem, showContent, fieldType }) => {
+  if (dataitem.type !== fieldType) return null;
+  const value = showContent ? dataitem.value || '' : '************************';
+  return (
+    <InputContainer>
+      <TextInputField value={value} placeholder={dataitem.label} dark editable={false} secureTextEntry={!showContent} />
+    </InputContainer>
+  );
+};
+
+const renderErrorMessage = (errorMessage) =>
+  errorMessage ? (
+    <ErrorContainer>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
+    </ErrorContainer>
+  ) : null;
 
 
 
@@ -466,71 +406,40 @@ const renderSendingResult = ({
   title,
   formTitle,
   helpOnContent,
-  helpOnContinue
+  helpOnContinue,
 }) => {
   return (
-    <EditorWithTabMenu
-      title={title}
-      menuItems={menuItems}
-      selected={menusConfig.encryptedQrCode.menu}>
-      <View style={styles.content}>
-        <View style={styles.formTitle}>
-          <Text style={styles.formtitleText}>{formTitle}</Text>
-        </View>
+    <EditorWithTabMenu title={title} menuItems={menuItems}>
+      <Content>
+        <FormTitle>{formTitle}</FormTitle>
         <DisplayBlockText content={helpOnContent} />
         {action.globalInputdata.map((dataitem, index) => (
-          <RenderAField
-            key={getMapItemKey(dataitem, index)}
-            dataitem={dataitem}
-            showContent={action.showContent}
-            fieldType={fieldType}
-          />
+          <RenderAField key={index} dataitem={dataitem} showContent={action.showContent} fieldType={fieldType} />
         ))}
-      </View>
+      </Content>
       <DisplayBlockText content={helpOnContinue} />
     </EditorWithTabMenu>
   );
 };
 
+// Styled Components
+const Content = styled.div`
+  padding: 20px;
+`;
 
+const InputContainer = styled.div`
+  margin-bottom: 20px;
+`;
 
+const ErrorContainer = styled.div`
+  padding: 10px;
+  color: red;
+`;
 
+const ErrorMessage = styled.p`
+  color: red;
+`;
 
-
-
-
-
-const renderErrorMessage = errorMessage => {
-  if (errorMessage) {
-    return (
-      <View style={styles.inputContainer}>
-        <Text style={styles.errorMessage}>{errorMessage}</Text>
-      </View>
-    );
-  } else {
-    return null;
-  }
-};
-
-const RenderAField = ({dataitem, showContent, fieldType}) => {  
-  if (dataitem.type !== fieldType) {
-    return null;
-  }
-
-  let value = '************************';
-  if (showContent) {
-    value = dataitem.value ? dataitem.value : '';
-  }
-  return (
-    <View style={styles.inputContainer}>
-      <TextInputField
-        value={value}
-        placeholder={dataitem.label}
-        dark={true}
-        editable={false}
-        secureTextEntry={!showContent}
-      />
-    </View>
-  );
-};
-/*********************Render Utils***************End*****/
+const FormTitle = styled.h3`
+  margin-bottom: 15px;
+`;

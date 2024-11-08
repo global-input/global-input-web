@@ -1,7 +1,9 @@
 import React from 'react';
-import { manageFormDataTextConfig, menusConfig } from '../../configs';
-import { createMessageConnector } from '../../global-input-message';
-import { appdata } from '../../store';
+
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
+import { createMessageConnector } from 'global-input-message';
+import { appdata } from '../../../appdata';
 import { QRCodeView } from '../../qr-code-view';
 import ACT_TYPE from './ACT_TYPE';
 

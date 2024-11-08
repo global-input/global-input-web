@@ -1,30 +1,24 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    TouchableHighlight
-} from 'react-native';
-
+import styled from 'styled-components';
+import images from "../../../configs/images";
+import {formDataUtil} from '../../../appdata';
+import IconButton from '../../components/buttons/IconButton';
 import { styles, stylesData } from "../styles";
-import { images } from "../../configs";
-import { formDataUtil } from "../../store";
-import { IconButton } from "../../components";
 
+// Utility functions
+const getContentAndStyle = (content, name) =>
+    formDataUtil.getContentAndStyle({ content, name, styles, data: stylesData });
 
-const getContentAndStyle = (content, name) => {
-    return formDataUtil.getContentAndStyle({ content, name, styles, data: stylesData });
-};
+const getStyleFromItem = (item, name) =>
+    formDataUtil.getStyleFromItem({ item, name, styles, data: stylesData });
 
-
-
-const getStyleFromItem = (item, name) => formDataUtil.getStyleFromItem({ item, name, styles, data: stylesData });
-
-const createButtonProperties = dataitem => {
-    var buttonProps = {
+const createButtonProperties = (dataitem) => {
+    const buttonProps = {
         label: dataitem.label,
         value: dataitem.value,
         iconText: dataitem.iconText,
     };
+
     if (dataitem.icon) {
         if (typeof dataitem.icon === 'object') {
             if (dataitem.icon.iconText) {
@@ -33,71 +27,104 @@ const createButtonProperties = dataitem => {
             if (dataitem.icon.name) {
                 buttonProps.iconImage = images.findImageIcon(dataitem.icon.name);
             }
-        }
-        else {
+        } else {
             buttonProps.iconImage = images.findImageIcon(dataitem.icon);
         }
     }
+
     if (!dataitem.options) {
         return buttonProps;
     }
-    for (var i = 0; i < dataitem.options.length; i++) {
-        if (dataitem.options[i].value === dataitem.value) {
-            return createButtonProperties(dataitem.options[i]);
+
+    for (let option of dataitem.options) {
+        if (option.value === dataitem.value) {
+            return createButtonProperties(option);
         }
     }
+
     return buttonProps;
 };
 
-
-const renderButtonLabel = label => {
+// Component for rendering button label
+const renderButtonLabel = (label) => {
     if (label) {
-        var buttonLabel = getContentAndStyle(label, "buttonText");
-        return (
-            <Text style={buttonLabel.style}>{buttonLabel.content}</Text>
-        );
+        const buttonLabel = getContentAndStyle(label, 'buttonText');
+        return <ButtonText style={buttonLabel.style}>{buttonLabel.content}</ButtonText>;
     }
-    else {
-        return null;
-    }
+    return null;
 };
 
+const RenderButton = ({ dataitem, onFieldChanged }) => {
+    const buttonProps = createButtonProperties(dataitem);
 
-export default ({ dataitem, onFieldChanged }) => {
-    var buttonProps = createButtonProperties(dataitem);
     if (buttonProps.iconImage) {
         return (
-            <View style={getStyleFromItem(buttonProps.container, "iconContainer")}>
-                <IconButton image={buttonProps.iconImage}
+            <IconContainer style={getStyleFromItem(buttonProps.container, 'iconContainer')}>
+                <IconButton
+                    image={buttonProps.iconImage}
                     label={buttonProps.label}
-                    onPress={() => onFieldChanged(buttonProps.value)} />
-            </View>
+                    onClick={() => onFieldChanged(buttonProps.value)}
+                />
+            </IconContainer>
         );
-    }
-    else if (buttonProps.iconText) {
-        var iconText = getContentAndStyle(buttonProps.iconText, "buttonText");
+    } else if (buttonProps.iconText) {
+        const iconText = getContentAndStyle(buttonProps.iconText, 'buttonText');
         return (
-            <TouchableHighlight onPress={() => onFieldChanged(buttonProps.value)}>
-                <View style={getStyleFromItem(dataitem.container, "buttonContainer")}>
-                    <View style={getStyleFromItem(dataitem, "button")}>
-                        <Text style={iconText.style}>{iconText.content}</Text>
-                    </View>
+            <StyledButton onClick={() => onFieldChanged(buttonProps.value)}>
+                <ButtonContainer style={getStyleFromItem(dataitem.container, 'buttonContainer')}>
+                    <Button style={getStyleFromItem(dataitem, 'button')}>
+                        <ButtonText style={iconText.style}>{iconText.content}</ButtonText>
+                    </Button>
                     {renderButtonLabel(buttonProps.label)}
-                </View>
-            </TouchableHighlight>
+                </ButtonContainer>
+            </StyledButton>
         );
-
-    }
-    else {
-        var buttonLabel = getContentAndStyle(buttonProps.label, "buttonText");
+    } else {
+        const buttonLabel = getContentAndStyle(buttonProps.label, 'buttonText');
         return (
-            <TouchableHighlight onPress={() => onFieldChanged(buttonProps.value)}>
-                <View style={getStyleFromItem(dataitem.container, "buttonContainer")}>
-                    <View style={getStyleFromItem(dataitem, "button")}>
-                        <Text style={buttonLabel.style}>{buttonLabel.content}</Text>
-                    </View>
-                </View>
-            </TouchableHighlight>
+            <StyledButton onClick={() => onFieldChanged(buttonProps.value)}>
+                <ButtonContainer style={getStyleFromItem(dataitem.container, 'buttonContainer')}>
+                    <Button style={getStyleFromItem(dataitem, 'button')}>
+                        <ButtonText style={buttonLabel.style}>{buttonLabel.content}</ButtonText>
+                    </Button>
+                </ButtonContainer>
+            </StyledButton>
         );
     }
 };
+
+export default RenderButton;
+
+// Styled components
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 5px;
+`;
+
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+`;
+
+const ButtonText = styled.span`
+  font-size: 16px;
+  color: #333;
+`;

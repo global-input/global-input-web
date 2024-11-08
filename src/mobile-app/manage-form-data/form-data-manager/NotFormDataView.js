@@ -1,10 +1,15 @@
-import React, {Component, PureComponent} from 'react';
+import React from 'react';
 
-import {manageFormDataTextConfig, menusConfig} from '../../configs';
 
-import {DisplayBlockText, ViewWithTabMenu} from '../../components';
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
 
-export default ({menuItems, onCreateFormData}) => (
+
+
+import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
+
+const NotFormDataView=  ({menuItems, onCreateFormData}) => (
   <ViewWithTabMenu
     menuItems={menuItems}
     selected={menusConfig.manageFormData.menu}
@@ -15,3 +20,4 @@ export default ({menuItems, onCreateFormData}) => (
   </ViewWithTabMenu>
 );
 
+export default NotFormDataView;

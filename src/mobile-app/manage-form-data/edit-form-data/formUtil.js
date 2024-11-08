@@ -1,22 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
+import styled from 'styled-components';
 
-import { Text, Image, View, Clipboard, TouchableHighlight } from 'react-native';
+import { generateRandomString } from 'global-input-message';
 
-import { generateRandomString } from '../../global-input-message';
+import images from '../../../configs/images';
+import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
+import menusConfig from '../../../configs/menusConfig';
 
-import { styles } from '../styles';
+import {appdata,domainForms} from '../../../appdata';
 
-import { images, manageFormDataTextConfig, menusConfig } from '../../configs';
 
-import { appdata, domainForms } from '../../store';
+import TextInputField from '../../components/input/TextInputField';
+import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
+import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import CheckBoxButton from '../../components/buttons/CheckBoxButton';
 
-import {
-  TextInputField,
-  EditorWithTabMenu,
-  DisplayBlockText,
-  CheckBoxButton,
-} from '../../components';
 import ACT_TYPE from './ACT_TYPE.js';
 
 export const getDefaultFormId = () => {
@@ -36,8 +35,8 @@ export const getInitData = ({ formData, errorMessage = '', label }) => {
       domains: '',
       fields: [
         { id: 'username', label: 'Username', value: '' },
-        { id: 'password', label: 'Password', value: '' }
-      ]
+        { id: 'password', label: 'Password', value: '' },
+      ],
     },
     newFieldId: '',
     multiLine: false,
@@ -62,14 +61,14 @@ export const buildInitData = ({ formData, label }) => {
   let errorMessage = null;
   const fields = [];
   formData.fields &&
-    formData.fields.forEach(f => {
-      var decryptedValue = null;
+    formData.fields.forEach((f) => {
+      let decryptedValue = null;
       try {
         decryptedValue = appdata.decryptContent(f.value);
       } catch (error) {
-        console.log(error + ':' + error.stack);
-        decryptedValue = 'failed to decrypt the content';
-        errorMessage = 'Failed to decrypt the field content of:' + f.label;
+        console.error(error);
+        decryptedValue = 'Failed to decrypt the content';
+        errorMessage = 'Failed to decrypt the field content of: ' + f.label;
       }
       fields.push({
         id: f.id,
@@ -85,35 +84,31 @@ const getMapItemKey = (item, index) => {
   if (item.id) {
     return item.id;
   } else if (item.label) {
-    return index + '_' + item.label;
+    return `${index}_${item.label}`;
   } else if (item.value) {
-    return index + '_' + item.value;
+    return `${index}_${item.value}`;
   } else {
     return index;
   }
 };
 
 const addANewField = ({ data, setData }) => {
-  const setErrorMessage = errorMessage => setData({ ...data, errorMessage });
+  const setErrorMessage = (errorMessage) => setData({ ...data, errorMessage });
 
-  var newFieldId = data.newFieldId.trim();
+  let newFieldId = data.newFieldId.trim();
   if (!newFieldId) {
-    setErrorMessage(
-      manageFormDataTextConfig.errorMessages.newField.newFieldMissing
-    );
+    setErrorMessage(manageFormDataTextConfig.errorMessages.newField.newFieldMissing);
     return;
   }
-  var newLabel = newFieldId;
+  const newLabel = newFieldId;
   newFieldId = newFieldId.replace(' ', '_').toLowerCase();
-  var formData = data.formData;
-  var existsFields = formData.fields.filter(f => f.id === newFieldId);
+  const formData = data.formData;
+  const existsFields = formData.fields.filter((f) => f.id === newFieldId);
   if (existsFields && existsFields.length > 0) {
-    setErrorMessage(
-      manageFormDataTextConfig.errorMessages.newField.fieldExists
-    );
+    setErrorMessage(manageFormDataTextConfig.errorMessages.newField.fieldExists);
     return;
   }
-  var nField = {
+  const nField = {
     id: newFieldId,
     label: newLabel,
     value: '',
@@ -128,7 +123,8 @@ const addANewField = ({ data, setData }) => {
 export const renderCreateNewField = ({ data, setData }) => {
   const onAddNewField = () => addANewField({ data, setData });
   const toEditView = () => setData({ ...data, actionType: ACT_TYPE.EDIT });
-  var menuItems = [
+
+  const menuItems = [
     {
       menu: menusConfig.cancel.menu,
       onPress: toEditView,
@@ -136,70 +132,62 @@ export const renderCreateNewField = ({ data, setData }) => {
     {
       menu: menusConfig.apply.menu,
       onPress: onAddNewField,
-    }
+    },
   ];
-  var title = manageFormDataTextConfig.addAField.title;
+
+  const title = manageFormDataTextConfig.addAField.title;
+
   return (
     <EditorWithTabMenu
       title={title}
       menuItems={menuItems}
-      selected={menusConfig.manageFormData.menu}>
-      <View style={styles.formEditor}>
-        <View style={styles.createNewFieldRow}>
-          <DisplayBlockText
-            content={manageFormDataTextConfig.addAField.content}
-          />
-          <View style={styles.formEditField}>
+      selected={menusConfig.manageFormData.menu}
+    >
+      <FormEditor>
+        <CreateNewFieldRow>
+          <DisplayBlockText content={manageFormDataTextConfig.addAField.content} />
+          <FormEditField>
             <TextInputField
-              placeholder={
-                manageFormDataTextConfig.addAField.idField.placeHolder
-              }
+              placeholder={manageFormDataTextConfig.addAField.idField.placeHolder}
               value={data.newFieldId}
-              onChangeTextValue={value => {
+              onChangeTextValue={(value) => {
                 setData({ ...data, newFieldId: value });
               }}
               dark={true}
             />
-          </View>
+          </FormEditField>
           {renderError(data.errorMessage)}
-        </View>
-        <View style={styles.createNewFieldRow}>
-          <DisplayBlockText
-            content={manageFormDataTextConfig.addAField.content2}
-          />
-          <View style={styles.formEditField}>
+        </CreateNewFieldRow>
+        <CreateNewFieldRow>
+          <DisplayBlockText content={manageFormDataTextConfig.addAField.content2} />
+          <FormEditField>
             <CheckBoxButton
               value={data.multiLine}
               display={menusConfig.checkbox.options}
-              onChanged={multiLine => {
+              onChanged={(multiLine) => {
                 setData({ ...data, multiLine });
               }}
             />
-            <Text style={styles.multilineLabel}>
-              {manageFormDataTextConfig.addAField.multiLine.label}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.createNewFieldRow}>
-          <DisplayBlockText
-            content={manageFormDataTextConfig.addAField.content3}
-          />
-        </View>
-      </View>
+            <MultilineLabel>{manageFormDataTextConfig.addAField.multiLine.label}</MultilineLabel>
+          </FormEditField>
+        </CreateNewFieldRow>
+        <CreateNewFieldRow>
+          <DisplayBlockText content={manageFormDataTextConfig.addAField.content3} />
+        </CreateNewFieldRow>
+      </FormEditor>
     </EditorWithTabMenu>
   );
 };
 
-const renderError = errorMessage => {
+const renderError = (errorMessage) => {
   if (!errorMessage) {
     return null;
   }
-  return (<View style={styles.formEditor}>
-    <View style={styles.formEditField}>
-      <Text style={styles.errorMessage}>{errorMessage}</Text>
-    </View>
-  </View>
-  )
+  return (
+    <ErrorContainer>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
+    </ErrorContainer>
+  );
 };
 
 export const renderEditor = ({
@@ -209,23 +197,24 @@ export const renderEditor = ({
   menuItems,
   title,
   selectTextOnFocusOnId,
-  onFormFieldChanged
+  onFormFieldChanged,
 }) => {
   const unselectFieldSelection = () => setData({ ...data, fieldSelection: null });
-  const changeForm = formData => setData({ ...data, formData, errorMessage: '', fieldSelection: null });
-  const onFormIdChanged = id => changeForm({ ...data.formData, id });
-  const onFormLabelChanged = label => changeForm({ ...data.formData, label });
-  const onFormDomainChanged = domains => changeForm({ ...data.formData, domains });
+  const changeForm = (formData) => setData({ ...data, formData, errorMessage: '', fieldSelection: null });
+  const onFormIdChanged = (id) => changeForm({ ...data.formData, id });
+  const onFormLabelChanged = (label) => changeForm({ ...data.formData, label });
+  const onFormDomainChanged = (domains) => changeForm({ ...data.formData, domains });
+
   return (
     <EditorWithTabMenu
       title={title}
       menuItems={menuItems}
       selected={menusConfig.manageFormData.menu}
-      notificationMessage={data.notificationMessage}>
-
+      notificationMessage={data.notificationMessage}
+    >
       {renderError(data.errorMessage)}
-      <View style={styles.formEditor}>
-        <View style={styles.formEditField}>
+      <FormEditor>
+        <FormEditField>
           <TextInputField
             labelIcon={images.idIcon}
             dark={true}
@@ -234,11 +223,11 @@ export const renderEditor = ({
             selectTextOnFocus={selectTextOnFocusOnId}
             onChangeTextValue={onFormIdChanged}
             onFocus={unselectFieldSelection}
-            ref={ref => (formIdField.current = ref)}
+            ref={formIdField}
             autoCapitalize={'none'}
           />
-        </View>
-        <View style={styles.formEditField}>
+        </FormEditField>
+        <FormEditField>
           <TextInputField
             dark={true}
             labelIcon={images.folder}
@@ -248,8 +237,8 @@ export const renderEditor = ({
             autoCapitalize={'none'}
             onChangeTextValue={onFormLabelChanged}
           />
-        </View>
-        <View style={styles.formEditField}>
+        </FormEditField>
+        <FormEditField>
           <TextInputField
             dark={true}
             labelIcon={images.domainSearch}
@@ -259,7 +248,7 @@ export const renderEditor = ({
             autoCapitalize={'none'}
             onChangeTextValue={onFormDomainChanged}
           />
-        </View>
+        </FormEditField>
         {data.formData.fields.map((formField, index) => {
           const key = getMapItemKey(formField, index);
           return (
@@ -273,7 +262,7 @@ export const renderEditor = ({
             />
           );
         })}
-      </View>
+      </FormEditor>
     </EditorWithTabMenu>
   );
 };
@@ -288,26 +277,27 @@ export const buildMenu = ({
   formIdField,
   formData,
   updateFormData,
-  createFormData
+  createFormData,
 }) => {
-  const toAddNewField = () =>
-    setData({ ...data, actionType: ACT_TYPE.NEW_FIELD });
+  const toAddNewField = () => setData({ ...data, actionType: ACT_TYPE.NEW_FIELD });
   const onCancelEditFormData = () => onBack(formData);
 
-  const displayNotificationMessage = notificationMessage => {
-    setData(prevData => ({ ...prevData, notificationMessage }));
+  const displayNotificationMessage = (notificationMessage) => {
+    setData((prevData) => ({ ...prevData, notificationMessage }));
+    if (messageTimerHandler.current) {
+      clearTimeout(messageTimerHandler.current);
+    }
     messageTimerHandler.current = setTimeout(() => {
-      setData(d => ({ ...d, notificationMessage: null }));
+      setData((d) => ({ ...d, notificationMessage: null }));
       messageTimerHandler.current = null;
     }, 2000);
   };
 
   const onFieldValueChanged = (index, value) => {
-    var formData = { ...data.formData };
+    const formData = { ...data.formData };
     formData.fields[index].value = value;
     setData({ ...data, formData, errorMessage: '' });
   };
-
 
   const onSaveFormData = () =>
     saveFormData({
@@ -316,46 +306,50 @@ export const buildMenu = ({
       formIdField,
       formData,
       updateFormData,
-      createFormData
+      createFormData,
     });
 
   if (data.fieldSelection) {
     const { formField, index } = data.fieldSelection;
     const clipboardCopy = () => {
-      var content = formField.value;
+      const content = formField.value;
       if (content) {
-        Clipboard.setString(content);
-        displayNotificationMessage(manageFormDataTextConfig.clipboard.message);
+        navigator.clipboard
+          .writeText(content)
+          .then(() => {
+            displayNotificationMessage(manageFormDataTextConfig.clipboard.message);
+          })
+          .catch((error) => {
+            console.error('Failed to copy text to clipboard:', error);
+            displayNotificationMessage('Failed to copy to clipboard');
+          });
       }
     };
     const deleteAField = () => {
-      var formData = data.formData;
-      formData.fields = formData.fields.filter(f => f !== formField);
+      const formData = data.formData;
+      formData.fields = formData.fields.filter((f) => f !== formField);
       setData({ ...data, formData, errorMessage: '', fieldSelection: null });
     };
     const randomise = () => {
-      var randomValue = generateRandomString(11);
+      const randomValue = generateRandomString(11);
       onFieldValueChanged(index, randomValue);
     };
     const clearField = () => onFieldValueChanged(index, '');
-    const unselectFieldSelection = () =>
-      setData({ ...data, fieldSelection: null });
+    const unselectFieldSelection = () => setData({ ...data, fieldSelection: null });
 
     return [
       { menu: menusConfig.clipboardCopy.menu, onPress: clipboardCopy },
       { menu: menusConfig.deleteField.menu, onPress: deleteAField },
       { menu: menusConfig.random.menu, onPress: randomise },
       { menu: menusConfig.clearField.menu, onPress: clearField },
-      { menu: menusConfig.unselect.menu, onPress: unselectFieldSelection }
+      { menu: menusConfig.unselect.menu, onPress: unselectFieldSelection },
     ];
   }
-  var menuItems = [
-    { menu: menusConfig.cancel.menu, onPress: onCancelEditFormData }
-  ];
+  const menuItems = [{ menu: menusConfig.cancel.menu, onPress: onCancelEditFormData }];
   if (data.globalInputState) {
     menuItems.push({
       menu: menusConfig.disconnect.menu,
-      onPress: onDisconnected
+      onPress: onDisconnected,
     });
   } else if (data.formData && data.formData.id && data.formData.fields.length) {
     menuItems.push({
@@ -381,9 +375,9 @@ const saveFormData = ({
   formIdField,
   formData,
   updateFormData,
-  createFormData
+  createFormData,
 }) => {
-  const setError = errorMessage => setData({ ...data, errorMessage });
+  const setError = (errorMessage) => setData({ ...data, errorMessage });
   if (data.formData.id.trim().length < 3) {
     setError(manageFormDataTextConfig.errorMessages.formId.tooShort);
     if (formIdField.current) {
@@ -406,10 +400,7 @@ const saveFormData = ({
   if (formData) {
     if (formData.id !== data.formData.id) {
       if (appdata.getFormContentById(data.formData.id)) {
-        setError(
-          manageFormDataTextConfig.errorMessages.formId
-            .alreadyExistsForNewFormId
-        );
+        setError(manageFormDataTextConfig.errorMessages.formId.alreadyExistsForNewFormId);
         if (formIdField.current) {
           formIdField.current.focus();
         }
@@ -419,20 +410,23 @@ const saveFormData = ({
   } else {
     const existingItem = appdata.searchFormDataById(data.formData.id);
     if (existingItem) {
-
-      setError(manageFormDataTextConfig.errorMessages.formId.alreadyExists + ' the data already exist:' + existingItem.id);
+      setError(
+        manageFormDataTextConfig.errorMessages.formId.alreadyExists +
+          ' The data already exists: ' +
+          existingItem.id
+      );
       if (formIdField.current) {
         formIdField.current.focus();
       }
       return;
     }
   }
-  var form = {
+  const form = {
     id: data.formData.id,
     label: data.formData.label,
     domains: data.formData.domains,
   };
-  form.fields = data.formData.fields.map(f => {
+  form.fields = data.formData.fields.map((f) => {
     return {
       id: f.id,
       label: f.label,
@@ -448,26 +442,24 @@ const saveFormData = ({
 };
 
 const renderFieldSelection = ({ formField, index, data, setData }) => {
-  var icon = menusConfig.checkbox.options[0].image;
-  var checked = false;
-  var fieldSelection = data.fieldSelection;
-  if (fieldSelection && fieldSelection.formField === formField) {
-    icon = menusConfig.checkbox.options[1].image;
-    checked = true;
-  }
+  const checked = data.fieldSelection && data.fieldSelection.formField === formField;
+  const icon = checked
+    ? menusConfig.checkbox.options[1].image
+    : menusConfig.checkbox.options[0].image;
 
   return (
-    <TouchableHighlight
-      onPress={() => {
+    <IconButton
+      onClick={() => {
         if (checked) {
           setData({ ...data, fieldSelection: null });
         } else {
-          fieldSelection = { formField, index };
+          const fieldSelection = { formField, index };
           setData({ ...data, fieldSelection });
         }
-      }}>
-      <Image source={icon} style={styles.itemIcon} />
-    </TouchableHighlight>
+      }}
+    >
+      <Icon src={icon} alt="Field Selection Icon" />
+    </IconButton>
   );
 };
 
@@ -478,28 +470,18 @@ export const changeGlobalInputFieldAction = ({ data, index, value }) => {
   return { ...data, formData, errorMessage: '' };
 };
 
-
-const RenderAFormField = ({
-  formField,
-  index,
-  data,
-  setData,
-  onFormFieldChanged,
-}) => {
-  var label = formField.id;
-  var multiline = false;
+const RenderAFormField = ({ formField, index, data, setData, onFormFieldChanged }) => {
+  let label = formField.id;
+  const multiline = formField.nLines && formField.nLines > 1;
 
   if (formField.label && formField.label.trim().length > 1) {
     label = formField.label;
   }
 
-  if (formField.nLines && formField.nLines > 1) {
-    multiline = true;
-  }
   const unselectFieldSelection = () => setData({ ...data, fieldSelection: null });
 
   return (
-    <View style={styles.formEditField}>
+    <FormEditField>
       <TextInputField
         placeholder={label}
         label={label}
@@ -507,19 +489,53 @@ const RenderAFormField = ({
         dark={true}
         numberOfLines={formField.nLines}
         multiline={multiline}
-        onChangeTextValue={value => {
+        onChangeTextValue={(value) => {
           setData(changeGlobalInputFieldAction({ data, index, value }));
           onFormFieldChanged({ formField, index, value });
         }}
         onFocus={unselectFieldSelection}
-        autoCapitalize={'none'}>
-        {renderFieldSelection({
-          formField,
-          index,
-          data,
-          setData
-        })}
+        autoCapitalize={'none'}
+      >
+        {renderFieldSelection({ formField, index, data, setData })}
       </TextInputField>
-    </View>
+    </FormEditField>
   );
 };
+
+export default RenderAFormField;
+
+// Styled Components
+const FormEditor = styled.div`
+  padding: 20px;
+`;
+
+const FormEditField = styled.div`
+  margin-bottom: 15px;
+`;
+
+const CreateNewFieldRow = styled.div`
+  margin-bottom: 20px;
+`;
+
+const MultilineLabel = styled.span`
+  margin-left: 10px;
+`;
+
+const ErrorContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`;

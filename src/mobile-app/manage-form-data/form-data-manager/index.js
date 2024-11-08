@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 
 
-import {images, menusConfig} from '../../configs';
+import images from '../../../configs/images';
+import menusConfig from '../../../configs/menusConfig';
 import ListFormData from '../list-form-data';
 import NotFormDataView from './NotFormDataView';
 import EditFormData from '../edit-form-data';
 import DisplayFormData from '../display-form-data';
 import ListFormLabels from '../list-form-labels';
-import {formDataUtil} from '../../store';
+import {formDataUtil} from '../../../appdata';
 const ACT_TYPE = {
   NO_DATA: 1,
   LIST_ITEMS: 2,

@@ -1,79 +1,99 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import styled from 'styled-components';
+
+import menusConfig from '../../../../configs/menusConfig';
+
+import ViewWithTabMenu from '../../../components/menu/ViewWithTabMenu';
+import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
+
+import {appdata, formDataUtil} from '../../../../appdata';
 
 
-import {styles} from "../styles";
+const importDecryptionError =
+  'Please first import and activate the encryption key that was used for encrypting the exported content.';
+const formDataMessage = ['Press the "Decrypt" button to decrypt the data.'];
 
+export const FormContentDataView = ({
+  windowTitle,
+  content,
+  onDecryptedFormData,
+  onBack,
+}) => {
+  const [compData, setCompData] = useState({
+    content,
+    errorMessage: '',
+    password: '',
+  });
 
+  useEffect(() => {
+    setCompData({ content, errorMessage: '', password: '' });
+  }, [content]);
 
-import {menusConfig} from "../../../configs";
+  const setErrorMessage = (errorMessage) =>
+    setCompData({ ...compData, errorMessage });
 
-import {ViewWithTabMenu,DisplayBlockText} from "../../../components";
+  const decryptFormData = () => {
+    const globalInputData = appdata.decryptFormDataText(compData.content);
+    if (!globalInputData) {
+      setErrorMessage(importDecryptionError);
+      return;
+    }
 
-import {appdata, formDataUtil} from "../../../store";
+    onDecryptedFormData(globalInputData.forms);
+  };
 
+  const renderErrorMessage = () => {
+    if (compData.errorMessage) {
+      return (
+        <InputContainer>
+          <ErrorMessage>{compData.errorMessage}</ErrorMessage>
+        </InputContainer>
+      );
+    } else {
+      return null;
+    }
+  };
 
+  const menuItems = [
+    {
+      menu: menusConfig.cancel.menu,
+      onPress: onBack,
+    },
+    {
+      menu: menusConfig.decrypt.menu,
+      onPress: decryptFormData,
+    },
+  ];
 
-const importDecryptionError="Please first import and activate the encryption key that was used for encrypting the exported content.";
-const formDataMessage=["Press the \"Decrypt\" button to decrypt the data."];
-  
+  const cc = formDataUtil.buldTextContentResolved(
+    appdata.getActiveEncryptionKeyItem(),
+    formDataMessage
+  );
 
-export const FormContentDataView = ({windowTitle,content,onDecryptedFormData,onBack}) => {
-        const [compData,setCompData]=useState({content,errorMessage:'', password:''});
-        useEffect(()=>{
-          setCompData({content,errorMessage:'', password:''});
-        },[]);
-        
-
-        const setErrorMessage = errorMessage =>setCompData({...compData,errorMessage});
-        
-
-          
-        const decryptFormData = ()=> {
-            var globalInputData=appdata.decryptFormDataText(compData.content);
-            if(!globalInputData){
-              setErrorMessage(importDecryptionError);
-              return;
-            }
-            
-            onDecryptedFormData(globalInputData.forms);
-        };
-
-        const renderErrorMessage = () => {
-              if(compData.errorMessage){
-                  return (
-                        <View style={styles.inputContainer}>
-                              <Text style={styles.errorMessage}>{compData.errorMessage}</Text>
-                        </View>
-                  );
-                }
-                else{
-                    return null;
-                  }
-        };
-
-  var menuItems=[{
-        menu:menusConfig.cancel.menu,
-        onPress:onBack
-  },{
-        menu:menusConfig.decrypt.menu,
-        onPress:decryptFormData
-  }];
-  
-
-var cc=formDataUtil.buldTextContentResolved(appdata.getActiveEncryptionKeyItem(),formDataMessage);
-  return(
-    <ViewWithTabMenu title={windowTitle}
-    menuItems={menuItems}
-    selected={menusConfig.others.menu}>
-        <View style={styles.formContainer}>
-                        <DisplayBlockText content={cc}/>
-                                    {renderErrorMessage()}
-        </View>
+  return (
+    <ViewWithTabMenu
+      title={windowTitle}
+      menuItems={menuItems}
+      selected={menusConfig.others.menu}
+    >
+      <FormContainer>
+        <DisplayBlockText content={cc} />
+        {renderErrorMessage()}
+      </FormContainer>
     </ViewWithTabMenu>
   );
 };
 
+// Styled Components
+const FormContainer = styled.div`
+  padding: 20px;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 16px;
+`;
