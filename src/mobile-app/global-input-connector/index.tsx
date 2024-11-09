@@ -56,14 +56,14 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
   const switchToDeviceInput = (config) => setAction(formData.switchToDeviceInput(config));
   const toDeviceInput = () => setAction({ ...action, actionType: ACT_TYPE.DEVICE_INPUT });
 
-  const onGlobalInputDataChanged = (value, fieldIndex) => {
+  const onGlobalInputDataChanged = (value, fieldIndex) => {    
     try {
       setAction((action) =>
               formData.changeGlobalInputFieldAction({
                 action,
                 globalInputdata: action.globalInputdata,
                 fieldIndex,
-                fieldId: action.globalInputdata.fields[fieldIndex].id,
+                fieldId: action.globalInputdata[fieldIndex].id,
                 value,
                 onFieldChanged: sendFieldToDevice,
               })
