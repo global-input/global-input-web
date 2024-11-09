@@ -449,7 +449,7 @@ const renderFieldSelection = ({ formField, index, data, setData }) => {
 
   return (
     <IconButton
-      onClick={() => {
+    onPress={() => {
         if (checked) {
           setData({ ...data, fieldSelection: null });
         } else {

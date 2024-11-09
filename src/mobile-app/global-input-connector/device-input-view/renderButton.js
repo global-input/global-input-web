@@ -63,7 +63,7 @@ const RenderButton = ({ dataitem, onFieldChanged }) => {
                 <IconButton
                     image={buttonProps.iconImage}
                     label={buttonProps.label}
-                    onClick={() => onFieldChanged(buttonProps.value)}
+                    onPress={() => onFieldChanged(buttonProps.value)}
                 />
             </IconContainer>
         );

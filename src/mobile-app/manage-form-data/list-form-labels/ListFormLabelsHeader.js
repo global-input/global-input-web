@@ -35,7 +35,7 @@ const ListFormLabelsHeader = (props) => {
   const renderFilterString = () => (
     <DisplayHeader>
       <LeftHeader>
-        <IconButton image={menusConfig.search.menu.image} onClick={displaySearchField} />
+        <IconButton image={menusConfig.search.menu.image} onPress={displaySearchField} />
         <SearchStringContainer>
           <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
         </SearchStringContainer>
@@ -48,14 +48,14 @@ const ListFormLabelsHeader = (props) => {
 
   const renderLabelSwitch = () => (
     <HeaderItem>
-      <IconButton image={menusConfig.manageFormData.menu.image} onClick={props.toList} />
+      <IconButton image={menusConfig.manageFormData.menu.image} onPress={props.toList} />
     </HeaderItem>
   );
 
   const renderWithSearchButton = () => (
     <DisplayHeader>
       <HeaderItem>
-        <IconButton image={menusConfig.search.menu.image} onClick={displaySearchField} />
+        <IconButton image={menusConfig.search.menu.image} onPress={displaySearchField} />
         <SearchStringContainer>
           <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
         </SearchStringContainer>

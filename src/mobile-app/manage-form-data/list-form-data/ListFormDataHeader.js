@@ -39,7 +39,7 @@ const renderWithSearchField = ({
 const renderFilterString = ({ displaySearchField, filterString }) => (
   <DisplayHeader>
     <LeftHeader>
-      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <IconButton image={searchIcon} onPress={displaySearchField} />
       <SearchStringContainer>
         <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
       </SearchStringContainer>
@@ -59,7 +59,7 @@ const renderWithSearchButton = ({
 }) => (
   <DisplayHeader>
     <HeaderItem>
-      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <IconButton image={searchIcon} onPress={displaySearchField} />
       <SearchStringContainer>
         <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
       </SearchStringContainer>
@@ -69,7 +69,7 @@ const renderWithSearchButton = ({
       <TitleText>{title}</TitleText>
     </HeaderItem>
     <HeaderItem>
-      <IconButton image={folderIcon} onClick={toListLabels} />
+      <IconButton image={folderIcon} onPress={toListLabels} />
     </HeaderItem>
   </DisplayHeader>
 );

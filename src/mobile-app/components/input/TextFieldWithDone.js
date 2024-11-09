@@ -44,7 +44,7 @@ const TextFieldWithDone = (props) => {
       }
       return (
         <IconContainer>
-          <IconButton image={imageURL} onClick={donePress} />
+          <IconButton image={imageURL} onPress={donePress} />
         </IconContainer>
       );
     }
