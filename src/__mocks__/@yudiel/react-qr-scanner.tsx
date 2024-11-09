@@ -9,7 +9,7 @@ const MockScanner: React.FC<IScannerProps> = ({ onScan }) => {
       boundingBox: { x: 0, y: 0, width: 100, height: 100 },
       cornerPoints: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 100, y: 100 }, { x: 0, y: 100 }],
       format: 'QR_CODE',
-      rawValue: 'AU2FsdGVkX18QNVT1VWQceo4xCemHRmeTy3F7MnzWMCf3rxG0zJb5I03e40Vci8tNzr0QWXLQeEuEh2CsasA5Gu1i4vmNldYdefQj4FhMB0H9MqB/qqUAKXelAdB2BRWY0K7H+YYUpdNW35tP30g4ZIVdy1iuAEaf//2GKxl12R3mcOGl56AZ1fKBfYUmORVUUOtmv+cz1y0h68hVTAdDWPdeaKVrUMmHK7bI3TO/Fa0%3D', // Replace with the specific code you want to simulate
+      rawValue: 'AU2FsdGVkX18gypzRU7BWxeVidh9NLq5mNe8JkMfm8CxOitHHQHnbRuzyiVQRKUBaV9tALiKlbXS6rcmcR5a2aCTxnSkTmvydX5TbzALeH6JH2my4he/dKYCqWYxk9Yw52gjnKm3Bp1BcmzYtt9ANNAIdMnx8Vtc5OB4tUZDo9Bx6kl4VMaMia3cImK2b70Y5LpmmvNqiDS+QMKQGPhtd0bl64p+mujDNbNGREfWD4RI%3D', // Replace with the specific code you want to simulate
     };
 
     const scanTimeout = setTimeout(() => {

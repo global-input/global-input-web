@@ -1,6 +1,3 @@
-import {
-  StyleSheet
-} from 'react-native';
 
 
 const stylesData ={
@@ -110,6 +107,6 @@ stylesData.blockContentText=Object.assign({},stylesData.contentText,{
     paddingBottom:10,
 });
 
-var styles = StyleSheet.create(stylesData);
+var styles = stylesData;
 
 export {stylesData,styles};
