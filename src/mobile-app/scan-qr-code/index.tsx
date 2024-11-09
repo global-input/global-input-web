@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Switch from "react-switch";
 
 
-import { Scanner, IDetectedBarcode } from '@yudiel/react-qr-scanner';
+import {IDetectedBarcode } from '@yudiel/react-qr-scanner';
 
 import DisplayCode from "./DisplayCode";
 
@@ -19,6 +19,15 @@ import type {CodeProcessors} from "global-input-message";
 
 
 import eyeTextConfig from '../../configs/eyeTextConfig'
+
+
+
+// Conditionally import Scanner based on environment
+const Scanner = process.env.NODE_ENV === 'development'
+  ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
+  : require('@yudiel/react-qr-scanner').Scanner;
+
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
