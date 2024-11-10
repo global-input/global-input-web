@@ -11,14 +11,14 @@ import DisplayCode from "./DisplayCode";
 
 import { usePageTitle } from "../../page-metadata";
 
-import {appdata} from "../../appdata";
+import {appdata} from "../store";
 import type {CodeData} from "global-input-message";
 import { createMessageConnector } from "global-input-message";
 
 import type {CodeProcessors} from "global-input-message";
 
 
-import eyeTextConfig from '../../configs/eyeTextConfig'
+import eyeTextConfig from '../configs/eyeTextConfig'
 
 
 

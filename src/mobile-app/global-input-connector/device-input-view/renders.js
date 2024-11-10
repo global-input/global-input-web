@@ -8,7 +8,7 @@ import renderInputSelectionList from './renderInputSelectionList';
 import renderInputSelection from './renderInputSelection';
 import renderInputPickerField from './renderInputPickerField';
 import renderTextField from './renderTextField';
-import {formDataUtil} from '../../../appdata';
+import {formDataUtil} from '../../store';
 import { styles, stylesData } from "../styles";
 
 const getStyleFromItem = (item, name) => formDataUtil.getStyleFromItem({ item, name, styles, data: stylesData });

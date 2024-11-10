@@ -15,7 +15,7 @@ import {
 import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
 
 import { usePageTitle } from "../page-metadata";
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 
 const ContactUsPage: React.FC = () => {
   const mobile = useConnectToMobile();

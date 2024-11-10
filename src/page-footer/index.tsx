@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 import footerBackground from "./images/footer-background.svg";
 
 export const PageFooter = () => {

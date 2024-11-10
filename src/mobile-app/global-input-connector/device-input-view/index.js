@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
-import images from "../../../configs/images";
-import deviceInputTextConfig from "../../../configs/deviceInputTextConfig";
-import menusConfig from  "../../../configs/menusConfig";
+import images from "../../configs/images";
+import deviceInputTextConfig from "../../configs/deviceInputTextConfig";
+import menusConfig from  "../../configs/menusConfig";
 import ACT_TYPE from '../ACT_TYPE';
 import { generateRandomString } from 'global-input-message';
 import * as renders from './renders';
-import { appdata } from '../../../appdata';
+import { appdata } from '../../store';
 
 export const DeviceInputView = ({
   action,

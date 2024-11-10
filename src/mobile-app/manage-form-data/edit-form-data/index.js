@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
 
-import manageFormDataTextConfig  from '../../../configs/manageFormDataTextConfig';
+import manageFormDataTextConfig  from '../../configs/manageFormDataTextConfig';
 
 import ACT_TYPE from './ACT_TYPE.js';
 

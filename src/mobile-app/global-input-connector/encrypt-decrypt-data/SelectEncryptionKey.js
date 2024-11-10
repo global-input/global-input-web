@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import images from '../../../configs/images';
-import {appdata} from '../../../appdata';
+import images from '../../configs/images';
+import {appdata} from '../../store';
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) return;

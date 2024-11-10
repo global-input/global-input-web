@@ -9,7 +9,7 @@ import ACT_TYPE from './ACT_TYPE';
 import * as globalInput from './globalInput';
 import * as formData from './formData';
 import * as encryptDecryptData from './encrypt-decrypt-data';
-import settingsTextConfig from '../../configs/settingsTextConfig';
+import settingsTextConfig from '../configs/settingsTextConfig';
 
 
 

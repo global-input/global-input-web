@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from 'react-helmet'
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 import { useConnectToMobile, ConnectWindow, ConnectButton } from "./mobile-ui";
 import { PageHeader } from "../page-header";
 import { PageFooter } from "../page-footer";

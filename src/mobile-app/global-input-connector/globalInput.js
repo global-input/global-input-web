@@ -1,7 +1,7 @@
 import { createMessageConnector } from "global-input-message";
 ////globa_input_connector////
-import { appdata } from '../../appdata';
-import deviceInputTextConfig from "../../configs/deviceInputTextConfig";
+import { appdata } from '../store';
+import deviceInputTextConfig from "../configs/deviceInputTextConfig";
 
 import ACT_TYPE from './ACT_TYPE';
 

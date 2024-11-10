@@ -1,5 +1,5 @@
 import React from "react";
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 import { PageHeader } from "../page-header";
 import { PageFooter } from "../page-footer";
 

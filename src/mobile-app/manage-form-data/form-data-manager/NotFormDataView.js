@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
-import menusConfig from '../../../configs/menusConfig';
+import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
+import menusConfig from '../../configs/menusConfig';
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {appdata} from '../../../appdata';
+import {appdata} from '../../store';
 import CopyToClipboard from '../../components/buttons/CopyToClipboard';
 
 const renderAFormFieldWithHideValue = ({ formField, index, label }) => {

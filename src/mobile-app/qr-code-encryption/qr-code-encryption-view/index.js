@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 
 
 
-import encryptedQrCodeTextConfig from "../../../configs/encryptedQrCodeTextConfig";
+import encryptedQrCodeTextConfig from "../../configs/encryptedQrCodeTextConfig";
 
-import menusConfig from "../../../configs/menusConfig";
+import menusConfig from "../../configs/menusConfig";
 
 
 

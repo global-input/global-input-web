@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { formDataUtil, appdata, domainForms } from '../../appdata';
-import deviceInputTextConfig from '../../configs/deviceInputTextConfig';
-import encryptedQrCodeTextConfig from '../../configs/encryptedQrCodeTextConfig';
+import { formDataUtil, appdata, domainForms } from '../store';
+import deviceInputTextConfig from '../configs/deviceInputTextConfig';
+import encryptedQrCodeTextConfig from '../configs/encryptedQrCodeTextConfig';
 
-import menusConfig from '../../configs/menusConfig';
+import menusConfig from '../configs/menusConfig';
 
 import ViewWithTabMenu from "../components/menu/ViewWithTabMenu";
 

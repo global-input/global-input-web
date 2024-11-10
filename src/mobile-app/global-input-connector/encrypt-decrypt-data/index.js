@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ACT_TYPE from '../ACT_TYPE';
-import menusConfig from '../../../configs/menusConfig';
+import menusConfig from '../../configs/menusConfig';
 import SelectEncryptionKey from './SelectEncryptionKey';
-import { encryptData, decryptData, appdata } from '../../../appdata';
+import { encryptData, decryptData, appdata } from '../../store';
 
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';

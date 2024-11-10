@@ -5,7 +5,7 @@ import {
   Route,
   Routes,  
 } from "react-router-dom";
-import { config } from "./configs";
+import { config } from "./mobile-app/configs";
 import { HomePage} from "./home-page";
 import { GetAppPage } from "./get-app-page";
 import PrivacyPage from "./privacy-page";

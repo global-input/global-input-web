@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { styles, stylesData } from './styles';
-import { formDataUtil } from '../../../appdata';
+import { formDataUtil } from '../../store';
 
 export default class DisplayContent extends Component {
   MAX_ARRAY_LENGTH = 500;

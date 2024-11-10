@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import images from '../../../configs/images';
+import images from '../../configs/images';
 import IconButton from '../buttons/IconButton';
 import TextInputField from './TextInputField';
 

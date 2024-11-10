@@ -1,7 +1,7 @@
 import React from 'react';
 
-import manageKeysTextConfig from "../../../../configs/manageKeysTextConfig";
-import menusConfig from "../../../../configs/menusConfig";
+import manageKeysTextConfig from "../../../configs/manageKeysTextConfig";
+import menusConfig from "../../../configs/menusConfig";
 import EditorWithTabMenu from "../../../components/menu/EditorWithTabMenu";
 import DisplayBlockText from "../../../components/display-text/DisplayBlockText";
 

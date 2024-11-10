@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {appdata} from '../../../appdata';
-import images from '../../../configs/images';
-import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
-import menusConfig from '../../../configs/menusConfig';
+import {appdata} from '../../store';
+import images from '../../configs/images';
+import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
+import menusConfig from '../../configs/menusConfig';
 import CopyToClipboard from '../../components/buttons/CopyToClipboard';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';

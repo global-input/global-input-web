@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import NotificationText from '../display-text/NotificationText';
-import deviceInputTextConfig  from '../../../configs/deviceInputTextConfig';
+import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
 
 const CopyToClipboard = ({
   content,

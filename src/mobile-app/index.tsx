@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from "styled-components";
 import ScanQRCode from './scan-qr-code';
-import { config } from "../configs";
+import { config } from "./configs";
 import {ImportEncryptionKeyView} from './import-encryption-key';
-import {appdata} from "../appdata";
+import {appdata} from "./store";
 import { PageHeader } from "../page-header";
 import DisplayUserLogin from "./display-user-login";
 import GlobalInputConnector from './global-input-connector';
-import menusConfig from '../configs/menusConfig';
+import menusConfig from './configs/menusConfig';
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',

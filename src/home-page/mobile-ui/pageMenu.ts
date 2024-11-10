@@ -1,4 +1,4 @@
-import { config } from "../../configs";
+import { config } from "../../mobile-app/configs";
 
 export const FIELDS = {
   home: {

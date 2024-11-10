@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import menusConfig from '../../../../configs/menusConfig';
+import menusConfig from '../../../configs/menusConfig';
 
 import ViewWithTabMenu from '../../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
 
-import {appdata, formDataUtil} from '../../../../appdata';
+import {appdata, formDataUtil} from '../../../store';
 
 
 const importDecryptionError =

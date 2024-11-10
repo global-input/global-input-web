@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { images } from '../../configs';
-import manageKeysTextConfig from '../../configs/manageKeysTextConfig';
-import menusConfig from '../../configs/menusConfig';
+import { images } from '../configs';
+import manageKeysTextConfig from '../configs/manageKeysTextConfig';
+import menusConfig from '../configs/menusConfig';
 import DisplayBlockText from '../components/display-text/DisplayBlockText';
 import TextInputField from '../components/input/TextInputField';
 
 import EditorWithTabMenu from '../components/menu/EditorWithTabMenu';
-import { appdata } from '../../appdata';
+import { appdata } from '../store';
 
 interface PasswordDecryptProps {
   codedata: string;

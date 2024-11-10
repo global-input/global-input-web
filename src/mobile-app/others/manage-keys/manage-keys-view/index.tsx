@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import images from '../../../../configs/images';
-import menusConfig from '../../../../configs/menusConfig';
-import manageKeysTextConfig from '../../../../configs/manageKeysTextConfig';
+import images from '../../../configs/images';
+import menusConfig from '../../../configs/menusConfig';
+import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
 
 import ViewWithTabMenu from "../../../components/menu/ViewWithTabMenu";
 import GenerateNewKey from "../generate-new-key";
 import DisplayBlockText from "../../../components/display-text/DisplayBlockText";
 import EncryptionKeyItemImported from './EncryptionKeyItemImported';
-import { appdata } from '../../../../appdata';
+import { appdata } from '../../../store';
 
 const ACT_TYPE = {
     LIST_KEYS: 1,

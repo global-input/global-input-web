@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import images from '../../../configs/images';
-import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
-import menusConfig from '../../../configs/menusConfig';
-import {appdata} from '../../../appdata';
+import images from '../../configs/images';
+import manageKeysTextConfig from '../../configs/manageKeysTextConfig';
+import menusConfig from '../../configs/menusConfig';
+import {appdata} from '../../store';
 
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../components/input/TextInputField';

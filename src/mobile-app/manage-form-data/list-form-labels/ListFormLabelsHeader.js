@@ -4,8 +4,8 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
 
-import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
-import menusConfig from '../../../configs/menusConfig';
+import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
+import menusConfig from '../../configs/menusConfig';
 import IconButton from '../../components/buttons/IconButton';
 import TextFieldWithDone from '../../components/input/TextFieldWithDone';
 import DisplayHeader from '../../components/menu/DisplayHeader';

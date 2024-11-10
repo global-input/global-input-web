@@ -4,7 +4,7 @@ import { PageHeader } from "../page-header";
 import { PageFooter } from "../page-footer";
 
 import { useConnectToMobile } from "./mobile-ui";
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 import { usePageTitle } from "../page-metadata";
 import {
   Container,

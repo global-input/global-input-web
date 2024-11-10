@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import images from '../../../configs/images';
-import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
-import menusConfig from '../../../configs/menusConfig';
+import images from '../../configs/images';
+import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
+import menusConfig from '../../configs/menusConfig';
 
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import ListFormLabelsHeader from './ListFormLabelsHeader';

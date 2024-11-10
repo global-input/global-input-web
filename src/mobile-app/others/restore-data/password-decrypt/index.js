@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import images from '../../../../configs/images';
-import menusConfig from '../../../../configs/menusConfig';
+import images from '../../../configs/images';
+import menusConfig from '../../../configs/menusConfig';
 import EditorWithTabMenu from '../../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../../components/input/TextInputField';
 import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
-import {appdata} from '../../../../appdata';
+import {appdata} from '../../../store';
 
 const errorMessages = {
   importDecryptionError:

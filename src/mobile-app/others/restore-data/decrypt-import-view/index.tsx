@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from 'react';
 
-import menusConfig from "../../../../configs/menusConfig";
+import menusConfig from "../../../configs/menusConfig";
 
 
 
-import {appdata,formDataUtil} from "../../../../appdata";
+import {appdata,formDataUtil} from "../../../store";
 import PasswordDecrypt from "../password-decrypt"
 import ManageKeysView from "../../manage-keys/manage-keys-view";
 import {FormContentDataView} from '../form-content-data-view'

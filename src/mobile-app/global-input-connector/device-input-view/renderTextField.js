@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TextInputField from '../../components/input/TextInputField';
-import menusConfig from '../../../configs/menusConfig';
+import menusConfig from '../../configs/menusConfig';
 
 const RenderFieldSelection = ({ dataitem, fieldSelection, onFieldSelected }) => {
   const isSelected = fieldSelection && fieldSelection.dataitem === dataitem;

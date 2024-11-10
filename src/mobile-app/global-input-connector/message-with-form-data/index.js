@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { formDataUtil } from '../../../appdata';
-import images from '../../../configs/images';
-import menusConfig from '../../../configs/menusConfig';
+import { formDataUtil } from '../../store';
+import images from '../../configs/images';
+import menusConfig from '../../configs/menusConfig';
 import renderFormFields from './renderFormFields';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';

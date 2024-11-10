@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
-import images from '../../../../configs/images';
-import manageKeysTextConfig from '../../../../configs/manageKeysTextConfig';
-import menusConfig from '../../../../configs/menusConfig';
+import images from '../../../configs/images';
+import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
+import menusConfig from '../../../configs/menusConfig';
 
 
 
@@ -14,7 +14,7 @@ import DisplayBlockText from "../../../components/display-text/DisplayBlockText"
 import TextInputField from "../../../components/input/TextInputField";
 
 
-import { generateRandomString } from "../../../../appdata";
+import { generateRandomString } from "../../../store";
 
 const getStateFromProps = ({ importDecryptedKey, name }) => ({
   encryptionKey: importDecryptedKey || generateRandomString(23),

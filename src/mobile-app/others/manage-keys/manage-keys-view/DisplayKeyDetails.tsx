@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import images from '../../../../configs/images';
-import { appdata, formDataUtil } from '../../../../appdata';
+import images from '../../../configs/images';
+import { appdata, formDataUtil } from '../../../store';
 
 interface DisplayKeyDetailsProps {
   encryptionKeyItem: {

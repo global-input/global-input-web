@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { config } from "../configs";
+import { config } from "../mobile-app/configs";
 import backgroundImage from "./images/background.svg";
 import appIcon from "./images/app-icon.png";
 import extensionIcon from "./images/extension.png";

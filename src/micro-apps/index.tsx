@@ -4,7 +4,7 @@ import { usePageTitle } from '../page-metadata';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
 import {Container,Content,Loader} from './layout';
-import { config } from '../configs';
+import { config } from '../mobile-app/configs';
 
 export const GameControlScreen = () => {
   usePageTitle('Global Input App - Mobile Input & Control Example');

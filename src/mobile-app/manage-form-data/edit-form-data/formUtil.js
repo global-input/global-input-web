@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 import { generateRandomString } from 'global-input-message';
 
-import images from '../../../configs/images';
-import manageFormDataTextConfig from '../../../configs/manageFormDataTextConfig';
-import menusConfig from '../../../configs/menusConfig';
+import images from '../../configs/images';
+import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
+import menusConfig from '../../configs/menusConfig';
 
-import {appdata,domainForms} from '../../../appdata';
+import {appdata,domainForms} from '../../store';
 
 
 import TextInputField from '../../components/input/TextInputField';

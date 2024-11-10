@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-import menusConfig from "../../configs/menusConfig";
+import menusConfig from "../configs/menusConfig";
 import PasswordDecrypt from "./PasswordDecrypt";
 import {ManageKeysView} from "../others/manage-keys"
 

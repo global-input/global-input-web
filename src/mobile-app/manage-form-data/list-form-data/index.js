@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {domainForms} from '../../../appdata';
+import {domainForms} from '../../store';
 
-import menusConfig from  "../../../configs/menusConfig";
+import menusConfig from  "../../configs/menusConfig";
 
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import ListFormDataHeader from './ListFormDataHeader';
