@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { getStyles, deviceDetector } from './styles';
+
 import NotificationBar from './NotificationBar';
 import DisplayHeader from './DisplayHeader';
 
@@ -29,6 +30,7 @@ const EditorWithTabMenu: React.FC<EditorWithTabMenuProps> = ({
   children,
 }) => {
   const [keyboardShowing, setKeyboardShowing] = useState(false);
+  const styles = getStyles();
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,127 +45,103 @@ const EditorWithTabMenu: React.FC<EditorWithTabMenuProps> = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const handleFocus = () => {
+    setKeyboardShowing(true);
+  };
+  const handleBlur = () => {
+    setKeyboardShowing(false);
+  };
+
 
   const renderMenuItem = (menuItem: MenuItemProps, index: number) => (
     <MenuItem
       key={`${index}_${menuItem.label}`}
       menu={menuItem.menu}
-      onClick={menuItem.onPress}
+      onPress={menuItem.onPress}
       selected={selected}
     />
   );
 
+  const renderNotificationBar = () => {
+    if (notificationMessage) {
+      return <NotificationBar message={notificationMessage} />;
+    } else {
+      return null;
+    }
+  };
+
   const renderHeader = () => {
-    if (!keyboardShowing) {
+    if (keyboardShowing) {
+      return null;
+    } else {
       return <DisplayHeader title={title} titleIcon={titleIcon} />;
     }
-    return null;
   };
 
-  const renderNotificationBar = () => {
-    return notificationMessage ? <NotificationBar message={notificationMessage} /> : null;
-  };
 
   const renderTab = () => {
-    const TabStyle = keyboardShowing ? TabOnTop : Tab;
+    const isLandscape = deviceDetector.isLandscapeMode();
+    const tabStyle = keyboardShowing
+      ? isLandscape
+        ? styles.tabOnTopLandscape
+        : styles.tabOnTop
+      : isLandscape
+      ? styles.tabLandscape
+      : styles.tab;
+
     return (
-      <TabStyle>
-        <ScrollContainer>
-          {menuItems.map(renderMenuItem)}
-        </ScrollContainer>
-      </TabStyle>
+      <div style={tabStyle}>
+        <div style={styles.scrollContainer}>
+          {menuItems.map((menuItem, index) => renderMenuItem(menuItem, index))}
+        </div>
+      </div>
     );
   };
 
-  const contentContainerStyle = keyboardShowing ? ContentContainer : ContentContainerLandscape;
+  const renderEnd = () => {
+    if (keyboardShowing) {
+      return <div style={styles.endSpaceWhenKeyboardShowing} />;
+    } else {
+      return <div style={styles.endSpaceWhenKeyboardHiding} />;
+    }
+  };
+
+  const contentContainerStyle = deviceDetector.isLandscapeMode()
+    ? styles.contentContainerLandscape
+    : styles.contentContainer;
+
   return (
-    <Container>
-      <StatusBar />
+    <div style={styles.container}>
+      {/* StatusBar Replacement */}
+      <div style={{ height: '20px', backgroundColor: '#fff' }}></div>
+
       {renderHeader()}
-      
-      {renderNotificationBar()}
-      <ScrollContainer>
-        <ContentContainer>{children}</ContentContainer>
-      </ScrollContainer>
       {renderTab()}
-    </Container>
+      {renderNotificationBar()}
+
+      {/* KeyboardAwareScrollView Replacement */}
+      <div
+        style={{
+          overflowY: 'auto',
+          flex: 1,
+          padding: '10px',
+          ...contentContainerStyle,
+        }}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        {children}
+      </div>
+
+      {renderEnd()}
+    </div>
   );
 };
-
 export default EditorWithTabMenu;
 
-// Styled Components
-const Container = styled.div`
-  width: 100%;
-  
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-`;
 
-const StatusBar = styled.div`
-  height: 20px;
-  background-color: #000;
-`;
 
-const Tab = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-`;
-
-const TabOnTop = styled(Tab)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-`;
-
-const ScrollContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  
-`;
-
-const ContentContainer = styled.div`
-  padding: 20px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
-
-const ContentContainerLandscape = styled(ContentContainer)`
-  flex-direction: row;
-`;
-
-const EndSpaceWhenKeyboardShowing = styled.div`
-  height: 100px;
-`;
-
-const EndSpaceWhenKeyboardHiding = styled.div`
-  height: 20px;
-`;
-
-const MenuItemContainer = styled.div<{ selected: boolean }>`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  background-color: ${({ selected }) => (selected ? '#ddd' : 'transparent')};
-`;
-
-const MenuItemText = styled.p<{ selected: boolean }>`
-  color: ${({ selected }) => (selected ? '#007BFF' : '#000')};
-  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
-  margin-top: 5px;
-`;
-
-const MenuItemImage = styled.img`
-  width: 24px;
-  height: 24px;
-`;
+/*
 
 const MenuItem: React.FC<{ menu: any; onClick: () => void; selected: any }> = ({ menu, onClick, selected }) => {
   const isSelected = selected === menu;
@@ -174,5 +152,55 @@ const MenuItem: React.FC<{ menu: any; onClick: () => void; selected: any }> = ({
       {image && <MenuItemImage src={image} alt={menu.label} />}
       <MenuItemText selected={isSelected}>{menu.label}</MenuItemText>
     </MenuItemContainer>
+  );
+};
+*/
+
+
+const MenuItem = ({ menu, onPress, selected }) => {
+  const styles = getStyles();
+
+  const renderLabel = () => {
+    if (menu && menu.label) {
+      const menuTextStyle =
+        selected === menu ? styles.menuTextSelected : styles.menuText;
+      return <span style={menuTextStyle}>{menu.label}</span>;
+    } else {
+      return null;
+    }
+  };
+
+  const renderImage = () => {
+    if (menu && menu.image) {
+      let imageSrc = menu.image;
+      if (menu.imageSelected && selected === menu) {
+        imageSrc = menu.imageSelected;
+      }
+      return <img src={imageSrc} alt={menu.label} />;
+    } else {
+      return null;
+    }
+  };
+
+  const iconContainerStyle =
+    selected === menu ? styles.iconcontainerSelected : styles.iconcontainer;
+
+  return (
+    <div
+      onClick={onPress}
+      style={styles.menuItem}
+      role="button"
+      tabIndex={0}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          onPress();
+        }
+      }}
+    >
+      <div style={iconContainerStyle}>
+        {renderImage()}
+        {renderLabel()}
+      </div>
+    </div>
   );
 };
