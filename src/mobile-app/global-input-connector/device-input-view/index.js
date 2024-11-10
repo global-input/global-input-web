@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styles } from '../styles';
 
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
@@ -24,34 +24,43 @@ export const DeviceInputView = ({
   onSaveFormData,
   formDataToSave,
 }) => {
-  const onSelectField = (fieldSelection) => setAction({ ...action, fieldSelection });
+  const onSelectField = (fieldSelection) =>
+    setAction({ ...action, fieldSelection });
 
   const copyFieldToClipboard = () => {
     if (action.fieldSelection && action.fieldSelection.dataitem.value) {
-      navigator.clipboard.writeText(action.fieldSelection.dataitem.value).then(() => {
-        displayNotificationMessage(deviceInputTextConfig.clipboard.message);
-      }).catch((err) => {
-        console.error('Failed to copy text to clipboard', err);
-      });
+      navigator.clipboard
+        .writeText(action.fieldSelection.dataitem.value)
+        .then(() => {
+          displayNotificationMessage(deviceInputTextConfig.clipboard.message);
+        })
+        .catch((err) => {
+          console.error('Could not copy text: ', err);
+        });
     }
   };
-  
-  const pasteClipboardToField = async () => {
+
+  const pasteClipboardToField = () => {
     if (action.fieldSelection) {
-      try {
-        const clipboardContent = await navigator.clipboard.readText();
-        if (clipboardContent) {
-          onGlobalInputDataChanged(clipboardContent, action.fieldSelection.index);
-        }
-      } catch (err) {
-        console.error('Failed to read text from clipboard', err);
-      }
+      navigator.clipboard
+        .readText()
+        .then((clipboardContent) => {
+          if (clipboardContent && clipboardContent.length > 0) {
+            onGlobalInputDataChanged(
+              clipboardContent,
+              action.fieldSelection.index
+            );
+          }
+        })
+        .catch((err) => {
+          console.error('Failed to read clipboard contents: ', err);
+        });
     }
   };
 
   const randomizeFieldValue = () => {
     if (action.fieldSelection) {
-      const randomValue = generateRandomString(11);
+      var randomValue = generateRandomString(11);
       onGlobalInputDataChanged(randomValue, action.fieldSelection.index);
     }
   };
@@ -62,14 +71,32 @@ export const DeviceInputView = ({
     }
   };
 
-  const onUnselectField = () => setAction({ ...action, fieldSelection: null });
-  const onEncryptSecret = () => setAction({ ...action, actionType: ACT_TYPE.ENCRYPT_SECRET });
-  const onEncryptionKey = () => setAction({ ...action, actionType: ACT_TYPE.MASTER_KEY });
+  const onUnselectField = () =>
+    setAction({ ...action, fieldSelection: null });
 
-  const onHideSecret = () => setAction({ ...action, showHideSecret: { show: false } });
-  const onShowSecret = () => setAction({ ...action, showHideSecret: { show: true } });
-  const onListAllForm = () => setAction({ ...action, actionType: ACT_TYPE.ALL_FORMS_DATA });
-  const listMatchedForm = () => setAction({ ...action, actionType: ACT_TYPE.MATCHED_FORMS_DATA });
+  const onEncryptSecret = () =>
+    setAction({ ...action, actionType: ACT_TYPE.ENCRYPT_SECRET });
+
+  const onEncryptionKey = () => {
+    setAction({ ...action, actionType: ACT_TYPE.MASTER_KEY });
+  };
+
+  const onHideSecret = () => {
+    var showHideSecret = { ...action.showHideSecret, show: false };
+    setAction({ ...action, showHideSecret });
+  };
+
+  const onShowSecret = () => {
+    var showHideSecret = { ...action.showHideSecret, show: true };
+    setAction({ ...action, showHideSecret });
+  };
+
+  const onListAllForm = () => {
+    setAction({ ...action, actionType: ACT_TYPE.ALL_FORMS_DATA });
+  };
+
+  const listMatchedForm = () =>
+    setAction({ ...action, actionType: ACT_TYPE.MATCHED_FORMS_DATA });
 
   const exportFormData = () => {
     const content = appdata.exportFormContentAsText();
@@ -80,60 +107,90 @@ export const DeviceInputView = ({
   };
 
   const buildMenuItemForDeviceInput = () => {
+    let menuItems = null;
     if (action.fieldSelection) {
-      return [
-        { menu: menusConfig.clipboardCopy.menu, onPress: copyFieldToClipboard },
-        { menu: menusConfig.clipboardPaste.menu, onPress: pasteClipboardToField },
-        { menu: menusConfig.random.menu, onPress: randomizeFieldValue },
-        { menu: menusConfig.clearField.menu, onPress: clearSelectedField },
-        { menu: menusConfig.unselect.menu, onPress: onUnselectField },
+      menuItems = [
+        {
+          menu: menusConfig.clipboardCopy.menu,
+          onClick: copyFieldToClipboard,
+        },
+        {
+          menu: menusConfig.clipboardPaste.menu,
+          onClick: pasteClipboardToField,
+        },
+        { menu: menusConfig.random.menu, onClick: randomizeFieldValue },
+        { menu: menusConfig.clearField.menu, onClick: clearSelectedField },
+        { menu: menusConfig.unselect.menu, onClick: onUnselectField },
       ];
     } else {
-      const menuItems = [{ menu: menusConfig.disconnect.menu, onPress: onDisconnect }];
+      menuItems = [{ menu: menusConfig.disconnect.menu, onClick: onDisconnect }];
 
       if (action.initData.dataType === 'qrcode') {
-        menuItems.push(
-          { menu: menusConfig.encrypt.menu, onPress: onEncryptSecret },
-          { menu: menusConfig.protectedEncryptionKey.menu, onPress: onEncryptionKey },
-          { menu: menusConfig.serviceData.menu, onPress: onPairingData }
-        );
+        menuItems.push({
+          menu: menusConfig.encrypt.menu,
+          onClick: onEncryptSecret,
+        });
+        menuItems.push({
+          menu: menusConfig.protectedEncryptionKey.menu,
+          onClick: onEncryptionKey,
+        });
+        menuItems.push({
+          menu: menusConfig.serviceData.menu,
+          onClick: onPairingData,
+        });
       }
-
       if (formDataToSave) {
-        menuItems.push({ menu: menusConfig.save.menu, onPress: onSaveFormData });
+        menuItems.push({
+          menu: menusConfig.save.menu,
+          onClick: onSaveFormData,
+        });
       }
-
       if (action.showHideSecret) {
         if (action.showHideSecret.show) {
-          menuItems.push({ menu: menusConfig.hideSecret.menu, onPress: onHideSecret });
+          menuItems.push({
+            menu: menusConfig.hideSecret.menu,
+            onClick: onHideSecret,
+          });
         } else {
-          menuItems.push({ menu: menusConfig.showSecret.menu, onPress: onShowSecret });
+          menuItems.push({
+            menu: menusConfig.showSecret.menu,
+            onClick: onShowSecret,
+          });
         }
       }
-
       if (appdata.hasFormContent()) {
         menuItems.push({
           menu: menusConfig.selectFromFormDataList.menu,
-          onPress: onListAllForm,
+          onClick: onListAllForm,
         });
         if (action.autofill) {
           menuItems.push({
             menu: menusConfig.selectMatched.menu,
-            onPress: listMatchedForm,
+            onClick: listMatchedForm,
           });
         }
       }
-
-      return menuItems;
     }
+    return menuItems;
   };
 
-  const buildMenuItemsForExport = () => [
-    { menu: menusConfig.disconnect.menu, onPress: onDisconnect },
-    { menu: menusConfig.export.menu, onPress: exportFormData },
-  ];
+  const buildMenuItemsForExport = () => {
+    let menuItems = [
+      { menu: menusConfig.disconnect.menu, onClick: onDisconnect },
+      {
+        menu: menusConfig.export.menu,
+        onClick: exportFormData,
+      },
+    ];
+    return menuItems;
+  };
 
-  const buildMenuItems = () => (action.exportFormField ? buildMenuItemsForExport() : buildMenuItemForDeviceInput());
+  const buildMenuItems = () => {
+    if (action.exportFormField) {
+      return buildMenuItemsForExport();
+    }
+    return buildMenuItemForDeviceInput();
+  };
 
   if (!action.globalInputdata) {
     return (
@@ -144,23 +201,21 @@ export const DeviceInputView = ({
       />
     );
   }
-
   if (action.initData.action !== 'input') {
     return (
       <ViewWithTabMenu menuItems={appMenu} title="Error">
-        <ContentCenter>
+        <div style={styles.contentCenter}>
           <DisplayBlockText
-            title="Error"
-            content={`Action not implemented: ${action.initData.action}`}
+            title={'Error'}
+            content={'Action not implemented: ' + action.initData.action}
           />
-        </ContentCenter>
+        </div>
       </ViewWithTabMenu>
     );
   }
 
   const menuItems = buildMenuItems();
-  const viewIds = new Set();
-
+  var viewIds = new Set();
   return (
     <EditorWithTabMenu
       title={deviceInputTextConfig.title}
@@ -169,7 +224,7 @@ export const DeviceInputView = ({
       selected={menusConfig.eye.menu}
       notificationMessage={action.notificationMessage}
     >
-      <Content>
+      <div style={styles.content}>
         {renders.renderFormTitle({ initData: action.initData })}
         {renders.renderGlobalInputFields({
           globalInputdata: action.globalInputdata,
@@ -188,23 +243,7 @@ export const DeviceInputView = ({
           onSelectField,
           showHideSecret: action.showHideSecret,
         })}
-      </Content>
+      </div>
     </EditorWithTabMenu>
   );
 };
-
-// Styled Components
-const ContentCenter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-`;
-
-const Content = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export default DeviceInputView;
