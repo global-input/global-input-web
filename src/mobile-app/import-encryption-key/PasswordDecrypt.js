@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { styles } from './styles';
 import { images } from '../configs';
 import manageKeysTextConfig from '../configs/manageKeysTextConfig';
 import menusConfig from '../configs/menusConfig';
@@ -15,22 +15,29 @@ interface PasswordDecryptProps {
   onBack: () => void;
 }
 
-const PasswordDecrypt: React.FC<PasswordDecryptProps> = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
-  const [action, setAction] = useState({ password: '', errorMessage: '' });
+const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
+  const [action, setAction] = useState({
+    codedata,
+    password: '',
+    errorMessage: '',
+  });
 
-  const setPassword = (password: string) =>
+  const setPassword = (password) =>
     setAction({ ...action, password, errorMessage: '' });
 
-  const setErrorMessage = (errorMessage: string) =>
+  const setErrorMessage = (errorMessage) =>
     setAction({ ...action, errorMessage });
 
   const decryptWithPassword = () => {
-    const { password } = action;
+    const { password, codedata } = action;
     if (!password) {
       setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
     } else {
       try {
-        const encryptionKeyDecrypted = appdata.decryptExportedEncryptionKey(codedata, password);
+        const encryptionKeyDecrypted = appdata.decryptExportedEncryptionKey(
+          codedata,
+          password
+        );
         if (!encryptionKeyDecrypted) {
           setErrorMessage(manageKeysTextConfig.errorMessages.invalidPassword);
         } else {
@@ -44,74 +51,51 @@ const PasswordDecrypt: React.FC<PasswordDecryptProps> = ({ codedata, onEncryptio
   };
 
   const renderErrorMessage = () => {
-    return action.errorMessage ? (
-      <ErrorContainer>
-        <ErrorMessage>{action.errorMessage}</ErrorMessage>
-      </ErrorContainer>
-    ) : null;
+    if (action.errorMessage) {
+      return (
+        <div style={styles.inputContainer}>
+          <span style={styles.errorMessage}>{action.errorMessage}</span>
+        </div>
+      );
+    } else {
+      return null;
+    }
   };
 
   const menuItems = [
-    { menu: menusConfig.cancel.menu, onPress: onBack },
-    { menu: menusConfig.decrypt.menu, onPress: decryptWithPassword },
+    {
+      menu: menusConfig.cancel.menu,
+      onClick: onBack,
+    },
+    {
+      menu: menusConfig.decrypt.menu,
+      onClick: decryptWithPassword,
+    },
   ];
 
-
   return (
-    <EditorWithTabMenu title={manageKeysTextConfig.importKey.title}
-      menuItems={menuItems} selected={menusConfig.eye.menu}>
+    <EditorWithTabMenu
+      title={manageKeysTextConfig.importKey.title}
+      menuItems={menuItems}
+      selected={menusConfig.eye.menu}
+    >
       <DisplayBlockText content={manageKeysTextConfig.importKey.content} />
-      <InputContainer>
+
+      <div style={styles.inputContainer}>
         <TextInputField
           labelIcon={images.passwordIcon}
           placeholder={manageKeysTextConfig.importKey.password.placeHolder}
           value={action.password}
           secureTextEntry={true}
-          onChangeTextValue={textValue => setPassword(textValue)}
+          onChangeTextValue={setPassword}
           autoCapitalize="none"
         />
-      </InputContainer>
+      </div>
       {renderErrorMessage()}
+
       <DisplayBlockText content={manageKeysTextConfig.importKey.content2} />
-      </EditorWithTabMenu>
+    </EditorWithTabMenu>
   );
-  
 };
 
 export default PasswordDecrypt;
-
-// Styled Components
-const InputContainer = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const ErrorContainer = styled.div`
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #fdecea;
-  border: 1px solid #f5c2c7;
-  border-radius: 5px;
-`;
-
-const ErrorMessage = styled.p`
-  color: #d32f2f;
-  font-size: 14px;
-  text-align: center;
-  margin: 0;
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;  
-  
-    
-    
-    
-`;

@@ -1,4 +1,4 @@
-export default {
+const ACT_TYPE = {
   LOADING:1,
   ERROR:2,
   CONNECTED:3,
@@ -15,3 +15,5 @@ export default {
   DECRYPT_SEND_RESULT:15,
   IMPORT_FORM_DATA:16
 };
+
+export default ACT_TYPE;

@@ -9,12 +9,12 @@ const ACT_TYPE={
   PASSWORD:1,
   DECRYPTED:2
 };
-interface ImportEncryptionKeyViewProps {
-    codedata: string;
-    decryptedEncryptionKey?: string;
-    toCameraView: () => void;
+interface Props{
+  codedata:string;
+  decryptedEncryptionKey?:string;
+  toCameraView:()=>void;
 }
-const ImportEncryptionKeyView:React.FC<ImportEncryptionKeyViewProps> =({codedata,decryptedEncryptionKey,toCameraView})=>{
+const ImportEncryptionKeyView:React.FC<Props> =  ({codedata,decryptedEncryptionKey,toCameraView})=>{
       const getStateFromProps = () => {
             let actionType=ACT_TYPE.PASSWORD;    
             var decryptedKey=null;
@@ -40,7 +40,6 @@ const ImportEncryptionKeyView:React.FC<ImportEncryptionKeyViewProps> =({codedata
                   menuItems={menuItems}
                   importDecryptedKey={action.decryptedKey}/>
             );
-            
         };
       switch(action.actionType){
             case ACT_TYPE.PASSWORD:return renderDecryptWithPassword();
@@ -51,5 +50,4 @@ const ImportEncryptionKeyView:React.FC<ImportEncryptionKeyViewProps> =({codedata
   
 
 };
-
 export default ImportEncryptionKeyView;
