@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import ACT_TYPE from '../ACT_TYPE';
 import menusConfig from '../../configs/menusConfig';
 import SelectEncryptionKey from './SelectEncryptionKey';
@@ -8,19 +7,32 @@ import { encryptData, decryptData, appdata } from '../../store';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import TextInputField from '../../components/input/TextInputField';
+import { styles } from './styles';
 
+/*****************Init Data******Begin*********/
 const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
-  const globalInputdata = initData.form.fields.map(f => ({ ...f, value: '' }));
+  const globalInputdata = initData.form.fields.map((f) => {
+    return { ...f, value: '' };
+  });
+
   let encryptionKeyList = appdata.getEncryptionKeyList();
+
   let selectedEncryptionKeyItem = null;
-  if (initData.encryptionKey && encryptionKeyList?.length) {
-    let matchedKeyItems = encryptionKeyList.filter(ekey => ekey.name === initData.encryptionKey);
-    selectedEncryptionKeyItem = matchedKeyItems.length ? matchedKeyItems[0] : null;
+  if (initData.encryptionKey && encryptionKeyList && encryptionKeyList.length) {
+    let matchedKeyItems = encryptionKeyList.filter(
+      (ekey) => ekey.name === initData.encryptionKey
+    );
+    selectedEncryptionKeyItem = matchedKeyItems.length
+      ? matchedKeyItems[0]
+      : null;
   }
   if (!selectedEncryptionKeyItem) {
     let activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-    selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
+    selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(
+      activeEncryptionKey
+    );
   }
+
   return {
     initData,
     globalInputdata,
@@ -33,39 +45,68 @@ const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
 };
 
 export const initDataActionForEncryption = (initData) =>
-  initDataActionForEncryptionAndDecryption(initData, ACT_TYPE.ENCRYPT_SELECT_KEY);
+  initDataActionForEncryptionAndDecryption(
+    initData,
+    ACT_TYPE.ENCRYPT_SELECT_KEY
+  );
 
 export const initDataActionForDecryption = (initData) =>
-  initDataActionForEncryptionAndDecryption(initData, ACT_TYPE.DECRYPT_SELECT_KEY);
+  initDataActionForEncryptionAndDecryption(
+    initData,
+    ACT_TYPE.DECRYPT_SELECT_KEY
+  );
+
+/****Init Data *********End*/
+
+/*****Utility functions**********Begin********/
 
 const buildDisplayField = (field, value) => {
   if (value && value.length > 255) {
-    return { ...field, value: `${value.slice(0, 255)}...` };
+    return { ...field, value: value.slice(0, 255) + '...' };
+  } else {
+    return { ...field, value };
   }
-  return { ...field, value };
 };
 
 const encryptField = (field, encryptionKeyItem) => {
   if (field.type === 'encrypt' && field.value) {
     const encryptedValue = encryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, encryptedValue);
+  } else {
+    return field;
   }
-  return field;
 };
 
 const decryptField = (field, encryptionKeyItem) => {
   if (field.type === 'decrypt' && field.value) {
     const decryptedValue = decryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, decryptedValue);
+  } else {
+    return field;
   }
-  return field;
+};
+
+const getMapItemKey = (item, index) => {
+  if (item.id) {
+    return item.id;
+  } else if (item.label) {
+    return index + '_' + item.label;
+  } else if (item.value) {
+    return index + '_' + item.value;
+  } else {
+    return index;
+  }
 };
 
 const sendEncryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
   action.initData.form.fields.forEach((f, index) => {
     if (f.type === 'encrypt' && f.value) {
-      const encryptedContent = encryptData(f.value, action.selectedEncryptionKeyItem);
-      sendFieldToDevice({ field: { ...f, value: encryptedContent }, index });
+      const encryptedContent = encryptData(
+        f.value,
+        action.selectedEncryptionKeyItem
+      );
+      const field = { ...f, value: encryptedContent };
+      sendFieldToDevice({ field, index });
     }
   });
 };
@@ -73,22 +114,29 @@ const sendEncryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
 const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
   action.initData.form.fields.forEach((f, index) => {
     if (f.type === 'decrypt' && f.value) {
+      let decryptedContent = null;
       try {
-        const decryptedContent = decryptData(f.value, action.selectedEncryptionKeyItem);
-        sendFieldToDevice({ field: { ...f, value: decryptedContent }, index });
+        decryptedContent = decryptData(
+          f.value,
+          action.selectedEncryptionKeyItem
+        );
       } catch (error) {
-        console.warn(`Failed to decrypt content: ${JSON.stringify(f)}`);
+        console.warn(
+          error + ' failed to decrypt content: ' + JSON.stringify(f)
+        );
       }
+      const field = { ...f, value: decryptedContent };
+      sendFieldToDevice({ field, index });
     }
   });
 };
 
-
+/*****Utility functions**********End*********/
 
 /**********Transition Functions*********Begin*********/
-const toEncryptSendResult = ({action, setAction}) => {
+const toEncryptSendResult = ({ action, setAction }) => {
   try {
-    const globalInputdata = action.initData.form.fields.map(f =>
+    const globalInputdata = action.initData.form.fields.map((f) =>
       encryptField(f, action.selectedEncryptionKeyItem)
     );
     setAction({
@@ -96,182 +144,149 @@ const toEncryptSendResult = ({action, setAction}) => {
       globalInputdata,
       showContent: false,
       actionType: ACT_TYPE.ENCRYPT_SEND_RESULT,
-      errorMessage: null
+      errorMessage: null,
     });
   } catch (e) {
-    if (e) {
-      console.log(e + ':' + e.stack);
-    }
+    console.error(e);
     setAction({
       ...action,
-      errorMessage: 'failed to encrypt/decrypt:' + e
+      errorMessage: 'Failed to encrypt/decrypt: ' + e.message,
     });
   }
 };
 
-
-const toDecryptSendResult = ({action, setAction}) => {
+const toDecryptSendResult = ({ action, setAction }) => {
   try {
-    console.log('*********toDecryptSendResult****');
-    const globalInputdata = action.initData.form.fields.map(f =>
+    const globalInputdata = action.initData.form.fields.map((f) =>
       decryptField(f, action.selectedEncryptionKeyItem)
-    );
-    console.log(
-      '-----------decrypted globalInputdata:' + JSON.stringify(globalInputdata)
     );
     setAction({
       ...action,
       globalInputdata,
       showContent: false,
       actionType: ACT_TYPE.DECRYPT_SEND_RESULT,
-      errorMessage: null
+      errorMessage: null,
     });
   } catch (e) {
-    if (e) {
-      console.log(e + ':' + e.stack);
-    }
+    console.error(e);
     setAction({
       ...action,
-      errorMessage: 'failed to encrypt/decrypt:' + e
+      errorMessage: 'Failed to encrypt/decrypt: ' + e.message,
     });
   }
 };
 
-
-
-
 /**********Transition Functions*********End*********/
-
-
-
-
-
-
-
-
 
 /*********************Build Menu Items*****Begin**********/
 
-
-const buildCancelMenu = onDisconnect => {
+const buildCancelMenu = (onDisconnect) => {
   return {
     menu: menusConfig.disconnect.menu,
-    onPress: onDisconnect
+    onClick: onDisconnect,
   };
 };
-const buildShowHideMenu = ({action, setAction, onShowContent}) => {
+
+const buildShowHideMenu = ({ action, setAction, onShowContent }) => {
   if (action.showContent) {
     return {
       menu: menusConfig.hideSecret.menu,
-      onPress: () =>
-        setAction({...action, showContent: false, errorMessage: null})
+      onClick: () =>
+        setAction({ ...action, showContent: false, errorMessage: null }),
     };
   }
   return {
     menu: menusConfig.showSecret.menu,
-    onPress: onShowContent
+    onClick: onShowContent,
   };
 };
 
-const buildShowHideMenuForGeneric = ({action, setAction}) => {
+const buildShowHideMenuForGeneric = ({ action, setAction }) => {
   const onShowContent = () =>
-    setAction({...action, showContent: true, errorMessage: null});
-  return buildShowHideMenu({action, setAction, onShowContent});
+    setAction({ ...action, showContent: true, errorMessage: null });
+  return buildShowHideMenu({ action, setAction, onShowContent });
 };
 
-const buldShowHideMenuForSelectKey = ({action, setAction}) => {
+const buldShowHideMenuForSelectKey = ({ action, setAction }) => {
   const onShowContent = () => {
-    let globalInputdata = action.globalInputdata;
-    globalInputdata = action.initData.form.fields.map(f =>
+    let globalInputdata = action.initData.form.fields.map((f) =>
       buildDisplayField(f, f.value)
     );
     setAction({
       ...action,
       globalInputdata,
       showContent: true,
-      errorMessage: null
+      errorMessage: null,
     });
   };
-  return buildShowHideMenu({action, setAction, onShowContent});
+  return buildShowHideMenu({ action, setAction, onShowContent });
 };
 
-
-const buildEncryptMenu = ({action, setAction}) => {
+const buildEncryptMenu = ({ action, setAction }) => {
   return {
     menu: menusConfig.encrypt.menu,
-    onPress: () => toEncryptSendResult({action, setAction})
+    onClick: () => toEncryptSendResult({ action, setAction }),
   };
 };
-const buildDecryptMenu = ({action, setAction}) => {
+
+const buildDecryptMenu = ({ action, setAction }) => {
   return {
     menu: menusConfig.decrypt.menu,
-    onPress: () => toDecryptSendResult({action, setAction})
+    onClick: () => toDecryptSendResult({ action, setAction }),
   };
 };
 
-const buildSendDecryptedResultMenu=({action, setAction,sendFieldToDevice,onFinish})=>{      
+const buildSendDecryptedResultMenu = ({
+  action,
+  setAction,
+  sendFieldToDevice,
+  onFinish,
+}) => {
   return {
     menu: menusConfig.send.menu,
-    onPress:() => {
-        sendDecryptedFieldsToDevice({action,sendFieldToDevice});        
-        onFinish(action);
-    }
+    onClick: () => {
+      sendDecryptedFieldsToDevice({ action, sendFieldToDevice });
+      onFinish(action);
+    },
   };
 };
-const buildSendEncryptedResultMenu = ({action, setAction,sendFieldToDevice,onFinish})=>{      
+
+const buildSendEncryptedResultMenu = ({
+  action,
+  setAction,
+  sendFieldToDevice,
+  onFinish,
+}) => {
   return {
     menu: menusConfig.send.menu,
-    onPress:() => {
-        sendEncryptedFieldsToDevice({action,sendFieldToDevice});        
-        onFinish(action);
-    }
+    onClick: () => {
+      sendEncryptedFieldsToDevice({ action, sendFieldToDevice });
+      onFinish(action);
+    },
   };
 };
+
 /*********************Build Menu Items*****End**********/
-
 
 /**************Main Renders *******Begin*****/
 
-
-export const renderEncryptSelectKey = ({ action, setAction, onDisconnect }) => {
-  const menuItems = [
-    { menu: menusConfig.disconnect.menu, onPress: onDisconnect },
-    {
-      menu: action.showContent ? menusConfig.hideSecret.menu : menusConfig.showSecret.menu,
-      onPress: () => setAction({ ...action, showContent: !action.showContent }),
-    },
-    { menu: menusConfig.encrypt.menu, onPress: () => toEncryptSendResult({ action, setAction }) },
-  ];
-
-  return renderSelectKey({
-    action,
-    setAction,
-    fieldType: 'encrypt',
-    menuItems,
-    title: 'Data Encryption',
-    helpOnContent: '1. Data received for encryption:',
-    helpOnSelectKey: '2. Encryption key to use:',
-    helpOnContinue: "3. Press the 'Encrypt' button to encrypt.",
-  });
-};
-
-export const renderDecryptSelectKey = ({
+export const renderEncryptSelectKey = ({
   action,
   setAction,
-  onDisconnect  
+  onDisconnect,
 }) => {
   const menuItems = [
     buildCancelMenu(onDisconnect),
-    buldShowHideMenuForSelectKey({action, setAction}),
-    buildDecryptMenu({action, setAction})
+    buldShowHideMenuForSelectKey({ action, setAction }),
+    buildEncryptMenu({ action, setAction }),
   ];
 
-  const fieldType = 'decrypt';
-  const title = 'Data Decryption';
-  const helpOnContent = '1. Data received for decryption:';
-  const helpOnSelectKey = '2. Encryption key to use';
-  
-  const helpOnContinue = "3. Press the 'Decrypt' button to decrypt.";
+  const fieldType = 'encrypt';
+  const title = 'Data Encryption';
+  const helpOnContent = '1. Data received for encryption:';
+  const helpOnSelectKey = '2. Encryption key to use:';
+  const helpOnContinue = "3. Press the 'Encrypt' button to encrypt.";
+
   return renderSelectKey({
     action,
     setAction,
@@ -280,7 +295,36 @@ export const renderDecryptSelectKey = ({
     title,
     helpOnSelectKey,
     helpOnContent,
-    helpOnContinue
+    helpOnContinue,
+  });
+};
+
+export const renderDecryptSelectKey = ({
+  action,
+  setAction,
+  onDisconnect,
+}) => {
+  const menuItems = [
+    buildCancelMenu(onDisconnect),
+    buldShowHideMenuForSelectKey({ action, setAction }),
+    buildDecryptMenu({ action, setAction }),
+  ];
+
+  const fieldType = 'decrypt';
+  const title = 'Data Decryption';
+  const helpOnContent = '1. Data received for decryption:';
+  const helpOnSelectKey = '2. Encryption key to use';
+  const helpOnContinue = "3. Press the 'Decrypt' button to decrypt.";
+
+  return renderSelectKey({
+    action,
+    setAction,
+    fieldType,
+    menuItems,
+    title,
+    helpOnSelectKey,
+    helpOnContent,
+    helpOnContinue,
   });
 };
 
@@ -289,12 +333,17 @@ export const renderEncryptSendResult = ({
   setAction,
   onDisconnect,
   sendFieldToDevice,
-  onFinish
+  onFinish,
 }) => {
   const menuItems = [
     buildCancelMenu(onDisconnect),
-    buildShowHideMenuForGeneric({action, setAction}),
-    buildSendEncryptedResultMenu({action, setAction,sendFieldToDevice,onFinish})
+    buildShowHideMenuForGeneric({ action, setAction }),
+    buildSendEncryptedResultMenu({
+      action,
+      setAction,
+      sendFieldToDevice,
+      onFinish,
+    }),
   ];
   const fieldType = 'encrypt';
   const title = 'Data Encryption';
@@ -310,21 +359,26 @@ export const renderEncryptSendResult = ({
     title,
     formTitle,
     helpOnContent,
-    helpOnContinue
+    helpOnContinue,
   });
 };
+
 export const renderDecryptSendResult = ({
   action,
   setAction,
   onDisconnect,
   sendFieldToDevice,
-  onFinish
+  onFinish,
 }) => {
-  
   const menuItems = [
     buildCancelMenu(onDisconnect),
-    buildShowHideMenuForGeneric({action, setAction}),
-    buildSendDecryptedResultMenu({action, setAction,sendFieldToDevice,onFinish})
+    buildShowHideMenuForGeneric({ action, setAction }),
+    buildSendDecryptedResultMenu({
+      action,
+      setAction,
+      sendFieldToDevice,
+      onFinish,
+    }),
   ];
   const fieldType = 'decrypt';
   const title = 'Data Decryption';
@@ -340,10 +394,13 @@ export const renderDecryptSendResult = ({
     title,
     formTitle,
     helpOnContent,
-    helpOnContinue
+    helpOnContinue,
   });
 };
 
+/**************Main Renders *******End*****/
+
+/*********************Render Utils***************Begin*****/
 
 const renderSelectKey = ({
   action,
@@ -356,48 +413,38 @@ const renderSelectKey = ({
   helpOnContinue,
 }) => {
   const onEncryptionKeySelected = (selectedEncryptionKeyItem) => {
-    setAction({ ...action, selectedEncryptionKeyItem });
+    setAction({ ...action, selectedEncryptionKeyItem, errorMessage: null });
   };
   return (
-    <EditorWithTabMenu title={title} menuItems={menuItems}>
-      <Content>
+    <EditorWithTabMenu
+      title={title}
+      menuItems={menuItems}
+      selected={menusConfig.encryptedQrCode.menu}
+    >
+      <div style={styles.content}>
         <DisplayBlockText content={helpOnContent} />
         {action.globalInputdata.map((dataitem, index) => (
-          <RenderAField key={index} dataitem={dataitem} showContent={action.showContent} fieldType={fieldType} />
+          <RenderAField
+            key={getMapItemKey(dataitem, index)}
+            dataitem={dataitem}
+            showContent={action.showContent}
+            fieldType={fieldType}
+          />
         ))}
-      </Content>
-      <Content>
+      </div>
+      <div style={styles.content}>
         <DisplayBlockText content={helpOnSelectKey} />
         <SelectEncryptionKey
           onEncryptionKeySelected={onEncryptionKeySelected}
           encryptionKeyList={action.encryptionKeyList}
           selectedEncryptionKeyItem={action.selectedEncryptionKeyItem}
         />
-      </Content>
+      </div>
       <DisplayBlockText content={helpOnContinue} />
       {renderErrorMessage(action.errorMessage)}
     </EditorWithTabMenu>
   );
 };
-
-const RenderAField = ({ dataitem, showContent, fieldType }) => {
-  if (dataitem.type !== fieldType) return null;
-  const value = showContent ? dataitem.value || '' : '************************';
-  return (
-    <InputContainer>
-      <TextInputField value={value} placeholder={dataitem.label} dark editable={false} secureTextEntry={!showContent} />
-    </InputContainer>
-  );
-};
-
-const renderErrorMessage = (errorMessage) =>
-  errorMessage ? (
-    <ErrorContainer>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
-    </ErrorContainer>
-  ) : null;
-
-
 
 const renderSendingResult = ({
   action,
@@ -409,37 +456,62 @@ const renderSendingResult = ({
   helpOnContinue,
 }) => {
   return (
-    <EditorWithTabMenu title={title} menuItems={menuItems}>
-      <Content>
-        <FormTitle>{formTitle}</FormTitle>
+    <EditorWithTabMenu
+      title={title}
+      menuItems={menuItems}
+      selected={menusConfig.encryptedQrCode.menu}
+    >
+      <div style={styles.content}>
+        <div style={styles.formTitle}>
+          <span style={styles.formtitleText}>{formTitle}</span>
+        </div>
         <DisplayBlockText content={helpOnContent} />
         {action.globalInputdata.map((dataitem, index) => (
-          <RenderAField key={index} dataitem={dataitem} showContent={action.showContent} fieldType={fieldType} />
+          <RenderAField
+            key={getMapItemKey(dataitem, index)}
+            dataitem={dataitem}
+            showContent={action.showContent}
+            fieldType={fieldType}
+          />
         ))}
-      </Content>
+      </div>
       <DisplayBlockText content={helpOnContinue} />
     </EditorWithTabMenu>
   );
 };
 
-// Styled Components
-const Content = styled.div`
-  padding: 20px;
-`;
+const renderErrorMessage = (errorMessage) => {
+  if (errorMessage) {
+    return (
+      <div style={styles.inputContainer}>
+        <span style={styles.errorMessage}>{errorMessage}</span>
+      </div>
+    );
+  } else {
+    return null;
+  }
+};
 
-const InputContainer = styled.div`
-  margin-bottom: 20px;
-`;
+const RenderAField = ({ dataitem, showContent, fieldType }) => {
+  if (dataitem.type !== fieldType) {
+    return null;
+  }
 
-const ErrorContainer = styled.div`
-  padding: 10px;
-  color: red;
-`;
+  let value = '************************';
+  if (showContent) {
+    value = dataitem.value ? dataitem.value : '';
+  }
+  return (
+    <div style={styles.inputContainer}>
+      <TextInputField
+        value={value}
+        placeholder={dataitem.label}
+        dark={true}
+        editable={false}
+        secureTextEntry={!showContent}
+      />
+    </div>
+  );
+};
 
-const ErrorMessage = styled.p`
-  color: red;
-`;
-
-const FormTitle = styled.h3`
-  margin-bottom: 15px;
-`;
+/*********************Render Utils***************End*****/

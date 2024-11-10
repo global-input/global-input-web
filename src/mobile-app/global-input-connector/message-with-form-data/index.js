@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { styles } from './styles';
 import { formDataUtil } from '../../store';
 import images from '../../configs/images';
 import menusConfig from '../../configs/menusConfig';
@@ -10,19 +10,19 @@ import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 const FormLabel = ({ formData }) => {
   if (formData.label) {
     return (
-      <FormEditField>
-        <LabelIcon src={images.folder} alt="Folder Icon" />
-        <ItemRecord>
-          <ValueText>{formData.label}</ValueText>
-        </ItemRecord>
-      </FormEditField>
+      <div style={styles.formEditField}>
+        <img src={images.folder} style={styles.labelIcon} alt="" />
+        <div style={styles.itemRecord}>
+          <span style={styles.valueText}>{formData.label}</span>
+        </div>
+      </div>
     );
   } else {
     return null;
   }
 };
 
-const MessageWithFormData = ({ formData, menuItems, title, content1, content2 }) => {
+const MyComponent = ({ formData, menuItems, title, content1, content2 }) => {
   const [action, setAction] = useState({ show: false, modal: null });
 
   useEffect(() => {
@@ -43,50 +43,22 @@ const MessageWithFormData = ({ formData, menuItems, title, content1, content2 })
 
   return (
     <ViewWithTabMenu menuItems={[...menuItems, ...appmenus]} title={title}>
-      <Content>
+      <div style={styles.content}>
         <DisplayBlockText content={content1} />
-        <FormEditField>
-          <LabelIcon src={images.idIcon} alt="ID Icon" />
-          <ItemRecord>
-            <ValueText>{formid}</ValueText>
-          </ItemRecord>
-        </FormEditField>
+        <div style={styles.formEditField}>
+          <img src={images.idIcon} style={styles.labelIcon} alt="" />
+          <div style={styles.itemRecord}>
+            <span style={styles.valueText}>{formid}</span>
+          </div>
+        </div>
         <FormLabel formData={formData} />
         {renderFormFields({ action, formData })}
-      </Content>
-      <Content>
+      </div>
+      <div style={styles.content}>
         <DisplayBlockText content={content2} />
-      </Content>
+      </div>
     </ViewWithTabMenu>
   );
 };
 
-export default MessageWithFormData;
-
-// Styled Components
-const FormEditField = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const LabelIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-`;
-
-const ItemRecord = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ValueText = styled.p`
-  font-size: 16px;
-  color: #333;
-  margin: 0;
-`;
-
-const Content = styled.div`
-  padding: 20px;
-`;
+export default MyComponent;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { styles } from './styles';
 import images from '../../configs/images';
 import {appdata} from '../../store';
 
 const populateItemsInAction = (action, encryptionKeyList) => {
-  if (!encryptionKeyList) return;
-  
+  if (!encryptionKeyList) {
+    return;
+  }
   for (let counter = 0; counter < action.numberRecordsInBatch; counter++) {
     if (action.startIndex >= encryptionKeyList.length) {
       action.endReached = true;
@@ -28,106 +29,92 @@ const buildActionData = (encryptionKeyList) => {
     numberRecordsInBatch: 50,
   };
   populateItemsInAction(action, encryptionKeyList);
+
   return action;
 };
 
-const SelectEncryptionKey = ({ onEncryptionKeySelected, encryptionKeyList, selectedEncryptionKeyItem }) => {
-  const [action, setAction] = useState(() => buildActionData(encryptionKeyList));
+const SelectEncryptionKey = ({
+  onEncryptionKeySelected,
+  encryptionKeyList,
+  selectedEncryptionKeyItem,
+}) => {
+  const [action, setAction] = useState(() =>
+    buildActionData(encryptionKeyList)
+  );
 
-  const loadNextBatchOfItems = (currentAction) => {
-    populateItemsInAction(currentAction, encryptionKeyList);
-    setAction({ ...currentAction });
+  const loadNextBatchOfItems = () => {
+    populateItemsInAction(action, encryptionKeyList);
+    setAction({ ...action });
   };
 
-  const onEndReached = () => {
-    if (!action.endReached) {
-      loadNextBatchOfItems(action);
+  const onScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) {
+      if (!action.endReached) {
+        loadNextBatchOfItems();
+      }
     }
   };
 
   const renderActiveIcon = (encryptionKeyItem) => {
     if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
-      return <Icon src={images.activeIcon} alt="Active Icon" />;
+      return (
+        <img
+          src={images.activeIcon}
+          style={styles.itemIcon}
+          alt="Active Key Icon"
+        />
+      );
+    } else {
+      return null;
     }
-    return null;
   };
 
   const renderSelectIcon = (encryptionKeyItem) => {
-    const icon = encryptionKeyItem === selectedEncryptionKeyItem ? images.device.radio.checked : images.device.radio.unchecked;
-    return <Icon src={icon} alt="Select Icon" />;
+    let icon = images.device.radio.unchecked;
+    if (encryptionKeyItem === selectedEncryptionKeyItem) {
+      icon = images.device.radio.checked;
+    }
+    return <img src={icon} style={styles.itemIcon} alt="Select Icon" />;
   };
 
-  const renderItemListItem = ({ encryptionKeyItem }) => (
-    <ItemContainer onClick={() => onEncryptionKeySelected(encryptionKeyItem)}>
-      <Row>
-        <ListContainer>
-          <ListValue>
-            {renderSelectIcon(encryptionKeyItem)}
-            <Icon src={images.key} alt="Key Icon" />
-            <KeyText>{encryptionKeyItem.name}</KeyText>
-          </ListValue>
-          {renderActiveIcon(encryptionKeyItem)}
-        </ListContainer>
-      </Row>
-    </ItemContainer>
-  );
+  const renderItemListItem = (item) => {
+    return (
+      <div
+        key={item.key}
+        style={styles.itemRecord}
+        onClick={() => {
+          onEncryptionKeySelected(item.encryptionKeyItem);
+        }}
+      >
+        <div style={styles.itemRow}>
+          <div style={styles.listContainer}>
+            <div style={styles.listvalue}>
+              {renderSelectIcon(item.encryptionKeyItem)}
+              <img
+                src={images.key}
+                style={styles.itemIcon}
+                alt="Key Icon"
+              />
+              <span style={styles.keyText}>
+                {item.encryptionKeyItem.name}
+              </span>
+            </div>
+            {renderActiveIcon(item.encryptionKeyItem)}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <ItemListContainer>
-      {action.items.map((item) => renderItemListItem({ encryptionKeyItem: item.encryptionKeyItem }))}
-      <LoadMoreButton onClick={onEndReached}>Load More</LoadMoreButton>
-    </ItemListContainer>
+    <div
+      style={{ overflowY: 'auto', maxHeight: '400px' }} // Adjust as needed
+      onScroll={onScroll}
+    >
+      {action.items.map((item) => renderItemListItem(item))}
+    </div>
   );
 };
 
 export default SelectEncryptionKey;
-
-// Styled Components
-const ItemListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ItemContainer = styled.div`
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-`;
-
-const Row = styled.div`
-  display: flex;
-`;
-
-const ListContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const ListValue = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-`;
-
-const KeyText = styled.p`
-  font-size: 16px;
-  color: #333;
-`;
-
-const LoadMoreButton = styled.button`
-  padding: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  &:hover {
-    background-color: #e0e0e0;
-  }
-`;
