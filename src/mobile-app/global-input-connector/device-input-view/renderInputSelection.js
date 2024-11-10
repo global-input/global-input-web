@@ -1,26 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
+
 import GItemSelector from '../../ui/input/GItemSelector';
 
-
+import {styles} from "../styles";
 const RenderInputSelection = ({ dataitem, onFieldChanged }) => {
     const selectedItem = dataitem.items?.find(item => item.value === dataitem.value) || null;
 
     return (
-        <InputContainer>
+        <div style={styles.inputContainer}>
             <GItemSelector
                 selectedItem={selectedItem}
                 items={dataitem.items}
                 label={dataitem.label}
                 onValueChange={(value) => onFieldChanged(value)}
             />
-        </InputContainer>
+        </div>
     );
 };
 
 export default RenderInputSelection;
 
-// Styled Components
-const InputContainer = styled.div`
-    padding: 10px;
-`;

@@ -1,58 +1,76 @@
 import React from 'react';
-import styled from 'styled-components';
+import {styles} from "../styles";
 import TextInputField from '../../components/input/TextInputField';
 import menusConfig from '../../configs/menusConfig';
 
-const RenderFieldSelection = ({ dataitem, fieldSelection, onFieldSelected }) => {
-  const isSelected = fieldSelection && fieldSelection.dataitem === dataitem;
-  const icon = isSelected ? menusConfig.checkbox.options[1].image : menusConfig.checkbox.options[0].image;
-
+const renderFieldSelection = ({ dataitem, fieldSelection, onFieldSelected }) => {
+  let icon = menusConfig.checkbox.options[0].image;
+  let checked = false;
+  if (fieldSelection && fieldSelection.dataitem === dataitem) {
+    icon = menusConfig.checkbox.options[1].image;
+    checked = true;
+  }
   return (
-    <SelectionContainer onClick={() => onFieldSelected(isSelected ? null : dataitem)}>
-      <Icon src={icon} alt={isSelected ? 'checked' : 'unchecked'} />
-    </SelectionContainer>
+    <button
+      onClick={() => {
+        if (checked) {
+          onFieldSelected(null);
+        } else {
+          onFieldSelected(dataitem);
+        }
+      }}
+      style={{ border: 'none', background: 'none', padding: 0, margin: 0 }}
+    >
+      <img src={icon} style={styles.itemIcon} alt="" />
+    </button>
   );
 };
 
-const RenderTextField = ({ dataitem, fieldSelection, showHideSecret, onFieldChanged, onFieldSelected }) => {
-  const value = dataitem.value || '';
-  const isSecure = dataitem.type === 'secret' && showHideSecret && !showHideSecret.show;
-  const numberOfLines = dataitem.nLines || 1;
+const TextInputComponent = ({
+  dataitem,
+  fieldSelection,
+  showHideSecret,
+  onFieldChanged,
+  onFieldSelected,
+}) => {
+  const value = dataitem.value ? dataitem.value : '';
+  const secureTextEntry =
+    dataitem && dataitem.type === 'secret' && showHideSecret && !showHideSecret.show;
+  const nLines = dataitem.nLines ? dataitem.nLines : 1;
 
-  return (
-    <InputContainer>
+  if (nLines > 1) {
+    return (
       <TextInputField
         value={value}
-        placeholder={dataitem.label}
-        dark
-        secureTextEntry={isSecure}
-        multiline={numberOfLines > 1}
-        numberOfLines={numberOfLines}
+        label={dataitem.label}
+        dark={true}
+        secureTextEntry={secureTextEntry}
+        multiline={true}
+        numberOfLines={nLines}
         onFocus={() => onFieldSelected(null)}
-        onChangeTextValue={onFieldChanged}
-        autoCapitalize="none"
+        onChangeTextValue={(data) => onFieldChanged(data)}
+        placeholder={dataitem.label}
       >
-        <RenderFieldSelection dataitem={dataitem} fieldSelection={fieldSelection} onFieldSelected={onFieldSelected} />
+        {renderFieldSelection({ dataitem, fieldSelection, onFieldSelected })}
       </TextInputField>
-    </InputContainer>
-  );
+    );
+  } else {
+    return (
+      <div style={styles.inputContainer}>
+        <TextInputField
+          value={value}
+          placeholder={dataitem.label}
+          dark={true}
+          secureTextEntry={secureTextEntry}
+          onFocus={() => onFieldSelected(null)}
+          onChangeTextValue={(data) => onFieldChanged(data)}
+          autoCapitalize={'none'}
+        >
+          {renderFieldSelection({ dataitem, fieldSelection, onFieldSelected })}
+        </TextInputField>
+      </div>
+    );
+  }
 };
 
-export default RenderTextField;
-
-// Styled Components
-const InputContainer = styled.div`
-  margin: 10px 0;
-`;
-
-const SelectionContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 8px;
-`;
-
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-`;
+export default TextInputComponent;

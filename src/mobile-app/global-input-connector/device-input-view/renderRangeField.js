@@ -1,102 +1,68 @@
+// SliderComponent.jsx
 import React from 'react';
-import styled from 'styled-components';
+import { styles } from '../styles';
 
-const RenderRangeLabel = ({ label }) => {
-    if (label) {
-        return (
-            <LabelContainer>
-                <Label>{label}</Label>
-            </LabelContainer>
-        );
-    }
-    return null;
-};
-
-const RenderRangeField = ({ dataitem, key, onFieldChanged }) => {
-    let { label = "", value, minimumValue = 0, maximumValue = 100, step = 1 } = dataitem;
-
-    minimumValue = parseFloat(minimumValue);
-    maximumValue = parseFloat(maximumValue);
-    step = parseInt(step);
-
-    let sliderValue = value ?? 0;
-    let sliderLabels = { value, minimumValue, maximumValue };
-
-    if (typeof value === 'object') {
-        sliderLabels = value.labels || sliderLabels;
-        sliderValue = value.value ?? 0;
-    }
-
+const renderRangeLabel = (dataitem) => {
+  if (dataitem.label) {
     return (
-        <InputContainer key={key}>
-            <FieldContainer>
-                <RenderRangeLabel label={label} />
-                <SliderContainer>
-                    <Slider
-                        type="range"
-                        min={minimumValue}
-                        max={maximumValue}
-                        step={step}
-                        value={sliderValue}
-                        onChange={(e) => onFieldChanged(parseFloat(e.target.value))}
-                    />
-                </SliderContainer>
-                <SliderRangeValues>
-                    <RangeValue>{sliderLabels.minimumValue}</RangeValue>
-                    <RangeValue>{sliderLabels.value}</RangeValue>
-                    <RangeValue>{sliderLabels.maximumValue}</RangeValue>
-                </SliderRangeValues>
-            </FieldContainer>
-        </InputContainer>
+      <div style={styles.labelContainer}>
+        <span style={styles.label}>{dataitem.label}</span>
+      </div>
     );
+  } else {
+    return null;
+  }
 };
 
-export default RenderRangeField;
+const SliderComponent = ({ dataitem, onFieldChanged }) => {
+  let { label, value, minimumValue, maximumValue, step } = dataitem;
 
-// Styled Components
-const InputContainer = styled.div`
-    padding: 10px;
-`;
+  label = label || '';
 
-const FieldContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+  minimumValue = minimumValue !== undefined ? parseFloat(minimumValue) : 0;
+  maximumValue = maximumValue !== undefined ? parseFloat(maximumValue) : 100;
+  step = step !== undefined ? parseFloat(step) : 1;
 
-const LabelContainer = styled.div`
-    margin-bottom: 5px;
-`;
+  let sliderValue = value;
+  let sliderLabels = {
+    value,
+    minimumValue,
+    maximumValue,
+  };
 
-const Label = styled.span`
-    font-weight: bold;
-    font-size: 14px;
-`;
-
-const SliderContainer = styled.div`
-    margin: 10px 0;
-`;
-
-const Slider = styled.input`
-    width: 100%;
-    appearance: none;
-    height: 6px;
-    border-radius: 5px;
-    background: #ddd;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-    &:hover {
-        opacity: 1;
+  if (typeof value === 'object') {
+    if (value.labels) {
+      sliderLabels = value.labels;
     }
-`;
+    sliderValue = value.value;
+  }
 
-const SliderRangeValues = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
-`;
+  sliderValue = sliderValue !== undefined ? parseFloat(sliderValue) : 0;
 
-const RangeValue = styled.span`
-    font-size: 12px;
-    color: #666;
-`;
+  return (
+    <div style={styles.inputContainer}>
+      <div style={styles.fieldContainer}>
+        {renderRangeLabel(dataitem)}
+        <div style={styles.sliderContainer}>
+          <input
+            type="range"
+            value={sliderValue}
+            min={minimumValue}
+            max={maximumValue}
+            step={step}
+            onChange={(event) => {
+              onFieldChanged(event.target.value);
+            }}
+          />
+        </div>
+        <div style={styles.sliderRangeValues}>
+          <span style={styles.rangeValue}>{sliderLabels.minimumValue}</span>
+          <span style={styles.rangeValue}>{sliderLabels.value}</span>
+          <span style={styles.rangeValue}>{sliderLabels.maximumValue}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SliderComponent;
