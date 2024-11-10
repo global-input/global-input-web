@@ -9,11 +9,6 @@ import TextInputField from '../components/input/TextInputField';
 import EditorWithTabMenu from '../components/menu/EditorWithTabMenu';
 import { appdata } from '../store';
 
-interface PasswordDecryptProps {
-  codedata: string;
-  onEncryptionKeyDecrypted: (decryptedKey: string) => void;
-  onBack: () => void;
-}
 
 const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const [action, setAction] = useState({
