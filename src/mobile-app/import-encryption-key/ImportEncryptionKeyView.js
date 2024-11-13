@@ -42,6 +42,7 @@ const ImportEncryptionKeyView= ({ codedata, decryptedEncryptionKey=null, toCamer
 
   const renderDecryptedView = () => {
     const menuItems = [{ menu: menusConfig.back.menu, onPress: toCameraView }];
+    
     return (
       <ManageKeysView
         menuItems={menuItems}
@@ -49,6 +50,7 @@ const ImportEncryptionKeyView= ({ codedata, decryptedEncryptionKey=null, toCamer
       />
     );
   };
+  
 
   switch (action.actionType) {
     case ACT_TYPE.PASSWORD:

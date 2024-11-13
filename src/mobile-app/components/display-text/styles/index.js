@@ -1,5 +1,4 @@
 
-
 const stylesData ={
   blockTitleContainer:{
     width:"100%",
@@ -107,6 +106,6 @@ stylesData.blockContentText=Object.assign({},stylesData.contentText,{
     paddingBottom:10,
 });
 
-var styles = stylesData;
+const styles = stylesData;
 
 export {stylesData,styles};

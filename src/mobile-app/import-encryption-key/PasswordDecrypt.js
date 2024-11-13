@@ -25,16 +25,18 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const decryptWithPassword = () => {
     var { password, codedata } = action;
     if (!password) {
+      console.log('Password is missing');
       setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
     } else {
+      
       try {
         var encryptionKeyDecrypted = appdata.decryptExportedEncryptionKey(
           codedata,
           password
         );
-        if (!encryptionKeyDecrypted) {
+        if (!encryptionKeyDecrypted) {          
           setErrorMessage(manageKeysTextConfig.errorMessages.invalidPassword);
-        } else {
+        } else {          
           onEncryptionKeyDecrypted(encryptionKeyDecrypted);
         }
       } catch (error) {

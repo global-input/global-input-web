@@ -1,8 +1,17 @@
-import React, { Component, useState, useEffect } from 'react';
-import NotificationText from '../display-text/NotificationText';
-import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
+import React, { Component } from 'react';
 
-export default class CopyToClipboard extends Component {
+import IconButton from "./IconButton";
+
+import NotificationText from "../display-text/NotificationText";
+import { styles } from "./styles";
+
+
+import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
+import menusConfig  from '../../configs/menusConfig';
+
+
+
+export default class ClipboardCopyButton extends Component {
   constructor(props) {
     super(props);
     this.state = { notificationMessage: null };
@@ -44,12 +53,11 @@ export default class CopyToClipboard extends Component {
       } catch (error) {
         console.log(error);
         this.displayNotificationMessage(
-          deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
+          deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
         );
         return;
       }
     }
-
     // Copy to clipboard using the web Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
@@ -60,21 +68,21 @@ export default class CopyToClipboard extends Component {
           );
         })
         .catch((error) => {
-          console.error('Copy to clipboard failed', error);
+          console.error("Copy to clipboard failed", error);
           this.displayNotificationMessage(
-            deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
+            deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
           );
         });
     } else {
       // Fallback method for older browsers
-      const textArea = document.createElement('textarea');
+      const textArea = document.createElement("textarea");
       textArea.value = content;
-      textArea.style.position = 'fixed'; // Avoid scrolling to bottom
+      textArea.style.position = "fixed"; // Avoid scrolling to bottom
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
       try {
-        const successful = document.execCommand('copy');
+        const successful = document.execCommand("copy");
         if (successful) {
           this.displayNotificationMessage(
             deviceInputTextConfig.clipboardCopyButton.notification
@@ -85,9 +93,9 @@ export default class CopyToClipboard extends Component {
           );
         }
       } catch (error) {
-        console.error('Fallback copy to clipboard failed', error);
+        console.error("Fallback copy to clipboard failed", error);
         this.displayNotificationMessage(
-          deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
+          deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
         );
       }
       document.body.removeChild(textArea);
@@ -96,9 +104,9 @@ export default class CopyToClipboard extends Component {
 
   renderNotificationMessage() {
     if (this.state.notificationMessage) {
-      var labelStyle = '';
+      let labelStyle = "";
       if (this.props.white) {
-        labelStyle = 'light';
+        labelStyle = "light";
       }
       return (
         <NotificationText
@@ -112,15 +120,21 @@ export default class CopyToClipboard extends Component {
   }
 
   render() {
+    let image = menusConfig.clipboardCopyButton.menu.image;
+    let labelStyle = null;
+    if (this.props.white) {
+      image = menusConfig.clipboardCopy.menu.image;
+      labelStyle = "light";
+    }
     return (
-      <div
-        onClick={this.exportToClipboard}
-        style={this.props.style}
-      >
-        <div style={this.props.contentContainerStyle}>
-          {this.renderNotificationMessage()}
-          {this.props.children}
-        </div>
+      <div style={styles.clipboardButtonContainer}>
+        {this.renderNotificationMessage()}
+        <IconButton
+          image={image}
+          labelStyle={labelStyle}
+          label={menusConfig.clipboardCopy.menu.label}
+          onClick={this.exportToClipboard}
+        />
       </div>
     );
   }

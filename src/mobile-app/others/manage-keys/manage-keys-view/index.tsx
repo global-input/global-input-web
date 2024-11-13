@@ -136,6 +136,7 @@ const ManageKeysView:React.FC<ManageKeysViewProps> = ({ importDecryptedKey, menu
     );
 
     const renderContent = () => {
+        console.log("-------after manage", action);
         switch (action.type) {
             case ACT_TYPE.LIST_KEYS: return renderListItems();
             case ACT_TYPE.GENERATE_NEW_KEY: return <GenerateNewKey onBack={toListView} importNewKey={importNewKey} />;

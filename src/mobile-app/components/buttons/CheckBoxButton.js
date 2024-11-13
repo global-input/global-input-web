@@ -1,68 +1,69 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import { styles } from "./styles";
 
-const CheckBoxButton = ({ value, onChanged, display }) => {
-  const [stateValue, setStateValue] = useState(value !== undefined ? value : false);
-
-  const onPress = () => {
-    if (value === undefined) {
-      if (onChanged) {
-        onChanged(!stateValue);
-      }
-      setStateValue(!stateValue);
+export default class CheckBoxButton extends Component {
+  constructor(props) {
+    super(props);
+    if (typeof this.props.value !== 'undefined') {
+      this.state = { value: this.props.value };
     } else {
-      if (onChanged) {
-        onChanged(!value);
-      }
+      this.state = { value: false };
     }
-  };
-
-  const getCheckBoxState = () => {
-    return value !== undefined ? value : stateValue;
-  };
-
-  const renderImage = (data) => {
-    if (data.image) {
-      return <Icon src={data.image} alt="" />;
-    }
-    return null;
-  };
-
-  const renderLabel = (data) => {
-    if (data.label) {
-      return <IconText>{data.label}</IconText>;
-    }
-    return null;
-  };
-
-  let displayItems = [{ label: '' }, { label: '✓' }];
-  if (display) {
-    displayItems = display;
   }
 
-  const item = getCheckBoxState() ? displayItems[1] : displayItems[0];
+  onPress() {
+    if (typeof this.props.value === 'undefined') {
+      if (this.props.onChanged) {
+        this.props.onChanged(!this.state.value);
+      }
+      this.setState({ value: !this.state.value });
+    } else {
+      if (this.props.onChanged) {
+        this.props.onChanged(!this.props.value);
+      }
+    }
+  }
 
-  return (
-    <IconContainer onClick={onPress}>
-      {renderImage(item)}
-      {renderLabel(item)}
-    </IconContainer>
-  );
-};
+  getCheckBoxState() {
+    if (typeof this.props.value === 'undefined') {
+      return this.state.value;
+    } else {
+      return this.props.value;
+    }
+  }
 
-export default CheckBoxButton;
+  renderImage(data, index) {
+    if (data.image) {
+      return <img src={data.image} alt="" />;
+    } else {
+      return null;
+    }
+  }
 
-// Styled Components
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
+  renderLabel(data, index) {
+    if (data.label) {
+      return <span style={styles.iconText}>{data.label}</span>;
+    } else {
+      return null;
+    }
+  }
 
-const Icon = styled.img`
-  margin-right: 5px;
-`;
-
-const IconText = styled.span`
-  font-size: 16px;
-`;
+  render() {
+    var display = [{ label: "" }, { label: "✓" }];
+    if (this.props.display) {
+      display = this.props.display;
+    }
+    var item = display[0];
+    if (this.getCheckBoxState()) {
+      item = display[1];
+    }
+    return (
+      <div onClick={this.onPress.bind(this)} style={{ cursor: 'pointer' }}>
+        <div style={styles.iconcontainer}>
+          {this.renderImage(item)}
+          {this.renderLabel(item)}
+        </div>
+      </div>
+    );
+  }
+}

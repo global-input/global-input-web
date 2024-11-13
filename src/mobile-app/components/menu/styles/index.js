@@ -1,6 +1,6 @@
 // Removed import of StyleSheet and Dimensions from 'react-native'
-import DeviceDetector from './DeviceDetector';
-var deviceDector = new DeviceDetector();
+import  {deviceDector} from '../../../common-styles';
+
 
 var stylesData = {
   container: {

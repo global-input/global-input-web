@@ -11,7 +11,11 @@ export default class DisplayContent extends Component {
     if (!content) {
       return false;
     }
-    return content.length < maxLength;
+    if (content.length < maxLength) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isValidURL(url) {
@@ -33,28 +37,23 @@ export default class DisplayContent extends Component {
   }
 
   renderTextContent(content, textStyle, key) {
-    const Tag = 'p'; // You can change this to 'span' or 'div' as needed
     if (typeof key === 'undefined') {
       if (typeof content === 'object') {
-        return (
-          <Tag style={textStyle}>
-            {this.renderItem(content)}
-          </Tag>
-        );
+        return <div style={textStyle}>{this.renderItem(content)}</div>;
       } else {
-        return <Tag style={textStyle}>{content}</Tag>;
+        return <div style={textStyle}>{content}</div>;
       }
     } else if (typeof content === 'object') {
       return (
-        <Tag style={textStyle} key={key}>
+        <div style={textStyle} key={key}>
           {this.renderItem(content)}
-        </Tag>
+        </div>
       );
     } else {
       return (
-        <Tag style={textStyle} key={key}>
+        <div style={textStyle} key={key}>
           {content}
-        </Tag>
+        </div>
       );
     }
   }
@@ -62,34 +61,54 @@ export default class DisplayContent extends Component {
   renderLinkTextContent(content, url, textStyle, key) {
     if (!this.isValidURL(url)) {
       return this.renderTextContent(content, textStyle, key);
-    } else {
-      if (typeof key === 'undefined') {
-        if (typeof content === 'object') {
-          return (
-            <a href={url} style={textStyle}>
-              {this.renderItem(content)}
-            </a>
-          );
-        } else {
-          return (
-            <a href={url} style={textStyle}>
-              {content}
-            </a>
-          );
-        }
-      } else if (typeof content === 'object') {
+    } else if (typeof key === 'undefined') {
+      if (typeof content === 'object') {
         return (
-          <a href={url} style={textStyle} key={key}>
+          <div
+            style={{ ...textStyle, cursor: 'pointer' }}
+            onClick={() => {
+              window.open(url);
+            }}
+          >
             {this.renderItem(content)}
-          </a>
+          </div>
         );
       } else {
         return (
-          <a href={url} style={textStyle} key={key}>
+          <div
+            style={{ ...textStyle, cursor: 'pointer' }}
+            onClick={() => {
+              window.open(url);
+            }}
+          >
             {content}
-          </a>
+          </div>
         );
       }
+    } else if (typeof content === 'object') {
+      return (
+        <div
+          style={{ ...textStyle, cursor: 'pointer' }}
+          key={key}
+          onClick={() => {
+            window.open(url);
+          }}
+        >
+          {this.renderItem(content)}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          style={{ ...textStyle, cursor: 'pointer' }}
+          key={key}
+          onClick={() => {
+            window.open(url);
+          }}
+        >
+          {content}
+        </div>
+      );
     }
   }
 
@@ -98,7 +117,7 @@ export default class DisplayContent extends Component {
       if (typeof content === 'object') {
         return <div style={viewStyle}>{this.renderItem(content)}</div>;
       } else {
-        return <p style={viewStyle}>{content}</p>;
+        return <div style={viewStyle}>{content}</div>;
       }
     } else if (typeof content === 'object') {
       return (
@@ -108,15 +127,15 @@ export default class DisplayContent extends Component {
       );
     } else {
       return (
-        <p style={viewStyle} key={key}>
+        <div style={viewStyle} key={key}>
           {content}
-        </p>
+        </div>
       );
     }
   }
 
   renderItem(item, index) {
-    const key = this.buildKey(item, index);
+    var key = this.buildKey(item, index);
     if (typeof item === 'object') {
       if (Array.isArray(item)) {
         if (item.length > this.MAX_ARRAY_LENGTH) {
@@ -125,11 +144,15 @@ export default class DisplayContent extends Component {
         } else if (typeof key === 'undefined') {
           return item.map(this.renderItem.bind(this));
         } else {
-          return <div key={key}>{item.map(this.renderItem.bind(this))}</div>;
+          return (
+            <div key={key}>
+              {item.map(this.renderItem.bind(this))}
+            </div>
+          );
         }
       } else if (!item.type || item.type === 'text') {
         if (item.url) {
-          const textStyle = formDataUtil.getStyleFromItem({
+          var textStyle = formDataUtil.getStyleFromItem({
             item,
             styles,
             data: stylesData,
@@ -143,7 +166,7 @@ export default class DisplayContent extends Component {
             key
           );
         } else {
-          const textStyle = formDataUtil.getStyleFromItem({
+          var textStyle = formDataUtil.getStyleFromItem({
             item,
             styles,
             data: stylesData,
@@ -152,7 +175,7 @@ export default class DisplayContent extends Component {
           return this.renderTextContent(item.content, textStyle, key);
         }
       } else if (item.type === 'view') {
-        const viewStyle = formDataUtil.getStyleFromItem({
+        var viewStyle = formDataUtil.getStyleFromItem({
           item,
           styles,
           data: stylesData,
@@ -160,7 +183,7 @@ export default class DisplayContent extends Component {
         });
         return this.renderViewContent(item.content, viewStyle, key);
       } else if (item.type === 'row') {
-        const viewStyle = formDataUtil.getStyleFromItem({
+        var viewStyle = formDataUtil.getStyleFromItem({
           item,
           styles,
           data: stylesData,
@@ -168,7 +191,7 @@ export default class DisplayContent extends Component {
         });
         return this.renderViewContent(item.content, viewStyle, key);
       } else if (item.type === 'col') {
-        const viewStyle = formDataUtil.getStyleFromItem({
+        var viewStyle = formDataUtil.getStyleFromItem({
           item,
           styles,
           data: stylesData,
@@ -176,7 +199,7 @@ export default class DisplayContent extends Component {
         });
         return this.renderViewContent(item.content, viewStyle, key);
       } else if (item.type === 'paragraph') {
-        const viewStyle = formDataUtil.getStyleFromItem({
+        var viewStyle = formDataUtil.getStyleFromItem({
           item,
           styles,
           data: stylesData,
@@ -190,23 +213,6 @@ export default class DisplayContent extends Component {
       return this.renderTextContent(item, styles.contentText);
     } else {
       return this.renderTextContent(item, styles.contentText, key);
-    }
-  }
-
-  buildKey(item, index) {
-    if (typeof index === 'undefined') {
-      return index;
-    } else if (typeof item === 'object') {
-      let key = index;
-      if (item.id) {
-        key = item.id;
-      }
-      if (item.key) {
-        key = item.key;
-      }
-      return key;
-    } else {
-      return `${index}_${item}`;
     }
   }
 
@@ -229,6 +235,23 @@ export default class DisplayContent extends Component {
       return this.renderItem(this.props.content);
     } else {
       return null;
+    }
+  }
+
+  buildKey(item, index) {
+    if (typeof index === 'undefined') {
+      return index;
+    } else if (typeof item === 'object') {
+      var key = index;
+      if (item.id) {
+        key = item.id;
+      }
+      if (item.key) {
+        key = item.key;
+      }
+      return key;
+    } else {
+      return index + '_' + item;
     }
   }
 }

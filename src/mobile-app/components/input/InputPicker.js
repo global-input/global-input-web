@@ -1,44 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import { styles } from './styles';
 
 
-
-const InputPicker = ({ selectedItem, items, onValueChange }) => {
-    const selectedValue = selectedItem ? selectedItem.value : '';
-
-    if (!items) {
-        return null;
+export default class InputPicker extends Component {
+  render() {
+    let selectedValue = null;
+    if (this.props.selectedItem) {
+      selectedValue = this.props.selectedItem.value;
     }
-
-    return (
-        <SelectionFieldContainer>
-            <Picker
-                value={selectedValue}
-                onChange={(e) => onValueChange(e.target.value)}
-            >
-                {items.map((item, index) => (
-                    <option key={`${index}_${item.value}`} value={item.value}>
-                        {item.label}
-                    </option>
-                ))}
-            </Picker>
-        </SelectionFieldContainer>
-    );
-};
-
-export default InputPicker;
-
-// Styled Components
-const SelectionFieldContainer = styled.div`
-  padding: 8px;
-  margin-bottom: 16px;
-`;
-
-const Picker = styled.select`
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-`;
+    if (this.props.items) {
+      return (
+        <div style={styles.selectionFieldContainer}>
+          <select
+            style={styles.picker}
+            value={selectedValue}
+            onChange={(event) => {
+              const selected = event.target.value;
+              this.props.onValueChange(selected);
+            }}
+          >
+            {this.props.items.map((item, index) => {
+              const key = `${index}_${item.value}`;
+              return (
+                <option value={item.value} key={key}>
+                  {item.label}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+}

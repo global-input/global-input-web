@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { IScannerProps, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 
-const test_code= '/test/import_key.txt';
+// const test_code= '/test/import_key.txt';
+const test_code= '/test/connect.txt';
 
 // Mock Scanner Component
 const MockScanner: React.FC<IScannerProps> = ({ onScan }) => {
