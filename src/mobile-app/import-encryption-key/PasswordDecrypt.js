@@ -9,7 +9,6 @@ import TextInputField from '../components/input/TextInputField';
 import EditorWithTabMenu from '../components/menu/EditorWithTabMenu';
 import { appdata } from '../store';
 
-
 const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const [action, setAction] = useState({
     codedata,
@@ -24,12 +23,12 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
     setAction({ ...action, errorMessage });
 
   const decryptWithPassword = () => {
-    const { password, codedata } = action;
+    var { password, codedata } = action;
     if (!password) {
       setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
     } else {
       try {
-        const encryptionKeyDecrypted = appdata.decryptExportedEncryptionKey(
+        var encryptionKeyDecrypted = appdata.decryptExportedEncryptionKey(
           codedata,
           password
         );
@@ -39,7 +38,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
           onEncryptionKeyDecrypted(encryptionKeyDecrypted);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setErrorMessage(manageKeysTextConfig.errorMessages.invalidPassword);
       }
     }
@@ -60,11 +59,11 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const menuItems = [
     {
       menu: menusConfig.cancel.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
     {
       menu: menusConfig.decrypt.menu,
-      onClick: decryptWithPassword,
+      onPress: decryptWithPassword,
     },
   ];
 
@@ -83,7 +82,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
           value={action.password}
           secureTextEntry={true}
           onChangeTextValue={setPassword}
-          autoCapitalize="none"
+          autoCapitalize={'none'}
         />
       </div>
       {renderErrorMessage()}
