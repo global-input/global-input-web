@@ -1,47 +1,37 @@
-// DisplayHeader.jsx
+import React, { Component } from 'react';
+import { styles, deviceDector } from './styles';
 
-import React from 'react';
-import { getStyles, deviceDetector } from './styles';
-
-const DisplayHeader = (props) => {
-  const renderTitleIcon = () => {
-    if (props.titleIcon) {
-      return (
-        <img src={props.titleIcon} style={styles.titleIcon} alt="Title Icon" />
-      );
+export default class DisplayHeader extends Component {
+  renderTitleIcon() {
+    if (this.props.titleIcon) {
+      return <img src={this.props.titleIcon} style={styles.titleIcon} alt="" />;
     } else {
       return null;
     }
-  };
-
-  const layoutChanged = () => {
-    // In React.js, layout changes are handled differently.
-    // If you need to force an update, you can use state or refs.
-  };
-
-  const styles = getStyles();
-  let headerStyle = styles.header;
-
-  if (deviceDetector.isLandscapeMode()) {
-    headerStyle = styles.headerLandscape;
   }
 
-  if (props.title) {
-    return (
-      <div style={headerStyle}>
-        <div style={styles.centerHeader}>
-          {renderTitleIcon()}
-          <span style={styles.titleText}>{props.title}</span>
+  render() {
+    var headerStyle = styles.header;
+    if (deviceDector.isLandscapeMode()) {
+      headerStyle = styles.headerLandscape;
+    }
+    if (this.props.title) {
+      return (
+        <div style={headerStyle}>
+          <div style={styles.centerHeader}>
+            {this.renderTitleIcon()}
+            <span style={styles.titleText}>
+              {this.props.title}
+            </span>
+          </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div style={headerStyle}>
-        {props.children}
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div style={headerStyle}>
+          {this.props.children}
+        </div>
+      );
+    }
   }
-};
-
-export default DisplayHeader;
+}

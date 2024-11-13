@@ -1,14 +1,13 @@
-// DeviceDetector.js
+export default class DeviceDetector {
+  DEVICE_TYPE = {
+    OTHERS: 1,
+    ANDROID: 2,
+    IPAD: 3,
+    IPHONE: 4,
+    IPHONEX: 5,
+  };
 
-class DeviceDetector {
   constructor() {
-    this.DEVICE_TYPE = {
-      OTHERS: 1,
-      ANDROID: 2,
-      IPAD: 3,
-      IPHONE: 4,
-      IPHONEX: 5,
-    };
     this.X_WIDTH = 375;
     this.X_HEIGHT = 812;
     this.device = null;
@@ -26,39 +25,36 @@ class DeviceDetector {
       return this.device;
     }
 
-    const { innerWidth: width, innerHeight: height } = window;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     this.device = { width, height };
 
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    // Detect Android
     if (/android/i.test(userAgent)) {
       this.device.type = this.DEVICE_TYPE.ANDROID;
       return this.device;
     }
 
-    // Detect iOS
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // iPhone X detection based on screen dimensions
+    if (/iPad|Macintosh/i.test(userAgent) && 'ontouchend' in document) {
+      this.device.type = this.DEVICE_TYPE.IPAD;
+      return this.device;
+    }
+
+    if (/iPhone/i.test(userAgent)) {
       if (
         this.matchScreenSize(375, 812) ||
         this.matchScreenSize(414, 896) ||
         this.matchScreenSize(390, 844)
       ) {
         this.device.type = this.DEVICE_TYPE.IPHONEX;
-        return this.device;
-      }
-
-      const aspectRatio = width > height ? width / height : height / width;
-      if (aspectRatio > 1.6) {
-        this.device.type = this.DEVICE_TYPE.IPHONE;
       } else {
-        this.device.type = this.DEVICE_TYPE.IPAD;
+        this.device.type = this.DEVICE_TYPE.IPHONE;
       }
       return this.device;
     }
 
-    // Others
+    // For other devices
     this.device.type = this.DEVICE_TYPE.OTHERS;
     return this.device;
   }
@@ -75,17 +71,25 @@ class DeviceDetector {
     return this.getDevice().type === this.DEVICE_TYPE.IPAD;
   }
 
-  isLandscapeMode() {
-    return window.innerWidth > window.innerHeight;
+  isAndroid() {
+    return this.getDevice().type === this.DEVICE_TYPE.ANDROID;
   }
 
-  isLandscapeScreenWidthSmall() {
-    const { innerWidth: width, innerHeight: height } = window;
+  isLandscapeMode() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    return width > height;
+  }
+
+  isLandScapeScreenWidthSmall() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     return width > height && width < 600;
   }
 
   getStaticDimension() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     if (width > height) {
       return {
         width: height,
@@ -93,21 +97,19 @@ class DeviceDetector {
       };
     } else {
       return {
-        width,
-        height,
+        width: width,
+        height: height,
       };
     }
   }
 
   calculateMarkerSize() {
-    const { innerWidth: width, innerHeight: height } = window;
-    const ws = Math.min(width, height);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let ws = width;
+    if (height < ws) {
+      ws = height;
+    }
     return Math.floor((ws * 250) / 320);
   }
-
-  isAndroid() {
-    return this.getDevice().type === this.DEVICE_TYPE.ANDROID;
-  }
 }
-
-export default DeviceDetector;
