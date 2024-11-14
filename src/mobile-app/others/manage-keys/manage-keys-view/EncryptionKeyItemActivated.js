@@ -1,30 +1,35 @@
+// EncryptionKeyItemActivated.js
+
 import React from 'react';
 
-import {manageKeysTextConfig,menusConfig} from "../../../configs";
+import menusConfig  from '../../../configs/menusConfig';
+import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
 
-import {ViewWithTabMenu,DisplayBlockText} from "../../../components";
+import ViewWithTabMenu from '../../../components/menu/ViewWithTabMenu';
+import DisplayBlockText  from '../../../components/display-text/DisplayBlockText';
 
+import DisplayKeyDetails from './DisplayKeyDetails';
 
-import DisplayKeyDetails from "./DisplayKeyDetails";
-
-
-export default ({onBack,encryptionKeyItem})=>{
-  var menuItems=[{},{
+export default function EncryptionKeyItemActivated({ onBack, encryptionKeyItem }) {
+  const menuItems = [
+    {},
+    {
       menu: menusConfig.ok.menu,
-      onPress: onBack
+      onClick: onBack,
     },
-    {}
+    {},
   ];
+
   return (
     <ViewWithTabMenu
       menuItems={menuItems}
       selected={menusConfig.manageKeys.menu}
       title={manageKeysTextConfig.encryptionActivated.title}
-      selected={menusConfig.manageKeys.menu}>
+    >
       <DisplayKeyDetails encryptionKeyItem={encryptionKeyItem} />
       <DisplayBlockText
         content={manageKeysTextConfig.encryptionActivated.content}
       />
     </ViewWithTabMenu>
   );
-};
+}

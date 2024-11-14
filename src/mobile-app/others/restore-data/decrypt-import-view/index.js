@@ -142,17 +142,17 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
                           onSelect:importFormData
                       }]
                   }      
-                return(<ManageFormData 
+                return(<ManageFormData formDataList={action.formDataList}
                   displayFormDataProperties={displayFormDataProperties}
                   menuItems={menuItems}
                   formDataStorage={formDataStorage}
                   title={windowTitle}
-                  />);
+                  onBack={onBack}/>);
               }
 
         case ACT_TYPE.IMPORT_FORM_COMPLETED: 
               {
-                      const menuItems=[{},{
+                      var menuItems=[{},{
                             menu:menusConfig.ok.menu,
                             onPress:onImportComplete
                       },{}];
@@ -163,7 +163,7 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
                       if(action.formData){
                         help=action.formData.id+" is imported into the app successfully.";
                       }
-                    const content=[help];
+                    var content=[help];
                     return(
                           <ViewWithTabMenu title={windowTitle}
                           menuItems={menuItems}

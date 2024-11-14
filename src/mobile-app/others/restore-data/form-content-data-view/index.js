@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import {styles} from '../styles';
 
 import menusConfig from '../../../configs/menusConfig';
 
@@ -9,9 +9,10 @@ import DisplayBlockText from '../../../components/display-text/DisplayBlockText'
 import {appdata, formDataUtil} from '../../../store';
 
 
-const importDecryptionError =
-  'Please first import and activate the encryption key that was used for encrypting the exported content.';
+
+const importDecryptionError = "Please first import and activate the encryption key that was used for encrypting the exported content.";
 const formDataMessage = ['Press the "Decrypt" button to decrypt the data.'];
+
 
 export const FormContentDataView = ({
   windowTitle,
@@ -24,16 +25,15 @@ export const FormContentDataView = ({
     errorMessage: '',
     password: '',
   });
-
   useEffect(() => {
-    setCompData({ content, errorMessage: '', password: '' });
-  }, [content]);
+    setCompData({content, errorMessage: '', password: ''});
+  }, []);
 
-  const setErrorMessage = (errorMessage) =>
-    setCompData({ ...compData, errorMessage });
+  const setErrorMessage = errorMessage =>
+    setCompData({...compData, errorMessage});
 
   const decryptFormData = () => {
-    const globalInputData = appdata.decryptFormDataText(compData.content);
+    var globalInputData = appdata.decryptFormDataText(compData.content);
     if (!globalInputData) {
       setErrorMessage(importDecryptionError);
       return;
@@ -45,9 +45,9 @@ export const FormContentDataView = ({
   const renderErrorMessage = () => {
     if (compData.errorMessage) {
       return (
-        <InputContainer>
-          <ErrorMessage>{compData.errorMessage}</ErrorMessage>
-        </InputContainer>
+        <div style={styles.inputContainer}>
+          <span style={styles.errorMessage}>{compData.errorMessage}</span>
+        </div>
       );
     } else {
       return null;
@@ -62,38 +62,22 @@ export const FormContentDataView = ({
     {
       menu: menusConfig.decrypt.menu,
       onPress: decryptFormData,
-    },
-  ];
+    }]
+
 
   const cc = formDataUtil.buldTextContentResolved(
     appdata.getActiveEncryptionKeyItem(),
-    formDataMessage
+    formDataMessage,
   );
-
   return (
     <ViewWithTabMenu
       title={windowTitle}
       menuItems={menuItems}
-      selected={menusConfig.others.menu}
-    >
-      <FormContainer>
+      selected={menusConfig.others.menu}>
+      <div style={styles.formContainer}>
         <DisplayBlockText content={cc} />
         {renderErrorMessage()}
-      </FormContainer>
+      </div>
     </ViewWithTabMenu>
   );
 };
-
-// Styled Components
-const FormContainer = styled.div`
-  padding: 20px;
-`;
-
-const InputContainer = styled.div`
-  margin-top: 10px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 16px;
-`;

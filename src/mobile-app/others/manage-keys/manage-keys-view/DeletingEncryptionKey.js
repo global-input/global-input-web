@@ -1,39 +1,48 @@
-import React  from 'react';
-import {  
-  View
-} from 'react-native';
+// DeletingEncryptionKey.js
 
-import {styles} from "../styles";
+import React from 'react';
 
-import {manageKeysTextConfig,menusConfig} from "../../../configs";
+import { styles } from '../styles';
 
-import {ViewWithTabMenu,DisplayBlockText} from "../../../components";
+import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
+import menusConfig  from '../../../configs/menusConfig';
 
-import DisplayKeyDetails from "./DisplayKeyDetails";
+import ViewWithTabMenu  from '../../../components/menu/ViewWithTabMenu';
+import DisplayBlockText  from '../../../components/display-text/DisplayBlockText';
 
-export default({deleteEncryptionKey,encryptionKeyItem,onBack})=>{
+import DisplayKeyDetails from './DisplayKeyDetails';
 
-  var menuItems=[{
-    menu:menusConfig.delete.menu,
-    onPress:()=>{
+export default function DeletingEncryptionKey({ deleteEncryptionKey, encryptionKeyItem, onBack }) {
+  const menuItems = [
+    {
+      menu: menusConfig.delete.menu,
+      onClick: () => {
         deleteEncryptionKey(encryptionKeyItem);
-    }
-   },{
-     menu:menusConfig.cancel.menu,
-     onPress:onBack
-   }];
+      },
+    },
+    {
+      menu: menusConfig.cancel.menu,
+      onClick: onBack,
+    },
+  ];
 
-
-  return(
-    <ViewWithTabMenu menuItems={menuItems} selected={menusConfig.manageKeys.menu}
-         title={manageKeysTextConfig.deletingEncryptionKey.title} selected={menusConfig.manageKeys.menu}>
-         <View style={styles.help}>
-             <DisplayBlockText content={manageKeysTextConfig.deletingEncryptionKey.content1}/>
-         </View>
-          <DisplayKeyDetails encryptionKeyItem={encryptionKeyItem}/>
-                          <View style={styles.help}>
-                              <DisplayBlockText content={manageKeysTextConfig.deletingEncryptionKey.content2}/>
-                          </View>
+  return (
+    <ViewWithTabMenu
+      menuItems={menuItems}
+      selected={menusConfig.manageKeys.menu}
+      title={manageKeysTextConfig.deletingEncryptionKey.title}
+    >
+      <div style={styles.help}>
+        <DisplayBlockText
+          content={manageKeysTextConfig.deletingEncryptionKey.content1}
+        />
+      </div>
+      <DisplayKeyDetails encryptionKeyItem={encryptionKeyItem} />
+      <div style={styles.help}>
+        <DisplayBlockText
+          content={manageKeysTextConfig.deletingEncryptionKey.content2}
+        />
+      </div>
     </ViewWithTabMenu>
   );
-};
+}

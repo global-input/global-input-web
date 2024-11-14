@@ -1,124 +1,139 @@
+// view-encryption-key-details/index.js
+
 import React, { useState, useEffect } from 'react';
-import {
-  Text, 
-  View,
-  Image,  
-} from 'react-native';
 
-import {styles} from "../styles";
+import { styles } from '../styles';
 
 
+import images from '../../../configs/images';
+import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
+import menusConfig from '../../../configs/menusConfig';
 
-import {images,manageKeysTextConfig,menusConfig} from "../../../configs";
+import EditorWithTabMenu from '../../../components/menu/EditorWithTabMenu';
+import IconButton from '../../../components/buttons/IconButton';
+import TextFieldWithDone from '../../../components/input/TextFieldWithDone';
 
-import {EditorWithTabMenu,IconButton,TextFieldWithDone} from "../../../components";
+import { appdata, formDataUtil } from '../../../store';
 
-import {appdata,formDataUtil} from "../.././../store";
-
-
-  const getStateFromProps =  ({encryptionKeyItem}) => {    
-    var decryptedKeyContent=appdata.decryptedWithPassword(encryptionKeyItem.encryptionKey);
-    var createdAt=formDataUtil.getDateString(encryptionKeyItem.createdAt);
-    var name=encryptionKeyItem.name;
-    return {decryptedKeyContent,createdAt,name};
-  }
-  
-export default ({encryptionKeyItem, updateEncryptionKeyName, onBack, 
-    activateEncryptionKey, onDeletingEncryptionKeyItem, onQrCodeSelected, onClipboardCopySelected})=>{
-    const [compData, setCompData]= useState(()=>getStateFromProps({encryptionKeyItem}));
-    const setName = name => setCompData({...compData,name});
-    const updateNameButton = () => {
-        var name=compData.name.trim();
-        updateEncryptionKeyName(encryptionKeyItem,name);
-    };
-    const renderSaveNameButton = () => {
-        var name=compData.name.trim();
-        if(!name){
-          return null;
-        }
-        if(encryptionKeyItem.name!==name){
-                return(
-                  <IconButton image={images.saveIcon}
-                       onPress={updateNameButton}/>
-                );
-        }
-        else{
-          return null;
-        }
-  };
-    useEffect(()=>{
-        setCompData(getStateFromProps({encryptionKeyItem}));
-    },[encryptionKeyItem]);
-
-    var title=manageKeysTextConfig.encryptionDetails.deactivated.title;
-  var menuItems=[{
-       menu:menusConfig.back.menu,
-       onPress:onBack
-   }];
-   var titleIcon=null;
-
-  if(appdata.isEncryptionKeyIsActive(encryptionKeyItem)){
-      title=manageKeysTextConfig.encryptionDetails.activated.title;
-      titleIcon=images.activateIconWhite;
-  }
-  else{
-    menuItems.push({
-         menu:menusConfig.activate.menu,
-         onPress:()=>{
-            activateEncryptionKey(encryptionKeyItem);
-         }
-     });
-     menuItems.push({
-          menu:menusConfig.delete.menu,
-          onPress:()=>{
-             onDeletingEncryptionKeyItem(encryptionKeyItem);
-          }
-      });
-  }
-     menuItems.push({
-          menu:menusConfig.qrcode.menu,
-          onPress:()=>{
-             onQrCodeSelected(encryptionKeyItem);
-          }
-      });
-
-     menuItems.push({
-           menu:menusConfig.exportText.menu,
-           onPress:()=>{
-              onClipboardCopySelected(encryptionKeyItem);
-           }
-       });
-
-
-  return(
-    <EditorWithTabMenu title={title}
-    menuItems={menuItems} selected={menusConfig.manageKeys.menu} titleIcon={titleIcon}>
-
-
-                                <View style={styles.itemRow}>
-                                            <TextFieldWithDone
-                                                  labelIcon={images.labelIcon}
-                                                   dark={true}
-                                                   placeholder={manageKeysTextConfig.nameField.placeHolder}
-                                                   value={compData.name}
-                                                   onChangeTextValue={setName}
-                                                   notFocusedContent={renderSaveNameButton()}
-                                                 />
-                                </View>
-                                <View style={styles.itemRow}>
-                                  <Image source={images.key} style={styles.itemIcon}/>
-                                  <View style={styles.fieldValueContainer}>
-                                            <Text style={styles.fieldValue}>{compData.decryptedKeyContent}</Text>
-                                  </View>
-                                </View>
-                                <View style={styles.itemRow}>
-                                    <Image source={images.timestampIcon} style={styles.itemIcon}/>
-                                    <View style={styles.fieldValueContainer}>
-                                      <Text style={styles.fieldValue}>{compData.createdAt}</Text>
-                                    </View>
-                                </View>
-      </EditorWithTabMenu>
-
+const getStateFromProps = ({ encryptionKeyItem }) => {
+  const decryptedKeyContent = appdata.decryptedWithPassword(
+    encryptionKeyItem.encryptionKey
   );
+  const createdAt = formDataUtil.getDateString(encryptionKeyItem.createdAt);
+  const name = encryptionKeyItem.name;
+  return { decryptedKeyContent, createdAt, name };
 };
 
+export default function ViewEncryptionKeyDetails({
+  encryptionKeyItem,
+  updateEncryptionKeyName,
+  onBack,
+  activateEncryptionKey,
+  onDeletingEncryptionKeyItem,
+  onQrCodeSelected,
+  onClipboardCopySelected,
+}) {
+  const [compData, setCompData] = useState(() =>
+    getStateFromProps({ encryptionKeyItem })
+  );
+
+  const setName = (name) => setCompData({ ...compData, name });
+
+  const updateNameButton = () => {
+    const name = compData.name.trim();
+    updateEncryptionKeyName(encryptionKeyItem, name);
+  };
+
+  const renderSaveNameButton = () => {
+    const name = compData.name.trim();
+    if (!name) {
+      return null;
+    }
+    if (encryptionKeyItem.name !== name) {
+      return (
+        <IconButton image={images.saveIcon} onClick={updateNameButton} />
+      );
+    } else {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    setCompData(getStateFromProps({ encryptionKeyItem }));
+  }, [encryptionKeyItem]);
+
+  let title = manageKeysTextConfig.encryptionDetails.deactivated.title;
+  const menuItems = [
+    {
+      menu: menusConfig.back.menu,
+      onClick: onBack,
+    },
+  ];
+  let titleIcon = null;
+
+  if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    title = manageKeysTextConfig.encryptionDetails.activated.title;
+    titleIcon = images.activateIconWhite;
+  } else {
+    menuItems.push(
+      {
+        menu: menusConfig.activate.menu,
+        onClick: () => {
+          activateEncryptionKey(encryptionKeyItem);
+        },
+      },
+      {
+        menu: menusConfig.delete.menu,
+        onClick: () => {
+          onDeletingEncryptionKeyItem(encryptionKeyItem);
+        },
+      }
+    );
+  }
+  menuItems.push(
+    {
+      menu: menusConfig.qrcode.menu,
+      onClick: () => {
+        onQrCodeSelected(encryptionKeyItem);
+      },
+    },
+    {
+      menu: menusConfig.exportText.menu,
+      onClick: () => {
+        onClipboardCopySelected(encryptionKeyItem);
+      },
+    }
+  );
+
+  return (
+    <EditorWithTabMenu
+      title={title}
+      menuItems={menuItems}
+      selected={menusConfig.manageKeys.menu}
+      titleIcon={titleIcon}
+    >
+      <div style={styles.itemRow}>
+        <TextFieldWithDone
+          labelIcon={images.labelIcon}
+          dark={true}
+          placeholder={manageKeysTextConfig.nameField.placeHolder}
+          value={compData.name}
+          onChangeTextValue={setName}
+          notFocusedContent={renderSaveNameButton()}
+        />
+      </div>
+      <div style={styles.itemRow}>
+        <img src={images.key} style={styles.itemIcon} alt="" />
+        <div style={styles.fieldValueContainer}>
+          <div style={styles.fieldValue}>{compData.decryptedKeyContent}</div>
+        </div>
+      </div>
+      <div style={styles.itemRow}>
+        <img src={images.timestampIcon} style={styles.itemIcon} alt="" />
+        <div style={styles.fieldValueContainer}>
+          <div style={styles.fieldValue}>{compData.createdAt}</div>
+        </div>
+      </div>
+    </EditorWithTabMenu>
+  );
+}
