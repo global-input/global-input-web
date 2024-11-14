@@ -2,17 +2,21 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styled from "styled-components";
 import ScanQRCode from './scan-qr-code';
 import { config } from "./configs";
+import manageFormDataTextConfig from "./configs/manageFormDataTextConfig";
 import {ImportEncryptionKeyView} from './import-encryption-key';
 import {appdata} from "./store";
 import { PageHeader } from "../page-header";
 import DisplayUserLogin from "./display-user-login";
 import GlobalInputConnector from './global-input-connector';
 import menusConfig from './configs/menusConfig';
+import {ManageFormData} from './manage-form-data'
+
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
     ImportEncryptionKey = 'import-encryption-key',
     GlobalInputConnector = 'global-input-connector',
+    ManageFormData = 'manage-form-data',
 
 };
 
@@ -26,7 +30,7 @@ const pageData:PageData ={
 }
 
 const initialState = {
-    page: Page.UserLogin,
+    page: Page.ManageFormData,
     code: null,
 };
 const MobileApp: React.FC = () => {    
@@ -128,6 +132,11 @@ const toSettingsScreen = useCallback(() => {},[]);
                 onGlobalInputConnect={onGlobalInputConnect} onImportSettingsData={onImportSettingsData}/>)}
                 {page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView}/>)}
                 {page.page===Page.GlobalInputConnector &&(<GlobalInputConnector codedata={page.code} toCameraView={toCameraView} menuItems={menuItems}/>)}
+                {page.page===Page.ManageFormData && (<ManageFormData
+          title={manageFormDataTextConfig.title}
+          formDataStorage={appdata}
+          menuItems={menuItems}
+        />)}
           
           </Content>
         </Container>                      

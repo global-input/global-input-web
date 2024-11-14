@@ -39,7 +39,7 @@ const FormDataManager= ({
   formDataStorage,
   menuItems,
   title,
-  displayFormDataProperties
+  displayFormDataProperties =null
 }) => {
   const [data, setData] = useState(()=>getStateFromProps(formDataStorage));
   const onCreateFormData = () => {
