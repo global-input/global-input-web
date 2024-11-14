@@ -10,6 +10,7 @@ import DisplayUserLogin from "./display-user-login";
 import GlobalInputConnector from './global-input-connector';
 import menusConfig from './configs/menusConfig';
 import {ManageFormData} from './manage-form-data'
+import {ManageKeysView} from './others/manage-keys';
 
 enum Page {
     UserLogin= 'user-login',    
@@ -17,6 +18,7 @@ enum Page {
     ImportEncryptionKey = 'import-encryption-key',
     GlobalInputConnector = 'global-input-connector',
     ManageFormData = 'manage-form-data',
+    ManageKeys = 'manage-keys',
 
 };
 
@@ -123,10 +125,13 @@ const toSettingsScreen = useCallback(() => {},[]);
       onPress: toSettingsScreen,
     }
   ]
+
+   
     return(
         <Container>
               <PageHeader selected={config.paths.home.path} />       
                 <Content>
+                  renderContent();
                 {page.page===Page.UserLogin &&(<DisplayUserLogin onLoggedIn={onLoggedIn} />)}
                 {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey} onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
                 onGlobalInputConnect={onGlobalInputConnect} onImportSettingsData={onImportSettingsData}/>)}
@@ -137,7 +142,8 @@ const toSettingsScreen = useCallback(() => {},[]);
           formDataStorage={appdata}
           menuItems={menuItems}
         />)}
-          
+
+        {page.page===Page.ManageKeys && (<ManageKeysView menuItems={menuItems} />)}          
           </Content>
         </Container>                      
           );    

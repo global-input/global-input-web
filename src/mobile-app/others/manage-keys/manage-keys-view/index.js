@@ -91,9 +91,9 @@ const getStateFromProps = ({ importDecryptedKey }) => {
 };
 
 export default function ManageKeysView({
-  importDecryptedKey,
+  importDecryptedKey =null,
   menuItems,
-  onBack,
+  onBack =null,
 }) {
   const [action, setAction] = useState(() =>
     getStateFromProps({ importDecryptedKey })
