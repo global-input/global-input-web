@@ -17,7 +17,7 @@ export default class DisplayHeader extends Component {
     }
     if (this.props.title) {
       return (
-        <div style={headerStyle}>
+        <div style={headerStyle}>          
           <div style={styles.centerHeader}>
             {this.renderTitleIcon()}
             <span style={styles.titleText}>
@@ -29,7 +29,10 @@ export default class DisplayHeader extends Component {
     } else {
       return (
         <div style={headerStyle}>
+          <span style={styles.titleText}>
           {this.props.children}
+          </span>
+          
         </div>
       );
     }

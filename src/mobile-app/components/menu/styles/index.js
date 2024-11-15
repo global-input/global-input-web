@@ -23,7 +23,7 @@ var stylesData = {
     paddingRight: 5,
     paddingBottom: 5,
     borderBottomWidth: 1,
-    borderColor: 'rgba(80,80,80,0.5)',
+    borderColor: 'rgba(80,80,80,0.5)',    
   },
   centerHeader: {
     flex: 1,
@@ -41,7 +41,7 @@ var stylesData = {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#FFFFFF',
+    color: '#FFFFFF',    
   },
   titleIcon: {
     marginRight: 5,

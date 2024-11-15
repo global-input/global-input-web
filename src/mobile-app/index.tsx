@@ -1,16 +1,16 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from "styled-components";
 import ScanQRCode from './scan-qr-code';
-import { config } from "./configs";
 import manageFormDataTextConfig from "./configs/manageFormDataTextConfig";
 import {ImportEncryptionKeyView} from './import-encryption-key';
 import {appdata} from "./store";
-import { PageHeader } from "../page-header";
+
 import DisplayUserLogin from "./display-user-login";
 import GlobalInputConnector from './global-input-connector';
 import menusConfig from './configs/menusConfig';
 import {ManageFormData} from './manage-form-data'
 import {ManageKeysView} from './others/manage-keys';
+import {QRCodeEncryptionView} from "./qr-code-encryption";
 
 enum Page {
     UserLogin= 'user-login',    
@@ -19,16 +19,13 @@ enum Page {
     GlobalInputConnector = 'global-input-connector',
     ManageFormData = 'manage-form-data',
     ManageKeys = 'manage-keys',
+    EncryptedQRCode= 'encrypted-qr-code',
 
 };
 
 interface PageData {
     page: Page;
     code: string|null;
-}
-const pageData:PageData ={
-    page : Page.UserLogin,
-    code : null,
 }
 
 const initialState = {
@@ -97,8 +94,20 @@ const MobileApp: React.FC = () => {
     // },[]);
 
 const toManageFormData = useCallback(() => {},[]);
-const toManageKeys = useCallback(() => {},[]);
-const toEncryptedQRCode = useCallback(() => {},[]);
+const toManageKeys = useCallback(() => {
+    setPage({
+        page: Page.ManageKeys,
+        code: null,
+    });
+    
+},[]);
+const toEncryptedQRCode = useCallback(() => {
+    setPage({
+        page: Page.EncryptedQRCode,
+        code: null,
+    });
+
+},[]);
 const toSettingsScreen = useCallback(() => {},[]);
 
 
@@ -126,29 +135,50 @@ const toSettingsScreen = useCallback(() => {},[]);
     }
   ]
 
+  const renderPage = (page) => {
+    switch (page.page) {
+      case Page.UserLogin:
+        return <DisplayUserLogin onLoggedIn={onLoggedIn} />;
+      case Page.ScanQRCode:
+        return (
+          <ScanQRCode
+            onImportEncryptionKey={onImportEncryptionKey}
+            onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
+            onGlobalInputConnect={onGlobalInputConnect}
+            onImportSettingsData={onImportSettingsData}
+          />
+        );
+      case Page.ImportEncryptionKey:
+        return <ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView} />;
+      case Page.GlobalInputConnector:
+        return <GlobalInputConnector codedata={page.code} toCameraView={toCameraView} menuItems={menuItems} />;
+      case Page.ManageFormData:
+        return (
+          <ManageFormData
+            title={manageFormDataTextConfig.title}
+            formDataStorage={appdata}
+            menuItems={menuItems}
+          />
+        );
+      case Page.ManageKeys:
+        return <ManageKeysView menuItems={menuItems} />;
+      case Page.EncryptedQRCode:
+        return <QRCodeEncryptionView menuItems={menuItems}/>;
+      default:
+        return null;
+    }
+  };
    
-    return(
-        <Container>
-              <PageHeader selected={config.paths.home.path} />       
-                <Content>
-                  renderContent();
-                {page.page===Page.UserLogin &&(<DisplayUserLogin onLoggedIn={onLoggedIn} />)}
-                {page.page===Page.ScanQRCode &&(<ScanQRCode onImportEncryptionKey={onImportEncryptionKey} onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
-                onGlobalInputConnect={onGlobalInputConnect} onImportSettingsData={onImportSettingsData}/>)}
-                {page.page===Page.ImportEncryptionKey &&(<ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView}/>)}
-                {page.page===Page.GlobalInputConnector &&(<GlobalInputConnector codedata={page.code} toCameraView={toCameraView} menuItems={menuItems}/>)}
-                {page.page===Page.ManageFormData && (<ManageFormData
-          title={manageFormDataTextConfig.title}
-          formDataStorage={appdata}
-          menuItems={menuItems}
-        />)}
+    // return(
+    //     <Container>
+    //           <PageHeader selected={config.paths.home.path} />       
+    //             <Content>
+    //               {renderPage(page)}
+    //       </Content>
+    //     </Container>                      
+    //       );    
 
-        {page.page===Page.ManageKeys && (<ManageKeysView menuItems={menuItems} />)}          
-          </Content>
-        </Container>                      
-          );    
-
-
+return renderPage(page);
     
 
 
