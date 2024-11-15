@@ -11,6 +11,7 @@ import menusConfig from './configs/menusConfig';
 import {ManageFormData} from './manage-form-data'
 import {ManageKeysView} from './others/manage-keys';
 import {QRCodeEncryptionView} from "./qr-code-encryption";
+import OthersView from './others/others-view';
 
 enum Page {
     UserLogin= 'user-login',    
@@ -20,7 +21,7 @@ enum Page {
     ManageFormData = 'manage-form-data',
     ManageKeys = 'manage-keys',
     EncryptedQRCode= 'encrypted-qr-code',
-
+    OthersMenu= 'others-menu',
 };
 
 interface PageData {
@@ -36,6 +37,13 @@ const MobileApp: React.FC = () => {
     const [page, setPage] = useState<PageData>(initialState);
     
 
+    const toUserLoginScreen = useCallback(() => {  
+        setPage({
+            page: Page.UserLogin,
+            code: null,
+        });
+    }
+    ,[]);
     const onLoggedIn=useCallback(() => {
         if (appdata.getLoginUserinfo()) {
             setPage({
@@ -50,6 +58,12 @@ const MobileApp: React.FC = () => {
             });          
         }
       },[]);
+
+
+
+      
+
+
       
       const onImportEncryptionKey = useCallback((code) => {
         setPage({
@@ -70,18 +84,19 @@ const MobileApp: React.FC = () => {
         )
 
     },[]);
+    
+    
+    
     const onImportSettingsData = useCallback((data) => {
         //todo: implement this
     },[]);
 
-    const toCameraView
-    =useCallback(() => {
+    const toCameraView =useCallback(() => {
         setPage({
             page: Page.ScanQRCode,
             code: null,
         });
     },[]);
-
 
     
     
@@ -93,7 +108,15 @@ const MobileApp: React.FC = () => {
     //     });
     // },[]);
 
-const toManageFormData = useCallback(() => {},[]);
+const toManageFormData = useCallback(() => {
+    setPage
+    ({
+        page: Page.ManageFormData,
+        code: null,
+    });
+
+
+},[]);
 const toManageKeys = useCallback(() => {
     setPage({
         page: Page.ManageKeys,
@@ -108,7 +131,14 @@ const toEncryptedQRCode = useCallback(() => {
     });
 
 },[]);
-const toSettingsScreen = useCallback(() => {},[]);
+
+const toOthersMenu = useCallback(() => {
+    setPage({
+        page: Page.OthersMenu,
+        code: null,
+    });
+},[]);
+
 
 
 
@@ -131,7 +161,7 @@ const toSettingsScreen = useCallback(() => {},[]);
     },
     {
       menu: menusConfig.others.menu,
-      onPress: toSettingsScreen,
+      onPress: toOthersMenu,
     }
   ]
 
@@ -164,6 +194,8 @@ const toSettingsScreen = useCallback(() => {},[]);
         return <ManageKeysView menuItems={menuItems} />;
       case Page.EncryptedQRCode:
         return <QRCodeEncryptionView menuItems={menuItems}/>;
+      case Page.OthersMenu:
+        return <OthersView menuItems={menuItems} logout={toUserLoginScreen} />;
       default:
         return null;
     }
