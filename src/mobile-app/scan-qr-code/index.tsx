@@ -23,10 +23,11 @@ import eyeTextConfig from '../configs/eyeTextConfig'
 
 
 // Conditionally import Scanner based on environment
-const Scanner = process.env.NODE_ENV === 'development'
-  ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
-  : require('@yudiel/react-qr-scanner').Scanner;
+// const Scanner = process.env.NODE_ENV === 'development'
+//   ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
+//   : require('@yudiel/react-qr-scanner').Scanner;
 
+const Scanner = require('@yudiel/react-qr-scanner').Scanner;
 
 export const Container = styled.div`
   display: flex;

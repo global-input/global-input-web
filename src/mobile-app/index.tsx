@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from "styled-components";
 import ScanQRCode from './scan-qr-code';
+import GlobalInputEye from './global-input-eye';
 import manageFormDataTextConfig from "./configs/manageFormDataTextConfig";
 import {ImportEncryptionKeyView} from './import-encryption-key';
 import {appdata} from "./store";
@@ -139,7 +140,10 @@ const toOthersMenu = useCallback(() => {
     });
 },[]);
 
-
+const toImportNotProtectedEncryptionKey = useCallback(() => {
+},[]);
+const toHelpScreen = useCallback(() => {
+},[]);
 
 
     const menuItems= [
@@ -170,14 +174,25 @@ const toOthersMenu = useCallback(() => {
       case Page.UserLogin:
         return <DisplayUserLogin onLoggedIn={onLoggedIn} />;
       case Page.ScanQRCode:
-        return (
-          <ScanQRCode
-            onImportEncryptionKey={onImportEncryptionKey}
-            onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
-            onGlobalInputConnect={onGlobalInputConnect}
-            onImportSettingsData={onImportSettingsData}
-          />
-        );
+        // return (
+        //   <ScanQRCode
+        //     onImportEncryptionKey={onImportEncryptionKey}
+        //     onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
+        //     onGlobalInputConnect={onGlobalInputConnect}
+        //     onImportSettingsData={onImportSettingsData}
+        //   />
+        // );
+        return(<GlobalInputEye
+          menuItems={menuItems}
+          isAuthorized={true}
+          isAuthorizationChecked={true}
+          toGlobalInput={onGlobalInputConnect}
+          toImportProtectedEncryptionKey={onImportEncryptionKey}
+          toImportNotProtectedEncryptionKey={toImportNotProtectedEncryptionKey}
+          toImportSettingsData={onImportSettingsData}
+          toHelpScreen={toHelpScreen}
+        />);
+
       case Page.ImportEncryptionKey:
         return <ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView} />;
       case Page.GlobalInputConnector:
