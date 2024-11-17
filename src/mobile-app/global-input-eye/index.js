@@ -21,11 +21,11 @@ import {
 } from '../camera-not-authorized';
 
 // Conditionally import Scanner based on environment
-// const Scanner = process.env.NODE_ENV === 'development'
-//   ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
-//   : require('@yudiel/react-qr-scanner').Scanner;
+const Scanner = process.env.NODE_ENV === 'development'
+  ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
+  : require('@yudiel/react-qr-scanner').Scanner;
 
-const Scanner = require('@yudiel/react-qr-scanner').Scanner;
+// const Scanner = require('@yudiel/react-qr-scanner').Scanner;
 
 
 const initialState = {
@@ -92,8 +92,9 @@ const GlobalInputEye =  ({
     if ( (!code) || (code.length === 0) ) {
       return;
     }
+    
     for(let i=0;i<code.length;i++){                      
-        if(!code[i].data){
+        if(!code[i].rawValue){
             console.log("no data in the qr code:"+i);
             continue;
         }
@@ -183,7 +184,7 @@ const GlobalInputEye =  ({
           </div>
         </div>
         <div style={styles.lookingContainer}>
-          <span style={styles.lookingText} allowFontScaling={false}>
+          <span style={styles.lookingText}>
             {textToDisplay}
           </span>
         </div>
@@ -233,16 +234,9 @@ const GlobalInputEye =  ({
   };
 
   const renderCameraView = () => {
-    var markerContainer = styles.markerContainer;
-    if (deviceDector.isLandscapeMode()) {
-      markerContainer = styles.markerContainerLandscape;
-    }
-
-    if (isDisplayMessage()) {
-      markerContainer = styles.markerContainerOnMessage;
-      if (deviceDector.isLandscapeMode()) {
-        markerContainer = styles.markerContainerOnMessageLandscape;
-      }
+    
+    
+    if (isDisplayMessage()) {            
       menuItems = [
         {
           menu: menusConfig.dismiss.menu,
@@ -266,13 +260,13 @@ const GlobalInputEye =  ({
       }
     }
     const onError = (error) => {
-      setContentAndMessage(codedata, 'Error:'+error);
+      setContentAndMessage('Error:'+error, 'Error:'+error);
     };
 
 
     ////processCodeData////
     return (
-      <div style={styles.container} onLayout={layoutChanged}>
+      <div style={styles.container}>
         <Scanner
         onScan={onCodeDataReceived}
         onError={onError}
