@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {createMessageConnector} from 'global-input-message';
 import Switch from "react-switch";
 ////globa_input_eye////
-import {styles, deviceDector} from './styles';
+import {styles, deviceDetector} from './styles';
 
 import {appdata} from '../store';
 import TabMenu  from '../components/menu/TabMenu';
@@ -164,11 +164,11 @@ const GlobalInputEye =  ({
     var helpContainer = styles.helpContainer;
     var titleText = styles.titleText;
 
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       headerStyle = styles.headerLandscape;
       titleContainer = styles.titleContainerLandscape;
       helpContainer = styles.helpContainerLandscape;
-      if (deviceDector.isLandScapeScreenWidthSmall()) {
+      if (deviceDetector.isLandScapeScreenWidthSmall()) {
         titleText = styles.titleTextSmall;
       }
     }
@@ -210,7 +210,7 @@ const GlobalInputEye =  ({
         title = 'Eror Message';
       }
       var codeDisplayContent = styles.codeDisplayContent;
-      if (deviceDector.isLandscapeMode()) {
+      if (deviceDetector.isLandscapeMode()) {
         codeDisplayContent = styles.codeDisplayContentLandscape;
       }
 

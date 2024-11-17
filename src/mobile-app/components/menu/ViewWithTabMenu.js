@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles, deviceDector } from './styles';
+import { styles, deviceDetector } from './styles';
 import DisplayHeader from './DisplayHeader';
 import DisplayBlockText from '../display-text/DisplayBlockText';
 
@@ -50,7 +50,7 @@ export default class ViewWithTabMenu extends Component {
 
   renderTab() {
     let tabStyle = styles.tab;
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       tabStyle = styles.tabLandscape;
     }
     return (
@@ -65,7 +65,7 @@ export default class ViewWithTabMenu extends Component {
   renderFloatingIcon() {
     if (this.props.floatingButton && this.props.onPressFloatingIcon) {
       let iconStyle = styles.floatingIcon;
-      if (deviceDector.isLandscapeMode()) {
+      if (deviceDetector.isLandscapeMode()) {
         iconStyle = styles.floatingIconLandscape;
       }
       return (
@@ -111,7 +111,7 @@ export default class ViewWithTabMenu extends Component {
 
   render() {
     let contentContainerStyle = styles.contentContainer;
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       contentContainerStyle = styles.contentContainerLandscape;
     }
     return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles, deviceDector } from './styles';
+import { styles, deviceDetector } from './styles';
 
 export default class TabMenu extends Component {
   renderMenuItem(menuItem, index) {
@@ -17,7 +17,7 @@ export default class TabMenu extends Component {
 
   renderTab() {
     let tabStyle = styles.tab;
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       tabStyle = styles.tabLandscape;
     }
     return (

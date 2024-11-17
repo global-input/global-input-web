@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles, deviceDector } from './styles';
+import { styles, deviceDetector } from './styles';
 import NotificationBar from './NotificationBar';
 import DisplayHeader from './DisplayHeader';
 
@@ -103,7 +103,7 @@ export default class EditorWithTabMenu extends Component {
   renderTab() {
     if (this.state.keyboardShowing) {
       var tabOnTopStyle = styles.tabOnTop;
-      if (deviceDector.isLandscapeMode()) {
+      if (deviceDetector.isLandscapeMode()) {
         tabOnTopStyle = styles.tabOnTopLandscape;
       }
 
@@ -116,7 +116,7 @@ export default class EditorWithTabMenu extends Component {
       );
     } else {
       var tab = styles.tab;
-      if (deviceDector.isLandscapeMode()) {
+      if (deviceDetector.isLandscapeMode()) {
         tab = styles.tabLandscape;
       }
       return (
@@ -139,7 +139,7 @@ export default class EditorWithTabMenu extends Component {
 
   render() {
     var contentContainerStyle = styles.contentContainer;
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       contentContainerStyle = styles.contentContainerLandscape;
     }
     return (

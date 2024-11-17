@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles, deviceDector } from './styles';
+import { styles, deviceDetector } from './styles';
 
 export default class DisplayHeader extends Component {
   renderTitleIcon() {
@@ -12,7 +12,7 @@ export default class DisplayHeader extends Component {
 
   render() {
     var headerStyle = styles.header;
-    if (deviceDector.isLandscapeMode()) {
+    if (deviceDetector.isLandscapeMode()) {
       headerStyle = styles.headerLandscape;
     }
     if (this.props.title) {

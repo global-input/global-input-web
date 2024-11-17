@@ -1,4 +1,4 @@
-import { deviceDector } from "../../../common-styles";
+import { deviceDetector } from "../../../common-styles";
 
 
 
@@ -187,13 +187,13 @@ dialogHeader:{
   }
 
 };
-if(deviceDector.isIphone()){
+if(deviceDetector.isIphone()){
       styles.container.top=25;
 }
-if(deviceDector.isAndroid()){
+if(deviceDetector.isAndroid()){
     styles.button.borderWidth=0;
     styles.buttonLeft.borderWidth=0;
     styles.buttonRight.borderWidth=0;
 }
 
-export {styles, deviceDector};
+export {styles, deviceDetector};

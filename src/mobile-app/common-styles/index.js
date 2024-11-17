@@ -263,7 +263,7 @@ export default class DeviceDetector {
     return Math.floor((ws * 250) / 320);
   }
 }
-const deviceDector = new DeviceDetector();
+const deviceDetector = new DeviceDetector();
 
 
-export {commonStyles,deviceDector};
+export {commonStyles,deviceDetector};

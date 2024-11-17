@@ -1,5 +1,5 @@
 // Removed import of StyleSheet and Dimensions from 'react-native'
-import  {deviceDector} from '../../../common-styles';
+import  {deviceDetector} from '../../../common-styles';
 
 
 var stylesData = {
@@ -178,11 +178,11 @@ var stylesData = {
 };
 
 // Adjust styles based on device type
-if (deviceDector.isIphoneX()) {
+if (deviceDetector.isIphoneX()) {
   stylesData.header.paddingTop = 40;
   stylesData.tabOnTop.paddingTop = 40;
   stylesData.tab.paddingBottom = 17;
-} else if (deviceDector.isIPad() || deviceDector.isIphone()) {
+} else if (deviceDetector.isIPad() || deviceDetector.isIphone()) {
   stylesData.header.paddingTop = 20;
   stylesData.tabOnTop.paddingTop = 20;
 }
@@ -209,7 +209,7 @@ stylesData.tabLandscape = Object.assign({}, stylesData.tab, {
 });
 
 // Set contentContainer width based on device dimensions
-stylesData.contentContainer.width = deviceDector.getStaticDimension().width;
+stylesData.contentContainer.width = deviceDetector.getStaticDimension().width;
 
 stylesData.contentContainerLandscape = Object.assign(
   {},
@@ -217,7 +217,7 @@ stylesData.contentContainerLandscape = Object.assign(
   {
     paddingRight: 30,
     paddingLeft: 35,
-    width: deviceDector.getStaticDimension().height,
+    width: deviceDetector.getStaticDimension().height,
   }
 );
 
@@ -226,17 +226,17 @@ stylesData.floatingIconLandscape = Object.assign({}, stylesData.floatingIcon, {
 });
 
 // Adjust paddingTop for different devices in landscape mode
-if (deviceDector.isIphoneX()) {
+if (deviceDetector.isIphoneX()) {
   stylesData.headerLandscape.paddingTop = 5;
   stylesData.tabOnTopLandscape.paddingTop = 5;
-} else if (deviceDector.isIphone()) {
+} else if (deviceDetector.isIphone()) {
   stylesData.headerLandscape.paddingTop = 5;
   stylesData.tabOnTopLandscape.paddingTop = 5;
-} else if (deviceDector.isIPad()) {
+} else if (deviceDetector.isIPad()) {
   stylesData.headerLandscape.paddingTop = 20;
   stylesData.tabOnTopLandscape.paddingTop = 20;
 }
 
 // Since we don't have StyleSheet in React.js, we can use stylesData directly
 var styles = stylesData;
-export { styles, deviceDector, stylesData };
+export { styles, deviceDetector, stylesData };

@@ -1,4 +1,4 @@
-import {deviceDector} from "../../components/menu/styles";
+import {deviceDetector} from "../../components/menu/styles";
 
 
 var styleData={
@@ -157,14 +157,14 @@ var styleData={
 
 
 }
-var markerSizeCalculated=deviceDector.calculateMarkerSize();
+var markerSizeCalculated=deviceDetector.calculateMarkerSize();
 if(markerSizeCalculated>10){
         styleData.marker.height=styleData.marker.width=markerSizeCalculated;
 }
-if(deviceDector.isAndroid()){
+if(deviceDetector.isAndroid()){
     styleData.header.marginTop=0;
 }
-else if(deviceDector.isIphoneX()){
+else if(deviceDetector.isIphoneX()){
     styleData.header.marginTop=40;
 }
 styleData.headerLandscape=Object.assign({},styleData.header,{
@@ -191,7 +191,7 @@ styleData.markerContainerOnMessageLandscape=Object.assign({},styleData.markerCon
     paddingTop:10,
     justifyContent:"flex-start"
 });
-if(deviceDector.isIphoneX()){
+if(deviceDetector.isIphoneX()){
   styleData.markerContainerOnMessage.paddingTop=100;
 }
 
@@ -225,4 +225,4 @@ const progressStyle={
     borderBottomWidth:1,
 }
 
-export {styles,deviceDector,progressStyle};
+export {styles,deviceDetector,progressStyle};
