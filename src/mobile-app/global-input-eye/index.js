@@ -22,8 +22,8 @@ import {
 
 // Conditionally import Scanner based on environment
 
-// const environment=process.env.NODE_ENV;
-const environment='prod';
+const environment=process.env.NODE_ENV;
+// const environment='prod';
 
 const Scanner = environment === 'development'
   ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner

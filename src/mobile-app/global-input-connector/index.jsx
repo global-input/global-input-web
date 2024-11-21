@@ -69,7 +69,7 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
       onFieldChanged: sendFieldToDevice,
     });
 
-  const onDisconnect = () => {
+  const onDisconnect = () => {    
     disconnectFromDevice();
     setAction(formData.sessionEndAction(action));
   };

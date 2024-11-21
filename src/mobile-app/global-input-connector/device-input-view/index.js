@@ -123,7 +123,7 @@ export const DeviceInputView = ({
         { menu: menusConfig.unselect.menu, onClick: onUnselectField },
       ];
     } else {
-      menuItems = [{ menu: menusConfig.disconnect.menu, onClick: onDisconnect }];
+      menuItems = [{ menu: menusConfig.disconnect.menu, onPress: onDisconnect }];
 
       if (action.initData.dataType === 'qrcode') {
         menuItems.push({
