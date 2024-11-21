@@ -12,7 +12,7 @@ import IconButton from '../components/buttons/IconButton';
 
 import eyeTextConfig from '../configs/eyeTextConfig';
 import menusConfig from '../configs/menusConfig';
-import appTextConfig from '../configs/appTextConfig';
+
 
 
 import {
@@ -22,8 +22,16 @@ import {
 
 // Conditionally import Scanner based on environment
 
-const environment=process.env.NODE_ENV;
-// const environment='prod';
+//if the hostname is localhost, then the environment is development
+let environment=process.env.NODE_ENV;
+if(window.location.hostname==='localhost'){
+  environment='development';
+}
+else{
+  environment='production';
+}
+
+
 
 const Scanner = environment === 'development'
   ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
