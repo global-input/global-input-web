@@ -13,6 +13,8 @@ import {ManageFormData} from './manage-form-data'
 import {ManageKeysView} from './others/manage-keys';
 import {QRCodeEncryptionView} from "./qr-code-encryption";
 import OthersView from './others/others-view';
+import {HelpScreen} from './help-screen'
+import { useLinkClickHandler } from 'react-router-dom';
 
 enum Page {
     UserLogin= 'user-login',    
@@ -23,6 +25,7 @@ enum Page {
     ManageKeys = 'manage-keys',
     EncryptedQRCode= 'encrypted-qr-code',
     OthersMenu= 'others-menu',
+    HelpScreen= 'help-screen',
 };
 
 interface PageData {
@@ -30,12 +33,21 @@ interface PageData {
     code: string|null;
 }
 
+
 const initialState = {
     page: Page.ManageFormData,
     code: null,
 };
 const MobileApp: React.FC = () => {    
     const [page, setPage] = useState<PageData>(initialState);
+    const [previousPage, setPreviousPage] = useState<PageData>(initialState);
+    
+    
+    
+    
+    const toBack=useCallback(() => {
+        setPage(previousPage);
+    },[previousPage]);
     
 
     const toUserLoginScreen = useCallback(() => {  
@@ -142,8 +154,26 @@ const toOthersMenu = useCallback(() => {
 
 const toImportNotProtectedEncryptionKey = useCallback(() => {
 },[]);
+
 const toHelpScreen = useCallback(() => {
+    setPage({
+        page: Page.HelpScreen,
+        code: null,
+    });    
+
 },[]);
+
+const renderHelpScreen =  useCallback(() => {
+  const menuItems = [
+    {
+      menu: menusConfig.back.menu,
+      onPress: toBack,
+    },
+  ]
+  return <HelpScreen menuItems={menuItems} />
+  
+},[toBack]);  
+
 
 
     const menuItems= [
@@ -211,6 +241,8 @@ const toHelpScreen = useCallback(() => {
         return <QRCodeEncryptionView menuItems={menuItems}/>;
       case Page.OthersMenu:
         return <OthersView menuItems={menuItems} logout={toUserLoginScreen} />;
+      case Page.HelpScreen:
+        return renderHelpScreen();
       default:
         return null;
     }
