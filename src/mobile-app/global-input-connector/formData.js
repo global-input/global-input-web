@@ -570,8 +570,7 @@ export const renderEncryptSecret = ({
 
   let menuItems = [{menu: menusConfig.back.menu, onPress: toDeviceInput}];
 
-  const onEncryptedContent = (content, label) => {
-    console.log('--------content:' + content + ' label:' + label);
+  const onEncryptedContent = (content, label) => {    
     try {
       fillContentEncryptionForm({content, label, setAction, onFieldChanged});
     } catch (error) {
