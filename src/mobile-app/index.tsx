@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from "styled-components";
-import ScanQRCode from './scan-qr-code';
 import GlobalInputEye from './global-input-eye';
 import manageFormDataTextConfig from "./configs/manageFormDataTextConfig";
 import {ImportEncryptionKeyView} from './import-encryption-key';
@@ -14,8 +13,6 @@ import {ManageKeysView} from './others/manage-keys';
 import {QRCodeEncryptionView} from "./qr-code-encryption";
 import OthersView from './others/others-view';
 import {HelpScreen} from './help-screen'
-import { useLinkClickHandler } from 'react-router-dom';
-
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
