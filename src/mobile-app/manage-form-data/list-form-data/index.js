@@ -132,7 +132,7 @@ const ListFormData = ({
     <ViewWithTabMenu
       menuItems={adjustedMenuItems}
       selected={menusConfig.manageFormData.menu}
-      header={renderHeader()}
+      header={renderHeader()}      
       floatingButton={menusConfig.addRecord.menu}
       onPressFloatingIcon={onCreateFormData}
     >

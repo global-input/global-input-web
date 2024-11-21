@@ -14,7 +14,7 @@ export default class DisplayHeader extends Component {
     var headerStyle = styles.header;
     if (deviceDetector.isLandscapeMode()) {
       headerStyle = styles.headerLandscape;
-    }
+    }    
     if (this.props.title) {
       return (
         <div style={headerStyle}>          
@@ -26,13 +26,10 @@ export default class DisplayHeader extends Component {
           </div>
         </div>
       );
-    } else {
+    } else {      
       return (
-        <div style={headerStyle}>
-          <span style={styles.titleText}>
-          {this.props.children}
-          </span>
-          
+        <div style={headerStyle}>          
+          {this.props.children}                  
         </div>
       );
     }

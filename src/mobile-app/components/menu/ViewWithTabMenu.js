@@ -34,14 +34,14 @@ export default class ViewWithTabMenu extends Component {
   }
 
   renderHeader() {
-    if (this.props.title) {
+    if (this.props.title) {      
       return (
         <DisplayHeader
           title={this.props.title}
           titleIcon={this.props.titleIcon}
         />
       );
-    } else if (this.props.header) {
+    } else if (this.props.header) {      
       return this.props.header;
     } else {
       return null;

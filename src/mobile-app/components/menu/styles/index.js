@@ -1,10 +1,11 @@
-// Removed import of StyleSheet and Dimensions from 'react-native'
-import  {deviceDetector} from '../../../common-styles';
+// Import necessary modules
+import { deviceDetector } from '../../../common-styles';
 
-
-var stylesData = {
+// Adjusted styles for React.js
+const stylesData = {
   container: {
-    flex: 1,
+    display: 'flex',
+    flex: 1, // May need adjustment based on your layout
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -14,16 +15,16 @@ var stylesData = {
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'row',    
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     margin: 0,
-    paddingTop: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 5,
-    borderBottomWidth: 1,
-    borderColor: 'rgba(80,80,80,0.5)',    
+    paddingTop: '5px',
+    paddingLeft: '5px',
+    paddingRight: '5px',
+    paddingBottom: '5px',
+    color:"white"
+    
   },
   centerHeader: {
     flex: 1,
@@ -32,19 +33,15 @@ var stylesData = {
     justifyContent: 'center',
   },
   titleText: {
-    fontSize: 20,
+    fontSize: '20px',
     fontWeight: 'bold',
     fontFamily: 'Futura-Medium',
     textAlign: 'center',
-    flexWrap: 'nowrap',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#FFFFFF',    
+    whiteSpace: 'nowrap', // Adjusted from flexWrap
+    color: '#FFFFFF',
   },
   titleIcon: {
-    marginRight: 5,
+    marginRight: '5px',
   },
   contentContainer: {
     width: '100%',
@@ -52,43 +49,43 @@ var stylesData = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    minHeight: '100%',
-    paddingBottom: 70,
+    minHeight: '100vh', // Adjusted to use viewport height
+    paddingBottom: '70px',
   },
   tab: {
     margin: 0,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: 'fixed', // Changed from absolute to fixed
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
-    borderColor: '#333333',
-    borderStyle: 'solid',
-    borderTopWidth: 1,
-    paddingTop: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 5,
+    
+    paddingTop: '5px',
+    paddingLeft: '5px',
+    paddingRight: '10px',
+    paddingBottom: '5px',
     zIndex: 100,
   },
   tabOnTop: {
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
     display: 'flex',
+    position: 'fixed', // Added for fixed position at top
+    top: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     margin: 0,
-    paddingTop: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingBottom: 5,
-    borderBottomWidth: 1,
-    borderColor: 'rgba(80,80,80,0.5)',
+    paddingTop: '5px',
+    paddingLeft: '5px',
+    paddingRight: '5px',
+    paddingBottom: '5px',
+    borderBottom: '1px solid rgba(80,80,80,0.5)',
+    zIndex: 100,
   },
   scrollContainer: {
     display: 'flex',
@@ -99,12 +96,12 @@ var stylesData = {
   },
   floatingIcon: {
     margin: 0,
-    bottom: 70,
-    right: 10,
-    position: 'absolute',
+    bottom: '70px',
+    right: '10px',
+    position: 'fixed',
     paddingLeft: 0,
     paddingRight: 0,
-    paddingBottom: 10,
+    paddingBottom: '10px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -113,10 +110,10 @@ var stylesData = {
   },
   notificationBar: {
     margin: 0,
-    height: 70,
-    bottom: 40,
-    left: 5,
-    position: 'absolute',
+    height: '70px',
+    bottom: '40px',
+    left: '5px',
+    position: 'fixed',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -126,12 +123,12 @@ var stylesData = {
   },
   menuText: {
     color: '#FFFFFF',
-    fontSize: 10,
+    fontSize: '10px',
   },
   menuItem: {
     margin: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: '10px',
+    paddingRight: '10px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -148,16 +145,14 @@ var stylesData = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#FFFFFF',
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
+    borderBottom: '1px solid #FFFFFF',
   },
   endSpaceWhenKeyboardHiding: {
-    height: 50,
+    height: '50px',
     width: '100%',
   },
   endSpaceWhenKeyboardShowing: {
-    height: 100,
+    height: '100px',
     width: '100%',
   },
   textBlockContainer: {
@@ -165,7 +160,7 @@ var stylesData = {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingTop: 10,
+    paddingTop: '10px',
   },
   messageWindowContainer: {
     display: 'flex',
@@ -179,64 +174,65 @@ var stylesData = {
 
 // Adjust styles based on device type
 if (deviceDetector.isIphoneX()) {
-  stylesData.header.paddingTop = 40;
-  stylesData.tabOnTop.paddingTop = 40;
-  stylesData.tab.paddingBottom = 17;
+  stylesData.header.paddingTop = '40px';
+  stylesData.tabOnTop.paddingTop = '40px';
+  stylesData.tab.paddingBottom = '17px';
 } else if (deviceDetector.isIPad() || deviceDetector.isIphone()) {
-  stylesData.header.paddingTop = 20;
-  stylesData.tabOnTop.paddingTop = 20;
+  stylesData.header.paddingTop = '20px';
+  stylesData.tabOnTop.paddingTop = '20px';
 }
 
 // Create menuTextSelected style based on menuText
-stylesData.menuTextSelected = Object.assign({}, stylesData.menuText, {
+stylesData.menuTextSelected = {
+  ...stylesData.menuText,
   fontWeight: 'bold',
-});
+};
 
 // Create landscape variants of styles
-stylesData.headerLandscape = Object.assign({}, stylesData.header, {
-  paddingRight: 30,
-  paddingLeft: 30,
-});
+stylesData.headerLandscape = {
+  ...stylesData.header,
+  paddingRight: '30px',
+  paddingLeft: '30px',
+};
 
-stylesData.tabOnTopLandscape = Object.assign({}, stylesData.tabOnTop, {
-  paddingRight: 30,
-  paddingLeft: 30,
-});
+stylesData.tabOnTopLandscape = {
+  ...stylesData.tabOnTop,
+  paddingRight: '30px',
+  paddingLeft: '30px',
+};
 
-stylesData.tabLandscape = Object.assign({}, stylesData.tab, {
-  paddingRight: 30,
-  paddingLeft: 30,
-});
+stylesData.tabLandscape = {
+  ...stylesData.tab,
+  paddingRight: '30px',
+  paddingLeft: '30px',
+};
 
 // Set contentContainer width based on device dimensions
-stylesData.contentContainer.width = deviceDetector.getStaticDimension().width;
+stylesData.contentContainer.width = deviceDetector.getStaticDimension().width + 'px';
 
-stylesData.contentContainerLandscape = Object.assign(
-  {},
-  stylesData.contentContainer,
-  {
-    paddingRight: 30,
-    paddingLeft: 35,
-    width: deviceDetector.getStaticDimension().height,
-  }
-);
+stylesData.contentContainerLandscape = {
+  ...stylesData.contentContainer,
+  paddingRight: '30px',
+  paddingLeft: '35px',
+  width: deviceDetector.getStaticDimension().height + 'px',
+};
 
-stylesData.floatingIconLandscape = Object.assign({}, stylesData.floatingIcon, {
-  right: 50,
-});
+stylesData.floatingIconLandscape = {
+  ...stylesData.floatingIcon,
+  right: '50px',
+};
 
 // Adjust paddingTop for different devices in landscape mode
 if (deviceDetector.isIphoneX()) {
-  stylesData.headerLandscape.paddingTop = 5;
-  stylesData.tabOnTopLandscape.paddingTop = 5;
+  stylesData.headerLandscape.paddingTop = '5px';
+  stylesData.tabOnTopLandscape.paddingTop = '5px';
 } else if (deviceDetector.isIphone()) {
-  stylesData.headerLandscape.paddingTop = 5;
-  stylesData.tabOnTopLandscape.paddingTop = 5;
+  stylesData.headerLandscape.paddingTop = '5px';
+  stylesData.tabOnTopLandscape.paddingTop = '5px';
 } else if (deviceDetector.isIPad()) {
-  stylesData.headerLandscape.paddingTop = 20;
-  stylesData.tabOnTopLandscape.paddingTop = 20;
+  stylesData.headerLandscape.paddingTop = '20px';
+  stylesData.tabOnTopLandscape.paddingTop = '20px';
 }
 
-// Since we don't have StyleSheet in React.js, we can use stylesData directly
-var styles = stylesData;
-export { styles, deviceDetector, stylesData };
+// Export the styles
+export { stylesData as styles, deviceDetector };
