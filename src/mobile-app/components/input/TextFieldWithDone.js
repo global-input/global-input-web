@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { styles } from './styles';
 
-import { images } from '../../configs';
+import { images } from '../../../web-config';
 import IconButton from '../buttons/IconButton';
 import TextInputField from './TextInputField';
 

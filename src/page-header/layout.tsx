@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import { config } from "../mobile-app/configs";
+import { config } from "../web-config";
 import appIcon from "./images/small-app-icon.png";
 import companyIcon from "./images/company-icon.png";
 import menuSymbol from "./images/menu-symbol.svg";

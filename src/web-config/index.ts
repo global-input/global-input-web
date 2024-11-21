@@ -1,5 +1,5 @@
-import images from "./images";
-import userLoginText from "./userLoginText";
+import images from "../mobile-app/configs/images";
+import userLoginText from "../mobile-app/configs/userLoginText";
 export const config = {
   id: 'globalInputApp',
   paths: {

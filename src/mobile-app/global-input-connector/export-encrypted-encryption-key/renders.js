@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Text, View, Image, TouchableHighlight, FlatList} from 'react-native';
 import {styles} from "./styles";
-import { images, manageKeysTextConfig, menusConfig } from "../../configs";
+import { images, manageKeysTextConfig, menusConfig } from "../../../web-config";
 import { EditorWithTabMenu, TextInputField, DisplayBlockText } from "../../components";
 
 import {appdata } from "../../store";

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styles } from './styles';
-import { images } from '../configs';
+import { images } from '../../web-config';
 import manageKeysTextConfig from '../configs/manageKeysTextConfig';
 import menusConfig from '../configs/menusConfig';
 import DisplayBlockText from '../components/display-text/DisplayBlockText';

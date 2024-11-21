@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import { Helmet } from 'react-helmet';
-import { config } from "../mobile-app/configs";
+import { config } from "../web-config";
 import { PageFooter } from "../page-footer";
 import { PageHeader } from "../page-header";
 import {

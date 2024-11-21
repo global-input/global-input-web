@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { config } from "../mobile-app/configs";
+import { config } from "../web-config";
 
 import {
   Title,

@@ -1,7 +1,7 @@
 // LoadingScreen.js
 
 import React, { Component } from 'react';
-import { images } from '../../configs';
+import { images } from '../../../web-config';
 import { styles } from './styles';
 import CancelButton from './CancelButton';
 

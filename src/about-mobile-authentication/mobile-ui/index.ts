@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { config } from "../../mobile-app/configs";
+import { config } from "../../web-config";
 import { useMobile } from "../../mobile";
 export * from "../../mobile";
 export const useConnectToMobile = () => {

@@ -1,4 +1,4 @@
-import { config } from "../../mobile-app/configs";
+import { config } from "../../web-config";
 
 export const FIELDS = {
   encryption: {
