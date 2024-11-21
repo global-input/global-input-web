@@ -21,11 +21,15 @@ import {
 } from '../camera-not-authorized';
 
 // Conditionally import Scanner based on environment
-const Scanner = process.env.NODE_ENV === 'development'
+
+// const environment=process.env.NODE_ENV;
+const environment='prod';
+
+const Scanner = environment === 'development'
   ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
   : require('@yudiel/react-qr-scanner').Scanner;
 
-// const Scanner = require('@yudiel/react-qr-scanner').Scanner;
+
 
 
 const initialState = {
