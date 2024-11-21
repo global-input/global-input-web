@@ -66,7 +66,7 @@ export default function ViewEncryptionKeyDetails({
   const menuItems = [
     {
       menu: menusConfig.back.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
   ];
   let titleIcon = null;
@@ -78,13 +78,13 @@ export default function ViewEncryptionKeyDetails({
     menuItems.push(
       {
         menu: menusConfig.activate.menu,
-        onClick: () => {
+        onPress: () => {
           activateEncryptionKey(encryptionKeyItem);
         },
       },
       {
         menu: menusConfig.delete.menu,
-        onClick: () => {
+        onPress: () => {
           onDeletingEncryptionKeyItem(encryptionKeyItem);
         },
       }
@@ -93,13 +93,13 @@ export default function ViewEncryptionKeyDetails({
   menuItems.push(
     {
       menu: menusConfig.qrcode.menu,
-      onClick: () => {
+      onPress: () => {
         onQrCodeSelected(encryptionKeyItem);
       },
     },
     {
       menu: menusConfig.exportText.menu,
-      onClick: () => {
+      onPress: () => {
         onClipboardCopySelected(encryptionKeyItem);
       },
     }

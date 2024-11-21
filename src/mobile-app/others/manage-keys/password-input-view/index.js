@@ -54,11 +54,11 @@ export default function PasswordInputView({
   const menuItems = [
     {
       menu: menusConfig.cancel.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
     {
       menu: menusConfig.encrypt.menu,
-      onClick: onNextStep,
+      onPress: onNextStep,
     },
   ];
 

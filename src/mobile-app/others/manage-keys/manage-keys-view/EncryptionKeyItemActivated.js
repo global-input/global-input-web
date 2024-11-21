@@ -15,7 +15,7 @@ export default function EncryptionKeyItemActivated({ onBack, encryptionKeyItem }
     {},
     {
       menu: menusConfig.ok.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
     {},
   ];

@@ -229,7 +229,7 @@ export default function ManageKeysView({
     const defaultMenus = [
       {
         menu: menusConfig.back.menu,
-        onClick: onBack,
+        onPress: onBack,
       },
     ];
 
@@ -351,7 +351,7 @@ export default function ManageKeysView({
       {},
       {
         menu: menusConfig.ok.menu,
-        onClick: toListView,
+        onPress: toListView,
       },
       {},
     ];
@@ -388,11 +388,11 @@ export default function ManageKeysView({
     const menuItems = [
       {
         menu: menusConfig.cancel.menu,
-        onClick: toListView,
+        onPress: toListView,
       },
       {
         menu: menusConfig.clipboardCopy.menu,
-        onClick: () => {
+        onPress: () => {
           copyToClipboard(encryptedContent);
         },
       },
@@ -414,7 +414,7 @@ export default function ManageKeysView({
       {},
       {
         menu: menusConfig.ok.menu,
-        onClick: toListView,
+        onPress: toListView,
       },
       {},
     ];

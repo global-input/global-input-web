@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from "styled-components";
 import ScanQRCode from './scan-qr-code';
 import GlobalInputEye from './global-input-eye';
@@ -57,20 +57,7 @@ const MobileApp: React.FC = () => {
         });
     }
     ,[]);
-    const onLoggedIn=useCallback(() => {
-        if (appdata.getLoginUserinfo()) {
-            setPage({
-                page: Page.ScanQRCode,
-                code: null,
-            });          
-        }
-        else{
-            setPage({
-                page: Page.UserLogin,
-                code: null,
-            });          
-        }
-      },[]);
+    
 
 
 
@@ -200,9 +187,10 @@ const renderHelpScreen =  useCallback(() => {
   ]
 
   const renderPage = (page) => {
+    
     switch (page.page) {
       case Page.UserLogin:
-        return <DisplayUserLogin onLoggedIn={onLoggedIn} />;
+        return <DisplayUserLogin onLoggedIn={toBack} />;
       case Page.ScanQRCode:
         // return (
         //   <ScanQRCode
@@ -225,7 +213,7 @@ const renderHelpScreen =  useCallback(() => {
 
       case Page.ImportEncryptionKey:
         return <ImportEncryptionKeyView codedata={page.code} toCameraView={toCameraView} />;
-      case Page.GlobalInputConnector:
+      case Page.GlobalInputConnector:         
         return <GlobalInputConnector codedata={page.code} toCameraView={toCameraView} menuItems={menuItems} />;
       case Page.ManageFormData:
         return (
@@ -256,6 +244,17 @@ const renderHelpScreen =  useCallback(() => {
     //       </Content>
     //     </Container>                      
     //       );    
+    
+      useEffect(() => {
+      if (!appdata.getLoginUserinfo()) {          
+          setPage({
+              page: Page.UserLogin,
+              code: null,
+          });          
+      }
+    }, []);
+    
+
 
 return renderPage(page);
     

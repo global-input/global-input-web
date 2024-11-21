@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'; ////website
 import { useMobile, ConnectWidget } from './mobile';
-import { PageContainer, Title, P, SelectionContainer, AppFooter, MessageButton, MessageLink } from './app-layout';
+import { PageContainer, Title, P, SelectionContainer,  MessageLink } from './app-layout';
 import DisplayApplicationInfo from './DisplayApplicationInfo';
 import * as mobileUI from '../../micro-apps/mobile-ui'; ////website
 

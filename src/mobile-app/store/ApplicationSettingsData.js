@@ -392,7 +392,7 @@ export default class ApplicationSettingsData {
       return userSettings.getMasterEncryptionKey(this.store)
     }
   }
-  _getLoginUserInfo () {
+  _getLoginUserInfo () {    
     return this.loginUserinfo
   }
   _loginUserInfoSetActiveEncrytionKey (activeEncryptionKey) {

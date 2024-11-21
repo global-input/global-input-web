@@ -16,13 +16,13 @@ export default function DeletingEncryptionKey({ deleteEncryptionKey, encryptionK
   const menuItems = [
     {
       menu: menusConfig.delete.menu,
-      onClick: () => {
+      onPress: () => {
         deleteEncryptionKey(encryptionKeyItem);
       },
     },
     {
       menu: menusConfig.cancel.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
   ];
 

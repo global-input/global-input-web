@@ -15,7 +15,7 @@ import settingsTextConfig from '../configs/settingsTextConfig';
 
 const compatibility = 1;
 
-const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
+const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {  
   const messageTimerHandler = useRef(null);
   const globalInputConnector = useRef(null);
   const [action, setAction] = useState(formData.loadingData);
@@ -144,6 +144,7 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
   };
 
   const formDataToSave = formData.getFormDataForSaving(action);
+  
 
   switch (action.actionType) {
     case ACT_TYPE.ERROR:
@@ -180,6 +181,7 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
       return formData.renderSaveFormData({ action, setAction });
 
     case ACT_TYPE.ENCRYPT_SECRET:
+      
       return formData.renderEncryptSecret({
         action,
         setAction,

@@ -149,8 +149,8 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
   };
 
   const menuItems = [
-    { menu: menusConfig.back.menu, onClick: onCancel },
-    { menu: menusConfig.encryptedQrCode.menu, onClick: onEncrypt },
+    { menu: menusConfig.back.menu, onPress: onCancel },
+    { menu: menusConfig.encryptedQrCode.menu, onPress: onEncrypt },
   ];
 
   return (

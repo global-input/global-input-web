@@ -24,6 +24,7 @@ export const DeviceInputView = ({
   onSaveFormData,
   formDataToSave,
 }) => {
+  
   const onSelectField = (fieldSelection) =>
     setAction({ ...action, fieldSelection });
 
@@ -74,7 +75,7 @@ export const DeviceInputView = ({
   const onUnselectField = () =>
     setAction({ ...action, fieldSelection: null });
 
-  const onEncryptSecret = () =>
+  const onEncryptSecret = () =>    
     setAction({ ...action, actionType: ACT_TYPE.ENCRYPT_SECRET });
 
   const onEncryptionKey = () => {
@@ -107,66 +108,68 @@ export const DeviceInputView = ({
   };
 
   const buildMenuItemForDeviceInput = () => {
+    
     let menuItems = null;
     if (action.fieldSelection) {
       menuItems = [
         {
           menu: menusConfig.clipboardCopy.menu,
-          onClick: copyFieldToClipboard,
+          onPress: copyFieldToClipboard,
         },
         {
           menu: menusConfig.clipboardPaste.menu,
-          onClick: pasteClipboardToField,
+          onPress: pasteClipboardToField,
         },
-        { menu: menusConfig.random.menu, onClick: randomizeFieldValue },
-        { menu: menusConfig.clearField.menu, onClick: clearSelectedField },
-        { menu: menusConfig.unselect.menu, onClick: onUnselectField },
+        { menu: menusConfig.random.menu, onPress: randomizeFieldValue },
+        { menu: menusConfig.clearField.menu, onPress: clearSelectedField },
+        { menu: menusConfig.unselect.menu, onPress: onUnselectField },
       ];
     } else {
       menuItems = [{ menu: menusConfig.disconnect.menu, onPress: onDisconnect }];
 
       if (action.initData.dataType === 'qrcode') {
+        
         menuItems.push({
           menu: menusConfig.encrypt.menu,
-          onClick: onEncryptSecret,
+          onPress: onEncryptSecret,
         });
         menuItems.push({
           menu: menusConfig.protectedEncryptionKey.menu,
-          onClick: onEncryptionKey,
+          onPress: onEncryptionKey,
         });
         menuItems.push({
           menu: menusConfig.serviceData.menu,
-          onClick: onPairingData,
+          onPress: onPairingData,
         });
       }
       if (formDataToSave) {
         menuItems.push({
           menu: menusConfig.save.menu,
-          onClick: onSaveFormData,
+          onPress: onSaveFormData,
         });
       }
       if (action.showHideSecret) {
         if (action.showHideSecret.show) {
           menuItems.push({
             menu: menusConfig.hideSecret.menu,
-            onClick: onHideSecret,
+            onPress: onHideSecret,
           });
         } else {
           menuItems.push({
             menu: menusConfig.showSecret.menu,
-            onClick: onShowSecret,
+            onPress: onShowSecret,
           });
         }
       }
       if (appdata.hasFormContent()) {
         menuItems.push({
           menu: menusConfig.selectFromFormDataList.menu,
-          onClick: onListAllForm,
+          onPress: onListAllForm,
         });
         if (action.autofill) {
           menuItems.push({
             menu: menusConfig.selectMatched.menu,
-            onClick: listMatchedForm,
+            onPress: listMatchedForm,
           });
         }
       }
@@ -176,10 +179,10 @@ export const DeviceInputView = ({
 
   const buildMenuItemsForExport = () => {
     let menuItems = [
-      { menu: menusConfig.disconnect.menu, onClick: onDisconnect },
+      { menu: menusConfig.disconnect.menu, onPress: onDisconnect },
       {
         menu: menusConfig.export.menu,
-        onClick: exportFormData,
+        onPress: exportFormData,
       },
     ];
     return menuItems;

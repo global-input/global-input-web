@@ -152,10 +152,10 @@ export const MessageLink: React.FC<MessageLinkProps> = ({ href, onClick, childre
 
 interface MessageButtonProp {
     label: string;
-    onClick: () => void;
+    onPress: () => void;
 }
 
-export const MessageButton: React.FC<MessageButtonProp> = ({ label, onClick }) => (<button style={styles.messageAlink} onClick={onClick}>{label}</button>)
+export const MessageButton: React.FC<MessageButtonProp> = ({ label, onPress}) => (<button style={styles.messageAlink} onClick={onPress}>{label}</button>)
 
 
 const styles = {

@@ -183,7 +183,7 @@ const toDecryptSendResult = ({ action, setAction }) => {
 const buildCancelMenu = (onDisconnect) => {
   return {
     menu: menusConfig.disconnect.menu,
-    onClick: onDisconnect,
+    onPress: onDisconnect,
   };
 };
 
@@ -191,13 +191,13 @@ const buildShowHideMenu = ({ action, setAction, onShowContent }) => {
   if (action.showContent) {
     return {
       menu: menusConfig.hideSecret.menu,
-      onClick: () =>
+      onPress: () =>
         setAction({ ...action, showContent: false, errorMessage: null }),
     };
   }
   return {
     menu: menusConfig.showSecret.menu,
-    onClick: onShowContent,
+    onPress: onShowContent,
   };
 };
 
@@ -225,14 +225,14 @@ const buldShowHideMenuForSelectKey = ({ action, setAction }) => {
 const buildEncryptMenu = ({ action, setAction }) => {
   return {
     menu: menusConfig.encrypt.menu,
-    onClick: () => toEncryptSendResult({ action, setAction }),
+    onPress: () => toEncryptSendResult({ action, setAction }),
   };
 };
 
 const buildDecryptMenu = ({ action, setAction }) => {
   return {
     menu: menusConfig.decrypt.menu,
-    onClick: () => toDecryptSendResult({ action, setAction }),
+    onPress: () => toDecryptSendResult({ action, setAction }),
   };
 };
 
@@ -244,7 +244,7 @@ const buildSendDecryptedResultMenu = ({
 }) => {
   return {
     menu: menusConfig.send.menu,
-    onClick: () => {
+    onPress: () => {
       sendDecryptedFieldsToDevice({ action, sendFieldToDevice });
       onFinish(action);
     },
@@ -259,7 +259,7 @@ const buildSendEncryptedResultMenu = ({
 }) => {
   return {
     menu: menusConfig.send.menu,
-    onClick: () => {
+    onPress: () => {
       sendEncryptedFieldsToDevice({ action, sendFieldToDevice });
       onFinish(action);
     },
