@@ -1,157 +1,169 @@
-// ListFormLabelsHeader.js
+// src/mobile-app/manage-form-data/list-form-labels/ListFormLabelsHeader.js
 
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import { styles } from '../styles';
 
 
 import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
 import menusConfig from '../../configs/menusConfig';
+
+
 import IconButton from '../../components/buttons/IconButton';
 import TextFieldWithDone from '../../components/input/TextFieldWithDone';
 import DisplayHeader from '../../components/menu/DisplayHeader';
 
-const ListFormLabelsHeader = (props) => {
-  const [showSearch, setShowSearch] = useState(false);
-  const searchFieldRef = useRef(null);
+export default class ListFormLabelsHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.getStateFromProps(this.props);
+    // Create a ref for the search field
+    this.searchField = React.createRef();
+  }
 
-  const displaySearchField = () => {
-    setShowSearch(true);
+  getStateFromProps(props) {
+    return { showSearch: false };
+  }
+
+  onBlur() {
+    this.props.onSearchLooseFocus();
+    this.setState({ showSearch: false });
+  }
+
+  onFocus() {
+    this.setState({ showSearch: true });
+  }
+
+  displaySearchField() {
+    this.setState({ showSearch: true });
     setTimeout(() => {
-      if (searchFieldRef.current) {
-        searchFieldRef.current.focus();
+      if (this.searchField.current) {
+        this.searchField.current.focus();
       }
     }, 200);
-  };
+  }
 
-  const onBlur = () => {
-    props.onSearchLooseFocus();
-    setShowSearch(false);
-  };
-
-  const onFocus = () => {
-    setShowSearch(true);
-  };
-
-  const renderFilterString = () => (
-    <DisplayHeader>
-      <LeftHeader>
-        <IconButton image={menusConfig.search.menu.image} onPress={displaySearchField} />
-        <SearchStringContainer>
-          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
-        </SearchStringContainer>
-      </LeftHeader>
-      <LeftHeader>
-        <TitleText>{manageFormDataTextConfig.searchResult.title}</TitleText>
-      </LeftHeader>
-    </DisplayHeader>
-  );
-
-  const renderLabelSwitch = () => (
-    <HeaderItem>
-      <IconButton image={menusConfig.manageFormData.menu.image} onPress={props.toList} />
-    </HeaderItem>
-  );
-
-  const renderWithSearchButton = () => (
-    <DisplayHeader>
-      <HeaderItem>
-        <IconButton image={menusConfig.search.menu.image} onPress={displaySearchField} />
-        <SearchStringContainer>
-          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
-        </SearchStringContainer>
-      </HeaderItem>
-      <HeaderItem>
-        <TitleText>{props.title}</TitleText>
-      </HeaderItem>
-      {renderLabelSwitch()}
-    </DisplayHeader>
-  );
-
-  const renderWithoutSearchButton = () => (
-    <DisplayHeader>
-      <HeaderItem>
-        <SearchStringContainer>
-          <ClickableText onClick={displaySearchField}>{props.action.filterString}</ClickableText>
-        </SearchStringContainer>
-      </HeaderItem>
-      <HeaderItem>
-        <TitleText>{props.title}</TitleText>
-      </HeaderItem>
-      {renderLabelSwitch()}
-    </DisplayHeader>
-  );
-
-  const renderWithSearchField = () => (
-    <DisplayHeader>
-      <SearchBlockItemContainer>
-        <TextFieldWithDone
-          placeholder={manageFormDataTextConfig.searchField.label}
-          autoCapitalize="none"
-          value={props.action.filterString}
-          onChangeTextValue={props.onChangeFilterString}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          ref={searchFieldRef}
+  renderLabelSwitch() {
+    return (
+      <div style={styles.headerItem}>
+        <IconButton
+          image={menusConfig.manageFormData.menu.image}
+          onClick={this.props.toList}
         />
-      </SearchBlockItemContainer>
-    </DisplayHeader>
-  );
+      </div>
+    );
+  }
 
-  const action = props.action;
+  renderFilterString() {
+    return (
+      <DisplayHeader>
+        <div style={styles.leftHeader}>
+          <IconButton
+            image={menusConfig.search.menu.image}
+            onClick={this.displaySearchField.bind(this)}
+          />
+          <div style={styles.searchStringContainer}>
+            <div
+              onClick={this.displaySearchField.bind(this)}
+              style={{ cursor: 'pointer' }}
+            >
+              <span style={styles.searchString}>
+                {this.props.action.filterString}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style={styles.leftHeader}>
+          <span style={styles.titleText}>
+            {manageFormDataTextConfig.searchResult.title}
+          </span>
+        </div>
+      </DisplayHeader>
+    );
+  }
 
-  if (showSearch) {
-    return renderWithSearchField();
-  } else {
-    if (action.filterString) {
-      return renderFilterString();
-    } else if ((action.items && action.items.length > 3) || action.filterString) {
-      return renderWithSearchButton();
+  renderWithSearchButton() {
+    return (
+      <DisplayHeader>
+        <div style={styles.headerItem}>
+          <IconButton
+            image={menusConfig.search.menu.image}
+            onClick={this.displaySearchField.bind(this)}
+          />
+          <div style={styles.searchStringContainer}>
+            <div
+              onClick={this.displaySearchField.bind(this)}
+              style={{ cursor: 'pointer' }}
+            >
+              <span style={styles.searchString}>
+                {this.props.action.filterString}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style={styles.headerItem}>
+          <span style={styles.titleText}>{this.props.title}</span>
+        </div>
+        {this.renderLabelSwitch()}
+      </DisplayHeader>
+    );
+  }
+
+  renderWithoutSearchButton() {
+    return (
+      <DisplayHeader>
+        <div style={styles.headerItem}>
+          <div style={styles.searchStringContainer}>
+            <div
+              onClick={this.displaySearchField.bind(this)}
+              style={{ cursor: 'pointer' }}
+            >
+              <span style={styles.searchString}>
+                {this.props.action.filterString}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style={styles.headerItem}>
+          <span style={styles.titleText}>{this.props.title}</span>
+        </div>
+        {this.renderLabelSwitch()}
+      </DisplayHeader>
+    );
+  }
+
+  renderWithSearchField() {
+    return (
+      <DisplayHeader>
+        <div style={styles.searchBlockItemContainer}>
+          <TextFieldWithDone
+            placeholder={manageFormDataTextConfig.searchField.label}
+            value={this.props.action.filterString}
+            onChangeTextValue={this.props.onChangeFilterString}
+            onBlur={this.onBlur.bind(this)}
+            onFocus={this.onFocus.bind(this)}
+            ref={this.searchField}
+          />
+        </div>
+      </DisplayHeader>
+    );
+  }
+
+  render() {
+    if (this.state.showSearch) {
+      return this.renderWithSearchField();
     } else {
-      console.log('render without search');
-      return renderWithoutSearchButton();
+      var action = this.props.action;
+      if (action.filterString) {
+        return this.renderFilterString();
+      } else if (
+        (action.items && action.items.length > 3) ||
+        action.filterString
+      ) {
+        return this.renderWithSearchButton();
+      } else {
+        console.log('render without search');
+        return this.renderWithoutSearchButton();
+      }
     }
   }
-};
-
-export default ListFormLabelsHeader;
-
-// Styled Components
-
-const LeftHeader = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const HeaderItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 16px;
-`;
-
-const SearchStringContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 5px;
-  border-bottom: 1px solid white;
-`;
-
-const ClickableText = styled.span`
-  color: #ffffff;
-  cursor: pointer;
-`;
-
-const TitleText = styled.h2`
-  color: #ffffff;
-  font-size: 18px;
-  margin: 0;
-`;
-
-const SearchBlockItemContainer = styled.div`
-  flex: 3;
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
-`;
+}

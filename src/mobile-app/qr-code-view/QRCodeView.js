@@ -1,62 +1,76 @@
-// QRCodeView.js
+// src/mobile-app/qr-code-view/QRCodeView.js
 
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+
+
+import { styles } from './styles';
+
 import {QRCodeSVG} from "qrcode.react";
 
 import DisplayBlockText from '../components/display-text/DisplayBlockText';
 import ViewWithTabMenu from '../components/menu/ViewWithTabMenu';
 
-const QRCodeView = ({ menuItems, selected, title, help, help2, qrcodeContent }) => {
-  const [qrSize, setQrSize] = useState(0);
 
-  const updateQrSize = () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    let size;
-    if (width < height) {
-      size = width - 20;
-    } else {
-      size = height - 160;
-    }
-    setQrSize(size);
+const QRCodeView = (props) => {
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const updateDimensions = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
   };
 
   useEffect(() => {
-    updateQrSize();
-    window.addEventListener('resize', updateQrSize);
+    // Add event listener for window resize
+    window.addEventListener('resize', updateDimensions);
+    // Clean up the event listener on unmount
     return () => {
-      window.removeEventListener('resize', updateQrSize);
+      window.removeEventListener('resize', updateDimensions);
     };
   }, []);
 
-  return (
-    <ViewWithTabMenu menuItems={menuItems} selected={selected} title={title}>
-      <DisplayBlockText content={help} />
-      <QrCodeContainer>
-        
-        <QRCodeSVG value={qrcodeContent}  size={qrSize} />
+  const { width, height } = dimensions;
+  let qrsize;
+  if (width < height) {
+    qrsize = width - 20;
+  } else {
+    qrsize = height - 160;
+  }
 
-      </QrCodeContainer>
-      {help2 && (
-        <FormContainer>
-          <DisplayBlockText content={help2} />
-        </FormContainer>
-      )}
+  const renderHelp2 = () => {
+    if (props.help2) {
+      return (
+        <div style={styles.formContainer}>
+          <DisplayBlockText content={props.help2} />
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  return (
+    <ViewWithTabMenu
+      menuItems={props.menuItems}
+      selected={props.selected}
+      title={props.title}
+    >
+      <DisplayBlockText content={props.help} />
+      <div style={styles.qrcodeContainer}>
+        <QRCodeSVG
+          value={props.qrcodeContent}
+          size={qrsize}
+          bgColor="black"
+          fgColor="white"
+        />
+      </div>
+      {renderHelp2()}
     </ViewWithTabMenu>
   );
 };
 
 export default QRCodeView;
-
-// Styled Components
-const QrCodeContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-`;
-
-const FormContainer = styled.div`
-  margin-top: 20px;
-`;

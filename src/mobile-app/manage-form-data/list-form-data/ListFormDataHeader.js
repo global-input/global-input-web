@@ -1,8 +1,11 @@
+// src/mobile-app/manage-form-data/list-form-data/ListFormDataHeader.js
+
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
 
 import searchIcon from '../../images/search.png';
 import folderIcon from '../../images/folders-icon.png';
+
+import { styles } from '../styles';
 
 
 import IconButton from '../../components/buttons/IconButton';
@@ -11,7 +14,7 @@ import DisplayHeader  from '../../components/menu/DisplayHeader';
 
 const RenderTitleIcon = ({ titleIcon }) =>
   titleIcon ? (
-    <TitleIcon src={titleIcon} alt="Title Icon" />
+    <img src={titleIcon} style={styles.titleIcon} alt="Title Icon" />
   ) : null;
 
 const renderWithSearchField = ({
@@ -22,31 +25,32 @@ const renderWithSearchField = ({
   retrieveSearchFieldReference,
 }) => (
   <DisplayHeader>
-    <SearchBlockItemContainer>
+    <div style={styles.searchBlockItemContainer}>
       <TextFieldWithDone
-        placeholder={'Search forms'}
-        autoCapitalize={'none'}
+        placeholder="Search forms"
         value={filterString}
         onChangeTextValue={onChangeFilterString}
         onBlur={onBlur}
         onFocus={onFocus}
         ref={retrieveSearchFieldReference}
       />
-    </SearchBlockItemContainer>
+    </div>
   </DisplayHeader>
 );
 
 const renderFilterString = ({ displaySearchField, filterString }) => (
   <DisplayHeader>
-    <LeftHeader>
-      <IconButton image={searchIcon} onPress={displaySearchField} />
-      <SearchStringContainer>
-        <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
-      </SearchStringContainer>
-    </LeftHeader>
-    <LeftHeader>
-      <TitleText>{'Search Result'}</TitleText>
-    </LeftHeader>
+    <div style={styles.leftHeader}>
+      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <div style={styles.searchStringContainer}>
+        <div onClick={displaySearchField} style={{ cursor: 'pointer' }}>
+          <span style={styles.searchString}>{filterString}</span>
+        </div>
+      </div>
+    </div>
+    <div style={styles.leftHeader}>
+      <span style={styles.titleText}>{'Search Result'}</span>
+    </div>
   </DisplayHeader>
 );
 
@@ -58,19 +62,21 @@ const renderWithSearchButton = ({
   toListLabels,
 }) => (
   <DisplayHeader>
-    <HeaderItem>
-      <IconButton image={searchIcon} onPress={displaySearchField} />
-      <SearchStringContainer>
-        <ClickableText onClick={displaySearchField}>{filterString}</ClickableText>
-      </SearchStringContainer>
-    </HeaderItem>
-    <HeaderItem>
+    <div style={styles.headerItem}>
+      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <div style={styles.searchStringContainer}>
+        <div onClick={displaySearchField} style={{ cursor: 'pointer' }}>
+          <span style={styles.searchString}>{filterString}</span>
+        </div>
+      </div>
+    </div>
+    <div style={styles.headerItem}>
       <RenderTitleIcon titleIcon={titleIcon} />
-      <TitleText>{title}</TitleText>
-    </HeaderItem>
-    <HeaderItem>
-      <IconButton image={folderIcon} onPress={toListLabels} />
-    </HeaderItem>
+      <span style={styles.titleText}>{title}</span>
+    </div>
+    <div style={styles.headerItem}>
+      <IconButton image={folderIcon} onClick={toListLabels} />
+    </div>
   </DisplayHeader>
 );
 
@@ -130,43 +136,3 @@ const ListFormDataHeader = ({
 };
 
 export default ListFormDataHeader;
-
-// Styled Components
-const TitleIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-`;
-
-const SearchBlockItemContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-`;
-
-const LeftHeader = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const HeaderItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 16px;
-`;
-
-const SearchStringContainer = styled.div`
-  margin-left: 8px;
-`;
-
-const ClickableText = styled.span`
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-`;
-
-const TitleText = styled.h2`
-  font-size: 18px;
-  margin: 0;
-`;

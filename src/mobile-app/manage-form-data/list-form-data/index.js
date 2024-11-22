@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import {domainForms} from '../../store';
+// src/mobile-app/manage-form-data/list-form-data/index.js
 
-import menusConfig from  "../../configs/menusConfig";
-
-import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
+import React, { useState, useEffect } from 'react';
+import { styles } from '../styles'; // Ensure styles are adjusted for React.js
+import { domainForms } from '../../store';
+import menusConfig  from '../../configs/appTextConfig';
+import ViewWithTabMenu  from '../../components/menu/ViewWithTabMenu';
 import ListFormDataHeader from './ListFormDataHeader';
-
-import noteIcon from '../../images/note.png';
+import noteIcon from '../../images/note.png'; // Ensure this path is correct
 
 const createNewAction = () => {
   return {
@@ -65,7 +64,13 @@ const ListFormData = ({
   toListLabels,
   title,
 }) => {
-  const [action, setAction] = useState(() => getStateFromProps({ formDataList }));
+  const [action, setAction] = useState(() =>
+    getStateFromProps({ formDataList })
+  );
+
+  useEffect(() => {
+    setAction(getStateFromProps({ formDataList }));
+  }, [formDataList]);
 
   const onChangeFilterString = (filterString) => {
     const newAction = createNewAction();
@@ -84,15 +89,18 @@ const ListFormData = ({
   const renderItemListItem = (item) => {
     if (item.formData) {
       return (
-        <ItemRecord key={item.key} onClick={() => onFormDataSelected(item.formData)}>
-          <ItemRow>
-            <ItemIcon src={noteIcon} alt="Note Icon" />
-            <FormIdText>{item.formData.id}</FormIdText>
-          </ItemRow>
-        </ItemRecord>
+        <div
+          onClick={() => onFormDataSelected(item.formData)}
+          style={{ ...styles.itemRecord, cursor: 'pointer' }}
+        >
+          <div style={styles.itemRow}>
+            <img src={noteIcon} style={styles.itemIcon} alt="Note Icon" />
+            <span style={styles.formIdText}>{item.formData.id}</span>
+          </div>
+        </div>
       );
     } else {
-      return <EndSpace key={item.key} />;
+      return <div style={styles.endSpace}></div>;
     }
   };
 
@@ -116,6 +124,7 @@ const ListFormData = ({
     );
   };
 
+  // Adjust menuItems if filterString is present
   let adjustedMenuItems = menuItems;
   if (action.filterString) {
     adjustedMenuItems = [
@@ -128,61 +137,36 @@ const ListFormData = ({
     ];
   }
 
+  // Function to handle scroll event for infinite scrolling
+  const handleScroll = (e) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      onEndReached();
+    }
+  };
+
   return (
     <ViewWithTabMenu
       menuItems={adjustedMenuItems}
       selected={menusConfig.manageFormData.menu}
-      header={renderHeader()}      
+      header={renderHeader()}
       floatingButton={menusConfig.addRecord.menu}
       onPressFloatingIcon={onCreateFormData}
     >
-      <ListContainer onScroll={onEndReached}>
-        {action.items.map((item) => renderItemListItem(item))}
-      </ListContainer>
+      <div
+        style={styles.listContainer}
+        onScroll={handleScroll}
+        className="list-scroll-container"
+      >
+        {action.items.map((item) => (
+          <React.Fragment key={item.key}>
+            {renderItemListItem(item)}
+          </React.Fragment>
+        ))}
+      </div>
     </ViewWithTabMenu>
   );
 };
 
 export default ListFormData;
-
-// Styled Components
-
-const ItemRecord = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-bottom: 1px solid rgba(72, 128, 237, 0.2);
-  padding-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-  flex: 1;
-  cursor: pointer;
-`;
-
-const ItemRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
-const ItemIcon = styled.img`
-  margin-right: 5px;
-`;
-
-const FormIdText = styled.p`
-  color: rgba(72, 128, 237, 1);
-  font-family: 'Futura-Medium';
-  font-size: 18px;
-  margin: 0;
-`;
-
-const EndSpace = styled.div`
-  height: 50px;
-`;
-
-const ListContainer = styled.div`
-  overflow-y: auto;
-`;

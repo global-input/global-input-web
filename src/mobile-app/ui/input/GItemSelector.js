@@ -1,7 +1,6 @@
-// GItemSelector.js
+// src/mobile-app/ui/input/GItemSelector.js
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import tickOff from './tick-off-icon.png';
 import tickOn from './tick-on-icon.png';
@@ -16,14 +15,20 @@ const GItemSelector = ({ items, selectedItem, onValueChange, label }) => {
       onValueChange(value);
     };
     return (
-      <SelectionFieldContainer>
-        <ClickableArea onClick={() => setShowListMode(false)}>
-          <SelectionSelectedRow>
+      <div style={styles.selectionFieldContainer}>
+        <div
+          onClick={() => {
+            setShowListMode(false);
+          }}
+          style={{ cursor: 'pointer' }}
+        >
+          <div style={styles.selectionSelectedRow}>
             <div>
-              <Label>{label}</Label>
+              <span style={styles.label}>{label}</span>
             </div>
-          </SelectionSelectedRow>
-        </ClickableArea>
+          </div>
+        </div>
+
         {items.map((item) => (
           <DisplayItem
             key={item.value}
@@ -32,7 +37,7 @@ const GItemSelector = ({ items, selectedItem, onValueChange, label }) => {
             onSelected={onSelected}
           />
         ))}
-      </SelectionFieldContainer>
+      </div>
     );
   } else {
     let valueLabel = '';
@@ -40,17 +45,24 @@ const GItemSelector = ({ items, selectedItem, onValueChange, label }) => {
       valueLabel = selectedItem.label ? selectedItem.label : selectedItem.value;
     }
     return (
-      <SelectionFieldContainer>
-        <ClickableArea onClick={() => setShowListMode(true)}>
-          <SelectionSelectedRow>
+      <div style={styles.selectionFieldContainer}>
+        <div
+          onClick={() => {
+            setShowListMode(true);
+          }}
+          style={{ cursor: 'pointer' }}
+        >
+          <div style={styles.selectionSelectedRow}>
             <div>
-              <Label>{label}</Label>
-              <SelectionSelectedValueText>{valueLabel}</SelectionSelectedValueText>
+              <span style={styles.label}>{label}</span>
+              <span style={styles.selectionSelectedValueText}>
+                {valueLabel}
+              </span>
             </div>
-            <ImageIcon src={updownIcon} alt="Toggle Icon" />
-          </SelectionSelectedRow>
-        </ClickableArea>
-      </SelectionFieldContainer>
+            <img src={updownIcon} alt="Toggle Icon" />
+          </div>
+        </div>
+      </div>
     );
   }
 };
@@ -59,74 +71,68 @@ const DisplayItem = ({ item, selectedItem, onSelected }) => {
   const { value, label } = item;
   const image = selectedItem && selectedItem.value === value ? tickOn : tickOff;
   return (
-    <ClickableArea onClick={() => onSelected(value)}>
-      <OptionRow>
-        <OptionLabel>
-          <ImageIcon src={image} alt="Selection Icon" />
-        </OptionLabel>
-        <OptionText>{label}</OptionText>
-      </OptionRow>
-    </ClickableArea>
+    <div
+      onClick={() => {
+        onSelected(value);
+      }}
+      style={{ cursor: 'pointer' }}
+    >
+      <div style={styles.optionRow}>
+        <div style={styles.optionLabel}>
+          <img src={image} alt="Selection Icon" />
+        </div>
+        <span style={styles.optionText}>{label}</span>
+      </div>
+    </div>
   );
 };
 
+const styles = {
+  selectionFieldContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    borderBottom: '1px solid #B9C3CE',
+    width: '100%',
+  },
+  selectionSelectedRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  selectionSelectedValueText: {
+    fontSize: '20px',
+    color: '#4880ED',
+    width: '100%',
+    margin: 0,
+    padding: 0,
+  },
+  optionLabel: {
+    width: '35px',
+    height: '25px',
+  },
+  optionText: {
+    fontSize: '20px',
+    color: '#4880ED',
+    margin: 0,
+    padding: 0,
+  },
+  optionRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  label: {
+    fontSize: '10px',
+    color: '#4880ED',
+    height: '15px',
+    marginBottom: 0,
+    paddingBottom: 0,
+    fontFamily: 'Futura-Medium',
+  },
+};
+
 export default GItemSelector;
-
-// Styled Components
-
-const SelectionFieldContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border-bottom: 1px solid #b9c3ce;
-  width: 100%;
-`;
-
-const SelectionSelectedRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-`;
-
-const SelectionSelectedValueText = styled.p`
-  font-size: 20px;
-  color: #4880ed;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-`;
-
-const OptionLabel = styled.div`
-  width: 35px;
-  height: 25px;
-`;
-
-const OptionText = styled.p`
-  font-size: 20px;
-  color: #4880ed;
-  margin: 0;
-  padding: 0;
-`;
-
-const OptionRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-`;
-
-const Label = styled.p`
-  font-size: 10px;
-  color: #4880ed;
-  height: 15px;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  font-family: 'Futura-Medium', sans-serif;
-`;
-
-const ClickableArea = styled.div`
-  cursor: pointer;
-`;
-
-const ImageIcon = styled.img`
-  margin-left: 5px;
-`;

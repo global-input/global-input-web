@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, {useState, useEffect} from 'react';
 
+import {styles} from '../styles';
 import images from '../../../configs/images';
 import menusConfig from '../../../configs/menusConfig';
 import EditorWithTabMenu from '../../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../../components/input/TextInputField';
 import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
 import {appdata} from '../../../store';
+
 
 const errorMessages = {
   importDecryptionError:
@@ -27,57 +28,50 @@ const passwordProtectedEncryptionKey = {
   placeHolder: 'Password required',
 };
 
-const PasswordDecrypt = ({ content, onEncryptionKeyDecrypted, onBack }) => {
+const PasswordDecrypt=  ({content, onEncryptionKeyDecrypted, onBack}) => {
   const [compData, setCompData] = useState({
     content,
     password: '',
     errorMessage: '',
   });
-
   useEffect(() => {
-    setCompData({ content, password: '', errorMessage: '' });
-  }, [content]);
-
-  const setPassword = (password) =>
-    setCompData({ ...compData, password, errorMessage: '' });
-  const setErrorMessage = (errorMessage) =>
-    setCompData({ ...compData, errorMessage });
-
+    setCompData({content, password: '', errorMessage: ''});
+  }, []);
+  const setPassword = password =>
+    setCompData({...compData, password, errorMessage: ''});
+  const setErrorMessage = errorMessage =>
+    setCompData({...compData, errorMessage});
   const decryptWithPassword = () => {
-    const { password, content } = compData;
+    const {password, content} = compData;
     if (!password) {
       setErrorMessage(errorMessages.missingPassword);
     } else {
       try {
-        const encryptionKeyDecrypted = appdata.decryptPasswordEncryptedEncryptionKeyText(
-          content,
-          password
-        );
+        var encryptionKeyDecrypted =
+          appdata.decryptPasswordEncryptedEncryptionKeyText(content, password);
         if (!encryptionKeyDecrypted) {
           setErrorMessage(errorMessages.invalidPassword);
         } else {
           onEncryptionKeyDecrypted(encryptionKeyDecrypted);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setErrorMessage(errorMessages.invalidPassword);
       }
     }
   };
-
   const renderErrorMessage = () => {
     if (compData.errorMessage) {
       return (
-        <ErrorMessageContainer>
-          <ErrorMessage>{compData.errorMessage}</ErrorMessage>
-        </ErrorMessageContainer>
+        <div style={styles.errorMessageContainer}>
+          <span style={styles.errorMessage}>{compData.errorMessage}</span>
+        </div>
       );
     } else {
       return null;
     }
   };
-
-  const menuItems = [
+  var menuItems = [
     {
       menu: menusConfig.cancel.menu,
       onPress: onBack,
@@ -92,41 +86,26 @@ const PasswordDecrypt = ({ content, onEncryptionKeyDecrypted, onBack }) => {
     <EditorWithTabMenu
       title={passwordProtectedEncryptionKey.title}
       menuItems={menuItems}
-      selected={menusConfig.eye.menu}
-    >
-      <FormContainer>
+      selected={menusConfig.eye.menu}>
+      <div style={styles.formContainer}>
         <DisplayBlockText content={passwordProtectedEncryptionKey.content} />
-      </FormContainer>
-      <FormContainer>
+      </div>
+      <div style={styles.formContainer}>
         <TextInputField
           labelIcon={images.passwordIcon}
           placeholder={passwordProtectedEncryptionKey.placeHolder}
           value={compData.password}
           secureTextEntry={true}
           onChangeTextValue={setPassword}
-          autoCapitalize="none"
+          autoCapitalize={'none'}
         />
-      </FormContainer>
+      </div>
       {renderErrorMessage()}
-      <FormContainer>
+      <div style={styles.formContainer}>
         <DisplayBlockText content={passwordProtectedEncryptionKey.content2} />
-      </FormContainer>
+      </div>
     </EditorWithTabMenu>
   );
 };
 
 export default PasswordDecrypt;
-
-// Styled Components
-const FormContainer = styled.div`
-  margin: 20px 0;
-`;
-
-const ErrorMessageContainer = styled.div`
-  margin-top: 10px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 14px;
-`;

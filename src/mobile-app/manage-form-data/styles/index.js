@@ -1,7 +1,3 @@
-import {
-  StyleSheet,Dimensions
-} from 'react-native';
-
 import {commonStyles} from "../../common-styles";
 
 var stylesData={
@@ -248,4 +244,4 @@ var stylesData={
 
 };
 
-export const styles = StyleSheet.create(Object.assign({},commonStyles,stylesData));
+export const styles = Object.assign({},commonStyles,stylesData);

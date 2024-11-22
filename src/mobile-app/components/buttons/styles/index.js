@@ -10,8 +10,7 @@ var stylesData = {
     borderBottomLeftRadius:10,
     borderTopRightRadius:10,
     borderTopLeftRadius:10,
-    backgroundColor: "white",
-    width:"100%",
+    backgroundColor: "white",    
     margin:10,
     width:150,
     height:50

@@ -1,11 +1,12 @@
-// ListFormLabels.js
+// src/mobile-app/manage-form-data/list-form-labels/index.js
 
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { styles } from '../styles'; // Ensure styles are adjusted for React.js
 
 import images from '../../configs/images';
 import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
 import menusConfig from '../../configs/menusConfig';
+
 
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import ListFormLabelsHeader from './ListFormLabelsHeader';
@@ -21,6 +22,11 @@ const createNewAction = () => {
     numberRocordsInBatch: 20,
     labels: [],
   };
+};
+
+const itemKeyExtractor = (item) => {
+  const key = item.key ? item.key : item.label;
+  return key ? key : EMPTY_ID;
 };
 
 const populateItemsInAction = (action) => {
@@ -60,6 +66,10 @@ const getStateFromProps = ({ labels }) => {
 const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSelected }) => {
   const [data, setData] = useState(() => getStateFromProps({ labels }));
 
+  useEffect(() => {
+    setData(getStateFromProps({ labels }));
+  }, [labels]);
+
   const onChangeFilterString = (filterString) => {
     const action = createNewAction();
     action.filterString = filterString;
@@ -94,15 +104,19 @@ const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSe
         labelText = manageFormDataTextConfig.labelsSiwtch.root;
       }
       return (
-        <ItemRecord key={item.key} onClick={() => onLabelSelected(item.label)}>
-          <ItemRow>
-            <ItemIcon src={images.folder} alt="Folder Icon" />
-            <FormLabelText>{labelText}</FormLabelText>
-          </ItemRow>
-        </ItemRecord>
+        <div
+          key={itemKeyExtractor(item)}
+          onClick={() => onLabelSelected(item.label)}
+          style={{ ...styles.itemRecord, cursor: 'pointer' }}
+        >
+          <div style={styles.itemRow}>
+            <img src={images.folder} style={styles.itemIcon} alt="Folder Icon" />
+            <span style={styles.formLabelText}>{labelText}</span>
+          </div>
+        </div>
       );
     } else {
-      return <EndSpace key={index} />;
+      return <div key={EMPTY_ID} style={styles.endSpace}></div>;
     }
   };
 
@@ -118,6 +132,7 @@ const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSe
     );
   };
 
+  // Adjust menuItems if filterString is present
   let adjustedMenuItems = menuItems;
   if (data.filterString) {
     adjustedMenuItems = [
@@ -130,6 +145,15 @@ const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSe
     ];
   }
 
+  // Function to handle scroll event for infinite scrolling
+  const handleScroll = (e) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      onEndReached();
+    }
+  };
+
   return (
     <ViewWithTabMenu
       menuItems={adjustedMenuItems}
@@ -138,53 +162,15 @@ const ListFormLabels = ({ labels, toList, menuItems, onCreateFormData, onLabelSe
       floatingButton={menusConfig.addRecord.menu}
       onPressFloatingIcon={onCreateFormData}
     >
-      <ListContainer onScroll={onEndReached}>
+      <div
+        style={styles.listContainer}
+        onScroll={handleScroll}
+        className="list-scroll-container"
+      >
         {data.items.map((item, index) => renderItemListItem(item, index))}
-      </ListContainer>
+      </div>
     </ViewWithTabMenu>
   );
 };
 
 export default ListFormLabels;
-
-// Styled Components
-
-const ItemRecord = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border-bottom: 1px solid rgba(72, 128, 237, 0.2);
-  padding-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-  flex: 1;
-  cursor: pointer;
-`;
-
-const ItemRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
-const ItemIcon = styled.img`
-  margin-right: 5px;
-`;
-
-const FormLabelText = styled.p`
-  color: rgba(72, 128, 237, 1);
-  font-family: 'Futura-Medium';
-  font-size: 18px;
-  margin: 0;
-`;
-
-const EndSpace = styled.div`
-  height: 50px;
-`;
-
-const ListContainer = styled.div`
-  overflow-y: auto;
-`;

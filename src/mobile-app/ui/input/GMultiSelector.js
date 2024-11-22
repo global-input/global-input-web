@@ -1,12 +1,17 @@
-// GMultiSelector.js
+// src/mobile-app/ui/input/GMultiSelector.js
 
 import React from 'react';
-import styled from 'styled-components';
 
 import tickOff from './tick-off-icon.png';
 import tickOn from './tick-on-icon.png';
 
-const GMultiSelector = ({ items, label, selectType, selectedItems, onValueChange }) => {
+const GMultiSelector = ({
+  items,
+  label,
+  selectType,
+  selectedItems,
+  onValueChange,
+}) => {
   const onSelected = (item) => {
     const isAlreadySelected =
       selectedItems && selectedItems.some((itm) => itm.value === item.value);
@@ -28,10 +33,9 @@ const GMultiSelector = ({ items, label, selectType, selectedItems, onValueChange
       }
     }
   };
-
   return (
-    <SelectionFieldContainer>
-      <Label>{label}</Label>
+    <div style={styles.selectionFieldContainer}>
+      <span style={styles.label}>{label}</span>
       {items.map((item) => (
         <DisplayItem
           key={item.value}
@@ -40,74 +44,85 @@ const GMultiSelector = ({ items, label, selectType, selectedItems, onValueChange
           onSelected={onSelected}
         />
       ))}
-    </SelectionFieldContainer>
+    </div>
   );
 };
 
 const DisplayItem = ({ item, selectedItems, onSelected }) => {
-  const isSelected = selectedItems && selectedItems.some((itm) => itm.value === item.value);
-  const image = isSelected ? tickOn : tickOff;
-
+  let image = tickOff;
+  if (selectedItems) {
+    selectedItems.forEach((itm) => {
+      if (itm.value === item.value) {
+        image = tickOn;
+      }
+    });
+  }
   return (
-    <ClickableArea onClick={() => onSelected(item)}>
-      <OptionRow>
-        <OptionText>{item.label}</OptionText>
-        <OptionLabel>
-          <ImageIcon src={image} alt="Selection Icon" />
-        </OptionLabel>
-      </OptionRow>
-    </ClickableArea>
+    <div
+      onClick={() => {
+        onSelected(item);
+      }}
+      style={{ cursor: 'pointer' }}
+    >
+      <div style={styles.optionRow}>
+        <span style={styles.optionText}>{item.label}</span>
+        <div style={styles.optionLabel}>
+          <img src={image} alt="Selection Icon" />
+        </div>
+      </div>
+    </div>
   );
 };
 
+const styles = {
+  selectionFieldContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    borderBottom: '1px solid #B9C3CE',
+    width: '100%',
+  },
+  selectionSelectedRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
+  selectionSelectedValueText: {
+    fontSize: '20px',
+    color: '#4880ED',
+    width: '100%',
+    margin: 0,
+    padding: 0,
+  },
+  optionLabel: {
+    width: '35px',
+    height: '25px',
+    marginLeft: '15px',
+  },
+  optionText: {
+    fontSize: '20px',
+    color: '#4880ED',
+    margin: 0,
+    padding: 0,
+  },
+  optionRow: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    marginBottom: '10px',
+  },
+  label: {
+    fontSize: '10px',
+    color: '#4880ED',
+    height: '15px',
+    marginBottom: 0,
+    paddingBottom: 0,
+    fontFamily: 'Futura-Medium',
+  },
+};
+
 export default GMultiSelector;
-
-// Styled Components
-
-const SelectionFieldContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border-bottom: 1px solid #b9c3ce;
-  width: 100%;
-`;
-
-const Label = styled.p`
-  font-size: 10px;
-  color: #4880ed;
-  height: 15px;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  font-family: 'Futura-Medium', sans-serif;
-`;
-
-const OptionRow = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  margin-bottom: 10px;
-`;
-
-const OptionText = styled.p`
-  font-size: 20px;
-  color: #4880ed;
-  margin: 0;
-  padding: 0;
-`;
-
-const OptionLabel = styled.div`
-  width: 35px;
-  height: 25px;
-  margin-left: 15px;
-`;
-
-const ClickableArea = styled.div`
-  cursor: pointer;
-`;
-
-const ImageIcon = styled.img`
-  width: 100%;
-  height: auto;
-`;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+// src/mobile-app/others/manage-keys/generate-new-key/index.js
 
-import styles from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { styles } from '../styles'; // Ensure styles are adjusted for React.js
 
 import images from '../../../configs/images';
 import manageKeysTextConfig from '../../../configs/manageKeysTextConfig';
@@ -14,8 +15,7 @@ import DisplayBlockText from "../../../components/display-text/DisplayBlockText"
 import TextInputField from "../../../components/input/TextInputField";
 
 
-import { generateRandomString } from "../../../store";
-
+import { generateRandomString } from '../../../store';
 
 const getStateFromProps = ({ importDecryptedKey, name }) => ({
   encryptionKey: importDecryptedKey
@@ -25,12 +25,7 @@ const getStateFromProps = ({ importDecryptedKey, name }) => ({
   errorMessage: '',
 });
 
-const GenerateNewKey = function ({
-  importDecryptedKey,
-  name,
-  importNewKey,
-  onBack,
-}) {
+const GenerateNewKey = ({ importDecryptedKey, name, importNewKey, onBack }) => {
   const [compData, setCompData] = useState(() =>
     getStateFromProps({ importDecryptedKey, name })
   );
@@ -46,7 +41,7 @@ const GenerateNewKey = function ({
     setCompData({ ...compData, name, errorMessage: '' });
 
   const onImportNewKey = () => {
-    var name = compData.name.trim();
+    const name = compData.name.trim();
     if (!name) {
       setCompData({
         ...compData,
@@ -61,7 +56,7 @@ const GenerateNewKey = function ({
     if (compData.errorMessage) {
       return (
         <div style={styles.errorMessageContainer}>
-          <div style={styles.errorMessage}>{compData.errorMessage}</div>
+          <span style={styles.errorMessage}>{compData.errorMessage}</span>
         </div>
       );
     } else {
@@ -90,11 +85,11 @@ const GenerateNewKey = function ({
   const menuItems = [
     {
       menu: menusConfig.cancel.menu,
-      onPress: onBack,
+      onClick: onBack,
     },
     {
       menu: menusConfig.importSingle.menu,
-      onPress: onImportNewKey,
+      onClick: onImportNewKey,
     },
   ];
 
@@ -106,8 +101,8 @@ const GenerateNewKey = function ({
     >
       <div style={styles.keyFieldRow}>
         <div style={styles.keyvalueContainer}>
-          <img src={images.key} style={styles.itemIcon} alt="" />
-          <div style={styles.fieldValue}>{compData.encryptionKey}</div>
+          <img src={images.key} style={styles.itemIcon} alt="Key Icon" />
+          <span style={styles.fieldValue}>{compData.encryptionKey}</span>
         </div>
         {renderRandomButton()}
       </div>
@@ -128,6 +123,6 @@ const GenerateNewKey = function ({
       </div>
     </EditorWithTabMenu>
   );
-}
+};
 
 export default GenerateNewKey;
