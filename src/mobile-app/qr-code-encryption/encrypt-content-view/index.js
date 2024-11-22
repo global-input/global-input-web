@@ -128,8 +128,7 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
           value={action.content}
           secureTextEntry={false}
           onChangeTextValue={setContent}
-          dark={true}
-          autoCapitalize="none"
+          dark={true}          
         />
 
         {renderErrorMessage()}

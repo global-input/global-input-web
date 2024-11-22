@@ -64,8 +64,7 @@ export default class TextFieldWithDone extends Component {
         onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
         ref={this.textField}
-        onChangeTextValue={this.props.onChangeTextValue}
-        autoCapitalize={this.props.autoCapitalize}
+        onChangeTextValue={this.props.onChangeTextValue}        
         placeholder={this.props.placeholder}
         notFocusedContent={this.props.notFocusedContent}
         focusedContent={this.renderFocusedContent()}

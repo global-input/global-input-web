@@ -96,8 +96,7 @@ const PasswordDecrypt=  ({content, onEncryptionKeyDecrypted, onBack}) => {
           placeholder={passwordProtectedEncryptionKey.placeHolder}
           value={compData.password}
           secureTextEntry={true}
-          onChangeTextValue={setPassword}
-          autoCapitalize={'none'}
+          onChangeTextValue={setPassword}          
         />
       </div>
       {renderErrorMessage()}

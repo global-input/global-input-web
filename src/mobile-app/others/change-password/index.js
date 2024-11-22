@@ -89,8 +89,7 @@ const renderErrorMessage = () => {
                                   value={compData.originalPassword}
                                   secureTextEntry={false}
                                   onChangeTextValue={setOriginalPassword}
-                                  dark={true}
-                                  autoCapitalize={'none'}
+                                  dark={true}                             
                               />
                             </div>
                             <div style={styles.inputContainer}>
@@ -100,7 +99,6 @@ const renderErrorMessage = () => {
                                   secureTextEntry={false}
                                   onChangeTextValue={setNewPassword}
                                   dark={true}
-                                  autoCapitalize={'none'}
                               />
                             </div>
                             <div style={styles.inputContainer}>
@@ -109,8 +107,7 @@ const renderErrorMessage = () => {
                                   value={compData.repeatedPassword}
                                   secureTextEntry={false}
                                   onChangeTextValue={setRepeatedPassword}
-                                  dark={true}
-                                  autoCapitalize={'none'}
+                                  dark={true}                                  
                               />
                             </div>
                             {renderErrorMessage()}

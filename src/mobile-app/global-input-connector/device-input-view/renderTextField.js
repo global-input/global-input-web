@@ -63,8 +63,7 @@ const TextInputComponent = ({
           dark={true}
           secureTextEntry={secureTextEntry}
           onFocus={() => onFieldSelected(null)}
-          onChangeTextValue={(data) => onFieldChanged(data)}
-          autoCapitalize={'none'}
+          onChangeTextValue={(data) => onFieldChanged(data)}          
         >
           {renderFieldSelection({ dataitem, fieldSelection, onFieldSelected })}
         </TextInputField>

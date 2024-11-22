@@ -78,8 +78,7 @@ export default function PasswordInputView({
           <TextInputField
             labelIcon={images.passwordIcon}
             placeholder={placeHolder}
-            value={password}
-            autoCapitalize={'none'}
+            value={password}            
             onChangeTextValue={setPassword}
           />
         </div>

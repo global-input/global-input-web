@@ -244,8 +244,7 @@ export const renderEditor = ({
             selectTextOnFocus={selectTextOnFocusOnId}
             onChangeTextValue={onFormIdChanged}
             onFocus={unselectFieldSelection}
-            ref={(ref) => (formIdField.current = ref)}
-            autoCapitalize="none"
+            ref={(ref) => (formIdField.current = ref)}            
           />
         </div>
         <div style={styles.formEditField}>
@@ -254,8 +253,7 @@ export const renderEditor = ({
             labelIcon={images.folder}
             placeholder={manageFormDataTextConfig.labelPlaceHolder}
             value={data.formData.label}
-            onFocus={unselectFieldSelection}
-            autoCapitalize="none"
+            onFocus={unselectFieldSelection}            
             onChangeTextValue={onFormLabelChanged}
           />
         </div>
@@ -265,8 +263,7 @@ export const renderEditor = ({
             labelIcon={images.domainSearch}
             placeholder={manageFormDataTextConfig.domainSearchPlaceHolder}
             value={data.formData.domains}
-            onFocus={unselectFieldSelection}
-            autoCapitalize="none"
+            onFocus={unselectFieldSelection}            
             onChangeTextValue={onFormDomainChanged}
           />
         </div>
@@ -549,7 +546,7 @@ const RenderAFormField = ({
           onFormFieldChanged({ formField, index, value });
         }}
         onFocus={unselectFieldSelection}
-        autoCapitalize="none"
+        
       >
         {renderFieldSelection({
           formField,

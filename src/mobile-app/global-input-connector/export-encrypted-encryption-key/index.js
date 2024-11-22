@@ -182,7 +182,7 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
             value={action.password}
             secureTextEntry={false}
             onChangeTextValue={setPassword}
-            autoCapitalize="none"
+            
           />
         </div>
         {renderErrorMessage({ action })}

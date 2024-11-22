@@ -84,7 +84,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
           value={action.password}
           secureTextEntry={true}
           onChangeTextValue={setPassword}
-          autoCapitalize={'none'}
+          
         />
       </div>
       {renderErrorMessage()}

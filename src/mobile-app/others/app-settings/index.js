@@ -171,7 +171,7 @@ const Others = ({ onBack }) => {
               value={compData.loginTimeoutOnBackground}
               secureTextEntry={false}
               onChangeTextValue={setLoginTimeoutOnBackground}
-              autoCapitalize={'none'}
+              
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ const Others = ({ onBack }) => {
               value={compData.proxyURL}
               secureTextEntry={false}
               onChangeTextValue={setProxyURL}
-              autoCapitalize={'none'}
+              
             />
           </div>
           <span style={styles.itemText}>{settingsTextConfig.datatransfer.contentApiKey}</span>
@@ -206,7 +206,7 @@ const Others = ({ onBack }) => {
               value={compData.apikey}
               secureTextEntry={false}
               onChangeTextValue={setAPIKey}
-              autoCapitalize={'none'}
+              
             />
           </div>
 
@@ -218,7 +218,7 @@ const Others = ({ onBack }) => {
               value={compData.securityGroup}
               secureTextEntry={false}
               onChangeTextValue={setSecurityGroup}
-              autoCapitalize={'none'}
+
             />
           </div>
 

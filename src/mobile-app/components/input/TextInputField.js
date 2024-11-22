@@ -80,7 +80,10 @@ export default class TextInputField extends Component {
         <div style={styles.textInputContainer}>
           {this.renderLabel()}
           <input
-            
+            autoComplete={'none'}
+            autoCorrect={'none'}
+            autoCapitalize={'none'}
+            spellCheck={'none'}       
             style={styles.inputText}            
             editable={this.props.editable}            
             value={this.props.value}
@@ -89,8 +92,7 @@ export default class TextInputField extends Component {
             ref={textField => {
               this.textField = textField
             }}
-            onChange={e=>this.props.onChangeTextValue(e.target.value)}
-            autoCapitalize={this.props.autoCapitalize}            
+            onChange={e=>this.props.onChangeTextValue(e.target.value)}            
             placeholder={this.props.placeholder}
           />
         </div>
