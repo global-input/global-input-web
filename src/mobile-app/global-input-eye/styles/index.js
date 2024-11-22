@@ -4,6 +4,7 @@ import {deviceDetector} from "../../components/menu/styles";
 var styleData={
 
   container: {
+    display: 'flex',
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'transparent',

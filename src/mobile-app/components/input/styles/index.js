@@ -40,8 +40,9 @@ const styleData = {
     fontFamily: 'Futura-Medium',
   },
   inputText: {
-    flex: 1,
+    display:"flex",
     fontSize: 20,
+    
 
     color: '#4880ED',
     backgroundColor: 'transparent',
@@ -52,13 +53,14 @@ const styleData = {
     paddingBottom: 14,
   },
   textInputContainer: {
+    display: 'flex',
     flex: 1,
     minHeight: 40,
     backgroundColor: 'white',
     justifyContent: 'center',
-    display: 'flex',
+    
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    
     alignItems: 'flex-start',
     borderColor: '#B9C3CE',
     borderBottomWidth: 1,
@@ -113,6 +115,7 @@ export function stylesWithNumberOfLines (nlines = 1) {
   var height = nlines * 25 + 50
   return {
     textarea: {
+      display: 'flex',
       backgroundColor: '#ffffff',
       paddingLeft: 15,
       paddingRight: 15,

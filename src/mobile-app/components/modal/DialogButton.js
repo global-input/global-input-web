@@ -23,7 +23,8 @@ export default class DialogButton extends Component{
 
             return(
                 <div onClick={this.onPress.bind(this)} style={buttonStyle}>
-                          <Text style={styles.buttonText} testID={this.props.testID}>{this.props.buttonText}</Text>
+                  
+                          <span style={styles.buttonText} >{this.props.buttonText}</span>
                 </div>
 
                );

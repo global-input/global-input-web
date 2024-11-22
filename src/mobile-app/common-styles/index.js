@@ -4,17 +4,17 @@
 
 const commonStyles ={
   container: {
-          flex: 1,
+          display:"flex",
           flexDirection: 'column',
           justifyContent:"flex-start",
           alignItems:"center",
           backgroundColor: "rgba(72,128,237,1)"
   },
   overlayContainer:{
-    flex: 1,
-    flexDirection: 'column',
     display:"flex",
-    flexDirection:"column",
+    flexDirection: 'column',
+    
+    
     justifyContent:"center",
     alignItems:"center",
     width:"100%",

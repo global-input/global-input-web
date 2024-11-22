@@ -63,8 +63,7 @@ const ListFormData = ({
   titleIcon,
   toListLabels,
   title,
-}) => {
-  console.log("------list-form-data/index.js------");
+}) => {  
   const [action, setAction] = useState(() =>
     getStateFromProps({ formDataList })
   );
