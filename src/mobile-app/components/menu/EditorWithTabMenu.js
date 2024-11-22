@@ -114,8 +114,7 @@ export default class EditorWithTabMenu extends Component {
           </div>
         </div>
       );
-    } else {
-      console.log("------------------->", deviceDetector.isLandscapeMode());  
+    } else {      
       var tab = styles.tab;
       if (deviceDetector.isLandscapeMode()) {
         tab = styles.tabLandscape;
@@ -141,6 +140,7 @@ export default class EditorWithTabMenu extends Component {
   render() {
     var contentContainerStyle = styles.contentContainer;
     if (deviceDetector.isLandscapeMode()) {
+      
       contentContainerStyle = styles.contentContainerLandscape;
     }
     return (

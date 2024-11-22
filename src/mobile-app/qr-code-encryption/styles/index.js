@@ -1,6 +1,3 @@
-import {
-  StyleSheet,Dimensions
-} from 'react-native';
 
 import {commonStyles} from "../../common-styles";
 
@@ -30,10 +27,11 @@ var stylesData={
       flexDirection: 'column',
       justifyContent:"flex-start",
       alignItems:"flex-start",
-      paddingTop:10,
+      paddingTop:20,
       paddingBottom:10,
       paddingLeft:10,
       paddingRight:10
+      
 
    },
    keySelectionContainer:{
@@ -141,4 +139,4 @@ var stylesData={
 var resultStyle=Object.assign({},commonStyles,stylesData);
 
 
-export const styles = StyleSheet.create(resultStyle);
+export const styles = resultStyle;

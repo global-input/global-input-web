@@ -1,86 +1,59 @@
-// EncryptContentView.js
+// src/mobile-app/qr-code-encryption/encrypt-content-view/index.js
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { styles } from '../styles'; // Ensure styles are adjusted for React.js
 
 import images from '../../configs/images';
 import encryptedQrCodeTextConfig from '../../configs/encryptedQrCodeTextConfig';
 import menusConfig from '../../configs/menusConfig';
 
+
+
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
-
-import {appdata} from '../../store';
-
-const populateItemsInAction = (action, encryptionKeyList) => {
-  if (!encryptionKeyList) {
-    return;
-  }
-  for (let counter = 0; counter < action.numberRecordsInBatch; counter++) {
-    if (action.startIndex >= encryptionKeyList.length) {
-      action.endReached = true;
-      break;
-    }
-    const encryptionKeyItem = encryptionKeyList[action.startIndex];
-    action.items.push({
-      encryptionKeyItem,
-      key: encryptionKeyItem.encryptionKey,
-    });
-    action.startIndex++;
-  }
-};
-
-const getStateFromProps = () => {
-  const encryptionKeyList = appdata.getEncryptionKeyList();
-  const activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-  const selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
-  const action = {
-    content: '',
-    errorMessage: '',
-    startIndex: 0,
-    items: [],
-    endReached: false,
-    numberRecordsInBatch: 50,
-    selectedEncryptionKeyItem,
-  };
-  populateItemsInAction(action, encryptionKeyList);
-
-  return action;
-};
+import { appdata } from '../../store';
 
 const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
+  // Initialize state using a function to avoid recomputation on every render
   const [action, setAction] = useState(() => getStateFromProps());
 
-  const loadNextBatchOfItems = (currentAction) => {
+  // Function to initialize state
+  function getStateFromProps() {
     const encryptionKeyList = appdata.getEncryptionKeyList();
-    populateItemsInAction(currentAction, encryptionKeyList);
-    setAction({ ...currentAction });
-  };
+    const activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
+    const selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
+    const items = encryptionKeyList.map((encryptionKeyItem) => ({
+      encryptionKeyItem,
+      key: encryptionKeyItem.encryptionKey,
+    }));
 
-  const onEndReached = () => {
-    if (!action.endReached) {
-      loadNextBatchOfItems(action);
-    }
-  };
+    return {
+      content: '',
+      errorMessage: '',
+      items,
+      selectedEncryptionKeyItem,
+    };
+  }
 
+  // Handler for selecting an item
   const onItemSelected = (selectedItem) =>
     setAction({ ...action, selectedEncryptionKeyItem: selectedItem.encryptionKeyItem });
 
+  // Handler for setting content
   const setContent = (content) => setAction({ ...action, content, errorMessage: '' });
 
+  // Handler for setting error messages
   const setErrorMessage = (errorMessage) => setAction({ ...action, errorMessage });
 
+  // Handler for completing content encryption
   const onContentCompleted = () => {
     try {
-      const content = action.content;
+      const { content, selectedEncryptionKeyItem } = action;
       if (!content) {
         setErrorMessage(encryptedQrCodeTextConfig.errorMessages.contentIsMissing);
       } else {
-        const encryptedContent = appdata.encryptWithAnEncryptionKey(
-          content,
-          action.selectedEncryptionKeyItem
-        );
+        const encryptedContent = appdata.encryptWithAnEncryptionKey(content, selectedEncryptionKeyItem);
         onContentEncrypted(encryptedContent, encryptedQrCodeTextConfig.qrcodeLabel);
       }
     } catch (error) {
@@ -89,60 +62,64 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
     }
   };
 
+  // Render the error message if it exists
   const renderErrorMessage = () => {
     if (action.errorMessage) {
       return (
-        <InputContainer>
-          <ErrorMessage>{action.errorMessage}</ErrorMessage>
-        </InputContainer>
+        <div style={styles.inputContainer}>
+          <span style={styles.errorMessage}>{action.errorMessage}</span>
+        </div>
       );
-    } else {
-      return null;
     }
+    return null;
   };
 
+  // Render the active icon if the key is active
   const renderActiveIcon = (encryptionKeyItem) => {
     if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
-      return <ItemIcon src={images.activeIcon} alt="Active Icon" />;
-    } else {
-      return null;
+      return <img src={images.activeIcon} style={styles.itemIcon} alt="Active Icon" />;
     }
+    return null;
   };
 
+  // Render the selection icon for the encryption key item
   const renderSelectIcon = (encryptionKeyItem) => {
     let icon = images.device.radio.unchecked;
     if (encryptionKeyItem === action.selectedEncryptionKeyItem) {
       icon = images.device.radio.checked;
     }
-    return <ItemIcon src={icon} alt="Select Icon" />;
+    return <img src={icon} style={styles.itemIcon} alt="Select Icon" />;
   };
 
-  const renderItemListItem = (item) => {
-    return (
-      <ItemRecord key={item.key} onClick={() => onItemSelected(item)}>
-        <ItemRow>
-          <ListContainer>
-            <ListValue>
+  // Render each item in the encryption key list
+  const renderItemListItem = ({ item }) => (
+    <div onClick={() => onItemSelected(item)} style={styles.touchableHighlight}>
+      <div style={styles.itemRecord}>
+        <div style={styles.itemRow}>
+          <div style={styles.listContainer}>
+            <div style={styles.listvalue}>
               {renderSelectIcon(item.encryptionKeyItem)}
-              <ItemIcon src={images.key} alt="Key Icon" />
-              <KeyText>{item.encryptionKeyItem.name}</KeyText>
-            </ListValue>
+              <img src={images.key} style={styles.itemIcon} alt="Key Icon" />
+              <span style={styles.keyText}>{item.encryptionKeyItem.name}</span>
+            </div>
             {renderActiveIcon(item.encryptionKeyItem)}
-          </ListContainer>
-        </ItemRow>
-      </ItemRecord>
-    );
-  };
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
+  // Prepare menu items
   const menus = [...menuItems];
   menus.push({
     menu: menusConfig.encrypt.menu,
     onPress: onContentCompleted,
   });
+  
 
   return (
     <EditorWithTabMenu title={title} menuItems={menus} selected={menusConfig.encryptedQrCode.menu}>
-      <Content>
+      <div style={styles.content}>
         <DisplayBlockText content={encryptedQrCodeTextConfig.enterContent.content} />
 
         <TextInputField
@@ -156,73 +133,18 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
         />
 
         {renderErrorMessage()}
-      </Content>
-      <Content>
+      
+      
         <DisplayBlockText content={encryptedQrCodeTextConfig.encryptionKey.content} />
-        <ListContainerDiv onScroll={onEndReached}>
-          {action.items.map((item) => renderItemListItem(item))}
-        </ListContainerDiv>
-      </Content>
+        {action.items.map((item) => (
+          <React.Fragment key={item.key}>{renderItemListItem({ item })}</React.Fragment>
+        ))}
+        <DisplayBlockText content={help} />
+      </div>
 
-      <DisplayBlockText content={help} />
+      
     </EditorWithTabMenu>
   );
 };
 
 export default EncryptContentView;
-
-// Styled Components
-
-const Content = styled.div`
-  margin: 20px 0;
-`;
-
-const InputContainer = styled.div`
-  margin-top: 10px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 14px;
-`;
-
-const ItemRecord = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid rgba(72, 128, 237, 0.2);
-  padding-bottom: 5px;
-  margin: 10px 10px 20px 10px;
-  cursor: pointer;
-`;
-
-const ItemRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const ListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ListValue = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const ItemIcon = styled.img`
-  margin-right: 5px;
-`;
-
-const KeyText = styled.p`
-  color: rgba(72, 128, 237, 1);
-  font-family: 'Futura-Medium';
-  font-size: 18px;
-  margin: 0;
-`;
-
-const ListContainerDiv = styled.div`
-  max-height: 400px;
-  overflow-y: auto;
-`;
