@@ -115,6 +115,7 @@ export default class EditorWithTabMenu extends Component {
         </div>
       );
     } else {
+      console.log("------------------->", deviceDetector.isLandscapeMode());  
       var tab = styles.tab;
       if (deviceDetector.isLandscapeMode()) {
         tab = styles.tabLandscape;
@@ -190,7 +191,7 @@ class MenuItem extends Component {
       iconContainerStyle = styles.iconcontainerSelected;
     }
     return (
-      <div onClick={this.props.onPress} style={styles.menuItem}>
+      <div onClick={this.props.onPress} style={styles.menuItem}>        
         <div style={iconContainerStyle}>
           {this.renderImage()}
           {this.renderLabel()}

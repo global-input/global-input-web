@@ -203,8 +203,7 @@ stylesData.tabOnTopLandscape = {
 
 stylesData.tabLandscape = {
   ...stylesData.tab,
-  paddingRight: '30px',
-  paddingLeft: '30px',
+  
 };
 
 // Set contentContainer width based on device dimensions

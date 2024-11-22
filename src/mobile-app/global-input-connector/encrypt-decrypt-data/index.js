@@ -422,6 +422,8 @@ const renderSelectKey = ({
       selected={menusConfig.encryptedQrCode.menu}
     >
       <div style={styles.content}>
+
+        
         <DisplayBlockText content={helpOnContent} />
         {action.globalInputdata.map((dataitem, index) => (
           <RenderAField
