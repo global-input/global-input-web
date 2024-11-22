@@ -1,71 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import {Text, View, Image, TouchableHighlight, FlatList} from 'react-native';
-import {styles} from "./styles";
-import { images, manageKeysTextConfig, menusConfig } from "../../../web-config";
-import { EditorWithTabMenu, TextInputField, DisplayBlockText } from "../../components";
+// src/mobile-app/global_input_connector/export-encrypted-encryption-key/renders.js
 
-import {appdata } from "../../store";
+import React from 'react';
+import { styles } from './styles';
+
+import images from "../../configs/images";
 
 
-  
-const renderSelectIcon = encryptionKeyItem => {
-    var icon = images.device.radio.unchecked;
-    if (encryptionKeyItem === this.state.action.selectedEncryptionKeyItem) {
-      icon = images.device.radio.checked;
-    }
+
+
+import { appdata } from '../../store';
+
+// Adjusted renderSelectIcon function
+const renderSelectIcon = (encryptionKeyItem, action) => {
+  let icon = images.device.radio.unchecked;
+  if (encryptionKeyItem === action.selectedEncryptionKeyItem) {
+    icon = images.device.radio.checked;
+  }
+  return <img src={icon} style={styles.itemIcon} alt="Select Icon" />;
+};
+
+// Adjusted renderActiveIcon function
+const renderActiveIcon = (encryptionKeyItem) => {
+  if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    return <img src={images.activeIcon} style={styles.itemIcon} alt="Active Icon" />;
+  }
+  return null;
+};
+
+// Adjusted renderItemListItem component
+export const renderItemListItem = ({ item, action, setAction }) => {
+  if (!item.encryptionKeyItem) {
+    return <div style={styles.endSpace}></div>;
+  }
+
+  const onItemSelected = (selectedItem) =>
+    setAction({ ...action, selectedEncryptionKeyItem: selectedItem.encryptionKeyItem });
+
+  return (
+    <div onClick={() => onItemSelected(item)} style={styles.touchableHighlight}>
+      <div style={styles.itemRecord}>
+        <div style={styles.itemRow}>
+          <div style={styles.listContainer}>
+            <div style={styles.listvalue}>
+              {renderSelectIcon(item.encryptionKeyItem, action)}
+              <img src={images.key} style={styles.itemIcon} alt="Key Icon" />
+              <span style={styles.keyText}>{item.encryptionKeyItem.name}</span>
+            </div>
+            {renderActiveIcon(item.encryptionKeyItem)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Adjusted renderErrorMessage component
+export const renderErrorMessage = ({ action }) => {
+  if (action.errorMessage) {
     return (
-      <Image source={icon} style={styles.itemIcon} />
+      <div style={styles.inputContainer}>
+        <span style={styles.errorMessage}>{action.errorMessage}</span>
+      </div>
     );
   }
-  const renderActiveIcon = encryptionKeyItem => {
-    if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
-      return (
-        <Image source={images.activeIcon} style={styles.itemIcon} />
-      );
-    }
-    else {
-      return null;
-    }
-  }
-  
-
-export const renderItemListItem = ({item, action, setAction}) {
-    if (!item.encryptionKeyItem) {
-      return (
-        <View style={styles.endSpace}></View>
-      );
-    }
-    const onItemSelected = selectedItem => setAction({...action,selectedEncryptionKeyItem: selectedItem.encryptionKeyItem});            
-
-    return (
-      <TouchableHighlight onPress={() => onItemSelected(item)}>
-        <View style={styles.itemRecord}>
-          <View style={styles.itemRow}>
-            <View style={styles.listContainer}>
-              <View style={styles.listvalue}>
-                {renderSelectIcon(item.encryptionKeyItem)}
-                <Image source={images.key} style={styles.itemIcon} />
-                <Text style={styles.keyText}>{item.encryptionKeyItem.name}</Text>
-              </View>
-              {renderActiveIcon(item.encryptionKeyItem)}
-            </View>
-  
-          </View>
-        </View>
-      </TouchableHighlight>
-    );
-  
-  };
-
-  export const renderErrorMessage = ({action}) => {
-    if (action.errorMessage) {
-      return (
-        <View style={styles.inputContainer}>
-          <Text style={styles.errorMessage}>{action.errorMessage}</Text>
-        </View>
-      );
-    }
-    else {
-      return null;
-    }
-  }
+  return null;
+};

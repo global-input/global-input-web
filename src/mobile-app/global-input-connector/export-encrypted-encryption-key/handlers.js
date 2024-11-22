@@ -1,6 +1,6 @@
 
 
-import {manageKeysTextConfig} from "../../../web-config";
+import manageKeysTextConfig from "../../configs/manageKeysTextConfig";
 
 import {appdata } from "../../store";
 

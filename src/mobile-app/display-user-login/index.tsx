@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { userLoginText } from '../../web-config';
+import userLoginText  from '../configs/userLoginText';
 import { appdata } from '../store';
-import logo from '../images/logo.png';
+
 
 const DialogButton = function ({ buttonText, onClick, position }) {
   return (

@@ -130,9 +130,9 @@ const Others = ({ onBack }) => {
   const renderErrorMessage = () => {
     if (compData.errorMessage) {
       return (
-        <View style={styles.inputContainer}>
-          <Text style={styles.errorMessage}>{compData.errorMessage}</Text>
-        </View>
+        <div style={styles.inputContainer}>
+          <span style={styles.errorMessage}>{compData.errorMessage}</span>
+        </div>
       );
     }
     else {

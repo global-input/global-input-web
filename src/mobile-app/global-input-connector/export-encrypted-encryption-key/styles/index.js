@@ -1,7 +1,7 @@
 
 import {commonStyles} from "../../../common-styles";
 
-var stylesData={
+const stylesData={
 
 
     addAFieldContainer:{
@@ -131,7 +131,7 @@ var stylesData={
 
 };
 
-var resultStyle=Object.assign({},commonStyles,stylesData);
+const resultStyle=Object.assign({},commonStyles,stylesData);
 
 
 export const styles = resultStyle;
