@@ -11,6 +11,15 @@ const stylesData = {
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,1)',
   },
+  containerWhenKeyboardShowing: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,1)',
+    paddingTop: '70px',
+    border: '1px solid red',
+  },
   header: {
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
@@ -173,6 +182,7 @@ const stylesData = {
 };
 
 // Adjust styles based on device type
+
 if (deviceDetector.isIphoneX()) {
   stylesData.header.paddingTop = '40px';
   stylesData.tabOnTop.paddingTop = '40px';

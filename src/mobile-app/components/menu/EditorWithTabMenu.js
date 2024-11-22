@@ -106,6 +106,7 @@ export default class EditorWithTabMenu extends Component {
       if (deviceDetector.isLandscapeMode()) {
         tabOnTopStyle = styles.tabOnTopLandscape;
       }
+      
 
       return (
         <div style={tabOnTopStyle}>
@@ -138,17 +139,25 @@ export default class EditorWithTabMenu extends Component {
   }
 
   render() {
+    
     var contentContainerStyle = styles.contentContainer;
     if (deviceDetector.isLandscapeMode()) {
       
       contentContainerStyle = styles.contentContainerLandscape;
     }
+    let containerStyle=styles.container;
+    if(this.state.keyboardShowing){
+      containerStyle=styles.containerWhenKeyboardShowing;
+
+    }
+    
     return (
-      <div style={styles.container}>
+      <div style={containerStyle}>
         {this.renderHeader()}
         {this.renderTab()}
         {this.renderNotificationBar()}
-        <div style={{ overflowY: 'auto', flex: 1 }}>
+        <div style={{ overflowY: 'auto'}}>          
+          
           <div style={contentContainerStyle}>{this.props.children}</div>
         </div>
         {this.renderEnd()}
