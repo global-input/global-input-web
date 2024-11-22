@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { styles } from '../styles'; // Ensure styles are adjusted for React.js
 import { domainForms } from '../../store';
-import menusConfig  from '../../configs/appTextConfig';
+import menusConfig  from '../../configs/menusConfig';
 import ViewWithTabMenu  from '../../components/menu/ViewWithTabMenu';
 import ListFormDataHeader from './ListFormDataHeader';
 import noteIcon from '../../images/note.png'; // Ensure this path is correct
@@ -64,6 +64,7 @@ const ListFormData = ({
   toListLabels,
   title,
 }) => {
+  console.log("------list-form-data/index.js------");
   const [action, setAction] = useState(() =>
     getStateFromProps({ formDataList })
   );
