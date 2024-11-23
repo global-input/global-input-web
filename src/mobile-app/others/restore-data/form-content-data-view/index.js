@@ -65,7 +65,7 @@ export const FormContentDataView = ({
     }]
 
 
-  const cc = formDataUtil.buldTextContentResolved(
+  const cc = formDataUtil.buildTextContentResolved(
     appdata.getActiveEncryptionKeyItem(),
     formDataMessage,
   );

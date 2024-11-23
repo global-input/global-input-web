@@ -28,7 +28,7 @@ const BackupData = ({menuItems,onBack})=>{
       menuItems={menuItems} selected={menusConfig.exportButton.menu} content={backupFormDataTextConfig.nodata.content}/>
   );
   const renderExportFormDataView = () => {
-    var help=formDataUtil.buldTextContentResolved(appdata.getActiveEncryptionKeyItem(),backupFormDataTextConfig.hasFormData.content);
+    var help=formDataUtil.buildTextContentResolved(appdata.getActiveEncryptionKeyItem(),backupFormDataTextConfig.hasFormData.content);
     var menuItems=[{
          menu:menusConfig.cancel.menu,
          onPress:onBack
@@ -56,7 +56,7 @@ const BackupData = ({menuItems,onBack})=>{
           menu:menusConfig.ok.menu,
           onPress:onBack
      },{}];
-     var help=formDataUtil.buldTextContentResolved(appdata.getActiveEncryptionKeyItem(),backupFormDataTextConfig.complete.content);
+     var help=formDataUtil.buildTextContentResolved(appdata.getActiveEncryptionKeyItem(),backupFormDataTextConfig.complete.content);
      return(
            <ViewWithTabMenu title={backupFormDataTextConfig.complete.title}
              content={help}

@@ -258,7 +258,7 @@ export default class FormDataUtil {
     //labels.add("");
     return [...labels];
   }
-  buldTextContentResolved(encryptionKey, textContent) {
+  buildTextContentResolved(encryptionKey, textContent) {
     var keyname = 'App';
 
     if (encryptionKey) {

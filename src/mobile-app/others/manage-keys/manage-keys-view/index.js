@@ -355,6 +355,7 @@ export default function ManageKeysView({
       },
       {},
     ];
+                               
     const help2 = formDataUtil.buildTextContentResolved(
       action.selectedEncryptionKeyItem,
       manageKeysTextConfig.export.qrcode.content2
