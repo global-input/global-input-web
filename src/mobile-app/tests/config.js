@@ -12,9 +12,17 @@ export const isDevelopment=environment==='development';
 export const  developmentPassword=isDevelopment?'camilla':'';
 
 
-export const test_code= '/test/import_key.txt';
+const test_code= '/test/import_key.txt';
 // export const test_code= '/test/connect.txt';
 // export const test_code= '/test/random.txt';
+
+export async function loadTestTextQRCodeValue()
+{
+          const codeContent= await fetch(test_code)
+          const codeString= await codeContent.text()          
+          return codeString;
+}
+
 
 export const delayDuration=500;
 
