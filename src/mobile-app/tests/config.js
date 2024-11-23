@@ -9,7 +9,7 @@ else{
 
 export const isDevelopment=environment==='development';
 
-export const  developmentPassword='camilla';
+export const  developmentPassword=isDevelopment?'camilla':'';
 
 
 export const test_code= '/test/import_key.txt';

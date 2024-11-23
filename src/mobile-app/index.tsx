@@ -70,6 +70,7 @@ const MobileApp: React.FC = () => {
     } ,[]);
 
     const onImportNotProtectedEncryptionKey = useCallback((encryptionKey) => {
+         console.log("Importing not protected encryption key: ", encryptionKey);
         // todo: implement this
     },[]);
 
@@ -188,15 +189,7 @@ const renderHelpScreen =  useCallback(() => {
     switch (page.page) {
       case Page.UserLogin:
         return <DisplayUserLogin onLoggedIn={toBack} />;
-      case Page.ScanQRCode:
-        // return (
-        //   <ScanQRCode
-        //     onImportEncryptionKey={onImportEncryptionKey}
-        //     onImportNotProtectedEncryptionKey={onImportNotProtectedEncryptionKey}
-        //     onGlobalInputConnect={onGlobalInputConnect}
-        //     onImportSettingsData={onImportSettingsData}
-        //   />
-        // );
+      case Page.ScanQRCode:        
         return(<GlobalInputEye
           menuItems={menuItems}
           isAuthorized={true}
@@ -232,16 +225,7 @@ const renderHelpScreen =  useCallback(() => {
         return null;
     }
   };
-   
-    // return(
-    //     <Container>
-    //           <PageHeader selected={config.paths.home.path} />       
-    //             <Content>
-    //               {renderPage(page)}
-    //       </Content>
-    //     </Container>                      
-    //       );    
-    
+       
       useEffect(() => {
       if (!appdata.getLoginUserinfo()) {          
           setPage({
@@ -253,12 +237,7 @@ const renderHelpScreen =  useCallback(() => {
     
 
 
-return renderPage(page);
-    
-
-
-
-}
+return renderPage(page);}
 
 export default MobileApp;
 

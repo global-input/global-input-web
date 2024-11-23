@@ -1,14 +1,12 @@
 import React from 'react';
-
-import  Clipboard from '@react-native-clipboard/clipboard';
 import {styles} from './styles';
-
 import DisplayBlockText from '../components/display-text/DisplayBlockText';
 import ViewWithTabMenu from '../components/menu/ViewWithTabMenu';
 
+
 import menusConfig from '../configs/menusConfig';
 
-const  ClipboardCopyView = ({
+const ClipboardCopyView = ({
   content,
   onNextStep,
   onBack,
@@ -18,8 +16,8 @@ const  ClipboardCopyView = ({
   content2,
   placeHolder
 }) => {
-  const onClipboardCopy = () => {    
-    Clipboard.setString(content);
+  const onClipboardCopy = () => {        
+    navigator.clipboard.writeText(content);
     onNextStep();
   };
   var menuItems = [
@@ -30,13 +28,12 @@ const  ClipboardCopyView = ({
     <ViewWithTabMenu menuItems={menuItems} selected={selected} title={title}>
       <DisplayBlockText content={content1} />
       <div style={styles.itemRecord}>
-        <input
+        <textarea
           style={styles.textarea}
           multiline={true}
           secureTextEntry={false}
           editable={false}
-          value={content}
-          numberOfLines={6}
+          value={content}          
           placeholder={placeHolder}
         />
       </div>
