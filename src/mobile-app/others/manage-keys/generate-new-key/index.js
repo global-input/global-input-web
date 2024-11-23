@@ -85,11 +85,11 @@ const GenerateNewKey = ({ importDecryptedKey, name, importNewKey, onBack }) => {
   const menuItems = [
     {
       menu: menusConfig.cancel.menu,
-      onClick: onBack,
+      onPress: onBack,
     },
     {
       menu: menusConfig.importSingle.menu,
-      onClick: onImportNewKey,
+      onPress: onImportNewKey,
     },
   ];
 
