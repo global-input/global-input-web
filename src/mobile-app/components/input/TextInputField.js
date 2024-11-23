@@ -124,7 +124,7 @@ export default class TextInputField extends Component {
           ref={textField => {
             this.textField = textField
           }}          
-          onChangeText={e=>this.props.onChangeTextValue(e.target.value)}
+          onChange={e=>this.props.onChangeTextValue(e.target.value)}
           placeholder={this.props.placeholder}
         />
       </div>

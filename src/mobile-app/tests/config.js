@@ -23,12 +23,12 @@ const test_code= '/test/import_key.txt';
 //           return codeString;
 // }
 
-const test_code1= 'P3C7h1U2FsdGVkX19HV/lE8tqQp6d+W2kLYlES14f+vg9kfeVvaztakdgHqUM64G6VCuGPT0Bi/jAWfpu5KSF1lHPbRggMgRUnp4rH/dMLZ2Ff2Zvvd6WxOcf0gXgNV7e5Ygro';
+const encripted_text= 'P1U2FsdGVkX1+jdguP1vo1drT0t06DAFzTh/SnZ7xKitkuDJFVwbA/aEDjwQEME33O';
 
 
 export  function loadTestTextQRCodeValue(){
 
-  return test_code1;
+  return encripted_text;
 
 }
 
