@@ -11,12 +11,12 @@ import userLoginText from '../configs/userLoginText';
 import { appdata } from '../store';
 import DialogButton from '../components/modal/DialogButton';
 import TextInputField from '../components/input/TextInputField';
-
+import {developmentPassword} from '../tests';
 
 
 const initialData = {
-  password: '',
-  repeatedPassword: '',
+  password: developmentPassword,
+  repeatedPassword: developmentPassword,
   revealSecret: true,
   errorMessage: null,
   resettingApp: false,

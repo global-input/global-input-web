@@ -20,22 +20,11 @@ import {
   NotAuthorizedView,
 } from '../camera-not-authorized';
 
-// Conditionally import Scanner based on environment
-
-//if the hostname is localhost, then the environment is development
-let environment=process.env.NODE_ENV;
-if(window.location.hostname==='localhost'){
-  environment='development';
-}
-else{
-  environment='production';
-}
+import {Scanner} from '../tests';
 
 
 
-const Scanner = environment === 'development'
-  ? require('../../__mocks__/@yudiel/react-qr-scanner').Scanner
-  : require('@yudiel/react-qr-scanner').Scanner;
+
 
 
 
