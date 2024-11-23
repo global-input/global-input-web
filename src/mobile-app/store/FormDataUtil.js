@@ -1,6 +1,4 @@
-// Since this is a utility class, we don't need to import any React-specific modules
-// Remove the React Native import
-// import { StyleSheet } from 'react-native';
+
 
 export default class FormDataUtil {
   MAX_FORM_ID_LENGTH = 500;
@@ -10,10 +8,10 @@ export default class FormDataUtil {
   }
 
   _findPlaceHolderRange(formIdTemplate, findFrom) {
-    const findPlaceHolderIdentifier = (startI) => {
+    var findPlaceHolderIdentifier = startI => {
       return formIdTemplate.indexOf(this.formIdTemplateIdentifier, startI);
     };
-    const range = {};
+    var range = {};
     range.start1 = findPlaceHolderIdentifier(findFrom);
 
     if (range.start1 < 0) {
@@ -38,7 +36,6 @@ export default class FormDataUtil {
     }
     return this.getFormIdFromTemplateAndFields(formData.id, formData.fields);
   }
-
   getFormIdFromTemplateAndFields(formIdTemplate, formFields) {
     if (!formIdTemplate) {
       return null;
@@ -50,13 +47,13 @@ export default class FormDataUtil {
       return formIdTemplate;
     }
 
-    let range = this._findPlaceHolderRange(formIdTemplate, 0);
+    var range = this._findPlaceHolderRange(formIdTemplate, 0);
     if (!range) {
       return formIdTemplate;
     }
 
-    let resultContent = '';
-    let startIndex = 0;
+    var resultContent = '';
+    var startIndex = 0;
     try {
       while (range) {
         if (startIndex < range.start1) {
@@ -65,7 +62,7 @@ export default class FormDataUtil {
         if (!range.vname) {
           resultContent += formIdTemplate.substring(range.start1, range.end2);
         } else {
-          const matchedFields = formFields.filter((f) => f.id === range.vname);
+          var matchedFields = formFields.filter(f => f.id === range.vname);
           if (matchedFields && matchedFields.length > 0) {
             if (matchedFields[0].value) {
               resultContent += matchedFields[0].value;
@@ -73,7 +70,7 @@ export default class FormDataUtil {
           }
         }
         startIndex = range.end2;
-        const r = this._findPlaceHolderRange(formIdTemplate, startIndex);
+        var r = this._findPlaceHolderRange(formIdTemplate, startIndex);
         if (!r) {
           if (startIndex < formIdTemplate.length) {
             resultContent += formIdTemplate.substring(startIndex);
@@ -87,7 +84,6 @@ export default class FormDataUtil {
     }
     return resultContent;
   }
-
   getFormIdFromInitData(initData) {
     if (initData && initData.form) {
       return this.getFormId(initData.form);
@@ -95,7 +91,6 @@ export default class FormDataUtil {
       return null;
     }
   }
-
   isInitDataFormData(initData) {
     return (
       initData &&
@@ -113,7 +108,6 @@ export default class FormDataUtil {
       formField.value.trim().length > 0
     );
   }
-
   formHasContent(formData) {
     if (!formData.fields) {
       return false;
@@ -121,19 +115,18 @@ export default class FormDataUtil {
     if (!formData.fields.length) {
       return false;
     }
-    for (let i = 0; i < formData.fields.length; i++) {
+    for (var i = 0; i < formData.fields.length; i++) {
       if (this.fieldHasContent(formData.fields[i])) {
         return true;
       }
     }
     return false;
   }
-
   shouldSaveFormData(formData, appdata) {
     if (!formData) {
       return false;
     }
-    const formid = this.getFormId(formData);
+    var formid = this.getFormId(formData);
     if (!formid) {
       return false;
     }
@@ -147,16 +140,16 @@ export default class FormDataUtil {
         return true;
       }
     }
-    for (let i = 0; i < formData.fields.length; i++) {
-      const formField = formData.fields[i];
+    for (var i = 0; i < formData.fields.length; i++) {
+      var formField = formData.fields[i];
       if (this.fieldHasContent(formField)) {
-        const matchedFormFields = matchedFormData.fields.filter(
-          (f) => f.id === formData.fields[i].id
+        var matchedFormFields = matchedFormData.fields.filter(
+          f => f.id === formData.fields[i].id,
         );
-        if (!matchedFormFields.length) {
+        if (!matchedFormFields.length || !matchedFormFields.length) {
           return true;
         }
-        const value = appdata.decryptContent(matchedFormFields[0].value);
+        var value = appdata.decryptContent(matchedFormFields[0].value);
         if (formData.fields[i].value !== value) {
           return true;
         }
@@ -164,20 +157,19 @@ export default class FormDataUtil {
     }
     return false;
   }
-
   convertToStoreFormData(formData, appdata) {
-    const storeFormData = { ...formData };
+    var storeFormData = Object.assign({}, formData);
     storeFormData.id = this.getFormId(formData);
     storeFormData.fields = [...formData.fields];
-    for (let i = 0; i < storeFormData.fields.length; i++) {
-      storeFormData.fields[i] = { ...formData.fields[i] };
+    for (var i = 0; i < storeFormData.fields.length; i++) {
+      storeFormData.fields[i] = Object.assign({}, formData.fields[i]);
       if (
         storeFormData.fields[i].id &&
         storeFormData.fields[i].value &&
         storeFormData.fields[i].value.trim().length > 0
       ) {
         storeFormData.fields[i].value = appdata.encryptContent(
-          storeFormData.fields[i].value
+          storeFormData.fields[i].value,
         );
       }
     }
@@ -188,8 +180,10 @@ export default class FormDataUtil {
     if (!formDataList) {
       return formDataList;
     }
-    return formDataList.filter((m) => {
-      if ((!label && !m.label) || m.label === label) {
+    return formDataList.filter(m => {
+      if (!label && !m.label) {
+        return true;
+      } else if (m.label === label) {
         return true;
       } else {
         return false;
@@ -209,11 +203,11 @@ export default class FormDataUtil {
       return formDataList;
     }
     searchFilter = searchFilter.toLowerCase();
-    return formDataList.filter((m) => {
-      if (m.id.toLowerCase().includes(searchFilter)) {
+    return formDataList.filter(m => {
+      if (m.id.toLowerCase().indexOf(searchFilter) >= 0) {
         return true;
       }
-      if (m.label && m.label.toLowerCase().includes(searchFilter)) {
+      if (m.label && m.label.toLowerCase().indexOf(searchFilter) >= 0) {
         return true;
       }
       return false;
@@ -221,69 +215,79 @@ export default class FormDataUtil {
   }
 
   getDateString(dateValue) {
-    const date = new Date(dateValue);
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hour = date.getHours();
-    let minute = date.getMinutes();
-    let ret = '';
-
+    var date = new Date(dateValue);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var ret = '';
     if (hour < 10) {
-      hour = '0' + hour;
+      hour += '0';
     }
-    ret += hour + ':';
+    ret += hour;
+    ret += ':';
     if (minute < 10) {
       ret += '0';
     }
-    ret += minute + ' ';
-    ret += year + '-';
+    ret += minute;
+    ret += ' ';
+    ret += year;
+    ret += '-';
     if (month < 10) {
       ret += '0';
     }
-    ret += month + '-';
+    ret += month;
+    ret += '-';
     if (day < 10) {
       ret += '0';
     }
     ret += day;
     return ret;
   }
-
   getAllLabelsFromFormDataList(formDataList) {
-    const labels = new Set();
-    formDataList.forEach((f) => {
+    var labels = new Set();
+    var hasNotLabelRecord = false;
+    formDataList.forEach(f => {
       if (f.label) {
         labels.add(f.label);
+      } else {
+        hasNotLabelRecord = true;
       }
     });
+    //labels.add("");
     return [...labels];
   }
-
   buldTextContentResolved(encryptionKey, textContent) {
-    let keyname = 'App';
+    var keyname = 'App';
 
     if (encryptionKey) {
       keyname = encryptionKey.name;
     }
-    const resolvedContent = textContent.map((h) =>
-      h.replace(/{name}/g, keyname)
-    );
-    return resolvedContent;
+    var p1 = [];
+    textContent.forEach(h => {
+      p1.push(h.replace(new RegExp('{name}', 'g'), keyname));
+    });
+    return p1;
   }
 
   getStyleFromItem(request) {
     try {
-      const { styles, item, data, name } = request;
-      if (item && item.style) {
-        const combinedStyle = { ...data[name], ...item.style };
-        return combinedStyle;
+      var {styles, item, data, name} = request;
+      if (request.item && request.item.style) {
+        var stdata = {};
+        stdata[request.name] = Object.assign(
+          {},
+          request.data[name],
+          item.style,
+        );
+        return stdata[request.name];
       }
     } catch (error) {
       console.warn(error);
     }
-    return request.styles[request.name];
+    return styles[request.name];
   }
-
   getContentAndStyle(request) {
     if (typeof request.content === 'object') {
       return {
@@ -296,10 +300,7 @@ export default class FormDataUtil {
         content: request.content.content,
       };
     } else {
-      return {
-        style: request.styles[request.name],
-        content: request.content,
-      };
+      return {style: request.styles[request.name], content: request.content};
     }
   }
 }
