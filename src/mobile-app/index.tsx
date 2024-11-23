@@ -13,6 +13,7 @@ import {ManageKeysView} from './others/manage-keys';
 import {QRCodeEncryptionView} from "./qr-code-encryption";
 import OthersView from './others/others-view';
 import {HelpScreen} from './help-screen'
+import { ImportSettingsView } from './import-settings';
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
@@ -23,6 +24,8 @@ enum Page {
     EncryptedQRCode= 'encrypted-qr-code',
     OthersMenu= 'others-menu',
     HelpScreen= 'help-screen',
+    ImportSettings = 'import-settings',
+    ImportMotProtectedEncryptionKey = 'import-not-protected-encryption-key'
 };
 
 interface PageData {
@@ -69,11 +72,7 @@ const MobileApp: React.FC = () => {
         });
     } ,[]);
 
-    const onImportNotProtectedEncryptionKey = useCallback((encryptionKey) => {
-         console.log("Importing not protected encryption key: ", encryptionKey);
-        // todo: implement this
-    },[]);
-
+    
     const onGlobalInputConnect = useCallback((codeData) => {
         setPage({
             page: Page.GlobalInputConnector,
@@ -86,7 +85,11 @@ const MobileApp: React.FC = () => {
     
     
     const onImportSettingsData = useCallback((data) => {
-        //todo: implement this
+        setPage({
+            page: Page.ImportSettings,
+            code: data
+        });
+        
     },[]);
 
     const toCameraView =useCallback(() => {
@@ -138,6 +141,10 @@ const toOthersMenu = useCallback(() => {
 },[]);
 
 const toImportNotProtectedEncryptionKey = useCallback(() => {
+    setPage({
+        page: Page.ImportMotProtectedEncryptionKey,
+        code: null,
+    });
 },[]);
 
 const toHelpScreen = useCallback(() => {
@@ -183,7 +190,7 @@ const renderHelpScreen =  useCallback(() => {
       onPress: toOthersMenu,
     }
   ]
-
+  
   const renderPage = (page) => {
     
     switch (page.page) {
@@ -221,6 +228,18 @@ const renderHelpScreen =  useCallback(() => {
         return <OthersView menuItems={menuItems} logout={toUserLoginScreen} />;
       case Page.HelpScreen:
         return renderHelpScreen();
+      case Page.ImportSettings:
+        return <ImportSettingsView        
+        codedata={page.code}
+        toCameraView={toCameraView}
+      />
+      case Page.ImportMotProtectedEncryptionKey:
+        return <ImportEncryptionKeyView          
+          decryptedEncryptionKey={page.code}
+          toCameraView={toCameraView}
+        />
+    
+    
       default:
         return null;
     }
