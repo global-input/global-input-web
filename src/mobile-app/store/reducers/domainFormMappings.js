@@ -3,11 +3,11 @@ const initialState={
      domainToIds:[]    
 }
 const ActionNames={     
-     ATTACH_TO_DOMAINS:1,
-     DELETE_FORM_ID:2,
-     UPDATE_ATTACHED_DOMAINS:3,
-     DELETE_ALL:4,
-     DELETE_A_DOMAIN:5
+     ATTACH_TO_DOMAINS:'ATTACH_TO_DOMAINS',
+     DELETE_FORM_ID:'DELETE_FORM_ID',
+     UPDATE_ATTACHED_DOMAINS:'UPDATE_ATTACHED_DOMAINS',
+     DELETE_ALL:'DELETE_ALL',
+     DELETE_A_DOMAIN:'DELETE_A_DOMAIN'
 }
 
 const transformer={

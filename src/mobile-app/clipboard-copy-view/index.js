@@ -29,13 +29,11 @@ const ClipboardCopyView = ({
       <DisplayBlockText content={content1} />
       <div style={styles.itemRecord}>
         <textarea
-          style={styles.textarea}
-          multiline={true}
-          secureTextEntry={false}
-          editable={false}
+          style={styles.textarea}                    
+          
           value={content}          
           placeholder={placeHolder}
-        />
+          readOnly={true}/>
       </div>
 
       <DisplayBlockText content={content2} />
