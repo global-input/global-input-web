@@ -191,8 +191,19 @@ const renderHelpScreen =  useCallback(() => {
     }
   ]
   
-  const renderPage = (page) => {
+  
+       
+      useEffect(() => {
+      if (!appdata.getLoginUserinfo()) {          
+          setPage({
+              page: Page.UserLogin,
+              code: null,
+          });          
+      }
+    }, []);
     
+
+
     switch (page.page) {
       case Page.UserLogin:
         return <DisplayUserLogin onLoggedIn={toBack} />;
@@ -243,20 +254,10 @@ const renderHelpScreen =  useCallback(() => {
       default:
         return null;
     }
-  };
-       
-      useEffect(() => {
-      if (!appdata.getLoginUserinfo()) {          
-          setPage({
-              page: Page.UserLogin,
-              code: null,
-          });          
-      }
-    }, []);
-    
 
 
-return renderPage(page);}
+
+}
 
 export default MobileApp;
 
