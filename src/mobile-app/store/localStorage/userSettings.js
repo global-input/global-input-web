@@ -265,3 +265,21 @@ window.addEventListener('storage', (event) => {
             break;
     }
 });
+
+
+
+
+
+
+/******Old Version to be deleted */
+/*
+          In the old version the variable name is masterEncryptionKey.
+          In the new version the variable name is activeEncryptionKey;
+      */
+
+
+export const getMasterEncryptionKey = () => {
+
+    throw new Error('Not implemented: Old Version');
+
+}
