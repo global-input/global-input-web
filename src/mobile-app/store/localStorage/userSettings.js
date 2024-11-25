@@ -31,6 +31,7 @@ const STORAGE_KEYS = {
 function saveToLocalStorage(key, value) {
     try {
         localStorage.setItem(key, JSON.stringify(value));
+        console.log("------saveToLocalStorage: "+ key + " : "+ JSON.stringify(value));
     } catch (e) {
         console.error(`Error saving ${key} to localStorage`, e);
     }
@@ -155,6 +156,7 @@ export const appLoginContentUpdate = (
     formContent
 ) => {
     appLoginContent = content;
+    console.log("------appContent: "+ appLoginContent);
     if (activeKey) {
         activeEncryptionKey = activeKey;
         saveToLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, activeEncryptionKey);
@@ -280,6 +282,19 @@ window.addEventListener('storage', (event) => {
 
 export const getMasterEncryptionKey = () => {
 
-    throw new Error('Not implemented: Old Version');
+    throw new Error('Not implemented: Old Version for getMasterEncryptionKey');
+
+}
+
+
+/*
+    In the old version, the variable name is appLoginPassword
+    In the new version, the variable name is appLoginContent
+      */
+
+export const getAppLoginPassword=()=>{
+    //throw new Error('Not implemented: Old Version for getAppLoginPassword');
+    console.error('Not implemented: Old Version for getAppLoginPassword');
+    return null;
 
 }
