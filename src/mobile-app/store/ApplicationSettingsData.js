@@ -1,4 +1,4 @@
-import {generateRandomString, encrypt, decrypt} from 'global-input-react';
+import * as globalInputMessage from 'global-input-react';
 import * as userSettings from './localStorage/userSettings'
 import * as domainFormMappings from './localStorage/domainFormMappings'
 import * as generalUtil from './generalUtil'
@@ -7,13 +7,13 @@ var formDataUtil = new FormDataUtil()
 
 const safeDecrypt = function (content, encryptionKey) {
   try {
-    return decrypt(content, encryptionKey)
+    return globalInputMessage.decrypt(content, encryptionKey)
   } catch (error) {
     return null    
   }
 }
 
-export default class ApplicationSettingsData {
+class ApplicationSettingsData {
   constructor () {    
     this.encryptionKeyPrefix = 'LrHXyPx6NW'
     this.encryptionKeySuffix = 'rzjjTYkEwd'
@@ -40,7 +40,7 @@ export default class ApplicationSettingsData {
   }
   encryptContentWithKey (content, encryptionKey) {
     if (content && content.length) {
-      return encrypt(content, encryptionKey + this.contetKeySuffix)
+      return globalInputMessage.encrypt(content, encryptionKey + this.contetKeySuffix)
     } else {
       return ''
     }
@@ -55,7 +55,7 @@ export default class ApplicationSettingsData {
   }
   encryptBackup (content) {
     var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
-    return encrypt(content, activeEncryptionKey + this.backupKeySuffix)
+    return globalInputMessage.encrypt(content, activeEncryptionKey + this.backupKeySuffix)
   }
 
   isActiveEncryptionKeyEncryptedMessage (codedata) {
@@ -80,10 +80,10 @@ export default class ApplicationSettingsData {
     )
   }
   encryptWithActiveEncryptionKey (secretMessage) {
-    var prefix = generateRandomString(3)
-    var suffix = generateRandomString(7)
+    var prefix = globalInputMessage.generateRandomString(3)
+    var suffix = globalInputMessage.generateRandomString(7)
     var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
-    var encryptedMessage = encrypt(
+    var encryptedMessage = globalInputMessage.encrypt(
       prefix + secretMessage + suffix,
       activeEncryptionKey + this.encryptionKeyAppendedPart,
     )
@@ -105,9 +105,9 @@ export default class ApplicationSettingsData {
   encryptWithAnEncryptionKey (secretMessage, encryptionKey) {
     const decryptedEncryptionKey = this.decryptEncryptionKey(encryptionKey)
     if (decryptedEncryptionKey) {
-      var prefix = generateRandomString(3)
-      var suffix = generateRandomString(7)
-      var encryptedMessage = encrypt(
+      var prefix = globalInputMessage.generateRandomString(3)
+      var suffix = globalInputMessage.generateRandomString(7)
+      var encryptedMessage = globalInputMessage.encrypt(
         prefix + secretMessage + suffix,
         decryptedEncryptionKey + this.encryptionKeyAppendedPart,
       )
@@ -356,7 +356,7 @@ export default class ApplicationSettingsData {
     var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
       this._getLoginUserInfo().password,
     )
-    var encryptedEncryptionKey = encrypt(encryptionKey, userEncryptionKey)
+    var encryptedEncryptionKey = globalInputMessage.encrypt(encryptionKey, userEncryptionKey)
     return this._importEncryptedNewKey(name, encryptedEncryptionKey)
   }
   _importEncryptedNewKey (name, encryptedEncryptionKey) {
@@ -406,7 +406,7 @@ export default class ApplicationSettingsData {
       generalUtil.populateDomainsForAllForms(allDomainMappingRecords, forms)
       var globalInputData = {
         forms,
-        randomContent: generateRandomString(8),
+        randomContent: globalInputMessage.generateRandomString(8),
       }
       var encryptedContent = this.encryptBackup(JSON.stringify(globalInputData))
       return this.formDataIdentifier + encryptedContent
@@ -459,7 +459,7 @@ export default class ApplicationSettingsData {
     protectionPassword,
   ) {
     var data = {
-      random: generateRandomString(3),
+      random: globalInputMessage.generateRandomString(3),
       key: decryptedEncryptionKeyValue,
       type: this.encryptionKeyContentType,
     }
@@ -468,7 +468,7 @@ export default class ApplicationSettingsData {
       encryptionKey = protectionPassword + encryptionKey
     }
     var stringvalue = this.JSONIdentifier + JSON.stringify(data)
-    var encrypted = encrypt(stringvalue, encryptionKey)
+    var encrypted = globalInputMessage.encrypt(stringvalue, encryptionKey)
 
     if (protectionPassword) {
       return this.protectedKeyIdentifier + encrypted
@@ -579,7 +579,7 @@ export default class ApplicationSettingsData {
       this._getLoginUserInfo().password,
     )
     var userinfoString = JSON.stringify(this._getLoginUserInfo())
-    var appLoginContent = encrypt(userinfoString, userEncryptionKey)
+    var appLoginContent = globalInputMessage.encrypt(userinfoString, userEncryptionKey)
     this._appLoginContent(
       appLoginContent,
       encryptionKeyitem.encryptionKey,
@@ -665,7 +665,7 @@ export default class ApplicationSettingsData {
 
         var activeEncruyptionKeyDecrypted =
           this.getDecryptedActiveEncryptionKey()
-        var encryptedActiveEncryptionKey = encrypt(
+        var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
           activeEncruyptionKeyDecrypted,
           newUserEncryptionKey,
         )
@@ -680,7 +680,7 @@ export default class ApplicationSettingsData {
               if (decryptedEncryptionKey === activeEncruyptionKeyDecrypted) {
                 ekey.encryptionKey = encryptedActiveEncryptionKey
               } else {
-                ekey.encryptionKey = encrypt(
+                ekey.encryptionKey = globalInputMessage.encrypt(
                   decryptedEncryptionKey,
                   newUserEncryptionKey,
                 )
@@ -693,7 +693,7 @@ export default class ApplicationSettingsData {
         loginUserinfo.createdAt = new Date().getTime()
         this._setLoginUserInfo(loginUserinfo)
         var userinfoString = JSON.stringify(loginUserinfo)
-        var appLoginContent = encrypt(userinfoString, newUserEncryptionKey)
+        var appLoginContent = globalInputMessage.encrypt(userinfoString, newUserEncryptionKey)
         this._appLoginContent(
           appLoginContent,
           encryptedActiveEncryptionKey,
@@ -779,8 +779,8 @@ export default class ApplicationSettingsData {
       loginUserinfo.password,
     )
     var userinfoString = JSON.stringify(loginUserinfo)
-    var appLoginContent = encrypt(userinfoString, userEncryptionKey)
-    var encryptedActiveEncryptionKey = encrypt(
+    var appLoginContent = globalInputMessage.encrypt(userinfoString, userEncryptionKey)
+    var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
       loginUserinfo.activeEncryptionKey,
       userEncryptionKey,
     )
@@ -792,3 +792,24 @@ export default class ApplicationSettingsData {
     )
   }
 }
+
+const appdata = new ApplicationSettingsData();
+
+export {appdata}
+
+
+const keyPrefix = 'mzMWz2mDmr';
+const keySuffix = 'aYSsU44h9f';
+
+export const encryptData = (content, encryptionKey) => {
+    var prefix = globalInputMessage.generateRandomString(7);
+    var suffix = globalInputMessage.generateRandomString(11);
+    const decryptedKey = appdata.decryptEncryptionKey(encryptionKey);
+    return globalInputMessage.encrypt(prefix + content + suffix, keyPrefix + decryptedKey + keySuffix);
+};
+
+export const decryptData = (content, encryptionKey) => {
+    const decryptedKey = appdata.decryptEncryptionKey(encryptionKey);
+    const decryptedContent = globalInputMessage.decrypt(content, keyPrefix + decryptedKey + keySuffix);
+    return decryptedContent.slice(7, decryptedContent.length - 11);
+};

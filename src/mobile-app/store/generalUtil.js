@@ -1,3 +1,16 @@
+import * as globalInputMessage from 'global-input-react';
+
+export function generateRandomString(length = 10) {
+    const randPassword = globalInputMessage.generateRandomString(length);
+    if (randPassword.startsWith('U2Fsd')) {
+        return generateRandomString(length);
+    } else {
+        return randPassword;
+    }
+}
+
+
+
 
 export const getDomainFromFormId = formId => {
     const indexOfAt = formId.lastIndexOf('@');

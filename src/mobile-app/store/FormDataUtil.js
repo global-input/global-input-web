@@ -304,3 +304,8 @@ export default class FormDataUtil {
     }
   }
 }
+
+
+const formDataUtil = new FormDataUtil();
+
+export {formDataUtil};

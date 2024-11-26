@@ -1,9 +1,7 @@
 
-import * as globalInputMessage from 'global-input-react';
-import { generateRandomString } from "./localStorage/userSettings";
+import {appdata, encryptData, decryptData} from "./ApplicationSettingsData";
 
-
-import ApplicationSettingsData from "./ApplicationSettingsData";
+import { generateRandomString } from './generalUtil';
 
 import * as domainFormsAccess from './domainFormsAccess';
 
@@ -11,31 +9,7 @@ import * as domainFormsAccess from './domainFormsAccess';
 import * as globalInputSettings from './localStorage/globalInputSettings';
 
 
-import FormDataUtil from "./FormDataUtil";
-
-const appdata = new ApplicationSettingsData();
+import {formDataUtil} from "./FormDataUtil";
 
 
-const formDataUtil = new FormDataUtil();
-
-
-
-
-const keyPrefix = 'mzMWz2mDmr';
-const keySuffix = 'aYSsU44h9f';
-
-export const encryptData = (content, encryptionKey) => {
-    var prefix = globalInputMessage.generateRandomString(7);
-    var suffix = globalInputMessage.generateRandomString(11);
-    const decryptedKey = appdata.decryptEncryptionKey(encryptionKey);
-    return globalInputMessage.encrypt(prefix + content + suffix, keyPrefix + decryptedKey + keySuffix);
-};
-
-export const decryptData = (content, encryptionKey) => {
-    const decryptedKey = appdata.decryptEncryptionKey(encryptionKey);
-    const decryptedContent = globalInputMessage.decrypt(content, keyPrefix + decryptedKey + keySuffix);
-    return decryptedContent.slice(7, decryptedContent.length - 11);
-};
-
-
-export {appdata, formDataUtil, generateRandomString, globalInputSettings, domainFormsAccess };
+export {appdata, encryptData, decryptData, formDataUtil, generateRandomString, globalInputSettings, domainFormsAccess };

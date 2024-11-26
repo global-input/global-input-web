@@ -1,15 +1,7 @@
 // Assuming you have access to the global window object
-import * as globalInputMessage from 'global-input-react';
+
 import * as generalUtil from '../generalUtil';
 
-export function generateRandomString(length = 10) {
-    const randPassword = globalInputMessage.generateRandomString(length);
-    if (randPassword.startsWith('U2Fsd')) {
-        return generateRandomString(length);
-    } else {
-        return randPassword;
-    }
-}
 
 // Cached variables
 let activeEncryptionKey = null;
@@ -50,7 +42,7 @@ function loadFromLocalStorage(key, defaultValue = null) {
 // Initialize cached variables
 function initializeState() {
     if (activeEncryptionKey === null) {
-        activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, generateRandomString(23));
+        activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, generalUtil.generateRandomString(23));
     }    
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
@@ -214,7 +206,7 @@ export const clearAllForms = () => {
 };
 
 export const resetApp = () => {
-    activeEncryptionKey = generateRandomString(23);    
+    activeEncryptionKey = generalUtil.generateRandomString(23);    
     savedFormContent = [];
     appLoginContent = null;
     encryptionKeyList = [];
