@@ -1,5 +1,3 @@
-// Assuming you have access to the global window object
-
 import * as generalUtil from '../generalUtil';
 
 
@@ -205,7 +203,7 @@ export const clearAllForms = () => {
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
 };
 
-export const resetApp = () => {
+export const clearAllData = () => {
     activeEncryptionKey = generalUtil.generateRandomString(23);    
     savedFormContent = [];
     appLoginContent = null;

@@ -1,5 +1,6 @@
 import {generateRandomString, encrypt, decrypt} from 'global-input-react';
 
+
 // Keys for localStorage
 const STORAGE_KEYS = {
   API_KEY: "GLOBAL_INPUT_API_KEY",
@@ -184,27 +185,7 @@ export const setProxyURL = (newProxyURL) => {
   notifySubscribers("proxyURL", proxyURL);
 };
 
-// Reset function to restore default settings
-export const resetGlobalInputSettings = () => {
-  apikey = "SOh85GNXT8TXLCTEc";
-  securityGroup = "1CNbWCFpsbmRQuKdd";
-  codeAES = "LNJGw0x5lqnXpnVY8";
-  client = "";
-  appLoginTimeout = 120000;
-  preserveSession = true;
-  proxyURL = "https://globalinput.co.uk";
 
-  saveToLocalStorage(STORAGE_KEYS.API_KEY, apikey);
-  saveToLocalStorage(STORAGE_KEYS.SECURITY_GROUP, securityGroup);
-  saveToLocalStorage(STORAGE_KEYS.CODE_AES, codeAES);
-  saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
-  saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT, appLoginTimeout);
-  saveToLocalStorage(STORAGE_KEYS.PRESERVE_SESSION, preserveSession);
-  saveToLocalStorage(STORAGE_KEYS.PROXY_URL, proxyURL);
-
-  // Notify subscribers about the reset
-  notifySubscribers("reset", null);
-};
 
 // Optional: Listen to storage events for cross-tab synchronization
 window.addEventListener("storage", (event) => {
@@ -241,3 +222,11 @@ window.addEventListener("storage", (event) => {
       break;
   }
 });
+
+
+export const deleteAllData = ()=>{
+  
+  Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
+  initializeState(); 
+
+}

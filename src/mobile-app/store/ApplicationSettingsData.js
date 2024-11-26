@@ -216,10 +216,11 @@ class ApplicationSettingsData {
 
   clearAllForms () {
     userSettings.clearAllForms();
-    domainFormMappings.deleteAll()
+    domainFormMappings.deleteAllData()
   }
   resetApp () {
-    userSettings.resetApp();
+    userSettings.clearAllData();
+    domainFormMappings.deleteAllData()
   }
   mergeFormDataList (formDataList) {
     userSettings.mergeFormDataList(formDataList)

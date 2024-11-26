@@ -167,7 +167,7 @@ export const mergeFormDataList = ({ formDataList }) => {
   });
 };
 
-export const deleteAll = () => {
+export const deleteAllData = () => {
   deleteAllMappings();
 };
 
