@@ -1,5 +1,5 @@
-import * as domainFormMappings from './reducers/domainFormMappings';
-import * as userSettings from "./reducers/userSettings";
+import * as domainFormMappings from './localStorage/domainFormMappings';
+import * as userSettings from "./localStorage/userSettings";
 
 import * as generalUtil from './reducers/generalUtil';
 import FormDataUtil from "./FormDataUtil";
@@ -9,8 +9,8 @@ const formDataUtil = new FormDataUtil();
 
 
 
-const findMappingByDomain = (store, domain) => {
-    const domainToIds = domainFormMappings.getAllDomainMappingRecords(store);
+const findMappingByDomain = (domain) => {
+    const domainToIds = domainFormMappings.getAllDomainMappingRecords();
     for (let domainMapping of domainToIds) {
         if (domainMapping.domain === domain) {
             return domainMapping;
@@ -20,16 +20,16 @@ const findMappingByDomain = (store, domain) => {
 };
 
 
-const findFormsByDomain = (store, domain) => {
+const findFormsByDomain = (domain) => {
     if (!domain) {
         return null;
     }
-    const domainMapping = findMappingByDomain(store, domain);
+    const domainMapping = findMappingByDomain(domain);
     if (!domainMapping) {
         return null;
     }
     const forms = [];
-    const savedFormContent = store.getState().userSettings.savedFormContent;
+    const savedFormContent = userSettings.getAllForms();
     for (let formId of domainMapping.formIds) {
         const form = generalUtil.fromIdToForm(formId, savedFormContent);
         if (form) {
@@ -66,14 +66,14 @@ const addFormsToArray = (formsToAdd, formList) => {
 };
 
 
-export const forFormData = (store, formData) => {
-    const allDomainMappingRecords = domainFormMappings.getAllDomainMappingRecords(store);
+export const forFormData = (formData) => {
+    const allDomainMappingRecords = domainFormMappings.getAllDomainMappingRecords();
     generalUtil.populateDomainsForFormData(allDomainMappingRecords, formData);
 };
 
 
 
-export const getAutoFillData = (store, initData) => {
+export const getAutoFillData = (initData) => {
 
     if (!initData || !initData.form) {
         return null;
@@ -89,7 +89,7 @@ export const getAutoFillData = (store, initData) => {
         return null;
     }
     formId = formId.toLowerCase();
-    const allFormsData = userSettings.getAllForms(store);
+    const allFormsData = userSettings.getAllForms();
     const matchedRecords = [];
     addFormToArray(generalUtil.searchFormDataById(allFormsData, formId), matchedRecords);
     let domain = initData.form.domain;
@@ -99,7 +99,7 @@ export const getAutoFillData = (store, initData) => {
     else {
         domain = generalUtil.getDomainFromFormId(formId);
     }
-    addFormsToArray(findFormsByDomain(store, domain), matchedRecords);
+    addFormsToArray(findFormsByDomain(domain), matchedRecords);
     addFormsToArray(generalUtil.findFormDataByIdSuffix(allFormsData, domain), matchedRecords);
     addFormsToArray(generalUtil.searchFormDataByIdPrefix(allFormsData, formId), matchedRecords);
     if (!matchedRecords || !matchedRecords.length) {
@@ -130,8 +130,8 @@ export const searchFormData = (formDataList, filterString) => {
 };
 
 
-export const findFormById = (store, formId) => {
-    const allFormsData = userSettings.getAllForms(store);
+export const findFormById = (formId) => {
+    const allFormsData = userSettings.getAllForms();
     let martchedForm = generalUtil.findFormDataById(allFormsData, formId);
     if (martchedForm) {
         return martchedForm;

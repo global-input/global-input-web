@@ -1,9 +1,9 @@
 
 
 import {generateRandomString, encrypt, decrypt} from 'global-input-react';
-import {globalInputSettings} from './reducers/globalInputSettings'
-import * as userSettings from './reducers/userSettings'
-import * as domainFormMappings from './reducers/domainFormMappings'
+import * as globalInputSettings from './localStorage/globalInputSettings'
+import * as userSettings from './localStorage/userSettings'
+import * as domainFormMappings from './localStorage/domainFormMappings'
 import * as generalUtil from './reducers/generalUtil'
 import FormDataUtil from './FormDataUtil'
 var formDataUtil = new FormDataUtil()
@@ -12,14 +12,12 @@ const safeDecrypt = function (content, encryptionKey) {
   try {
     return decrypt(content, encryptionKey)
   } catch (error) {
-    return null
-    console.log(error)
+    return null    
   }
 }
 
 export default class ApplicationSettingsData {
-  constructor (store) {
-    this.store = store
+  constructor () {    
     this.encryptionKeyPrefix = 'LrHXyPx6NW'
     this.encryptionKeySuffix = 'rzjjTYkEwd'
     this.passwordProtectionSuffix = 'kE4yPZrJlKCEKGpTPctVzwU'
@@ -180,49 +178,42 @@ export default class ApplicationSettingsData {
     return null
   }
 
-  setApiKey (apikey) {
-    this.store.dispatch(globalInputSettings.actions.apikey(apikey))
+  setApiKey (apikey) {    
+      globalInputSettings.setApiKey(apikey);
   }
   setSecurityGroup (securityGroup) {
-    this.store.dispatch(
-      globalInputSettings.actions.securityGroup(securityGroup),
-    )
+      globalInputSettings.setSecurityGroup(securityGroup);    
   }
   setCodeAES (codeAES) {
-    this.store.dispatch(globalInputSettings.actions.codeAES(codeAES))
+      globalInputSettings.setCodeAES(codeAES);    
   }
   setClient (client) {
-    this.store.dispatch(globalInputSettings.actions.client(client))
+    globalInputSettings.setClient(client);    
   }
   setAppLoginTimeout (appLoginTimeout) {
-    this.store.dispatch(
-      globalInputSettings.actions.appLoginTimeout(appLoginTimeout),
-    )
+    globalInputSettings.setAppLoginTimeout(appLoginTimeout);    
   }
   setPreserveSession (preserveSession) {
-    this.store.dispatch(
-      globalInputSettings.actions.preserveSession(preserveSession),
-    )
+      globalInputSettings.setPreserveSession(preserveSession);
   }
   setProxyURL (proxyURL) {
-    this.store.dispatch(globalInputSettings.actions.proxyURL(proxyURL))
+    globalInputSettings.setProxyURL(proxyURL);    
   }
   getProxyURL () {
-    return this.store.getState().globalInputSettings.proxyURL
+    return globalInputSettings.getProxyURL();    
   }
 
   getApikey () {
-    return this.store.getState().globalInputSettings.apikey
+    return globalInputSettings.getApiKey();    
   }
   getCodeAES () {
-    return this.store.getState().globalInputSettings.codeAES
+    return globalInputSettings.getCodeAES();    
   }
   getSecurityGroup () {
-    return this.store.getState().globalInputSettings.securityGroup
+    return globalInputSettings.getSecurityGroup();    
   }
   getAppLoginTimeout () {
-    var appLoginTimeout =
-      this.store.getState().globalInputSettings.appLoginTimeout
+    var appLoginTimeout = globalInputSettings.getAppLoginTimeout();      
     if (!appLoginTimeout) {
       appLoginTimeout = 30000
       this.setAppLoginTimeout(appLoginTimeout)
@@ -230,11 +221,11 @@ export default class ApplicationSettingsData {
     return appLoginTimeout
   }
   getPreserveSession () {
-    return this.store.getState().globalInputSettings.preserveSession
+    return globalInputSettings.getPreserveSession();
   }
 
   _getClient () {
-    return this.store.getState().globalInputSettings.client
+    return globalInputSettings.getClient();
   }
   getClient () {
     var client = this._getClient()
@@ -245,76 +236,76 @@ export default class ApplicationSettingsData {
     return client
   }
 
-  getShowWelcomePage () {
-    return userSettings.getShowWelcomePage(this.store)
+  getShowWelcomePage () {    
+    return userSettings.getShowWelcomePage();
   }
   setShowWelcomePage (showWelcomePage) {
-    userSettings.setShowWelcomePage(this.store, showWelcomePage)
+    
+    userSettings.setShowWelcomePage(showWelcomePage);
   }
   updateFormData (formId, formData) {
-    if (formId && formData && formData.id) {
-      userSettings.updateFormData(this.store, formId, formData)
-      domainFormMappings.updateDomains({formData, formId, store: this.store})
+    if (formId && formData && formData.id) {      
+      userSettings.updateFormData(formId, formData)
+      domainFormMappings.updateDomains({formData, formId})
     } else {
       console.log('Could not save empty data or the ones without id')
     }
   }
   createFormData (formData) {
-    if (formData && formData.id) {
-      userSettings.createFormData(this.store, formData)
-      domainFormMappings.saveDomains({formData, store: this.store})
+    if (formData && formData.id) {      
+      userSettings.createFormData(formData);
+      domainFormMappings.saveDomains({formData})
     } else {
       console.log('Could not save empty data or the ones without id')
     }
   }
   mergeFormData (formData) {
-    if (formData && formData.id) {
-      userSettings.mergeFormData(this.store, formData)
-      domainFormMappings.mergeFormData({formData, store: this.store})
+    if (formData && formData.id) {     
+      userSettings.mergeFormData(formData);
+      domainFormMappings.mergeFormData({formData})
     } else {
       console.log('Could not merge empty data or the ones without id')
     }
   }
   deleteFormData (formData) {
-    if (formData && formData.id) {
-      userSettings.deleteFormData(this.store, formData)
-      domainFormMappings.deleteFormData({formData, store: this.store})
+    if (formData && formData.id) {     
+      userSettings.deleteFormData(formData)
+      domainFormMappings.deleteFormData({formData})
     } else {
       console.log('Could not delete empty data or the ones without id')
     }
   }
 
   clearAllForms () {
-    userSettings.clearAllForms(this.store)
-    domainFormMappings.deleteAll({store: this.store})
+    userSettings.clearAllForms();
+    domainFormMappings.deleteAll()
   }
   resetApp () {
-    userSettings.resetApp(this.store)
+    userSettings.resetApp();
   }
   mergeFormDataList (formDataList) {
-    userSettings.mergeFormDataList(this.store, formDataList)
-    domainFormMappings.mergeFormDataList({formDataList, store: this.store})
+    userSettings.mergeFormDataList(formDataList)
+    domainFormMappings.mergeFormDataList({formDataList})
   }
 
   getFormContentById (formId) {
-    return userSettings.getFormContentById(this.store, formId)
+    return userSettings.getFormContentById(formId)
   }
   searchFormDataById (formId) {
-    return userSettings.searchFormDataById(this.store, formId.toLowerCase())
+    return userSettings.searchFormDataById(formId.toLowerCase())
   }
 
   getSavedFormContent () {
-    return userSettings.getAllForms(this.store)
+    return userSettings.getAllForms()
   }
   getAllLabels () {
     return formDataUtil.getAllLabelsFromFormDataList(
-      userSettings.getAllForms(this.store),
+      userSettings.getAllForms(),
     )
   }
   hasFormContent () {
-    var savedContent = userSettings.getAllForms(this.store)
-    return savedContent && savedContent.length
-    return false
+    var savedContent = userSettings.getAllForms()
+    return savedContent && savedContent.length   
   }
   cloneFormData (formData) {
     if (!formData) {
@@ -364,7 +355,7 @@ export default class ApplicationSettingsData {
   getEncryptionKeyList () {
     var activeEncryptionKey = this._getActiveEncryptionKey()
 
-    var encryptionKeyList = userSettings.getEncryptionKeyList(this.store)
+    var encryptionKeyList = userSettings.getEncryptionKeyList()
 
     if (!encryptionKeyList.length) {
       var encryptionKey = this._importEncryptedNewKey(
@@ -381,15 +372,11 @@ export default class ApplicationSettingsData {
   }
 
   _getActiveEncryptionKey () {
-    var activeEncryptionKey = userSettings.getActiveEncryptionKey(this.store)
+    var activeEncryptionKey = userSettings.getActiveEncryptionKey()
     if (activeEncryptionKey) {
       return activeEncryptionKey
     } else {
-      /*
-          In the old version the variable name is masterEncryptionKey.
-          In the new version the variable name is activeEncryptionKey;
-      */
-      return userSettings.getMasterEncryptionKey(this.store)
+      return null;
     }
   }
   _getLoginUserInfo () {    
@@ -405,8 +392,8 @@ export default class ApplicationSettingsData {
     if (loginUserInfo.activeEncryptionKey) {
       return loginUserInfo.activeEncryptionKey
     } else {
-      //try the old version;
-      return loginUserInfo.masterEncryptionKey
+      return null;    
+    
     }
   }
   getDecryptedActiveEncryptionKey () {
@@ -421,10 +408,10 @@ export default class ApplicationSettingsData {
   }
 
   deleteEncryptionKeyItem (encryptionItemToDelete) {
-    userSettings.deleteEncryptionItem(this.store, encryptionItemToDelete)
+    userSettings.deleteEncryptionItem(encryptionItemToDelete)
   }
   updateEncryptionKey (encryptionItem) {
-    userSettings.updateEncryptionItem(this.store, encryptionItem)
+    userSettings.updateEncryptionItem(encryptionItem)
   }
 
   importNewKey (name, encryptionKey) {
@@ -477,7 +464,7 @@ export default class ApplicationSettingsData {
     var forms = this.getSavedFormContent()
     if (forms && forms.length) {
       const allDomainMappingRecords =
-        domainFormMappings.getAllDomainMappingRecords(this.store)
+        domainFormMappings.getAllDomainMappingRecords()
       generalUtil.populateDomainsForAllForms(allDomainMappingRecords, forms)
       var globalInputData = {
         forms,
@@ -612,16 +599,15 @@ export default class ApplicationSettingsData {
   }
 
   _addEncryptionItem (encryptionItem) {
-    userSettings.addEncryptionItem(this.store, encryptionItem)
+    userSettings.addEncryptionItem(encryptionItem)
   }
   _appLoginContent (
     appLoginContent,
     activeEncryptionKey,
     encryptionKeyList,
     savedFormContent,
-  ) {
-    userSettings.appLoginContent(
-      this.store,
+  ) {    
+    userSettings.appLoginContentUpdate(      
       appLoginContent,
       activeEncryptionKey,
       encryptionKeyList,
@@ -681,15 +667,11 @@ export default class ApplicationSettingsData {
   }
 
   getAppLoginContent () {
-    var ret = userSettings.getAppLoginContent(this.store)
+    var ret = userSettings.getAppLoginContent()
     if (ret) {
       return ret
     } else {
-      /*
-    In the old version, the variable name is appLoginPassword
-    In the new version, the variable name is appLoginContent
-      */
-      return userSettings.getAppLoginPassword(this.store)
+      return null;
     }
   }
 
@@ -817,60 +799,19 @@ export default class ApplicationSettingsData {
           this._setLoginUserInfo(loginUserinfo)
           return true
         } else {
-          //old version, there is appLoginContent that does not contains the enckey.
-          return this._oldVersionRecoverEncryptionKeyInAppLoginContent(
-            loginUserinfo,
-            userEncryptionKey,
-          )
+          return null;
         }
       } catch (error) {
         console.log(error)
         return false
       }
-    } else if (this._isActiveEncryptionKeyEncrypted()) {
-      //trying to decrypt the active encryption key.
-      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(password)
-      //appLoginContent is missing, just create one
-      var loginUserinfo = this._createInitialLoginUserInfo(password, null)
-      return this._oldVersionRecoverEncryptionKeyInAppLoginContent(
-        loginUserinfo,
-        userEncryptionKey,
-      )
     } else {
       console.log('Needs to set up password first')
       return false
     }
   }
 
-  /*
-   In the old version, encryption key is not stored inside appLoginContent.
-      So when app realized this, it shouild try to fix by getting it from _getActiveEncryptionKey()
-      and stored it into appLoginContent.
-      //this should be only called from user login.
-  */
-
-  _oldVersionRecoverEncryptionKeyInAppLoginContent (
-    loginUserinfo,
-    userEncryptionKey,
-  ) {
-    //old version, there is a appLoginContent that does not contains the enckey.
-    var activeEncryptionKey = this._getActiveEncryptionKey()
-    loginUserinfo.activeEncryptionKey = safeDecrypt(
-      activeEncryptionKey,
-      userEncryptionKey,
-    )
-    if (loginUserinfo.activeEncryptionKey) {
-      this._setLoginUserInfo(loginUserinfo)
-      this._updateAppLoginContentEncrytionListAndForm(loginUserinfo)
-      return true
-    } else {
-      console.log(
-        'Failed to login because it failed to decrupt the active encryption key',
-      )
-      return false
-    }
-  }
-
+  
   userAppLoginSetup (password) {    
     if (!password) {
       console.log('password is empty')
@@ -905,8 +846,7 @@ export default class ApplicationSettingsData {
       loginUserinfo.activeEncryptionKey,
       userEncryptionKey,
     )
-    userSettings.appLoginContent(
-      this.store,
+    userSettings.appLoginContentUpdate(      
       appLoginContent,
       encryptedActiveEncryptionKey,
       encryptionKeyList,

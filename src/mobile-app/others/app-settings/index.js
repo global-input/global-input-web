@@ -16,7 +16,8 @@ import CheckBoxButton from "../../components/buttons/CheckBoxButton";
 import TextInputField from "../../components/input/TextInputField";
 
 
-import { appdata, store } from "../../store";
+import { appdata} from "../../store";
+import * as globalInputSettings  from '../../store/localStorage/globalInputSettings';
 
 const ACT_TYPE = {
   MAIN: 1,
@@ -120,11 +121,11 @@ const Others = ({ onBack }) => {
 
 
   useEffect(() => {
-    const ubsubsribe = store.subscribe(() => {
+    const unsubscribe = globalInputSettings.subscribe(() => {
       setCompData(getStateFromProps());
     });
     return () => {
-      ubsubsribe();
+      unsubscribe();
     }
   }, []);
   const renderErrorMessage = () => {

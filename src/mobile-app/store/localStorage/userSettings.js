@@ -2,7 +2,7 @@
 import * as globalInputMessage from 'global-input-react';
 import * as generalUtil from './generalUtil';
 
-function generateRandomString(length = 10) {
+export function generateRandomString(length = 10) {
     const randPassword = globalInputMessage.generateRandomString(length);
     if (randPassword.startsWith('U2Fsd')) {
         return generateRandomString(length);
@@ -273,28 +273,3 @@ window.addEventListener('storage', (event) => {
 
 
 
-/******Old Version to be deleted */
-/*
-          In the old version the variable name is masterEncryptionKey.
-          In the new version the variable name is activeEncryptionKey;
-      */
-
-
-export const getMasterEncryptionKey = () => {
-
-    throw new Error('Not implemented: Old Version for getMasterEncryptionKey');
-
-}
-
-
-/*
-    In the old version, the variable name is appLoginPassword
-    In the new version, the variable name is appLoginContent
-      */
-
-export const getAppLoginPassword=()=>{
-    //throw new Error('Not implemented: Old Version for getAppLoginPassword');
-    console.error('Not implemented: Old Version for getAppLoginPassword');
-    return null;
-
-}

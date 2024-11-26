@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+
 import * as globalInputMessage from 'global-input-react';
-import configStore, { generateRandomString } from "./configStore";
+import { generateRandomString } from "./localStorage/userSettings";
 
 
 import ApplicationSettingsData from "./ApplicationSettingsData";
@@ -13,33 +13,12 @@ import * as domainFormsAccess from './domainFormsAccess';
 
 import FormDataUtil from "./FormDataUtil";
 
-let storeLoadCompletedListeners = [];
-let storedIsLoaded = false;
-function onStoreLoadCompleted() {
-    storedIsLoaded = true;
-    storeLoadCompletedListeners.forEach((lt) => {
-        lt();
-    });
-}
-function addStoreLoadCompletedListener(lt) {
-    storeLoadCompletedListeners = [...storeLoadCompletedListeners, lt];
-    if (storedIsLoaded) {
-        lt();
-    }
-    return function () {
-        var ind = storeLoadCompletedListeners.indexOf(lt);
-        if (ind >= 0) {
-            storeLoadCompletedListeners.splice(ind, 1);
-        }
-    }
-}
-const { store, persistor } = configStore(onStoreLoadCompleted);
-const appdata = new ApplicationSettingsData(store);
+const appdata = new ApplicationSettingsData();
 
 
 const formDataUtil = new FormDataUtil();
 
-export { store, appdata, addStoreLoadCompletedListener, formDataUtil, generateRandomString, persistor };
+export {appdata, formDataUtil, generateRandomString };
 
 
 const keyPrefix = 'mzMWz2mDmr';
@@ -60,11 +39,11 @@ export const decryptData = (content, encryptionKey) => {
 
 export const domainForms = {
 
-    forFormData: formData => domainFormsAccess.forFormData(store, formData),
+    forFormData: formData => domainFormsAccess.forFormData(formData),
 
-    getAutoFillData: initData => domainFormsAccess.getAutoFillData(store, initData),
+    getAutoFillData: initData => domainFormsAccess.getAutoFillData(initData),
 
     searchFormData: (formDataList, action) => domainFormsAccess.searchFormData(formDataList, action.filterString),
 
-    findFormById: formId => domainFormsAccess.findFormById(store, formId)
+    findFormById: formId => domainFormsAccess.findFormById(formId)
 };
