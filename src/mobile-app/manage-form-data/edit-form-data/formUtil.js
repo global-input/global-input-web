@@ -8,7 +8,7 @@ import images from '../../configs/images';
 import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
 import menusConfig from '../../configs/menusConfig';
 
-import { appdata, domainForms } from '../../store';
+import { appdata, domainFormsAccess } from '../../store';
 import TextInputField from '../../components/input/TextInputField';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
@@ -47,7 +47,7 @@ export const getInitData = ({ formData, errorMessage = '', label }) => {
     notificationMessage: null,
   };
   if (formData) {
-    domainForms.forFormData(formData);
+    domainFormsAccess.forFormData(formData);
     return { ...initData, formData, errorMessage };
   } else {
     return initData;

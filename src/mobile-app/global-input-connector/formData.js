@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formDataUtil, appdata, domainForms } from '../store';
+import { formDataUtil, appdata, domainFormsAccess } from '../store';
 import deviceInputTextConfig from '../configs/deviceInputTextConfig';
 import encryptedQrCodeTextConfig from '../configs/encryptedQrCodeTextConfig';
 
@@ -269,7 +269,7 @@ const initDataActionForDeviceInput = initData => {
     };
   }
 
-  var autofill = domainForms.getAutoFillData(initData);
+  var autofill = domainFormsAccess.getAutoFillData(initData);
 
   var showHideSecret = null;
   const globalInputdata = initData.form.fields;

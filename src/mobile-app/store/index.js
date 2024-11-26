@@ -37,15 +37,5 @@ export const decryptData = (content, encryptionKey) => {
     return decryptedContent.slice(7, decryptedContent.length - 11);
 };
 
-export const domainForms = {
 
-    forFormData: formData => domainFormsAccess.forFormData(formData),
-
-    getAutoFillData: initData => domainFormsAccess.getAutoFillData(initData),
-
-    searchFormData: (formDataList, action) => domainFormsAccess.searchFormData(formDataList, action.filterString),
-
-    findFormById: formId => domainFormsAccess.findFormById(formId)
-};
-
-export {appdata, formDataUtil, generateRandomString, globalInputSettings };
+export {appdata, formDataUtil, generateRandomString, globalInputSettings, domainFormsAccess };

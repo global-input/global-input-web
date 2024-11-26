@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { styles } from '../styles'; // Ensure styles are adjusted for React.js
-import { domainForms } from '../../store';
+import { domainFormsAccess } from '../../store';
 import menusConfig  from '../../configs/menusConfig';
 import ViewWithTabMenu  from '../../components/menu/ViewWithTabMenu';
 import ListFormDataHeader from './ListFormDataHeader';
@@ -75,7 +75,7 @@ const ListFormData = ({
   const onChangeFilterString = (filterString) => {
     const newAction = createNewAction();
     newAction.filterString = filterString;
-    newAction.formDataList = domainForms.searchFormData(formDataList, newAction);
+    newAction.formDataList = domainFormsAccess.searchFormData(formDataList, newAction.filterString);
     populateItemsInAction(newAction);
     setAction(newAction);
   };
