@@ -1,4 +1,4 @@
-import * as generalUtil from './generalUtil';
+import * as generalUtil from '../generalUtil';
 
 // Key for localStorage
 const STORAGE_KEY = 'DOMAIN_TO_IDS';

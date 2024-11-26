@@ -21,7 +21,6 @@ let proxyURL = null;
 // Subscriber list
 const subscribers = [];
 
-
 // Helper function to save data to localStorage
 function saveToLocalStorage(key, value) {
   try {
@@ -48,7 +47,10 @@ function initializeState() {
     apikey = loadFromLocalStorage(STORAGE_KEYS.API_KEY, "SOh85GNXT8TXLCTEc");
   }
   if (securityGroup === null) {
-    securityGroup = loadFromLocalStorage(STORAGE_KEYS.SECURITY_GROUP, "1CNbWCFpsbmRQuKdd");
+    securityGroup = loadFromLocalStorage(
+      STORAGE_KEYS.SECURITY_GROUP,
+      "1CNbWCFpsbmRQuKdd"
+    );
   }
   if (codeAES === null) {
     codeAES = loadFromLocalStorage(STORAGE_KEYS.CODE_AES, "LNJGw0x5lqnXpnVY8");
@@ -57,18 +59,56 @@ function initializeState() {
     client = loadFromLocalStorage(STORAGE_KEYS.CLIENT, "");
   }
   if (appLoginTimeout === null) {
-    appLoginTimeout = loadFromLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT, 120000);
+    appLoginTimeout = loadFromLocalStorage(
+      STORAGE_KEYS.APP_LOGIN_TIMEOUT,
+      120000
+    );
   }
   if (preserveSession === null) {
-    preserveSession = loadFromLocalStorage(STORAGE_KEYS.PRESERVE_SESSION, true);
+    preserveSession = loadFromLocalStorage(
+      STORAGE_KEYS.PRESERVE_SESSION,
+      true
+    );
   }
   if (proxyURL === null) {
-    proxyURL = loadFromLocalStorage(STORAGE_KEYS.PROXY_URL, "https://globalinput.co.uk");
+    proxyURL = loadFromLocalStorage(
+      STORAGE_KEYS.PROXY_URL,
+      "https://globalinput.co.uk"
+    );
   }
 }
 
 // Call initializeState to set up the initial state
 initializeState();
+
+// Notify subscribers
+function notifySubscribers(changedKey, newValue) {
+  subscribers.forEach((callback) => {
+    try {
+      callback(changedKey, newValue);
+    } catch (e) {
+      console.error("Error in subscriber callback:", e);
+    }
+  });
+}
+
+// Subscription management
+export function subscribe(callback) {
+  if (typeof callback === "function") {
+    subscribers.push(callback);
+    // Return an unsubscribe function
+    return () => {
+      unsubscribe(callback);
+    };
+  }
+}
+
+export function unsubscribe(callback) {
+  const index = subscribers.indexOf(callback);
+  if (index !== -1) {
+    subscribers.splice(index, 1);
+  }
+}
 
 // Getter functions
 export const getApiKey = () => apikey;
@@ -89,36 +129,43 @@ export const getProxyURL = () => proxyURL;
 export const setApiKey = (newApiKey) => {
   apikey = newApiKey;
   saveToLocalStorage(STORAGE_KEYS.API_KEY, apikey);
+  notifySubscribers("apikey", apikey);
 };
 
 export const setSecurityGroup = (newSecurityGroup) => {
   securityGroup = newSecurityGroup;
   saveToLocalStorage(STORAGE_KEYS.SECURITY_GROUP, securityGroup);
+  notifySubscribers("securityGroup", securityGroup);
 };
 
 export const setCodeAES = (newCodeAES) => {
   codeAES = newCodeAES;
   saveToLocalStorage(STORAGE_KEYS.CODE_AES, codeAES);
+  notifySubscribers("codeAES", codeAES);
 };
 
 export const setClient = (newClient) => {
   client = newClient;
   saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
+  notifySubscribers("client", client);
 };
 
 export const setAppLoginTimeout = (newTimeout) => {
   appLoginTimeout = newTimeout;
   saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT, appLoginTimeout);
+  notifySubscribers("appLoginTimeout", appLoginTimeout);
 };
 
 export const setPreserveSession = (newPreserveSession) => {
   preserveSession = newPreserveSession;
   saveToLocalStorage(STORAGE_KEYS.PRESERVE_SESSION, preserveSession);
+  notifySubscribers("preserveSession", preserveSession);
 };
 
 export const setProxyURL = (newProxyURL) => {
   proxyURL = newProxyURL;
   saveToLocalStorage(STORAGE_KEYS.PROXY_URL, proxyURL);
+  notifySubscribers("proxyURL", proxyURL);
 };
 
 // Reset function to restore default settings
@@ -138,31 +185,41 @@ export const resetGlobalInputSettings = () => {
   saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT, appLoginTimeout);
   saveToLocalStorage(STORAGE_KEYS.PRESERVE_SESSION, preserveSession);
   saveToLocalStorage(STORAGE_KEYS.PROXY_URL, proxyURL);
+
+  // Notify subscribers about the reset
+  notifySubscribers("reset", null);
 };
 
 // Optional: Listen to storage events for cross-tab synchronization
 window.addEventListener("storage", (event) => {
   switch (event.key) {
     case STORAGE_KEYS.API_KEY:
-      apikey = JSON.parse(event.newValue);
+      apikey = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("apikey", apikey);
       break;
     case STORAGE_KEYS.SECURITY_GROUP:
-      securityGroup = JSON.parse(event.newValue);
+      securityGroup = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("securityGroup", securityGroup);
       break;
     case STORAGE_KEYS.CODE_AES:
-      codeAES = JSON.parse(event.newValue);
+      codeAES = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("codeAES", codeAES);
       break;
     case STORAGE_KEYS.CLIENT:
-      client = JSON.parse(event.newValue);
+      client = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("client", client);
       break;
     case STORAGE_KEYS.APP_LOGIN_TIMEOUT:
-      appLoginTimeout = JSON.parse(event.newValue);
+      appLoginTimeout = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("appLoginTimeout", appLoginTimeout);
       break;
     case STORAGE_KEYS.PRESERVE_SESSION:
-      preserveSession = JSON.parse(event.newValue);
+      preserveSession = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("preserveSession", preserveSession);
       break;
     case STORAGE_KEYS.PROXY_URL:
-      proxyURL = JSON.parse(event.newValue);
+      proxyURL = event.newValue ? JSON.parse(event.newValue) : null;
+      notifySubscribers("proxyURL", proxyURL);
       break;
     default:
       break;

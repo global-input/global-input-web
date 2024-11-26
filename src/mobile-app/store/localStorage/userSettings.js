@@ -1,6 +1,6 @@
 // Assuming you have access to the global window object
 import * as globalInputMessage from 'global-input-react';
-import * as generalUtil from './generalUtil';
+import * as generalUtil from '../generalUtil';
 
 export function generateRandomString(length = 10) {
     const randPassword = globalInputMessage.generateRandomString(length);

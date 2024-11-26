@@ -1,7 +1,7 @@
 import * as domainFormMappings from './localStorage/domainFormMappings';
 import * as userSettings from "./localStorage/userSettings";
 
-import * as generalUtil from './reducers/generalUtil';
+import * as generalUtil from './generalUtil';
 import FormDataUtil from "./FormDataUtil";
 
 const formDataUtil = new FormDataUtil();

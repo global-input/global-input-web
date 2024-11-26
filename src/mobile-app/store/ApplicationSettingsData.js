@@ -4,7 +4,7 @@ import {generateRandomString, encrypt, decrypt} from 'global-input-react';
 import * as globalInputSettings from './localStorage/globalInputSettings'
 import * as userSettings from './localStorage/userSettings'
 import * as domainFormMappings from './localStorage/domainFormMappings'
-import * as generalUtil from './reducers/generalUtil'
+import * as generalUtil from './generalUtil'
 import FormDataUtil from './FormDataUtil'
 var formDataUtil = new FormDataUtil()
 
