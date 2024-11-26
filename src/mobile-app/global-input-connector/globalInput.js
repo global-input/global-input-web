@@ -102,7 +102,7 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
     if (!options.securityGroup) {
         options.securityGroup = globalInputSettings.getSecurityGroup();
     }
-    const client = appdata.getClient();
+    const client = globalInputSettings.getClient();
 
 
     if (client) {

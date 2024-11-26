@@ -16,7 +16,7 @@ import CheckBoxButton from "../../components/buttons/CheckBoxButton";
 import TextInputField from "../../components/input/TextInputField";
 
 
-import { appdata, globalInputSettings} from "../../store";
+import { globalInputSettings} from "../../store";
 
 
 
@@ -25,7 +25,7 @@ const ACT_TYPE = {
   EXPORT_AS_QR_CODE: 2
 }
 const getStateFromProps = () => {
-  const appLoginTimeout = "" + (appdata.getAppLoginTimeout() / 1000);
+  const appLoginTimeout = "" + (globalInputSettings.getAppLoginTimeout() / 1000);
 
 
   const preserveSession = globalInputSettings.getPreserveSession();
@@ -67,7 +67,7 @@ const Others = ({ onBack }) => {
     if (!loginTimeoutOnBackground.length) {
       return false;
     }
-    var appLoginTimeout = appdata.getAppLoginTimeout() / 1000;
+    var appLoginTimeout = globalInputSettings.getAppLoginTimeout() / 1000;
     var loginTimeoutOnBackgroundValue = parseInt(loginTimeoutOnBackground);
     if (loginTimeoutOnBackgroundValue === appLoginTimeout) {
       return false;

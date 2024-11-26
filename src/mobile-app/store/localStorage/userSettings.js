@@ -13,15 +13,14 @@ export function generateRandomString(length = 10) {
 
 // Cached variables
 let activeEncryptionKey = null;
-let showWelcomePage = null;
+
 let savedFormContent = null;
 let appLoginContent = null;
 let encryptionKeyList = null;
 
 // Keys for localStorage
 const STORAGE_KEYS = {
-    ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',
-    SHOW_WELCOME_PAGE: 'SHOW_WELCOME_PAGE',
+    ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
     APP_LOGIN_CONTENT: 'APP_LOGIN_CONTENT',
     ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
@@ -52,10 +51,7 @@ function loadFromLocalStorage(key, defaultValue = null) {
 function initializeState() {
     if (activeEncryptionKey === null) {
         activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, generateRandomString(23));
-    }
-    if (showWelcomePage === null) {
-        showWelcomePage = loadFromLocalStorage(STORAGE_KEYS.SHOW_WELCOME_PAGE, true);
-    }
+    }    
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
     }
@@ -77,7 +73,7 @@ export const getEncryptionKeyList = () => encryptionKeyList;
 
 export const getAppLoginContent = () => appLoginContent;
 
-export const getShowWelcomePage = () => showWelcomePage;
+
 
 export const getAllForms = () => savedFormContent;
 
@@ -103,10 +99,7 @@ export const setAppLoginContent = (content) => {
     saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_CONTENT, content);
 };
 
-export const setShowWelcomePage = (value) => {
-    showWelcomePage = value;
-    saveToLocalStorage(STORAGE_KEYS.SHOW_WELCOME_PAGE, value);
-};
+
 
 export const setAllForms = (forms) => {
     savedFormContent = forms;
@@ -221,8 +214,7 @@ export const clearAllForms = () => {
 };
 
 export const resetApp = () => {
-    activeEncryptionKey = generateRandomString(23);
-    showWelcomePage = true;
+    activeEncryptionKey = generateRandomString(23);    
     savedFormContent = [];
     appLoginContent = null;
     encryptionKeyList = [];
@@ -250,10 +242,7 @@ window.addEventListener('storage', (event) => {
     switch (event.key) {
         case STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY:
             activeEncryptionKey = JSON.parse(event.newValue);
-            break;
-        case STORAGE_KEYS.SHOW_WELCOME_PAGE:
-            showWelcomePage = JSON.parse(event.newValue);
-            break;
+            break;        
         case STORAGE_KEYS.SAVED_FORM_CONTENT:
             savedFormContent = JSON.parse(event.newValue);
             break;

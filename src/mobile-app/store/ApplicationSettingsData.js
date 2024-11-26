@@ -1,7 +1,4 @@
-
-
 import {generateRandomString, encrypt, decrypt} from 'global-input-react';
-import * as globalInputSettings from './localStorage/globalInputSettings'
 import * as userSettings from './localStorage/userSettings'
 import * as domainFormMappings from './localStorage/domainFormMappings'
 import * as generalUtil from './generalUtil'
@@ -180,34 +177,10 @@ export default class ApplicationSettingsData {
 
   
   
-
-  getAppLoginTimeout () {
-    var appLoginTimeout = globalInputSettings.getAppLoginTimeout();      
-    if (!appLoginTimeout) {
-      appLoginTimeout = 30000
-      this.setAppLoginTimeout(appLoginTimeout)
-    }
-    return appLoginTimeout
-  }
   
 
   
-  getClient () {
-    var client = globalInputSettings.getClient();
-    if (!client || client.length < 10) {
-      client = generateRandomString(17)
-      this.setClient(client)
-    }
-    return client
-  }
-
-  getShowWelcomePage () {    
-    return userSettings.getShowWelcomePage();
-  }
-  setShowWelcomePage (showWelcomePage) {
-    
-    userSettings.setShowWelcomePage(showWelcomePage);
-  }
+  
   updateFormData (formId, formData) {
     if (formId && formData && formData.id) {      
       userSettings.updateFormData(formId, formData)

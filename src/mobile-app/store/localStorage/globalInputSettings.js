@@ -1,3 +1,5 @@
+import {generateRandomString, encrypt, decrypt} from 'global-input-react';
+
 // Keys for localStorage
 const STORAGE_KEYS = {
   API_KEY: "GLOBAL_INPUT_API_KEY",
@@ -117,9 +119,23 @@ export const getSecurityGroup = () => securityGroup;
 
 export const getCodeAES = () => codeAES;
 
-export const getClient = () => client;
+export const getClient = () => {
+  if (!client || client.length < 10) {
+    client = generateRandomString(17)
+    this.setClient(client)
+  }
+  return client
+  
+}
 
-export const getAppLoginTimeout = () => appLoginTimeout;
+export const getAppLoginTimeout = () => {  
+  if (!appLoginTimeout) {
+    const defaultAppLoginTimeout = 30000
+    this.setAppLoginTimeout(defaultAppLoginTimeout)
+    return defaultAppLoginTimeout;
+  }
+  return appLoginTimeout;
+}
 
 export const getPreserveSession = () => preserveSession;
 
