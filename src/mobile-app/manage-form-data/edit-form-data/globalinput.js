@@ -3,7 +3,7 @@ import React from 'react';
 import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
 import menusConfig from '../../configs/menusConfig';
 import { createMessageConnector } from 'global-input-message';
-import { appdata } from '../../store';
+import { globalInputSettings } from '../../store';
 import { QRCodeView } from '../../qr-code-view';
 import ACT_TYPE from './ACT_TYPE';
 
@@ -65,9 +65,9 @@ export const startConnect = ({ setData, globalInputConnector, onInput }) => {
       }
     });
     return {
-      url: appdata.getProxyURL(),
-      apikey: appdata.getApikey(),
-      securityGroup: appdata.getSecurityGroup(),
+      url: globalInputSettings.getProxyURL(),
+      apikey: globalInputSettings.getApiKey(),
+      securityGroup: globalInputSettings.getSecurityGroup(),
       initData: {
         form: {
           id: formData.id,

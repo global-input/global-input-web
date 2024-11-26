@@ -4,7 +4,7 @@ import Switch from "react-switch";
 ////globa_input_eye////
 import {styles, deviceDetector} from './styles';
 
-import {appdata} from '../store';
+import {appdata, globalInputSettings} from '../store';
 import TabMenu  from '../components/menu/TabMenu';
 import IconButton from '../components/buttons/IconButton';
 
@@ -133,7 +133,7 @@ const GlobalInputEye =  ({
             }
         }
         const connector = createMessageConnector();
-        const codeAES = appdata.getCodeAES();
+        const codeAES = globalInputSettings.getCodeAES();
         const options = {
             onInputCodeData: toGlobalInput,
             onPairing: toImportSettingsData,

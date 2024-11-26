@@ -7,7 +7,7 @@ import DisplayBlockText from "../components/display-text/DisplayBlockText";
 
 import menusConfig from "../configs/menusConfig";
 import settingsTextConfig from "../configs/settingsTextConfig";
-import { appdata } from "../store";
+import { globalInputSettings } from "../store";
 
 
 const ACT_TYPE = {
@@ -21,19 +21,19 @@ const importSettings = action => {
     const { securityGroup, codeAES, proxyURL,apiKey } = action;
     let updated = false;
     if (securityGroup) {
-        appdata.setSecurityGroup(securityGroup);
+        globalInputSettings.setSecurityGroup(securityGroup);
         updated = true;
     }
     if (codeAES) {
-        appdata.setCodeAES(codeAES);
+        globalInputSettings.setCodeAES(codeAES);
         updated = true;
     }
     if (proxyURL) {
-        appdata.setProxyURL(proxyURL);
+        globalInputSettings.setProxyURL(proxyURL);
         updated = true;
     }
     if (apiKey) {
-        appdata.setApiKey(apiKey);
+        globalInputSettings.setApiKey(apiKey);
         updated = true;
     }
     return updated;
@@ -42,16 +42,16 @@ const importSettings = action => {
 
 const isAlreadyPaired = ({ securityGroup, codeAES, proxyURL, apiKey }) => {
 
-    if (securityGroup && securityGroup !== appdata.getSecurityGroup()) {
+    if (securityGroup && securityGroup !== globalInputSettings.getSecurityGroup()) {
         return false;
     }
-    if (codeAES && codeAES !== appdata.getCodeAES()) {
+    if (codeAES && codeAES !== globalInputSettings.getCodeAES()) {
         return false;
     }
-    if (proxyURL && proxyURL !== appdata.getProxyURL()) {
+    if (proxyURL && proxyURL !== globalInputSettings.getProxyURL()) {
         return false;
     }
-    if (apiKey && apiKey !== appdata.getApikey()) {
+    if (apiKey && apiKey !== globalInputSettings.getApiKey()) {
         return false;
     }
     return true;
@@ -107,8 +107,7 @@ const renderCodeAES = ({ action, setAction }) => (
         </div>
     );
 
-    const renderShowImportSettings = ({ toCameraView, action, setAction, codedata }) => {
-        const { proxyURL, securityGroup, codeAES, apiKey } = action;
+    const renderShowImportSettings = ({ toCameraView, action, setAction, codedata }) => {        
         const onImportSettings = () => {
             if (importSettings(action)) {
                 setAction({ ...action, actionType: ACT_TYPE.SETTINGS_IMPORTED });

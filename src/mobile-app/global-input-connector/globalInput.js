@@ -1,6 +1,6 @@
 import { createMessageConnector } from "global-input-message";
 ////globa_input_connector////
-import { appdata } from '../store';
+import { appdata,  globalInputSettings} from '../store';
 import deviceInputTextConfig from "../configs/deviceInputTextConfig";
 
 import ACT_TYPE from './ACT_TYPE';
@@ -95,12 +95,12 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
         onError,
         onOutputMessageReceived
     });
-    const codeAES = appdata.getCodeAES();
+    const codeAES = globalInputSettings.getCodeAES();
     if (codeAES) {
         globalInputConnector.current.setCodeAES(codeAES);
     }
     if (!options.securityGroup) {
-        options.securityGroup = appdata.getSecurityGroup();
+        options.securityGroup = globalInputSettings.getSecurityGroup();
     }
     const client = appdata.getClient();
 
@@ -110,7 +110,7 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
     }
     else {
         options.client = "ginput_" + this.connector.client
-        appdata.setClient(options.client);
+        globalInputSettings.setClient(options.client);
     }
 
     globalInputConnector.current.connect(options);////connect////
@@ -140,10 +140,10 @@ export const sendFieldToDevice = ({ globalInputConnector, field, index }) => {
 export const getPairingData = ({ globalInputConnector }) => {
     if (globalInputConnector.current) {
         return globalInputConnector.current.buildPairingData({
-            proxyURL: appdata.getProxyURL(),
-            apiKey: appdata.getApikey(),
-            securityGroup: appdata.getSecurityGroup(),
-            codeAES: appdata.getCodeAES()
+            proxyURL: globalInputSettings.getProxyURL(),
+            apiKey: globalInputSettings.getApiKey(),
+            securityGroup: globalInputSettings.getSecurityGroup(),
+            codeAES: globalInputSettings.getCodeAES()
         })
 
 

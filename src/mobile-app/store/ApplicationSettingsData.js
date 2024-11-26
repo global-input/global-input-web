@@ -178,40 +178,9 @@ export default class ApplicationSettingsData {
     return null
   }
 
-  setApiKey (apikey) {    
-      globalInputSettings.setApiKey(apikey);
-  }
-  setSecurityGroup (securityGroup) {
-      globalInputSettings.setSecurityGroup(securityGroup);    
-  }
-  setCodeAES (codeAES) {
-      globalInputSettings.setCodeAES(codeAES);    
-  }
-  setClient (client) {
-    globalInputSettings.setClient(client);    
-  }
-  setAppLoginTimeout (appLoginTimeout) {
-    globalInputSettings.setAppLoginTimeout(appLoginTimeout);    
-  }
-  setPreserveSession (preserveSession) {
-      globalInputSettings.setPreserveSession(preserveSession);
-  }
-  setProxyURL (proxyURL) {
-    globalInputSettings.setProxyURL(proxyURL);    
-  }
-  getProxyURL () {
-    return globalInputSettings.getProxyURL();    
-  }
+  
+  
 
-  getApikey () {
-    return globalInputSettings.getApiKey();    
-  }
-  getCodeAES () {
-    return globalInputSettings.getCodeAES();    
-  }
-  getSecurityGroup () {
-    return globalInputSettings.getSecurityGroup();    
-  }
   getAppLoginTimeout () {
     var appLoginTimeout = globalInputSettings.getAppLoginTimeout();      
     if (!appLoginTimeout) {
@@ -220,15 +189,11 @@ export default class ApplicationSettingsData {
     }
     return appLoginTimeout
   }
-  getPreserveSession () {
-    return globalInputSettings.getPreserveSession();
-  }
+  
 
-  _getClient () {
-    return globalInputSettings.getClient();
-  }
+  
   getClient () {
-    var client = this._getClient()
+    var client = globalInputSettings.getClient();
     if (!client || client.length < 10) {
       client = generateRandomString(17)
       this.setClient(client)

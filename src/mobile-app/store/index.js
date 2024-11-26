@@ -8,7 +8,7 @@ import ApplicationSettingsData from "./ApplicationSettingsData";
 import * as domainFormsAccess from './domainFormsAccess';
 
 
-
+import * as globalInputSettings from './localStorage/globalInputSettings';
 
 
 import FormDataUtil from "./FormDataUtil";
@@ -18,7 +18,7 @@ const appdata = new ApplicationSettingsData();
 
 const formDataUtil = new FormDataUtil();
 
-export {appdata, formDataUtil, generateRandomString };
+
 
 
 const keyPrefix = 'mzMWz2mDmr';
@@ -47,3 +47,5 @@ export const domainForms = {
 
     findFormById: formId => domainFormsAccess.findFormById(formId)
 };
+
+export {appdata, formDataUtil, generateRandomString, globalInputSettings };

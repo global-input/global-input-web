@@ -11,7 +11,7 @@ import DisplayCode from "./DisplayCode";
 
 import { usePageTitle } from "../../page-metadata";
 
-import {appdata} from "../store";
+import {appdata, globalInputSettings} from "../store";
 import type {CodeData} from "global-input-message";
 import { createMessageConnector } from "global-input-message";
 
@@ -109,7 +109,7 @@ const onScanCodes = useCallback((code: IDetectedBarcode[]) => {
               }
             }
               const connector = createMessageConnector();
-              const codeAES = appdata.getCodeAES();
+              const codeAES = globalInputSettings.getCodeAES();
               const options: CodeProcessors = {
                 onInputCodeData: onGlobalInputConnect,
                 onPairing: onImportSettingsData,

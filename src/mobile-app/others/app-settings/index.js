@@ -16,8 +16,9 @@ import CheckBoxButton from "../../components/buttons/CheckBoxButton";
 import TextInputField from "../../components/input/TextInputField";
 
 
-import { appdata} from "../../store";
-import * as globalInputSettings  from '../../store/localStorage/globalInputSettings';
+import { appdata, globalInputSettings} from "../../store";
+
+
 
 const ACT_TYPE = {
   MAIN: 1,
@@ -27,10 +28,10 @@ const getStateFromProps = () => {
   const appLoginTimeout = "" + (appdata.getAppLoginTimeout() / 1000);
 
 
-  const preserveSession = appdata.getPreserveSession();
-  const proxyURL = appdata.getProxyURL();
-  const apikey = appdata.getApikey();
-  const securityGroup = appdata.getSecurityGroup();
+  const preserveSession = globalInputSettings.getPreserveSession();
+  const proxyURL = globalInputSettings.getProxyURL();
+  const apikey = globalInputSettings.getApiKey();
+  const securityGroup = globalInputSettings.getSecurityGroup();
   const actType = ACT_TYPE.MAIN;
   return { loginTimeoutOnBackground: appLoginTimeout, errorMessage: "", preserveSession, proxyURL, apikey, actType, securityGroup };
 }
@@ -48,17 +49,17 @@ const Others = ({ onBack }) => {
   const updateLoginTimeoutBackground = () => {
     var loginTimeoutOnBackground = compData.loginTimeoutOnBackground.trim();
     var loginTimeoutOnBackgroundValue = parseInt(loginTimeoutOnBackground) * 1000;
-    appdata.setAppLoginTimeout(loginTimeoutOnBackgroundValue);
+    globalInputSettings.setAppLoginTimeout(loginTimeoutOnBackgroundValue);
   };
   const updatePreserveSession = () => {
     var preserveSession = compData.preserveSession;
-    if (preserveSession && appdata.getPreserveSession()) {
+    if (preserveSession && globalInputSettings.getPreserveSession()) {
       return null;
     }
-    if ((!preserveSession) && (!appdata.getPreserveSession())) {
+    if ((!preserveSession) && (!globalInputSettings.getPreserveSession())) {
       return null;
     }
-    appdata.setPreserveSession(preserveSession);
+    globalInputSettings.setPreserveSession(preserveSession);
   };
 
   const isLoginTimeoutBackgroundChanged = () => {
@@ -75,19 +76,19 @@ const Others = ({ onBack }) => {
   }
   const isUpdatePreserveSessionChanged = () => {
     var preserveSession = compData.preserveSession;
-    if (preserveSession && appdata.getPreserveSession()) {
+    if (preserveSession && globalInputSettings.getPreserveSession()) {
       return false;
     }
-    if ((!preserveSession) && (!appdata.getPreserveSession())) {
+    if ((!preserveSession) && (!globalInputSettings.getPreserveSession())) {
       return false;
     }
     return true;
   };
-  const isWebSocketURLChanged = () => compData.proxyURL !== appdata.getProxyURL();
+  const isWebSocketURLChanged = () => compData.proxyURL !== globalInputSettings.getProxyURL();
 
-  const isAPIKeyChanged = () => compData.apikey !== appdata.getApikey();
+  const isAPIKeyChanged = () => compData.apikey !== globalInputSettings.getApiKey();
 
-  const isSecurityGroupChanged = () => compData.securityGroup !== appdata.getSecurityGroup();
+  const isSecurityGroupChanged = () => compData.securityGroup !== globalInputSettings.getSecurityGroup();
 
   const isSettingsChanged = () => {
     return (isLoginTimeoutBackgroundChanged() ||
@@ -95,9 +96,9 @@ const Others = ({ onBack }) => {
       isWebSocketURLChanged() ||
       isAPIKeyChanged() || isSecurityGroupChanged());
   };
-  const updateProxyURL = () => appdata.setProxyURL(compData.proxyURL);
-  const updateAPIKey = () => appdata.setApiKey(compData.apikey);
-  const updateSecurityGroup = () => appdata.setSecurityGroup(compData.securityGroup);
+  const updateProxyURL = () => globalInputSettings.setProxyURL(compData.proxyURL);
+  const updateAPIKey = () => globalInputSettings.setApiKey(compData.apikey);
+  const updateSecurityGroup = () => globalInputSettings.setSecurityGroup(compData.securityGroup);
 
 
   const saveSettings = () => {
@@ -234,9 +235,9 @@ const Others = ({ onBack }) => {
   const renderQRCode = () => {
     var connector = createMessageConnector();
     var pairingData = connector.buildPairingData({
-      proxyURL: appdata.getProxyURL(),
-      apiKey: appdata.getApikey(),
-      securityGroup: appdata.getSecurityGroup()
+      proxyURL: globalInputSettings.getProxyURL(),
+      apiKey: globalInputSettings.getApiKey(),
+      securityGroup: globalInputSettings.getSecurityGroup()
     });
 
     var menuItems = [{}, {
