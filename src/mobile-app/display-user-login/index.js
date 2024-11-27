@@ -34,6 +34,11 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
     setCompData({ ...compData, revealSecret });
 
   const setupPassword = () => {
+    
+    if (appdata.getAppLoginContent()) {      
+      setErrorMessage('It appears that the app has already been set up. Please refresh the app and login to continue.');
+      return false
+    }
     const password = compData.password.trim();
     const repeatedPassword = compData.repeatedPassword.trim();
     if (!password) {

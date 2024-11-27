@@ -751,16 +751,7 @@ class ApplicationSettingsData {
   }
 
   
-  userAppLoginSetup (password) {    
-    if (!password) {
-      console.log('password is empty')
-      return false
-    }
-    var appLoginContent = this.getAppLoginContent()
-    if (appLoginContent) {
-      console.log('appLogin is already set up:'+appLoginContent);
-      return false
-    }
+  userAppLoginSetup (password) {            
     var activeEncryptionKey = this._getActiveEncryptionKey()    
     var loginUserinfo = this._createInitialLoginUserInfo(
       password,
