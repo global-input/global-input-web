@@ -138,8 +138,7 @@ export const appLoginContentUpdate = (
     keyList,
     formContent
 ) => {
-    appLoginContent = content;
-    console.log("------appContent: "+ appLoginContent);
+    appLoginContent = content;    
     if (activeKey) {
         activeEncryptionKey = activeKey;
         saveToLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, activeEncryptionKey);

@@ -1,7 +1,7 @@
-import * as globalInputMessage from 'global-input-react';
+import * as globalInputMessage from 'global-input-message';
 
 export function generateRandomString(length = 10) {
-    const randPassword = globalInputMessage.generateRandomString(length);
+    const randPassword = globalInputMessage.generateRandomString(length);    
     if (randPassword.startsWith('U2Fsd')) {
         return generateRandomString(length);
     } else {

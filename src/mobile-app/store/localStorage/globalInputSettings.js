@@ -1,4 +1,4 @@
-import {generateRandomString, encrypt, decrypt} from 'global-input-react';
+import { generateRandomString } from 'global-input-message';
 
 
 // Keys for localStorage

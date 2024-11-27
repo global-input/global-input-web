@@ -1,4 +1,4 @@
-import * as globalInputMessage from 'global-input-react';
+import * as globalInputMessage from 'global-input-message';
 import * as userSettings from './localStorage/userSettings'
 import * as domainFormMappings from './localStorage/domainFormMappings'
 import * as generalUtil from './generalUtil'
@@ -761,7 +761,7 @@ class ApplicationSettingsData {
       console.log('appLogin is already set up:'+appLoginContent);
       return false
     }
-    var activeEncryptionKey = this._getActiveEncryptionKey()
+    var activeEncryptionKey = this._getActiveEncryptionKey()    
     var loginUserinfo = this._createInitialLoginUserInfo(
       password,
       activeEncryptionKey,
