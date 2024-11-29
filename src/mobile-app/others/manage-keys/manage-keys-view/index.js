@@ -27,6 +27,7 @@ import ClipboardCopyView from "../../../clipboard-copy-view";
 
 
 import { appdata, formDataUtil } from '../../../store';
+import * as appStore from '../../../store';
 
 const ACT_TYPE = {
   LIST_KEYS: 1,
@@ -184,7 +185,7 @@ export default function ManageKeysView({
   };
 
   const activateEncryptionKey = (encryptionKeyItem) => {
-    appdata.activateEncryptionKey(encryptionKeyItem);
+    appStore.activateEncryptionKey(encryptionKeyItem);
     setAction({ ...action, type: ACT_TYPE.KEY_ACTIVATED });
   };
 

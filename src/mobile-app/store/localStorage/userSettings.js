@@ -8,12 +8,15 @@ let savedFormContent = null;
 let appLoginContent = null;
 let encryptionKeyList = null;
 
+let appInstallInstanceId = null;
+
 // Keys for localStorage
 const STORAGE_KEYS = {
     ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
     APP_LOGIN_CONTENT: 'APP_LOGIN_CONTENT',
     ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
+    APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID'
 };
 
 // Helper function to save data to localStorage
@@ -50,6 +53,9 @@ function initializeState() {
     }
     if (encryptionKeyList === null) {
         encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, []);
+    }
+    if (appInstallInstanceId === null) {
+        appInstallInstanceId = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_INSTANCE_ID, null);
     }
 }
 

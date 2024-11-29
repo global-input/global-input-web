@@ -4,10 +4,11 @@ import React from 'react';
 
 import { styles } from '../styles';
 import images  from '../../../configs/images';
-import { appdata, formDataUtil } from '../../../store';
+import { formDataUtil } from '../../../store';
+import * as appStore from '../../../store';
 
 export default function DisplayKeyDetails({ encryptionKeyItem }) {
-  const decryptedKeyContent = appdata.decryptedWithPassword(
+  const decryptedKeyContent = appStore.decryptedWithPassword(
     encryptionKeyItem.encryptionKey
   );
   const createdAt = formDataUtil.getDateString(encryptionKeyItem.createdAt);

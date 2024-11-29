@@ -1,6 +1,7 @@
 import React from 'react';
 import { styles } from './styles';
 import {appdata} from '../../store';
+import * as appStore from '../../store';
 import CopyToClipboard from '../../components/buttons/CopyToClipboard';
 
 const renderAFormFieldWithHideValue = ({ formField, index, label }) => {
@@ -11,7 +12,7 @@ const renderAFormFieldWithHideValue = ({ formField, index, label }) => {
       style={styles.itemRow}
       contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={appdata.decryptContent.bind(appdata)}
+      convert={appStore.decryptContent}
     >
       <span style={styles.label}>{label}</span>
       <div style={styles.valueContainer}>
@@ -39,7 +40,7 @@ const renderAFormFieldWithShowValue = ({ formField, index, label }) => {
       key={index}
       contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={appdata.decryptContent.bind(appdata)}
+      convert={appStore.decryptContent}
     >
       <span style={styles.label}>{label}</span>
       {multiline ? (

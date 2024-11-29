@@ -122,7 +122,7 @@ export default class FormDataUtil {
     }
     return false;
   }
-  shouldSaveFormData(formData, appdata) {
+  shouldSaveFormData(formData, appStore) {
     if (!formData) {
       return false;
     }
@@ -133,9 +133,9 @@ export default class FormDataUtil {
     if (!this.formHasContent(formData)) {
       return false;
     }
-    let matchedFormData = appdata.getFormContentById(formid);
+    let matchedFormData = appStore.appdata.getFormContentById(formid);
     if (!matchedFormData) {
-      matchedFormData = appdata.searchFormDataById(formid);
+      matchedFormData = appStore.appdata.searchFormDataById(formid);
       if (!matchedFormData) {
         return true;
       }
@@ -149,7 +149,7 @@ export default class FormDataUtil {
         if (!matchedFormFields.length || !matchedFormFields.length) {
           return true;
         }
-        var value = appdata.decryptContent(matchedFormFields[0].value);
+        var value = appStore.decryptContent(matchedFormFields[0].value);
         if (formData.fields[i].value !== value) {
           return true;
         }
@@ -157,7 +157,7 @@ export default class FormDataUtil {
     }
     return false;
   }
-  convertToStoreFormData(formData, appdata) {
+  convertToStoreFormData(formData, appStore) {
     var storeFormData = Object.assign({}, formData);
     storeFormData.id = this.getFormId(formData);
     storeFormData.fields = [...formData.fields];
@@ -167,8 +167,8 @@ export default class FormDataUtil {
         storeFormData.fields[i].id &&
         storeFormData.fields[i].value &&
         storeFormData.fields[i].value.trim().length > 0
-      ) {
-        storeFormData.fields[i].value = appdata.encryptContent(
+      ) {        
+        storeFormData.fields[i].value = appStore.encryptContent(
           storeFormData.fields[i].value,
         );
       }

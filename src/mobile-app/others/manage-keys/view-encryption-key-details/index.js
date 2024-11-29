@@ -14,9 +14,10 @@ import IconButton from '../../../components/buttons/IconButton';
 import TextFieldWithDone from '../../../components/input/TextFieldWithDone';
 
 import { appdata, formDataUtil } from '../../../store';
+import * as appStore from '../../../store';
 
 const getStateFromProps = ({ encryptionKeyItem }) => {
-  const decryptedKeyContent = appdata.decryptedWithPassword(
+  const decryptedKeyContent = appStore.decryptedWithPassword(
     encryptionKeyItem.encryptionKey
   );
   const createdAt = formDataUtil.getDateString(encryptionKeyItem.createdAt);

@@ -8,7 +8,7 @@ import { styles } from './styles';
 import images from '../configs/images';
 import userLoginText from '../configs/userLoginText';
 
-import { appdata } from '../store';
+import * as appStore  from '../store';
 import DialogButton from '../components/modal/DialogButton';
 import TextInputField from '../components/input/TextInputField';
 import {developmentPassword} from '../tests';
@@ -33,44 +33,11 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
   const setRevealSecret = (revealSecret) =>
     setCompData({ ...compData, revealSecret });
 
-  const setupPassword = () => {
-    
-    if (appdata.getAppLoginContent()) {      
-      setErrorMessage('It appears that the app has already been set up. Please refresh the app and login to continue.');
-      return false
-    }
-    const password = compData.password.trim();
-    const repeatedPassword = compData.repeatedPassword.trim();
-    if (!password) {
-      setErrorMessage(userLoginText.errorMessages.settup.missingPassword);
-    } else if (!repeatedPassword) {
-      setErrorMessage(
-        userLoginText.errorMessages.settup.missingRepeatedPassword
-      );
-    } else if (password !== repeatedPassword) {
-      setErrorMessage(
-        userLoginText.errorMessages.settup.repeatedPasswordNotMatch
-      );
-    } else {
-      if (appdata.userAppLoginSetup(password)) {
-        onLoggedIn();
-      } else {
-        setErrorMessage(userLoginText.errorMessages.settup.failedToSetup);
-      }
-      return true;
-    }
-  };
+  const setupPassword = () => 
+      appStore.setupApp(compData.password.trim(), compData.repeatedPassword.trim(), onLoggedIn, setErrorMessage);            
+  
 
-  const login = () => {
-    const password = compData.password.trim();
-    if (!password) {
-      setErrorMessage(userLoginText.errorMessages.login.missingPassword);
-    } else if (appdata.userAppLogin(password)) {
-      onLoggedIn();
-    } else {
-      setErrorMessage(userLoginText.errorMessages.login.incorrectPassword);
-    }
-  };
+  const login = () => appStore.appSignin(compData.password.trim(), onLoggedIn, setErrorMessage);
 
   const resetApp = () => {
     setCompData({ ...compData, resettingApp: true });
@@ -81,7 +48,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
   };
 
   const confirmResetApp = () => {
-    appdata.resetApp();
+    appStore.resetApp();
     setCompData({ ...compData, resettingApp: false });
   };
 
@@ -205,7 +172,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
   };
 
   const renderContent = () => {
-    if (appdata.isFormDataPasswordProtected()) {
+    if (appStore.isAppLoginSetup()) {
       if (compData.resettingApp) {
         return resettingApp();
       } else {

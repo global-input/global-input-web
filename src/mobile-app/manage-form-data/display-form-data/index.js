@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { styles } from '../styles'; // Ensure styles are adjusted for React.js
-import { appdata } from '../../store';
+import * as appStore from '../../store';
 
 import images from '../../configs/images';
 import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
@@ -43,7 +43,7 @@ const renderAFormFieldWithHideValue = (formField, index, label) => {
       style={styles.itemRow}
       contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={(content) => appdata.decryptContent(content)}
+      convert={(content) => appStore.decryptContent(content)}
     >
       <span style={styles.label}>{label}</span>
       <div style={styles.valueContainer}>
@@ -58,7 +58,7 @@ const renderAFormFieldWithShowValue = (formField, index, label) => {
   let displayValue = '*********';
   let errorMessage = null;
   try {
-    displayValue = appdata.decryptContent(formField.value);
+    displayValue = appStore.decryptContent(formField.value);
   } catch (error) {
     console.error(error);
     errorMessage = 'Failed to decrypt';
@@ -70,7 +70,7 @@ const renderAFormFieldWithShowValue = (formField, index, label) => {
       style={styles.itemRow}
       contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={(content) => appdata.decryptContent(content)}
+      convert={(content) => appStore.decryptContent(content)}
     >
       <span style={styles.label}>{label}</span>
       <div style={styles.valueContainer}>

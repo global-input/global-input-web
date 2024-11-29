@@ -9,6 +9,7 @@ import manageFormDataTextConfig from '../../configs/manageFormDataTextConfig';
 import menusConfig from '../../configs/menusConfig';
 
 import { appdata, domainFormsAccess } from '../../store';
+import * as appStore from '../../store';
 import TextInputField from '../../components/input/TextInputField';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
@@ -65,7 +66,7 @@ export const buildInitData = ({ formData, label }) => {
     formData.fields.forEach((f) => {
       let decryptedValue = null;
       try {
-        decryptedValue = appdata.decryptContent(f.value);
+        decryptedValue = appStore.decryptContent(f.value);
       } catch (error) {
         console.error(error);
         decryptedValue = 'Failed to decrypt the content';
@@ -409,6 +410,7 @@ const saveFormData = ({
   updateFormData,
   createFormData,
 }) => {
+  console.log("(((((((((saveFormData))))))))))");
   const setError = (errorMessage) => setData({ ...data, errorMessage });
   if (data.formData.id.trim().length < 3) {
     setError(manageFormDataTextConfig.errorMessages.formId.tooShort);
@@ -462,11 +464,12 @@ const saveFormData = ({
     domains: data.formData.domains,
   };
   form.fields = data.formData.fields.map((f) => {
+    console.log("(((((((((field))))))))))");
     return {
       id: f.id,
       label: f.label,
       nLines: f.nLines,
-      value: appdata.encryptContent(f.value),
+      value: appStore.encryptContent(f.value),
     };
   });
   if (formData) {

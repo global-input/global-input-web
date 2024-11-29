@@ -3,7 +3,7 @@ import styled from "styled-components";
 import GlobalInputEye from './global-input-eye';
 import manageFormDataTextConfig from "./configs/manageFormDataTextConfig";
 import {ImportEncryptionKeyView} from './import-encryption-key';
-import {appdata} from "./store";
+import * as appStore from './store';
 
 import DisplayUserLogin from "./display-user-login";
 import GlobalInputConnector from './global-input-connector';
@@ -194,7 +194,7 @@ const renderHelpScreen =  useCallback(() => {
   
        
       useEffect(() => {
-      if (!appdata.getLoginUserinfo()) {          
+      if (!appStore.isUserSignedIn()) {          
           setPage({
               page: Page.UserLogin,
               code: null,
@@ -227,7 +227,7 @@ const renderHelpScreen =  useCallback(() => {
         return (
           <ManageFormData
             title={manageFormDataTextConfig.title}
-            formDataStorage={appdata}
+            formDataStorage={appStore.appdata}
             menuItems={menuItems}
           />
         );

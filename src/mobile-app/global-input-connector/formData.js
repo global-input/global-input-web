@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { formDataUtil, appdata, domainFormsAccess } from '../store';
+import * as appStore from '../store';
 import deviceInputTextConfig from '../configs/deviceInputTextConfig';
 import encryptedQrCodeTextConfig from '../configs/encryptedQrCodeTextConfig';
 
@@ -158,7 +159,7 @@ const copyFieldsToGlobalInputFields = ({
     }
     if (matchedFields && matchedFields.length) {
       const value = isEncrypted
-        ? appdata.decryptContent(matchedFields[0].value)
+        ? appStore.decryptContent(matchedFields[0].value)
         : matchedFields[0].value;
       const field = {...gfield, value};
       updatedFields.push(field);
@@ -420,18 +421,18 @@ export const getFormDataForSaving = action => {
       action.initData,
       action.globalInputdata,
     );
-    if (formDataUtil.shouldSaveFormData(formData, appdata)) {
+    if (formDataUtil.shouldSaveFormData(formData, appStore)) {
       return formData;
     }
   }
   return null;
 };
 
-export const saveFormData = action => {
+export const saveFormData = action => {  
   var formData = getFormDataForSaving(action);
   if (formData) {
-    var formDataToSave = formDataUtil.convertToStoreFormData(formData, appdata);
-    appdata.mergeFormData(formDataToSave);
+    var formDataToSave = formDataUtil.convertToStoreFormData(formData, appStore);
+    appStore.mergeFormData(formDataToSave);
     return formDataToSave;
   }
   return null;
