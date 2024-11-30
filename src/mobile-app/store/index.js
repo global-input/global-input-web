@@ -1,4 +1,3 @@
-
 import * as globalInputMessage from 'global-input-message';
 import * as userSettings from './localStorage/userSettings'
 import * as domainFormMappings from './localStorage/domainFormMappings'
@@ -16,7 +15,7 @@ import * as globalInputSettings from './localStorage/globalInputSettings';
 
 import {formDataUtil} from "./FormDataUtil";
 
-
+import * as enc from './enc';
 
 
 const safeDecrypt = function (content, encryptionKey) {
@@ -784,7 +783,7 @@ const encryptContentWithKey = (content, encryptionKey) => {
 
 
   
-  export const setupApp = (password, repeatedPassword, onLoggedIn, onError) => {      
+  export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
 
        if (!password) {
           onError('Password required.');
@@ -802,6 +801,16 @@ const encryptContentWithKey = (content, encryptionKey) => {
         )
         appdata._setLoginUserInfo(loginUserinfo)
         appdata._updateAppLoginContentEncrytionListAndForm(loginUserinfo)      
+        
+        
+        enc.test();
+
+        onLoggedIn();
+        
+        
+        
+        
+        
   };
   
   
