@@ -1,3 +1,4 @@
+import * as globalInputMessage from 'global-input-message';
 import CryptoJS from 'crypto-js';
 // Helper function to convert ArrayBuffer to Base64 string
 function arrayBufferToBase64(buffer) {
@@ -234,32 +235,59 @@ export function generateSalt() {
   }
 
 
-  export async function test(){
-    const userId = 'user123'; // Unique identifier for the user
-    const password = 'user-password';
-    const content = 'Sensitive content to encrypt';
   
-    // Generate a salt and store it in localStorage
-    let saltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
-    if (!saltBase64) {
-      saltBase64 = generateSalt();
-      localStorage.setItem(`encryptionSalt_${userId}`, saltBase64);
+
+
+  function generateRandomStringWebCrypto(length = 10) {
+    const array = new Uint8Array(length);
+    window.crypto.getRandomValues(array);
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      // Map the random byte to a character index
+      const randomIndex = array[i] % charactersLength;
+      result += characters.charAt(randomIndex);
     }
-  
-    // Encrypt the content
-    const encryptedData = await encryptContent(password, content, saltBase64);
-  
-    // Store encryptedData (ciphertext and iv) in localStorage
-    localStorage.setItem('encryptedContent', JSON.stringify(encryptedData));
-  
-    // Later, retrieve and decrypt the content
-    const storedEncryptedData = JSON.parse(localStorage.getItem('encryptedContent'));
-    const storedSaltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
-  
-    const decryptedContent = await decryptContent(password, storedEncryptedData, storedSaltBase64);
-  
-    console.log('Decrypted Content:', decryptedContent);
-
-
-
+    return result;
   }
+
+  export function generateRandomString(length = 10) {
+  if (isWebCryptoAvailable()) {
+    return generateRandomStringWebCrypto(length);
+  } else {
+    return globalInputMessage.generateRandomString(length);
+  }
+}
+
+
+
+export async function test(){
+  const userId = 'user123'; // Unique identifier for the user
+  const password = 'user-password';
+  const content = 'Sensitive content to encrypt';
+
+  // Generate a salt and store it in localStorage
+  let saltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
+  if (!saltBase64) {
+    saltBase64 = generateSalt();
+    localStorage.setItem(`encryptionSalt_${userId}`, saltBase64);
+  }
+
+  // Encrypt the content
+  const encryptedData = await encryptContent(password, content, saltBase64);
+
+  // Store encryptedData (ciphertext and iv) in localStorage
+  localStorage.setItem('encryptedContent', JSON.stringify(encryptedData));
+
+  // Later, retrieve and decrypt the content
+  const storedEncryptedData = JSON.parse(localStorage.getItem('encryptedContent'));
+  const storedSaltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
+
+  const decryptedContent = await decryptContent(password, storedEncryptedData, storedSaltBase64);
+
+  console.log('Decrypted Content:', decryptedContent);
+
+
+
+}

@@ -9,14 +9,19 @@ let appLoginContent = null;
 let encryptionKeyList = null;
 
 let appInstallInstanceId = null;
-
+let appInstallSalt = null;
+let appInstallIv = null;
 // Keys for localStorage
 const STORAGE_KEYS = {
     ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
     APP_LOGIN_CONTENT: 'APP_LOGIN_CONTENT',
     ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
-    APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID'
+    APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID',
+    APP_INSTALL_SALT: 'APP_INSTALL_SALT',
+    APP_INSTALL_IV: 'APP_INSTALL_IV',
+
+
 };
 
 // Helper function to save data to localStorage
@@ -57,6 +62,12 @@ function initializeState() {
     if (appInstallInstanceId === null) {
         appInstallInstanceId = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_INSTANCE_ID, null);
     }
+    if(appInstallSalt === null){
+        appInstallSalt = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_SALT, null);
+    }
+    if(appInstallIv === null){
+        appInstallIv = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_IV, null);
+    }
 }
 
 // Call initializeState to set up the initial state
@@ -69,6 +80,11 @@ export const getEncryptionKeyList = () => encryptionKeyList;
 
 export const getAppLoginContent = () => appLoginContent;
 
+export const getAppInstallInstanceId = () => appInstallInstanceId;
+
+export const getAppInstallSalt = () => appInstallSalt;
+
+export const getAppInstallIv = () => appInstallIv;
 
 
 export const getAllForms = () => savedFormContent;
@@ -95,6 +111,19 @@ export const setAppLoginContent = (content) => {
     saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_CONTENT, content);
 };
 
+export const setAppInstallInstanceId = (instanceId) => {
+    appInstallInstanceId = instanceId;
+    saveToLocalStorage(STORAGE_KEYS.APP_INSTALL_INSTANCE_ID, instanceId);
+}
+export const setAppInstallSalt = (salt) => {
+    appInstallSalt = salt;
+    saveToLocalStorage(STORAGE_KEYS.APP_INSTALL_SALT, salt);
+}
+
+export const setAppInstallIv = (iv) => {
+    appInstallIv = iv;
+    saveToLocalStorage(STORAGE_KEYS.APP_INSTALL_IV, iv);
+}
 
 
 export const setAllForms = (forms) => {
@@ -213,6 +242,9 @@ export const clearAllData = () => {
     savedFormContent = [];
     appLoginContent = null;
     encryptionKeyList = [];
+    appInstallInstanceId = null;
+    appInstallSalt = null;
+    appInstallIv = null;
     // Clear localStorage
     Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
 };

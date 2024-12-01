@@ -781,6 +781,17 @@ const encryptContentWithKey = (content, encryptionKey) => {
     return safeDecrypt(encryptedContent, userEncryptionKey)
   }
 
+async function setupAppInstallationId(password){
+  
+        const  appInstallInstanceId = enc.generateRandomString(23);
+        const  saltStored = enc.generateSalt();
+        const encryptedData=await enc.encryptContent(password, appInstallInstanceId, saltStored);
+        userSettings.setAppInstallInstanceId(encryptedData.ciphertext);
+        userSettings.setAppInstallSalt(saltStored);
+        userSettings.setAppInstallIv(encryptedData.iv);        
+}
+
+
 
   
   export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
@@ -794,6 +805,8 @@ const encryptContentWithKey = (content, encryptionKey) => {
         if (appdata.getAppLoginContent()) {      
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
         }  
+        await setupAppInstallationId();
+
         const activeEncryptionKey = appdata._getActiveEncryptionKey();
         const loginUserinfo = appdata._createInitialLoginUserInfo(
               password,
@@ -803,7 +816,7 @@ const encryptContentWithKey = (content, encryptionKey) => {
         appdata._updateAppLoginContentEncrytionListAndForm(loginUserinfo)      
         
         
-        enc.test();
+        // enc.test();
 
         onLoggedIn();
         
