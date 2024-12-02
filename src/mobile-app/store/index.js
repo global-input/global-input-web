@@ -15,8 +15,8 @@ import * as globalInputSettings from './localStorage/globalInputSettings';
 
 import {formDataUtil} from "./FormDataUtil";
 
-import * as enc from './enc';
 
+import * as appInstance from './appInstance';
 
 const safeDecrypt = function (content, encryptionKey) {
     try {
@@ -781,19 +781,12 @@ const encryptContentWithKey = (content, encryptionKey) => {
     return safeDecrypt(encryptedContent, userEncryptionKey)
   }
 
-async function setupAppInstallationId(password){
-  
-        const  appInstallInstanceId = enc.generateRandomString(23);
-        const  saltStored = enc.generateSalt();
-        const encryptedData=await enc.encryptContent(password, appInstallInstanceId, saltStored);
-        userSettings.setAppInstallInstanceId(encryptedData.ciphertext);
-        userSettings.setAppInstallSalt(saltStored);
-        userSettings.setAppInstallIv(encryptedData.iv);        
-}
-
-
 
   
+
+
+  export const isAppLoginSetup = () => appInstance.isSetup();
+
   export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
 
        if (!password) {
@@ -805,8 +798,8 @@ async function setupAppInstallationId(password){
         if (appdata.getAppLoginContent()) {      
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
         }  
-        await setupAppInstallationId();
-
+        await appInstance.setupAppInstallationId(password);
+        
         const activeEncryptionKey = appdata._getActiveEncryptionKey();
         const loginUserinfo = appdata._createInitialLoginUserInfo(
               password,
@@ -831,6 +824,9 @@ async function setupAppInstallationId(password){
     if (!password) {
       onError('Password required.');
     } else if (appdata.userAppLogin(password)) {
+      
+      
+
       onLoggedIn();
     } else {
       onError('Incorrect password.');
@@ -842,10 +838,7 @@ async function setupAppInstallationId(password){
       domainFormMappings.deleteAllData()
   }
   
-  export const isAppLoginSetup = () =>{
-    return appdata.getAppLoginContent() ? true : false
-  }
-  export const isUserSignedIn = () =>{
+    export const isUserSignedIn = () =>{
     if(!isAppLoginSetup()){
       return false;
     }

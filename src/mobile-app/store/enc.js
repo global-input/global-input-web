@@ -262,32 +262,4 @@ export function generateSalt() {
 
 
 
-export async function test(){
-  const userId = 'user123'; // Unique identifier for the user
-  const password = 'user-password';
-  const content = 'Sensitive content to encrypt';
 
-  // Generate a salt and store it in localStorage
-  let saltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
-  if (!saltBase64) {
-    saltBase64 = generateSalt();
-    localStorage.setItem(`encryptionSalt_${userId}`, saltBase64);
-  }
-
-  // Encrypt the content
-  const encryptedData = await encryptContent(password, content, saltBase64);
-
-  // Store encryptedData (ciphertext and iv) in localStorage
-  localStorage.setItem('encryptedContent', JSON.stringify(encryptedData));
-
-  // Later, retrieve and decrypt the content
-  const storedEncryptedData = JSON.parse(localStorage.getItem('encryptedContent'));
-  const storedSaltBase64 = localStorage.getItem(`encryptionSalt_${userId}`);
-
-  const decryptedContent = await decryptContent(password, storedEncryptedData, storedSaltBase64);
-
-  console.log('Decrypted Content:', decryptedContent);
-
-
-
-}

@@ -1,6 +1,5 @@
 import * as generalUtil from '../generalUtil';
 
-
 // Cached variables
 let activeEncryptionKey = null;
 
