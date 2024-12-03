@@ -6,7 +6,8 @@ import menusConfig from "../../configs/menusConfig";
 import EditorWithTabMenu from "../../components/menu/EditorWithTabMenu";
 import TextInputField from "../../components/input/TextInputField";
 import DisplayBlockText from "../../components/display-text/DisplayBlockText";
-import {appdata} from "../../store";
+
+import * as appStore from "../../store";
 
 const initialData={originalPassword:"", newPassword:"", repeatedPassword:"", errorMessage:""};
 const ChangePassword =  ({content,onBack})=>{
@@ -17,7 +18,7 @@ const ChangePassword =  ({content,onBack})=>{
   const setNewPassword =newPassword => setCompData({...compData,newPassword});
   const setRepeatedPassword = repeatedPassword=> setCompData({...compData,repeatedPassword})
   const onError =  errorMessage => setCompData({...compData,errorMessage});
-  const onCangePassword = () => {
+  const  onChangePassword = () => {
     var originalPassword=compData.originalPassword.trim();
     var newPassword=compData.newPassword.trim();
     var repeatedPassword=compData.repeatedPassword.trim();
@@ -25,16 +26,12 @@ const ChangePassword =  ({content,onBack})=>{
         onError(userLoginText.errorMessages.changePassword.missing.originalPassword);
         return;
     }
-    var userInfo=appdata.getLoginUserinfo();
-    if(!userInfo){
+    
+   if(appStore.isUserSignedIn()){
         onError(userLoginText.errorMessages.changePassword.notLoggedIn);
         return;
-    }
-    if(originalPassword!==userInfo.password){
-       onError(userLoginText.errorMessages.changePassword.passwordNotMatch);
-       return;
-    }
-
+   }
+    
     if(!newPassword){
        onError(userLoginText.errorMessages.changePassword.missing.newPassword);
        return;
@@ -47,7 +44,7 @@ const ChangePassword =  ({content,onBack})=>{
       onError(userLoginText.errorMessages.changePassword.repeatedPasswordNotMatch);
       return;
     }
-    if(appdata.changePassword(originalPassword,newPassword)){
+    if(appStore.changePassword(originalPassword,newPassword)){
         onBack();
     }
     else{
@@ -63,7 +60,7 @@ const ChangePassword =  ({content,onBack})=>{
             onPress:onCancel
         },{
              menu:menusConfig.confirm.menu,
-             onPress:onCangePassword
+             onPress:onChangePassword
          }];
       return menuItems;
 }

@@ -9,6 +9,9 @@ let appInstallInstanceId=null;
 export const isSetup = () =>{
     return userSettings.getAppInstallInstanceId()?true:false;
 }
+export const isUserSignedIn = () =>{
+    return appInstallInstanceId?true:false;
+}
   
 export async function setupAppInstallationId(password){  
     const  appInstallInstanceId = enc.generateRandomString(23);    
@@ -26,5 +29,29 @@ export async function signin(password){
     appInstallInstanceId=decryptedData;
 }
 
+export async function changePassword(oldPassword,newPassword, onError){
+    const appInstallInstanceIdEncrypted=userSettings.getAppInstallInstanceId();    
+    if(!appInstallInstanceIdEncrypted){
+        onError("App is not set up");
+        return;
+    }
+    const saltStored=globalInputMessage.decrypt(userSettings.getAppInstallSalt(),memKey);
+    if(!saltStored){
+        onError("App is not set up:salt");
+        return;
+    }
+    const ivStored=globalInputMessage.decrypt(userSettings.getAppInstallIv(),memKey);
+    if(!ivStored){
+        onError("App is not set up:iv");
+        return;
+    }
 
+    const decryptedData=await enc.decryptContent(oldPassword, appInstallInstanceIdEncrypted, saltStored, ivStored);
+    if(!decryptedData){
+        onError("old password is not correct");
+        return;
+    }
+    appInstallInstanceId=decryptedData;
+    userSettings.setAppInstallInstanceId(enc.encryptContent(newPassword, globalInputMessage.encrypt(appInstallInstanceId, memKey), saltStored, ivStored).ciphertext);
+}
 

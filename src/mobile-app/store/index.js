@@ -579,77 +579,6 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    changePassword (originalPassword, newPassword) {
-      if (!originalPassword) {
-        return false
-      }
-      if (!newPassword) {
-        return false
-      }
-      var loginUserinfo = this._getLoginUserInfo()
-  
-      if (!loginUserinfo) {
-        return false
-      }
-      if (loginUserinfo.password !== originalPassword) {
-        return false
-      }
-      if (loginUserinfo.password === newPassword) {
-        return false
-      }
-      if (this.getAppLoginContent()) {
-        try {
-          var originalUserEncryptionKey =
-            this.buildUserEncryptionKeyFromPassword(originalPassword)
-          var newUserEncryptionKey =
-            this.buildUserEncryptionKeyFromPassword(newPassword)
-  
-          var activeEncruyptionKeyDecrypted =
-            this.getDecryptedActiveEncryptionKey()
-          var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
-            activeEncruyptionKeyDecrypted,
-            newUserEncryptionKey,
-          )
-          var encryptionKeyList = this.getEncryptionKeyList()
-          if (encryptionKeyList.length) {
-            encryptionKeyList.forEach(ekey => {
-              var decryptedEncryptionKey = safeDecrypt(
-                ekey.encryptionKey,
-                originalUserEncryptionKey,
-              )
-              if (decryptedEncryptionKey) {
-                if (decryptedEncryptionKey === activeEncruyptionKeyDecrypted) {
-                  ekey.encryptionKey = encryptedActiveEncryptionKey
-                } else {
-                  ekey.encryptionKey = globalInputMessage.encrypt(
-                    decryptedEncryptionKey,
-                    newUserEncryptionKey,
-                  )
-                }
-              }
-              return ekey
-            })
-          }
-          loginUserinfo.password = newPassword
-          loginUserinfo.createdAt = new Date().getTime()
-          this._setLoginUserInfo(loginUserinfo)
-          var userinfoString = JSON.stringify(loginUserinfo)
-          var appLoginContent = globalInputMessage.encrypt(userinfoString, newUserEncryptionKey)
-          this._appLoginContent(
-            appLoginContent,
-            encryptedActiveEncryptionKey,
-            encryptionKeyList,
-            null,
-          )
-          return true
-        } catch (error) {
-          console.log(error)
-          return false
-        }
-      } else {
-        return false
-      }
-    }
     
   
     userAppLogin (password) {
@@ -786,6 +715,7 @@ const encryptContentWithKey = (content, encryptionKey) => {
 
 
   export const isAppLoginSetup = () => appInstance.isSetup();
+  export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
   export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
 
@@ -818,6 +748,65 @@ const encryptContentWithKey = (content, encryptionKey) => {
         
         
   };
+
+
+  export const changePassword = (originalPassword, newPassword) => {
+       
+
+    if (appdata.getAppLoginContent()) {
+      try {
+        var originalUserEncryptionKey =
+        appdata.buildUserEncryptionKeyFromPassword(originalPassword)
+        var newUserEncryptionKey =
+        appdata.buildUserEncryptionKeyFromPassword(newPassword)
+
+        var activeEncruyptionKeyDecrypted =
+        appdata.getDecryptedActiveEncryptionKey()
+        var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
+          activeEncruyptionKeyDecrypted,
+          newUserEncryptionKey,
+        )
+        var encryptionKeyList = this.getEncryptionKeyList()
+        if (encryptionKeyList.length) {
+          encryptionKeyList.forEach(ekey => {
+            var decryptedEncryptionKey = safeDecrypt(
+              ekey.encryptionKey,
+              originalUserEncryptionKey,
+            )
+            if (decryptedEncryptionKey) {
+              if (decryptedEncryptionKey === activeEncruyptionKeyDecrypted) {
+                ekey.encryptionKey = encryptedActiveEncryptionKey
+              } else {
+                ekey.encryptionKey = globalInputMessage.encrypt(
+                  decryptedEncryptionKey,
+                  newUserEncryptionKey,
+                )
+              }
+            }
+            return ekey
+          })
+        }
+        loginUserinfo.password = newPassword
+        loginUserinfo.createdAt = new Date().getTime()
+        appdata._setLoginUserInfo(loginUserinfo)
+        var userinfoString = JSON.stringify(loginUserinfo)
+        var appLoginContent = globalInputMessage.encrypt(userinfoString, newUserEncryptionKey)
+        appdata._appLoginContent(
+          appLoginContent,
+          encryptedActiveEncryptionKey,
+          encryptionKeyList,
+          null,
+        )
+        return true
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+    } else {
+      return false
+    }
+  }
+  
   
   
   export const appSignin = (password, onLoggedIn, onError) => {  
