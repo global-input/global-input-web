@@ -44,16 +44,16 @@ export async function setupAppInstallationId(password){
 }
 
 
-async function lockWithAppInstance(content){
-    const secret=memDecrypt(appInstallInstanceId);
-    const saltStored=memDecrypt(userSettings.getAppInstallSalt());
-    const ivStored=memDecrypt(userSettings.getAppInstallIv());
-    return enc.encryptContent(secret,content,saltStored,ivStored);
+async function lockWithAppInstallInstanceId(content){
+    
+    const saltStored=userSettings.getAppInstallSalt();
+    const ivStored=userSettings.getAppInstallIv();
+    return enc.encryptContent(memDecrypt(appInstallInstanceId),content,memDecrypt(saltStored),memDecrypt(ivStored));
 }
 
 export async function setupEncryptionKeys(){  
     const activeEncryptionKey = enc.generateRandomString(23);
-    const lockedEncryptionKey=await lockWithAppInstance(activeEncryptionKey);
+    const lockedEncryptionKey=await lockWithAppInstallInstanceId(activeEncryptionKey);
     userSettings.setActiveEncryptionKey(lockedEncryptionKey);
     userSettings.setEncryptionKeyList([{
         createdAt: new Date(),

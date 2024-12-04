@@ -735,10 +735,9 @@ const encryptContentWithKey = (content, encryptionKey) => {
   export const appSignin = (password, onLoggedIn, onError) => {  
     if (!password) {
       onError('Password required.');
-    } else if (appdata.userAppLogin(password)) {
+    } else if (appInstance.signin(password)) {
       
       
-
       onLoggedIn();
     } else {
       onError('Incorrect password.');
