@@ -322,11 +322,7 @@ const safeDecrypt = function (content, encryptionKey) {
       } else {
         return this._getActiveEncryptionKey()
       }
-    }
-  
-    deleteEncryptionKeyItem (encryptionItemToDelete) {
-      userSettings.deleteEncryptionItem(encryptionItemToDelete)
-    }
+    }      
     updateEncryptionKey (encryptionItem) {
       userSettings.updateEncryptionItem(encryptionItem)
     }
@@ -815,4 +811,9 @@ const encryptContentWithKey = (content, encryptionKey) => {
 
   export const addNewEncryptionKey = async (name, key) => {
     return await appInstance.addNewEncryptionKey(name, key);
+  }
+
+  export const  deleteEncryptionKeyItem  = async (encryptionItemToDelete)  =>{
+    console.log("-----going to dekete:", encryptionItemToDelete)
+    userSettings.deleteEncryptionItem(encryptionItemToDelete)
   }

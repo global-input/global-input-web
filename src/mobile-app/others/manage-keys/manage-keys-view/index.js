@@ -101,7 +101,7 @@ export default function ManageKeysView({
   );
 
   const deleteEncryptionKeyItem = (encryptionKeyItem) => {
-    appdata.deleteEncryptionKeyItem(encryptionKeyItem);
+    appStore.deleteEncryptionKeyItem(encryptionKeyItem);
     toListView();
   };
 
