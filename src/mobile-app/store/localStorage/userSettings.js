@@ -47,7 +47,7 @@ function loadFromLocalStorage(key, defaultValue = null) {
 // Initialize cached variables
 function initializeState() {
     if (activeEncryptionKey === null) {
-        activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, generalUtil.generateRandomString(23));
+        activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, null);
     }    
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
@@ -140,6 +140,7 @@ export const addEncryptionItem = (encryptionItem) => {
         saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
     }
 };
+
 
 export const deleteEncryptionItem = (encryptionItemToDelete) => {
     if (
@@ -237,7 +238,7 @@ export const clearAllForms = () => {
 };
 
 export const clearAllData = () => {
-    activeEncryptionKey = generalUtil.generateRandomString(23);    
+    activeEncryptionKey = null;
     savedFormContent = [];
     appLoginContent = null;
     encryptionKeyList = [];

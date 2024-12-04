@@ -1,4 +1,4 @@
-import { encryptContent, decryptContent, generateSalt } from './enc';
+import { encryptContent, decryptContent, generateSalt, generateIV } from './enc';
 
 test('encryption and decryption process', async () => {
   const userId = 'user123'; // Unique identifier for the user
@@ -8,14 +8,19 @@ test('encryption and decryption process', async () => {
   // Hardcoded salt value
   const saltBase64 = generateSalt();
 
+  const ivBase64 =  generateIV();
+
+  console.log("-----:"+typeof ivBase64);
+  
+
   // Encrypt the content
-  const encryptedData = await encryptContent(password, content, saltBase64);
+  const encryptedData = await encryptContent(password, content, saltBase64, ivBase64);
 
   // Hardcoded encrypted data for testing
-  const storedEncryptedData = encryptedData;
+  
   const storedSaltBase64 = saltBase64;
 
-  const decryptedContent = await decryptContent(password, storedEncryptedData, storedSaltBase64);
+  const decryptedContent = await decryptContent(password, encryptedData, storedSaltBase64, ivBase64);
 
   expect(decryptedContent).toBe(content);
 });

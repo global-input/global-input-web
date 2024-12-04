@@ -620,27 +620,7 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
     
-    _updateAppLoginContentEncrytionListAndForm (
-      loginUserinfo,
-      encryptionKeyList,
-      savedFormContent,
-    ) {
-      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
-        loginUserinfo.password,
-      )
-      var userinfoString = JSON.stringify(loginUserinfo)
-      var appLoginContent = globalInputMessage.encrypt(userinfoString, userEncryptionKey)
-      var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
-        loginUserinfo.activeEncryptionKey,
-        userEncryptionKey,
-      )
-      userSettings.appLoginContentUpdate(      
-        appLoginContent,
-        encryptedActiveEncryptionKey,
-        encryptionKeyList,
-        savedFormContent,
-      )
-    }
+    
   }
   
   
@@ -729,75 +709,18 @@ const encryptContentWithKey = (content, encryptionKey) => {
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
         }  
         await appInstance.setupAppInstallationId(password);
-        
-        const activeEncryptionKey = appdata._getActiveEncryptionKey();
-        const loginUserinfo = appdata._createInitialLoginUserInfo(
-              password,
-              activeEncryptionKey,
-        )
-        appdata._setLoginUserInfo(loginUserinfo)
-        appdata._updateAppLoginContentEncrytionListAndForm(loginUserinfo)      
-        
-        
-        // enc.test();
-
-        onLoggedIn();
-        
-        
-        
-        
-        
+        await appInstance.setupEncryptionKeys();                              
+        onLoggedIn();        
   };
 
 
-  export const changePassword = (originalPassword, newPassword) => {
+  export const changePassword = async (originalPassword, newPassword) => {
        
 
-    if (appdata.getAppLoginContent()) {
+    if (isAppSignedIn()) {
       try {
-        var originalUserEncryptionKey =
-        appdata.buildUserEncryptionKeyFromPassword(originalPassword)
-        var newUserEncryptionKey =
-        appdata.buildUserEncryptionKeyFromPassword(newPassword)
-
-        var activeEncruyptionKeyDecrypted =
-        appdata.getDecryptedActiveEncryptionKey()
-        var encryptedActiveEncryptionKey = globalInputMessage.encrypt(
-          activeEncruyptionKeyDecrypted,
-          newUserEncryptionKey,
-        )
-        var encryptionKeyList = this.getEncryptionKeyList()
-        if (encryptionKeyList.length) {
-          encryptionKeyList.forEach(ekey => {
-            var decryptedEncryptionKey = safeDecrypt(
-              ekey.encryptionKey,
-              originalUserEncryptionKey,
-            )
-            if (decryptedEncryptionKey) {
-              if (decryptedEncryptionKey === activeEncruyptionKeyDecrypted) {
-                ekey.encryptionKey = encryptedActiveEncryptionKey
-              } else {
-                ekey.encryptionKey = globalInputMessage.encrypt(
-                  decryptedEncryptionKey,
-                  newUserEncryptionKey,
-                )
-              }
-            }
-            return ekey
-          })
-        }
-        loginUserinfo.password = newPassword
-        loginUserinfo.createdAt = new Date().getTime()
-        appdata._setLoginUserInfo(loginUserinfo)
-        var userinfoString = JSON.stringify(loginUserinfo)
-        var appLoginContent = globalInputMessage.encrypt(userinfoString, newUserEncryptionKey)
-        appdata._appLoginContent(
-          appLoginContent,
-          encryptedActiveEncryptionKey,
-          encryptionKeyList,
-          null,
-        )
-        return true
+          appInstance.changePassword(originalPassword, newPassword);
+          return true
       } catch (error) {
         console.log(error)
         return false

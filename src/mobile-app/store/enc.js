@@ -1,4 +1,4 @@
-import * as globalInputMessage from 'global-input-message';
+
 import CryptoJS from 'crypto-js';
 // Helper function to convert ArrayBuffer to Base64 string
 function arrayBufferToBase64(buffer) {
@@ -9,7 +9,7 @@ function arrayBufferToBase64(buffer) {
     }
     return btoa(binaryString);
   }
-  
+
   // Helper function to convert Base64 string to ArrayBuffer
   function base64ToArrayBuffer(base64) {
     const binaryString = atob(base64);
@@ -17,13 +17,14 @@ function arrayBufferToBase64(buffer) {
     for (let i = 0; i < binaryString.length; i++) {
       byteArray[i] = binaryString.charCodeAt(i);
     }
-    return byteArray.buffer;
+    return byteArray;
   }
+
+  
   
   // Function to check if Web Crypto API is available
   function isWebCryptoAvailable() {
-    return typeof window !== 'undefined' && window.crypto && window.crypto.subtle;
-    // return false;
+    return typeof window !== 'undefined' && window.crypto && window.crypto.subtle;    
   }
 
 
@@ -41,8 +42,19 @@ export function generateSalt() {
     }
   }
 
+  export function generateIV() {
+    if (isWebCryptoAvailable()) {
+      // Generate random IV using Web Crypto API
+      const ivArray = window.crypto.getRandomValues(new Uint8Array(12)); // 96-bit IV      
+      return arrayBufferToBase64(ivArray);
+    } else {
+      // Generate random IV using CryptoJS
+      const ivWordArray = CryptoJS.lib.WordArray.random(128 / 8); // 128-bit IV      
+      return CryptoJS.enc.Base64.stringify(ivWordArray);
+    } 
+  }
 
-  async function encryptContentWebCrypto(password, content, saltBase64) {
+  async function encryptContentWebCrypto(password, content, saltBase64, ivBase64) {
     // Ensure inputs are strings
     if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string') {
       throw new Error('Invalid input: password, content, and salt must be strings.');
@@ -76,8 +88,11 @@ export function generateSalt() {
     );
   
     // Generate a random IV
-    const iv = window.crypto.getRandomValues(new Uint8Array(12)); // 96-bit IV
-  
+    const iv=base64ToArrayBuffer(ivBase64);    
+    //verify valid iv
+    if(iv.byteLength < 12){
+        throw new Error('Invalid iv length');
+    }
     // Encrypt the data
     const encrypted = await window.crypto.subtle.encrypt(
       {
@@ -86,18 +101,12 @@ export function generateSalt() {
       },
       key,
       data
-    );
-  
-    // Return Base64 encoded strings for storage
-    return {
-      ciphertext: arrayBufferToBase64(encrypted),
-      iv: arrayBufferToBase64(iv),
-      // The salt is provided externally
-    };
+    );  
+    return  arrayBufferToBase64(encrypted);      
   }
 
 
-  function encryptContentCryptoJS(password, content, saltBase64) {
+  function encryptContentCryptoJS(password, content, saltBase64, ivBase64) {
     // Ensure inputs are strings
     if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string') {
       throw new Error('Invalid input: password, content, and salt must be strings.');
@@ -111,39 +120,42 @@ export function generateSalt() {
       iterations: 100000,
       hasher: CryptoJS.algo.SHA256,
     });
-  
+
+    const iv=CryptoJS.enc.Base64.parse(ivBase64);
+    //verify valid iv
+    if(iv.sigBytes < 5 ){
+        throw new Error('Invalid iv length');
+    }
+    
+    
     // Generate a random IV
-    const iv = CryptoJS.lib.WordArray.random(128 / 8); // 128-bit IV
+    
   
     // Encrypt the data
     const encrypted = CryptoJS.AES.encrypt(content, key, { iv: iv });
   
     // Return Base64 encoded strings
-    return {
-      ciphertext: encrypted.toString(), // Base64 string
-      iv: CryptoJS.enc.Base64.stringify(iv), // Base64 string
-      // The salt is provided externally
-    };
+    return encrypted.toString();
   }
 
 
-  export async function encryptContent(password, content, saltBase64) {
+  export async function encryptContent(password, content, saltBase64,ivBase64) {
     if (isWebCryptoAvailable()) {
-      return await encryptContentWebCrypto(password, content, saltBase64);
+      return await encryptContentWebCrypto(password, content, saltBase64,ivBase64);
     } else {
-      return encryptContentCryptoJS(password, content, saltBase64);
+      return encryptContentCryptoJS(password, content, saltBase64, ivBase64);
     }
   }
 
 
-  async function decryptContentWebCrypto(password, encryptionData, saltBase64) {
+  async function decryptContentWebCrypto(password, content, saltBase64, ivBase64) {
     // Ensure inputs are valid
     if (
       typeof password !== 'string' ||
       typeof saltBase64 !== 'string' ||
       typeof encryptionData !== 'object' ||
-      typeof encryptionData.ciphertext !== 'string' ||
-      typeof encryptionData.iv !== 'string'
+      typeof content !== 'string' ||
+      typeof ivBase64 !== 'string'
     ) {
       throw new Error('Invalid input: password, encryptionData, and salt must be valid.');
     }
@@ -174,8 +186,8 @@ export function generateSalt() {
     );
   
     // Convert Base64 strings back to ArrayBuffers
-    const encryptedData = base64ToArrayBuffer(encryptionData.ciphertext);
-    const ivArray = base64ToArrayBuffer(encryptionData.iv);
+    const encryptedData = base64ToArrayBuffer(content);
+    const ivArray = base64ToArrayBuffer(ivBase64);
   
     // Decrypt the data
     const decrypted = await window.crypto.subtle.decrypt(
@@ -192,16 +204,17 @@ export function generateSalt() {
   }
 
 
-  function decryptContentCryptoJS(password, encryptionData, saltBase64) {
+  function decryptContentCryptoJS(password, content, saltBase64, ivBase64) {
     // Ensure inputs are valid
     if (
       typeof password !== 'string' ||
+      typeof content !== 'string' ||
       typeof saltBase64 !== 'string' ||
-      typeof encryptionData !== 'object' ||
-      typeof encryptionData.ciphertext !== 'string' ||
-      typeof encryptionData.iv !== 'string'
+      typeof ivBase64 !== 'string' 
+      
+
     ) {
-      throw new Error('Invalid input: password, encryptionData, and salt must be valid.');
+      throw new Error('Invalid input: password, content, and salt must be valid.');
     }
   
     const salt = CryptoJS.enc.Base64.parse(saltBase64);
@@ -215,10 +228,10 @@ export function generateSalt() {
   
     // Decrypt the data
     const decrypted = CryptoJS.AES.decrypt(
-      encryptionData.ciphertext,
+      content,
       key,
       {
-        iv: CryptoJS.enc.Base64.parse(encryptionData.iv),
+        iv: CryptoJS.enc.Base64.parse(ivBase64),
       }
     );
   
@@ -226,11 +239,11 @@ export function generateSalt() {
   }
 
 
-  export async function decryptContent(password, encryptionData, saltBase64) {
+  export async function decryptContent(password, content, saltBase64, ivBase64) {
     if (isWebCryptoAvailable()) {
-      return await decryptContentWebCrypto(password, encryptionData, saltBase64);
+      return await decryptContentWebCrypto(password, content, saltBase64,ivBase64);
     } else {
-      return decryptContentCryptoJS(password, encryptionData, saltBase64);
+      return decryptContentCryptoJS(password, content, saltBase64, ivBase64);
     }
   }
 
@@ -256,7 +269,7 @@ export function generateSalt() {
   if (isWebCryptoAvailable()) {
     return generateRandomStringWebCrypto(length);
   } else {
-    return globalInputMessage.generateRandomString(length);
+    return generateRandomString(length);
   }
 }
 
