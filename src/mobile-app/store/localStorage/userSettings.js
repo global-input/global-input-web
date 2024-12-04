@@ -27,7 +27,7 @@ const STORAGE_KEYS = {
 function saveToLocalStorage(key, value) {
     try {
         localStorage.setItem(key, JSON.stringify(value));
-        console.log("------saveToLocalStorage: "+ key + " : "+ JSON.stringify(value));
+        
     } catch (e) {
         console.error(`Error saving ${key} to localStorage`, e);
     }

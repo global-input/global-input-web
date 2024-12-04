@@ -56,7 +56,7 @@ export function generateSalt() {
 
   async function encryptContentWebCrypto(password, content, saltBase64, ivBase64) {
     // Ensure inputs are strings
-    if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string') {
+    if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string' || typeof ivBase64 !== 'string') {
       throw new Error('Invalid input: password, content, and salt must be strings.');
     }
   
@@ -152,9 +152,8 @@ export function generateSalt() {
     // Ensure inputs are valid
     if (
       typeof password !== 'string' ||
-      typeof saltBase64 !== 'string' ||
-      typeof encryptionData !== 'object' ||
       typeof content !== 'string' ||
+      typeof saltBase64 !== 'string' ||            
       typeof ivBase64 !== 'string'
     ) {
       throw new Error('Invalid input: password, encryptionData, and salt must be valid.');

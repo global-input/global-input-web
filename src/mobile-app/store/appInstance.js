@@ -21,22 +21,25 @@ export const isUserSignedIn = () =>{
 }
   
 
-export async function signin(password){
-    const appInstallInstanceIdEncrypted=userSettings.getAppInstallInstanceId();
-    const saltStored=memDecrypt(userSettings.getAppInstallSalt());
-    const ivStored=memDecrypt(userSettings.getAppInstallIv());
-    appInstallInstanceId=await enc.decryptContent(password, appInstallInstanceIdEncrypted, saltStored, ivStored);    
+export async function signin(password){    
+    const saltStored=userSettings.getAppInstallSalt();
+    const ivStored=userSettings.getAppInstallIv();
+    appInstallInstanceId=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));    
 }
 
-
+function generateSlaIV(){  
+    const  saltStored = memEncrypt(enc.generateSalt());
+    const ivStored = memEncrypt(enc.generateIV());
+    userSettings.setAppInstallSalt(saltStored);
+    userSettings.setAppInstallIv(ivStored);        
+}
 export async function setupAppInstallationId(password){  
-    const  appInstallInstanceId = enc.generateRandomString(23);    
-    const  saltStored = enc.generateSalt();
-    const ivStored = enc.generateIV();
-    const encryptedData=await enc.encryptContent(password, memEncrypt(appInstallInstanceId), saltStored, ivStored);
-    userSettings.setAppInstallInstanceId(encryptedData);    
-    userSettings.setAppInstallSalt(memEncrypt(saltStored));
-    userSettings.setAppInstallIv(memEncrypt(ivStored));        
+    generateSlaIV();
+    const  appInstallInstanceId = memEncrypt(enc.generateRandomString(23));    
+    const  salt=userSettings.getAppInstallSalt();
+    const  iv=userSettings.getAppInstallIv();    
+    const instanceId=await enc.encryptContent(password, appInstallInstanceId, memDecrypt(salt), memDecrypt(iv));
+    userSettings.setAppInstallInstanceId(instanceId);        
     signin(password);
 }
 
