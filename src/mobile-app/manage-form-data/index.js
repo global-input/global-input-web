@@ -62,7 +62,7 @@ const ManageFormData= ({
       newData.label = '';
     }
     setData(newData);
-  };;
+  };
   const updateFormData = (id, formData) => {
     formDataStorage.updateFormData(id, formData);
     onFormDataSelected(formData);

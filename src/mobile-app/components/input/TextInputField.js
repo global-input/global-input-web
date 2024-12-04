@@ -72,8 +72,7 @@ export default class TextInputField extends Component {
     }
   }
 
-  renderOneLine() {
-    
+  renderOneLine() {    
     return (
       <div style={styles.fieldContainer}>
         {this.renderLabelIcon()}

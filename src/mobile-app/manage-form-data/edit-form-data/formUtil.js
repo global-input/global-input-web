@@ -32,7 +32,7 @@ export const getInitData = ({ formData, errorMessage = '', label }) => {
   const initData = {
     formData: {
       id: '',
-      label,
+      label:'',
       domains: '',
       fields: [
         { id: 'username', label: 'Username', value: '' },
