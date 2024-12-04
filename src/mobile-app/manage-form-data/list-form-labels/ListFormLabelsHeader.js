@@ -47,7 +47,7 @@ export default class ListFormLabelsHeader extends Component {
       <div style={styles.headerItem}>
         <IconButton
           image={menusConfig.manageFormData.menu.image}
-          onClick={this.props.toList}
+          onPress={this.props.toList}
         />
       </div>
     );
@@ -59,7 +59,7 @@ export default class ListFormLabelsHeader extends Component {
         <div style={styles.leftHeader}>
           <IconButton
             image={menusConfig.search.menu.image}
-            onClick={this.displaySearchField.bind(this)}
+            onPress={this.displaySearchField.bind(this)}
           />
           <div style={styles.searchStringContainer}>
             <div
@@ -87,7 +87,7 @@ export default class ListFormLabelsHeader extends Component {
         <div style={styles.headerItem}>
           <IconButton
             image={menusConfig.search.menu.image}
-            onClick={this.displaySearchField.bind(this)}
+            onPress={this.displaySearchField.bind(this)}
           />
           <div style={styles.searchStringContainer}>
             <div

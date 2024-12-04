@@ -133,7 +133,7 @@ export default class ClipboardCopyButton extends Component {
           image={image}
           labelStyle={labelStyle}
           label={menusConfig.clipboardCopy.menu.label}
-          onClick={this.exportToClipboard}
+          onPress={this.exportToClipboard}
         />
       </div>
     );

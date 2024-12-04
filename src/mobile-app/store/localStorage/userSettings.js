@@ -130,16 +130,6 @@ export const setAllForms = (forms) => {
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, forms);
 };
 
-// Functions to modify data
-export const addEncryptionItem = (encryptionItem) => {
-    if (encryptionItem && encryptionItem.encryptionKey) {
-        encryptionKeyList = encryptionKeyList.filter(
-            (e) => e.encryptionKey !== encryptionItem.encryptionKey
-        );
-        encryptionKeyList.push(encryptionItem);
-        saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
-    }
-};
 
 
 export const deleteEncryptionItem = (encryptionItemToDelete) => {

@@ -47,7 +47,7 @@ export default class TextFieldWithDone extends Component {
       }
       return (
         <div style={styles.icon}>
-          <IconButton image={imageURL} onClick={this.donePress} />
+          <IconButton image={imageURL} onPress={this.donePress} />
         </div>
       );
     }

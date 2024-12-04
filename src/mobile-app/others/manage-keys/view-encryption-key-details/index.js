@@ -16,13 +16,10 @@ import TextFieldWithDone from '../../../components/input/TextFieldWithDone';
 import { appdata, formDataUtil } from '../../../store';
 import * as appStore from '../../../store';
 
-const getStateFromProps = ({ encryptionKeyItem }) => {
-  const decryptedKeyContent = appStore.decryptedWithPassword(
-    encryptionKeyItem.encryptionKey
-  );
+const getStateFromProps = ({ encryptionKeyItem }) => {  
   const createdAt = formDataUtil.getDateString(encryptionKeyItem.createdAt);
   const name = encryptionKeyItem.name;
-  return { decryptedKeyContent, createdAt, name };
+  return { key:encryptionKeyItem.encryptionKey, createdAt, name };
 };
 
 export default function ViewEncryptionKeyDetails({
@@ -38,7 +35,20 @@ export default function ViewEncryptionKeyDetails({
     getStateFromProps({ encryptionKeyItem })
   );
 
+  
+
   const setName = (name) => setCompData({ ...compData, name });
+
+  useEffect(() => {
+    const processKey = async () => {
+    const key = await appStore.decryptEncryptionKey(encryptionKeyItem.encryptionKey);
+    console.log("----encrypted--key:"+key)
+    setCompData({ ...compData, key });
+    };
+    processKey();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[encryptionKeyItem.encryptionKey]);
 
   const updateNameButton = () => {
     const name = compData.name.trim();
@@ -52,7 +62,7 @@ export default function ViewEncryptionKeyDetails({
     }
     if (encryptionKeyItem.name !== name) {
       return (
-        <IconButton image={images.saveIcon} onClick={updateNameButton} />
+        <IconButton image={images.saveIcon} onPress={updateNameButton} />
       );
     } else {
       return null;
@@ -126,7 +136,7 @@ export default function ViewEncryptionKeyDetails({
       <div style={styles.itemRow}>
         <img src={images.key} style={styles.itemIcon} alt="" />
         <div style={styles.fieldValueContainer}>
-          <div style={styles.fieldValue}>{compData.decryptedKeyContent}</div>
+          <div style={styles.fieldValue}>{compData.key}</div>
         </div>
       </div>
       <div style={styles.itemRow}>

@@ -164,8 +164,8 @@ export default function ManageKeysView({
     setAction(newAction);
   };
 
-  const importNewKey = (name, encryptionKey) => {
-    const selectedEncryptionKeyItem = appdata.importNewKey(
+  const importNewKey = async (name, encryptionKey) => {
+    const selectedEncryptionKeyItem = await appStore.addNewEncryptionKey(
       name,
       encryptionKey
     );

@@ -1,6 +1,6 @@
 // DisplayKeyDetails.js
 
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 
 import { styles } from '../styles';
 import images  from '../../../configs/images';
@@ -8,11 +8,18 @@ import { formDataUtil } from '../../../store';
 import * as appStore from '../../../store';
 
 export default function DisplayKeyDetails({ encryptionKeyItem }) {
-  const decryptedKeyContent = appStore.decryptedWithPassword(
-    encryptionKeyItem.encryptionKey
-  );
   const createdAt = formDataUtil.getDateString(encryptionKeyItem.createdAt);
   const name = encryptionKeyItem.name;
+  const [key, setKey] = useState(''); 
+
+
+  useEffect(() => {
+    const processKey = async () => {
+      const key = await appStore.decryptEncryptionKey(encryptionKeyItem.encryptionKey);
+      setKey(key);
+    };
+    processKey();
+  },[]);
 
   return (
     <div style={styles.formContainer}>
@@ -29,7 +36,7 @@ export default function DisplayKeyDetails({ encryptionKeyItem }) {
           <img src={images.key} style={styles.itemIcon} alt="" />
         </div>
         <div style={styles.fieldValueContainer}>
-          <div style={styles.fieldValue}>{decryptedKeyContent}</div>
+          <div style={styles.fieldValue}>{key}</div>
         </div>
       </div>
       <div style={styles.itemRow}>

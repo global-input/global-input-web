@@ -41,7 +41,7 @@ const renderWithSearchField = ({
 const renderFilterString = ({ displaySearchField, filterString }) => (
   <DisplayHeader>
     <div style={styles.leftHeader}>
-      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <IconButton image={searchIcon} onPress={displaySearchField} />
       <div style={styles.searchStringContainer}>
         <div onClick={displaySearchField} style={{ cursor: 'pointer' }}>
           <span style={styles.searchString}>{filterString}</span>
@@ -63,7 +63,7 @@ const renderWithSearchButton = ({
 }) => (
   <DisplayHeader>
     <div style={styles.headerItem}>
-      <IconButton image={searchIcon} onClick={displaySearchField} />
+      <IconButton image={searchIcon} onPress={displaySearchField} />
       <div style={styles.searchStringContainer}>
         <div onClick={displaySearchField} style={{ cursor: 'pointer' }}>
           <span style={styles.searchString}>{filterString}</span>

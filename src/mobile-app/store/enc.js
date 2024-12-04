@@ -24,7 +24,7 @@ function arrayBufferToBase64(buffer) {
   
   // Function to check if Web Crypto API is available
   function isWebCryptoAvailable() {
-    return typeof window !== 'undefined' && window.crypto && window.crypto.subtle;    
+    return typeof window !== 'undefined' && window.crypto && window.crypto.subtle;     
   }
 
 
@@ -59,6 +59,22 @@ export function generateSalt() {
     if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string' || typeof ivBase64 !== 'string') {
       throw new Error('Invalid input: password, content, and salt must be strings.');
     }
+    if(password.length < 5){
+        throw new Error('Password must be at least 8 characters long');
+    }
+    if(saltBase64.length < 8){
+        throw new Error('Invalid salt length');
+    }
+    if(ivBase64.length < 8){
+        throw new Error('Invalid iv length');
+    }
+
+
+
+    console.log("-------password----:"+password);
+    console.log("-------content----:"+content);
+    console.log("-------saltBase64----:"+saltBase64);
+    console.log("-------ivBase64----:"+ivBase64);
   
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
@@ -150,6 +166,7 @@ export function generateSalt() {
 
   async function decryptContentWebCrypto(password, content, saltBase64, ivBase64) {
     // Ensure inputs are valid
+    
     if (
       typeof password !== 'string' ||
       typeof content !== 'string' ||
@@ -157,8 +174,7 @@ export function generateSalt() {
       typeof ivBase64 !== 'string'
     ) {
       throw new Error('Invalid input: password, encryptionData, and salt must be valid.');
-    }
-  
+    }    
     const salt = base64ToArrayBuffer(saltBase64);
   
     // Import password as a key
@@ -186,20 +202,17 @@ export function generateSalt() {
   
     // Convert Base64 strings back to ArrayBuffers
     const encryptedData = base64ToArrayBuffer(content);
-    const ivArray = base64ToArrayBuffer(ivBase64);
-  
-    // Decrypt the data
-    const decrypted = await window.crypto.subtle.decrypt(
-      {
-        name: 'AES-GCM',
-        iv: new Uint8Array(ivArray),
-      },
-      key,
-      encryptedData
-    );
-  
-    const decoder = new TextDecoder();
-    return decoder.decode(decrypted);
+    const ivArray = base64ToArrayBuffer(ivBase64);    
+        const decrypted = await window.crypto.subtle.decrypt(
+          {
+            name: 'AES-GCM',
+            iv: new Uint8Array(ivArray),
+          },
+          key,
+          encryptedData
+        );        
+        const decoder = new TextDecoder();
+        return decoder.decode(decrypted);    
   }
 
 
@@ -239,6 +252,7 @@ export function generateSalt() {
 
 
   export async function decryptContent(password, content, saltBase64, ivBase64) {
+    console.log("-------decryptContent---- starts")
     if (isWebCryptoAvailable()) {
       return await decryptContentWebCrypto(password, content, saltBase64,ivBase64);
     } else {
@@ -264,11 +278,22 @@ export function generateSalt() {
     return result;
   }
 
+  function generateRandomStringCryptoJS(length = 10) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charactersLength);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
+
   export function generateRandomString(length = 10) {
   if (isWebCryptoAvailable()) {
     return generateRandomStringWebCrypto(length);
   } else {
-    return generateRandomString(length);
+    return generateRandomStringCryptoJS(length);
   }
 }
 

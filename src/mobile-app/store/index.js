@@ -330,23 +330,7 @@ const safeDecrypt = function (content, encryptionKey) {
     updateEncryptionKey (encryptionItem) {
       userSettings.updateEncryptionItem(encryptionItem)
     }
-  
-    importNewKey (name, encryptionKey) {
-      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
-        this._getLoginUserInfo().password,
-      )
-      var encryptedEncryptionKey = globalInputMessage.encrypt(encryptionKey, userEncryptionKey)
-      return this._importEncryptedNewKey(name, encryptedEncryptionKey)
-    }
-    _importEncryptedNewKey (name, encryptedEncryptionKey) {
-      var encryptionItem = {
-        createdAt: new Date(),
-        encryptionKey: encryptedEncryptionKey,
-        name,
-      }
-      this._addEncryptionItem(encryptionItem)
-      return encryptionItem
-    }
+      
     decryptPasswordEncryptedEncryptionKeyText (content, protectionPassword) {
       var content = content.slice(
         this.protectEncryptionKeyExportedAsTextIdentifier.length,
@@ -515,9 +499,6 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    _addEncryptionItem (encryptionItem) {
-      userSettings.addEncryptionItem(encryptionItem)
-    }
     _appLoginContent (
       appLoginContent,
       activeEncryptionKey,
@@ -649,7 +630,13 @@ const encryptContentWithKey = (content, encryptionKey) => {
   
   const keyPrefix = 'mzMWz2mDmr';
   const keySuffix = 'aYSsU44h9f';
-  const generateRandomString = generalUtil.generateRandomString;
+  
+
+  function generateRandomString(length = 10) {
+    return generalUtil.generateRandomString(length);   
+   }
+
+
   
   export {appdata};
   export { generateRandomString };
@@ -708,8 +695,14 @@ const encryptContentWithKey = (content, encryptionKey) => {
         if (appdata.getAppLoginContent()) {      
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
         }  
-        await appInstance.setupAppInstallationId(password);
-        await appInstance.setupEncryptionKeys();                              
+        try{
+          await appInstance.setupAppInstallationId(password);        
+          await appInstance.setupEncryptionKeys();                              
+        }
+        catch(error){
+          console.log(error)
+          onError('Failed to set up the app. Please try again.');
+        }
         onLoggedIn();        
   };
 
@@ -719,7 +712,13 @@ const encryptContentWithKey = (content, encryptionKey) => {
 
     if (isAppSignedIn()) {
       try {
-          appInstance.changePassword(originalPassword, newPassword);
+        try{
+          await appInstance.changePassword(originalPassword, newPassword);
+        }
+        catch(error){
+          console.log(error)
+          return false;
+        }
           return true
       } catch (error) {
         console.log(error)
@@ -732,16 +731,22 @@ const encryptContentWithKey = (content, encryptionKey) => {
   
   
   
-  export const appSignin = (password, onLoggedIn, onError) => {  
+  export const appSignin = async (password, onLoggedIn, onError) => {  
+    
     if (!password) {
       onError('Password required.');
-    } else if (appInstance.signin(password)) {
-      
-      
+      return;
+    } 
+    try{
+      await appInstance.signin(password);
       onLoggedIn();
-    } else {
-      onError('Incorrect password.');
     }
+    catch(error){
+      console.log(error)
+      onError('Incorrect password.');
+    } 
+     
+     
   }
   
   export const resetApp = () => {    
@@ -803,6 +808,11 @@ const encryptContentWithKey = (content, encryptionKey) => {
     )
   }
 
-
+  
+  export const decryptEncryptionKey = async (key) => appInstance.unlockWithAppInstallInstanceId(key);
 
   
+
+  export const addNewEncryptionKey = async (name, key) => {
+    return await appInstance.addNewEncryptionKey(name, key);
+  }

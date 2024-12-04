@@ -72,7 +72,7 @@ const GenerateNewKey = ({ importDecryptedKey, name, importNewKey, onBack }) => {
         <IconButton
           image={menusConfig.randomGenerator.menu.image}
           label={menusConfig.randomGenerator.menu.label}
-          onClick={generateNewEncryptionKey}
+          onPress={generateNewEncryptionKey}
         />
       );
     }
