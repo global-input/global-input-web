@@ -115,5 +115,27 @@ export async function signout(){
 }
 
 
+export function isEncryptionKeyActive(encryptionKey){
+    return userSettings.getActiveEncryptionKey()===encryptionKey;
+    
+}
+export async function encryptWithEncryptionKey(keyItem, content){
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
+    return enc.encryptContent(unlockWithAppInstallInstanceId(keyItem.encryptionKey),content,memDecrypt(salt),memDecrypt(iv));
+}
+export async function decryptWithEncryptionKey(keyItem, content){
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
+    return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.encryptionKey),content,memDecrypt(salt),memDecrypt(iv));
+}
+function getActiveEncryptionItemWthKey(activeKeyValue){
+    return userSettings.getEncryptionKeyList().find(item=>item.encryptionKey===activeKeyValue);
+}
+export async function decryptWithActiveEncryptionKey(content){
+    const activeEncryptionKeyItem=getActiveEncryptionItemWthKey(userSettings.getActiveEncryptionKey());
+    return decryptWithEncryptionKey(activeEncryptionKeyItem,content);
+}
 
 
+    

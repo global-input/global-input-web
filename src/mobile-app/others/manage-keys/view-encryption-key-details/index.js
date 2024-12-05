@@ -82,7 +82,7 @@ export default function ViewEncryptionKeyDetails({
   ];
   let titleIcon = null;
 
-  if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+  if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
     title = manageKeysTextConfig.encryptionDetails.activated.title;
     titleIcon = images.activateIconWhite;
   } else {

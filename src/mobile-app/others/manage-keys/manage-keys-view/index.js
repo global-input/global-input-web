@@ -196,7 +196,7 @@ export default function ManageKeysView({
   };
 
   const renderActiveIcon = (encryptionKeyItem) => {
-    if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
       return (
         <img src={images.activeIcon} style={styles.itemIcon} alt="Active" />
       );

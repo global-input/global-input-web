@@ -3,6 +3,7 @@ import images from '../../configs/images';
 import manageKeysTextConfig from '../../configs/manageKeysTextConfig';
 import menusConfig from '../../configs/menusConfig';
 import {appdata} from '../../store';
+import * as appStore from  '../../store';
 import { styles } from './styles';
 
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
@@ -64,7 +65,7 @@ const renderSelectIcon = (encryptionKeyItem, action) => {
 };
 
 const renderActiveIcon = (encryptionKeyItem) => {
-  if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+  if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
     return (
       <img src={images.activeIcon} style={styles.itemIcon} alt="Active Icon" />
     );

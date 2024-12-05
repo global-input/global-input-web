@@ -13,6 +13,7 @@ import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import { appdata } from '../../store';
+import * as appStore from '../../store';
 
 const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
   // Initialize state using a function to avoid recomputation on every render
@@ -76,7 +77,7 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
 
   // Render the active icon if the key is active
   const renderActiveIcon = (encryptionKeyItem) => {
-    if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
       return <img src={images.activeIcon} style={styles.itemIcon} alt="Active Icon" />;
     }
     return null;

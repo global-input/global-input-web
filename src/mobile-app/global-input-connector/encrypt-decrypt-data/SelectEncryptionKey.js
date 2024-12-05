@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { styles } from './styles';
 import images from '../../configs/images';
 import {appdata} from '../../store';
+import * as appStore from  '../../store';
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {
@@ -57,7 +58,7 @@ const SelectEncryptionKey = ({
   };
 
   const renderActiveIcon = (encryptionKeyItem) => {
-    if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
       return (
         <img
           src={images.activeIcon}

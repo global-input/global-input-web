@@ -283,10 +283,7 @@ const safeDecrypt = function (content, encryptionKey) {
       }
       return encryptionKeyList
     }
-    isEncryptionKeyIsActive (encryptionKey) {
-      var activeEncryptionKey = this._getActiveEncryptionKey()
-      return activeEncryptionKey === encryptionKey.encryptionKey
-    }
+    
   
     _getActiveEncryptionKey () {
       var activeEncryptionKey = userSettings.getActiveEncryptionKey()
@@ -618,6 +615,8 @@ const encryptContentWithKey = (content, encryptionKey) => {
 
 
 
+export const isAppLoginSetup = () => appInstance.isSetup();
+export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
 
 
@@ -677,9 +676,7 @@ const encryptContentWithKey = (content, encryptionKey) => {
   
 
 
-  export const isAppLoginSetup = () => appInstance.isSetup();
-  export const isAppSignedIn = () => appInstance.isUserSignedIn();
-
+  
   export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
 
        if (!password) {
@@ -770,38 +767,25 @@ const encryptContentWithKey = (content, encryptionKey) => {
   
 
   export const activateEncryptionKey = (encryptionKeyitem) => {
-    if (!appdata._getLoginUserInfo()) {
+    if (!isAppSignedIn()) {
       console.log('The user has not logged in')
       return
     }
-    var encryptionKeyDecrypted = appdata.decryptEncryptionKey(encryptionKeyitem)
-    if (!encryptionKeyDecrypted) {
-      return false
-    }
-    if (encryptionKeyDecrypted === appdata.getDecryptedActiveEncryptionKey()) {
+    
+    if (isEncryptionKeyIsActive(encryptionKeyitem.encryptionKey)) {
       console.log('the key is identical to the current one')
       return
     }
     var savedFormContent = appdata.getSavedFormContent()
     savedFormContent.forEach(form => {
       form.fields.forEach(f => {
-        var value = appdata.decryptContent(f.value)
-        f.value = appdata.encryptContentWithKey(value, encryptionKeyDecrypted)
+        var value = appInstance.decryptWithActiveEncryptionKey(f.value);
+        f.value =  appInstance.encryptWithEncryptionKey(value, encryptionKeyitem);                       
       })
     })
+    userSettings.setActiveEncryptionKey(encryptionKeyitem.encryptionKey)
 
-    this._loginUserInfoSetActiveEncrytionKey(encryptionKeyDecrypted)
-    var userEncryptionKey = appdata.buildUserEncryptionKeyFromPassword(
-      appdata._getLoginUserInfo().password,
-    )
-    var userinfoString = JSON.stringify(appdata._getLoginUserInfo())
-    var appLoginContent = globalInputMessage.encrypt(userinfoString, userEncryptionKey)
-    appdata._appLoginContent(
-      appLoginContent,
-      encryptionKeyitem.encryptionKey,
-      null,
-      savedFormContent,
-    )
+    
   }
 
   
@@ -816,4 +800,8 @@ const encryptContentWithKey = (content, encryptionKey) => {
   export const  deleteEncryptionKeyItem  = async (encryptionItemToDelete)  =>{
     console.log("-----going to dekete:", encryptionItemToDelete)
     userSettings.deleteEncryptionItem(encryptionItemToDelete)
+  }
+
+  export const isEncryptionKeyIsActive = (encryptionKey)  => {
+    return appInstance.isEncryptionKeyActive(encryptionKey);
   }

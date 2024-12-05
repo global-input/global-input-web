@@ -9,6 +9,7 @@ import images from "../../configs/images";
 
 
 import { appdata } from '../../store';
+import * as appStore from '../../store';  
 
 // Adjusted renderSelectIcon function
 const renderSelectIcon = (encryptionKeyItem, action) => {
@@ -21,7 +22,7 @@ const renderSelectIcon = (encryptionKeyItem, action) => {
 
 // Adjusted renderActiveIcon function
 const renderActiveIcon = (encryptionKeyItem) => {
-  if (appdata.isEncryptionKeyIsActive(encryptionKeyItem)) {
+  if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
     return <img src={images.activeIcon} style={styles.itemIcon} alt="Active Icon" />;
   }
   return null;
