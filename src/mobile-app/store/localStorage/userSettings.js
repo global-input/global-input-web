@@ -4,7 +4,6 @@ import * as generalUtil from '../generalUtil';
 let activeEncryptionKey = null;
 
 let savedFormContent = null;
-let appLoginContent = null;
 let encryptionKeyList = null;
 
 let appInstallInstanceId = null;
@@ -14,7 +13,6 @@ let appInstallIv = null;
 const STORAGE_KEYS = {
     ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
-    APP_LOGIN_CONTENT: 'APP_LOGIN_CONTENT',
     ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
     APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID',
     APP_INSTALL_SALT: 'APP_INSTALL_SALT',
@@ -51,10 +49,7 @@ function initializeState() {
     }    
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
-    }
-    if (appLoginContent === null) {
-        appLoginContent = loadFromLocalStorage(STORAGE_KEYS.APP_LOGIN_CONTENT, null);
-    }
+    }    
     if (encryptionKeyList === null) {
         encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, []);
     }
@@ -77,7 +72,7 @@ export const getActiveEncryptionKey = () => activeEncryptionKey;
 
 export const getEncryptionKeyList = () => encryptionKeyList;
 
-export const getAppLoginContent = () => appLoginContent;
+
 
 export const getAppInstallInstanceId = () => appInstallInstanceId;
 
@@ -105,10 +100,6 @@ export const setEncryptionKeyList = (list) => {
     saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, list);
 };
 
-export const setAppLoginContent = (content) => {
-    appLoginContent = content;
-    saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_CONTENT, content);
-};
 
 export const setAppInstallInstanceId = (instanceId) => {
     appInstallInstanceId = instanceId;
@@ -157,27 +148,7 @@ export const updateEncryptionItem = (encryptionItem) => {
     }
 };
 
-export const appLoginContentUpdate = (
-    content,
-    activeKey,
-    keyList,
-    formContent
-) => {
-    appLoginContent = content;    
-    if (activeKey) {
-        activeEncryptionKey = activeKey;
-        saveToLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, activeEncryptionKey);
-    }
-    if (keyList) {
-        encryptionKeyList = keyList;
-        saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
-    }
-    if (formContent) {
-        savedFormContent = formContent;
-        saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-    }
-    saveToLocalStorage(STORAGE_KEYS.APP_LOGIN_CONTENT, appLoginContent);
-};
+
 
 export const updateFormData = (formId, formData) => {
     savedFormContent = savedFormContent.filter((f) => f.id !== formId);
@@ -230,8 +201,7 @@ export const clearAllForms = () => {
 
 export const clearAllData = () => {
     activeEncryptionKey = null;
-    savedFormContent = [];
-    appLoginContent = null;
+    savedFormContent = [];    
     encryptionKeyList = [];
     appInstallInstanceId = null;
     appInstallSalt = null;
@@ -263,10 +233,7 @@ window.addEventListener('storage', (event) => {
             break;        
         case STORAGE_KEYS.SAVED_FORM_CONTENT:
             savedFormContent = JSON.parse(event.newValue);
-            break;
-        case STORAGE_KEYS.APP_LOGIN_CONTENT:
-            appLoginContent = JSON.parse(event.newValue);
-            break;
+            break;        
         case STORAGE_KEYS.ENCRYPTION_KEY_LIST:
             encryptionKeyList = JSON.parse(event.newValue);
             break;

@@ -91,12 +91,7 @@ const safeDecrypt = function (content, encryptionKey) {
       )
       return this.decryptExportedEncryptionKey(contentToDecrypt, null)
     }
-    decryptEncryptionKey (encryptionKeyitem) {
-      const userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
-        this._getLoginUserInfo().password,
-      )
-      return safeDecrypt(encryptionKeyitem.encryptionKey, userEncryptionKey)
-    }
+    
   
     encryptWithAnEncryptionKey (secretMessage, encryptionKey) {
       const decryptedEncryptionKey = this.decryptEncryptionKey(encryptionKey)
@@ -492,47 +487,10 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    _appLoginContent (
-      appLoginContent,
-      activeEncryptionKey,
-      encryptionKeyList,
-      savedFormContent,
-    ) {    
-      userSettings.appLoginContentUpdate(      
-        appLoginContent,
-        activeEncryptionKey,
-        encryptionKeyList,
-        savedFormContent,
-      )
-    }
-  
+    
     
   
-    _isActiveEncryptionKeyEncrypted () {
-      var activeEncruptionKey = this.getDecryptedActiveEncryptionKey()
-      return (
-        activeEncruptionKey &&
-        activeEncruptionKey.startsWith('U2Fsd') &&
-        activeEncruptionKey.length > 25
-      )
-    }
-    isFormDataPasswordProtected () {
-      if (this.getAppLoginContent()) {
-        return true
-      } else {
-        return this._isActiveEncryptionKeyEncrypted()
-      }
-    }
-  
-    getAppLoginContent () {
-      var ret = userSettings.getAppLoginContent()
-      if (ret) {
-        return ret
-      } else {
-        return null;
-      }
-    }
-  
+    
     buildUserEncryptionKeyFromPassword (password) {
       return this.encryptionKeyPrefix + password + this.encryptionKeySuffix
     }
@@ -553,48 +511,7 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    
-  
-    userAppLogin (password) {
-      if (!password) {
-        console.log('password is empty')
-        return false
-      }
-      var appLoginContent = this.getAppLoginContent()
-      if (appLoginContent) {
-        try {
-          var userEncryptionKey =
-            this.buildUserEncryptionKeyFromPassword(password)
-          var userinfoString = safeDecrypt(appLoginContent, userEncryptionKey)
-          if (!userinfoString) {
-            console.log('userinfoString is empty')
-            return false
-          }
-          var loginUserinfo = JSON.parse(userinfoString)
-          if (
-            loginUserinfo.application !== 'GlobalInput' ||
-            loginUserinfo.password !== password
-          ) {
-            console.log('application login is not GlobalInput')
-            return false
-          }
-          if (this._getActiveEncryptionKeyFromLoginUserInfo(loginUserinfo)) {
-            this._setLoginUserInfo(loginUserinfo)
-            return true
-          } else {
-            return null;
-          }
-        } catch (error) {
-          console.log(error)
-          return false
-        }
-      } else {
-        console.log('Needs to set up password first')
-        return false
-      }
-    }
-    
-    
+     
   }
   
   
@@ -685,7 +602,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
         if (password !== repeatedPassword) {
           onError('Password does not match.');
         }
-        if (appdata.getAppLoginContent()) {      
+        if (appInstance.isSetup()) {      
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
         }  
         try{
