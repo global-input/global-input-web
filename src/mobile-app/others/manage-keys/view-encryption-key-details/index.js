@@ -41,7 +41,7 @@ export default function ViewEncryptionKeyDetails({
 
   useEffect(() => {
     const processKey = async () => {
-    const key = await appStore.decryptEncryptionKey(encryptionKeyItem.encryptionKey);
+    const key = await appStore.decryptEncryptionKey(encryptionKeyItem.lockedKeyValue);
     console.log("----encrypted--key:"+key)
     setCompData({ ...compData, key });
     };

@@ -126,20 +126,20 @@ export const setAllForms = (forms) => {
 export const deleteEncryptionItem = (encryptionItemToDelete) => {
     if (
         encryptionItemToDelete &&
-        encryptionItemToDelete.encryptionKey &&
-        encryptionItemToDelete.encryptionKey !== activeEncryptionKey
+        encryptionItemToDelete.lockedKeyValue &&
+        encryptionItemToDelete.lockedKeyValue !== activeEncryptionKey
     ) {
         encryptionKeyList = encryptionKeyList.filter(
-            (e) => e.encryptionKey !== encryptionItemToDelete.encryptionKey
+            (e) => e.lockedKeyValue !== encryptionItemToDelete.lockedKeyValue
         );
         saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
     }
 };
 
 export const updateEncryptionItem = (encryptionItem) => {
-    if (encryptionItem && encryptionItem.encryptionKey) {
+    if (encryptionItem && encryptionItem.lockedKeyValue) {
         const foundIndex = encryptionKeyList.findIndex(
-            (e) => e.encryptionKey === encryptionItem.encryptionKey
+            (e) => e.lockedKeyValue === encryptionItem.lockedKeyValue
         );
         if (foundIndex >= 0) {
             encryptionKeyList[foundIndex] = encryptionItem;

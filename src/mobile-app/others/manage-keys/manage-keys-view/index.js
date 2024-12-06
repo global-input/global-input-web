@@ -65,9 +65,10 @@ const populateItemsInAction = (action, encryptionKeyList) => {
       break;
     }
     const encryptionKeyItem = encryptionKeyList[action.startIndex];
+    console.log("----encryptionKeyItem ---lockedKeyValue:"+JSON.stringify(encryptionKeyItem));
     action.items.push({
       encryptionKeyItem,
-      key: encryptionKeyItem.encryptionKey,
+      key: encryptionKeyItem.lockedKeyValue,
     });
     action.startIndex++;
   }
@@ -219,7 +220,7 @@ export default function ManageKeysView({
               <img src={images.key} style={styles.itemIcon} alt="Key" />
               <div style={styles.keyText}>{item.encryptionKeyItem.name}</div>
             </div>
-            {renderActiveIcon(item.encryptionKeyItem)}
+            {renderActiveIcon(item.lockedKeyValue)}
           </div>
         </div>
       </div>
@@ -233,7 +234,7 @@ export default function ManageKeysView({
         onPress: onBack,
       },
     ];
-
+console.log("-----:"+JSON.stringify(action.items));
     return (
       <ViewWithTabMenu
         menuItems={menuItems || defaultMenus}
@@ -242,6 +243,7 @@ export default function ManageKeysView({
         floatingButton={menusConfig.addRecord.menu}
         onPressFloatingIcon={onSelectGenerateNewKey}
       >
+        
         {action.items.map((item) => (
           <div key={item.key}>{renderItemListItem(item)}</div>
         ))}

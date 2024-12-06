@@ -141,7 +141,7 @@ const safeDecrypt = function (content, encryptionKey) {
       for (var i = 0; i < encryptionKeyList.length; i++) {
         try {
           var decryptedEncryptionKey = safeDecrypt(
-            encryptionKeyList[i].encryptionKey,
+            encryptionKeyList[i].lockedKeyValue,
             userEncryptionKey,
           )
           if (decryptedEncryptionKey === activeEncryptionKey) {
@@ -156,7 +156,7 @@ const safeDecrypt = function (content, encryptionKey) {
               return decryptedContent
             }
           } else {
-            console.log('failed to decryp the key:' + encryptionKeyList[i].encryptionKey,
+            console.log('failed to decryp the key:' + encryptionKeyList[i].lockedKeyValue,
               userEncryptionKey)
           }
         } catch (error) {
@@ -255,7 +255,7 @@ const safeDecrypt = function (content, encryptionKey) {
       var activeEncryptionKey = this._getActiveEncryptionKey()
       var encryptionKeyList = this.getEncryptionKeyList()
       for (var i = 0; i < encryptionKeyList.length; i++) {
-        if (encryptionKeyList[i].encryptionKey === activeEncryptionKey) {
+        if (encryptionKeyList[i].lockedKeyValue === activeEncryptionKey) {
           return encryptionKeyList[i]
         }
       }
@@ -689,7 +689,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return
     }
     
-    if (isEncryptionKeyIsActive(encryptionKeyitem.encryptionKey)) {
+    if (isEncryptionKeyIsActive(encryptionKeyitem.lockedKeyValue)) {
       console.log('the key is identical to the current one')
       return
     }
@@ -700,7 +700,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
         f.value =  appInstance.encryptWithEncryptionKey(value, encryptionKeyitem);                       
       })
     })
-    userSettings.setActiveEncryptionKey(encryptionKeyitem.encryptionKey)
+    userSettings.setActiveEncryptionKey(encryptionKeyitem.lockedKeyValue)
 
     
   }

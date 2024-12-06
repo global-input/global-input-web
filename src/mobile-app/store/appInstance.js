@@ -69,17 +69,17 @@ export async function setupEncryptionKeys(){
     userSettings.setActiveEncryptionKey(lockedEncryptionKey);
     userSettings.setEncryptionKeyList([{
         createdAt: new Date(),
-        encryptionKey: lockedEncryptionKey,
+        lockedKeyValue: lockedEncryptionKey,
         name:'This Device'
     }]);
 }
 
 export async function addNewEncryptionKey (name, key) {
-    const lockedEncryptionKey=await lockWithAppInstallInstanceId(key);
-    const list=userSettings.getEncryptionKeyList().filter(item=>item.encryptionKey!==lockedEncryptionKey);
+    const lockedKeyValue=await lockWithAppInstallInstanceId(key);
+    const list=userSettings.getEncryptionKeyList().filter(item=>item.lockedKeyValue!==lockedKeyValue);
     const newKey={
         createdAt: new Date(),
-        encryptionKey: lockedEncryptionKey,
+        lockedKeyValue: lockedKeyValue,
         name
     }
     list.push(newKey);
@@ -122,15 +122,15 @@ export function isEncryptionKeyActive(encryptionKey){
 export async function encryptWithEncryptionKey(keyItem, content){
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    return enc.encryptContent(unlockWithAppInstallInstanceId(keyItem.encryptionKey),content,memDecrypt(salt),memDecrypt(iv));
+    return enc.encryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
 export async function decryptWithEncryptionKey(keyItem, content){
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.encryptionKey),content,memDecrypt(salt),memDecrypt(iv));
+    return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
 function getActiveEncryptionItemWthKey(activeKeyValue){
-    return userSettings.getEncryptionKeyList().find(item=>item.encryptionKey===activeKeyValue);
+    return userSettings.getEncryptionKeyList().find(item=>item.lockedKeyValue===activeKeyValue);
 }
 export async function decryptWithActiveEncryptionKey(content){
     const activeEncryptionKeyItem=getActiveEncryptionItemWthKey(userSettings.getActiveEncryptionKey());

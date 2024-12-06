@@ -16,7 +16,7 @@ const populateItemsInAction = (action, encryptionKeyList) => {
     const encryptionKeyItem = encryptionKeyList[action.startIndex];
     action.items.push({
       encryptionKeyItem,
-      key: encryptionKeyItem.encryptionKey,
+      key: encryptionKeyItem.lockedKeyValue,
     });
     action.startIndex++;
   }
