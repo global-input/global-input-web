@@ -1,7 +1,5 @@
 import * as generalUtil from '../generalUtil';
 
-// Cached variables
-let activeEncryptionKey = null;
 
 let savedFormContent = null;
 let encryptionKeyList = null;
@@ -10,16 +8,16 @@ let appInstallInstanceId = null;
 let appInstallSalt = null;
 let appInstallIv = null;
 // Keys for localStorage
-const STORAGE_KEYS = {
-    ACTIVE_ENCRYPTION_KEY: 'ACTIVE_ENCRYPTION_KEY',    
+const STORAGE_KEYS = {    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
     ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
     APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID',
     APP_INSTALL_SALT: 'APP_INSTALL_SALT',
     APP_INSTALL_IV: 'APP_INSTALL_IV',
-
-
 };
+export const ACTIVE_ROLE = 'active';
+export const DEFAULT_ENCRPTION_NAME="This Device";
+export const DEFAULT_ENCRYPTION_ROLE="role";
 
 // Helper function to save data to localStorage
 function saveToLocalStorage(key, value) {
@@ -43,10 +41,7 @@ function loadFromLocalStorage(key, defaultValue = null) {
 }
 
 // Initialize cached variables
-function initializeState() {
-    if (activeEncryptionKey === null) {
-        activeEncryptionKey = loadFromLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, null);
-    }    
+function initializeState() {        
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
     }    
@@ -68,7 +63,7 @@ function initializeState() {
 initializeState();
 
 // Functions to get data
-export const getActiveEncryptionKey = () => activeEncryptionKey;
+export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];
 
 export const getEncryptionKeyList = () => encryptionKeyList;
 
@@ -89,11 +84,6 @@ export const getFormContentById = (formId) =>
 export const searchFormDataById = (formId) =>
     generalUtil.searchFormDataById(getAllForms(), formId);
 
-// Functions to set or update data
-export const setActiveEncryptionKey = (key) => {
-    activeEncryptionKey = key;
-    saveToLocalStorage(STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY, key);
-};
 
 export const setEncryptionKeyList = (list) => {
     encryptionKeyList = list;
@@ -127,7 +117,7 @@ export const deleteEncryptionItem = (encryptionItemToDelete) => {
     if (
         encryptionItemToDelete &&
         encryptionItemToDelete.lockedKeyValue &&
-        encryptionItemToDelete.lockedKeyValue !== activeEncryptionKey
+        encryptionItemToDelete.role !== ACTIVE_ROLE
     ) {
         encryptionKeyList = encryptionKeyList.filter(
             (e) => e.lockedKeyValue !== encryptionItemToDelete.lockedKeyValue
@@ -199,8 +189,7 @@ export const clearAllForms = () => {
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
 };
 
-export const clearAllData = () => {
-    activeEncryptionKey = null;
+export const clearAllData = () => {    
     savedFormContent = [];    
     encryptionKeyList = [];
     appInstallInstanceId = null;
@@ -227,16 +216,22 @@ export const deleteFormData = (formData) => {
 
 // Listen to storage events to handle cross-tab synchronization
 window.addEventListener('storage', (event) => {
-    switch (event.key) {
-        case STORAGE_KEYS.ACTIVE_ENCRYPTION_KEY:
-            activeEncryptionKey = JSON.parse(event.newValue);
-            break;        
+    switch (event.key) {    
         case STORAGE_KEYS.SAVED_FORM_CONTENT:
             savedFormContent = JSON.parse(event.newValue);
             break;        
         case STORAGE_KEYS.ENCRYPTION_KEY_LIST:
             encryptionKeyList = JSON.parse(event.newValue);
             break;
+        case STORAGE_KEYS.APP_INSTALL_INSTANCE_ID:
+            appInstallInstanceId = JSON.parse(event.newValue);
+            break;
+        case STORAGE_KEYS.APP_INSTALL_SALT:
+            appInstallSalt = JSON.parse(event.newValue);
+            break;
+        case STORAGE_KEYS.APP_INSTALL_IV:
+            appInstallIv = JSON.parse(event.newValue);
+            break;            
         default:
             break;
     }
@@ -245,5 +240,12 @@ window.addEventListener('storage', (event) => {
 
 
 
-
+export function signOut(){
+    savedFormContent = null;
+    encryptionKeyList = null;    
+    appInstallInstanceId = null;
+    appInstallSalt = null;
+    appInstallIv = null;
+    
+}
 

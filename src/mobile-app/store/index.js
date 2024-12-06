@@ -264,19 +264,8 @@ const safeDecrypt = function (content, encryptionKey) {
         name: 'App',
       }
     }
-    getEncryptionKeyList () {
-      var activeEncryptionKey = this._getActiveEncryptionKey()
-  
-      var encryptionKeyList = userSettings.getEncryptionKeyList()
-  
-      if (!encryptionKeyList.length) {
-        var encryptionKey = this._importEncryptedNewKey(
-          'This Device',
-          activeEncryptionKey,
-        )
-        encryptionKeyList.push(encryptionKey)
-      }
-      return encryptionKeyList
+    getEncryptionKeyList () {  
+      return userSettings.getEncryptionKeyList()        
     }
     
   
@@ -689,20 +678,12 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return
     }
     
-    if (isEncryptionKeyIsActive(encryptionKeyitem.lockedKeyValue)) {
+    if (isEncryptionKeyIsActive(encryptionKeyitem)) {
       console.log('the key is identical to the current one')
       return
     }
-    var savedFormContent = appdata.getSavedFormContent()
-    savedFormContent.forEach(form => {
-      form.fields.forEach(f => {
-        var value = appInstance.decryptWithActiveEncryptionKey(f.value);
-        f.value =  appInstance.encryptWithEncryptionKey(value, encryptionKeyitem);                       
-      })
-    })
-    userSettings.setActiveEncryptionKey(encryptionKeyitem.lockedKeyValue)
-
-    
+    encryptionKeyitem.role=userSettings.ACTIVE_ROLE;
+    userSettings.updateEncryptionItem(encryptionKeyitem);
   }
 
   
@@ -720,5 +701,5 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
 
   export const isEncryptionKeyIsActive = (encryptionKey)  => {
-    return appInstance.isEncryptionKeyActive(encryptionKey);
+    return  encryptionKey.role === userSettings.ACTIVE_ROLE;
   }

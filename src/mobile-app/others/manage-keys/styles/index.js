@@ -38,6 +38,7 @@ const  stylesData = {
     marginLeft: 10,
     marginRight: 10,
     marginTop: 5,
+    
   },
   itemRow: {
     display: 'flex',
@@ -46,6 +47,7 @@ const  stylesData = {
     alignItems: 'center',
     marginTop: 20,
     width: '100%',
+    
   },
   keyFieldRow: {
     display: 'flex',

@@ -168,7 +168,7 @@ export default function ManageKeysView({
   const importNewKey = async (name, encryptionKey) => {
     const selectedEncryptionKeyItem = await appStore.addNewEncryptionKey(
       name,
-      encryptionKey
+      encryptionKey,      
     );
     setAction({
       ...action,
@@ -197,7 +197,8 @@ export default function ManageKeysView({
   };
 
   const renderActiveIcon = (encryptionKeyItem) => {
-    if (appStore.isEncryptionKeyIsActive(encryptionKeyItem)) {
+    
+    if (appStore.isEncryptionKeyIsActive(encryptionKeyItem.encryptionKeyItem)) {    
       return (
         <img src={images.activeIcon} style={styles.itemIcon} alt="Active" />
       );
@@ -216,11 +217,11 @@ export default function ManageKeysView({
       >
         <div style={styles.itemRow}>
           <div style={styles.listContainer}>
-            <div style={styles.listValue}>
+            <div style={styles.listvalue}>
               <img src={images.key} style={styles.itemIcon} alt="Key" />
               <div style={styles.keyText}>{item.encryptionKeyItem.name}</div>
             </div>
-            {renderActiveIcon(item.lockedKeyValue)}
+            {renderActiveIcon(item)}
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export const isUserSignedIn = () =>{
 export async function signin(password){        
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
-    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));        
+    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));
 }
 
 function generateSlaIV(){  
@@ -55,22 +55,18 @@ async function lockWithAppInstallInstanceId(content){
 
 export async function unlockWithAppInstallInstanceId(content){
     const saltStored=userSettings.getAppInstallSalt();
-    const ivStored=userSettings.getAppInstallIv();
-    console.log("----------mem--------",memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
-    
+    const ivStored=userSettings.getAppInstallIv();    
      return  enc.decryptContent(memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
 }
 
 export async function setupEncryptionKeys(){  
-    const activeEncryptionKey = enc.generateRandomString(23);
-    
-    console.log("-------***locing encryption key:"+activeEncryptionKey+"******* encruting with appInstallInstanceId:"+appInstance.id);
-    const lockedEncryptionKey=await lockWithAppInstallInstanceId(activeEncryptionKey);
-    userSettings.setActiveEncryptionKey(lockedEncryptionKey);
+    const activeEncryptionKey = enc.generateRandomString(23);        
+    const lockedEncryptionKey=await lockWithAppInstallInstanceId(activeEncryptionKey);    
     userSettings.setEncryptionKeyList([{
         createdAt: new Date(),
         lockedKeyValue: lockedEncryptionKey,
-        name:'This Device'
+        name:userSettings.DEFAULT_ENCRPTION_NAME,
+        role: userSettings.ACTIVE_ROLE
     }]);
 }
 
@@ -80,7 +76,8 @@ export async function addNewEncryptionKey (name, key) {
     const newKey={
         createdAt: new Date(),
         lockedKeyValue: lockedKeyValue,
-        name
+        name,
+        role: userSettings.DEFAULT_ENCRYPTION_ROLE
     }
     list.push(newKey);
     userSettings.setEncryptionKeyList(list);
@@ -112,13 +109,10 @@ export async function changePassword(oldPassword,newPassword, onError){
 
 export async function signout(){
     appInstance.id=null;
+    userSettings.signOut();    
 }
 
 
-export function isEncryptionKeyActive(encryptionKey){
-    return userSettings.getActiveEncryptionKey()===encryptionKey;
-    
-}
 export async function encryptWithEncryptionKey(keyItem, content){
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
@@ -129,11 +123,8 @@ export async function decryptWithEncryptionKey(keyItem, content){
     const iv=userSettings.getAppInstallIv();
     return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
-function getActiveEncryptionItemWthKey(activeKeyValue){
-    return userSettings.getEncryptionKeyList().find(item=>item.lockedKeyValue===activeKeyValue);
-}
 export async function decryptWithActiveEncryptionKey(content){
-    const activeEncryptionKeyItem=getActiveEncryptionItemWthKey(userSettings.getActiveEncryptionKey());
+    const activeEncryptionKeyItem=userSettings.getActiveEncryptionKey();
     return decryptWithEncryptionKey(activeEncryptionKeyItem,content);
 }
 
