@@ -56,7 +56,7 @@ export const exportEncryptionKey = ({action, setAction, onCompleted}) => {
               setErrorMessage(manageKeysTextConfig.errorMessages.passwordTooShort);
           }
           else {
-              var encryptedContent = appdata.exportEncryptionKeyItemWithPassword(action.selectedEncryptionKeyItem, password);
+              var encryptedContent = appdata.exportEncryptionKeyItemWithPassword(action.selectedEncryptionKeyItem, action?.password);
               var codedataname = manageKeysTextConfig.export.qrcode.title;
               onCompleted(encryptedContent,codedataname);                
           }
