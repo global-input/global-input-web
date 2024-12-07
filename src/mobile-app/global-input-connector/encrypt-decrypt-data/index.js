@@ -27,10 +27,9 @@ const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
       : null;
   }
   if (!selectedEncryptionKeyItem) {
-    let activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-    selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(
-      activeEncryptionKey
-    );
+    
+    selectedEncryptionKeyItem = appdata.getActiveEncryptionKeyItem();
+    
   }
 
   return {

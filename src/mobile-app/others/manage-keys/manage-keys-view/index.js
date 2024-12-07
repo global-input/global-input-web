@@ -65,7 +65,7 @@ const populateItemsInAction = (action, encryptionKeyList) => {
       break;
     }
     const encryptionKeyItem = encryptionKeyList[action.startIndex];
-    console.log("----encryptionKeyItem ---lockedKeyValue:"+JSON.stringify(encryptionKeyItem));
+    
     action.items.push({
       encryptionKeyItem,
       key: encryptionKeyItem.lockedKeyValue,
@@ -74,21 +74,11 @@ const populateItemsInAction = (action, encryptionKeyList) => {
   }
 };
 
-const getStateFromProps = ({ importDecryptedKey }) => {
+const getStateFromProps =  () => {
   const encryptionKeyList = appdata.getEncryptionKeyList();
   const action = createNewAction();
   populateItemsInAction(action, encryptionKeyList);
-  if (importDecryptedKey) {
-    const matchedKeyItem = appdata.findEncryptionKeyByDecryptedValue(
-      importDecryptedKey
-    );
-    if (matchedKeyItem) {
-      action.selectedEncryptionKeyItem = matchedKeyItem;
-      action.type = ACT_TYPE.VIEW_ITEM_DETAILS;
-    } else {
-      action.type = ACT_TYPE.IMPORTING_KEY;
-    }
-  }
+  
   return action;
 };
 
@@ -98,8 +88,34 @@ export default function ManageKeysView({
   onBack =null,
 }) {
   const [action, setAction] = useState(() =>
-    getStateFromProps({ importDecryptedKey })
+    getStateFromProps()
   );
+
+  useEffect(()=>{
+    const processImportDecryptedKey= async ()=>{
+      const matchedKeyItem = await appdata.findEncryptionKeyByDecryptedValue(
+        importDecryptedKey
+      );
+      if (matchedKeyItem) {
+        setAction({
+          ...action,
+          selectedEncryptionKeyItem: matchedKeyItem,
+          type: ACT_TYPE.VIEW_ITEM_DETAILS,
+        });
+      } else {
+        setAction({
+          ...action,
+          type: ACT_TYPE.IMPORTING_KEY,
+        });
+      }
+      
+    };
+    
+    if (importDecryptedKey) {
+      processImportDecryptedKey();
+    }
+
+  },[])
 
   const deleteEncryptionKeyItem = (encryptionKeyItem) => {
     appStore.deleteEncryptionKeyItem(encryptionKeyItem);
@@ -229,6 +245,7 @@ export default function ManageKeysView({
   };
 
   const renderListItems = () => {
+    console.log("-----renderlist");
     const defaultMenus = [
       {
         menu: menusConfig.back.menu,

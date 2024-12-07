@@ -20,13 +20,13 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
   const [action, setAction] = useState(() => getStateFromProps());
 
   // Function to initialize state
-  function getStateFromProps() {
+   function getStateFromProps() {
     const encryptionKeyList = appdata.getEncryptionKeyList();
-    const activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-    const selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
+    
+    const selectedEncryptionKeyItem = appdata.getActiveEncryptionKeyItem();
     const items = encryptionKeyList.map((encryptionKeyItem) => ({
       encryptionKeyItem,
-      key: encryptionKeyItem.encryptionKey,
+      key: encryptionKeyItem.lockedKeyValue,
     }));
 
     return {
@@ -48,13 +48,13 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
   const setErrorMessage = (errorMessage) => setAction({ ...action, errorMessage });
 
   // Handler for completing content encryption
-  const onContentCompleted = () => {
+  const  onContentCompleted = async () => {
     try {
       const { content, selectedEncryptionKeyItem } = action;
       if (!content) {
         setErrorMessage(encryptedQrCodeTextConfig.errorMessages.contentIsMissing);
       } else {
-        const encryptedContent = appdata.encryptWithAnEncryptionKey(content, selectedEncryptionKeyItem);
+        const encryptedContent = await appdata.encryptWithAnEncryptionKey(content, selectedEncryptionKeyItem);
         onContentEncrypted(encryptedContent, encryptedQrCodeTextConfig.qrcodeLabel);
       }
     } catch (error) {

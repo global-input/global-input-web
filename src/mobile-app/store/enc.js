@@ -173,7 +173,7 @@ export function generateSalt() {
       typeof saltBase64 !== 'string' ||            
       typeof ivBase64 !== 'string'
     ) {
-      throw new Error('Invalid input: password, encryptionData, and salt must be valid.');
+      throw new Error('Invalid input: password, encryptionData, and salt must be valid: p:'+typeof password+", c:"+typeof content+", s:"+typeof saltBase64+", i:"+typeof ivBase64);
     }    
     const salt = base64ToArrayBuffer(saltBase64);
   
@@ -251,8 +251,7 @@ export function generateSalt() {
   }
 
 
-  export async function decryptContent(password, content, saltBase64, ivBase64) {
-    console.log("-------decryptContent---- starts")
+  export async function decryptContent(password, content, saltBase64, ivBase64) {    
     if (isWebCryptoAvailable()) {
       return await decryptContentWebCrypto(password, content, saltBase64,ivBase64);
     } else {

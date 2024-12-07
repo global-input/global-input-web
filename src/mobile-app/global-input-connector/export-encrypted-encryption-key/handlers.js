@@ -31,8 +31,8 @@ const populateItemsInAction = (action, encryptionKeyList) => {
 
 export const buildInitialData = () => {
   var encryptionKeyList = appdata.getEncryptionKeyList();
-  var activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey();
-  var selectedEncryptionKeyItem = appdata.findEncryptionKeyByDecryptedValue(activeEncryptionKey);
+  
+  var selectedEncryptionKeyItem = appdata.getActiveEncryptionKeyItem();
   var action = {
     password: "",
     errorMessage: "",

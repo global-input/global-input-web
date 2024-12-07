@@ -89,7 +89,7 @@ const GlobalInputEye =  ({
     setContentAndMessage(null, null);
   };
 
-  const onCodeDataReceived = code => {
+  const onCodeDataReceived = async code => {
     if ( (!code) || (code.length === 0) ) {
       return;
     }
@@ -114,8 +114,8 @@ const GlobalInputEye =  ({
             setContentAndMessage(codedata, eyeTextConfig.inputDisabled.display);
             return;
         }
-        if (appdata.isActiveEncryptionKeyEncryptedMessage(codedata)) {
-            const decryptedContent = appdata.decryptCodeDataWithAnyEncryptionKey(codedata);
+        if (appdata.isActiveEncryptionKeyEncryptedMessage(codedata)) {            
+            const decryptedContent = await appdata.decryptCodeDataWithAnyEncryptionKey(codedata);
             if (decryptedContent) {
                   setContentAndMessage(decryptedContent, eyeTextConfig.password.success);
             } else {

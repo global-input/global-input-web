@@ -93,23 +93,25 @@ const safeDecrypt = function (content, encryptionKey) {
     }
     
   
-    encryptWithAnEncryptionKey (secretMessage, encryptionKey) {
-      const decryptedEncryptionKey = this.decryptEncryptionKey(encryptionKey)
+    async encryptWithAnEncryptionKey (secretMessage, encryptionKeyItem) {
+      const decryptedEncryptionKey = await unlockContent(encryptionKeyItem.lockedKeyValue);
+      
       if (decryptedEncryptionKey) {
         var prefix = globalInputMessage.generateRandomString(3)
-        var suffix = globalInputMessage.generateRandomString(7)
+        var suffix = globalInputMessage.generateRandomString(7)  
         var encryptedMessage = globalInputMessage.encrypt(
           prefix + secretMessage + suffix,
           decryptedEncryptionKey + this.encryptionKeyAppendedPart,
-        )
+        )        
         return this.encryptedWithEncryptionKeyCodeIdentifier + encryptedMessage
       }
     }
-    decryptCodeDataWithAnyEncryptionKey (encryptedMessage) {
+    async decryptCodeDataWithAnyEncryptionKey (encryptedMessage) {
       var encrypted = encryptedMessage.substring(
         this.encryptedWithEncryptionKeyCodeIdentifier.length,
       )
-      var decrypted = this.decryptContentWithAnyEcryptionKey(
+      
+      var decrypted = await this.decryptContentWithAnyEcryptionKey(
         encrypted,
         this.encryptionKeyAppendedPart,
       )
@@ -125,28 +127,25 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    decryptContentWithAnyEcryptionKey (encryptedContent, encryptionKeySuffix) {
-      var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
+    async decryptContentWithAnyEcryptionKey (encryptedContent, encryptionKeySuffix) {
+      
+      const activeEncryptionKey = this.getActiveEncryptionKeyItem();
+      const decryptedEncryptionKey = await unlockContent(activeEncryptionKey.lockedKeyValue);      
+      
       var decryptedContent = safeDecrypt(
         encryptedContent,
-        activeEncryptionKey + encryptionKeySuffix,
-      )
+        decryptedEncryptionKey + encryptionKeySuffix,
+      )      
       if (decryptedContent) {
         return decryptedContent
       }
-      var encryptionKeyList = this.getEncryptionKeyList()
-      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
-        this._getLoginUserInfo().password,
-      )
+      var encryptionKeyList = this.getEncryptionKeyList()      
       for (var i = 0; i < encryptionKeyList.length; i++) {
         try {
-          var decryptedEncryptionKey = safeDecrypt(
-            encryptionKeyList[i].lockedKeyValue,
-            userEncryptionKey,
-          )
-          if (decryptedEncryptionKey === activeEncryptionKey) {
-            continue
+          if(encryptionKeyList[i].role === userSettings.ACTIVE_ROLE){
+            continue;
           }
+          const decryptedEncryptionKey = await unlockContent(encryptionKeyList[i].lockedKeyValue);          
           if (decryptedEncryptionKey) {
             decryptedContent = safeDecrypt(
               encryptedContent,
@@ -156,11 +155,10 @@ const safeDecrypt = function (content, encryptionKey) {
               return decryptedContent
             }
           } else {
-            console.log('failed to decryp the key:' + encryptionKeyList[i].lockedKeyValue,
-              userEncryptionKey)
+            console.log('failed to decrypt the key:' + i);
           }
         } catch (error) {
-          console.log('failed to decryp the content with none-active key')
+          console.log('failed to decrypt the content with none-active key')
         }
       }
       return null
@@ -233,36 +231,20 @@ const safeDecrypt = function (content, encryptionKey) {
       return newFormData
     }
   
-    findEncryptionKeyByDecryptedValue (decryptedKey) {
-      var encryptionKeyList = this.getEncryptionKeyList()
-      var matchedKeyItem = null
-      var userEncryptionKey = this.buildUserEncryptionKeyFromPassword(
-        this._getLoginUserInfo().password,
-      )
-      encryptionKeyList.forEach(ekey => {
-        var decryptedEncryptionKey = safeDecrypt(
-          ekey.encryptionKey,
-          userEncryptionKey,
-        )
+    async findEncryptionKeyByDecryptedValue(decryptedKey) {
+      const encryptionKeyList = this.getEncryptionKeyList();
+      
+      for (const ekey of encryptionKeyList) {
+        const decryptedEncryptionKey = await unlockContent(ekey.lockedKeyValue);
         if (decryptedEncryptionKey === decryptedKey) {
-          matchedKeyItem = ekey
+          return ekey; // Return early if a match is found
         }
-      })
-      return matchedKeyItem
+      }
+    
+      return null; // If no match is found, return null
     }
-  
     getActiveEncryptionKeyItem () {
-      var activeEncryptionKey = this._getActiveEncryptionKey()
-      var encryptionKeyList = this.getEncryptionKeyList()
-      for (var i = 0; i < encryptionKeyList.length; i++) {
-        if (encryptionKeyList[i].lockedKeyValue === activeEncryptionKey) {
-          return encryptionKeyList[i]
-        }
-      }
-      return {
-        encryptionKey: activeEncryptionKey,
-        name: 'App',
-      }
+        return  this._getActiveEncryptionKey();
     }
     getEncryptionKeyList () {  
       return userSettings.getEncryptionKeyList()        
@@ -277,23 +259,8 @@ const safeDecrypt = function (content, encryptionKey) {
         return null;
       }
     }
-    _getLoginUserInfo () {    
-      return this.loginUserinfo
-    }
-    _loginUserInfoSetActiveEncrytionKey (activeEncryptionKey) {
-      this._getLoginUserInfo().activeEncryptionKey = activeEncryptionKey
-    }
-    _getActiveEncryptionKeyFromLoginUserInfo (loginUserInfo) {
-      if (!loginUserInfo) {
-        return null
-      }
-      if (loginUserInfo.activeEncryptionKey) {
-        return loginUserInfo.activeEncryptionKey
-      } else {
-        return null;    
-      
-      }
-    }
+    
+    
     getDecryptedActiveEncryptionKey () {
       var activeEncruptionKey = this._getActiveEncryptionKeyFromLoginUserInfo(
         this._getLoginUserInfo(),
@@ -687,7 +654,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
 
   
-  export const decryptEncryptionKey = async (key) => appInstance.unlockWithAppInstallInstanceId(key);
+  export const unlockContent = async (content) => appInstance.unlockWithAppInstallInstanceId(content);
 
   
 
@@ -703,3 +670,4 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   export const isEncryptionKeyIsActive = (encryptionKey)  => {
     return  encryptionKey.role === userSettings.ACTIVE_ROLE;
   }
+  

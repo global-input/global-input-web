@@ -12,7 +12,7 @@ export const isDevelopment=environment==='development';
 export const  developmentPassword=isDevelopment?'camilla':'';
 
 
-const test_code= '/test/import_key.txt';
+
 // export const test_code= '/test/connect.txt';
 // export const test_code= '/test/random.txt';
 
@@ -23,7 +23,7 @@ const test_code= '/test/import_key.txt';
 //           return codeString;
 // }
 
-const encripted_text= 'P1U2FsdGVkX1+jdguP1vo1drT0t06DAFzTh/SnZ7xKitkuDJFVwbA/aEDjwQEME33O';
+const encripted_text= 'P1U2FsdGVkX1+wkMsd/2y2mlik9GT1alsgSYIsg8+YGRz8iIIYkuL+LE+S0jMGdn4f';
 
 
 export  function loadTestTextQRCodeValue(){
