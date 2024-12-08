@@ -99,8 +99,8 @@ export const DeviceInputView = ({
   const listMatchedForm = () =>
     setAction({ ...action, actionType: ACT_TYPE.MATCHED_FORMS_DATA });
 
-  const exportFormData = () => {
-    const content = appdata.exportFormContentAsText();
+  const exportFormData = async () => {
+    const content = await appdata.exportFormContentAsText();
     const exportFormField = action.exportFormField;
     const newField = { ...exportFormField, value: content };
     onFieldChanged({ field: newField });

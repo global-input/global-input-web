@@ -21,7 +21,10 @@ const BackupData = ({menuItems,onBack})=>{
   
   const [action,setAction]=useState(()=>getStateFromProps())  
   
-  const exportFormData = () => setAction({content:appdata.exportFormContentAsText(),actionType:ACT_TYPE.CLIPBOARD_COPY});
+  const exportFormData = async () => {
+     const content=await appdata.exportFormContentAsText();    
+    setAction({content:content,actionType:ACT_TYPE.CLIPBOARD_COPY});
+  }
   const toClipboardCopyComplete = () => setAction({content:"",actionType:ACT_TYPE.COMPLETE});    
   const renderNoFormData = () => (
       <ViewWithTabMenu title={backupFormDataTextConfig.title}

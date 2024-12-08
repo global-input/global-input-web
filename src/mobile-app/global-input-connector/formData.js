@@ -428,10 +428,10 @@ export const getFormDataForSaving = action => {
   return null;
 };
 
-export const saveFormData = action => {  
+export const saveFormData = async  action => {  
   var formData = getFormDataForSaving(action);
   if (formData) {
-    var formDataToSave = formDataUtil.convertToStoreFormData(formData, appStore);
+    var formDataToSave = await formDataUtil.convertToStoreFormData(formData, appStore);
     appStore.mergeFormData(formDataToSave);
     return formDataToSave;
   }

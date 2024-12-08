@@ -30,7 +30,8 @@ const EditFormData=  ({ formData, label, updateFormData, createFormData, onBack 
 
 
   useEffect(() => {
-    const data = formUtil.buildInitData({ formData, label });
+    const processData=async()=>{
+    const data = await formUtil.buildInitData({ formData, label });
     if (!data.formData.id) {
       defaultFormId.current = data.formData.id = formUtil.getDefaultFormId();
       formIdField.current.focus();
@@ -39,6 +40,9 @@ const EditFormData=  ({ formData, label, updateFormData, createFormData, onBack 
     if (!formData) {
       formIdField.current.focus();
     }
+    };
+    processData();
+
     return () => {
       globalInput.disconnect(globalInputConnector);
       if (messageTimerHandler.current) {

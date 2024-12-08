@@ -7,6 +7,7 @@ let encryptionKeyList = null;
 let appInstallInstanceId = null;
 let appInstallSalt = null;
 let appInstallIv = null;
+let storageVersion = null;
 // Keys for localStorage
 const STORAGE_KEYS = {    
     SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
@@ -14,10 +15,13 @@ const STORAGE_KEYS = {
     APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID',
     APP_INSTALL_SALT: 'APP_INSTALL_SALT',
     APP_INSTALL_IV: 'APP_INSTALL_IV',
+    STORAGE_VERSION: 'STORAGE_VERSION',
 };
 export const ACTIVE_ROLE = 'active';
 export const DEFAULT_ENCRPTION_NAME="This Device";
 export const DEFAULT_ENCRYPTION_ROLE="role";
+
+
 
 // Helper function to save data to localStorage
 function saveToLocalStorage(key, value) {
@@ -57,12 +61,18 @@ function initializeState() {
     if(appInstallIv === null){
         appInstallIv = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_IV, null);
     }
+    if(storageVersion === null){
+        storageVersion = loadFromLocalStorage(STORAGE_KEYS.STORAGE_VERSION, null);
+    }
 }
 
 // Call initializeState to set up the initial state
 initializeState();
 
 // Functions to get data
+
+export const getStorageVersion = () => storageVersion;
+
 export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];
 
 export const getEncryptionKeyList = () => encryptionKeyList;
@@ -78,6 +88,8 @@ export const getAppInstallIv = () => appInstallIv;
 
 export const getAllForms = () => savedFormContent;
 
+
+
 export const getFormContentById = (formId) =>
     generalUtil.findFormDataById(getAllForms(), formId);
 
@@ -90,6 +102,10 @@ export const setEncryptionKeyList = (list) => {
     saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, list);
 };
 
+export const setStorageVersion = (version) => {
+    storageVersion = version;
+    saveToLocalStorage(STORAGE_KEYS.STORAGE_VERSION, version);
+};
 
 export const setAppInstallInstanceId = (instanceId) => {
     appInstallInstanceId = instanceId;

@@ -56,17 +56,17 @@ export const getInitData = ({ formData, errorMessage = '', label }) => {
 };
 
 // Function to build initial data
-export const buildInitData = ({ formData, label }) => {
+export const buildInitData = async ({ formData, label }) => {
   if (!formData) {
     return getInitData({ label });
   }
   let errorMessage = null;
   const fields = [];
-  formData.fields &&
-    formData.fields.forEach((f) => {
+  if(formData.fields){    
+    for (const f of formData.fields){    
       let decryptedValue = null;
       try {
-        decryptedValue = appStore.decryptContent(f.value);
+        decryptedValue = await appStore.decryptContent(f.value);
       } catch (error) {
         console.error(error);
         decryptedValue = 'Failed to decrypt the content';
@@ -78,7 +78,8 @@ export const buildInitData = ({ formData, label }) => {
         nLines: f.nLines,
         value: decryptedValue,
       });
-    });
+    }
+  }
   return getInitData({ formData: { ...formData, fields }, errorMessage });
 };
 
@@ -402,7 +403,7 @@ export const buildMenu = ({
 };
 
 // Function to save the form data
-const saveFormData = ({
+const saveFormData = async ({
   data,
   setData,
   formIdField,
@@ -463,15 +464,17 @@ const saveFormData = ({
     label: data.formData.label,
     domains: data.formData.domains,
   };
-  form.fields = data.formData.fields.map((f) => {
-    console.log("(((((((((field))))))))))");
-    return {
-      id: f.id,
-      label: f.label,
-      nLines: f.nLines,
-      value: appStore.encryptContent(f.value),
-    };
-  });
+  form.fields = await Promise.all(
+    data.formData.fields.map(async (f) => {
+      
+      return {
+        id: f.id,
+        label: f.label,
+        nLines: f.nLines,
+        value: await appStore.encryptContent(f.value),
+      };
+    })
+  );
   if (formData) {
     updateFormData(formData.id, form);
   } else {

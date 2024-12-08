@@ -49,9 +49,11 @@ const safeDecrypt = function (content, encryptionKey) {
     }
     
     
-    encryptBackup (content) {
-      var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
-      return globalInputMessage.encrypt(content, activeEncryptionKey + this.backupKeySuffix)
+    async encryptBackup (content) {      
+      
+      const encryptionKey=userSettings.getActiveEncryptionKey();
+      const decryptedEncryptionKey = await unlockContent(encryptionKey.lockedKeyValue);      
+      return globalInputMessage.encrypt(content, decryptedEncryptionKey + this.backupKeySuffix);
     }
   
     isActiveEncryptionKeyEncryptedMessage (codedata) {
@@ -74,17 +76,7 @@ const safeDecrypt = function (content, encryptionKey) {
         codedata.startsWith &&
         codedata.startsWith(this.protectedKeyIdentifier)
       )
-    }
-    encryptWithActiveEncryptionKey (secretMessage) {
-      var prefix = globalInputMessage.generateRandomString(3)
-      var suffix = globalInputMessage.generateRandomString(7)
-      var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
-      var encryptedMessage = globalInputMessage.encrypt(
-        prefix + secretMessage + suffix,
-        activeEncryptionKey + this.encryptionKeyAppendedPart,
-      )
-      return this.encryptedWithEncryptionKeyCodeIdentifier + encryptedMessage
-    }
+    }    
     decryptEncryptionKeyText (content) {
       const contentToDecrypt = content.slice(
         this.encryptionKeyExportedAsTextIdentifier.length,
@@ -258,19 +250,7 @@ const safeDecrypt = function (content, encryptionKey) {
       } else {
         return null;
       }
-    }
-    
-    
-    getDecryptedActiveEncryptionKey () {
-      var activeEncruptionKey = this._getActiveEncryptionKeyFromLoginUserInfo(
-        this._getLoginUserInfo(),
-      )
-      if (activeEncruptionKey) {
-        return activeEncruptionKey
-      } else {
-        return this._getActiveEncryptionKey()
-      }
-    }      
+    }          
     updateEncryptionKey (encryptionItem) {
       userSettings.updateEncryptionItem(encryptionItem)
     }
@@ -282,13 +262,15 @@ const safeDecrypt = function (content, encryptionKey) {
       return this.decryptExportedEncryptionKey(content, protectionPassword)
     }
   
-    decryptFormDataText (content) {
+    async decryptFormDataText (content) {
       try {
-        var content = content.slice(this.formDataIdentifier.length)
-        var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
+        const content = content.slice(this.formDataIdentifier.length)
+        const activeEncryptionKey = userSettings.getActiveEncryptionKey();
+        const decryptedKey=await unlockContent(activeEncryptionKey.lockedKeyValue);
+
         var globalInputData = safeDecrypt(
           content,
-          activeEncryptionKey + this.backupKeySuffix,
+          decryptedKey + this.backupKeySuffix,
         )
         if (!globalInputData) {
           console.log('Failed to decrypt the backup')
@@ -305,7 +287,7 @@ const safeDecrypt = function (content, encryptionKey) {
         return null
       }
     }
-    exportFormContentAsText () {
+    async exportFormContentAsText () {
       var forms = this.getSavedFormContent()
       if (forms && forms.length) {
         const allDomainMappingRecords =
@@ -315,7 +297,7 @@ const safeDecrypt = function (content, encryptionKey) {
           forms,
           randomContent: globalInputMessage.generateRandomString(8),
         }
-        var encryptedContent = this.encryptBackup(JSON.stringify(globalInputData))
+        var encryptedContent = await this.encryptBackup(JSON.stringify(globalInputData))
         return this.formDataIdentifier + encryptedContent
       } else {
         return ''
@@ -343,14 +325,7 @@ const safeDecrypt = function (content, encryptionKey) {
       }
       return content.startsWith && content.startsWith(this.formDataIdentifier)
     }
-  
-    exportActiveEncryptionKeyWithPassword (protectionPassword) {
-      var activeEncryptionKey = this.getDecryptedActiveEncryptionKey()
-      return this.exportEncryptionKeyWithPassword(
-        activeEncryptionKey,
-        protectionPassword,
-      )
-    }
+      
     async exportEncryptionKeyItemWithPassword (encryptionKeyitem, protectionPassword) {
       const decryptedEncryptionKey = await unlockContent(encryptionKeyitem.lockedKeyValue);      
       if (!decryptedEncryptionKey) {
@@ -524,14 +499,16 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       const decryptedContent = globalInputMessage.decrypt(content, keyPrefix + decryptedKey + keySuffix);
       return decryptedContent.slice(7, decryptedContent.length - 11);
   };
-  export const encryptContent = (content) => {
-    const activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey()
-    return encryptContentWithKey(content, activeEncryptionKey)
+  export const encryptContent = async (content) => {
+    const activeEncryptionKey = userSettings.getActiveEncryptionKey();    
+    const key=await unlockContent(activeEncryptionKey.lockedKeyValue);
+    return encryptContentWithKey(content, key)
   }
-  export const decryptContent = (content)  => {
+  export const decryptContent = async (content)  => {
     if (content && content.length) {
-      var activeEncryptionKey = appdata.getDecryptedActiveEncryptionKey()
-      return safeDecrypt(content, activeEncryptionKey + appdata.contentKeySuffix)
+      const encryptionKey = userSettings.getActiveEncryptionKey();
+      const keyValue = await unlockContent(encryptionKey.lockedKeyValue);      
+      return safeDecrypt(content, keyValue + appdata.contentKeySuffix)
     } else {
       return ''
     }
@@ -569,6 +546,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           console.log(error)
           onError('Failed to set up the app. Please try again.');
         }
+        userSettings.setStorageVersion("1.0");
         onLoggedIn();        
   };
 

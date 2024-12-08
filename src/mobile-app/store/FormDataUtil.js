@@ -157,7 +157,7 @@ export default class FormDataUtil {
     }
     return false;
   }
-  convertToStoreFormData(formData, appStore) {
+  async convertToStoreFormData(formData, appStore) {
     var storeFormData = Object.assign({}, formData);
     storeFormData.id = this.getFormId(formData);
     storeFormData.fields = [...formData.fields];
@@ -168,7 +168,7 @@ export default class FormDataUtil {
         storeFormData.fields[i].value &&
         storeFormData.fields[i].value.trim().length > 0
       ) {        
-        storeFormData.fields[i].value = appStore.encryptContent(
+        storeFormData.fields[i].value = await appStore.encryptContent(
           storeFormData.fields[i].value,
         );
       }
