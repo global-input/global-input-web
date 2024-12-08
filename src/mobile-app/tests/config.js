@@ -23,7 +23,7 @@ export const  developmentPassword=isDevelopment?'camilla':'';
 //           return codeString;
 // }
 
-const encripted_text= 'P1U2FsdGVkX1+wkMsd/2y2mlik9GT1alsgSYIsg8+YGRz8iIIYkuL+LE+S0jMGdn4f';
+const encripted_text= 'P3C7h1U2FsdGVkX1/qB0K5289DPVK6GRqFVrOPO59/8nnr1oIuOaaxMoW3Z0ggMnAyPG6LxQ/lpaQNLxT3Vg9nvG9XInMct/du6iZapbyl00rc5zEd0MHNJ7eSKZZKlY9vp7aH';
 
 
 export  function loadTestTextQRCodeValue(){

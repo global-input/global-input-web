@@ -71,11 +71,7 @@ export function generateSalt() {
 
 
 
-    console.log("-------password----:"+password);
-    console.log("-------content----:"+content);
-    console.log("-------saltBase64----:"+saltBase64);
-    console.log("-------ivBase64----:"+ivBase64);
-  
+    
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
     const salt = base64ToArrayBuffer(saltBase64);

@@ -146,8 +146,7 @@ export const updateFormData = (formId, formData) => {
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
 };
 
-export const createFormData = (formData) => {
-    console.log("----------***creating form data*******",formData);
+export const createFormData = (formData) => {    
     savedFormContent.unshift(formData);
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
 };

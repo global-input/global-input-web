@@ -244,15 +244,13 @@ export default function ManageKeysView({
     );
   };
 
-  const renderListItems = () => {
-    console.log("-----renderlist");
+  const renderListItems = () => {    
     const defaultMenus = [
       {
         menu: menusConfig.back.menu,
         onPress: onBack,
       },
     ];
-console.log("-----:"+JSON.stringify(action.items));
     return (
       <ViewWithTabMenu
         menuItems={menuItems || defaultMenus}

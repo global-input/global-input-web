@@ -662,8 +662,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
     return await appInstance.addNewEncryptionKey(name, key);
   }
 
-  export const  deleteEncryptionKeyItem  = async (encryptionItemToDelete)  =>{
-    console.log("-----going to dekete:", encryptionItemToDelete)
+  export const  deleteEncryptionKeyItem  = async (encryptionItemToDelete)  =>{    
     userSettings.deleteEncryptionItem(encryptionItemToDelete)
   }
 

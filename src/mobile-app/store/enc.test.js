@@ -10,7 +10,6 @@ test('encryption and decryption process', async () => {
 
   const ivBase64 =  generateIV();
 
-  console.log("-----:"+typeof ivBase64);
   
 
   // Encrypt the content

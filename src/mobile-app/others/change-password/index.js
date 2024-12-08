@@ -44,6 +44,10 @@ const ChangePassword =  ({content,onBack})=>{
       onError(userLoginText.errorMessages.changePassword.repeatedPasswordNotMatch);
       return;
     }
+    if(newPassword.length<8){
+      onError('paaaword must be at least 8 characters long');
+      return;
+    }
     if(appStore.changePassword(originalPassword,newPassword)){
         onBack();
     }
