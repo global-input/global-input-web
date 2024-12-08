@@ -32,8 +32,8 @@ export const FormContentDataView = ({
   const setErrorMessage = errorMessage =>
     setCompData({...compData, errorMessage});
 
-  const decryptFormData = () => {
-    var globalInputData = appdata.decryptFormDataText(compData.content);
+  const decryptFormData = async () => {
+    var globalInputData = await appdata.decryptFormDataText(compData.content);
     if (!globalInputData) {
       setErrorMessage(importDecryptionError);
       return;

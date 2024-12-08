@@ -49,12 +49,7 @@ const safeDecrypt = function (content, encryptionKey) {
     }
     
     
-    async encryptBackup (content) {      
-      
-      const encryptionKey=userSettings.getActiveEncryptionKey();
-      const decryptedEncryptionKey = await unlockContent(encryptionKey.lockedKeyValue);      
-      return globalInputMessage.encrypt(content, decryptedEncryptionKey + this.backupKeySuffix);
-    }
+    
   
     isActiveEncryptionKeyEncryptedMessage (codedata) {
       return (
@@ -262,9 +257,9 @@ const safeDecrypt = function (content, encryptionKey) {
       return this.decryptExportedEncryptionKey(content, protectionPassword)
     }
   
-    async decryptFormDataText (content) {
+    async decryptFormDataText (encryptedContent) {
       try {
-        const content = content.slice(this.formDataIdentifier.length)
+        const content = encryptedContent.slice(this.formDataIdentifier.length)
         const activeEncryptionKey = userSettings.getActiveEncryptionKey();
         const decryptedKey=await unlockContent(activeEncryptionKey.lockedKeyValue);
 
@@ -296,8 +291,10 @@ const safeDecrypt = function (content, encryptionKey) {
         var globalInputData = {
           forms,
           randomContent: globalInputMessage.generateRandomString(8),
-        }
-        var encryptedContent = await this.encryptBackup(JSON.stringify(globalInputData))
+        }      
+        const encryptionKey=userSettings.getActiveEncryptionKey();
+        const decryptedEncryptionKey = await unlockContent(encryptionKey.lockedKeyValue);      
+        const  encryptedContent =globalInputMessage.encrypt(JSON.stringify(globalInputData), decryptedEncryptionKey + this.backupKeySuffix);
         return this.formDataIdentifier + encryptedContent
       } else {
         return ''
