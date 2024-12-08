@@ -1,6 +1,6 @@
 // src/mobile-app/manage-form-data/display-form-data/index.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styles } from '../styles'; // Ensure styles are adjusted for React.js
 import * as appStore from '../../store';
 
@@ -43,7 +43,7 @@ const renderAFormFieldWithHideValue = (formField, index, label) => {
       style={styles.itemRow}
       contentContainerStyle={styles.showFieldContainer}
       content={formField.value}
-      convert={(content) => appStore.decryptContent(content)}
+      convert={async (content) => await appStore.decryptContent(content)}
     >
       <span style={styles.label}>{label}</span>
       <div style={styles.valueContainer}>
@@ -54,15 +54,24 @@ const renderAFormFieldWithHideValue = (formField, index, label) => {
 };
 
 // Function to render a form field with shown value
-const renderAFormFieldWithShowValue = (formField, index, label) => {
-  let displayValue = '*********';
+const RenderAFormFieldWithShowValue = ({formField, index, label}) => {
+  let [displayValue, setDisplayValue] = useState('*********');   
   let errorMessage = null;
-  try {
-    displayValue = appStore.decryptContent(formField.value);
-  } catch (error) {
-    console.error(error);
-    errorMessage = 'Failed to decrypt';
-  }
+  
+  useEffect(()=>{
+    const decrypt=async()=>{
+    try {
+      const value = await appStore.decryptContent(formField.value);
+      setDisplayValue(value);
+    } catch (error) {
+      console.error(error);
+      errorMessage = 'Failed to decrypt';
+    }
+  };
+  decrypt();
+
+  },[]);
+  
   const key = getMapItemKey(formField, index, label);
   return (
     <CopyToClipboard
@@ -92,7 +101,7 @@ const RenderFormFields = ({ formData, show }) => {
         label = formField.label;
       }
       if (show) {
-        return renderAFormFieldWithShowValue(formField, index, label);
+        return <RenderAFormFieldWithShowValue formField={formField} label={label} key={getMapItemKey(formField, index, label)} />
       } else {
         return renderAFormFieldWithHideValue(formField, index, label);
       }

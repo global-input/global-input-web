@@ -24,7 +24,7 @@ export default class CopyToClipboard extends Component {
     });
   }
 
-  exportToClipboard() {
+  async exportToClipboard() {
     let content = this.props.content;
     if (!content) {
       this.displayNotificationMessage(
@@ -34,7 +34,7 @@ export default class CopyToClipboard extends Component {
     }
     if (this.props.convert) {
       try {
-        content = this.props.convert(content);
+        content = await this.props.convert(content);
         if (!content) {
           this.displayNotificationMessage(
             deviceInputTextConfig.clipboardCopyButton.errorConvert
