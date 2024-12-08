@@ -351,13 +351,13 @@ const safeDecrypt = function (content, encryptionKey) {
         protectionPassword,
       )
     }
-    exportEncryptionKeyItemWithPassword (encryptionKeyitem, protectionPassword) {
-      var encryptionKeyDecrypted = this.decryptEncryptionKey(encryptionKeyitem)
-      if (!encryptionKeyDecrypted) {
+    async exportEncryptionKeyItemWithPassword (encryptionKeyitem, protectionPassword) {
+      const decryptedEncryptionKey = await unlockContent(encryptionKeyitem.lockedKeyValue);      
+      if (!decryptedEncryptionKey) {
         return null
       }
       return this.exportEncryptionKeyWithPassword(
-        encryptionKeyDecrypted,
+        decryptedEncryptionKey,
         protectionPassword,
       )
     }

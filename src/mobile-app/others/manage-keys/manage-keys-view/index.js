@@ -359,15 +359,22 @@ console.log("-----:"+JSON.stringify(action.items));
     );
   };
 
-  const renderQRCode = () => {
-    const encryptedContent = appdata.exportEncryptionKeyItemWithPassword(
-      action.selectedEncryptionKeyItem,
-      action.password
-    );
-    if (!encryptedContent) {
-      console.log('Failed to decrypt the encryption key');
-      return null;
-    }
+  const RenderQRCode =  () => { 
+    const [content, setContent] = useState(null);
+    useEffect( () => {
+      const doEncryption = async () => {
+      const encryptedContent = await appdata.exportEncryptionKeyItemWithPassword(
+        action.selectedEncryptionKeyItem,
+        action.password
+      );
+      if(encryptedContent){
+        setContent(encryptedContent);
+        };
+      };
+      doEncryption();
+    },[]);
+    
+    
     const menuItems = [
       {},
       {
@@ -386,7 +393,7 @@ console.log("-----:"+JSON.stringify(action.items));
         title={manageKeysTextConfig.export.qrcode.title}
         help={manageKeysTextConfig.export.qrcode.content}
         help2={help2}
-        qrcodeContent={encryptedContent}
+        qrcodeContent={content}
         menuItems={menuItems}
       />
     );
@@ -475,7 +482,7 @@ console.log("-----:"+JSON.stringify(action.items));
     case ACT_TYPE.PASSWORD_FOR_QR_CODE:
       return renderPasswordForQRCode();
     case ACT_TYPE.DISPLAY_QR_CODE:
-      return renderQRCode();
+      return <RenderQRCode />;
     case ACT_TYPE.PASSWORD_FOR_CLIPBOARD:
       return renderPasswordForClipboard();
     case ACT_TYPE.DISPLAY_CLIPBOARD:

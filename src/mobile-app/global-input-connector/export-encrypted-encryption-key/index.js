@@ -118,14 +118,14 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
   const setPassword = (password) => setAction({ ...action, password });
   const setErrorMessage = (errorMessage) => setAction({ ...action, errorMessage });
 
-  const onEncrypt = () => {
+  const onEncrypt = async () => {
     try {
       if (!action.password) {
         setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
       } else if (action.password.length < 5) {
         setErrorMessage(manageKeysTextConfig.errorMessages.passwordTooShort);
       } else {
-        const encryptedContent = appdata.exportEncryptionKeyItemWithPassword(
+        const encryptedContent = await appdata.exportEncryptionKeyItemWithPassword(
           action.selectedEncryptionKeyItem,
           action.password
         );
