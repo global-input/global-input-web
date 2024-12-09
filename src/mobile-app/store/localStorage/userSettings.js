@@ -154,7 +154,25 @@ export const updateEncryptionItem = (encryptionItem) => {
     }
 };
 
+export const activateEncryptionItem = (encryptionItemToActivate) => {
+    if (encryptionItemToActivate && encryptionItemToActivate.lockedKeyValue) {
+        const foundIndex = encryptionKeyList.findIndex(
+            (e) => e.lockedKeyValue === encryptionItemToActivate.lockedKeyValue
+        );
+        if (foundIndex >= 0) {
+            for(let i=0;i<encryptionKeyList.length;i++){
+                if(i===foundIndex){
+                    encryptionKeyList[i].role=ACTIVE_ROLE;
+                }
+                else{
+                    encryptionKeyList[i].role=DEFAULT_ENCRYPTION_ROLE;
+                }                
+            }
+            saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
+        }
+    }
 
+}
 
 export const updateFormData = (formId, formData) => {
     savedFormContent = savedFormContent.filter((f) => f.id !== formId);

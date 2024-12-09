@@ -589,8 +589,9 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       console.log('the key is identical to the current one')
       return
     }
-    encryptionKeyitem.role=userSettings.ACTIVE_ROLE;
-    userSettings.updateEncryptionItem(encryptionKeyitem);
+    
+    userSettings.activateEncryptionItem(encryptionKeyitem);
+
   }
 
   
