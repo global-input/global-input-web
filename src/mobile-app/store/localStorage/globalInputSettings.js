@@ -1,4 +1,5 @@
-import { generateRandomString } from 'global-input-message';
+import * as globalInputMessage from 'global-input-message';
+import * as enc from '../enc';
 
 
 // Keys for localStorage
@@ -11,7 +12,11 @@ const STORAGE_KEYS = {
   PRESERVE_SESSION: "GLOBAL_INPUT_PRESERVE_SESSION",
   PROXY_URL: "GLOBAL_INPUT_PROXY_URL",
 };
-
+const appInstance = {  
+  key: "lO3U8KSaxlm4iPoHX",
+  salt: null,
+  iv: null,
+};
 // Cached variables
 let apikey = null;
 let securityGroup = null;
@@ -24,61 +29,70 @@ let proxyURL = null;
 // Subscriber list
 const subscribers = [];
 
+
 // Helper function to save data to localStorage
-function saveToLocalStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
+
+function memEncrypt(data){
+  return globalInputMessage.encrypt(data,appInstance.key);
+}
+function memDecrypt(data){
+  return globalInputMessage.decrypt(data,appInstance.key);
+}
+
+
+async function saveToLocalStorage(key, value) {
+  try {     
+    let stringValue=null;     
+        switch(key){
+          case STORAGE_KEYS.API_KEY:
+          case STORAGE_KEYS.SECURITY_GROUP:
+          case STORAGE_KEYS.CODE_AES:
+          case STORAGE_KEYS.CLIENT:
+          case STORAGE_KEYS.PROXY_URL:      
+            stringValue=await enc.encryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));
+            break;
+          default:
+            stringValue=JSON.stringify(stringValue);        
+        }
+        localStorage.setItem(key, stringValue);
   } catch (e) {
     console.error(`Error saving ${key} to localStorage`, e);
   }
 }
 
 // Helper function to load data from localStorage
-function loadFromLocalStorage(key, defaultValue) {
+async function loadFromLocalStorage(key, defaultValue) {
+
   try {
-    const value = localStorage.getItem(key);
-    return value !== null ? JSON.parse(value) : defaultValue;
+    let stringValue = localStorage.getItem(key);     
+    if(!stringValue){
+      return defaultValue;
+    }
+      switch(key){
+        case STORAGE_KEYS.API_KEY:
+        case STORAGE_KEYS.SECURITY_GROUP:
+        case STORAGE_KEYS.CODE_AES:
+        case STORAGE_KEYS.CLIENT:
+        case STORAGE_KEYS.PROXY_URL:                   
+              return await enc.decryptContent(memDecrypt(appInstance.id),stringValue,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                
+      default:        
+          return  JSON.parse(stringValue);        
+      }        
   } catch (e) {
     console.error(`Error loading ${key} from localStorage`, e);
-    return defaultValue;
+    return null;
   }
 }
 
 // Initialize cached variables with default values if not set
-function initializeState() {
-  if (apikey === null) {
-    apikey = loadFromLocalStorage(STORAGE_KEYS.API_KEY, "SOh85GNXT8TXLCTEc");
-  }
-  if (securityGroup === null) {
-    securityGroup = loadFromLocalStorage(
-      STORAGE_KEYS.SECURITY_GROUP,
-      "1CNbWCFpsbmRQuKdd"
-    );
-  }
-  if (codeAES === null) {
-    codeAES = loadFromLocalStorage(STORAGE_KEYS.CODE_AES, "LNJGw0x5lqnXpnVY8");
-  }
-  if (client === null) {
-    client = loadFromLocalStorage(STORAGE_KEYS.CLIENT, "");
-  }
-  if (appLoginTimeout === null) {
-    appLoginTimeout = loadFromLocalStorage(
-      STORAGE_KEYS.APP_LOGIN_TIMEOUT,
-      120000
-    );
-  }
-  if (preserveSession === null) {
-    preserveSession = loadFromLocalStorage(
-      STORAGE_KEYS.PRESERVE_SESSION,
-      true
-    );
-  }
-  if (proxyURL === null) {
-    proxyURL = loadFromLocalStorage(
-      STORAGE_KEYS.PROXY_URL,
-      "https://globalinput.co.uk"
-    );
-  }
+async function initializeState() {  
+    apikey = await loadFromLocalStorage(STORAGE_KEYS.API_KEY, memEncrypt("SOh85GNXT8TXLCTEc"));  
+    securityGroup = await loadFromLocalStorage(STORAGE_KEYS.SECURITY_GROUP,memEncrypt("1CNbWCFpsbmRQuKdd"));    
+    codeAES = await loadFromLocalStorage(STORAGE_KEYS.CODE_AES, memEncrypt("LNJGw0x5lqnXpnVY8"));
+    client = await loadFromLocalStorage(STORAGE_KEYS.CLIENT, memEncrypt(globalInputMessage.generateRandomString(17)));      
+    appLoginTimeout = await loadFromLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT,120000);  
+    preserveSession = await loadFromLocalStorage(STORAGE_KEYS.PRESERVE_SESSION,true);    
+    proxyURL = await loadFromLocalStorage(STORAGE_KEYS.PROXY_URL,memEncrypt("https://globalinput.co.uk"));  
 }
 
 // Call initializeState to set up the initial state
@@ -114,55 +128,43 @@ export function unsubscribe(callback) {
 }
 
 // Getter functions
-export const getApiKey = () => apikey;
+export const getApiKey = () => memDecrypt(apikey);
 
-export const getSecurityGroup = () => securityGroup;
+export const getSecurityGroup = () => memDecrypt(securityGroup);
 
-export const getCodeAES = () => codeAES;
+export const getCodeAES = () => memDecrypt(codeAES);
 
-export const getClient = () => {
-  if (!client || client.length < 10) {
-    client = generateRandomString(17)
-    this.setClient(client)
-  }
-  return client
+export const getClient = () => memDecrypt(client);
   
-}
 
-export const getAppLoginTimeout = () => {  
-  if (!appLoginTimeout) {
-    const defaultAppLoginTimeout = 30000
-    this.setAppLoginTimeout(defaultAppLoginTimeout)
-    return defaultAppLoginTimeout;
-  }
-  return appLoginTimeout;
-}
+export const getAppLoginTimeout = () => appLoginTimeout;
+
 
 export const getPreserveSession = () => preserveSession;
 
-export const getProxyURL = () => proxyURL;
+export const getProxyURL = () => memDecrypt(proxyURL);
 
 // Setter functions
 export const setApiKey = (newApiKey) => {
-  apikey = newApiKey;
+  apikey = memEncrypt(newApiKey);  
   saveToLocalStorage(STORAGE_KEYS.API_KEY, apikey);
   notifySubscribers("apikey", apikey);
 };
 
 export const setSecurityGroup = (newSecurityGroup) => {
-  securityGroup = newSecurityGroup;
+  securityGroup = memEncrypt(newSecurityGroup);
   saveToLocalStorage(STORAGE_KEYS.SECURITY_GROUP, securityGroup);
   notifySubscribers("securityGroup", securityGroup);
 };
 
 export const setCodeAES = (newCodeAES) => {
-  codeAES = newCodeAES;
+  codeAES = memEncrypt(newCodeAES);
   saveToLocalStorage(STORAGE_KEYS.CODE_AES, codeAES);
   notifySubscribers("codeAES", codeAES);
 };
 
 export const setClient = (newClient) => {
-  client = newClient;
+  client = memEncrypt(newClient);
   saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
   notifySubscribers("client", client);
 };
@@ -180,7 +182,7 @@ export const setPreserveSession = (newPreserveSession) => {
 };
 
 export const setProxyURL = (newProxyURL) => {
-  proxyURL = newProxyURL;
+  proxyURL = memEncrypt(newProxyURL);
   saveToLocalStorage(STORAGE_KEYS.PROXY_URL, proxyURL);
   notifySubscribers("proxyURL", proxyURL);
 };
@@ -224,9 +226,17 @@ window.addEventListener("storage", (event) => {
 });
 
 
-export const deleteAllData = ()=>{
+export const deleteAllData =  async ()=>{
   
   Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
-  initializeState(); 
+  
+  await initializeState(); 
+}
 
+
+export async function setupGlobalInputSettings(instanceId, salt, iv) {
+  appInstance.salt = memEncrypt(salt);
+  appInstance.iv = memEncrypt(iv);
+  appInstance.id = memEncrypt(instanceId);
+  await initializeState();
 }

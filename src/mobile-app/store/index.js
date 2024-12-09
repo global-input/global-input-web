@@ -185,6 +185,7 @@ const safeDecrypt = function (content, encryptionKey) {
     clearAllForms () {
       userSettings.clearAllForms();
       domainFormMappings.deleteAllData()
+      
     }
     
     mergeFormDataList (formDataList) {
@@ -537,7 +538,8 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
         }  
         try{
           await appInstance.setupAppInstallationId(password);        
-          await appInstance.setupEncryptionKeys();                              
+          await appInstance.signin(password);
+          await appInstance.setupEncryptionKeys();                        
         }
         catch(error){
           console.log(error)
@@ -593,6 +595,8 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   export const resetApp = () => {    
       userSettings.clearAllData();
       domainFormMappings.deleteAllData()
+      globalInputSettings.deleteAllData();
+
   }
   
     export const isUserSignedIn = () =>{

@@ -1,10 +1,11 @@
 import * as enc from './enc';
 import * as globalInputMessage from 'global-input-message';
-import * as userSettings from './localStorage/userSettings'
+import * as userSettings from './localStorage/userSettings';
+import * as globalInputSettings from './localStorage/globalInputSettings';
 
 const appInstance={
     id:null,
-    key:"sSNvabaJZI"
+    key:"JRJXb2eLYqJRJXb2e"         
 }
     
 
@@ -26,9 +27,15 @@ export const isUserSignedIn = () =>{
 export async function signin(password){        
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
-    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));
+    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));    
+    setupGlobalInputSettings();
 }
 
+async function  setupGlobalInputSettings(){
+    const saltStored=userSettings.getAppInstallSalt();
+    const ivStored=userSettings.getAppInstallIv();
+    globalInputSettings.setupGlobalInputSettings(memDecrypt(appInstance.id),memDecrypt(saltStored), memDecrypt(ivStored))
+}
 function generateSlaIV(){  
     const  saltStored = memEncrypt(enc.generateSalt());
     const ivStored = memEncrypt(enc.generateIV());
@@ -41,8 +48,7 @@ export async function setupAppInstallationId(password){
     const  salt=userSettings.getAppInstallSalt();
     const  iv=userSettings.getAppInstallIv();    
     const instanceId=await enc.encryptContent(password, appInstallInstanceId, memDecrypt(salt), memDecrypt(iv));
-    userSettings.setAppInstallInstanceId(instanceId);                
-    await signin(password);
+    userSettings.setAppInstallInstanceId(instanceId);                 
 }
 
 
