@@ -12,6 +12,7 @@ import {
   Card,
   AppIcon,
   CardTitle,
+  WebAppLink,
   CardContent,
   CardFooter,
   ExtensionIcon,
@@ -22,6 +23,7 @@ import {
   ModuleIcon,
   JSModuleButton,
   ReactModuleButton,
+  WebAppContainer
 } from "./layout";
 export const GetAppPage: React.FC = () => {
   useConnectToMobile();
@@ -37,8 +39,14 @@ export const GetAppPage: React.FC = () => {
           <CardContent>
           Free and open-source mobile app to seamlessly operate and control multi-device environments.
           </CardContent>
+          <WebAppContainer>
+            
+            <WebAppLink />
+            
+          </WebAppContainer>
           <CardFooter>
             <AppStoreButton />
+            
             <PlayStoreButton />
           </CardFooter>
         </Card>

@@ -93,6 +93,9 @@ export const config = {
       playStore:
         "https://play.google.com/store/apps/details?id=uk.co.globalinput2",
     },
+    webapp:{
+      url:"/global-input-app/mobile-app/"
+    }
   },
 };
 

@@ -11,6 +11,7 @@ import appStore from "./images/app-store.png";
 import playStore from "./images/play-store.png";
 import jsModule from "./images/js-module.png";
 import reactModule from "./images/react-module.png";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -120,10 +121,60 @@ export const CardFooter = styled.div`
   }
 `;
 
+export const WebAppContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin-top: 20px;
+  
+`;
+
 const AppStoreImage = styled.img.attrs({
   src: appStore,
   alt: "App Store",
 })``;
+
+
+
+const WebAppBadge = styled.div`
+  width: 145px;
+  height: 48px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const WebAppLink = () => (
+   <Link to="/global-input-app/mobile-app" >
+  <WebAppBadge>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 48">
+      {/* Background rectangle with rounded corners */}
+      <rect width="145" height="48" rx="8" fill="#000000"/>
+      
+      {/* Web Globe Icon */}
+      <circle cx="24" cy="24" r="10" fill="none" stroke="#FFFFFF" strokeWidth="1.5"/>
+      <path d="M14 24 h20 M24 14 v20" stroke="#FFFFFF" strokeWidth="1.5"/>
+      <path d="M16 24 a8 8 0 0 0 16 0 a8 8 0 0 0 -16 0" stroke="#FFFFFF" strokeWidth="1.5" fill="none"/>
+      
+      {/* Text */}
+      <text x="42" y="28" fontFamily="Arial, sans-serif" fontSize="16" fill="#FFFFFF" fontWeight="500">Web App</text>
+    </svg>
+  </WebAppBadge>
+  </Link>
+);
+
+
 
 const PlayStoreImage = styled.img.attrs({
   src: playStore,
@@ -171,6 +222,11 @@ const ButtonLink = styled.a.attrs({
 export const AppStoreButton = () => (
   <ButtonLink href={config.links.appdownload.appStore}>
     <AppStoreImage />
+  </ButtonLink>
+);
+export const WebAppButton = () => (
+  <ButtonLink href={config.links.webapp.url}>
+    Web App
   </ButtonLink>
 );
 
