@@ -232,21 +232,12 @@ const safeDecrypt = function (content, encryptionKey) {
       return null; // If no match is found, return null
     }
     getActiveEncryptionKeyItem () {
-        return  this._getActiveEncryptionKey();
+        return userSettings.getActiveEncryptionKey();      
     }
     getEncryptionKeyList () {  
       return userSettings.getEncryptionKeyList()        
     }
-    
-  
-    _getActiveEncryptionKey () {
-      var activeEncryptionKey = userSettings.getActiveEncryptionKey()
-      if (activeEncryptionKey) {
-        return activeEncryptionKey
-      } else {
-        return null;
-      }
-    }          
+                  
     updateEncryptionKey (encryptionItem) {
       userSettings.updateEncryptionItem(encryptionItem)
     }
@@ -416,30 +407,6 @@ const safeDecrypt = function (content, encryptionKey) {
       }
     }
   
-    
-    
-  
-    
-    buildUserEncryptionKeyFromPassword (password) {
-      return this.encryptionKeyPrefix + password + this.encryptionKeySuffix
-    }
-    getLoginUserinfo () {
-      return this.loginUserinfo
-    }
-  
-    
-    _setLoginUserInfo (loginUserinfo) {
-      this.loginUserinfo = loginUserinfo
-    }
-    _createInitialLoginUserInfo (password, activeEncryptionKey) {
-      return {
-        application: 'GlobalInput',
-        createdAt: new Date().getTime(),
-        password,        
-        activeEncryptionKey,
-      }
-    }
-  
      
   }
   
@@ -513,13 +480,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
 
 
-  export const decryptedWithPassword = (encryptedContent) => {
-    var userEncryptionKey = appdata.buildUserEncryptionKeyFromPassword(
-      appdata.getLoginUserinfo().password,
-    )
-    return safeDecrypt(encryptedContent, userEncryptionKey)
-  }
-
+  
 
   
 
