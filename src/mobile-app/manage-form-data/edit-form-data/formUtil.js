@@ -410,8 +410,7 @@ const saveFormData = async ({
   formData,
   updateFormData,
   createFormData,
-}) => {
-  console.log("(((((((((saveFormData))))))))))");
+}) => {  
   const setError = (errorMessage) => setData({ ...data, errorMessage });
   if (data.formData.id.trim().length < 3) {
     setError(manageFormDataTextConfig.errorMessages.formId.tooShort);
