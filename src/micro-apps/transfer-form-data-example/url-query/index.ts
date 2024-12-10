@@ -15,7 +15,7 @@ const loadFormFromQuery = (location: any) => {
         }
     }
     catch (e) {
-        console.log(e + " while processing the formDataString");
+        console.log(e + " while processing the formDataString", e);
         return null;
     }
 

@@ -1,5 +1,5 @@
 import * as generalUtil from '../generalUtil';
-
+import { logger } from "../../logging";
 
 let savedFormContent = null;
 let encryptionKeyList = null;
@@ -29,7 +29,7 @@ function saveToLocalStorage(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
         
     } catch (e) {
-        console.error(`Error saving ${key} to localStorage`, e);
+        logger.error(`Error saving ${key} to localStorage`, e);
     }
 }
 
@@ -39,7 +39,7 @@ function loadFromLocalStorage(key, defaultValue = null) {
         const value = localStorage.getItem(key);
         return value ? JSON.parse(value) : defaultValue;
     } catch (e) {
-        console.error(`Error loading ${key} from localStorage`, e);
+        logger.error(`Error loading ${key} from localStorage`, e);
         return defaultValue;
     }
 }

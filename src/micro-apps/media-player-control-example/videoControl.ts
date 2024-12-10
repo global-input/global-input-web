@@ -35,7 +35,6 @@ const startSkipProcess = (videoPlayer, onFinish) => {
 
 export const setPlayVideoSource = (videoPlayer, video) => {
   if (videoPlayer) {
-    console.log("****changed video source:::" + video.mp4);
     videoPlayer.pause();
     videoPlayer.childNodes[0].setAttribute('src', video.mp4);
     videoPlayer.load();
@@ -47,13 +46,9 @@ export const playVideo = videoPlayer => {
   stopSkipProcess({ videoPlayer });
   if (videoPlayer) {
     videoPlayer.play();
-    videoPlayer.playbackRate = 1;
-    console.log("*********video is playing.....");
-
+    videoPlayer.playbackRate = 1;    
   }
-  else {
-    console.log("videoPlayer is empty");
-  }
+  
 };
 
 export const setMuted = (videoPlayer, muted) => {
