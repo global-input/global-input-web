@@ -16,6 +16,7 @@ import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import CheckBoxButton from '../../components/buttons/CheckBoxButton';
 
 import ACT_TYPE from './ACT_TYPE.js';
+import { logger } from '../../logging'; 
 
 // Utility function to get the default form ID
 export const getDefaultFormId = () => {
@@ -68,7 +69,7 @@ export const buildInitData = async ({ formData, label }) => {
       try {
         decryptedValue = await appStore.decryptContent(f.value);
       } catch (error) {
-        console.error(error);
+        logger.error("Error:"+error, error);
         decryptedValue = 'Failed to decrypt the content';
         errorMessage = 'Failed to decrypt the field content of: ' + f.label;
       }
@@ -342,7 +343,7 @@ export const buildMenu = ({
             );
           })
           .catch((err) => {
-            console.error('Could not copy text: ', err);
+            logger.error('Could not copy text: ', err);
           });
       }
     };

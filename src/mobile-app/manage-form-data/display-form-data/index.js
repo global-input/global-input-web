@@ -12,6 +12,7 @@ import menusConfig from '../../configs/menusConfig';
 import CopyToClipboard from '../../components/buttons/CopyToClipboard';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import { logger } from '../../logging';
 // Define action types
 const ACT_TYPE = {
   DISPLAY: 1,
@@ -64,8 +65,8 @@ const RenderAFormFieldWithShowValue = ({formField, index, label}) => {
       const value = await appStore.decryptContent(formField.value);
       setDisplayValue(value);
     } catch (error) {
-      console.error(error);
-      errorMessage = 'Failed to decrypt';
+      logger.error("Error"+error, error);
+      
     }
   };
   decrypt();

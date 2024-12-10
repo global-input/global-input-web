@@ -22,7 +22,7 @@ import {
 
 import {Scanner} from '../tests';
 
-
+import {logger} from '../logging';
 
 
 
@@ -96,7 +96,7 @@ const GlobalInputEye =  ({
     
     for(let i=0;i<code.length;i++){                      
         if(!code[i].rawValue){
-            console.log("no data in the qr code:"+i);
+          logger.log("no data in the qr code:"+i);
             continue;
         }
         const codedata = code[i].rawValue;    
@@ -114,13 +114,19 @@ const GlobalInputEye =  ({
             setContentAndMessage(codedata, eyeTextConfig.inputDisabled.display);
             return;
         }
-        if (appdata.isActiveEncryptionKeyEncryptedMessage(codedata)) {            
+        if (appdata.isActiveEncryptionKeyEncryptedMessage(codedata)) {
+          try{      
             const decryptedContent = await appdata.decryptCodeDataWithAnyEncryptionKey(codedata);
             if (decryptedContent) {
                   setContentAndMessage(decryptedContent, eyeTextConfig.password.success);
             } else {
               setContentAndMessage(codedata, eyeTextConfig.password.failed);
             }
+          }catch(error){
+            setContentAndMessage(codedata, eyeTextConfig.password.failed);
+            logger.error("error in decrypting the content:",error);
+
+          }
             return;
         } else if (appdata.isProtectedMasterEncryptionKey(codedata)) {
             toImportProtectedEncryptionKey(codedata);

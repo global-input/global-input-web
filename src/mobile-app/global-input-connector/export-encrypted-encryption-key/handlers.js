@@ -4,11 +4,11 @@ import manageKeysTextConfig from "../../configs/manageKeysTextConfig";
 
 import {appdata } from "../../store";
 
-  
+ import {logger} from '../../logging'; 
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {
-    console.log("encryptionKeyList is null");
+    logger.log("encryptionKeyList is null");
     return action;
   }
   
@@ -62,7 +62,7 @@ export const exportEncryptionKey = async ({action, setAction, onCompleted}) => {
           }
   }
   catch (error) {
-    console.log(error);
+    logger.error("error:"+error,error);
     setErrorMessage(manageKeysTextConfig.errorMessages.failedToEncrypt + error);      
   }
 }

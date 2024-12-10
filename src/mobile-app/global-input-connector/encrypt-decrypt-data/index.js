@@ -8,6 +8,7 @@ import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import TextInputField from '../../components/input/TextInputField';
 import { styles } from './styles';
+import { logger } from '../../logging';
 
 /*****************Init Data******Begin*********/
 const initDataActionForEncryptionAndDecryption = (initData, actionType) => {
@@ -120,7 +121,7 @@ const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
           action.selectedEncryptionKeyItem
         );
       } catch (error) {
-        console.warn(
+        logger.warn(
           error + ' failed to decrypt content: ' + JSON.stringify(f)
         );
       }
@@ -146,7 +147,7 @@ const toEncryptSendResult = ({ action, setAction }) => {
       errorMessage: null,
     });
   } catch (e) {
-    console.error(e);
+    logger.error("Error:"+e,e);
     setAction({
       ...action,
       errorMessage: 'Failed to encrypt/decrypt: ' + e.message,
@@ -167,7 +168,7 @@ const toDecryptSendResult = ({ action, setAction }) => {
       errorMessage: null,
     });
   } catch (e) {
-    console.error(e);
+    logger.error("Error:"+e,e);
     setAction({
       ...action,
       errorMessage: 'Failed to encrypt/decrypt: ' + e.message,

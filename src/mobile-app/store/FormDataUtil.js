@@ -1,4 +1,4 @@
-
+import { logger } from '../logging';
 
 export default class FormDataUtil {
   MAX_FORM_ID_LENGTH = 500;
@@ -79,7 +79,7 @@ export default class FormDataUtil {
         range = r;
       }
     } catch (error) {
-      console.warn(error);
+      logger.warn(error);
       return null;
     }
     return resultContent;
@@ -284,7 +284,7 @@ export default class FormDataUtil {
         return stdata[request.name];
       }
     } catch (error) {
-      console.warn(error);
+      logger.warn("Error:"+error, error);
     }
     return styles[request.name];
   }

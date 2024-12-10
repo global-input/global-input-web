@@ -10,6 +10,7 @@ import ManageKeysView from "../../manage-keys/manage-keys-view";
 import {FormContentDataView} from '../form-content-data-view'
 import {ManageFormData} from "../../../manage-form-data";
 import ViewWithTabMenu from "../../../components/menu/ViewWithTabMenu";
+import {logger} from "../../../logging";
 
 const ACT_TYPE={
     NO_DATA:1,
@@ -57,7 +58,7 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
                     setAction({...action, decryptedKey, type:ACT_TYPE.DECRYPTED });              
                   }
                   else{
-                    console.log("Failed to decrypt the key");
+                    logger.log("Failed to decrypt the key");
                     setAction({...action,  type:ACT_TYPE.NO_DATA });                            
                   }            
               }

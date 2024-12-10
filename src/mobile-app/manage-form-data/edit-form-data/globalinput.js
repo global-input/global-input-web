@@ -7,6 +7,8 @@ import { globalInputSettings } from '../../store';
 import { QRCodeView } from '../../qr-code-view';
 import ACT_TYPE from './ACT_TYPE';
 
+import {logger} from '../../logging';
+
 export const disconnect = globalInputConnector => {
   if (globalInputConnector.current) {
     globalInputConnector.current.disconnect();
@@ -30,7 +32,7 @@ export const startConnect = ({ setData, globalInputConnector, onInput }) => {
     });
   const onSenderConnected = (sender, senders) =>
     setData(data => {
-      console.log('---sender connected');
+      logger.log('---sender connected');
       const title = manageFormDataTextConfig.qrcode.title.connected;
       const globalInputState = { ...data.globalInputState, title, senders };
       return { ...data, globalInputState, actionType: ACT_TYPE.EDIT };
@@ -94,7 +96,7 @@ export const startConnect = ({ setData, globalInputConnector, onInput }) => {
     };
     const connectConfig = createConnectConfig(data.formData);
     globalInputConnector.current.connect(connectConfig);
-    console.log('-----connecting.....');
+    logger.log('-----connecting.....');
     return { ...data, globalInputState };
   });
 };

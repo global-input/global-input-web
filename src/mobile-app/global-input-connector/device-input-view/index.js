@@ -11,7 +11,7 @@ import ACT_TYPE from '../ACT_TYPE';
 import { generateRandomString } from 'global-input-message';
 import * as renders from './renders';
 import { appdata } from '../../store';
-
+import {logger} from '../../logging';
 export const DeviceInputView = ({
   action,
   setAction,
@@ -36,7 +36,7 @@ export const DeviceInputView = ({
           displayNotificationMessage(deviceInputTextConfig.clipboard.message);
         })
         .catch((err) => {
-          console.error('Could not copy text: ', err);
+          logger.error('Could not copy text: ', err);
         });
     }
   };
@@ -54,7 +54,7 @@ export const DeviceInputView = ({
           }
         })
         .catch((err) => {
-          console.error('Failed to read clipboard contents: ', err);
+          logger.error('Failed to read clipboard contents: ', err);
         });
     }
   };

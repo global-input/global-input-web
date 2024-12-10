@@ -1,4 +1,5 @@
 import * as generalUtil from '../generalUtil';
+import {logger} from '../../logging';
 
 // Key for localStorage
 const STORAGE_KEY = 'DOMAIN_TO_IDS';
@@ -11,7 +12,7 @@ function saveToLocalStorage(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
-    console.error(`Error saving ${key} to localStorage`, e);
+    logger.error(`Error saving ${key} to localStorage`, e);
   }
 }
 
@@ -21,7 +22,7 @@ function loadFromLocalStorage(key, defaultValue) {
     const value = localStorage.getItem(key);
     return value !== null ? JSON.parse(value) : defaultValue;
   } catch (e) {
-    console.error(`Error loading ${key} from localStorage`, e);
+    logger.error(`Error loading ${key} from localStorage`, e);
     return defaultValue;
   }
 }
@@ -72,7 +73,7 @@ function attachToDomains(formId, domains) {
         const newDomainFormMap = { ...domainMapping, formIds };
         updatedDomainToIds.push(newDomainFormMap);
       } else {
-        console.log('map is removed:' + domainMapping.domain);
+        logger.log('map is removed:' + domainMapping.domain);
       }
     } else {
       // Not changed
@@ -100,7 +101,7 @@ function deleteFormId(formId) {
         const newDomainFormMap = { ...domainMapping, formIds };
         updatedDomainToIds.push(newDomainFormMap);
       } else {
-        console.log('map is removed:' + domainMapping.domain);
+        logger.log('map is removed:' + domainMapping.domain);
       }
     } else {
       // Not changed

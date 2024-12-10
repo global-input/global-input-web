@@ -9,10 +9,11 @@ import { styles } from './styles';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
+import {logger} from '../../logging';
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {
-    console.log('encryptionKeyList is null');
+    logger.log('encryptionKeyList is null');
     return action;
   }
 
@@ -133,7 +134,7 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
         onCompleted(encryptedContent, codedataname);
       }
     } catch (error) {
-      console.error(error);
+      logger.error("error:"+error,error);
       setErrorMessage(manageKeysTextConfig.errorMessages.failedToEncrypt + error);
     }
   };

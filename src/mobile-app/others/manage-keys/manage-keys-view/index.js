@@ -28,7 +28,7 @@ import ClipboardCopyView from "../../../clipboard-copy-view";
 
 import { appdata, formDataUtil } from '../../../store';
 import * as appStore from '../../../store';
-
+import {logger} from '../../../logging';
 const ACT_TYPE = {
   LIST_KEYS: 1,
   GENERATE_NEW_KEY: 2,
@@ -56,7 +56,7 @@ const createNewAction = () => ({
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {
-    console.log('encryptionKeyList is null');
+    logger.log('encryptionKeyList is null');
     return;
   }
   for (let counter = 0; counter < action.numberRecordsInBatch; counter++) {
@@ -403,12 +403,12 @@ export default function ManageKeysView({
       action.password
     );
     if (!encryptedContent) {
-      console.log('Failed to decrypt the encryption key');
+      logger.log('Failed to decrypt the encryption key');
       return null;
     }
     const copyToClipboard = (text) => {
       navigator.clipboard.writeText(text).then(() => {
-        console.log('Copied to clipboard');
+        logger.log('Copied to clipboard');
         toClipboardCopyComplete();
       });
     };

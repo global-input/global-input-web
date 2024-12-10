@@ -4,9 +4,10 @@ import { appdata,  globalInputSettings} from '../store';
 import deviceInputTextConfig from "../configs/deviceInputTextConfig";
 
 import ACT_TYPE from './ACT_TYPE';
+import {logger} from '../logging';
 
 const onOutputMessageReceived = message => {
-    console.log("onOutputMessageReceived:" + message);
+    logger.log("onOutputMessageReceived:" + message);
 };
 export const connect = ({ codedata, globalInputConnector, setAction, onDeviceConnected, onDisconnected, onInput }) => {
     const loadingMessage = [...deviceInputTextConfig.connector.connecting];
@@ -48,7 +49,7 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
     };
     const onReceiverDisconnected = () => {
         onDisconnected();
-        console.log("application disconnected......");
+        logger.log("application disconnected......");
         disconnect({ globalInputConnector });
     };
     const onInputPermissionResult = message => {

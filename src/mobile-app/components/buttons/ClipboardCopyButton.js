@@ -8,6 +8,7 @@ import { styles } from "./styles";
 
 import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
 import menusConfig  from '../../configs/menusConfig';
+import {logger} from '../../logging';
 
 
 
@@ -51,7 +52,7 @@ export default class ClipboardCopyButton extends Component {
           return;
         }
       } catch (error) {
-        console.log(error);
+        logger.error("error:"+error,error);
         this.displayNotificationMessage(
           deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
         );
@@ -68,7 +69,7 @@ export default class ClipboardCopyButton extends Component {
           );
         })
         .catch((error) => {
-          console.error("Copy to clipboard failed", error);
+          logger.error("Copy to clipboard failed", error);
           this.displayNotificationMessage(
             deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
           );
@@ -93,7 +94,7 @@ export default class ClipboardCopyButton extends Component {
           );
         }
       } catch (error) {
-        console.error("Fallback copy to clipboard failed", error);
+        logger.error("Fallback copy to clipboard failed", error);
         this.displayNotificationMessage(
           deviceInputTextConfig.clipboardCopyButton.errorConvert + ":" + error
         );

@@ -7,6 +7,7 @@ import EditorWithTabMenu from '../../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../../components/input/TextInputField';
 import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
 import {appdata} from '../../../store';
+import {logger} from '../../../logging';
 
 
 const errorMessages = {
@@ -55,7 +56,7 @@ const PasswordDecrypt=  ({content, onEncryptionKeyDecrypted, onBack}) => {
           onEncryptionKeyDecrypted(encryptionKeyDecrypted);
         }
       } catch (error) {
-        console.log(error);
+        logger.error("error:"+error, error);
         setErrorMessage(errorMessages.invalidPassword);
       }
     }

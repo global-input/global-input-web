@@ -11,6 +11,7 @@ import menusConfig from '../../configs/menusConfig';
 import IconButton from '../../components/buttons/IconButton';
 import TextFieldWithDone from '../../components/input/TextFieldWithDone';
 import DisplayHeader from '../../components/menu/DisplayHeader';
+import {logger} from '../../logging';
 
 export default class ListFormLabelsHeader extends Component {
   constructor(props) {
@@ -161,7 +162,7 @@ export default class ListFormLabelsHeader extends Component {
       ) {
         return this.renderWithSearchButton();
       } else {
-        console.log('render without search');
+        logger.log('render without search');
         return this.renderWithoutSearchButton();
       }
     }

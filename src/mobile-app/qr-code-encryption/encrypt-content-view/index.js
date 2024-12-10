@@ -14,6 +14,7 @@ import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import { appdata } from '../../store';
 import * as appStore from '../../store';
+import { logger } from '../../logging';
 
 const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
   // Initialize state using a function to avoid recomputation on every render
@@ -58,7 +59,7 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
         onContentEncrypted(encryptedContent, encryptedQrCodeTextConfig.qrcodeLabel);
       }
     } catch (error) {
-      console.error(error);
+      logger.error("Error:"+error, error);
       setErrorMessage(`${encryptedQrCodeTextConfig.errorMessages.failedToEncrypt} ${error}`);
     }
   };

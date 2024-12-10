@@ -17,6 +17,7 @@ import {formDataUtil} from "./FormDataUtil";
 
 
 import * as appInstance from './appInstance';
+import {logger} from '../logging';
 
 const safeDecrypt = function (content, encryptionKey) {
     try {
@@ -142,10 +143,10 @@ const safeDecrypt = function (content, encryptionKey) {
               return decryptedContent
             }
           } else {
-            console.log('failed to decrypt the key:' + i);
+            logger.error('failed to decrypt the key:' + i);
           }
         } catch (error) {
-          console.log('failed to decrypt the content with none-active key')
+          logger.error('failed to decrypt the content with none-active key')
         }
       }
       return null
@@ -162,7 +163,7 @@ const safeDecrypt = function (content, encryptionKey) {
         userSettings.updateFormData(formId, formData)
         domainFormMappings.updateDomains({formData, formId})
       } else {
-        console.log('Could not save empty data or the ones without id')
+        logger.error('Could not save empty data or the ones without id')
       }
     }
     createFormData (formData) {
@@ -170,7 +171,7 @@ const safeDecrypt = function (content, encryptionKey) {
         userSettings.createFormData(formData);
         domainFormMappings.saveDomains({formData})
       } else {
-        console.log('Could not save empty data or the ones without id')
+        logger.error('Could not save empty data or the ones without id')
       }
     }    
     deleteFormData (formData) {
@@ -178,7 +179,7 @@ const safeDecrypt = function (content, encryptionKey) {
         userSettings.deleteFormData(formData)
         domainFormMappings.deleteFormData({formData})
       } else {
-        console.log('Could not delete empty data or the ones without id')
+        logger.error('Could not delete empty data or the ones without id')
       }
     }
   
@@ -260,17 +261,17 @@ const safeDecrypt = function (content, encryptionKey) {
           decryptedKey + this.backupKeySuffix,
         )
         if (!globalInputData) {
-          console.log('Failed to decrypt the backup')
+          logger.error('Failed to decrypt the backup')
           return null
         }
         globalInputData = JSON.parse(globalInputData)
         if (!globalInputData.forms || !globalInputData.forms.length) {
-          console.log('data format error')
+          logger.error('data format error')
           return null
         }
         return globalInputData
       } catch (error) {
-        console.log(error)
+        logger.log("error:"+error, error);
         return null
       }
     }
@@ -402,7 +403,7 @@ const safeDecrypt = function (content, encryptionKey) {
           return null
         }
       } catch (error) {
-        console.log('failed to parse the json:' + error)
+        logger.error('failed to parse the json:' + error, error);
         return null
       }
     }
@@ -501,13 +502,15 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           await appInstance.setupAppInstallationId(password);        
           await appInstance.signin(password);
           await appInstance.setupEncryptionKeys();                        
+          userSettings.setStorageVersion("1.0");
+          onLoggedIn();        
         }
         catch(error){
-          console.log(error)
-          onError('Failed to set up the app. Please try again.');
+          logger.error("error:"+error, error);
+          onError('Failed to set up the app. Please try again. password should be at least 5 characters long.');
+          resetApp();
         }
-        userSettings.setStorageVersion("1.0");
-        onLoggedIn();        
+        
   };
 
 
@@ -520,12 +523,12 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           await appInstance.changePassword(originalPassword, newPassword);
         }
         catch(error){
-          console.log(error)
+          logger.log("Error:"+error, error);
           return false;
         }
           return true
       } catch (error) {
-        console.log(error)
+        logger.error("error:"+error,error);
         return false
       }
     } else {
@@ -546,7 +549,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       onLoggedIn();
     }
     catch(error){
-      console.log(error)
+      logger.error("error:"+error, error);
       onError('Incorrect password.');
     } 
      
@@ -572,7 +575,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       userSettings.mergeFormData(formData);
       domainFormMappings.mergeFormData({formData})
     } else {
-      console.log('Could not merge empty data or the ones without id')
+      logger.error('Could not merge empty data or the ones without id');
     }
   }
 
@@ -581,12 +584,12 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
   export const activateEncryptionKey = (encryptionKeyitem) => {
     if (!isAppSignedIn()) {
-      console.log('The user has not logged in')
+      logger.error('The user has not logged in')
       return
     }
     
     if (isEncryptionKeyIsActive(encryptionKeyitem)) {
-      console.log('the key is identical to the current one')
+      logger.error('the key is identical to the current one')
       return
     }
     

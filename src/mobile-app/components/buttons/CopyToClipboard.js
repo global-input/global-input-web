@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import NotificationText from '../display-text/NotificationText';
 import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
-
+import {logger} from '../../logging';
 export default class CopyToClipboard extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +42,7 @@ export default class CopyToClipboard extends Component {
           return;
         }
       } catch (error) {
-        console.log(error);
+        logger.error("error:"+error,error);
         this.displayNotificationMessage(
           deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
         );
@@ -60,7 +60,7 @@ export default class CopyToClipboard extends Component {
           );
         })
         .catch((error) => {
-          console.error('Copy to clipboard failed', error);
+          logger.error('Copy to clipboard failed', error);
           this.displayNotificationMessage(
             deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
           );
@@ -85,7 +85,7 @@ export default class CopyToClipboard extends Component {
           );
         }
       } catch (error) {
-        console.error('Fallback copy to clipboard failed', error);
+        logger.error('Fallback copy to clipboard failed', error);
         this.displayNotificationMessage(
           deviceInputTextConfig.clipboardCopyButton.errorConvert + ':' + error
         );

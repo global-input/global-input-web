@@ -1,7 +1,7 @@
 import * as globalInputMessage from 'global-input-message';
 import * as enc from '../enc';
 
-
+import { logger } from '../../logging';
 // Keys for localStorage
 const STORAGE_KEYS = {
   API_KEY: "GLOBAL_INPUT_API_KEY",
@@ -56,7 +56,7 @@ async function saveToLocalStorage(key, value) {
         }
         localStorage.setItem(key, stringValue);
   } catch (e) {
-    console.error(`Error saving ${key} to localStorage`, e);
+    logger.error(`Error saving ${key} to localStorage`, e);
   }
 }
 
@@ -79,7 +79,7 @@ async function loadFromLocalStorage(key, defaultValue) {
           return  JSON.parse(stringValue);        
       }        
   } catch (e) {
-    console.error(`Error loading ${key} from localStorage`, e);
+    logger.error(`Error loading ${key} from localStorage`, e);
     return null;
   }
 }
@@ -104,7 +104,7 @@ function notifySubscribers(changedKey, newValue) {
     try {
       callback(changedKey, newValue);
     } catch (e) {
-      console.error("Error in subscriber callback:", e);
+      logger.error("Error in subscriber callback:", e);
     }
   });
 }

@@ -8,6 +8,7 @@ import TextInputField from '../components/input/TextInputField';
 
 import EditorWithTabMenu from '../components/menu/EditorWithTabMenu';
 import { appdata } from '../store';
+import {logger} from '../logging';
 
 const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const [action, setAction] = useState({
@@ -25,7 +26,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const decryptWithPassword = () => {
     var { password, codedata } = action;
     if (!password) {
-      console.log('Password is missing');
+      logger.log('Password is missing');
       setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
     } else {
       
@@ -40,7 +41,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
           onEncryptionKeyDecrypted(encryptionKeyDecrypted);
         }
       } catch (error) {
-        console.log(error);
+        logger.log("error:"+error, error);
         setErrorMessage(manageKeysTextConfig.errorMessages.invalidPassword);
       }
     }

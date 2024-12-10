@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { styles, stylesData } from './styles';
 import { formDataUtil } from '../../store';
-
+import {logger} from '../../logging';
 export default class DisplayContent extends Component {
   MAX_ARRAY_LENGTH = 500;
   MAX_URL_LENGTH = 500;
@@ -23,7 +23,7 @@ export default class DisplayContent extends Component {
       return false;
     }
     if (url.length > this.MAX_URL_LENGTH) {
-      console.warn('URL is too long');
+      logger.warn('URL is too long');
       return false;
     }
     if (
@@ -139,7 +139,7 @@ export default class DisplayContent extends Component {
     if (typeof item === 'object') {
       if (Array.isArray(item)) {
         if (item.length > this.MAX_ARRAY_LENGTH) {
-          console.log('array is too big');
+          logger.log('array is too big');
           return null;
         } else if (typeof key === 'undefined') {
           return item.map(this.renderItem.bind(this));
@@ -222,7 +222,7 @@ export default class DisplayContent extends Component {
       Array.isArray(this.props.content)
     ) {
       if (this.props.content.length > this.MAX_ARRAY_LENGTH) {
-        console.log('array is too big');
+        logger.error('array is too big');
         return null;
       } else {
         return (

@@ -3,6 +3,7 @@ import * as userSettings from "./localStorage/userSettings";
 
 import * as generalUtil from './generalUtil';
 import FormDataUtil from "./FormDataUtil";
+import { logger } from '../logging';
 
 const formDataUtil = new FormDataUtil();
 
@@ -36,7 +37,7 @@ const findFormsByDomain = (domain) => {
             forms.push(form)
         }
         else {
-            console.log("delete a dangling record:" + formId);
+            logger.log("delete a dangling record:" + formId);
             domainFormMappings.deleteByFormId(formId);
         }
     }

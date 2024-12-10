@@ -14,6 +14,7 @@ import {DecryptImportView} from '../restore-data/decrypt-import-view'
 import BackupFormData from '../backup-data'
 import {HelpScreen} from '../../help-screen'
 import DeleteAllDataView from '../delete-all-data'
+import {logger} from '../../logging'
 
 const ACT_TYPE = {
   MAIN: 1,
@@ -35,11 +36,11 @@ const OthersView= ({menuItems, logout}) => {
   const manageKeysSelected = () => setActionType(ACT_TYPE.MANAGEKEYS)
   const restoreDataSelected = () => {
     if(!navigator.clipboard == undefined){
-      console.log("Clipboard not supported");
+      logger.log("Clipboard not supported");
       return;
     }
     if(!navigator.clipboard.readText){
-      console.log("Clipboard readText not supported");
+      logger.log("Clipboard readText not supported");
       return;
     }
     navigator.clipboard.readText().then(clipboardContent => {

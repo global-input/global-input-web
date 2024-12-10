@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { IScannerProps, IDetectedBarcode } from '@yudiel/react-qr-scanner';
 import {loadTestTextQRCodeValue, delayDuration} from '../../config';
+import {logger} from '../../../logging';
 // Mock Scanner Component
 const MockScanner: React.FC<IScannerProps> = ({ onScan }) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const MockScanner: React.FC<IScannerProps> = ({ onScan }) => {
       try{
           
           const codeString= await loadTestTextQRCodeValue();
-          console.log("-----mocking qr code: ", codeString);
+          logger.log("-----mocking qr code: ", codeString);
           await new Promise(resolve => setTimeout(resolve, delayDuration));      
           const mockBarcodeData: IDetectedBarcode = {
             boundingBox: { x: 0, y: 0, width: 100, height: 100 },
@@ -22,7 +23,7 @@ const MockScanner: React.FC<IScannerProps> = ({ onScan }) => {
           onScan([mockBarcodeData]);
         }
         catch(error){
-          console.error("Error in MockScanner: ", error);
+          logger.error("Error in MockScanner: ", error);
         }
       
     };

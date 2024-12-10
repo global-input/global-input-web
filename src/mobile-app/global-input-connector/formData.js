@@ -17,6 +17,7 @@ import ACT_TYPE from './ACT_TYPE';
 
 import * as encryptDecryptData from './encrypt-decrypt-data';
 
+import {logger} from '../logging';
 
 const MAX_NUMBER_OF_FIELDS = 100;
 
@@ -46,9 +47,9 @@ export const printError = ({
   setAction,
 }) => {
   if (error) {
-    console.log(notificationMessage + ':' + error + ':' + error.stack);
+    logger.log(notificationMessage + ':' + error + ':' + error.stack);
   } else {
-    console.log(notificationMessage);
+    logger.log(notificationMessage);
   }
   if (messageTimerHandler && setAction) {
     if (error) {
@@ -237,7 +238,7 @@ export const onInputAction = (message, action) => {
       });
     }
   } else {
-    console.log('ignored the input message');
+    logger.log('ignored the input message');
   }
   return action;
 };
@@ -319,7 +320,7 @@ const countProcessableFields = initData => {
 
   initData.form.fields.forEach(f => {
     if (!f) {
-      console.warn('enpty field is encountered ');
+      logger.warn('enpty field is encountered ');
     } else if (f.value && f.type === 'encrypt') {
       encryptFieldCount++;
     } else if (f.value && f.type === 'decrypt') {
