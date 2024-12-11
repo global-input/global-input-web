@@ -9,7 +9,7 @@ const stylesData = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'rgba(72,128,237,1)',
-    height: '100vh', // Add this line
+    height: '100vh', // Add this line    
 
   },
   header: {
@@ -50,8 +50,7 @@ const stylesData = {
     flexDirection: 'column',
     width: '90%',
     justifyContent: 'center',
-    alignItems: 'center',
-    
+    alignItems: 'center'
     
   },
   dialogHeader: {
@@ -72,6 +71,7 @@ const stylesData = {
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 20,
+    width:"90%"
     
   },
   titleText: {

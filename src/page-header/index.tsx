@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { config } from "../web-config";
-
 import {
   Title,
   appTitle,
@@ -18,22 +16,50 @@ import {
   CompanyLogo,
   LogoAndNameLink,
   LogoSection,
-  Pipe
+  Pipe,
 } from "./layout";
 
 interface Props {
   selected?: string | null;
 }
+
 export const PageHeader: React.FC<Props> = ({ selected }) => {
   const [menuPressed, setMenuPressed] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const menuRef = useRef(null);
-  useClickedOutside(menuRef, () => {
-    if (menuPressed) {
+  const handleClickOutside = (event: MouseEvent) => {
+    
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    
       setMenuPressed(false);
     }
-  });
-  const toggle = () => setMenuPressed((menuPressed) => !menuPressed);
+  };
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+  
+    if (menuPressed) {
+      
+      timer = setTimeout(() => {
+      
+        document.addEventListener("click", handleClickOutside);
+      }, 0); // Delay activation
+    } else {
+      
+      document.removeEventListener("click", handleClickOutside);
+    }
+  
+    return () => {
+      clearTimeout(timer);
+      
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [menuPressed]);
+
+  const toggleMenu = () => {
+    
+    setMenuPressed((prev) => !prev);
+  };
 
   const listMenu = menus.map((menu, index) => (
     <MenuItem to={menu.link} key={`${index}_${menu.link}_${menu.linkText}`}>
@@ -45,20 +71,19 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
     <Container>
       <TopBar>
         <LogoSection>
-        <LogoAndNameLink href="https://iterativesolution.co.uk">
-          <CompanyLogo/>
-          <Title>Iterative Solution</Title>          
-        </LogoAndNameLink>
-        <Pipe />
-        <LogoAndNameLink href="/">          
-          <AppLogo />
-          <Title>{appTitle}</Title>
-        </LogoAndNameLink>
-
+          <LogoAndNameLink href="https://iterativesolution.co.uk">
+            <CompanyLogo />
+            <Title>Iterative Solution</Title>
+          </LogoAndNameLink>
+          <Pipe />
+          <LogoAndNameLink href="/">
+            <AppLogo />
+            <Title>{appTitle}</Title>
+          </LogoAndNameLink>
         </LogoSection>
-        
+
         <DesktopMenuContainer>{listMenu}</DesktopMenuContainer>
-        <Icon onClick={toggle}>
+        <Icon onClick={toggleMenu} aria-expanded={menuPressed}>
           <CloseIcon $show={menuPressed} />
           <OpenIcon $show={!menuPressed} />
         </Icon>
@@ -70,35 +95,9 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
   );
 };
 
-const useClickedOutside = (element, onClicked) => {
-  useEffect(() => {
-    const handleClick = (evt) => {
-      if (element.current && !element.current.contains(evt.target)) {
-        onClicked();
-      }
-    };
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [onClicked, element]);
-};
-
 const menus = [
-  {
-    link: config.paths.home.path,
-    linkText: "HOME",
-  },
-  {
-    link: config.paths.privacy.path,
-    linkText: "PRIVACY POLICY",
-  },
-  {
-    link: config.paths.contactUs.path,
-    linkText: "CONTACT US",
-  },
-  {
-    link: config.paths.getAppScreen.path,
-    linkText: "GET IT FREE",
-  },
+  { link: config.paths.home.path, linkText: "HOME" },
+  { link: config.paths.privacy.path, linkText: "PRIVACY POLICY" },
+  { link: config.paths.contactUs.path, linkText: "CONTACT US" },
+  { link: config.paths.getAppScreen.path, linkText: "GET IT FREE" },
 ];

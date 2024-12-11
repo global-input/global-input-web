@@ -50,6 +50,9 @@ export const GetAppPage: React.FC = () => {
             <PlayStoreButton />
           </CardFooter>
         </Card>
+        </Content>
+        <Content>
+        
         <Card>
           <ModuleIcon />
           <CardTitle>NPM Modules</CardTitle>

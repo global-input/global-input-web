@@ -12,7 +12,7 @@ const styleData = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'center'    
   },
   labelIcon: {
     marginRight: 5,
