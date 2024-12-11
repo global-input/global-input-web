@@ -51,6 +51,7 @@ const styleData = {
     padding: 0,
     paddingTop: 14,
     paddingBottom: 14,
+    border: 'none',
   },
   textInputContainer: {
     display: 'flex',

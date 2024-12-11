@@ -9,9 +9,9 @@ else{
 
 export const isDevelopment=environment==='development';
 
-export const  developmentPassword=isDevelopment?'test':'';
+export const  developmentPassword=isDevelopment?'test1':'';
 
-const encripted_text= 'P1U2FsdGVkX18UnZ3sAhTIAZEMe5oyoq0h6bELXKEYebABGiOI8uxWpRJk2MIq89PL';
+const encripted_text= 'test';
 
 
 export  function loadTestTextQRCodeValue(){

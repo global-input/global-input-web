@@ -35,7 +35,7 @@ interface PageData {
 
 
 const initialState = {
-    page: Page.ManageFormData,
+    page: Page.ScanQRCode,
     code: null,
 };
 const MobileApp: React.FC = () => {    
