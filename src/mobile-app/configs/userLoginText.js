@@ -35,13 +35,12 @@ const userLoginText = {
       placeHolder: 'Confirm your password',
     },
     buttonText: 'Setup',
-    content:
-      'Your password is not stored anywhere, it is used only for encrypting encryption keys. The encryption keys are used for encrypting/decrypting your data in the app. Note that there is no way to recover your password if you forgot it.',
+    
   },
   login: {
     title: 'Login',
     content:
-      'Your password is not stored anywhere, it is used only for decrypting encryption keys. The encryption keys are used for encrypting/decrypting your data in the app. Note that there is no way to recover your password if you forgot it.',
+      'Your password is never stored; it is used solely to encrypt your encryption keys. These encryption keys are responsible for securing and accessing your data within the app. Please note that if you forget your password, there is no way to recover it.',
     password: {
       placeHolder: 'Password',
     },
@@ -56,11 +55,7 @@ const userLoginText = {
     cancelText: 'Cancel',
   },
   changePassword: {
-    title: 'Changing Password',
-
-    content: [
-      'Your password is not stored anywhere, it is used only for decrypting encryption keys. The encryption keys are used for encrypting/decrypting your data in the app. Note that there is no way to recover your password if you forgot it.',
-    ],
+    title: 'Changing Password',    
     labels: {
       originalPassword: 'Current password',
       newPassword: 'New password',

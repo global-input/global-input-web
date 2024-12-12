@@ -35,6 +35,7 @@ const stylesData = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
+    maxWidth:600
   },
   logoText: {
     backgroundColor: 'rgba(72,128,237,1)',

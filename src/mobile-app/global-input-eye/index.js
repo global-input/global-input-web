@@ -243,16 +243,19 @@ const GlobalInputEye =  ({
   const renderCameraView = () => {
     
     
-    if (isDisplayMessage()) {            
+    if (isDisplayMessage()) {  
+      const orgMeniItems = menuItems;
       menuItems = [
         {
           menu: menusConfig.dismiss.menu,
           onPress: clearContentAndMessage,
-        },
+        },        
+        orgMeniItems[orgMeniItems.length - 1],
         {
           menu: menusConfig.clipboardCopy.menu,
           onPress: copyContentToClibboard,
         },
+
       ];
       if (
         data.content &&

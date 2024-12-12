@@ -113,7 +113,7 @@ const renderErrorMessage = () => {
                             </div>
                             {renderErrorMessage()}
 
-                                  <DisplayBlockText content={userLoginText.changePassword.content}/>
+                                  <DisplayBlockText content={userLoginText.login.content}/>
                             
 
           </EditorWithTabMenu>

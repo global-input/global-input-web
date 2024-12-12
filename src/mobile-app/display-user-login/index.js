@@ -98,7 +98,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           />
         </div>
         <div style={styles.helpContainer}>
-          <span style={styles.helpText}>{userLoginText.setup.content}</span>
+          <span style={styles.helpText}>{userLoginText.login.content}</span>
         </div>
       </div>
     );

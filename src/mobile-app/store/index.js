@@ -491,12 +491,15 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
        if (!password) {
           onError('Password required.');
+          return;
         }      
         if (password !== repeatedPassword) {
           onError('Password does not match.');
+          return;
         }
         if (appInstance.isSetup()) {      
           onError('It appears that the app has already been set up. Please refresh the app and login to continue.');    
+          return;
         }  
         try{
           await appInstance.setupAppInstallationId(password);        

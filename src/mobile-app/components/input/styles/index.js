@@ -51,7 +51,7 @@ const styleData = {
     padding: 0,
     paddingTop: 14,
     paddingBottom: 14,
-    border: 'none',
+    border: '1px dashed #4880ED',
   },
   textInputContainer: {
     display: 'flex',
