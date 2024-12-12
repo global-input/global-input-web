@@ -71,7 +71,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           <span style={styles.titleText}>{userLoginText.setup.title}</span>
         </div>
 
-        {renderErrorMessage()}
+        
         <div style={styles.formItem}>
           <TextInputField
             placeholder={userLoginText.setup.password.placeHolder}
@@ -90,6 +90,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
             autoComplete="off"
           />
         </div>
+        
         <div style={styles.formItem}>
           <DialogButton
             position="separate"
@@ -98,6 +99,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           />
         </div>
         <div style={styles.helpContainer}>
+        {renderErrorMessage()}
           <span style={styles.helpText}>{userLoginText.login.content}</span>
         </div>
       </div>
@@ -108,7 +110,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
     return (
       <div style={styles.form}>
         
-        {renderErrorMessage()}
+        
         <div style={styles.formItem}>
           <TextInputField
             placeholder={userLoginText.login.password.placeHolder}
@@ -126,9 +128,6 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
             onPress={login}            
           />
         </div>
-        <div style={styles.helpContainer}>
-          <span style={styles.helpText}>{userLoginText.login.content}</span>
-        </div>
         <div style={styles.formItem}>
           
           <DialogButton
@@ -137,6 +136,11 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
             onPress={resetApp}            
           />
         </div>
+        <div style={styles.helpContainer}>
+        {renderErrorMessage()}
+          <span style={styles.helpText}>{userLoginText.login.content}</span>
+        </div>
+        
       </div>
     );
   };

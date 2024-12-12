@@ -86,7 +86,7 @@ const stylesData = {
   },
   errorMessage: {
     width: '100%',
-    fontSize: 12,
+    fontSize: 20,
     fontFamily: 'Futura-Medium',
     color: 'red',
     display: 'flex',
