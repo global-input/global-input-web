@@ -74,6 +74,34 @@ export const Card = styled.div`
     margin-right: 50px;
   }
 `;
+export const GIACard = styled.div`
+  padding: 15px 5px 5px 5px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  color: #5291cd;
+  width: 100%;
+  min-height: 300px;
+  max-width: 400px;
+  border-radius: 5px;
+
+  @media only screen and (min-width: 1000px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: 600px;
+
+  }
+  @media only screen and (min-width: 1200px) {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+`;
+
+
 
 const Icon = styled.img`
   margin-top: 10px;
@@ -121,6 +149,21 @@ export const CardFooter = styled.div`
   }
 `;
 
+export const GIAFooter = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  align-items: center;
+  height: 110px;
+  margin-top: 20px;
+  @media only screen and (min-width: 360px) {
+    flex-direction: row;
+    height: auto;
+  }
+`;
+
 export const WebAppContainer = styled.div`
   width: 90%;
   display: flex;
@@ -130,8 +173,18 @@ export const WebAppContainer = styled.div`
   align-items: center;
   
   margin-top: 20px;
-  
+  @media only screen and (min-width: 1000px) {
+    display: none;
+
+  }
 `;
+export const WebAppContainer2 = styled.div`  
+  @media only screen and (max-width: 999px) {
+    display: none;
+
+  }
+`;
+
 
 const AppStoreImage = styled.img.attrs({
   src: appStore,

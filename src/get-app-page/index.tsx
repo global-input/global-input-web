@@ -15,6 +15,8 @@ import {
   WebAppLink,
   CardContent,
   CardFooter,
+  GIAFooter,
+  GIACard,
   ExtensionIcon,
   AppStoreButton,
   PlayStoreButton,
@@ -23,7 +25,8 @@ import {
   ModuleIcon,
   JSModuleButton,
   ReactModuleButton,
-  WebAppContainer
+  WebAppContainer,
+  WebAppContainer2
 } from "./layout";
 export const GetAppPage: React.FC = () => {
   useConnectToMobile();
@@ -33,7 +36,7 @@ export const GetAppPage: React.FC = () => {
     <Container>
       <PageHeader selected={config.paths.getAppScreen.path} />
       <Content>
-        <Card>
+        <GIACard>
           <AppIcon />
           <CardTitle>Global Input App</CardTitle>
           <CardContent>
@@ -43,13 +46,18 @@ export const GetAppPage: React.FC = () => {
             
             <WebAppLink />
             
+            
+            
           </WebAppContainer>
-          <CardFooter>
+          <GIAFooter>
             <AppStoreButton />
+            <WebAppContainer2>
+            <WebAppLink />
+            </WebAppContainer2>
             
             <PlayStoreButton />
-          </CardFooter>
-        </Card>
+          </GIAFooter>
+        </GIACard>
         </Content>
         <Content>
         
