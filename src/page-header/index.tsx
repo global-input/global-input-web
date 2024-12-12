@@ -17,6 +17,7 @@ import {
   LogoAndNameLink,
   LogoSection,
   Pipe,
+  MobileMenuContent,
 } from "./layout";
 
 interface Props {
@@ -89,7 +90,9 @@ export const PageHeader: React.FC<Props> = ({ selected }) => {
         </Icon>
       </TopBar>
       {menuPressed && (
-        <MobileMenuContainer ref={menuRef}>{listMenu}</MobileMenuContainer>
+        <MobileMenuContainer ref={menuRef}>
+          <MobileMenuContent>{listMenu}</MobileMenuContent>
+        </MobileMenuContainer>
       )}
     </Container>
   );

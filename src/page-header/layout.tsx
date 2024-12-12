@@ -125,7 +125,9 @@ export const MenuItem = styled(Link)`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  align-items: center; /* Add this line */
+  align-items: center;
+  width: 100%; /* Add this line */
+  border-bottom: 1px solid #5291cd; /* Add this line */
   &: hover {
     color: #74b3fe;
   }
@@ -133,6 +135,8 @@ export const MenuItem = styled(Link)`
     padding: 0;
     justify-content: center;
     margin-left: 30px;
+    border-bottom: none; /* Remove border for desktop view */
+    width: auto; /* Reset width for desktop view */
   }
 `;
 
@@ -188,6 +192,13 @@ export const DesktopMenuContainer = styled.div`
   @media only screen and (min-width: 1024px) {
     margin-right: 15vw;
   }
+`;
+
+export const MobileMenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 `;
 
 export const MobileMenuContainer = styled.div`
