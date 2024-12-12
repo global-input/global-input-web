@@ -54,6 +54,9 @@ export const Title = styled.h3`
   @media only screen and (min-width: 500px) {
     font-size: 20px;
   }
+  @media only screen and (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 export const Pipe=styled.div`
   border-left: 1px solid ;
