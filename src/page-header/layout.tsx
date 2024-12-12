@@ -115,7 +115,7 @@ export const MenuItem = styled(Link)`
   &: hover {
     color: #74b3fe;
   }
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 950px) {
     padding: 0;
     justify-content: center;
     margin-left: 30px;
@@ -135,7 +135,7 @@ export const Icon = styled.button`
     box-shadow: 0 0 50px #ffff;
   }
   display: none;
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 950px) {
     display: block;
   }
 `;
@@ -167,7 +167,7 @@ export const DesktopMenuContainer = styled.div`
   flex-direction: row;
   margin: 0;
   padding: 0;
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 950px) {
     display: flex;
     margin-right: 5vw;
   }
@@ -186,7 +186,7 @@ export const MobileMenuContainer = styled.div`
   right: 0;
   width: 100%;
   animation: ${dropDown} 300ms ease-out;
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 950px) {
     display: none;
   }
 `;
