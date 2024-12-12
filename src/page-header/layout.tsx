@@ -15,6 +15,16 @@ const dropDown = keyframes`
     transform:translateY(0%)
   }
 `;
+
+const slideIn = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
 export const LogoSection= styled.div`
   display: flex;
   flex-direction: row;
@@ -185,7 +195,7 @@ export const MobileMenuContainer = styled.div`
   top: 54px;
   right: 0;
   width: 100%;
-  animation: ${dropDown} 300ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
   @media only screen and (min-width: 950px) {
     display: none;
   }
