@@ -118,14 +118,14 @@ export const MenuItem = styled(Link)`
   background-color: white;
   text-decoration: none;
   color: #5291cd;
-  text-align: center;
+  text-align: left; /* Change this line */
   white-space: nowrap;
   padding-left: 10px;
   font-size: 15px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  align-items: center;
+  align-items: flex-start; /* Change this line */
   width: 100%; /* Add this line */
   border-bottom: 1px solid #5291cd; /* Add this line */
   &: hover {
@@ -137,6 +137,8 @@ export const MenuItem = styled(Link)`
     margin-left: 30px;
     border-bottom: none; /* Remove border for desktop view */
     width: auto; /* Reset width for desktop view */
+    text-align: center; /* Reset text alignment for desktop view */
+    align-items: center; /* Reset alignment for desktop view */
   }
 `;
 
@@ -197,7 +199,7 @@ export const DesktopMenuContainer = styled.div`
 export const MobileMenuContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start; /* Change this line */  
   width: 100%;
 `;
 
