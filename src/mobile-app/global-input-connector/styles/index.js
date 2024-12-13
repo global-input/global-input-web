@@ -210,7 +210,8 @@ emptyText:{
     marginTop:15,
     marginBottom:15,
     display:"flex",
-    flexDirection:"row",
+    flexDirection:"row",    
+    width:"100%"
   },
 
 
