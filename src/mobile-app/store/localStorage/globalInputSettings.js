@@ -89,7 +89,14 @@ async function initializeState() {
     apikey = await loadFromLocalStorage(STORAGE_KEYS.API_KEY, memEncrypt("SOh85GNXT8TXLCTEc"));  
     securityGroup = await loadFromLocalStorage(STORAGE_KEYS.SECURITY_GROUP,memEncrypt("1CNbWCFpsbmRQuKdd"));    
     codeAES = await loadFromLocalStorage(STORAGE_KEYS.CODE_AES, memEncrypt("LNJGw0x5lqnXpnVY8"));
-    client = await loadFromLocalStorage(STORAGE_KEYS.CLIENT, memEncrypt(globalInputMessage.generateRandomString(17)));      
+    client = await loadFromLocalStorage(STORAGE_KEYS.CLIENT, null);
+    if(!client){
+      client = memEncrypt(globalInputMessage.generateRandomString(17));
+      if(appInstance.id){        
+          await saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
+      }
+      
+    }        
     appLoginTimeout = await loadFromLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT,120000);  
     preserveSession = await loadFromLocalStorage(STORAGE_KEYS.PRESERVE_SESSION,true);    
     proxyURL = await loadFromLocalStorage(STORAGE_KEYS.PROXY_URL,memEncrypt("https://globalinput.co.uk"));  
