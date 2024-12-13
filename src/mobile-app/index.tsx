@@ -35,12 +35,17 @@ interface PageData {
 
 
 const initialState = {
+    page: Page.UserLogin,
+    code: null,
+};
+
+const AfterLoggedIn= {  
     page: Page.ScanQRCode,
     code: null,
 };
 const MobileApp: React.FC = () => {    
     const [page, setPage] = useState<PageData>(initialState);
-    const [previousPage, setPreviousPage] = useState<PageData>(initialState);
+    const [previousPage, setPreviousPage] = useState<PageData>(AfterLoggedIn);
     
     
     
