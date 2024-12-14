@@ -561,6 +561,17 @@ export const renderSessionEnd = ({menuItems}) => {
   );
 };
 
+function getValueByFieldId(action, fieldId){
+  if(action && action.globalInputdata){
+    const field = action.globalInputdata.find(f => f.id === fieldId);
+    if(field){
+      return field.value;
+    }
+  }
+  return null;
+  
+
+}
 export const renderEncryptSecret = ({
   action,
   setAction,
@@ -574,7 +585,12 @@ export const renderEncryptSecret = ({
 
   const onEncryptedContent = (content, label) => {    
     try {
-      fillContentEncryptionForm({content, label, setAction, onFieldChanged});
+      
+      let labelToSet=getValueByFieldId(action, 'label');
+      if((!labelToSet) && label){
+        labelToSet=label;        
+      }      
+      fillContentEncryptionForm({content, label:labelToSet, setAction, onFieldChanged});
     } catch (error) {
       printError({
         notificationMessage: deviceInputTextConfig.decryptFailed.message,

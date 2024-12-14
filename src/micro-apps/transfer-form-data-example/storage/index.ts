@@ -18,8 +18,8 @@ export const clearCacheFields = (domain?: string) => {
         }
     }
     catch (error) {
-        console.error("failed to clear the cache:" + error);
-        console.error(error.stack);
+        console.error("failed to clear the cache:" + error, error);
+        
     }
 };
 export const setCacheFields = (domain: string, encryptedContent: string) => {
@@ -74,7 +74,7 @@ export const loadSavedFormFields = (domain: string) => {
         }
     }
     catch (error) {
-        console.error(error);
+        console.error("failed to parase thr fieldstring:"+error, error);
     }
     return null;
 };

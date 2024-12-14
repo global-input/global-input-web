@@ -63,7 +63,7 @@ export const pauseVideo = videoPlayer => {
       videoPlayer.pause();
     }
     catch (error) {
-      console.log("error when trying to pause the video:" + error);
+      console.log("error when trying to pause the video:" + error, error);
     }
   }
 }

@@ -19,10 +19,26 @@ export const GenerateQRCode = ({ content, label, back }) => {
     mobile.setOnchange(({ field }) => {
         switch (field.id) {
             case FIELDS.size.id:
-                setSize(field.value as number);
+                if (field.value !== undefined) {
+                    setSize(field.value as number);
+                }
                 break;
             case FIELDS.level.id:
-                setLevel(field.value as string);
+                if (field.value !== undefined) {
+                    if(Array.isArray(field.value)){
+                        if(field.value.length>0){
+                            setLevel(field.value[0] as string);
+                        }
+                        else{
+                            setLevel('H');
+                        }                        
+                    }
+                    else{                        
+                    setLevel(field.value as string);
+
+                    }   
+                    
+                }
                 break;
             case FIELDS.back.id:
                 back();
@@ -40,7 +56,11 @@ export const GenerateQRCode = ({ content, label, back }) => {
 
 
             <ContentLabel>{label}</ContentLabel>
-            <QRCodeSVG value={content} level={level as 'L' | 'M' | 'Q' | 'H'} size={size} />
+            {content ? (
+                <QRCodeSVG value={content} level={level as 'L' | 'M' | 'Q' | 'H'} size={size} />
+            ) : (
+                <div>No content to generate QR code</div>
+            )}
             <QRCodeLabel>Scan with <LinkInLabel>Global Input App</LinkInLabel></QRCodeLabel>
 
             <Footer>
