@@ -6,7 +6,9 @@ interface ExpandProp{
     position?:number;
     children?: React.ReactNode;
 }
-const ExpandIcon =styled.div<ExpandProp>`
+const ExpandIcon = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'expand',
+})<ExpandProp>`
     box-sizing: border-box;
     position: relative;
     display: inline-block;
@@ -68,7 +70,9 @@ const HelpContainer:React.FC<ExpandProp>=({position=1,children})=>{
     }
 }
 
-const HelpContent=styled.div<ExpandProp>`
+const HelpContent = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'expand',
+})<ExpandProp>`
 font-family: Avenir;
     color: rgb(53,116,230);
     white-space: wrap;
@@ -97,8 +101,8 @@ export const Help:React.FC<Prop>=({children,expandId, expand,setExpand, position
     const toggle=()=>setExpand(isExpanded?'':expandId);
     return (
     <HelpContainer position={position}>
-            <ExpandIcon expand={isExpanded} onClick={toggle}/>
-            <HelpContent expand={isExpanded}>
+            <ExpandIcon expand={isExpanded ? true : undefined} onClick={toggle}/>
+            <HelpContent expand={isExpanded ? true : undefined}>
                 {children}
             </HelpContent>
     </HelpContainer>
