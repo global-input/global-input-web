@@ -28,6 +28,7 @@ const stylesData={
       justifyContent:"flex-start",
       alignItems:"flex-start",
       marginTop:10
+      
 
    },
 
@@ -47,13 +48,14 @@ const stylesData={
         fontSize: 24,
       },
       inputContainer: {
-
+        width:"100%",
         marginLeft:40,
         marginRight:40,
         marginTop:10,
         marginBottom:10,
         display:"flex",
-        flexDirection:"row",
+        flexDirection:"row"
+        
       },
       buttonContainer:{
         display:"flex",

@@ -73,7 +73,7 @@ const renderActiveIcon = (encryptionKeyItem) => {
   }
 };
 
-const renderItemListItem = ({ item, action, setAction }) => {
+const RenderItemListItem = ({ item, action, setAction }) => {
   if (!item.encryptionKeyItem) {
     return <div style={styles.endSpace}></div>;
   }
@@ -168,7 +168,7 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
           onScroll={onScroll}
         >
           {action.items.map((item, index) =>
-            renderItemListItem({ item, action, setAction })
+           <RenderItemListItem key={index} item={item} action={action} setAction={setAction} />            
           )}
         </div>
       </div>
