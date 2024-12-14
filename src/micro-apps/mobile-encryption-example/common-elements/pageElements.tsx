@@ -141,11 +141,11 @@ export const MoreInfo = styled.div`
     }
 `;
 interface InstructionProps{
-    center?:boolean;
+    $center?:boolean;
 }
-export const Instruction=styled.div<InstructionProps>`
+const Instruction=styled.div<InstructionProps>`
     font-size: 10px;
-    align-self:${props=>props.center?'center':'flex-start'};
+    align-self:${props=>props.$center?'center':'flex-start'};
     @media screen and (min-height:250px){
         font-size: 16px;
     }
@@ -168,7 +168,7 @@ interface ConnectedInstructionProps{
 export const ConnectedInstruction:React.FC<ConnectedInstructionProps>=({children, mobile, center=false})=>(
 
 <WhenConnected mobile={mobile}>
-                <Instruction center={center}>
+                <Instruction $center={center}>
                     {children}
                 </Instruction>
             </WhenConnected>
