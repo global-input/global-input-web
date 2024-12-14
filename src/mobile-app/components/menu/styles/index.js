@@ -53,13 +53,15 @@ const stylesData = {
     marginRight: '5px',
   },
   contentContainer: {
-    width: '100%',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     minHeight: '100vh', // Adjusted to use viewport height
     paddingBottom: '70px',
+    paddingTop:"20px",
+    paddingLeft:"20px",
+    paddingRight:"20px",
   },
   tab: {
     margin: 0,

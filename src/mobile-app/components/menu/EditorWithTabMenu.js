@@ -156,10 +156,10 @@ export default class EditorWithTabMenu extends Component {
         {this.renderHeader()}
         {this.renderTab()}
         {this.renderNotificationBar()}
-        <div style={{ overflowY: 'auto'}}>          
+        
           
           <div style={contentContainerStyle}>{this.props.children}</div>
-        </div>
+        
         {this.renderEnd()}
       </div>
     );

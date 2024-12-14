@@ -72,7 +72,13 @@ export default class TextInputField extends Component {
     }
   }
 
-  renderOneLine() {    
+  renderOneLine() {
+    let readyOnly=false;
+    if(this.props.editable===false){
+        readyOnly=true;
+    }
+
+    
     return (
       <div style={styles.fieldContainer}>
         {this.renderLabelIcon()}
@@ -84,7 +90,7 @@ export default class TextInputField extends Component {
             autoCapitalize={'none'}
             spellCheck={'none'}       
             style={styles.inputText}            
-            readOnly={!this.props.editable}            
+            readOnly={readyOnly}            
             value={this.props.value}
             onBlur={this.onBlur.bind(this)}
             onFocus={this.onFocus.bind(this)}
@@ -102,7 +108,13 @@ export default class TextInputField extends Component {
   }
 
   renderMultiLine (numberOfLines) {
-    var dynamicStyle = stylesWithNumberOfLines(numberOfLines)
+    var dynamicStyle = stylesWithNumberOfLines(numberOfLines);
+    let readyOnly=false;
+    if(this.props.editable===false){
+        readyOnly=true;
+    }
+
+
     return (
       <div style={dynamicStyle.textAreaContainer}>
         <div style={styles.labelContainer}>
@@ -116,7 +128,7 @@ export default class TextInputField extends Component {
 
         <textarea
           style={dynamicStyle.textarea}                    
-          readOnly={!this.props.editable}
+          readOnly={readyOnly}
           value={this.props.value}                    
           onBlur={this.onBlur.bind(this)}
           onFocus={this.onFocus.bind(this)}
