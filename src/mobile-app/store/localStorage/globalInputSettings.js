@@ -74,7 +74,14 @@ async function loadFromLocalStorage(key, defaultValue) {
         case STORAGE_KEYS.CODE_AES:
         case STORAGE_KEYS.CLIENT:
         case STORAGE_KEYS.PROXY_URL:                   
-              return await enc.decryptContent(memDecrypt(appInstance.id),stringValue,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                
+              if(!appInstance.id){
+                  console.log("requires sign in for protected value");
+                  return defaultValue;
+              }
+              else{
+                return await enc.decryptContent(memDecrypt(appInstance.id),stringValue,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                
+              }
+              
       default:        
           return  JSON.parse(stringValue);        
       }        
