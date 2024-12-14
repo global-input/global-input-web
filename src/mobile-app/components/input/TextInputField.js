@@ -84,7 +84,7 @@ export default class TextInputField extends Component {
             autoCapitalize={'none'}
             spellCheck={'none'}       
             style={styles.inputText}            
-            editable={this.props.editable}            
+            readOnly={!this.props.editable}            
             value={this.props.value}
             onBlur={this.onBlur.bind(this)}
             onFocus={this.onFocus.bind(this)}
@@ -116,7 +116,7 @@ export default class TextInputField extends Component {
 
         <textarea
           style={dynamicStyle.textarea}                    
-          editable={this.props.editable}
+          readOnly={!this.props.editable}
           value={this.props.value}                    
           onBlur={this.onBlur.bind(this)}
           onFocus={this.onFocus.bind(this)}
