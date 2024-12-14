@@ -11,7 +11,7 @@ export const isDevelopment=environment==='development';
 
 export const  developmentPassword=isDevelopment?'test1':'';
 
-const encripted_text= 'AU2FsdGVkX18jWfl1QQtOZNkWnV1qaumG85NqgWmekwYylUxwHfIU84QdOBpos6Dj0CXTGMAf0Rt1muwB9XhpWfNXokGOxeU16SOY2ftyaoyL7BJ5DL1hiANb9yKDXgAORUEj6IHx7imvm44ZSL17AezRaJN70nQvXPyCNkz8GtEeVhYDNuvF55v2inQB+zf6Msn4UH0hq+sKemvuQRksHajqm9ASm5jyQQFFN3hEA5E%3D';
+const encripted_text= 'AU2FsdGVkX1/zxSzp4NG00TkOs5HSjmRy2TOTQiJ8rJ2M/uqVLI0iQOB+WtwmrdtRzt4Ae/Hz3rQJY2THJNLoxkmUL7RwV6iqyoCoH9vsrldIuv0GQoIxvbx+OAz2Q9LghH3vkWqaUiRucBp3rl5u3TzFk5dWVzz+Go6LiZ59p/46QQHk0wavH2UNMRax/XCiJTKGm/y6n5NKCes81TelJbJqOdVTM4w2/N1E1xBUtR8%3D';
 
 
 export  function loadTestTextQRCodeValue(){

@@ -217,7 +217,7 @@ stylesData.tabLandscape = {
 };
 
 // Set contentContainer width based on device dimensions
-stylesData.contentContainer.width = deviceDetector.getStaticDimension().width + 'px';
+// stylesData.contentContainer.width = deviceDetector.getStaticDimension().width + 'px';
 
 stylesData.contentContainerLandscape = {
   ...stylesData.contentContainer,
