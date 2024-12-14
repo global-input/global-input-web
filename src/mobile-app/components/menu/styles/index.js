@@ -9,7 +9,7 @@ const stylesData = {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: 'rgba(255,255,255,1)',    
   },
   containerWhenKeyboardShowing: {
     display: 'flex',
@@ -62,6 +62,7 @@ const stylesData = {
     paddingTop:"20px",
     paddingLeft:"20px",
     paddingRight:"20px",
+    width: '90%',
   },
   tab: {
     margin: 0,
