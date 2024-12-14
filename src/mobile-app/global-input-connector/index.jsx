@@ -61,7 +61,7 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
   const sendFieldToDevice = ({ field, index }) =>
     globalInput.sendFieldToDevice({ globalInputConnector, field, index });
 
-  const fillContentEncryptionForm = (content, label) =>
+  const fillContentEncryptionForm = ({content, label}) =>
     formData.fillContentEncryptionForm({
       content,
       label,
