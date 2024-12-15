@@ -23,9 +23,7 @@
     "noUnusedParameters": false,
     "noImplicitReturns": false,
     
-    "checkJs": false,
-    "suppressImplicitAnyIndexErrors": true,
-
+    "checkJs": false,    
      "noUnusedLocals": false,
      
     

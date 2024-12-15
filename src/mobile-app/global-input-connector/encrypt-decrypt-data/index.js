@@ -68,9 +68,9 @@ const buildDisplayField = (field, value) => {
   }
 };
 
-const encryptField = (field, encryptionKeyItem) => {
+const encryptField = async (field, encryptionKeyItem) => {
   if (field.type === 'encrypt' && field.value) {
-    const encryptedValue = encryptData(field.value, encryptionKeyItem);
+    const encryptedValue = await encryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, encryptedValue);
   } else {
     return field;
@@ -98,17 +98,19 @@ const getMapItemKey = (item, index) => {
   }
 };
 
-const sendEncryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
-  action.initData.form.fields.forEach((f, index) => {
+const sendEncryptedFieldsToDevice = async ({ action, sendFieldToDevice }) => {
+  const fields = action.initData.form.fields;
+  for (let index = 0; index < fields.length; index++) {
+    const f = fields[index];
     if (f.type === 'encrypt' && f.value) {
-      const encryptedContent = encryptData(
+      const encryptedContent = await encryptData(
         f.value,
         action.selectedEncryptionKeyItem
       );
       const field = { ...f, value: encryptedContent };
       sendFieldToDevice({ field, index });
     }
-  });
+  }
 };
 
 const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
@@ -134,11 +136,12 @@ const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
 /*****Utility functions**********End*********/
 
 /**********Transition Functions*********Begin*********/
-const toEncryptSendResult = ({ action, setAction }) => {
+const toEncryptSendResult = async ({ action, setAction }) => {
   try {
-    const globalInputdata = action.initData.form.fields.map((f) =>
+    const promises = action.initData.form.fields.map((f) =>
       encryptField(f, action.selectedEncryptionKeyItem)
     );
+    const globalInputdata = await Promise.all(promises);
     setAction({
       ...action,
       globalInputdata,
@@ -147,7 +150,7 @@ const toEncryptSendResult = ({ action, setAction }) => {
       errorMessage: null,
     });
   } catch (e) {
-    logger.error("Error:"+e,e);
+    logger.error("Error:" + e, e);
     setAction({
       ...action,
       errorMessage: 'Failed to encrypt/decrypt: ' + e.message,
@@ -207,7 +210,7 @@ const buildShowHideMenuForGeneric = ({ action, setAction }) => {
   return buildShowHideMenu({ action, setAction, onShowContent });
 };
 
-const buldShowHideMenuForSelectKey = ({ action, setAction }) => {
+const buildShowHideMenuForSelectKey = ({ action, setAction }) => {
   const onShowContent = () => {
     let globalInputdata = action.initData.form.fields.map((f) =>
       buildDisplayField(f, f.value)
@@ -259,8 +262,8 @@ const buildSendEncryptedResultMenu = ({
 }) => {
   return {
     menu: menusConfig.send.menu,
-    onPress: () => {
-      sendEncryptedFieldsToDevice({ action, sendFieldToDevice });
+    onPress: async () => {
+      await sendEncryptedFieldsToDevice({ action, sendFieldToDevice });
       onFinish(action);
     },
   };
@@ -277,7 +280,7 @@ export const renderEncryptSelectKey = ({
 }) => {
   const menuItems = [
     buildCancelMenu(onDisconnect),
-    buldShowHideMenuForSelectKey({ action, setAction }),
+    buildShowHideMenuForSelectKey({ action, setAction }),
     buildEncryptMenu({ action, setAction }),
   ];
 
@@ -306,7 +309,7 @@ export const renderDecryptSelectKey = ({
 }) => {
   const menuItems = [
     buildCancelMenu(onDisconnect),
-    buldShowHideMenuForSelectKey({ action, setAction }),
+    buildShowHideMenuForSelectKey({ action, setAction }),
     buildDecryptMenu({ action, setAction }),
   ];
 
