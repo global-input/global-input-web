@@ -21,7 +21,8 @@ export const FIELDS = {
         style:{
             maxWidth:200,
             padding:20,
-            backgroundColor:'#EEEEEE'
+            backgroundColor:'#CCCCCC',
+            border:"1px solid blue",
         },
 
     },

@@ -441,9 +441,10 @@ const renderSelectKey = ({
           encryptionKeyList={action.encryptionKeyList}
           selectedEncryptionKeyItem={action.selectedEncryptionKeyItem}
         />
+        <DisplayBlockText content={helpOnContinue} />
+        {renderErrorMessage(action.errorMessage)}
       </div>
-      <DisplayBlockText content={helpOnContinue} />
-      {renderErrorMessage(action.errorMessage)}
+      
     </EditorWithTabMenu>
   );
 };

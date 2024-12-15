@@ -17,7 +17,7 @@ export const useConnectToMobile = () => {
 const FIELDS = {
   info: {
     type: "info",
-    value: "You need to operate on your computer to download the software.",
+    value: "Free and open-source mobile app to seamlessly operate and control multi-device environments.",
   },
   home: {
     id: "back-to-website-home",
