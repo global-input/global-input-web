@@ -280,7 +280,11 @@ const QRContainer = styled.div`
 const QRInstruction = styled.div`
   color: #fff;
   font-size: 16px;
-  margin-top: 20px;
+  padding-top: 20px;
+  background: rgba(0,0,0,0.7);
+  padding-bottom: 10px;
+  padding-left: 10px;
+
 `;
 
 interface TabProps {
@@ -438,11 +442,12 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
 
         {showGlobalInputQRCode && (
           <QRCodeOverlay onClick={handleOverlayClick}>
-            <QRContainer onClick={stopPropagation}>
-              <QRCodeSVG value={globalInputUrl} size={200} />
-              <QRInstruction>
+            <QRInstruction onClick={handleOverlayClick}>
                 Please scan the QR Code with your mobile camera to launch the app
               </QRInstruction>
+            <QRContainer onClick={stopPropagation}>
+              <QRCodeSVG value={globalInputUrl} size={200} />
+              
             </QRContainer>
           </QRCodeOverlay>
         )}
