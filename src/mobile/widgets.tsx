@@ -124,7 +124,7 @@ const PopupGlass = styled.div`
 
 const ErrorMessage = styled.div`
   color: white;
-  font-size: 11;
+  font-size: 11px;
   padding: 6px;
   margin: 10px;
   border-radius: 12px;
@@ -263,8 +263,24 @@ const QRCodeOverlay = styled.div`
   height: 100%;
   background: rgba(0,0,0,0.5);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+const QRContainer = styled.div`
+  background: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const QRInstruction = styled.div`
+  color: #fff;
+  font-size: 16px;
+  margin-top: 20px;
 `;
 
 interface TabProps {
@@ -392,7 +408,6 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
           <ConnectQR 
             mobile={mobile} 
             hspace={100} 
-            // Only show the label if QR code overlay is NOT being displayed
             label={
               !showGlobalInputQRCode && 
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
@@ -404,7 +419,15 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
             }
           />
         )}
-        {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100}/>}
+        {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100} label={
+              !showGlobalInputQRCode && 
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
+                Scan with 
+                <A onClick={handleGlobalInputAppClick}>
+                  Global Input App
+                </A>
+              </div>
+            }/>}
         {widgetState === WidgetState.SETTINGS && (
           <SettingsEditor
             saveSettings={onSaveSettings}
@@ -415,9 +438,12 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
 
         {showGlobalInputQRCode && (
           <QRCodeOverlay onClick={handleOverlayClick}>
-            <div onClick={stopPropagation}>
+            <QRContainer onClick={stopPropagation}>
               <QRCodeSVG value={globalInputUrl} size={200} />
-            </div>
+              <QRInstruction>
+                Please scan the QR Code with your mobile camera to launch the app
+              </QRInstruction>
+            </QRContainer>
           </QRCodeOverlay>
         )}
       </Content>
