@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import {QRCodeSVG} from "qrcode.react";
 import { ConnectQR, PairingQR } from 'global-input-react'; ////global-input-react////
 
 import { WidgetState, MobileData } from "./commons";
@@ -245,6 +246,30 @@ const DisconnectIcon = styled.img.attrs({
   height: auto;
 `;
 
+const A = styled.a`
+  color: #4872d3;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 5px;
+  
+`;
+const QRCodeLabelContainer=styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+`;
+
+const QRCodeLabel: React.FC = () => {
+return (<QRCodeLabelContainer>
+          Scan with <A href="https://globalinput.co.uk/global-input-app/mobile-app" rel="noopener noreferrer" target="_blank"> Global Input App</A>
+      </QRCodeLabelContainer>)
+
+}
+
 interface TabProps {
   widgetState: WidgetState;
   setWidgetState: (widgetState: WidgetState) => void;
@@ -347,7 +372,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
       </TopBar>
       <Content>
         {widgetState === WidgetState.CONNECT_QR && (
-          <ConnectQR mobile={mobile} hspace={100}/>
+          <ConnectQR mobile={mobile} hspace={100} label={<QRCodeLabel/>}/>
         )}
         {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100}/>}
         {widgetState === WidgetState.SETTINGS && (
