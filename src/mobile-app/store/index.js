@@ -461,9 +461,9 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return globalInputMessage.encrypt(prefix + content + suffix, keyPrefix + decryptedEncryptionKey + keySuffix);
   };
   
-  export const decryptData = (content, encryptionKey) => {
-      const decryptedKey = appdata.decryptEncryptionKey(encryptionKey);
-      const decryptedContent = globalInputMessage.decrypt(content, keyPrefix + decryptedKey + keySuffix);
+  export const decryptData = async (content, encryptionKey) => {
+      const decryptedEncryptionKey = await unlockContent(encryptionKey.lockedKeyValue);          
+      const decryptedContent = globalInputMessage.decrypt(content, keyPrefix + decryptedEncryptionKey + keySuffix);
       return decryptedContent.slice(7, decryptedContent.length - 11);
   };
   export const encryptContent = async (content) => {

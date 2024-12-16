@@ -77,9 +77,9 @@ const encryptField = async (field, encryptionKeyItem) => {
   }
 };
 
-const decryptField = (field, encryptionKeyItem) => {
+const decryptField = async (field, encryptionKeyItem) => {
   if (field.type === 'decrypt' && field.value) {
-    const decryptedValue = decryptData(field.value, encryptionKeyItem);
+    const decryptedValue = await decryptData(field.value, encryptionKeyItem);
     return buildDisplayField(field, decryptedValue);
   } else {
     return field;
@@ -113,12 +113,14 @@ const sendEncryptedFieldsToDevice = async ({ action, sendFieldToDevice }) => {
   }
 };
 
-const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
-  action.initData.form.fields.forEach((f, index) => {
+const sendDecryptedFieldsToDevice = async ({ action, sendFieldToDevice }) => {
+  
+  for(let index=0;index<action.initData.form.fields.length;index++){
+    const f = action.initData.form.fields[index];
     if (f.type === 'decrypt' && f.value) {
       let decryptedContent = null;
       try {
-        decryptedContent = decryptData(
+        decryptedContent = await decryptData(
           f.value,
           action.selectedEncryptionKeyItem
         );
@@ -130,7 +132,7 @@ const sendDecryptedFieldsToDevice = ({ action, sendFieldToDevice }) => {
       const field = { ...f, value: decryptedContent };
       sendFieldToDevice({ field, index });
     }
-  });
+  }
 };
 
 /*****Utility functions**********End*********/
@@ -158,11 +160,12 @@ const toEncryptSendResult = async ({ action, setAction }) => {
   }
 };
 
-const toDecryptSendResult = ({ action, setAction }) => {
+const toDecryptSendResult = async ({ action, setAction }) => {
   try {
-    const globalInputdata = action.initData.form.fields.map((f) =>
+    const promises = action.initData.form.fields.map((f) =>
       decryptField(f, action.selectedEncryptionKeyItem)
     );
+    const globalInputdata= await Promise.all(promises);
     setAction({
       ...action,
       globalInputdata,
@@ -247,8 +250,8 @@ const buildSendDecryptedResultMenu = ({
 }) => {
   return {
     menu: menusConfig.send.menu,
-    onPress: () => {
-      sendDecryptedFieldsToDevice({ action, sendFieldToDevice });
+    onPress: async () => {
+      await sendDecryptedFieldsToDevice({ action, sendFieldToDevice });
       onFinish(action);
     },
   };
