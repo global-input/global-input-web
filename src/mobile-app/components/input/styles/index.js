@@ -65,6 +65,7 @@ const styleData = {
     alignItems: 'flex-start',
     borderColor: '#B9C3CE',
     borderBottomWidth: 1,
+    borderStyle: 'solid'
   },
   selectionFieldContainer: {
     display: 'flex',
@@ -73,6 +74,7 @@ const styleData = {
     alignItems: 'flex-start',
     borderColor: '#4880ED',
     borderBottomWidth: 1,
+    borderStyle: 'solid',
   },
   selectionSelectedRow: {
     display: 'flex',
@@ -125,6 +127,7 @@ export function stylesWithNumberOfLines (nlines = 1) {
       borderWidth: 1,
       borderStyle: 'solid',
       color: 'rgba(72,128,237,1)',
+      borderStyle: 'solid',
     },
     textAreaContainer: {
       display: 'flex',

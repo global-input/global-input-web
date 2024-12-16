@@ -60,6 +60,7 @@ var stylesData = {
     border: '5px solid #f3f3f3',
     borderTop: '5px solid #3498db',
     borderRadius: '50%',
+    borderStyle: 'solid',
     animation: 'spin 1s linear infinite',
     margin: '20px auto', // Center the spinner
   }

@@ -33,6 +33,7 @@ const  stylesData = {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     borderBottomWidth: 1,
+    borderStyle: 'solid',
     borderColor: 'rgba(72,128,237,0.2)',
     paddingBottom: 5,
     marginLeft: 10,
@@ -85,10 +86,12 @@ const  stylesData = {
     marginTop: 20,
     marginBottom: 30,
     borderWidth: 1,
+    borderStyle: 'solid',
     borderColor: 'rgba(72,128,237,1)',
   },
   keyvalueContainer: {
     borderBottomWidth: 1,
+    borderStyle: 'solid',
     margin: 10,
     borderColor: 'rgba(72,128,237,1)',
     display: 'flex',
@@ -109,7 +112,7 @@ const  stylesData = {
   button: {
     borderWidth: 1,
     borderColor: 'rgba(72,128,237,1)',
-
+    borderStyle: 'solid',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -180,6 +183,7 @@ const  stylesData = {
   },
   fieldValueContainer: {
     borderBottomWidth: 1,
+    borderStyle: 'solid',
     borderColor: 'rgba(72,128,237,1)',
     display: 'flex',
     flexDirection: 'row',

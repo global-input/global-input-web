@@ -2,6 +2,7 @@ var stylesData = {
   buttonStyle:{
     borderColor:"rgb(88, 139, 239)",
     borderWidth:1,
+    borderStyle: 'solid',
     display:"flex",
     flexDirection:"row",
     justifyContent:"center",
@@ -38,6 +39,7 @@ checkboxTextBox:{
      width:40,
      height:40,
      borderWidth:1,
+     borderStyle: 'solid',
      borderColor:"#888888",
      display:"flex",
      flexDirection:"row",

@@ -41,6 +41,7 @@ const  stylesData={
         width:"90%",
         borderWidth:1,
         borderColor:"rgba(72,128,237,0.2)",
+        borderStyle: 'solid'
     }
 
 };

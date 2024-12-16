@@ -111,6 +111,7 @@ const commonStyles ={
       padding:5,
       borderRadius: 10,
       borderWidth:1,
+      borderStyle: 'solid',
       borderColor:"rgba(72,128,237,1)",
       backgroundColor:"white",
       display:"flex",

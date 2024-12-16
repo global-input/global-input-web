@@ -59,6 +59,7 @@ const styles={
       padding:10,
       borderWidth:1,
       borderColor:buttonBorderColor,
+      borderStyle: 'solid',
       flex:1,
       display:"flex",
       flexDirection:"row",
@@ -71,6 +72,7 @@ const styles={
 
       borderWidth:1,
       borderColor:buttonBorderColor,
+      borderStyle: 'solid',
 
       display:"flex",
       flexDirection:"row",
@@ -92,18 +94,21 @@ const styles={
       borderRightWidth:1,
       borderTopWidth:1,
       borderColor:buttonBorderColor,
+      borderStyle: 'solid',
       flex:1,
       display:"flex",
       flexDirection:"row",
       justifyContent:"center",
       alignItems:"center",
       borderBottomLeftRadius:10,
+      
   },
   buttonRight:{
       padding:10,
       borderLeftWidth:1,
       borderTopWidth:1,
       borderColor:buttonBorderColor,
+      borderStyle: 'solid',
       flex:1,
       display:"flex",
       flexDirection:"row",

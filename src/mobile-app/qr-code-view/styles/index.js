@@ -23,6 +23,7 @@ var stylesData={
       justifyContent:"flex-start",
       alignItems:"flex-start",
       borderBottomWidth:1,
+      borderStyle: 'solid',
       borderColor:"rgba(72,128,237,0.2)",
       paddingBottom:5,
       marginLeft:10,

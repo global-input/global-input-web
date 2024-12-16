@@ -47,7 +47,7 @@ var stylesData={
       button:{
         borderWidth:1,
         borderColor:"rgba(72,128,237,1)",
-
+        borderStyle: 'solid',
         display:"flex",
         flexDirection:"row",
         justifyContent:"center",

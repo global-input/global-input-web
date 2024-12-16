@@ -85,6 +85,7 @@
         button:{
           borderWidth:1,
           borderColor:"rgba(72,128,237,1)",
+          borderStyle: 'solid',
   
           display:"flex",
           flexDirection:"row",
@@ -107,6 +108,7 @@
           justifyContent:"flex-start",
           alignItems:"flex-start",
           borderBottomWidth:1,
+          borderStyle: 'solid',
           borderColor:"rgba(72,128,237,0.2)",
           paddingBottom:5,
           marginLeft:10,

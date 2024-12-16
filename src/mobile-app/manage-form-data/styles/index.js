@@ -41,6 +41,7 @@ var stylesData={
       display:"flex",
       flexDirection:"column",
       borderBottomWidth:5,
+      borderStyle: 'solid',
       borderColor:"rgba(80,80,80,0.5)",
       backgroundColor:"#FFFFFF",
       padding:2
@@ -74,6 +75,7 @@ var stylesData={
       alignItems:"flex-end",
       marginLeft:5,
       borderBottomWidth:1,
+      borderStyle: 'solid',
       borderColor:"white"
     },
     searchString:{
@@ -153,6 +155,7 @@ var stylesData={
       justifyContent:"flex-start",
       alignItems:"flex-start",
       borderBottomWidth:1,
+      borderStyle: 'solid',
       borderColor:"rgba(72,128,237,0.2)",
       paddingBottom:5,
       marginLeft:10,
@@ -206,6 +209,7 @@ var stylesData={
         width:"100%",
         borderBottomWidth:1,
         borderColor:"rgba(72,128,237,0.2)",
+        borderStyle: 'solid',
     },
     valueContainer:{
         width:"90%",
@@ -213,6 +217,7 @@ var stylesData={
         flexDirection:"row",
         flexWrap:"wrap",
         borderBottomWidth:1,
+        borderStyle: 'solid',
         borderColor:"rgba(72,128,237,0.2)",
     },
     showFieldContainer:{

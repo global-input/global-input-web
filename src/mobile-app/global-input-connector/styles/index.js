@@ -174,6 +174,7 @@ buttonContainer:{
 
 button:{
   borderWidth:1,
+  borderStyle: 'solid',
   borderColor:"#4880ED",
   display:"flex",
   flexDirection:"row",

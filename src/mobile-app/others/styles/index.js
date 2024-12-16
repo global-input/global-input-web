@@ -7,6 +7,7 @@ var stylesData={
         marginRight:10,
         borderColor:"black",
         borderWidth:1,
+        borderStyle: 'solid',
         padding:2,
         backgroundColor:"#FFFFFF"
     },

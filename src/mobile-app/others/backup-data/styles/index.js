@@ -18,6 +18,7 @@ var stylesData={
         marginLeft:10,
         marginRight:10,
         borderColor:"black",
+        borderStyle: 'solid',
         borderWidth:1,
         padding:2,
         backgroundColor:"#FFFFFF"

@@ -18,6 +18,7 @@ var styles = {
            backgroundColor:"rgba(29,20,20,0.5)",
            borderWidth:1,
            borderColor:"black",
+           borderStyle: 'solid',
            display:"flex",
            flexDirection:"row",
            justifyContent:"center",
@@ -90,6 +91,7 @@ var styles = {
     width:"95%",
     bottom:70,
     borderWidth:1,
+    borderStyle: 'solid',
     borderColor:"black",
   },
   textBarHeader:{

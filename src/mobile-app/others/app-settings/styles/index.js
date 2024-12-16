@@ -32,6 +32,7 @@ var stylesData={
           alignItems:"flex-start",
           marginBottom:20,
           borderBottomWidth:5,
+          borderStyle: 'solid',
           borderColor:"rgba(72,128,237,0.5)",
           backgroundColor:"#FFFFFF",
           padding:5
@@ -66,7 +67,7 @@ var stylesData={
       button:{
         borderWidth:1,
         borderColor:"rgba(72,128,237,1)",
-
+        borderStyle: 'solid',
         display:"flex",
         flexDirection:"row",
         justifyContent:"center",

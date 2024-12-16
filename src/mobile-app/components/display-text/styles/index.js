@@ -45,6 +45,7 @@ const stylesData ={
     fontFamily: 'Futura-Medium',
     fontSize:10,
     borderWidth:1,
+    borderStyle: 'solid',
     color:"#rgba(72,128,237,1)",
     padding:5,
     borderColor:"rgba(36,66,156,0.5)",
@@ -57,7 +58,8 @@ const stylesData ={
     color:"#FFFFFF",
     padding:5,
     borderColor:"#rgba(72,128,237,0.5)",
-      borderWidth:1,
+    borderWidth:1,
+    borderStyle: 'solid',
     backgroundColor:"transparent"
   },
   viewStyle:{
