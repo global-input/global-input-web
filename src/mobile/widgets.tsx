@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {QRCodeSVG} from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 import { ConnectQR, PairingQR } from 'global-input-react'; ////global-input-react////
 
 import { WidgetState, MobileData } from "./commons";
@@ -85,7 +85,9 @@ const Content = styled.div`
   display: flex;
   width: 100%;
   overflow: scroll;
+  position: relative;
 `;
+
 const PopupGlass = styled.div`
   background-color: #0009;
   display: flex;
@@ -132,11 +134,11 @@ const ErrorMessage = styled.div`
   overflow: scroll;
 `;
 
-const BlueLink = styled.a.attrs(() => ({}))`
+const BlueLink = styled.span`
   color: #0984e3;
   cursor: pointer;
   text-decoration: underline;
-`
+`;
 
 const PopUpWindow = styled.div`
   display: flex;
@@ -246,29 +248,24 @@ const DisconnectIcon = styled.img.attrs({
   height: auto;
 `;
 
-const A = styled.a`
+const A = styled.span`
   color: #4872d3;
   text-decoration: underline;
   cursor: pointer;
   margin-left: 5px;
-  
 `;
-const QRCodeLabelContainer=styled.div`
+
+const QRCodeOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  
+  align-items: center;
 `;
-
-const QRCodeLabel: React.FC = () => {
-return (<QRCodeLabelContainer>
-          Scan with <A href="https://globalinput.co.uk/global-input-app/mobile-app" rel="noopener noreferrer" target="_blank"> Global Input App</A>
-      </QRCodeLabelContainer>)
-
-}
 
 interface TabProps {
   widgetState: WidgetState;
@@ -352,6 +349,8 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
     isConnectionDenied,
     isError,
   } = mobile;
+  const [showGlobalInputQRCode, setShowGlobalInputQRCode] = useState(false);
+
   if (isConnected) {
     return null;
   }
@@ -360,10 +359,28 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
   }
 
   let message =
-    isConnectionDenied && <ErrorMessage>You can only use one mobile app per session. <BlueLink onClick={() => restart()}>Click here</BlueLink> to start a new session.</ErrorMessage>
+    isConnectionDenied && (
+      <ErrorMessage>
+        You can only use one mobile app per session. <BlueLink onClick={() => restart()}>Click here</BlueLink> to start a new session.
+      </ErrorMessage>
+    );
   if (isError) {
-    message = <ErrorMessage>errorMessage</ErrorMessage>;
+    message = <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
+
+  const handleGlobalInputAppClick = () => {
+    setShowGlobalInputQRCode(true);
+  };
+
+  const handleOverlayClick = () => {
+    setShowGlobalInputQRCode(false);
+  };
+
+  const stopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app";
 
   return (
     <Container>
@@ -372,7 +389,20 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
       </TopBar>
       <Content>
         {widgetState === WidgetState.CONNECT_QR && (
-          <ConnectQR mobile={mobile} hspace={100} label={<QRCodeLabel/>}/>
+          <ConnectQR 
+            mobile={mobile} 
+            hspace={100} 
+            // Only show the label if QR code overlay is NOT being displayed
+            label={
+              !showGlobalInputQRCode && 
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
+                Scan with 
+                <A onClick={handleGlobalInputAppClick}>
+                  Global Input App
+                </A>
+              </div>
+            }
+          />
         )}
         {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100}/>}
         {widgetState === WidgetState.SETTINGS && (
@@ -382,6 +412,14 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
           />
         )}
         {message && <ErrorMessage>{message}</ErrorMessage>}
+
+        {showGlobalInputQRCode && (
+          <QRCodeOverlay onClick={handleOverlayClick}>
+            <div onClick={stopPropagation}>
+              <QRCodeSVG value={globalInputUrl} size={200} />
+            </div>
+          </QRCodeOverlay>
+        )}
       </Content>
     </Container>
   );
