@@ -76,10 +76,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
         <TitleSection>
           <Title>{headerTextContent.title}</Title>
           <Subtitle>{headerTextContent.subtitle}</Subtitle>
-          <ButtonContainer>
-            <LinkButton to={config.paths.getAppScreen.path}>
-            Get it Free
-            </LinkButton>
+          <ButtonContainer>            
             <ConnectButton label="Try Now" mobile={mobile} />
             <DisconnectButton mobile={mobile} />
           </ButtonContainer>

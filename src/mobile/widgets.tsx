@@ -368,7 +368,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
     isConnectionDenied,
     isError,
   } = mobile;
-  const [showGlobalInputQRCode, setShowGlobalInputQRCode] = useState(false);
+  const [showGlobalInputQRCode, setShowGlobalInputQRCode] = useState(true);
 
   if (isConnected) {
     return null;
@@ -442,7 +442,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
         {showGlobalInputQRCode && (
           <QRCodeOverlay onClick={handleOverlayClick}>
             <QRInstruction onClick={handleOverlayClick}>
-                Please scan the QR Code with your mobile camera to launch the app
+            Scan the QR code below with your phone’s camera to launch the Global Input App. Then click here to reveal the main QR code for scanning with the app.
               </QRInstruction>
             <QRContainer onClick={stopPropagation}>
               <QRCodeSVG value={globalInputUrl} size={200} />

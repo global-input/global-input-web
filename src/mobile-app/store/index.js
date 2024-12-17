@@ -511,7 +511,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
         }
         catch(error){
           logger.error("error:"+error, error);
-          onError('Failed to set up the app. Please try again. password should be at least 5 characters long.');
+          onError('Failed to set up the app. Please try again. password should be at least 4 characters long.');
           resetApp();
         }
         
