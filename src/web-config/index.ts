@@ -70,7 +70,7 @@ export const config = {
       url: "https://addons.mozilla.org/en-GB/firefox/addon/global-input-app/",
     },
     jsExtension: {
-      url: "https://github.com/global-input/global-input-message",
+      url: "https://github.com/global-input/",
     },
     reactJSExtension: {
       url: "https://github.com/global-input/global-input-react",

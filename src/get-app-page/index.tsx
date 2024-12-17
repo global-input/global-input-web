@@ -62,27 +62,18 @@ export const GetAppPage: React.FC = () => {
         <Content>
         
         <Card>
-          <ModuleIcon />
-          <CardTitle>NPM Modules</CardTitle>
+          <ExtensionIcon />
+          <CardTitle>Extensions</CardTitle>
           <CardContent>
-          JavaScript modules to integrate mobile interoperability into your applications seamlessly.
+          Explore extension modules and example code for extending applications to achieve mobile interoperability.
           </CardContent>
           <CardFooter>
             <JSModuleButton />
-            <ReactModuleButton />
-          </CardFooter>
-        </Card>
-        <Card>
-          <ExtensionIcon />
-          <CardTitle>Browser Extensions</CardTitle>
-          <CardContent>
-          Install the extension to securely interact with desktop browsers using your phone.
-          </CardContent>
-          <CardFooter>
+            
             <WebStoreButton />
-            <FirefoxButton />
           </CardFooter>
         </Card>
+        
       </Content>
 
       <PageFooter />

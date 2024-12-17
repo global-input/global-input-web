@@ -132,6 +132,7 @@ export const CardContent = styled.div`
   flex: 1;
   font-size: 14px;
   margin-top: 20px;
+  text-align: left;
 `;
 
 export const CardFooter = styled.div`
@@ -257,7 +258,7 @@ const FirefoxImage = styled.img.attrs({
 
 const JSModuleImage = styled.img.attrs({
   src: jsModule,
-  alt: "JavaScript Module",
+  alt: "JavaScript Modules",
 })``;
 
 const ReactImage = styled.img.attrs({
