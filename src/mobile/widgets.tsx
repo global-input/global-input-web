@@ -11,7 +11,6 @@ import disconnectImage from "./images/disconnect.png";
 import pairingImage from "./images/pairing.png";
 
 import { SettingsEditor } from "./settingsEditor";
-import { LinkButton } from "../home-page/layout";
 
 const Button = styled.button`
   text-decoration: none;
