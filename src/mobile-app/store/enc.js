@@ -59,8 +59,8 @@ export function generateSalt() {
     if (typeof password !== 'string' || typeof content !== 'string' || typeof saltBase64 !== 'string' || typeof ivBase64 !== 'string') {
       throw new Error('Invalid input: password, content, and salt must be strings.: p:'+typeof password+", c:"+typeof content+", s:"+typeof saltBase64+", i:"+typeof ivBase64);
     }
-    if(password.length < 5){
-        throw new Error('Password must be at least 8 characters long:'+password.length);
+    if(password.length < 4){
+        throw new Error('Password must be at least 7 characters long:'+password.length);
     }
     if(saltBase64.length < 8){
         throw new Error('Invalid salt length:'+saltBase64.length);
