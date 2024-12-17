@@ -10,7 +10,7 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@yudiel/react-qr-scanner": "^2.0.8",
+    "@yudiel/react-qr-scanner": "^2.1.0",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
     "global-input-message": "^2.1.7",
