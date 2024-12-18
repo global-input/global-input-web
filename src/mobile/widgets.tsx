@@ -399,7 +399,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
     e.stopPropagation();
   };
 
-  const globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app";
+  const globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
 
   return (
     <Container>

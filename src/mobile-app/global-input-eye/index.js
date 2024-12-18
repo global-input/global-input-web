@@ -138,6 +138,10 @@ const GlobalInputEye =  ({
                 return;
             }
         }
+        else if(codedata === 'https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr'){
+          setContentAndMessage(" Please click outside the QR code area to reveal the Global Input QR Code, then scan it again");
+          return;
+        }
         const connector = createMessageConnector();
         const codeAES = globalInputSettings.getCodeAES();
         const options = {
