@@ -260,14 +260,14 @@ const QRCodeOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 const QRContainer = styled.div`
-  background: rgba(0,0,0,0.7);
+  background: rgba(255,255,255,0.9);
   padding: 20px;
   border-radius: 12px;
   display: flex;
@@ -277,10 +277,10 @@ const QRContainer = styled.div`
 `;
 
 const QRInstruction = styled.div`
-  color: #fff;
+  color: #333;
   font-size: 16px;
   padding-top: 20px;
-  background: rgba(0,0,0,0.7);
+  background: rgba(255,255,255);
   padding-bottom: 10px;
   padding-left: 10px;
 
