@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
-import { useGlobalInputApp } from "global-input-react"; ////global-input-react////
-import type { InitData, ConnectOptions } from "global-input-react"; ////global-input-react////
+import { useGlobalInputApp } from 'global-input-react'; ////global-input-react////
+import type { InitData, ConnectOptions } from 'global-input-react'; ////global-input-react////
 
 ////main////
 
