@@ -183,6 +183,7 @@ const GlobalInputEye =  ({
         titleText = styles.titleTextSmall;
       }
     }
+
     return (
       <div style={headerStyle}>
         <div style={titleContainer}>
@@ -303,6 +304,32 @@ const GlobalInputEye =  ({
       </div>
     );
   };
+
+
+  useEffect(() => {
+    // Get the query parameters from the URL
+    const params = new URLSearchParams(window.location.search);
+    const session = params.get('session');
+    const code = params.get('code');
+    const url = params.get('url');
+
+    // If the 'url' parameter is present, construct the new URL and send a request to it
+    if (url) {
+        const newUrl = new URL(url+"/global-input/app/launched");
+        if (session) newUrl.searchParams.append('session', session);
+        if (code) newUrl.searchParams.append('code', code);        
+
+        fetch(newUrl.toString())
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+}, []);
+
   if (isAuthorized) {
     return renderCameraView();
   } else if (!isAuthorizationChecked) {

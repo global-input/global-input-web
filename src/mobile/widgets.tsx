@@ -352,6 +352,39 @@ const Tabs: React.FC<TabProps> = (props) => (
   </TabContainer>
 );
 
+const nodeisDevelopment=false;
+
+function buildAppLaunchedMessage(mobile){
+  let globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
+  if(nodeisDevelopment){
+    const devehost='tnode2.globalinput.co.uk';
+    const localhost='localhost';  
+    if (window.location.hostname === devehost || window.location.hostname === localhost) {
+      globalInputUrl = globalInputUrl.replace("globalinput.co.uk", devehost);    
+    }
+  }
+  const session=mobile.registeredInfo?.session;
+  const code=Date.now().toString(36);
+  let url=mobile.registeredInfo?.url
+  if(!session||!url){
+    return {
+      url:null,
+      code,
+      session,
+      globalInputUrl
+    }
+  }
+  globalInputUrl += "&session=" + session;    
+  globalInputUrl += "&code=" + code;
+  globalInputUrl += "&url=" + encodeURIComponent(url);    
+  return {
+    url,
+    code,
+    session,
+    globalInputUrl
+  }
+}
+
 interface ConnectWidgetProps {
   mobile: MobileData;
 }
@@ -398,9 +431,17 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
-
-  const globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
-
+  const appLaunchedData=buildAppLaunchedMessage(mobile);  
+  if(appLaunchedData.session){    
+    const onClientAppLaunched=(data:any)=>{
+      if(data.code===appLaunchedData.code){
+          setShowGlobalInputQRCode(false);          
+      }      
+    };
+    mobile.setClientAppLaunched(onClientAppLaunched);
+  }
+  
+  
   return (
     <Container>
       <TopBar>
@@ -445,7 +486,8 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
             Scan the QR code below with your phone’s camera to launch the Global Input App. Then click here to reveal the main QR code for scanning with the app.
               </QRInstruction>
             <QRContainer onClick={stopPropagation}>
-              <QRCodeSVG value={globalInputUrl} size={200} />
+              <QRCodeSVG value={appLaunchedData.globalInputUrl} size={200} />
+              
               
             </QRContainer>
           </QRCodeOverlay>

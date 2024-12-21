@@ -1,4 +1,4 @@
-import type { GlobalInputData } from "global-input-react"; ////global-input-react////
+import type { GlobalInputData } from 'global-input-react'; ////global-input-react////
 import type { ConnectionSettings } from "./storage";
 export enum WidgetState {
   CONNECT_QR,
