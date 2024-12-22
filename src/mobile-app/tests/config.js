@@ -11,7 +11,7 @@ export const isDevelopment=environment==='development';
 
 export const  developmentPassword=isDevelopment?'test1':'';
 
-const encrypted_text= 'https://tnode2.globalinput.co.uk/global-input-app/mobile-app?launchType=qr&session=FzkGpOx4fcQFHyBcj&code=m4zr9zx9&url=https%3A%2F%2Ftnode1.globalinput.co.uk';
+const encrypted_text= 'parseAppLaunchURL';
 
 
 export  function loadTestTextQRCodeValue(){

@@ -168,6 +168,7 @@ const GlobalInputEye =  ({
         }
         const launchData=parseAppLaunchURL(codedata);
         if (launchData.url && launchData.session && launchData.code) {
+          setContentAndMessage("Launched message sent", "Global Input App");
           sendAppLaunchedEvent(launchData.url, launchData.session, launchData.code);
           return;
         }

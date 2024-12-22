@@ -60,6 +60,24 @@ async function saveToLocalStorage(key, value) {
   }
 }
 
+async function decodeStorageValue(key,value){
+  
+      switch(key){
+        case STORAGE_KEYS.API_KEY:
+        case STORAGE_KEYS.SECURITY_GROUP:
+        case STORAGE_KEYS.CODE_AES:
+        case STORAGE_KEYS.CLIENT:
+        case STORAGE_KEYS.PROXY_URL: 
+          if(!appInstance.id){
+             throw new Error("requires sign in for protected value");
+          }                                
+                return await enc.decryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                              
+      default:        
+          return  JSON.parse(value);
+      }        
+
+
+}
 // Helper function to load data from localStorage
 async function loadFromLocalStorage(key, defaultValue) {
 
@@ -68,28 +86,13 @@ async function loadFromLocalStorage(key, defaultValue) {
     if(!stringValue){
       return defaultValue;
     }
-      switch(key){
-        case STORAGE_KEYS.API_KEY:
-        case STORAGE_KEYS.SECURITY_GROUP:
-        case STORAGE_KEYS.CODE_AES:
-        case STORAGE_KEYS.CLIENT:
-        case STORAGE_KEYS.PROXY_URL:                   
-              if(!appInstance.id){
-                  console.log("requires sign in for protected value");
-                  return defaultValue;
-              }
-              else{
-                return await enc.decryptContent(memDecrypt(appInstance.id),stringValue,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                
-              }
-              
-      default:        
-          return  JSON.parse(stringValue);        
-      }        
+    return await decodeStorageValue(key,stringValue);
   } catch (e) {
     logger.error(`Error loading ${key} from localStorage`, e);
-    return null;
+    return defaultValue;
   }
 }
+
 
 // Initialize cached variables with default values if not set
 async function initializeState() {  
@@ -204,23 +207,25 @@ export const setProxyURL = (newProxyURL) => {
 
 
 // Optional: Listen to storage events for cross-tab synchronization
-window.addEventListener("storage", (event) => {
+window.addEventListener("storage", async (event) => {
+  console.log("storage event",event);
+  
   try{
       switch (event.key) {
         case STORAGE_KEYS.API_KEY:
-          apikey = event.newValue ? JSON.parse(event.newValue) : null;
+          apikey = await decodeStorageValue(STORAGE_KEYS.API_KEY,event.newValue);          
           notifySubscribers("apikey", apikey);
           break;
         case STORAGE_KEYS.SECURITY_GROUP:
-          securityGroup = event.newValue ? JSON.parse(event.newValue) : null;
+          securityGroup = await decodeStorageValue(STORAGE_KEYS.SECURITY_GROUP,event.newValue);
           notifySubscribers("securityGroup", securityGroup);
           break;
         case STORAGE_KEYS.CODE_AES:
-          codeAES = event.newValue ? JSON.parse(event.newValue) : null;
+          codeAES = await decodeStorageValue(STORAGE_KEYS.CODE_AES,event.newValue);
           notifySubscribers("codeAES", codeAES);
           break;
         case STORAGE_KEYS.CLIENT:
-          client = event.newValue ? JSON.parse(event.newValue) : null;
+          client = await decodeStorageValue(STORAGE_KEYS.CLIENT,event.newValue);
           notifySubscribers("client", client);
           break;
         case STORAGE_KEYS.APP_LOGIN_TIMEOUT:
