@@ -249,6 +249,7 @@ export const deleteFormData = (formData) => {
 
 // Listen to storage events to handle cross-tab synchronization
 window.addEventListener('storage', (event) => {
+    
     switch (event.key) {    
         case STORAGE_KEYS.SAVED_FORM_CONTENT:
             savedFormContent = JSON.parse(event.newValue);
