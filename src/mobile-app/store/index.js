@@ -185,8 +185,8 @@ const safeDecrypt = function (content, encryptionKey) {
   
     clearAllForms () {
       userSettings.clearAllForms();
-      domainFormMappings.deleteAllData()
-      
+      domainFormMappings.deleteAllData();
+      globalInputSettings.deleteAllData()      
     }
     
     mergeFormDataList (formDataList) {
