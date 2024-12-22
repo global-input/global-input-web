@@ -286,6 +286,15 @@ const QRInstruction = styled.div`
 
 `;
 
+const ScanInstruction = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
 interface TabProps {
   widgetState: WidgetState;
   setWidgetState: (widgetState: WidgetState) => void;
@@ -454,23 +463,23 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
             hspace={100} 
             label={
               !showGlobalInputQRCode && 
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
+              <ScanInstruction>
                 Scan with 
                 <A onClick={handleGlobalInputAppClick}>
                   Global Input App
                 </A>
-              </div>
+              </ScanInstruction>
             }
           />
         )}
         {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100} label={
               !showGlobalInputQRCode && 
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
+              <ScanInstruction>
                 Scan with 
                 <A onClick={handleGlobalInputAppClick}>
                   Global Input App
                 </A>
-              </div>
+              </ScanInstruction>
             }/>}
         {widgetState === WidgetState.SETTINGS && (
           <SettingsEditor
