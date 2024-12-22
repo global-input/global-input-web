@@ -341,7 +341,9 @@ const GlobalInputEye =  ({
     const session = params.get('session');
     const code = params.get('code');
     const url = params.get('url');
-    sendAppLaunchedEvent(url, session, code);    
+    if(url && session && code){
+      sendAppLaunchedEvent(url, session, code);    
+    }
 }, []);
 
   if (isAuthorized) {
