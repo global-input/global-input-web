@@ -267,7 +267,7 @@ const QRCodeOverlay = styled.div`
   align-items: center;
 `;
 const QRContainer = styled.div`
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255);
   padding: 20px;
   border-radius: 12px;
   display: flex;
@@ -277,7 +277,7 @@ const QRContainer = styled.div`
 `;
 
 const QRInstruction = styled.div`
-  color: #333;
+  color:   #4872d3;  
   font-size: 16px;
   padding-top: 20px;
   background: rgba(255,255,255);
@@ -292,9 +292,29 @@ const ScanInstruction = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 10px;  
+  color:   #4872d3;  
 `;
 
+
+const ButtonLike = styled.a`
+  color: white;
+  background-color:rgb(220, 228, 237);
+  border: none;
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px dotted #ccc;
+  color:   #4872d3;  
+  margin-left: 5px;
+  &:hover {
+    background-color:rgb(186, 208, 232);
+    
+  }
+`;
 interface TabProps {
   widgetState: WidgetState;
   setWidgetState: (widgetState: WidgetState) => void;
@@ -465,9 +485,12 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
               !showGlobalInputQRCode && 
               <ScanInstruction>
                 Scan with 
-                <A onClick={handleGlobalInputAppClick}>
+               <ButtonLike onClick={handleGlobalInputAppClick}>
+               
                   Global Input App
-                </A>
+               
+                </ButtonLike> 
+                
               </ScanInstruction>
             }
           />
@@ -487,21 +510,21 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
             loadSettings={loadSettings}
           />
         )}
-        {message && <ErrorMessage>{message}</ErrorMessage>}
-
-        {showGlobalInputQRCode && (
+        {message && <ErrorMessage>{message}</ErrorMessage>}        
+      </Content>
+      {showGlobalInputQRCode && (
           <QRCodeOverlay onClick={handleOverlayClick}>
             <QRInstruction onClick={handleOverlayClick}>
-            Scan the QR code below with your phone’s camera to launch the Global Input App. Then click here to reveal the main QR code for scanning with the app.
+            Scan the QR code below with your phone’s camera to launch the Global Input App. Launching the app or clicking <ButtonLike>here</ButtonLike> will reveal the QR code for the app to scan.
               </QRInstruction>
             <QRContainer onClick={stopPropagation}>
-              <QRCodeSVG value={appLaunchedData.globalInputUrl} size={200} />
+              <QRCodeSVG value={appLaunchedData.globalInputUrl} size={250} />
               
               
             </QRContainer>
           </QRCodeOverlay>
         )}
-      </Content>
+
     </Container>
   );
 };
