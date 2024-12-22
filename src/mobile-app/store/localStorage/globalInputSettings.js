@@ -205,38 +205,43 @@ export const setProxyURL = (newProxyURL) => {
 
 // Optional: Listen to storage events for cross-tab synchronization
 window.addEventListener("storage", (event) => {
-  switch (event.key) {
-    case STORAGE_KEYS.API_KEY:
-      apikey = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("apikey", apikey);
-      break;
-    case STORAGE_KEYS.SECURITY_GROUP:
-      securityGroup = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("securityGroup", securityGroup);
-      break;
-    case STORAGE_KEYS.CODE_AES:
-      codeAES = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("codeAES", codeAES);
-      break;
-    case STORAGE_KEYS.CLIENT:
-      client = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("client", client);
-      break;
-    case STORAGE_KEYS.APP_LOGIN_TIMEOUT:
-      appLoginTimeout = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("appLoginTimeout", appLoginTimeout);
-      break;
-    case STORAGE_KEYS.PRESERVE_SESSION:
-      preserveSession = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("preserveSession", preserveSession);
-      break;
-    case STORAGE_KEYS.PROXY_URL:
-      proxyURL = event.newValue ? JSON.parse(event.newValue) : null;
-      notifySubscribers("proxyURL", proxyURL);
-      break;
-    default:
-      break;
-  }
+  try{
+      switch (event.key) {
+        case STORAGE_KEYS.API_KEY:
+          apikey = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("apikey", apikey);
+          break;
+        case STORAGE_KEYS.SECURITY_GROUP:
+          securityGroup = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("securityGroup", securityGroup);
+          break;
+        case STORAGE_KEYS.CODE_AES:
+          codeAES = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("codeAES", codeAES);
+          break;
+        case STORAGE_KEYS.CLIENT:
+          client = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("client", client);
+          break;
+        case STORAGE_KEYS.APP_LOGIN_TIMEOUT:
+          appLoginTimeout = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("appLoginTimeout", appLoginTimeout);
+          break;
+        case STORAGE_KEYS.PRESERVE_SESSION:
+          preserveSession = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("preserveSession", preserveSession);
+          break;
+        case STORAGE_KEYS.PROXY_URL:
+          proxyURL = event.newValue ? JSON.parse(event.newValue) : null;
+          notifySubscribers("proxyURL", proxyURL);
+          break;
+        default:
+          break;
+      }
+    }
+    catch(e){
+      logger.error("Error in storage event listener",e);
+    }
 });
 
 

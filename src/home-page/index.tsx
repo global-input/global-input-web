@@ -78,6 +78,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
           <Subtitle>{headerTextContent.subtitle}</Subtitle>
           <ButtonContainer>            
             <ConnectButton label="Try Now" mobile={mobile} />
+            <ConnectWindow mobile={mobile} />
             <DisconnectButton mobile={mobile} />
           </ButtonContainer>
         </TitleSection>
@@ -85,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
         <CardSection />
 
         <HowItWorks />
-        <ConnectWindow mobile={mobile} />
+        
       </Content>
       <PageFooter />
     </Container>

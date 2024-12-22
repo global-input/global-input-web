@@ -46,6 +46,33 @@ const openBrowser = data => {
     window.open(data.content,'_blank');    
   }
 };
+const  parseAppLaunchURL=(url)=>{
+  if (!url || !(url.startsWith('http://') || url.startsWith('https://')) || !url.includes('global-input-app/mobile-app')) {
+    return { code: null, session: null };
+  }
+  const params = new URLSearchParams(url);
+  const code = params.get('code');
+  const session = params.get('session');
+  
+  return { code, session, url:params.get('url') };
+
+}
+const sendAppLaunchedEvent = (url, session, code) => {
+  const newUrl = new URL(url + "/global-input/app/launched");
+  if (session) newUrl.searchParams.append('session', session);
+  if (code) newUrl.searchParams.append('code', code);
+
+  fetch(newUrl.toString())
+      .then(response => response.json())
+      .then(data => {
+          console.log('Success:', data);
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+};
+
+
 
 const GlobalInputEye =  ({
   toHelpScreen,
@@ -89,6 +116,7 @@ const GlobalInputEye =  ({
     setContentAndMessage(null, null);
   };
 
+
   const onCodeDataReceived = async code => {
     if ( (!code) || (code.length === 0) ) {
       return;
@@ -113,7 +141,7 @@ const GlobalInputEye =  ({
         if (!data.inputActive) {
             setContentAndMessage(codedata, eyeTextConfig.inputDisabled.display);
             return;
-        }
+        }        
         if (appdata.isActiveEncryptionKeyEncryptedMessage(codedata)) {
           try{      
             const decryptedContent = await appdata.decryptCodeDataWithAnyEncryptionKey(codedata);
@@ -138,8 +166,9 @@ const GlobalInputEye =  ({
                 return;
             }
         }
-        else if(codedata === 'https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr'){
-          setContentAndMessage(" Please click outside the QR code area to reveal the Global Input QR Code, then scan it again");
+        const launchData=parseAppLaunchURL(codedata);
+        if (launchData.url && launchData.session && launchData.code) {
+          sendAppLaunchedEvent(launchData.url, launchData.session, launchData.code);
           return;
         }
         const connector = createMessageConnector();
@@ -312,22 +341,7 @@ const GlobalInputEye =  ({
     const session = params.get('session');
     const code = params.get('code');
     const url = params.get('url');
-
-    // If the 'url' parameter is present, construct the new URL and send a request to it
-    if (url) {
-        const newUrl = new URL(url+"/global-input/app/launched");
-        if (session) newUrl.searchParams.append('session', session);
-        if (code) newUrl.searchParams.append('code', code);        
-
-        fetch(newUrl.toString())
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
+    sendAppLaunchedEvent(url, session, code);    
 }, []);
 
   if (isAuthorized) {
