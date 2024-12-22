@@ -381,15 +381,15 @@ const Tabs: React.FC<TabProps> = (props) => (
   </TabContainer>
 );
 
-const nodeisDevelopment=false;
+const nodeDevelopment=false;
 
 function buildAppLaunchedMessage(mobile){
   let globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
-  if(nodeisDevelopment){
-    const devehost='tnode2.globalinput.co.uk';
+  if(nodeDevelopment){
+    const devHost='tnode2.globalinput.co.uk';
     const localhost='localhost';  
-    if (window.location.hostname === devehost || window.location.hostname === localhost) {
-      globalInputUrl = globalInputUrl.replace("globalinput.co.uk", devehost);    
+    if (window.location.hostname === devHost || window.location.hostname === localhost) {
+      globalInputUrl = globalInputUrl.replace("globalinput.co.uk", devHost);    
     }
   }
   const session=mobile.registeredInfo?.session;
