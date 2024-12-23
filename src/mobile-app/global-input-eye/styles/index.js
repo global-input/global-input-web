@@ -58,8 +58,7 @@ var styleData={
      textAlign:"center"
    },
    helpContainer:{
-     backgroundColor: 'transparent',
-     width:"auto",
+     backgroundColor: 'transparent',     
      display:"flex",
      flexDirection:"row",
      justifyContent:"flex-end",
@@ -70,14 +69,12 @@ var styleData={
 
 
    footer:{
-        backgroundColor: '#FFFFFF',
+        
         height: 30,
         display: "flex",
         flexDirection: 'row',
         justifyContent:"flex-start",
-        alignItems:"center",
-        position:"absolute",
-        width:"100%",
+        alignItems:"center",         
         position:"absolute",
         bottom:30,
         left:30,
@@ -143,7 +140,7 @@ var styleData={
    codeDisplayTitle:{
       color:"white",
    },
-   condeDisplayCodeContent:{
+   codeDisplayCodeContent:{
       flex:1,
       backgroundColor: 'rgba(255,255,255,1)',
       width:"100%",

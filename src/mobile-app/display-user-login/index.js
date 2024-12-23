@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { styles } from './styles';
@@ -60,9 +60,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
     setCompData({ ...compData, errorMessage });
   const setRepeatedPassword = (repeatedPassword) =>
     setCompData({ ...compData, repeatedPassword });
-  const setRevealSecret = (revealSecret) =>
-    setCompData({ ...compData, revealSecret });
-
+  
   const setupPassword = () =>
     appStore.setupApp(compData.password.trim(), compData.repeatedPassword.trim(), onLoggedIn, setErrorMessage);
 

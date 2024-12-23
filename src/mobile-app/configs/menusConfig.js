@@ -195,7 +195,7 @@ const menusConfig={
     activate:{
         menu:{label:"Activate",image:images.activateIcon}
     },
-    visiturl:{
+    visitUrl:{
       menu:{label:"Open URL",image:images.browser}
     },
     checkbox:{

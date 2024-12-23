@@ -1,7 +1,6 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {createMessageConnector} from 'global-input-message';
 import Switch from "react-switch";
-////globa_input_eye////
 import {styles, deviceDetector} from './styles';
 
 import {appdata, globalInputSettings} from '../store';
@@ -15,10 +14,6 @@ import menusConfig from '../configs/menusConfig';
 
 
 
-import {
-  PendingAuthorizartionView,
-  NotAuthorizedView,
-} from '../camera-not-authorized';
 
 import {Scanner} from '../tests';
 
@@ -32,9 +27,7 @@ import {logger} from '../logging';
 const initialState = {
   message: '',
   content: '',
-  inputActive: true,
-  modal: '',
-  modaldata: {},
+  inputActive: true
 };
 
 const openBrowser = data => {
@@ -76,8 +69,6 @@ const sendAppLaunchedEvent = (url, session, code) => {
 
 const GlobalInputEye =  ({
   toHelpScreen,
-  isAuthorized,
-  isAuthorizationChecked,
   menuItems,
   toImportProtectedEncryptionKey,
   toImportNotProtectedEncryptionKey,
@@ -93,22 +84,13 @@ const GlobalInputEye =  ({
 
   const setInputActive = inputActive => setData({...data, inputActive});
 
-  const copyContentToClibboard = () => {    
+  const copyContentToClipboard = () => {    
     navigator.clipboard.writeText(data.content);
     setContentAndMessage('', '');
   };
 
-  const layoutChanged = event => {
-    if (event && event.nativeEvent && event.nativeEvent.layout) {
-      setData({...data});
-    }
-  };
-  const renderPendingAuthorizartionView = () => {    
-    return <PendingAuthorizartionView menuItems={menuItems} />;
-  };
-  const renderNotAuthorizedView = () => {
-    return <NotAuthorizedView menuItems={menuItems} />;
-  };
+  
+
   const isDisplayMessage = () => {
     return data.message || data.content;
   };
@@ -249,7 +231,7 @@ const GlobalInputEye =  ({
         title = 'Code Data';
       } else if (!content) {
         content = data.content;
-        title = 'Eror Message';
+        title = 'Error Message';
       }
       var codeDisplayContent = styles.codeDisplayContent;
       if (deviceDetector.isLandscapeMode()) {
@@ -262,7 +244,7 @@ const GlobalInputEye =  ({
             <div style={styles.codeDisplayHeader}>
               <span style={styles.codeDisplayTitle}>{title}</span>
             </div>
-            <div style={styles.condeDisplayCodeContent}>
+            <div style={styles.codeDisplayCodeContent}>
               
                 <span style={styles.codeDisplayText}>{content}</span>
               
@@ -275,65 +257,7 @@ const GlobalInputEye =  ({
     }
   };
 
-  const renderCameraView = () => {
-    
-    
-    if (isDisplayMessage()) {  
-      const orgMeniItems = menuItems;
-      menuItems = [
-        {
-          menu: menusConfig.dismiss.menu,
-          onPress: clearContentAndMessage,
-        },        
-        orgMeniItems[orgMeniItems.length - 1],
-        {
-          menu: menusConfig.clipboardCopy.menu,
-          onPress: copyContentToClibboard,
-        },
-
-      ];
-      if (
-        data.content &&
-        data.content.startsWith &&
-        (data.content.startsWith('http://') ||
-          data.content.startsWith('https://'))
-      ) {
-        menuItems.splice(1, 0, {
-          menu: menusConfig.visiturl.menu,
-          onPress: () => openBrowser(data),
-        });
-      }
-    }
-    const onError = (error) => {
-      setContentAndMessage('Error:'+error, 'Error:'+error);
-    };
-
-
-    ////processCodeData////
-    return (
-      <div style={styles.container}>
-        <Scanner
-        onScan={onCodeDataReceived}
-        onError={onError}
-        allowMultiple={true}
-        scanDelay={1000}
-        components={{ audio:false}}
-        // constraints={{ facingMode: 'environment' }}
-        // containerStyle={{ width: '100%' }}
-        // videoStyle={{ width: '100%' }}
-      />
-        {renderHeader()}
-
-        {renderDisplayCodeDataContent()}
-
-        <TabMenu
-          menuItems={menuItems}
-          selected={menusConfig.eye.menu}
-          transparent={true}
-        />
-      </div>
-    );
-  };
+  
 
 
   useEffect(() => {
@@ -345,15 +269,64 @@ const GlobalInputEye =  ({
     if(url && session && code){
       sendAppLaunchedEvent(url, session, code);    
     }
-}, []);
+}, []);  
 
-  if (isAuthorized) {
-    return renderCameraView();
-  } else if (!isAuthorizationChecked) {
-    return renderPendingAuthorizartionView();
-  } else {
-    return renderNotAuthorizedView();
-  }
+if (isDisplayMessage()) {
+    const orgMenuItems = menuItems;
+    menuItems = [
+      {
+        menu: menusConfig.dismiss.menu,
+        onPress: clearContentAndMessage,
+      },        
+      orgMenuItems[orgMenuItems.length - 1],
+      {
+        menu: menusConfig.clipboardCopy.menu,
+        onPress: copyContentToClipboard,
+      },
+
+    ];
+    if (
+      data.content &&
+      data.content.startsWith &&
+      (data.content.startsWith('http://') ||
+        data.content.startsWith('https://'))
+    ) {
+      menuItems.splice(1, 0, {
+        menu: menusConfig.visitUrl.menu,
+        onPress: () => openBrowser(data),
+      });
+    }
+}
+const onError = (error) => {
+  setContentAndMessage('Error:'+error, 'Error:'+error);
+};
+
+
+////processCodeData////
+return (
+  <div style={styles.container}>
+    <Scanner
+    onScan={onCodeDataReceived}
+    onError={onError}
+    allowMultiple={true}
+    scanDelay={1000}
+    components={{ audio:false}}
+    // constraints={{ facingMode: 'environment' }}
+    // containerStyle={{ width: '100%' }}
+    // videoStyle={{ width: '100%' }}
+  />
+    {renderHeader()}
+
+    {renderDisplayCodeDataContent()}
+
+    <TabMenu
+      menuItems={menuItems}
+      selected={menusConfig.eye.menu}
+      transparent={true}
+    />
+  </div>
+);
+  
 };
 
 export default GlobalInputEye;

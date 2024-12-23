@@ -23,32 +23,32 @@ const FormLabel = ({ formData }) => {
 };
 
 const MyComponent = ({ formData, menuItems, title, content1, content2 }) => {
-  const [action, setAction] = useState({ show: false, modal: null });
+  const [action, setAction] = useState({ show: false});
 
   useEffect(() => {
-    setAction({ show: false, modal: null });
+    setAction({ show: false});
   }, [formData]);
 
   const onShow = () => setAction({ ...action, show: true });
   const onHide = () => setAction({ ...action, show: false });
 
-  const appmenus = action.show
+  const appMenus = action.show
     ? [{ menu: menusConfig.hideSecret.menu, onPress: onHide }]
     : [{ menu: menusConfig.showSecret.menu, onPress: onShow }];
 
-  let formid = '';
+  let formId = '';
   if (formData && formData.id) {
-    formid = formDataUtil.getFormIdFromTemplateAndFields(formData.id, formData.fields);
+    formId = formDataUtil.getFormIdFromTemplateAndFields(formData.id, formData.fields);
   }
 
   return (
-    <ViewWithTabMenu menuItems={[...menuItems, ...appmenus]} title={title}>
+    <ViewWithTabMenu menuItems={[...menuItems, ...appMenus]} title={title}>
       <div style={styles.content}>
         <DisplayBlockText content={content1} />
         <div style={styles.formEditField}>
           <img src={images.idIcon} style={styles.labelIcon} alt="" />
           <div style={styles.itemRecord}>
-            <span style={styles.valueText}>{formid}</span>
+            <span style={styles.valueText}>{formId}</span>
           </div>
         </div>
         <FormLabel formData={formData} />

@@ -18,7 +18,7 @@ const STORAGE_KEYS = {
     STORAGE_VERSION: 'STORAGE_VERSION',
 };
 export const ACTIVE_ROLE = 'active';
-export const DEFAULT_ENCRPTION_NAME="This Device";
+export const DEFAULT_ENCRYPTION_NAME="This Device";
 export const DEFAULT_ENCRYPTION_ROLE="role";
 
 

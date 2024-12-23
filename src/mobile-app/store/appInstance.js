@@ -71,7 +71,7 @@ export async function setupEncryptionKeys(){
     userSettings.setEncryptionKeyList([{
         createdAt: new Date(),
         lockedKeyValue: lockedEncryptionKey,
-        name:userSettings.DEFAULT_ENCRPTION_NAME,
+        name:userSettings.DEFAULT_ENCRYPTION_NAME,
         role: userSettings.ACTIVE_ROLE
     }]);
 }
