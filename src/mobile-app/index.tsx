@@ -45,7 +45,7 @@ const AfterLoggedIn= {
 };
 const MobileApp: React.FC = () => {    
     const [page, setPage] = useState<PageData>(initialState);
-    const [previousPage, setPreviousPage] = useState<PageData>(AfterLoggedIn);
+    const [previousPage] = useState<PageData>(AfterLoggedIn);
     
     
     
@@ -215,8 +215,6 @@ const renderHelpScreen =  useCallback(() => {
       case Page.ScanQRCode:        
         return(<GlobalInputEye
           menuItems={menuItems}
-          isAuthorized={true}
-          isAuthorizationChecked={true}
           toGlobalInput={onGlobalInputConnect}
           toImportProtectedEncryptionKey={onImportEncryptionKey}
           toImportNotProtectedEncryptionKey={toImportNotProtectedEncryptionKey}
