@@ -7,7 +7,7 @@ import { globalInputSettings } from '../../store';
 import { QRCodeView } from '../../qr-code-view';
 import ACT_TYPE from './ACT_TYPE';
 
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 
 export const disconnect = globalInputConnector => {
   if (globalInputConnector.current) {

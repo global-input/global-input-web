@@ -11,7 +11,7 @@ import menusConfig from '../../configs/menusConfig';
 import IconButton from '../../components/buttons/IconButton';
 import TextFieldWithDone from '../../components/input/TextFieldWithDone';
 import DisplayHeader from '../../components/menu/DisplayHeader';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 
 export default class ListFormLabelsHeader extends Component {
   constructor(props) {

@@ -17,7 +17,7 @@ import {formDataUtil} from "./FormDataUtil";
 
 
 import * as appInstance from './appInstance';
-import {logger} from '../logging';
+import {logger} from 'global-input-logging';
 
 const safeDecrypt = function (content, encryptionKey) {
     try {

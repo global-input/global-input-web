@@ -10,7 +10,7 @@ import userLoginText from '../configs/userLoginText';
 import * as appStore from '../store';
 import DialogButton from '../components/modal/DialogButton';
 import TextInputField from '../components/input/TextInputField';
-import { developmentPassword } from '../tests';
+import { developmentPassword } from 'global-input-config';
 
 const AppStoreImage = styled.img.attrs({
   src: appStoreIcon,

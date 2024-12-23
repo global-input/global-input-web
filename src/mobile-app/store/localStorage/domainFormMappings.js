@@ -1,5 +1,5 @@
 import * as generalUtil from '../generalUtil';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 
 // Key for localStorage
 const STORAGE_KEY = 'DOMAIN_TO_IDS';

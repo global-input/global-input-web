@@ -11,7 +11,7 @@ import ACT_TYPE from '../ACT_TYPE';
 import { generateRandomString } from 'global-input-message';
 import * as renders from './renders';
 import { appdata } from '../../store';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 export const DeviceInputView = ({
   action,
   setAction,

@@ -14,7 +14,7 @@ import {DecryptImportView} from '../restore-data/decrypt-import-view'
 import BackupFormData from '../backup-data'
 import {HelpScreen} from '../../help-screen'
 import DeleteAllDataView from '../delete-all-data'
-import {logger} from '../../logging'
+import {logger} from 'global-input-logging'
 
 const ACT_TYPE = {
   MAIN: 1,

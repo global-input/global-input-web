@@ -12,7 +12,7 @@ import menusConfig from '../../configs/menusConfig';
 import CopyToClipboard from '../../components/buttons/CopyToClipboard';
 import ViewWithTabMenu from '../../components/menu/ViewWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
-import { logger } from '../../logging';
+import { logger } from '../../../global-input-logging';
 // Define action types
 const ACT_TYPE = {
   DISPLAY: 1,

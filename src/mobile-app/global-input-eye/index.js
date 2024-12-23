@@ -15,13 +15,23 @@ import menusConfig from '../configs/menusConfig';
 
 
 
-import {Scanner} from '../tests';
+import {Scanner} from '@yudiel/react-qr-scanner';
 
-import {logger} from '../logging';
-
-
+import * as mocks from 'tests/__mocks__/react-qr-scanner';
 
 
+import {logger} from 'global-input-logging';
+
+import * as globalInputConfig from 'global-input-config';
+
+
+let ScannerComponent=Scanner;
+
+
+if(globalInputConfig.isDevelopment){
+
+  ScannerComponent=mocks.Scanner;
+}
 
 
 const initialState = {
@@ -305,7 +315,7 @@ const onError = (error) => {
 ////processCodeData////
 return (
   <div style={styles.container}>
-    <Scanner
+    <ScannerComponent
     onScan={onCodeDataReceived}
     onError={onError}
     allowMultiple={true}

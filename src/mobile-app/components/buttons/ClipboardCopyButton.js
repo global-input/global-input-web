@@ -8,7 +8,7 @@ import { styles } from "./styles";
 
 import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
 import menusConfig  from '../../configs/menusConfig';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 
 
 

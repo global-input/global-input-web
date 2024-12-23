@@ -10,7 +10,7 @@ import ManageKeysView from "../../manage-keys/manage-keys-view";
 import {FormContentDataView} from '../form-content-data-view'
 import {ManageFormData} from "../../../manage-form-data";
 import ViewWithTabMenu from "../../../components/menu/ViewWithTabMenu";
-import {logger} from "../../../logging";
+import {logger} from "global-input-logging";
 
 const ACT_TYPE={
     NO_DATA:1,

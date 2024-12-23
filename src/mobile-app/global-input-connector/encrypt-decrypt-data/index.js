@@ -8,7 +8,7 @@ import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import TextInputField from '../../components/input/TextInputField';
 import { styles } from './styles';
-import { logger } from '../../logging';
+import { logger } from '../../../global-input-logging';
 
 /*****************Init Data******Begin*********/
 const initDataActionForEncryptionAndDecryption = (initData, actionType) => {

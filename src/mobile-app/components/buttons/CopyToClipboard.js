@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import NotificationText from '../display-text/NotificationText';
 import deviceInputTextConfig  from '../../configs/deviceInputTextConfig';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 export default class CopyToClipboard extends Component {
   constructor(props) {
     super(props);

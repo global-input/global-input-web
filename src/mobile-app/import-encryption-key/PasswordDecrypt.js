@@ -8,7 +8,7 @@ import TextInputField from '../components/input/TextInputField';
 
 import EditorWithTabMenu from '../components/menu/EditorWithTabMenu';
 import { appdata } from '../store';
-import {logger} from '../logging';
+import {logger} from 'global-input-logging';
 
 const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
   const [action, setAction] = useState({

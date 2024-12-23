@@ -1,4 +1,4 @@
-import { logger } from '../logging';
+import { logger } from '../../global-input-logging';
 
 export default class FormDataUtil {
   MAX_FORM_ID_LENGTH = 500;

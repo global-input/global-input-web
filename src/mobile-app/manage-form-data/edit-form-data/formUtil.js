@@ -16,7 +16,7 @@ import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import CheckBoxButton from '../../components/buttons/CheckBoxButton';
 
 import ACT_TYPE from './ACT_TYPE.js';
-import { logger } from '../../logging'; 
+import { logger } from '../../../global-input-logging'; 
 
 // Utility function to get the default form ID
 export const getDefaultFormId = () => {

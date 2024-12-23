@@ -3,7 +3,7 @@ import * as userSettings from "./localStorage/userSettings";
 
 import * as generalUtil from './generalUtil';
 import FormDataUtil from "./FormDataUtil";
-import { logger } from '../logging';
+import { logger } from '../../global-input-logging';
 
 const formDataUtil = new FormDataUtil();
 

@@ -14,7 +14,7 @@ import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
 import { appdata } from '../../store';
 import * as appStore from '../../store';
-import { logger } from '../../logging';
+import { logger } from '../../../global-input-logging';
 
 const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
   // Initialize state using a function to avoid recomputation on every render

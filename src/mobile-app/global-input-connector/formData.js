@@ -17,7 +17,7 @@ import ACT_TYPE from './ACT_TYPE';
 
 import * as encryptDecryptData from './encrypt-decrypt-data';
 
-import {logger} from '../logging';
+import {logger} from 'global-input-logging';
 
 const MAX_NUMBER_OF_FIELDS = 100;
 

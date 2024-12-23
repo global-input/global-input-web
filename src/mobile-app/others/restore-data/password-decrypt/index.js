@@ -7,7 +7,7 @@ import EditorWithTabMenu from '../../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../../components/input/TextInputField';
 import DisplayBlockText from '../../../components/display-text/DisplayBlockText';
 import {appdata} from '../../../store';
-import {logger} from '../../../logging';
+import {logger} from 'global-input-logging';
 
 
 const errorMessages = {

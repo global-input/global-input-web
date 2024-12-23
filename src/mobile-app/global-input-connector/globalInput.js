@@ -4,7 +4,7 @@ import { appdata,  globalInputSettings} from '../store';
 import deviceInputTextConfig from "../configs/deviceInputTextConfig";
 
 import ACT_TYPE from './ACT_TYPE';
-import {logger} from '../logging';
+import {logger} from 'global-input-logging';
 
 const onOutputMessageReceived = message => {
     logger.log("onOutputMessageReceived:" + message);

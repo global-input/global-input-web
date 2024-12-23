@@ -28,7 +28,7 @@ import ClipboardCopyView from "../../../clipboard-copy-view";
 
 import { appdata, formDataUtil } from '../../../store';
 import * as appStore from '../../../store';
-import {logger} from '../../../logging';
+import {logger} from 'global-input-logging';
 const ACT_TYPE = {
   LIST_KEYS: 1,
   GENERATE_NEW_KEY: 2,

@@ -1,6 +1,6 @@
 import * as globalInputMessage from 'global-input-message';
 import * as enc from '../enc';
-import { logger } from '../../logging';
+import { logger } from '../../../global-input-logging';
 // Keys for localStorage
 const STORAGE_KEYS = {
   API_KEY: "GLOBAL_INPUT_API_KEY",

@@ -4,7 +4,7 @@ import manageKeysTextConfig from "../../configs/manageKeysTextConfig";
 
 import {appdata } from "../../store";
 
- import {logger} from '../../logging'; 
+ import {logger} from 'global-input-logging'; 
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {

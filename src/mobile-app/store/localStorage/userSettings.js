@@ -1,5 +1,5 @@
 import * as generalUtil from '../generalUtil';
-import { logger } from "../../logging";
+import { logger } from "../../../global-input-logging";
 
 let savedFormContent = null;
 let encryptionKeyList = null;

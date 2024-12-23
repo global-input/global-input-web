@@ -9,7 +9,7 @@ import { styles } from './styles';
 import EditorWithTabMenu from '../../components/menu/EditorWithTabMenu';
 import TextInputField from '../../components/input/TextInputField';
 import DisplayBlockText from '../../components/display-text/DisplayBlockText';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 
 const populateItemsInAction = (action, encryptionKeyList) => {
   if (!encryptionKeyList) {

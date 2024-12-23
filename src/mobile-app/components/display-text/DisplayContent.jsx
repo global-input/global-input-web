@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { styles, stylesData } from './styles';
 import { formDataUtil } from '../../store';
-import {logger} from '../../logging';
+import {logger} from 'global-input-logging';
 export default class DisplayContent extends Component {
   MAX_ARRAY_LENGTH = 500;
   MAX_URL_LENGTH = 500;

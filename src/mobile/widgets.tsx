@@ -11,8 +11,8 @@ import disconnectImage from "./images/disconnect.png";
 import pairingImage from "./images/pairing.png";
 
 import { SettingsEditor } from "./settingsEditor";
+import * as globalInputConfig from "global-input-config";
 
-const integratedDevelopment=true;
 
 const Button = styled.button`
   text-decoration: none;
@@ -404,14 +404,7 @@ const Tabs: React.FC<TabProps> = (props) => (
 
 
 function buildAppLaunchedMessage(mobile){
-  let globalInputUrl = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
-  if(integratedDevelopment){
-    const devHost='tnode2.globalinput.co.uk';
-    const localhost='localhost';  
-    if (window.location.hostname === devHost || window.location.hostname === localhost) {
-      globalInputUrl = globalInputUrl.replace("globalinput.co.uk", devHost);    
-    }
-  }
+  let globalInputUrl = globalInputConfig.getGlobalInputAppLaunchBaseURL();    
   const session=mobile.registeredInfo?.session;
   const code=Date.now().toString(36);
   let url=mobile.registeredInfo?.url
