@@ -1,6 +1,5 @@
 import * as globalInputMessage from 'global-input-message';
 import * as enc from '../enc';
-
 import { logger } from '../../logging';
 // Keys for localStorage
 const STORAGE_KEYS = {
@@ -12,7 +11,12 @@ const STORAGE_KEYS = {
   PRESERVE_SESSION: "GLOBAL_INPUT_PRESERVE_SESSION",
   PROXY_URL: "GLOBAL_INPUT_PROXY_URL",
 };
+
+
+
 const appInstance = {  
+  
+// cspell:disable
   key: "lO3U8KSaxlm4iPoHX",
   salt: null,
   iv: null,
