@@ -27,7 +27,7 @@ const PasswordDecrypt = ({ codedata, onEncryptionKeyDecrypted, onBack }) => {
     var { password, codedata } = action;
     if (!password) {
       logger.log('Password is missing');
-      setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
+      setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsMissing);
     } else {
       
       try {

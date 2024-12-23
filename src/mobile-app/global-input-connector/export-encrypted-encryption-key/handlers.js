@@ -12,9 +12,9 @@ const populateItemsInAction = (action, encryptionKeyList) => {
     return action;
   }
   
-  let {endReached,startIndex,numberRocordsInBatch}=action;
+  let {endReached,startIndex,numberOfRecordsInBatch}=action;
   let items=[...action.items];
-  for (var counter = 0; counter < numberRocordsInBatch; counter++) {
+  for (var counter = 0; counter < numberOfRecordsInBatch; counter++) {
     if (startIndex >= encryptionKeyList.length) {
       endReached = true;
       break;
@@ -39,7 +39,7 @@ export const buildInitialData = () => {
     startIndex: 0,
     items: [],
     endReached: false,
-    numberRocordsInBatch: 50,
+    numberOfRecordsInBatch: 50,
     selectedEncryptionKeyItem
   };
   return populateItemsInAction(action, encryptionKeyList);
@@ -50,15 +50,15 @@ export const exportEncryptionKey = async ({action, setAction, onCompleted}) => {
   try {            
        
           if (!action?.password) {
-              setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
+              setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsMissing);
           }
           else if (action?.password?.length < 5) {
               setErrorMessage(manageKeysTextConfig.errorMessages.passwordTooShort);
           }
           else {
               var encryptedContent = await appdata.exportEncryptionKeyItemWithPassword(action.selectedEncryptionKeyItem, action?.password);
-              var codedataname = manageKeysTextConfig.export.qrcode.title;
-              onCompleted(encryptedContent,codedataname);                
+              var codeDataName = manageKeysTextConfig.export.qrcode.title;
+              onCompleted(encryptedContent,codeDataName);                
           }
   }
   catch (error) {

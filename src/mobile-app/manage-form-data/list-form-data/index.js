@@ -14,7 +14,7 @@ const createNewAction = () => {
     startIndex: 0,
     items: [],
     endReached: false,
-    numberRocordsInBatch: 20,
+    numberOfRecordsInBatch: 20,
     formDataList: [],
   };
 };
@@ -29,7 +29,7 @@ const populateItemsInAction = (action) => {
     action.items.pop();
   }
 
-  for (let counter = 0; counter < action.numberRocordsInBatch; counter++) {
+  for (let counter = 0; counter < action.numberOfRecordsInBatch; counter++) {
     if (action.startIndex >= formDataList.length) {
       action.endReached = true;
       break;

@@ -122,7 +122,7 @@ const ExportEncryptionKey = ({ onCancel, onCompleted }) => {
   const onEncrypt = async () => {
     try {
       if (!action.password) {
-        setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsmissing);
+        setErrorMessage(manageKeysTextConfig.errorMessages.passwordIsMissing);
       } else if (action.password.length < 5) {
         setErrorMessage(manageKeysTextConfig.errorMessages.passwordTooShort);
       } else {

@@ -106,7 +106,7 @@ const changeGlobalInputFields = ({
   const autoSetDefaultOn = null;
 
   globalInputdata.forEach((gfield, index) => {
-    if (index === fieldIndex || (fieldId && fieldId == gfield.id)) {
+    if (index === fieldIndex || (fieldId && fieldId === gfield.id)) {
       if (gfield.autoSetDefaultOn) {
         autoSetDefaultOn = gfield.autoSetDefaultOn;
       }

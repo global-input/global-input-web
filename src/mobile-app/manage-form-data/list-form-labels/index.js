@@ -19,7 +19,7 @@ const createNewAction = () => {
     startIndex: 0,
     items: [],
     endReached: false,
-    numberRocordsInBatch: 20,
+    numberOfRecordsInBatch: 20,
     labels: [],
   };
 };
@@ -38,7 +38,7 @@ const populateItemsInAction = (action) => {
   if (action.items.length > 0) {
     action.items.pop();
   }
-  for (let counter = 0; counter < action.numberRocordsInBatch; counter++) {
+  for (let counter = 0; counter < action.numberOfRecordsInBatch; counter++) {
     if (action.startIndex >= labels.length) {
       action.endReached = true;
       break;

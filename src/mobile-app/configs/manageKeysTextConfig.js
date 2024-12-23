@@ -81,7 +81,7 @@ const manageKeysTextConfig={
           content:["Press the \"Import\" button to import this encryption key into the app"]
     },
     errorMessages:{
-        passwordIsmissing:"Password required for decrypting the encryption key.",
+        passwordIsMissing:"Password required for decrypting the encryption key.",
         passwordTooShort:"Password too short",
         nameMissing:"The name field cannot be empty.",
         failedToEncrypt:"Failed to encrypt the content:",
