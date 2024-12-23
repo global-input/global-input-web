@@ -5,21 +5,31 @@ import { deviceDetector } from '../../../common-styles';
 const stylesData = {
   container: {
     display: 'flex',
-    flex: 1, // May need adjustment based on your layout
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,1)',    
-  },
-  containerWhenKeyboardShowing: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    minHeight: '100vh', // This ensures full viewport height
+    width: '100%',
     backgroundColor: 'rgba(255,255,255,1)',
-    paddingTop: '70px',
-    border: '1px solid red',
-  },
+    position: 'fixed', // This ensures it stays fixed to viewport
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    overflow: 'hidden' // Prevents container from scrolling
+},
+containerWhenKeyboardShowing: {
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100vh',
+  width: '100%',
+  backgroundColor: 'rgba(255,255,255,1)',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  paddingTop: '70px',
+  overflow: 'hidden'
+},
   header: {
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
@@ -53,17 +63,15 @@ const stylesData = {
     marginRight: '5px',
   },
   contentContainer: {
+    flex: 1, // This allows it to take remaining space
     backgroundColor: 'rgba(255, 255, 255, 1)',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    minHeight: '100vh', // Adjusted to use viewport height
-    paddingBottom: '70px',
-    paddingTop:"20px",
-    paddingLeft:"20px",
-    paddingRight:"20px",
     width: '90%',
-  },
+    padding: '20px',
+    overflowY: 'auto', // Makes content scrollable
+    position: 'relative' // Needed for proper scrolling
+},
   tab: {
     margin: 0,
     bottom: 0,
@@ -160,12 +168,15 @@ const stylesData = {
     borderBottom: '1px solid #FFFFFF',
   },
   endSpaceWhenKeyboardHiding: {
-    height: '50px',
+    height: '70px', // Increased to account for tab height
+    minHeight: '70px', // Ensures consistent space
     width: '100%',
   },
   endSpaceWhenKeyboardShowing: {
-    height: '100px',
+    height: '70px',
+    minHeight: '70px',
     width: '100%',
+
   },
   textBlockContainer: {
     display: 'flex',
@@ -182,6 +193,16 @@ const stylesData = {
     height: '100%',
     width: '90%',
   },
+  contentContainerLandscape: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 1)',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '90%',
+    padding: '20px 30px 20px 35px',
+    overflowY: 'auto',
+    position: 'relative'
+},
 };
 
 // Adjust styles based on device type
@@ -222,12 +243,6 @@ stylesData.tabLandscape = {
 // Set contentContainer width based on device dimensions
 // stylesData.contentContainer.width = deviceDetector.getStaticDimension().width + 'px';
 
-stylesData.contentContainerLandscape = {
-  ...stylesData.contentContainer,
-  paddingRight: '30px',
-  paddingLeft: '35px',
-  width: deviceDetector.getStaticDimension().height + 'px',
-};
 
 stylesData.floatingIconLandscape = {
   ...stylesData.floatingIcon,
