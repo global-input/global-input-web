@@ -15,23 +15,19 @@ import menusConfig from '../configs/menusConfig';
 
 
 
-import {Scanner} from '@yudiel/react-qr-scanner';
+import {Scanner} from 'global-input-scanner';
 
-import * as mocks from 'tests/__mocks__/react-qr-scanner';
+import * as mocks from 'global-input-scanner/react-qr-scanner';
 
 
 import {logger} from 'global-input-logging';
 
-import * as globalInputConfig from 'global-input-config';
+
 
 
 let ScannerComponent=Scanner;
 
 
-if(globalInputConfig.isDevelopment){
-
-  ScannerComponent=mocks.Scanner;
-}
 
 
 const initialState = {
