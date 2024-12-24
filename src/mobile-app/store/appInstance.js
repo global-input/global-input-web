@@ -135,4 +135,27 @@ export async function decryptWithActiveEncryptionKey(content){
 }
 
 
+
+const rememberPasswordKey="Eo6Qjcm5Lr"; 
+export async function setRememberPassword(passwordToRemember){
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
     
+    if(!iv || !salt){
+        return;
+    }
+    const encryptedRememberToPassword=await enc.decryptContent(rememberPasswordKey,passwordToRemember, memDecrypt(salt), memDecrypt(iv));    
+    userSettings.setRememberPassword(encryptedRememberToPassword);    
+}    
+export async function getRememberPassword(){
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
+    if(!iv || !salt){
+        return null;
+    }
+    const rememberPassword=userSettings.getRememberPassword();
+    if(!rememberPassword){
+        return null;
+    }    
+    return await enc.encryptContent(rememberPasswordKey,rememberPassword, memDecrypt(salt), memDecrypt(iv));    
+}

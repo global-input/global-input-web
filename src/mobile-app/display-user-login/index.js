@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { styles } from './styles';
 import appStoreIcon from "./images/app-store.png";
 import playStoreIcon from "./images/play-store.png";
-
 import images from '../configs/images';
 import userLoginText from '../configs/userLoginText';
 import * as appStore from '../store';
@@ -43,7 +42,15 @@ const StoreLinksContainer = styled.div`
   align-items: center;
   margin-top: 20px; /* Add spacing to give breathing room */
 `;
-
+const RememberPasswordBlock = styled.div`
+  margin-top: 12px;
+  color:white;  
+  font-size: 14px;
+  
+`;
+const StyledLabel = styled.label`
+  cursor: pointer;
+`;
 const initialData = {
   password: developmentPassword,
   repeatedPassword: developmentPassword,
@@ -55,16 +62,44 @@ const initialData = {
 const DisplayUserLogin = ({ onLoggedIn }) => {
   const [compData, setCompData] = useState(initialData);
 
+  // 1. ADD NEW STATE FOR REMEMBERING PASSWORD
+  const [rememberPassword, setRememberPassword] = useState(false);
+
   const setPassword = (password) => setCompData({ ...compData, password });
   const setErrorMessage = (errorMessage) =>
     setCompData({ ...compData, errorMessage });
   const setRepeatedPassword = (repeatedPassword) =>
     setCompData({ ...compData, repeatedPassword });
-  
-  const setupPassword = () =>
-    appStore.setupApp(compData.password.trim(), compData.repeatedPassword.trim(), onLoggedIn, setErrorMessage);
 
-  const login = () => appStore.appSignin(compData.password.trim(), onLoggedIn, setErrorMessage);
+  // 2. ON COMPONENT MOUNT, RETRIEVE A SAVED PASSWORD (IF ANY)
+  useEffect(() => {
+    const loadRememberPassword =async ()=>{
+      const savedPassword = await appStore.getRememberPassword();
+      if (savedPassword) {
+        setCompData({ ...compData, password: savedPassword });
+        setRememberPassword(true);
+      }
+
+    }
+    loadRememberPassword();    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Modified setupPassword to optionally store password
+  const setupPassword = () => {
+    appStore.setupApp(
+      compData.password.trim(),
+      compData.repeatedPassword.trim(),
+      onLoggedIn,
+      setErrorMessage,
+      rememberPassword
+    );    
+  };
+
+  // Modified login to optionally store password
+  const login = () => {
+    appStore.appSignin(compData.password.trim(), onLoggedIn, setErrorMessage, rememberPassword);    
+  };
 
   const resetApp = () => {
     setCompData({ ...compData, resettingApp: true });
@@ -115,6 +150,10 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
             autoComplete="off"
           />
         </div>
+
+        {/* 3. RENDER THE CHECKBOX IN SETUP MODE */}
+        
+
         <div style={styles.formItem}>
           <DialogButton
             position="separate"
@@ -125,6 +164,19 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
         <div style={styles.helpContainer}>
           {renderErrorMessage()}
           <span style={styles.helpText}>{userLoginText.login.content}</span>
+        </div>
+        <div style={styles.formItem}>
+        <RememberPasswordBlock>
+          <StyledLabel>
+            <input
+              type="checkbox"
+              checked={rememberPassword}
+              onChange={(e) => setRememberPassword(e.target.checked)}
+            />
+            <span style={{ marginLeft: '5px' }}>Remember Password</span>
+          </StyledLabel>
+          If you check this box, your password will be saved on this device.  This is not recommended for shared devices.
+    </RememberPasswordBlock>
         </div>
       </div>
     );
@@ -142,6 +194,19 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
             autoComplete="off"
           />
         </div>
+
+        {/* 4. RENDER THE CHECKBOX IN LOGIN MODE */}
+        <div style={styles.formItem}>
+          <label style={{ cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={rememberPassword}
+              onChange={(e) => setRememberPassword(e.target.checked)}
+            />
+            <span style={{ marginLeft: '5px' }}>Remember Password</span>
+          </label>
+        </div>
+
         <div style={styles.formItem}>
           <DialogButton
             position="separate"
@@ -209,14 +274,13 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
     return <div style={styles.header}></div>;
   };
 
-  // Detect platform
+  // Detect platform for store badges
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   const isIOS = /iPhone|iPad|iPod|MacIntel/.test(navigator.platform) ||
                 /Mac OS X/.test(userAgent);
   const isAndroid = /Android/.test(userAgent);
 
   const renderStoreLinks = () => {
-    // Conditional logic for displaying icons
     if (isIOS) {
       return (
         <StoreLinksContainer>
@@ -234,7 +298,6 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
         </StoreLinksContainer>
       );
     } else {
-      // Show both if not on iOS or Android
       return (
         <StoreLinksContainer>
           <ButtonLink href="https://apps.apple.com/us/app/global-input-app/id1269541616">
@@ -257,7 +320,6 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
         {renderContent()}
         {renderStoreLinks()}
       </div>
-      {/* If you had a footer, you could leave it empty or remove it */}
       <div style={{ ...styles.footer, marginTop: '20px' }}>
         {/* Additional content or instructions can go here */}
       </div>

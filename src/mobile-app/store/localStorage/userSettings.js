@@ -8,14 +8,16 @@ let appInstallInstanceId = null;
 let appInstallSalt = null;
 let appInstallIv = null;
 let storageVersion = null;
+let rememberPassword = null;
 // Keys for localStorage
 const STORAGE_KEYS = {    
-    SAVED_FORM_CONTENT: 'SAVED_FORM_CONTENT',
-    ENCRYPTION_KEY_LIST: 'ENCRYPTION_KEY_LIST',
-    APP_INSTALL_INSTANCE_ID: 'APP_INSTALL_INSTANCE_ID',
-    APP_INSTALL_SALT: 'APP_INSTALL_SALT',
-    APP_INSTALL_IV: 'APP_INSTALL_IV',
-    STORAGE_VERSION: 'STORAGE_VERSION',
+    SAVED_FORM_CONTENT: 'form_value_encrypted',
+    ENCRYPTION_KEY_LIST: 'giaencklist',
+    APP_INSTALL_INSTANCE_ID: 'install_instance_id',
+    APP_INSTALL_SALT: 'slt',
+    APP_INSTALL_IV: 'appiv',
+    STORAGE_VERSION: 'storage_version',
+    REMEMBER_PASSWORD: 'remember',    
 };
 export const ACTIVE_ROLE = 'active';
 export const DEFAULT_ENCRYPTION_NAME="This Device";
@@ -43,6 +45,14 @@ function loadFromLocalStorage(key, defaultValue = null) {
         return defaultValue;
     }
 }
+function deleteFromLocalStorage(key) {
+    try {
+        localStorage.removeItem(key);
+    } catch (e) {
+        logger.error(`Error deleting ${key} from localStorage`, e);
+    }
+}
+
 
 // Initialize cached variables
 function initializeState() {        
@@ -63,6 +73,9 @@ function initializeState() {
     }
     if(storageVersion === null){
         storageVersion = loadFromLocalStorage(STORAGE_KEYS.STORAGE_VERSION, null);
+    }
+    if(rememberPassword === null){
+        rememberPassword = loadFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD, false);
     }
 }
 
@@ -87,6 +100,8 @@ export const getAppInstallIv = () => appInstallIv;
 
 
 export const getAllForms = () => savedFormContent;
+
+export const getRememberPassword = () => rememberPassword;
 
 
 
@@ -125,6 +140,15 @@ export const setAppInstallIv = (iv) => {
 export const setAllForms = (forms) => {
     savedFormContent = forms;
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, forms);
+};
+
+export const setRememberPassword = (value) => {
+    rememberPassword = value;
+    saveToLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD, value);
+};
+export const clearRememberPassword = () => {
+    rememberPassword = false;
+    deleteFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD);
 };
 
 
@@ -228,8 +252,10 @@ export const clearAllData = () => {
     appInstallInstanceId = null;
     appInstallSalt = null;
     appInstallIv = null;
+    storageVersion = null;
+    rememberPassword = false;
     // Clear localStorage
-    Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
+    Object.values(STORAGE_KEYS).forEach((key) => deleteFromLocalStorage(key));
 };
 
 // Merge a list of form data
@@ -265,7 +291,13 @@ window.addEventListener('storage', (event) => {
             break;
         case STORAGE_KEYS.APP_INSTALL_IV:
             appInstallIv = JSON.parse(event.newValue);
-            break;            
+            break; 
+        case STORAGE_KEYS.STORAGE_VERSION:
+            storageVersion = JSON.parse(event.newValue);
+            break;
+        case STORAGE_KEYS.REMEMBER_PASSWORD:
+            rememberPassword = JSON.parse(event.newValue);
+            break;           
         default:
             break;
     }

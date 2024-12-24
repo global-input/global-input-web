@@ -488,7 +488,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
 
   
-  export const setupApp = async (password, repeatedPassword, onLoggedIn, onError) => {      
+  export const setupApp = async (password, repeatedPassword, onLoggedIn, onError, rememberPassword) => {      
 
        if (!password) {
           onError('Password required.');
@@ -507,6 +507,9 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           await appInstance.signin(password);
           await appInstance.setupEncryptionKeys();                        
           userSettings.setStorageVersion("1.0");
+          if(rememberPassword){
+            await userSettings.setRememberPassword(password);
+          }
           onLoggedIn();        
         }
         catch(error){
@@ -518,9 +521,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   };
 
 
-  export const changePassword = async (originalPassword, newPassword) => {
-       
-
+  export const changePassword = async (originalPassword, newPassword) => {      
     if (isAppSignedIn()) {
       try {
         try{
@@ -542,14 +543,16 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   
   
   
-  export const appSignin = async (password, onLoggedIn, onError) => {  
-    
+  export const appSignin = async (password, onLoggedIn, onError, rememberPassword) => {  
     if (!password) {
       onError('Password required.');
       return;
     } 
     try{
       await appInstance.signin(password);
+      if(!rememberPassword){        
+         userSettings.clearRememberPassword();        
+      }
       onLoggedIn();
     }
     catch(error){
@@ -618,3 +621,4 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
     return  encryptionKey.role === userSettings.ACTIVE_ROLE;
   }
   
+  export const getRememberPassword =  (password) => appInstance.getRememberPassword();
