@@ -29,8 +29,11 @@ const safeDecrypt = function (content, encryptionKey) {
   
   class ApplicationSettingsData {
     constructor () {    
+      // cspell:disable-next
       this.encryptionKeyPrefix = 'LrHXyPx6NW'
+      // cspell:disable-next
       this.encryptionKeySuffix = 'rzjjTYkEwd'
+      // cspell:disable-next
       this.passwordProtectionSuffix = 'kE4yPZrJlKCEKGpTPctVzwU'
   
       this.backupKeySuffix = 'xQV'
@@ -44,6 +47,7 @@ const safeDecrypt = function (content, encryptionKey) {
       this.encryptionKeyContentType = 'master'
   
       this.encryptionKeyExportedAsTextIdentifier = 'XFyuHTV74za2n6gh'
+      // cspell:disable-next
       this.protectEncryptionKeyExportedAsTextIdentifier = 'HdSMqCszICFT6VOY'
   
       this.formDataIdentifier = 'BTtHfSSdkQbEjKAD'
@@ -516,7 +520,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
               await appInstance.setRememberPassword(password);
             }
             catch(exception){
-              logger.error("failed to rememner password:"+exception, exception);
+              logger.error("failed to remember password:"+exception, exception);
             }
               
           }

@@ -136,6 +136,8 @@ export async function decryptWithActiveEncryptionKey(content){
 
 
 
+
+// cspell:disable-next
 const rememberPasswordKey="Eo6Qjcm5Lr"; 
 export async function setRememberPassword(passwordToRemember){
     const salt=userSettings.getAppInstallSalt();

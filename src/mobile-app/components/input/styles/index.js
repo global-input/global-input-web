@@ -114,8 +114,8 @@ const styleData = {
 }
 export const styles = styleData
 
-export function stylesWithNumberOfLines (nlines = 1) {
-  var height = nlines * 25 + 50
+export function stylesWithNumberOfLines (nLines = 1) {
+  var height = nLines * 25 + 50
   return {
     textarea: {
       display: 'flex',
@@ -124,8 +124,7 @@ export function stylesWithNumberOfLines (nlines = 1) {
       paddingRight: 15,
       flex: 1,
       borderColor: 'rgba(72,128,237,1)',
-      borderWidth: 1,
-      borderStyle: 'solid',
+      borderWidth: 1,      
       color: 'rgba(72,128,237,1)',
       borderStyle: 'solid',
     },

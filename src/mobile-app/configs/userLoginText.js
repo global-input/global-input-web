@@ -48,7 +48,7 @@ const userLoginText = {
   },
   resetApp: {
     buttonText: 'Reset App',
-    title: 'Restting App',
+    title: 'Resetting App',
     content:
       'This will reset the app and remove all the data you have entered in the app. You will need to setup your password again. Are you sure you want to reset the app?',
     confirmText: 'Confirm',

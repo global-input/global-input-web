@@ -12,9 +12,11 @@ let rememberPassword = null;
 // Keys for localStorage
 const STORAGE_KEYS = {    
     SAVED_FORM_CONTENT: 'form_value_encrypted',
+    // cspell:disable-next
     ENCRYPTION_KEY_LIST: 'giaencklist',
     APP_INSTALL_INSTANCE_ID: 'install_instance_id',
     APP_INSTALL_SALT: 'slt',
+    // cspell:disable-next
     APP_INSTALL_IV: 'appiv',
     STORAGE_VERSION: 'storage_version',
     REMEMBER_PASSWORD: 'remember',    
