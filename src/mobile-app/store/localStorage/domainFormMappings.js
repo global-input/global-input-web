@@ -90,7 +90,7 @@ export function attachToDomains(formId, domains) {
   setDomainToIds(updatedDomainToIds);
 }
 
-function deleteFormId(formId) {
+export function deleteFormId(formId) {
   let updatedDomainToIds = [];
 
   domainToIds.forEach((domainMapping) => {
@@ -116,7 +116,7 @@ function deleteAllMappings() {
   setDomainToIds([]);
 }
 
-function deleteADomain(domain) {
+export function deleteADomain(domain) {
   const updatedDomainToIds = domainToIds.filter(
     (domainMapping) => domainMapping.domain !== domain
   );
@@ -147,9 +147,6 @@ export const updateDomains = ({ formData, formId }) => {
   }
 };
 
-export const deleteFormData = ({ formData }) => {
-  deleteFormId(formData.id);
-};
 
 export const deleteByFormId = ({ formId }) => {
   deleteFormId(formId);

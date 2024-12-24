@@ -198,16 +198,7 @@ export const activateEncryptionItem = (encryptionItemToActivate) => {
 
 }
 
-export const updateFormData = (formId, formData) => {
-    savedFormContent = savedFormContent.filter((f) => f.id !== formId);
-    savedFormContent.unshift(formData);
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
 
-export const createFormData = (formData) => {    
-    savedFormContent.unshift(formData);
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
 
 
 export const clearAllForms = () => {
@@ -233,10 +224,6 @@ export const saveFormContent = (formContent) => {
 }
 
 
-export const deleteFormData = (formData) => {
-    savedFormContent = savedFormContent.filter((m) => m.id !== formData.id);
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
 
 // Listen to storage events to handle cross-tab synchronization
 window.addEventListener('storage', (event) => {

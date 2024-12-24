@@ -160,15 +160,20 @@ const safeDecrypt = function (content, encryptionKey) {
   
     updateFormData (formId, formData) {
       if (formId && formData && formData.id) {      
-        userSettings.updateFormData(formId, formData)
+        const savedFormContent= userSettings.getAllForms();
+        const  resultFormContent = savedFormContent.filter((f) => f.id !== formId);
+        resultFormContent.unshift(formData);
+        userSettings.saveFormContent(resultFormContent);                    
         domainFormMappings.updateDomains({formData, formId})
       } else {
         logger.error('Could not save empty data or the ones without id')
       }
     }
     createFormData (formData) {
-      if (formData && formData.id) {      
-        userSettings.createFormData(formData);
+      if (formData && formData.id) {
+        const savedFormContent= userSettings.getAllForms();
+        savedFormContent.unshift(formData);
+        userSettings.saveFormContent(savedFormContent);        
         domainFormMappings.saveDomains({formData})
       } else {
         logger.error('Could not save empty data or the ones without id')
@@ -176,8 +181,10 @@ const safeDecrypt = function (content, encryptionKey) {
     }    
     deleteFormData (formData) {
       if (formData && formData.id) {     
-        userSettings.deleteFormData(formData)
-        domainFormMappings.deleteFormData({formData})
+        let savedFormContent= userSettings.getAllForms();
+        savedFormContent = savedFormContent.filter((m) => m.id !== formData.id);
+        userSettings.saveFormContent(savedFormContent);        
+        domainFormMappings.deleteFormId(formData.id)
       } else {
         logger.error('Could not delete empty data or the ones without id')
       }

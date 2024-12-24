@@ -155,7 +155,7 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
 
         case ACT_TYPE.IMPORT_FORM_COMPLETED: 
               {
-                      var menuItems=[{},{
+                      const menuItems2=[{},{
                             menu:menusConfig.ok.menu,
                             onPress:onImportComplete
                       },{}];
@@ -166,22 +166,22 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
                       if(action.formData){
                         help=action.formData.id+" is imported into the app successfully.";
                       }
-                    var content=[help];
+                    const content2=[help];
                     return(
                           <ViewWithTabMenu title={windowTitle}
-                          menuItems={menuItems}
-                          selected={menusConfig.others.menu} content={content}/>
+                          menuItems={menuItems2}
+                          selected={menusConfig.others.menu} content={content2}/>
                       );
                 }
         default: 
                 {
-                        var menuItems=[{
+                        const menuItems2=[{
                             menu:menusConfig.back.menu,
                             onPress:onBack
                         }];              
                           return(
                             <ViewWithTabMenu title={windowTitle}
-                            menuItems={menuItems}
+                            menuItems={menuItems2}
                             selected={menusConfig.others.menu} content={nodataHelp}/>
                           );                        
                 }
