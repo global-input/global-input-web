@@ -9,7 +9,7 @@ import userLoginText from '../configs/userLoginText';
 import * as appStore from '../store';
 import DialogButton from '../components/modal/DialogButton';
 import TextInputField from '../components/input/TextInputField';
-import { developmentPassword } from 'global-input-config';
+
 
 const AppStoreImage = styled.img.attrs({
   src: appStoreIcon,
@@ -52,12 +52,32 @@ const StyledLabel = styled.label`
   cursor: pointer;
 `;
 const initialData = {
-  password: developmentPassword,
-  repeatedPassword: developmentPassword,
+  password: '',
+  repeatedPassword: '',
   revealSecret: true,
   errorMessage: null,
   resettingApp: false,
 };
+
+
+const RememberPassword = ({ rememberPassword, setRememberPassword }) => {
+return(
+  <div style={styles.formItem}>
+        <RememberPasswordBlock>
+          <StyledLabel>
+            <input
+              type="checkbox"
+              checked={rememberPassword}
+              onChange={(e) => setRememberPassword(e.target.checked)}
+            />
+            <span style={{ marginLeft: '5px' }}>Remember Password (Checking this box will store your password on your device.)</span>
+          </StyledLabel>
+          
+    </RememberPasswordBlock>
+        </div>
+);
+}
+
 
 const DisplayUserLogin = ({ onLoggedIn }) => {
   const [compData, setCompData] = useState(initialData);
@@ -165,19 +185,8 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           {renderErrorMessage()}
           <span style={styles.helpText}>{userLoginText.login.content}</span>
         </div>
-        <div style={styles.formItem}>
-        <RememberPasswordBlock>
-          <StyledLabel>
-            <input
-              type="checkbox"
-              checked={rememberPassword}
-              onChange={(e) => setRememberPassword(e.target.checked)}
-            />
-            <span style={{ marginLeft: '5px' }}>Remember Password</span>
-          </StyledLabel>
-          If you check this box, your password will be saved on this device.  This is not recommended for shared devices.
-    </RememberPasswordBlock>
-        </div>
+        <RememberPassword rememberPassword={rememberPassword} setRememberPassword={setRememberPassword}/>
+        
       </div>
     );
   };
@@ -195,17 +204,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           />
         </div>
 
-        {/* 4. RENDER THE CHECKBOX IN LOGIN MODE */}
-        <div style={styles.formItem}>
-          <label style={{ cursor: 'pointer' }}>
-            <input
-              type="checkbox"
-              checked={rememberPassword}
-              onChange={(e) => setRememberPassword(e.target.checked)}
-            />
-            <span style={{ marginLeft: '5px' }}>Remember Password</span>
-          </label>
-        </div>
+        
 
         <div style={styles.formItem}>
           <DialogButton
@@ -225,6 +224,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           {renderErrorMessage()}
           <span style={styles.helpText}>{userLoginText.login.content}</span>
         </div>
+        <RememberPassword rememberPassword={rememberPassword} setRememberPassword={setRememberPassword}/>
       </div>
     );
   };

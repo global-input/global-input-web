@@ -107,11 +107,10 @@ const stylesData = {
     flexWrap: 'wrap',
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 15,
+    marginTop: 15    
   },
   helpText: {
-    fontSize: 16,
-    fontFamily: 'Futura-Medium',
+    fontSize: 14,    
     color: '#FFFFFF',
   },
 }

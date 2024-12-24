@@ -253,7 +253,7 @@ export const clearAllData = () => {
     appInstallSalt = null;
     appInstallIv = null;
     storageVersion = null;
-    rememberPassword = false;
+    rememberPassword = null;
     // Clear localStorage
     Object.values(STORAGE_KEYS).forEach((key) => deleteFromLocalStorage(key));
 };

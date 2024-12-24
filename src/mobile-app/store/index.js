@@ -508,7 +508,13 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           await appInstance.setupEncryptionKeys();                        
           userSettings.setStorageVersion("1.0");
           if(rememberPassword){
-            await userSettings.setRememberPassword(password);
+            try{
+              await appInstance.setRememberPassword(password);
+            }
+            catch(exception){
+              logger.error("failed to rememner password:"+exception, exception);
+            }
+              
           }
           onLoggedIn();        
         }
@@ -550,18 +556,33 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
     } 
     try{
       await appInstance.signin(password);
-      if(!rememberPassword){        
-         userSettings.clearRememberPassword();        
+      
+      if(rememberPassword){
+        try{
+          await appInstance.setRememberPassword(password);
+        }
+        catch(exception){
+          logger.error("failed to remember password:"+exception, exception);
+        }
+      }
+      else{
+        try{
+          await appInstance.clearRememberPassword();
+        }
+        catch(exception){
+          logger.error("failed to clear remember password:"+exception, exception);
+        }
+
       }
       onLoggedIn();
     }
     catch(error){
       logger.error("error:"+error, error);
-      onError('Incorrect password.');
-    } 
+      onError('Failed to sign in. Please try again.');
+    }
+  };
+
      
-     
-  }
   
   export const resetApp = () => {    
       userSettings.clearAllData();

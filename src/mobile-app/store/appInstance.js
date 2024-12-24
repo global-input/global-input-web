@@ -144,7 +144,7 @@ export async function setRememberPassword(passwordToRemember){
     if(!iv || !salt){
         return;
     }
-    const encryptedRememberToPassword=await enc.decryptContent(rememberPasswordKey,passwordToRemember, memDecrypt(salt), memDecrypt(iv));    
+    const encryptedRememberToPassword=await enc.encryptContent(rememberPasswordKey,passwordToRemember, memDecrypt(salt), memDecrypt(iv));    
     userSettings.setRememberPassword(encryptedRememberToPassword);    
 }    
 export async function getRememberPassword(){
@@ -157,5 +157,8 @@ export async function getRememberPassword(){
     if(!rememberPassword){
         return null;
     }    
-    return await enc.encryptContent(rememberPasswordKey,rememberPassword, memDecrypt(salt), memDecrypt(iv));    
+    return await enc.decryptContent(rememberPasswordKey,rememberPassword, memDecrypt(salt), memDecrypt(iv));    
+}
+export async function clearRememberPassword(){
+    userSettings.clearRememberPassword();
 }
