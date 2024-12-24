@@ -24,11 +24,12 @@ export const isUserSignedIn = () =>{
 }
   
 
-export async function signin(password){        
+export async function signin(password){
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
-    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));    
+    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored)); 
     setupGlobalInputSettings();
+    
 }
 
 async function  setupGlobalInputSettings(){

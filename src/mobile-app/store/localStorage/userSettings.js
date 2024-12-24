@@ -1,5 +1,6 @@
 import * as generalUtil from '../generalUtil';
-import { logger } from "../../../global-input-logging";
+import * as enc from './enc';
+import { logger } from "global-input-logging";
 
 let savedFormContent = null;
 let encryptionKeyList = null;
@@ -57,7 +58,7 @@ function deleteFromLocalStorage(key) {
 
 
 // Initialize cached variables
-function initializeState() {        
+export function initializeState() {        
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
     }    
