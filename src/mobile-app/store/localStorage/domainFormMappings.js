@@ -46,7 +46,7 @@ function setDomainToIds(value) {
 }
 
 // Transformer functions
-function attachToDomains(formId, domains) {
+export function attachToDomains(formId, domains) {
   let updatedDomainToIds = [];
   let domainsToAttach = [...domains];
 
@@ -155,18 +155,7 @@ export const deleteByFormId = ({ formId }) => {
   deleteFormId(formId);
 };
 
-export const mergeFormData = ({ formData }) => {
-  const domains = generalUtil.buildDomainsFromFormData(formData);
-  if (domains) {
-    attachToDomains(formData.id, domains);
-  }
-};
 
-export const mergeFormDataList = ({ formDataList }) => {
-  formDataList.forEach((formData) => {
-    mergeFormData({ formData });
-  });
-};
 
 export const deleteAllData = () => {
   deleteAllMappings();

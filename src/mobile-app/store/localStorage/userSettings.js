@@ -209,37 +209,6 @@ export const createFormData = (formData) => {
     saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
 };
 
-export const mergeFormData = (formData) => {
-    let processed = false;
-    let updatedFormContent = [];
-
-    for (let i = 0; i < savedFormContent.length; i++) {
-        if (savedFormContent[i].id === formData.id) {
-            let fields = [...savedFormContent[i].fields];
-            // Merge fields
-            formData.fields.forEach((newField) => {
-                const index = fields.findIndex((f) => f.id === newField.id);
-                if (index >= 0) {
-                    fields[index] = newField;
-                } else if (newField.type !== 'button') {
-                    fields.push(newField);
-                }
-            });
-            formData.fields = fields;
-            updatedFormContent.push(formData);
-            processed = true;
-        } else {
-            updatedFormContent.push(savedFormContent[i]);
-        }
-    }
-
-    if (!processed) {
-        updatedFormContent.unshift(formData);
-    }
-
-    savedFormContent = updatedFormContent;
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
 
 export const clearAllForms = () => {
     savedFormContent = [];
@@ -258,15 +227,11 @@ export const clearAllData = () => {
     Object.values(STORAGE_KEYS).forEach((key) => deleteFromLocalStorage(key));
 };
 
-// Merge a list of form data
-export const mergeFormDataList = (formDataList) => {
-    const formDataIds = formDataList.map((formData) => formData.id);
-    const notMatchedContent = savedFormContent.filter(
-        (formData) => !formDataIds.includes(formData.id)
-    );
-    savedFormContent = [...notMatchedContent, ...formDataList];
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
+export const saveFormContent = (formContent) => {
+    savedFormContent = formContent;
+    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, formContent);
+}
+
 
 export const deleteFormData = (formData) => {
     savedFormContent = savedFormContent.filter((m) => m.id !== formData.id);

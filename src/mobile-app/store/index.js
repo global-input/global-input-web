@@ -189,10 +189,7 @@ const safeDecrypt = function (content, encryptionKey) {
       globalInputSettings.deleteAllData()      
     }
     
-    mergeFormDataList (formDataList) {
-      userSettings.mergeFormDataList(formDataList)
-      domainFormMappings.mergeFormDataList({formDataList})
-    }
+    
   
     getFormContentById (formId) {
       return userSettings.getFormContentById(formId)
@@ -600,12 +597,59 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   
   export const mergeFormData = (formData) => {
     if (formData && formData.id) {     
-      userSettings.mergeFormData(formData);
-      domainFormMappings.mergeFormData({formData})
+      const savedFormContent= userSettings.getAllForms();      
+      let processed = false;
+          let updatedFormContent = [];
+      
+          for (let i = 0; i < savedFormContent.length; i++) {
+              if (savedFormContent[i].id === formData.id) {
+                  let fields = [...savedFormContent[i].fields];
+                  // Merge fields
+                  formData.fields.forEach((newField) => {
+                      const index = fields.findIndex((f) => f.id === newField.id);
+                      if (index >= 0) {
+                          fields[index] = newField;
+                      } else if (newField.type !== 'button') {
+                          fields.push(newField);
+                      }
+                  });
+                  formData.fields = fields;
+                  updatedFormContent.push(formData);
+                  processed = true;
+              } else {
+                  updatedFormContent.push(savedFormContent[i]);
+              }
+          }
+      
+          if (!processed) {
+              updatedFormContent.unshift(formData);
+          }
+          userSettings.saveFormContent(updatedFormContent);            
+          const domains = generalUtil.buildDomainsFromFormData(formData);
+            if (domains) {
+              domainFormMappings.attachToDomains(formData.id, domains);
+            }      
+
     } else {
       logger.error('Could not merge empty data or the ones without id');
     }
   }
+
+  export const mergeFormDataList = (formDataList) => {
+    const savedFormContent= userSettings.getAllForms();
+    const formDataIds = formDataList.map((formData) => formData.id);
+    const notMatchedContent = savedFormContent.filter(
+      (formData) => !formDataIds.includes(formData.id)
+    );
+    const resultFormContent = [...notMatchedContent, ...formDataList];
+    userSettings.saveFormContent(resultFormContent);            
+    formDataList.forEach((formData) => {
+          const domains = generalUtil.buildDomainsFromFormData(formData);
+          if (domains) {
+            domainFormMappings.attachToDomains(formData.id, domains);
+          }
+      });
+  };
 
   
   

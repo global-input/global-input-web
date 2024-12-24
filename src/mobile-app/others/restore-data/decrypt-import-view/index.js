@@ -5,6 +5,8 @@ import menusConfig from "../../../configs/menusConfig";
 
 
 import {appdata,formDataUtil} from "../../../store";
+import * as appStore from "../../../store";
+
 import PasswordDecrypt from "../password-decrypt"
 import ManageKeysView from "../../manage-keys/manage-keys-view";
 import {FormContentDataView} from '../form-content-data-view'
@@ -74,7 +76,7 @@ export const DecryptImportView= ({onBack, content, dataSourceType=DATA_SOURCE_TY
         const importAllFormData = () => {
                 var formDataList=action.formDataList
                 if(formDataList && formDataList.length>0){
-                    appdata.mergeFormDataList(formDataList);
+                    appStore.mergeFormDataList(formDataList);
                 }        
                 
                 setAction({...action,type:ACT_TYPE.IMPORT_FORM_COMPLETED});    
