@@ -2,7 +2,7 @@ import * as generalUtil from '../generalUtil';
 import {logger} from 'global-input-logging';
 
 // Key for localStorage
-const STORAGE_KEY = 'DOMAIN_TO_IDS';
+const STORAGE_KEY = 'domain_id_list_form';
 
 // Cached variable
 let domainToIds = null;
@@ -41,7 +41,12 @@ initializeState();
 export const getAllDomainMappingRecords = () => domainToIds;
 
 function setDomainToIds(value) {
-  domainToIds = value;
+  if((!value) || !Array.isArray(value) || !value.length){
+    domainToIds=[];
+    localStorage.removeItem(STORAGE_KEY);  
+    return;
+  }  
+  domainToIds = value; 
   saveToLocalStorage(STORAGE_KEY, domainToIds);
 }
 
@@ -113,7 +118,7 @@ export function deleteFormId(formId) {
 }
 
 function deleteAllMappings() {
-  setDomainToIds([]);
+  setDomainToIds(null);
 }
 
 export function deleteADomain(domain) {
