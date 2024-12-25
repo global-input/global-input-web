@@ -99,21 +99,38 @@ async function loadFromLocalStorage(key, defaultValue) {
 
 
 // Initialize cached variables with default values if not set
-async function initializeState() {  
-    apikey = await loadFromLocalStorage(STORAGE_KEYS.API_KEY, memEncrypt("SOh85GNXT8TXLCTEc"));  
-    securityGroup = await loadFromLocalStorage(STORAGE_KEYS.SECURITY_GROUP,memEncrypt("1CNbWCFpsbmRQuKdd"));    
-    codeAES = await loadFromLocalStorage(STORAGE_KEYS.CODE_AES, memEncrypt("LNJGw0x5lqnXpnVY8"));
-    client = await loadFromLocalStorage(STORAGE_KEYS.CLIENT, null);
-    if(!client){
-      client = memEncrypt(globalInputMessage.generateRandomString(17));
-      if(appInstance.id){        
-          await saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
+async function initializeState() {      
+    securityGroup = memEncrypt("1CNbWCFpsbmRQuKdd");
+    if(appInstance.id){
+      securityGroup=await loadFromLocalStorage(STORAGE_KEYS.SECURITY_GROUP,securityGroup);
+    }    
+    codeAES = memEncrypt("LNJGw0x5lqnXpnVY8");
+    if(appInstance.id){
+      codeAES=await loadFromLocalStorage(STORAGE_KEYS.CODE_AES, codeAES);
+    }
+    apikey=memEncrypt("SOh85GNXT8TXLCTEc");  
+    if(appInstance.id){    
+      apikey = await loadFromLocalStorage(STORAGE_KEYS.API_KEY,apikey);
+    }  
+    if(appInstance.id){
+      client = await loadFromLocalStorage(STORAGE_KEYS.CLIENT, null);
+      if(!client){
+        client = memEncrypt(globalInputMessage.generateRandomString(17));
+        if(appInstance.id){        
+          client= await saveToLocalStorage(STORAGE_KEYS.CLIENT, client);
+        }      
       }
-      
-    }        
+    }
+    else{
+      client = memEncrypt(globalInputMessage.generateRandomString(17));
+    }                
+    proxyURL=memEncrypt("https://globalinput.co.uk")
+    if(appInstance.id){
+      proxyURL = await loadFromLocalStorage(STORAGE_KEYS.PROXY_URL,proxyURL);
+    }    
     appLoginTimeout = await loadFromLocalStorage(STORAGE_KEYS.APP_LOGIN_TIMEOUT,120000);  
     preserveSession = await loadFromLocalStorage(STORAGE_KEYS.PRESERVE_SESSION,true);    
-    proxyURL = await loadFromLocalStorage(STORAGE_KEYS.PROXY_URL,memEncrypt("https://globalinput.co.uk"));  
+    
 }
 
 // Call initializeState to set up the initial state

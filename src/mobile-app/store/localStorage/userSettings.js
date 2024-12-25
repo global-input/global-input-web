@@ -14,7 +14,7 @@ let rememberPassword = null;
 const STORAGE_KEYS = {    
     SAVED_FORM_CONTENT: 'form_value_encrypted_gia',
     // cspell:disable-next
-    ENCRYPTION_KEY_LIST: 'giaencklist',
+    ENCRYPTION_KEY_LIST: 'enc_list_gia',
     APP_INSTALL_INSTANCE_ID: 'install_instance_id_gia',
     APP_INSTALL_SALT: 'slt_gia',
     // cspell:disable-next
@@ -22,9 +22,6 @@ const STORAGE_KEYS = {
     STORAGE_VERSION: 'storage_version_gia',
     REMEMBER_PASSWORD: 'remember_gia'    
 };
-export const ACTIVE_ROLE = 'active';
-export const DEFAULT_ENCRYPTION_NAME="This Device";
-export const DEFAULT_ENCRYPTION_ROLE="role";
 
 
 
@@ -74,7 +71,7 @@ export function initializeState() {
         rememberPassword = loadFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD, false);
     }        
     if (encryptionKeyList === null) {
-        encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, []);
+        encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, null);
     }        
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, null);
@@ -90,7 +87,7 @@ initializeState();
 
 export const getStorageVersion = () => storageVersion;
 
-export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];
+
 
 export const getEncryptionKeyList = () => encryptionKeyList;
 
@@ -115,8 +112,15 @@ export const getSavedFormContent = () => savedFormContent;
 
 
 export const setEncryptionKeyList = (list) => {
-    encryptionKeyList = list;
-    saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, list);
+    
+    if(encryptionKeyList){
+        encryptionKeyList = list;
+        saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, list);
+    }
+    else{
+        encryptionKeyList=null;
+        deleteFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST);
+    }    
 };
 
 export const setStorageVersion = (version) => {
@@ -159,50 +163,9 @@ export const clearRememberPassword = () => {
 
 
 
-export const deleteEncryptionItem = (encryptionItemToDelete) => {
-    if (
-        encryptionItemToDelete &&
-        encryptionItemToDelete.lockedKeyValue &&
-        encryptionItemToDelete.role !== ACTIVE_ROLE
-    ) {
-        encryptionKeyList = encryptionKeyList.filter(
-            (e) => e.lockedKeyValue !== encryptionItemToDelete.lockedKeyValue
-        );
-        saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
-    }
-};
 
-export const updateEncryptionItem = (encryptionItem) => {
-    if (encryptionItem && encryptionItem.lockedKeyValue) {
-        const foundIndex = encryptionKeyList.findIndex(
-            (e) => e.lockedKeyValue === encryptionItem.lockedKeyValue
-        );
-        if (foundIndex >= 0) {
-            encryptionKeyList[foundIndex] = encryptionItem;
-            saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
-        }
-    }
-};
 
-export const activateEncryptionItem = (encryptionItemToActivate) => {
-    if (encryptionItemToActivate && encryptionItemToActivate.lockedKeyValue) {
-        const foundIndex = encryptionKeyList.findIndex(
-            (e) => e.lockedKeyValue === encryptionItemToActivate.lockedKeyValue
-        );
-        if (foundIndex >= 0) {
-            for(let i=0;i<encryptionKeyList.length;i++){
-                if(i===foundIndex){
-                    encryptionKeyList[i].role=ACTIVE_ROLE;
-                }
-                else{
-                    encryptionKeyList[i].role=DEFAULT_ENCRYPTION_ROLE;
-                }                
-            }
-            saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, encryptionKeyList);
-        }
-    }
 
-}
 
 
 
@@ -210,7 +173,7 @@ export const activateEncryptionItem = (encryptionItemToActivate) => {
 
 export const clearAllData = () => {    
     savedFormContent = null;    
-    encryptionKeyList = [];
+    encryptionKeyList = null;
     appInstallInstanceId = null;
     appInstallSalt = null;
     appInstallIv = null;

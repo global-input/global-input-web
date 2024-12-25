@@ -134,7 +134,7 @@ const safeDecrypt = function (content, encryptionKey) {
       var encryptionKeyList = this.getEncryptionKeyList()      
       for (var i = 0; i < encryptionKeyList.length; i++) {
         try {
-          if(encryptionKeyList[i].role === userSettings.ACTIVE_ROLE){
+          if(appInstance.isEncryptionKeyIsActive(encryptionKeyList[i])){
             continue;
           }
           const decryptedEncryptionKey = await unlockContent(encryptionKeyList[i].lockedKeyValue);          
@@ -241,14 +241,14 @@ const safeDecrypt = function (content, encryptionKey) {
       return null; // If no match is found, return null
     }
     getActiveEncryptionKeyItem () {
-        return userSettings.getActiveEncryptionKey();      
+        return appInstance.getActiveEncryptionKey();      
     }
     getEncryptionKeyList () {  
-      return userSettings.getEncryptionKeyList()        
+      return appInstance.getEncryptionKeyList()        
     }
                   
     updateEncryptionKey (encryptionItem) {
-      userSettings.updateEncryptionItem(encryptionItem)
+      appInstance.updateEncryptionItem(encryptionItem)
     }
       
     decryptPasswordEncryptedEncryptionKeyText (content, protectionPassword) {
@@ -261,7 +261,7 @@ const safeDecrypt = function (content, encryptionKey) {
     async decryptFormDataText (encryptedContent) {
       try {
         const content = encryptedContent.slice(this.formDataIdentifier.length)
-        const activeEncryptionKey = userSettings.getActiveEncryptionKey();
+        const activeEncryptionKey = appInstance.getActiveEncryptionKey();
         const decryptedKey=await unlockContent(activeEncryptionKey.lockedKeyValue);
 
         var globalInputData = safeDecrypt(
@@ -293,7 +293,7 @@ const safeDecrypt = function (content, encryptionKey) {
           forms,
           randomContent: globalInputMessage.generateRandomString(8),
         }      
-        const encryptionKey=userSettings.getActiveEncryptionKey();
+        const encryptionKey=appInstance.getActiveEncryptionKey();
         const decryptedEncryptionKey = await unlockContent(encryptionKey.lockedKeyValue);      
         const  encryptedContent =globalInputMessage.encrypt(JSON.stringify(globalInputData), decryptedEncryptionKey + this.backupKeySuffix);
         return this.formDataIdentifier + encryptedContent
@@ -475,13 +475,13 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return decryptedContent.slice(7, decryptedContent.length - 11);
   };
   export const encryptContent = async (content) => {
-    const activeEncryptionKey = userSettings.getActiveEncryptionKey();    
+    const activeEncryptionKey = appInstance.getActiveEncryptionKey();    
     const key=await unlockContent(activeEncryptionKey.lockedKeyValue);
     return encryptContentWithKey(content, key)
   }
   export const decryptContent = async (content)  => {
     if (content && content.length) {
-      const encryptionKey = userSettings.getActiveEncryptionKey();
+      const encryptionKey = appInstance.getActiveEncryptionKey();
       const keyValue = await unlockContent(encryptionKey.lockedKeyValue);      
       return safeDecrypt(content, keyValue + appdata.contentKeySuffix)
     } else {
@@ -676,7 +676,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return
     }
     
-    userSettings.activateEncryptionItem(encryptionKeyItem);
+    appInstance.activateEncryptionItem(encryptionKeyItem);
 
   }
 
@@ -690,12 +690,11 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
 
   export const  deleteEncryptionKeyItem  = async (encryptionItemToDelete)  =>{    
-    userSettings.deleteEncryptionItem(encryptionItemToDelete)
+    appInstance.deleteEncryptionItem(encryptionItemToDelete)
   }
 
-  export const isEncryptionKeyIsActive = (encryptionKey)  => {
-    return  encryptionKey.role === userSettings.ACTIVE_ROLE;
-  }
+  export const isEncryptionKeyIsActive = (encryptionKey)  => appInstance.isEncryptionKeyIsActive(encryptionKey);
+    
   
   export const getRememberPassword =  (password) => appInstance.getRememberPassword();
 

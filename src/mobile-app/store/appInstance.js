@@ -5,11 +5,17 @@ import * as globalInputSettings from './localStorage/globalInputSettings';
 import * as generalUtil from './generalUtil';
 import { logger } from 'global-input-logging';
 
+const ACTIVE_ROLE = 'active';
+const DEFAULT_ENCRYPTION_NAME="This Device";
+const DEFAULT_ENCRYPTION_ROLE="role";
+
+
 const appInstance={
     id:null,
     key:"JRJXb2eLYqJRJXb2e"         
 }
 let savedFormContent=[];
+let encryptionKeyList=[];
 
 
 function memEncrypt(data){
@@ -78,25 +84,25 @@ export async function unlockWithAppInstallInstanceId(content){
 export async function setupEncryptionKeys(){  
     const activeEncryptionKey = enc.generateRandomString(23);        
     const lockedEncryptionKey=await lockWithAppInstallInstanceId(activeEncryptionKey);    
-    userSettings.setEncryptionKeyList([{
+    setEncryptionKeyList([{
         createdAt: new Date(),
         lockedKeyValue: lockedEncryptionKey,
-        name:userSettings.DEFAULT_ENCRYPTION_NAME,
-        role: userSettings.ACTIVE_ROLE
+        name:DEFAULT_ENCRYPTION_NAME,
+        role: ACTIVE_ROLE
     }]);
 }
 
 export async function addNewEncryptionKey (name, key) {
     const lockedKeyValue=await lockWithAppInstallInstanceId(key);
-    const list=userSettings.getEncryptionKeyList().filter(item=>item.lockedKeyValue!==lockedKeyValue);
+    const list=encryptionKeyList.filter(item=>item.lockedKeyValue!==lockedKeyValue);
     const newKey={
         createdAt: new Date(),
         lockedKeyValue: lockedKeyValue,
         name,
-        role: userSettings.DEFAULT_ENCRYPTION_ROLE
+        role: DEFAULT_ENCRYPTION_ROLE
     }
     list.push(newKey);
-    userSettings.setEncryptionKeyList(list);
+    setEncryptionKeyList(list);
     return newKey;
 }
 
@@ -140,7 +146,7 @@ export async function decryptWithEncryptionKey(keyItem, content){
     return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
 export async function decryptWithActiveEncryptionKey(content){
-    const activeEncryptionKeyItem=userSettings.getActiveEncryptionKey();
+    const activeEncryptionKeyItem=getActiveEncryptionKey();
     return decryptWithEncryptionKey(activeEncryptionKeyItem,content);
 }
 
@@ -217,9 +223,74 @@ export const clearAllForms =() =>{
 export const clearAllData =() =>{
     userSettings.clearAllData();
     savedFormContent=[];
+    encryptionKeyList=[];
 }
 export const getFormContentById=(formId)=>{
     return generalUtil.findFormDataById(savedFormContent, formId);
 }
 export const searchFormDataById = (formId) =>
     generalUtil.searchFormDataById(savedFormContent, formId);
+
+
+
+export const getEncryptionKeyList = () => encryptionKeyList;
+
+
+export const setEncryptionKeyList = async (list) => {    
+    encryptionKeyList = list;
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
+    const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(encryptionKeyList),memDecrypt(salt),memDecrypt(iv));
+    userSettings.setEncryptionKeyList(encryptedFormContent);
+}
+export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];
+
+export const deleteEncryptionItem = (encryptionItemToDelete) => {
+    if (
+        encryptionItemToDelete &&
+        encryptionItemToDelete.lockedKeyValue &&
+        encryptionItemToDelete.role !== ACTIVE_ROLE
+    ) {
+        const newEncryptionKeyList = encryptionKeyList.filter(
+            (e) => e.lockedKeyValue !== encryptionItemToDelete.lockedKeyValue
+        );
+        setEncryptionKeyList(newEncryptionKeyList);       
+    }
+};
+
+
+export const updateEncryptionItem = (encryptionItem) => {
+    if (encryptionItem && encryptionItem.lockedKeyValue) {
+        const foundIndex = encryptionKeyList.findIndex(
+            (e) => e.lockedKeyValue === encryptionItem.lockedKeyValue
+        );
+        if (foundIndex >= 0) {
+            encryptionKeyList[foundIndex] = encryptionItem;
+            setEncryptionKeyList(encryptionKeyList);
+        }
+    }
+};
+
+
+export const activateEncryptionItem = (encryptionItemToActivate) => {
+    if (encryptionItemToActivate && encryptionItemToActivate.lockedKeyValue) {
+        const foundIndex = encryptionKeyList.findIndex(
+            (e) => e.lockedKeyValue === encryptionItemToActivate.lockedKeyValue
+        );
+        if (foundIndex >= 0) {
+            for(let i=0;i<encryptionKeyList.length;i++){
+                if(i===foundIndex){
+                    encryptionKeyList[i].role=ACTIVE_ROLE;
+                }
+                else{
+                    encryptionKeyList[i].role=DEFAULT_ENCRYPTION_ROLE;
+                }                
+            }
+            setEncryptionKeyList(encryptionKeyList);
+        }
+    }
+}
+
+export const isEncryptionKeyIsActive = (encryptionKey)  => {
+    return  encryptionKey.role === ACTIVE_ROLE;
+  }
