@@ -158,16 +158,16 @@ const safeDecrypt = function (content, encryptionKey) {
   
     
      getSavedFormContent () {
-      return userSettings.getAllForms()
+      return appInstance.getAllForms()
     }
     
   
     updateFormData (formId, formData) {
       if (formId && formData && formData.id) {      
-        const savedFormContent= userSettings.getAllForms();
+        const savedFormContent= appInstance.getAllForms();
         const  resultFormContent = savedFormContent.filter((f) => f.id !== formId);
         resultFormContent.unshift(formData);
-        userSettings.saveFormContent(resultFormContent);                    
+        appInstance.saveFormContent(resultFormContent);                    
         domainFormMappings.updateDomains({formData, formId})
       } else {
         logger.error('Could not save empty data or the ones without id')
@@ -175,9 +175,9 @@ const safeDecrypt = function (content, encryptionKey) {
     }
     createFormData (formData) {
       if (formData && formData.id) {
-        const savedFormContent= userSettings.getAllForms();
+        const savedFormContent= appInstance.getAllForms();
         savedFormContent.unshift(formData);
-        userSettings.saveFormContent(savedFormContent);        
+        appInstance.saveFormContent(savedFormContent);        
         domainFormMappings.saveDomains({formData})
       } else {
         logger.error('Could not save empty data or the ones without id')
@@ -185,9 +185,9 @@ const safeDecrypt = function (content, encryptionKey) {
     }    
     deleteFormData (formData) {
       if (formData && formData.id) {     
-        let savedFormContent= userSettings.getAllForms();
+        let savedFormContent= appInstance.getAllForms();
         savedFormContent = savedFormContent.filter((m) => m.id !== formData.id);
-        userSettings.saveFormContent(savedFormContent);        
+        appInstance.saveFormContent(savedFormContent);        
         domainFormMappings.deleteFormId(formData.id)
       } else {
         logger.error('Could not delete empty data or the ones without id')
@@ -195,23 +195,23 @@ const safeDecrypt = function (content, encryptionKey) {
     }
   
     clearAllForms () {
-      userSettings.clearAllForms();
+      appInstance.clearAllForms();
       domainFormMappings.deleteAllData();
-      globalInputSettings.deleteAllData()      
+      globalInputSettings.deleteAllData();
     }
     
     
   
     getFormContentById (formId) {
-      return userSettings.getFormContentById(formId)
+      return appInstance.getFormContentById(formId)
     }
     searchFormDataById (formId) {
-      return userSettings.searchFormDataById(formId.toLowerCase())
+      return appInstance.searchFormDataById(formId.toLowerCase())
     }
   
     
     hasFormContent () {
-      var savedContent = userSettings.getAllForms()
+      var savedContent = appInstance.getAllForms()
       return savedContent && savedContent.length   
     }
     cloneFormData (formData) {
@@ -593,7 +593,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
      
   
   export const resetApp = () => {    
-      userSettings.clearAllData();
+      appInstance.clearAllData();
       domainFormMappings.deleteAllData()
       globalInputSettings.deleteAllData();
 
@@ -608,7 +608,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   
   export const mergeFormData = (formData) => {
     if (formData && formData.id) {     
-      const savedFormContent= userSettings.getAllForms();      
+      const savedFormContent= appInstance.getAllForms();      
       let processed = false;
           let updatedFormContent = [];
       
@@ -635,7 +635,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           if (!processed) {
               updatedFormContent.unshift(formData);
           }
-          userSettings.saveFormContent(updatedFormContent);            
+          appInstance.saveFormContent(updatedFormContent);            
           const domains = generalUtil.buildDomainsFromFormData(formData);
             if (domains) {
               domainFormMappings.attachToDomains(formData.id, domains);
@@ -647,13 +647,13 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
 
   export const mergeFormDataList = (formDataList) => {
-    const savedFormContent= userSettings.getAllForms();
+    const savedFormContent= appInstance.getAllForms();
     const formDataIds = formDataList.map((formData) => formData.id);
     const notMatchedContent = savedFormContent.filter(
       (formData) => !formDataIds.includes(formData.id)
     );
     const resultFormContent = [...notMatchedContent, ...formDataList];
-    userSettings.saveFormContent(resultFormContent);            
+    appInstance.saveFormContent(resultFormContent);            
     formDataList.forEach((formData) => {
           const domains = generalUtil.buildDomainsFromFormData(formData);
           if (domains) {
@@ -698,3 +698,15 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
   
   export const getRememberPassword =  (password) => appInstance.getRememberPassword();
+
+
+  export const getAutoFillData = (initData) => {
+    const savedFormContent = appInstance.getAllForms();
+    if (!savedFormContent || !savedFormContent.length) {
+      return null;
+    }
+    if (!initData || !initData.form) {
+      return null;
+    }
+    return domainFormsAccess.getAutoFillData(initData, savedFormContent);
+  }

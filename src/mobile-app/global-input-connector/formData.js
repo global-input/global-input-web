@@ -271,7 +271,7 @@ const initDataActionForDeviceInput = initData => {
     };
   }
 
-  var autofill = domainFormsAccess.getAutoFillData(initData);
+  var autofill = appStore.getAutoFillData(initData);
 
   var showHideSecret = null;
   const globalInputdata = initData.form.fields;

@@ -1,5 +1,3 @@
-import * as generalUtil from '../generalUtil';
-import * as enc from './enc';
 import { logger } from "global-input-logging";
 
 let savedFormContent = null;
@@ -10,17 +8,19 @@ let appInstallSalt = null;
 let appInstallIv = null;
 let storageVersion = null;
 let rememberPassword = null;
+
+
 // Keys for localStorage
 const STORAGE_KEYS = {    
-    SAVED_FORM_CONTENT: 'form_value_encrypted',
+    SAVED_FORM_CONTENT: 'form_value_encrypted_gia',
     // cspell:disable-next
     ENCRYPTION_KEY_LIST: 'giaencklist',
-    APP_INSTALL_INSTANCE_ID: 'install_instance_id',
-    APP_INSTALL_SALT: 'slt',
+    APP_INSTALL_INSTANCE_ID: 'install_instance_id_gia',
+    APP_INSTALL_SALT: 'slt_gia',
     // cspell:disable-next
-    APP_INSTALL_IV: 'appiv',
-    STORAGE_VERSION: 'storage_version',
-    REMEMBER_PASSWORD: 'remember',    
+    APP_INSTALL_IV: 'appiv_gia',
+    STORAGE_VERSION: 'storage_version_gia',
+    REMEMBER_PASSWORD: 'remember_gia'    
 };
 export const ACTIVE_ROLE = 'active';
 export const DEFAULT_ENCRYPTION_NAME="This Device";
@@ -56,30 +56,31 @@ function deleteFromLocalStorage(key) {
     }
 }
 
-
 // Initialize cached variables
 export function initializeState() {        
-    if (savedFormContent === null) {
-        savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, []);
+    if(storageVersion === null){
+        storageVersion = loadFromLocalStorage(STORAGE_KEYS.STORAGE_VERSION, null);
     }    
-    if (encryptionKeyList === null) {
-        encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, []);
-    }
-    if (appInstallInstanceId === null) {
-        appInstallInstanceId = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_INSTANCE_ID, null);
-    }
     if(appInstallSalt === null){
         appInstallSalt = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_SALT, null);
     }
     if(appInstallIv === null){
         appInstallIv = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_IV, null);
     }
-    if(storageVersion === null){
-        storageVersion = loadFromLocalStorage(STORAGE_KEYS.STORAGE_VERSION, null);
-    }
+    if (appInstallInstanceId === null) {
+        appInstallInstanceId = loadFromLocalStorage(STORAGE_KEYS.APP_INSTALL_INSTANCE_ID, null);
+    }        
     if(rememberPassword === null){
         rememberPassword = loadFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD, false);
+    }        
+    if (encryptionKeyList === null) {
+        encryptionKeyList = loadFromLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, []);
+    }        
+    if (savedFormContent === null) {
+        savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, null);
     }
+    
+    
 }
 
 // Call initializeState to set up the initial state
@@ -102,17 +103,15 @@ export const getAppInstallSalt = () => appInstallSalt;
 export const getAppInstallIv = () => appInstallIv;
 
 
-export const getAllForms = () => savedFormContent;
+
 
 export const getRememberPassword = () => rememberPassword;
 
+export const getSavedFormContent = () => savedFormContent;
 
 
-export const getFormContentById = (formId) =>
-    generalUtil.findFormDataById(getAllForms(), formId);
 
-export const searchFormDataById = (formId) =>
-    generalUtil.searchFormDataById(getAllForms(), formId);
+
 
 
 export const setEncryptionKeyList = (list) => {
@@ -139,16 +138,20 @@ export const setAppInstallIv = (iv) => {
     saveToLocalStorage(STORAGE_KEYS.APP_INSTALL_IV, iv);
 }
 
-
-export const setAllForms = (forms) => {
-    savedFormContent = forms;
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, forms);
-};
-
 export const setRememberPassword = (value) => {
     rememberPassword = value;
     saveToLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD, value);
 };
+export const setSavedFormContent = (content) => {
+    savedFormContent = content;
+    if(saveToLocalStorage){
+        saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, content);
+    }
+    else{
+        deleteFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT);
+    }        
+};
+
 export const clearRememberPassword = () => {
     rememberPassword = false;
     deleteFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD);
@@ -204,13 +207,9 @@ export const activateEncryptionItem = (encryptionItemToActivate) => {
 
 
 
-export const clearAllForms = () => {
-    savedFormContent = [];
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, savedFormContent);
-};
 
 export const clearAllData = () => {    
-    savedFormContent = [];    
+    savedFormContent = null;    
     encryptionKeyList = [];
     appInstallInstanceId = null;
     appInstallSalt = null;
@@ -221,10 +220,6 @@ export const clearAllData = () => {
     Object.values(STORAGE_KEYS).forEach((key) => deleteFromLocalStorage(key));
 };
 
-export const saveFormContent = (formContent) => {
-    savedFormContent = formContent;
-    saveToLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, formContent);
-}
 
 
 
@@ -233,7 +228,12 @@ window.addEventListener('storage', (event) => {
     
     switch (event.key) {    
         case STORAGE_KEYS.SAVED_FORM_CONTENT:
-            savedFormContent = JSON.parse(event.newValue);
+            if(event.newValue){
+                savedFormContent = JSON.parse(event.newValue);
+            }
+            else{
+                savedFormContent = null
+            }            
             break;        
         case STORAGE_KEYS.ENCRYPTION_KEY_LIST:
             encryptionKeyList = JSON.parse(event.newValue);
@@ -260,13 +260,11 @@ window.addEventListener('storage', (event) => {
 
 
 
-
 export function signOut(){
     savedFormContent = null;
     encryptionKeyList = null;    
     appInstallInstanceId = null;
     appInstallSalt = null;
     appInstallIv = null;
-    
 }
 

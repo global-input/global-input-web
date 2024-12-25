@@ -2,12 +2,15 @@ import * as enc from './enc';
 import * as globalInputMessage from 'global-input-message';
 import * as userSettings from './localStorage/userSettings';
 import * as globalInputSettings from './localStorage/globalInputSettings';
+import * as generalUtil from './generalUtil';
+import { logger } from 'global-input-logging';
 
 const appInstance={
     id:null,
     key:"JRJXb2eLYqJRJXb2e"         
 }
-    
+let savedFormContent=[];
+
 
 function memEncrypt(data){
     return globalInputMessage.encrypt(data,appInstance.key);
@@ -27,9 +30,15 @@ export const isUserSignedIn = () =>{
 export async function signin(password){
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
+    if(!ivStored || !saltStored){
+        throw new Error("App is not set up:iv");
+    }
     appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored)); 
+    if(!appInstance.id){
+        throw new Error("password is not correct");
+    }
     setupGlobalInputSettings();
-    
+    prepareFormData();    
 }
 
 async function  setupGlobalInputSettings(){
@@ -165,3 +174,52 @@ export async function getRememberPassword(){
 export async function clearRememberPassword(){
     userSettings.clearRememberPassword();
 }
+
+async function  prepareFormData(){
+    try{
+        const formData=userSettings.getSavedFormContent();
+        if(!formData){        
+            return;
+        }
+        const salt=userSettings.getAppInstallSalt();
+        const iv=userSettings.getAppInstallIv();
+        const decryptedFormData=await enc.decryptContent(memDecrypt(appInstance.id),formData,memDecrypt(salt),memDecrypt(iv));
+        if(!decryptedFormData){
+            return;
+        }
+        savedFormContent = JSON.parse(decryptedFormData);
+    }
+    catch(e){
+        logger.error("error in loading saved form content",e);
+        savedFormContent=[];
+    }
+}
+
+
+
+export const getAllForms = () => savedFormContent;
+
+export const saveFormContent=async (formContent)=>{  
+    try{
+        savedFormContent=formContent;
+        const salt=userSettings.getAppInstallSalt();
+        const iv=userSettings.getAppInstallIv();
+        const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(formContent),memDecrypt(salt),memDecrypt(iv));
+        userSettings.setSavedFormContent(encryptedFormContent);
+    }
+    catch(e){
+        logger.error("error in saving form content",e);
+    }
+}
+export const clearAllForms =() =>{
+    userSettings.setSavedFormContent(null);    
+}
+export const clearAllData =() =>{
+    userSettings.clearAllData();
+    savedFormContent=[];
+}
+export const getFormContentById=(formId)=>{
+    return generalUtil.findFormDataById(savedFormContent, formId);
+}
+export const searchFormDataById = (formId) =>
+    generalUtil.searchFormDataById(savedFormContent, formId);

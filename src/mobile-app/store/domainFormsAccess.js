@@ -1,5 +1,5 @@
 import * as domainFormMappings from './localStorage/domainFormMappings';
-import * as userSettings from "./localStorage/userSettings";
+
 
 import * as generalUtil from './generalUtil';
 import FormDataUtil from "./FormDataUtil";
@@ -21,7 +21,7 @@ const findMappingByDomain = (domain) => {
 };
 
 
-const findFormsByDomain = (domain) => {
+const findFormsByDomain = (domain, savedFormContent) => {
     if (!domain) {
         return null;
     }
@@ -29,8 +29,7 @@ const findFormsByDomain = (domain) => {
     if (!domainMapping) {
         return null;
     }
-    const forms = [];
-    const savedFormContent = userSettings.getAllForms();
+    const forms = [];    
     for (let formId of domainMapping.formIds) {
         const form = generalUtil.fromIdToForm(formId, savedFormContent);
         if (form) {
@@ -74,11 +73,8 @@ export const forFormData = (formData) => {
 
 
 
-export const getAutoFillData = (initData) => {
-
-    if (!initData || !initData.form) {
-        return null;
-    }
+export const getAutoFillData = (initData, allFormsData) => {
+    
     if (initData.dataType !== 'form') {
         return null;
     }
@@ -89,8 +85,7 @@ export const getAutoFillData = (initData) => {
     if (!formId || formId.length < 2) {
         return null;
     }
-    formId = formId.toLowerCase();
-    const allFormsData = userSettings.getAllForms();
+    formId = formId.toLowerCase();    
     const matchedRecords = [];
     addFormToArray(generalUtil.searchFormDataById(allFormsData, formId), matchedRecords);
     let domain = initData.form.domain;
@@ -101,7 +96,7 @@ export const getAutoFillData = (initData) => {
         domain = generalUtil.getDomainFromFormId(formId);
     }
     addFormsToArray(findFormsByDomain(domain), matchedRecords);
-    addFormsToArray(generalUtil.findFormDataByIdSuffix(allFormsData, domain), matchedRecords);
+    addFormsToArray(generalUtil.findFormDataByIdSuffix(allFormsData, domain), matchedRecords, allFormsData);
     addFormsToArray(generalUtil.searchFormDataByIdPrefix(allFormsData, formId), matchedRecords);
     if (!matchedRecords || !matchedRecords.length) {
         if (formId && formId.length > 2 && formId.startsWith('@')) {
@@ -131,11 +126,3 @@ export const searchFormData = (formDataList, filterString) => {
 };
 
 
-export const findFormById = (formId) => {
-    const allFormsData = userSettings.getAllForms();
-    let martchedForm = generalUtil.findFormDataById(allFormsData, formId);
-    if (martchedForm) {
-        return martchedForm;
-    }
-    return generalUtil.searchFormDataById(allFormsData, formId.toLowerCase());
-};

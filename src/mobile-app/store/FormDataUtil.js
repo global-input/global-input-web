@@ -1,5 +1,5 @@
 import { logger } from 'global-input-logging';
-
+import * as appInstance from './appInstance';
 export default class FormDataUtil {
   MAX_FORM_ID_LENGTH = 500;
 
@@ -126,16 +126,16 @@ export default class FormDataUtil {
     if (!formData) {
       return false;
     }
-    var formid = this.getFormId(formData);
-    if (!formid) {
+    const formId = this.getFormId(formData);
+    if (!formId) {
       return false;
     }
     if (!this.formHasContent(formData)) {
       return false;
     }
-    let matchedFormData = appStore.appdata.getFormContentById(formid);
+    let matchedFormData = appInstance.getFormContentById(formId);
     if (!matchedFormData) {
-      matchedFormData = appStore.appdata.searchFormDataById(formid);
+      matchedFormData = appStore.appdata.searchFormDataById(formId);
       if (!matchedFormData) {
         return true;
       }
