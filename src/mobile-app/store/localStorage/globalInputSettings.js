@@ -3,13 +3,13 @@ import * as enc from '../enc';
 import { logger } from 'global-input-logging';
 // Keys for localStorage
 const STORAGE_KEYS = {
-  API_KEY: "GLOBAL_INPUT_API_KEY",
-  SECURITY_GROUP: "GLOBAL_INPUT_SECURITY_GROUP",
-  CODE_AES: "GLOBAL_INPUT_CODE_AES",
-  CLIENT: "GLOBAL_INPUT_CLIENT",
-  APP_LOGIN_TIMEOUT: "GLOBAL_INPUT_APP_LOGIN_TIMEOUT",
-  PRESERVE_SESSION: "GLOBAL_INPUT_PRESERVE_SESSION",
-  PROXY_URL: "GLOBAL_INPUT_PROXY_URL",
+  API_KEY: "apikey_on_node",
+  SECURITY_GROUP: "security_group_on_device",
+  CODE_AES: "code_aes_on_code",
+  CLIENT: "client_id_on_device",
+  APP_LOGIN_TIMEOUT: "log_timeout_on_device",
+  PRESERVE_SESSION: "preserve_session_on_device",
+  PROXY_URL: "proxy_url_on_node",
 };
 
 

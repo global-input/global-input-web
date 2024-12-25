@@ -14,7 +14,7 @@ let rememberPassword = null;
 const STORAGE_KEYS = {    
     SAVED_FORM_CONTENT: 'form_value_encrypted_gia',
     // cspell:disable-next
-    ENCRYPTION_KEY_LIST: 'enc_list_gia',
+    ENCRYPTION_KEY_LIST: 'key_list_gia',
     APP_INSTALL_INSTANCE_ID: 'install_instance_id_gia',
     APP_INSTALL_SALT: 'slt_gia',
     // cspell:disable-next
