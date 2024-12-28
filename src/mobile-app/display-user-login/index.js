@@ -65,6 +65,7 @@ const initialData = {
 
 
 
+
 const RememberPassword = ({ rememberPassword, setRememberPassword }) => {
 return(
   <div style={styles.formItem}>
@@ -106,6 +107,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
       }
     });
   };
+  
 
   
   // 2. ON COMPONENT MOUNT, RETRIEVE A SAVED PASSWORD (IF ANY)

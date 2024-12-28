@@ -39,12 +39,13 @@ const PasswordInputField = ({
   onToggleVisibility,
   autoComplete = "off"
 }) => {
+  // Instead of passing type to TextInputField, we'll handle the input masking
+  // through styling or custom handling if needed
   return (
     <InputWrapper>
       <TextInputField
         placeholder={placeholder}
-        value={value}
-        type={isVisible ? 'text' : 'password'}
+        value={isVisible ? value : value.replace(/./g, '•')}
         onChangeTextValue={onChangeTextValue}
         autoComplete={autoComplete}
         style={{ width: '100%', paddingRight: '40px' }}
@@ -55,9 +56,9 @@ const PasswordInputField = ({
         aria-label={isVisible ? "Hide password" : "Show password"}
       >
         {isVisible ? (
-          <EyeOff size={20} color="black" />
+          <EyeOff size={20} color="#000000" />
         ) : (
-          <Eye size={20} color="black" />
+          <Eye size={20} color="#000000" />
         )}
       </ToggleButton>
     </InputWrapper>
