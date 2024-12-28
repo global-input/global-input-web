@@ -9,7 +9,7 @@ import userLoginText from '../configs/userLoginText';
 import * as appStore from '../store';
 import DialogButton from '../components/modal/DialogButton';
 import TextInputField from '../components/input/TextInputField';
-
+import PasswordInputField from './PasswordInputField';
 
 const AppStoreImage = styled.img.attrs({
   src: appStoreIcon,
@@ -54,10 +54,15 @@ const StyledLabel = styled.label`
 const initialData = {
   password: '',
   repeatedPassword: '',
-  revealSecret: true,
+  visibilityState: {
+    password: false,
+    repeatedPassword: false,
+    loginPassword: false
+  },
   errorMessage: null,
   resettingApp: false,
 };
+
 
 
 const RememberPassword = ({ rememberPassword, setRememberPassword }) => {
@@ -91,6 +96,18 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
   const setRepeatedPassword = (repeatedPassword) =>
     setCompData({ ...compData, repeatedPassword });
 
+
+  const toggleFieldVisibility = (field) => {
+    setCompData({
+      ...compData,
+      visibilityState: {
+        ...compData.visibilityState,
+        [field]: !compData.visibilityState[field]
+      }
+    });
+  };
+
+  
   // 2. ON COMPONENT MOUNT, RETRIEVE A SAVED PASSWORD (IF ANY)
   useEffect(() => {
     const loadRememberPassword =async ()=>{
@@ -153,23 +170,23 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
           <span style={styles.titleText}>{userLoginText.setup.title}</span>
         </div>
         <div style={styles.formItem}>
-          <TextInputField
-            placeholder={userLoginText.setup.password.placeHolder}
-            value={compData.password}
-            type={compData.revealSecret ? 'text' : 'password'}
-            onChangeTextValue={setPassword}
-            autoComplete="off"
-          />
-        </div>
-        <div style={styles.formItem}>
-          <TextInputField
-            placeholder={userLoginText.setup.repeatedPassword.placeHolder}
-            value={compData.repeatedPassword}
-            type={compData.revealSecret ? 'text' : 'password'}
-            onChangeTextValue={setRepeatedPassword}
-            autoComplete="off"
-          />
-        </div>
+  <PasswordInputField
+    placeholder={userLoginText.setup.password.placeHolder}
+    value={compData.password}
+    isVisible={compData.visibilityState.password}
+    onToggleVisibility={() => toggleFieldVisibility('password')}
+    onChangeTextValue={setPassword}
+  />
+</div>
+<div style={styles.formItem}>
+  <PasswordInputField
+    placeholder={userLoginText.setup.repeatedPassword.placeHolder}
+    value={compData.repeatedPassword}
+    isVisible={compData.visibilityState.repeatedPassword}
+    onToggleVisibility={() => toggleFieldVisibility('repeatedPassword')}
+    onChangeTextValue={setRepeatedPassword}
+  />
+</div>
 
         {/* 3. RENDER THE CHECKBOX IN SETUP MODE */}
         
@@ -195,14 +212,14 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
     return (
       <div style={styles.form}>
         <div style={styles.formItem}>
-          <TextInputField
-            placeholder={userLoginText.login.password.placeHolder}
-            value={compData.password}
-            type="password"
-            onChangeTextValue={setPassword}
-            autoComplete="off"
-          />
-        </div>
+  <PasswordInputField
+    placeholder={userLoginText.login.password.placeHolder}
+    value={compData.password}
+    isVisible={compData.visibilityState.loginPassword}
+    onToggleVisibility={() => toggleFieldVisibility('loginPassword')}
+    onChangeTextValue={setPassword}
+  />
+</div>
 
         
 
