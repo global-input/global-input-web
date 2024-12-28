@@ -39,23 +39,32 @@ const PasswordInputField = ({
   onToggleVisibility,
   autoComplete = "off"
 }) => {
-  const handleChange = (newValue) => {
-    // Always update the actual value
-    onChangeTextValue(newValue);
-  };
+  // Handle the display value based on visibility
+  const displayValue = isVisible ? value : '•'.repeat(value.length);
 
   return (
     <InputWrapper>
       <TextInputField
         placeholder={placeholder}
-        value={value}  // Use the actual value directly
-        onChangeTextValue={handleChange}
-        autoComplete={autoComplete}
-        style={{ 
-          width: '100%', 
-          paddingRight: '40px',
-          fontFamily: !isVisible ? 'password' : 'inherit', // Use password font when hidden
-          WebkitTextSecurity: !isVisible ? 'disc' : 'none' // Use dots for hidden text
+        value={displayValue}
+        onChangeTextValue={(newValue) => {
+          // If hidden, we need to handle the dots-to-actual conversion
+          if (!isVisible) {
+            // If the new length is greater, append the last character
+            if (newValue.length > value.length) {
+              const lastChar = newValue.charAt(newValue.length - 1);
+              if (lastChar !== '•') {
+                onChangeTextValue(value + lastChar);
+              }
+            } 
+            // If the new length is less, remove the last character
+            else if (newValue.length < value.length) {
+              onChangeTextValue(value.slice(0, -1));
+            }
+          } else {
+            // When visible, just pass through the value
+            onChangeTextValue(newValue);
+          }
         }}
       />
       <ToggleButton 

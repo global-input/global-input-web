@@ -76,7 +76,7 @@ return(
               checked={rememberPassword}
               onChange={(e) => setRememberPassword(e.target.checked)}
             />
-            <span style={{ marginLeft: '5px' }}>Remember Password (Checking this box will store your password on your device.)</span>
+            <span style={{ marginLeft: '5px' }}>Remember Password (This will store your password on your device)</span>
           </StyledLabel>
           
     </RememberPasswordBlock>
