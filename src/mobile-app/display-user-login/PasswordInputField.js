@@ -39,16 +39,24 @@ const PasswordInputField = ({
   onToggleVisibility,
   autoComplete = "off"
 }) => {
-  // Instead of passing type to TextInputField, we'll handle the input masking
-  // through styling or custom handling if needed
+  const handleChange = (newValue) => {
+    // Always update the actual value
+    onChangeTextValue(newValue);
+  };
+
   return (
     <InputWrapper>
       <TextInputField
         placeholder={placeholder}
-        value={isVisible ? value : value.replace(/./g, '•')}
-        onChangeTextValue={onChangeTextValue}
+        value={value}  // Use the actual value directly
+        onChangeTextValue={handleChange}
         autoComplete={autoComplete}
-        style={{ width: '100%', paddingRight: '40px' }}
+        style={{ 
+          width: '100%', 
+          paddingRight: '40px',
+          fontFamily: !isVisible ? 'password' : 'inherit', // Use password font when hidden
+          WebkitTextSecurity: !isVisible ? 'disc' : 'none' // Use dots for hidden text
+        }}
       />
       <ToggleButton 
         type="button"
