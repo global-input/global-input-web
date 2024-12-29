@@ -9,8 +9,14 @@ const stylesData = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'rgba(72,128,237,1)',
-    height: '100vh', // Add this line    
-
+    height: '100vh',
+    width: '100vw',    // Add this
+    margin: 0,         // Add this
+    padding: 0,        // Add this
+    position: 'fixed', // Add this
+    top: 0,           // Add this
+    left: 0,          // Add this
+    overflowY: 'auto' // Add this to ensure content is scrollable
   },
   header: {
     backgroundColor: 'rgba(72,128,237,1)',

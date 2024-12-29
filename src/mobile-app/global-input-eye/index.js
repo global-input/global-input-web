@@ -17,9 +17,6 @@ import menusConfig from '../configs/menusConfig';
 
 import {Scanner} from 'global-input-scanner';
 
-import * as mocks from 'global-input-scanner/react-qr-scanner';
-
-
 import {logger} from 'global-input-logging';
 
 
@@ -156,7 +153,7 @@ const GlobalInputEye =  ({
         }
         const launchData=parseAppLaunchURL(codedata);
         if (launchData.url && launchData.session && launchData.code) {
-          setContentAndMessage("Launched message sent", "Global Input App");
+          setContentAndMessage("Please scan the QR Code displayed", "Global Input App Launched");
           sendAppLaunchedEvent(launchData.url, launchData.session, launchData.code);
           return;
         }
