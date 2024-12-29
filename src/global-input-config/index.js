@@ -37,7 +37,7 @@ export const isDevelopment=environment==='development';
 
 
 
-const encrypted_text= 'AU2FsdGVkX1+CuqYU/EfTOnlaB7mdtZrQOWlXYFsYUjsvzNEGYLHDVTAVvkxIk9I9/UZPTpYfswea9F5gRoMPmi1H3mkgwe9nt0mtAb37N+2TytKWIisQOEvHk/1OXBUfu6sg/cbdSvEaWiaNlEiuS2Sjufan7oi2JRyj7QjE9Qw3YJT3N0umthaW1sX6pKBh18YaW5pqeEB8IADYYcEaiGsetjfuEwrJOHg7vx3C6AI%3D';
+const encrypted_text= 'AU2FsdGVkX19jfdcFa+qGEJGbIPCdBDTKLB0+Y6kLVY6Z7QsZgef8KE4M4GF0Om4IlltBEdXHaZ2aFFHBZZjBB9m3kY+a3/5lNVAvjHp8JThhC7sr3ekRbtb+A6MHW8Xyj4Yefa4UkFZWe1Blb41pJ5Pywx9qMb9LTc4/ZdvlmlUeHOXK48tbh1Qo40KxLkAr3PToNALnr7SM96M1ZUcsmaZy0bzHjS9QTwjoY+pKxsQ%3D';
 
 
 export  function loadTestTextQRCodeValue(){

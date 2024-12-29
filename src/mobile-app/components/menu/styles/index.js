@@ -6,30 +6,30 @@ const stylesData = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh', // This ensures full viewport height
+    height: '100%',
     width: '100%',
     backgroundColor: 'rgba(255,255,255,1)',
-    position: 'fixed', // This ensures it stays fixed to viewport
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    overflow: 'hidden' // Prevents container from scrolling
-},
-containerWhenKeyboardShowing: {
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100vh',
-  width: '100%',
-  backgroundColor: 'rgba(255,255,255,1)',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  paddingTop: '70px',
-  overflow: 'hidden'
-},
+    overflow: 'hidden'
+  },
+  containerWhenKeyboardShowing: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'rgba(255,255,255,1)',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingTop: '70px',
+    overflow: 'hidden'
+  },
   header: {
     backgroundColor: 'rgba(72,128,237,1)',
     width: '100%',
@@ -63,15 +63,18 @@ containerWhenKeyboardShowing: {
     marginRight: '5px',
   },
   contentContainer: {
-    flex: 1, // This allows it to take remaining space
+    flex: 1,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     display: 'flex',
     flexDirection: 'column',
     width: '90%',
     padding: '20px',
-    overflowY: 'auto', // Makes content scrollable
-    position: 'relative' // Needed for proper scrolling
-},
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch', // Add momentum scrolling
+    position: 'relative',
+    height: 'auto',
+    minHeight: 0 // Important for nested flex scrolling
+  },
   tab: {
     margin: 0,
     bottom: 0,
@@ -201,8 +204,11 @@ containerWhenKeyboardShowing: {
     width: '90%',
     padding: '20px 30px 20px 35px',
     overflowY: 'auto',
-    position: 'relative'
-},
+    WebkitOverflowScrolling: 'touch',
+    position: 'relative',
+    height: 'auto',
+    minHeight: 0
+  },
 };
 
 // Adjust styles based on device type
