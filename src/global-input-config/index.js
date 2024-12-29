@@ -37,7 +37,7 @@ export const isDevelopment=environment==='development';
 
 
 
-const encrypted_text= 'https://tnode2.globalinput.co.uk/global-input-app/mobile-app?launchType=qr&session=hkB5FOjX0x56CwMYp&code=m50s3bi2&url=https%3A%2F%2Ftnode1.globalinput.co.uk';
+const encrypted_text= 'AU2FsdGVkX1+CuqYU/EfTOnlaB7mdtZrQOWlXYFsYUjsvzNEGYLHDVTAVvkxIk9I9/UZPTpYfswea9F5gRoMPmi1H3mkgwe9nt0mtAb37N+2TytKWIisQOEvHk/1OXBUfu6sg/cbdSvEaWiaNlEiuS2Sjufan7oi2JRyj7QjE9Qw3YJT3N0umthaW1sX6pKBh18YaW5pqeEB8IADYYcEaiGsetjfuEwrJOHg7vx3C6AI%3D';
 
 
 export  function loadTestTextQRCodeValue(){
