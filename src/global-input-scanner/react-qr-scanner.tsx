@@ -16,12 +16,7 @@ const Scanner: React.FC<IScannerProps> = ({ onScan }) => {
       console.log(filePath);
 
         const response = await fetch(filePath);
-          const codeString = await response.text();        
-        
-          
-
-
-          logger.log("-----mocking qr code: ", codeString);
+        const codeString = await response.text();          
           await new Promise(resolve => setTimeout(resolve, developmentScanDelayDuration));      
           const mockBarcodeData: IDetectedBarcode = {
             boundingBox: { x: 0, y: 0, width: 100, height: 100 },

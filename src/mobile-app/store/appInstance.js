@@ -233,11 +233,11 @@ export const searchFormDataById = (formId) =>
 export const getEncryptionKeyList = () => encryptionKeyList;
 
 
-export const setEncryptionKeyList = async (list) => {    
+export const setEncryptionKeyList = async (list) => {            
     encryptionKeyList = list;
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(encryptionKeyList),memDecrypt(salt),memDecrypt(iv));
+    const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(encryptionKeyList),memDecrypt(salt),memDecrypt(iv));    
     userSettings.setEncryptionKeyList(encryptedFormContent);
 }
 export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];

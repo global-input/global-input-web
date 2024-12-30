@@ -113,7 +113,7 @@ export const getSavedFormContent = () => savedFormContent;
 
 export const setEncryptionKeyList = (list) => {
     
-    if(encryptionKeyList){
+    if(list){
         encryptionKeyList = list;
         saveToLocalStorage(STORAGE_KEYS.ENCRYPTION_KEY_LIST, list);
     }
