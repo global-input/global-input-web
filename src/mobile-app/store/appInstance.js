@@ -33,7 +33,7 @@ export const isUserSignedIn = () =>{
 }
   
 
-export async function signin(password){
+export async function unlockAppInstallationId(password){
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
     if(!ivStored || !saltStored){
@@ -43,22 +43,39 @@ export async function signin(password){
     if(!appInstance.id){
         throw new Error("password is not correct");
     }
-    setupGlobalInputSettings();
-    prepareFormData();    
+    await globalInputSettings.initializeStateWithApplicationInstanceId(memDecrypt(appInstance.id),memDecrypt(saltStored), memDecrypt(ivStored))
+    const encryptedContent=userSettings.getEncryptionKeyList();
+    if(encryptedContent){
+        const decryptedContent=await enc.decryptContent(memDecrypt(appInstance.id),encryptedContent,memDecrypt(saltStored),memDecrypt(ivStored));
+        if(decryptedContent){
+            encryptionKeyList=JSON.parse(decryptedContent);
+        }
+    }    
+
+    try{
+        const formData=userSettings.getSavedFormContent();
+        if(formData){        
+        const salt=userSettings.getAppInstallSalt();
+        const iv=userSettings.getAppInstallIv();
+        const decryptedFormData=await enc.decryptContent(memDecrypt(appInstance.id),formData,memDecrypt(salt),memDecrypt(iv));
+        if(decryptedFormData){
+            savedFormContent = JSON.parse(decryptedFormData);
+        }        
+      }
+    }
+    catch(e){
+        logger.error("error in loading saved form content",e);
+        savedFormContent=[];
+    }
 }
 
-async function  setupGlobalInputSettings(){
-    const saltStored=userSettings.getAppInstallSalt();
-    const ivStored=userSettings.getAppInstallIv();
-    globalInputSettings.setupGlobalInputSettings(memDecrypt(appInstance.id),memDecrypt(saltStored), memDecrypt(ivStored))
-}
 function generateSlaIV(){  
     const  saltStored = memEncrypt(enc.generateSalt());
     const ivStored = memEncrypt(enc.generateIV());
     userSettings.setAppInstallSalt(saltStored);
     userSettings.setAppInstallIv(ivStored);        
 }
-export async function setupAppInstallationId(password){  
+export async function createAppInstallationId(password){  
     generateSlaIV();
     const  appInstallInstanceId = memEncrypt(enc.generateRandomString(23));    
     const  salt=userSettings.getAppInstallSalt();
@@ -180,25 +197,6 @@ export async function clearRememberPassword(){
     userSettings.clearRememberPassword();
 }
 
-async function  prepareFormData(){
-    try{
-        const formData=userSettings.getSavedFormContent();
-        if(!formData){        
-            return;
-        }
-        const salt=userSettings.getAppInstallSalt();
-        const iv=userSettings.getAppInstallIv();
-        const decryptedFormData=await enc.decryptContent(memDecrypt(appInstance.id),formData,memDecrypt(salt),memDecrypt(iv));
-        if(!decryptedFormData){
-            return;
-        }
-        savedFormContent = JSON.parse(decryptedFormData);
-    }
-    catch(e){
-        logger.error("error in loading saved form content",e);
-        savedFormContent=[];
-    }
-}
 
 
 

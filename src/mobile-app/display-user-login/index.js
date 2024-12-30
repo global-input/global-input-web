@@ -126,7 +126,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
 
   // Modified setupPassword to optionally store password
   const setupPassword = () => {
-    appStore.setupApp(
+    appStore.appSetup(
       compData.password.trim(),
       compData.repeatedPassword.trim(),
       onLoggedIn,

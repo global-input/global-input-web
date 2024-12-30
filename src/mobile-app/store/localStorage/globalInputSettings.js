@@ -279,7 +279,7 @@ export const deleteAllData =  async ()=>{
 }
 
 
-export async function setupGlobalInputSettings(instanceId, salt, iv) {
+export async function initializeStateWithApplicationInstanceId(instanceId, salt, iv) {
   appInstance.salt = memEncrypt(salt);
   appInstance.iv = memEncrypt(iv);
   appInstance.id = memEncrypt(instanceId);

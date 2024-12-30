@@ -496,7 +496,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
 
 
   
-  export const setupApp = async (password, repeatedPassword, onLoggedIn, onError, rememberPassword) => {      
+  export const appSetup = async (password, repeatedPassword, onLoggedIn, onError, rememberPassword) => {      
 
        if (!password) {
           onError('Password required.');
@@ -511,8 +511,8 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
           return;
         }  
         try{
-          await appInstance.setupAppInstallationId(password);        
-          await appInstance.signin(password);
+          await appInstance.createAppInstallationId(password);        
+          await appInstance.unlockAppInstallationId(password);
           await appInstance.setupEncryptionKeys();                        
           userSettings.setStorageVersion("1.0");
           if(rememberPassword){
@@ -540,7 +540,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       try {
         try{
           await appInstance.changePassword(originalPassword, newPassword);
-          await appInstance.signin(newPassword);
+          await appInstance.unlockAppInstallationId(newPassword);
         }
         catch(error){
           logger.log("Error:"+error, error);
@@ -564,7 +564,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       return;
     } 
     try{
-      await appInstance.signin(password);
+      await appInstance.unlockAppInstallationId(password);
       
       if(rememberPassword){
         try{
