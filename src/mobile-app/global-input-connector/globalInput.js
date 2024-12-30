@@ -110,7 +110,7 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
         options.client = client;
     }
     else {
-        options.client = "ginput_" + this.connector.client
+        options.client = "ginput_" + globalInputConnector.current.client
         globalInputSettings.setClient(options.client);
     }
 

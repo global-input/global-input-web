@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { IScannerProps, IDetectedBarcode } from '@yudiel/react-qr-scanner';
-import {loadTestTextQRCodeValue, developmentScanDelayDuration} from 'global-input-config';
+import {developmentScanDelayDuration} from 'global-input-config';
 import {logger} from 'global-input-logging';
+
+
 // Mock Scanner Component
 const Scanner: React.FC<IScannerProps> = ({ onScan }) => {
   useEffect(() => {
@@ -10,8 +12,15 @@ const Scanner: React.FC<IScannerProps> = ({ onScan }) => {
     // Simulate QR code scan by calling onScan with mock data after a short delay
     const startMock= async () => {
       try{
+        const filePath = require('../static-files/test-code.txt');
+      console.log(filePath);
+
+        const response = await fetch(filePath);
+          const codeString = await response.text();        
+        
           
-          const codeString= await loadTestTextQRCodeValue();
+
+
           logger.log("-----mocking qr code: ", codeString);
           await new Promise(resolve => setTimeout(resolve, developmentScanDelayDuration));      
           const mockBarcodeData: IDetectedBarcode = {

@@ -125,8 +125,7 @@ export async function changePassword(oldPassword,newPassword, onError){
         onError("old password is not correct");
         return;
     }    
-    userSettings.setAppInstallInstanceId(enc.encryptContent(newPassword, appInstanceId, memDecrypt(saltStored), memDecrypt(ivStored)));  
-    signin(newPassword);
+    userSettings.setAppInstallInstanceId(enc.encryptContent(newPassword, appInstanceId, memDecrypt(saltStored), memDecrypt(ivStored)));      
 }
 
 export async function signout(){

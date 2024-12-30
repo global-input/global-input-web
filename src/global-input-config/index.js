@@ -37,13 +37,4 @@ export const isDevelopment=environment==='development';
 
 
 
-const encrypted_text= 'AU2FsdGVkX198/EPb6GNXI4P41TxDEUlKQ14VTPl7AHiokHTKbH4KSNzpzJu7oPlyn8L9AWJSJyQkVJKd6xWex8NMrmvfMq2K5C70Hos9cpFv61eBjrIpVxdFgjx86V62947Db5WUR2Pc698HeSi3Rolh/sP8scMpqPQUjkQa+97XxzRJBFhv50bpdPwF+WMH/BYS0cce/p9xy25ND3I1wCSfszWemCMpVuuh6tiiFt4%3D';
-
-
-export  function loadTestTextQRCodeValue(){
-
-  return encrypted_text;
-
-}
-
 export const developmentScanDelayDuration=500;

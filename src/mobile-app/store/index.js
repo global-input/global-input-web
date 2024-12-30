@@ -540,6 +540,7 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
       try {
         try{
           await appInstance.changePassword(originalPassword, newPassword);
+          await appInstance.signin(newPassword);
         }
         catch(error){
           logger.log("Error:"+error, error);
