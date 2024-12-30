@@ -427,6 +427,65 @@ function buildAppLaunchedMessage(mobile){
   }
 }
 
+// Add these exports before the ConnectWidget component
+export interface ScanInstructionProps {
+  onGlobalInputAppClick: () => void;
+  variant?: 'link' | 'button';
+}
+
+export const AppScanInstruction: React.FC<ScanInstructionProps> = ({ 
+  onGlobalInputAppClick,
+  variant = 'button'
+}) => (
+  <ScanInstruction>
+    Scan with 
+    {variant === 'button' ? (
+      <ButtonLike onClick={onGlobalInputAppClick}>
+        Global Input App
+      </ButtonLike>
+    ) : (
+      <A onClick={onGlobalInputAppClick}>
+        Global Input App
+      </A>
+    )}
+  </ScanInstruction>
+);
+
+export interface QROverlayProps {
+  showOverlay: boolean;
+  onOverlayClick: () => void;
+  onContainerClick: (e: React.MouseEvent) => void;
+  onClickCapture?: () => void;
+  qrValue: string;
+  qrSize?: number;
+}
+
+export const AppQROverlay: React.FC<QROverlayProps> = ({
+  showOverlay,
+  onOverlayClick,
+  onContainerClick,
+  onClickCapture,
+  qrValue,
+  qrSize = 250
+}) => {
+  if (!showOverlay) return null;
+  
+  return (
+    <QRCodeOverlay onClick={onOverlayClick}>
+      <QRInstruction onClick={onOverlayClick}>
+        Scan the QR code below with your phone's camera to launch the Global Input App. 
+        Launching the app or clicking <ButtonLike>here</ButtonLike> will reveal the QR code for the app to scan.
+      </QRInstruction>
+      <QRContainer 
+        onClick={onContainerClick} 
+        onClickCapture={onClickCapture}
+      >
+        <QRCodeSVG value={qrValue} size={qrSize} />
+      </QRContainer>
+    </QRCodeOverlay>
+  );
+};
+
 interface ConnectWidgetProps {
   mobile: MobileData;
 }
@@ -490,34 +549,34 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
         <Tabs widgetState={widgetState} setWidgetState={setWidgetState} />
       </TopBar>
       <Content>
-        {widgetState === WidgetState.CONNECT_QR && (
-          <ConnectQR 
-            mobile={mobile} 
-            hspace={100} 
-            label={
-              !showGlobalInputQRCode && 
-              <ScanInstruction>
-                Scan with 
-               <ButtonLike onClick={handleGlobalInputAppClick}>
-               
-                  Global Input App
-               
-                </ButtonLike> 
-                
-              </ScanInstruction>
-            }
-            onClickCode={onQRCodeClicked}
-          />
-        )}
-        {widgetState === WidgetState.PAIRING && <PairingQR mobile={mobile} hspace={100} label={
-              !showGlobalInputQRCode && 
-              <ScanInstruction>
-                Scan with 
-                <A onClick={handleGlobalInputAppClick}>
-                  Global Input App
-                </A>
-              </ScanInstruction>
-            }/>}
+      {widgetState === WidgetState.CONNECT_QR && (
+  <ConnectQR 
+    mobile={mobile} 
+    hspace={100} 
+    label={
+      !showGlobalInputQRCode && 
+      <AppScanInstruction 
+        onGlobalInputAppClick={handleGlobalInputAppClick}
+        variant="button"
+      />
+    }
+    onClickCode={onQRCodeClicked}
+  />
+)}
+
+{widgetState === WidgetState.PAIRING && 
+  <PairingQR 
+    mobile={mobile} 
+    hspace={100} 
+    label={
+      !showGlobalInputQRCode && 
+      <AppScanInstruction 
+        onGlobalInputAppClick={handleGlobalInputAppClick}
+        variant="link"
+      />
+    }
+  />
+}
         {widgetState === WidgetState.SETTINGS && (
           <SettingsEditor
             saveSettings={onSaveSettings}
@@ -526,21 +585,16 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
         )}
         {message && <ErrorMessage>{message}</ErrorMessage>}        
       </Content>
-      {showGlobalInputQRCode && (
-          <QRCodeOverlay onClick={handleOverlayClick}>
-            <QRInstruction onClick={handleOverlayClick}>
-            Scan the QR code below with your phone’s camera to launch the Global Input App. Launching the app or clicking <ButtonLike>here</ButtonLike> will reveal the QR code for the app to scan.
-              </QRInstruction>
-            <QRContainer onClick={stopPropagation} onClickCapture={()=>{
-              console.log('click capture');
-              onQRCodeClicked(appLaunchedData.globalInputUrl);
-            }}>
-              <QRCodeSVG value={appLaunchedData.globalInputUrl} size={250} />
-              
-              
-            </QRContainer>
-          </QRCodeOverlay>
-        )}
+      <AppQROverlay
+  showOverlay={showGlobalInputQRCode}
+  onOverlayClick={handleOverlayClick}
+  onContainerClick={stopPropagation}
+  onClickCapture={() => {
+    console.log('click capture');
+    onQRCodeClicked(appLaunchedData.globalInputUrl);
+  }}
+  qrValue={appLaunchedData.globalInputUrl}
+/>
 
     </Container>
   );

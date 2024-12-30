@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile } from '../../mobile';
 import {QRCodeSVG} from "qrcode.react";
-
+import { AppScanInstruction, AppQROverlay } from 'mobile';
 import {Footer, DarkButton,AppContainer,MoreInfo} from '../../components';
 
 
 export const GenerateQRCode = ({ content, label, back }) => {
     const [size, setSize] = useState(300);
     const [level, setLevel] = useState('H');
+    const [showGlobalInputQRCode, setShowGlobalInputQRCode] = useState(false);
     const initData = {
         form: {
             title: "QR Code Generated",
@@ -49,6 +50,16 @@ export const GenerateQRCode = ({ content, label, back }) => {
             default:
         }
     });
+    const handleGlobalInputAppClick=()=>{
+        setShowGlobalInputQRCode(true);
+    };
+    const handleOverlayClick = () => {
+        setShowGlobalInputQRCode(false);
+      };
+      const stopPropagation = (e: React.MouseEvent) => {
+          e.stopPropagation();
+        };
+    
 
     return (
         <AppContainer>
@@ -61,7 +72,17 @@ export const GenerateQRCode = ({ content, label, back }) => {
             ) : (
                 <div>No content to generate QR code</div>
             )}
-            <QRCodeLabel>Scan with <LinkInLabel>Global Input App</LinkInLabel></QRCodeLabel>
+            
+            <AppScanInstruction 
+                    onGlobalInputAppClick={handleGlobalInputAppClick}
+                    variant="button"
+                  />
+            <AppQROverlay
+  showOverlay={showGlobalInputQRCode}
+  onOverlayClick={handleOverlayClick}
+  onContainerClick={stopPropagation}
+  qrValue={"https://globalinput.co.uk/global-input-app/mobile-app"}
+/>      
 
             <Footer>
                 <DarkButton onClick={back}>Back</DarkButton>
