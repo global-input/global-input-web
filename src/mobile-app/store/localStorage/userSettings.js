@@ -54,7 +54,7 @@ function deleteFromLocalStorage(key) {
 }
 
 // Initialize cached variables
-export function initializeState() {        
+function initializeState() {        
     if(storageVersion === null){
         storageVersion = loadFromLocalStorage(STORAGE_KEYS.STORAGE_VERSION, null);
     }    

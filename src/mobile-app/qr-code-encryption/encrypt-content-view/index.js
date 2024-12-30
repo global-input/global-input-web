@@ -24,6 +24,7 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
    function getStateFromProps() {
     const encryptionKeyList = appdata.getEncryptionKeyList();
     
+    
     const selectedEncryptionKeyItem = appdata.getActiveEncryptionKeyItem();
     const items = encryptionKeyList.map((encryptionKeyItem) => ({
       encryptionKeyItem,
@@ -55,6 +56,11 @@ const EncryptContentView = ({ onContentEncrypted, menuItems, title, help }) => {
       if (!content) {
         setErrorMessage(encryptedQrCodeTextConfig.errorMessages.contentIsMissing);
       } else {
+        if(!selectedEncryptionKeyItem){
+          setErrorMessage("Please select an encryption key");
+          return;
+
+        }
         const encryptedContent = await appdata.encryptWithAnEncryptionKey(content, selectedEncryptionKeyItem);
         onContentEncrypted(encryptedContent, encryptedQrCodeTextConfig.qrcodeLabel);
       }
