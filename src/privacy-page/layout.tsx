@@ -48,11 +48,11 @@ export const Title = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
-  padding-bottom: 20px;
-  line-height: 30px;
-  
+  padding: 40px 0 20px 0;
+  line-height: 1.2;
+  color: #fff;
 `;
 
 export const Address=styled.div`    
@@ -68,21 +68,46 @@ export const AddressLine=styled.div`
 
 export const P = styled.div`
   font-size: 18px;
-  margin-bottom: 30px;
+  line-height: 1.6;
+  margin-bottom: 20px;
   color: #fffe;
 `;
 
 export const ContactInfo = styled.div`  
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
-  margin-left: 50px;
-  margin-bottom: 80px;
+  margin: 20px 0 80px 20px;
 `;
 
 export const ContactItem = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  strong {
+    color: #fff;
+  }
   a {
     color: #fffe;
     text-decoration: underline;
+    &:hover {
+      color: #fff;
+    }
+  }
+`;
+
+export const BulletList = styled.ul`
+  list-style: none;
+  padding-left: 20px;
+  margin: 0 0 30px 0;
+  color: #fffe;
+`;
+
+export const BulletItem = styled.li`
+  padding: 8px 0;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  &:before {
+    content: "•";
+    padding-right: 15px;
+    color: #fff;
   }
 `;

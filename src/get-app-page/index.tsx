@@ -40,7 +40,7 @@ export const GetAppPage: React.FC = () => {
           <AppIcon />
           <CardTitle>Global Input App</CardTitle>
           <CardContent>
-          Free and open-source mobile app to seamlessly operate and control multi-device environments.
+          Free, open-source mobile app for secure device control and data management.
           </CardContent>
           <WebAppContainer>
             
@@ -63,9 +63,9 @@ export const GetAppPage: React.FC = () => {
         
         <Card>
           <ExtensionIcon />
-          <CardTitle>Extensions</CardTitle>
+          <CardTitle>Developer Resources</CardTitle>
           <CardContent>
-          Explore extension modules and example code for extending applications to achieve mobile interoperability.
+          Complete toolkit for adding mobile capabilities to your applications.
           </CardContent>
           <CardFooter>
             <JSModuleButton />
