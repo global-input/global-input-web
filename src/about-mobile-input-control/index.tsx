@@ -29,11 +29,20 @@ export const AboutMobileInputControl: React.FC = () => {
 
       <Row2>
           <Column>
-            <Title> Streamlined Operation Across Platforms</Title>
-            <TickText>Secure Communication: Ensure end-to-end encrypted interactions for absolute security.</TickText>
-            <TickText>Unified Mobile Experience: Manage all your devices and applications using a single mobile app.</TickText>
+            <Title> Universal Mobile Control Integration</Title>
+            <TickText>Enable mobile control with simple JSON-based UI definitions.</TickText>
+            <TickText>Implement end-to-end encrypted communication in minutes.</TickText>
             <TickText>
-            Enhanced Usability: Bring the convenience and efficiency of mobile operations to your existing applications.
+            Add second screen capabilities without infrastructure changes.
+            </TickText>
+            <TickText>
+            Support all device types from a single integration.
+            </TickText>
+            <TickText>
+            Deploy across streaming, IoT, and self-service platforms. 
+            </TickText>
+            <TickText>
+            Zero backend modifications required.
             </TickText>
             
           </Column>
@@ -41,14 +50,24 @@ export const AboutMobileInputControl: React.FC = () => {
         </Row2>
         <Row>
           <Column>
-            <Title>Seamless Integration and Cost Efficiency</Title>
+            <Title>Ready for Any Platform</Title>
             <TickText>
-            Effortless Integration: Compatible with your current application architecture, eliminating the need for extensive changes.
+            One-week typical integration time for full mobile control capability
             </TickText>
             <TickText>
-            Cost-Effective Solution: Reduce operational costs by leveraging mobile devices without additional hardware investment.
+            No additional hardware or infrastructure investment needed
             </TickText>
-            <TickText>User-Centric Convenience: Provide an intuitive user experience, boosting satisfaction and engagement.
+            <TickText>
+            Perfect for keyboard-intensive operations on streaming devices 
+              </TickText>
+              <TickText>
+              Support multiple concurrent device connections
+              </TickText>
+              <TickText>
+              Customize mobile UI to match your brand and UX requirements 
+              </TickText>
+              <TickText>
+              Scale from single device to enterprise deployments
               </TickText>
           </Column>
           <MobileInputGraph />
@@ -60,7 +79,7 @@ export const AboutMobileInputControl: React.FC = () => {
 
 
         
-        <ConnectButton mobile={mobile} label="See it in action" />
+        <ConnectButton mobile={mobile} label="Connect Mobile" />
         <ConnectWindow mobile={mobile} />
       </Content>
       <PageFooter />

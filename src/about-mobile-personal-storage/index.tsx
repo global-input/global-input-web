@@ -28,36 +28,51 @@ export const AboutMobileSecureStorage: React.FC = () => {
       <Content>
         <Row2>
           <Column>
-            <Title>Super secure storage on your phone</Title>
+            <Title>Zero-Storage GDPR Solution</Title>
             <TickText>
-              Data stays well protected and is tranferred with encryption
+              Data stays well protected and is tranferred with encryption.
             </TickText>
-            <TickText>Data is decrypted only when needed</TickText>
+            <TickText>Let users manage personal data on their devices.</TickText>
             <TickText>
-              Keys stay encrypted and will never leave your device
+            Minimise data storage compliance requirements.
             </TickText>
             <TickText>
-              The user is completely responsible for their own data
+            Request data on-demand during transactions.
             </TickText>
+
+            <TickText>
+            Enable user-controlled data sharing. 
+            </TickText>
+
+            <TickText>
+            Support secure form filling across platforms.
+            </TickText>
+            <TickText>
+            Remove need for central personal data storage.
+            </TickText>
+
           </Column>
           <MobileStorageGraphGraph />
         </Row2>
         <Row>
           <Column>
-            <Title>Greater flexibility</Title>
+            <Title>Business Benefits</Title>
             <TickText>
-              Allows for personalized services without collecting user data
+            Deliver personalized services without storing personal data.
             </TickText>
             <TickText>
-              Allows a customer to give their personal details securely and
-              remotely
+            Enable secure remote customer data collection.
             </TickText>
-            <TickText>Removes the need for a shared input device</TickText>
+            <TickText>Support multi-device interactions without shared terminals.</TickText>
+            <TickText>Reduce compliance documentation requirements.
+            </TickText>
+            <TickText>Lower data breach risks and associated costs.
+            </TickText>
           </Column>
           <CustomerServiceGraphGraph />
         </Row>
 
-        <ConnectButton mobile={mobile} label="See it in action" />
+        <ConnectButton mobile={mobile} label="Connect Mobile" />
         <ConnectWindow mobile={mobile} />
       </Content>
       <PageFooter />

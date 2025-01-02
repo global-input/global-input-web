@@ -29,40 +29,56 @@ export const AboutMobileEncryption: React.FC = () => {
       <Content>
         <Row>
           <Column>
-            <Title>Share Your Secrets Securely</Title>
-            <TickText>Encrypted QR Code Transfers: Share sensitive information securely by generating and scanning encrypted QR codes.</TickText>
-            <TickText>Confidentiality in Public Spaces: Keep your data private even in public places, preventing prying eyes from accessing your secrets.</TickText>
-            <TickText>Secure Data Backup and Transfer: Backup and transfer your data with confidence, knowing it’s protected by strong encryption.</TickText>
+            <Title>Device-Based Encryption</Title>
+            <TickText>Keep encryption keys secure on users' mobile devices</TickText>
+            <TickText>Enable encrypted QR transfers for sensitive data.</TickText>
+            <TickText>Add encryption layer without server-side changes</TickText>
+            <TickText>Support device-to-device secure communication</TickText>
+            <TickText>Scale from individual keys to enterprise key management</TickText>
+            <TickText>Perfect for handling sensitive customer data</TickText>
           </Column>
           <EncryptedQRCodeGraph />
         </Row>
         <Row2>
           <Column>
-            <Title>Encryption at Your Fingertips</Title>
-            <TickText>Device-Exclusive Encryption Keys: Your encryption keys are securely stored and managed directly on your mobile device—no cloud needed.</TickText>
+            <Title>Zero-Server Encryption Management</Title>
+            <TickText>Eliminate server-side encryption infrastructure costs.</TickText>
             <TickText>
-            User-Controlled Encryption: Maintain full control over the encryption process, giving you the power to protect your sensitive data.
+            Store and manage keys exclusively on user devices.
             </TickText>
-            <TickText>Automatic Data Protection: Encrypt confidential data by default, ensuring your information is always protected without extra steps.</TickText>
-            <TickText>Multi-Layered Security: Implement multiple layers of encryption for added security, making your data impenetrable.</TickText>
+            <TickText>Automate encryption/decryption on mobile devices.</TickText>
+            <TickText>Deploy without changing existing security systems.</TickText>
+            <TickText>Support multi-layer encryption requirements.</TickText>
+            <TickText>Simplify GDPR compliance with user-controlled encryption.</TickText>
           </Column>
           <MobileEncryptionGraphGraph />
         </Row2>
 
         <Row>
           <Column>
-            <Title>Vault-Level Security for Your Keys</Title>
-            <TickText>Granular Data Access Control: Control who can access individual data items by using different encryption keys, ensuring only authorised individuals have permission.</TickText>
-            <TickText>Secure Key Storage: Store encryption keys securely in users' device leading to ultimate security and accountability.</TickText>
+            <Title>Secure Key Management</Title>
+            <TickText>Enable granular access control through encryption keys</TickText>
+            <TickText>Manage permissions through secure key sharing.</TickText>
             
             <TickText>
-            Secure Permission Management: Encryption keys are managed and shared securely on the devices with explicit user permission, ensuring that only authorised users can access sensitive data.
+            Control individual data access with separate keys.
             </TickText>
+
+            <TickText>
+            Support key rotation and management policies.
+            </TickText>
+            <TickText>
+            Scale key management across enterprise applications.
+            </TickText>
+            <TickText>
+            Ensure accountability with device-based key storage.
+            </TickText>
+
           </Column>
           <KeyCloudGraphGraph />
         </Row>
 
-        <ConnectButton mobile={mobile} label="See it in action" />
+        <ConnectButton mobile={mobile} label="Connect Mobile" />
         <ConnectWindow mobile={mobile} />
       </Content>
       <PageFooter />

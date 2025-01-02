@@ -18,39 +18,39 @@ import {
 
 const textContent = {
   authentication: {
-    title: "Authentication",
+    title: "Zero-Change Authentication",
     content: [
-      "Securely sign in, manage your data, and interact with applications using your phone—no need to hide your screen in public.",
+      "Add mobile-based authentication to existing systems without modifying your authentication infrastructure. Users can securely sign in using their phones while maintaining your current security setup.",
     ],
   },
   mobileControl: {
-    title: "Input and Control",
+    title: "Universal Mobile Control",
     content: [
-      "Use your phone to securely control applications and devices, transferring data seamlessly with end-to-end encryption—one app for all your needs.",
+      "Enable mobile input and control in any application with simple JSON-based UI definitions. Perfect for keyboard-intensive operations in streaming apps and IoT devices.",
     ],
   },
   secondScreen: {
-    title: "Screen Experience",
+    title: "Instant Second Screen Integration",
     content: [
-      "Effortlessly synchronise content and interactions between your phone and TV, all without changing your existing setup—no additional apps or infrastructure needed.",
+      "Add mobile interaction to streaming apps and devices with just a few lines of code. No infrastructure changes needed - perfect for Smart TVs, gaming consoles, and streaming devices.",
     ],
   },
   encryption: {
-    title: "Secure Encryption",
+    title: "Zero-Server Encryption",
     content: [
-      "Keep your encryption keys safe on your device and secure sensitive data with robust mobile encryption—no server access needed.",
+      "Enable end-to-end encrypted data handling without managing encryption infrastructure. Keys stay on users' devices, simplifying compliance and reducing server-side complexity.",
     ],
   },
   mobilePersonStorage: {
-    title: "Personal Data Vault",
+    title: "GDPR-Ready Data Handling",
     content: [
-      "Keep your personal information secure and private on your device, under your control, with encrypted storage and GDPR compliance—no third-party storage needed.",
+      "Minimize compliance overhead by letting users manage their personal data on their devices. Perfect for handling sensitive information without server-side storage requirements",
     ],
   },
   mobileContentTransfer: {
-    title: "Content Transfer",
+    title: "Secure Cross-Device Transfer",
     content: [
-      "Seamlessly move content across devices with end-to-end encryption—no intermediaries, just secure, direct transfer from your phone to your PC, tablet, or TV.",
+      "Enable direct, encrypted content sharing between devices without additional infrastructure. Perfect for streaming services and multi-device environments",
     ],
   },
 };

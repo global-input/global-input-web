@@ -20,14 +20,13 @@ import {
   TitleSection,
   Title,
   Subtitle,
-  ButtonContainer,
-  LinkButton,
+  ButtonContainer
 } from "./layout";
 
 const headerTextContent = {
-  title: "Mobile Integration",
+  title: "Mobile Integration Framework",
   subtitle:
-    "Use your phone to authenticate, encrypt data, and remotely control applications running on other devices.",
+    "Enable secure mobile capabilities in your applications with minimal code changes. Features encrypted QR authentication, dynamic mobile UI generation, and secure data exchange - perfect for streaming services, self-service systems, and IoT applications.",
 };
 
 interface HomePageProps {
@@ -77,7 +76,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
           <Title>{headerTextContent.title}</Title>
           <Subtitle>{headerTextContent.subtitle}</Subtitle>
           <ButtonContainer>            
-            <ConnectButton label="Try Now" mobile={mobile} />
+            <ConnectButton label="Connect Mobile" mobile={mobile} />
             <ConnectWindow mobile={mobile} />
             <DisconnectButton mobile={mobile} />
           </ButtonContainer>

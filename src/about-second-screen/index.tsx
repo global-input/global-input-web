@@ -24,30 +24,31 @@ export const AboutSecondScreen: React.FC = () => {
     <Container>
       <PageHeader selected={config.paths.secondScreen.path} />
       <Content>
-        <Title>Second Screen Experience</Title>
+        <Title>Instant Second Screen for Streaming Services</Title>
         <Row>
           <SecondScreenGraph />
           <Column>
             <TickText>
-            Eliminates the Need for Multiple Apps: Operate all your applications and devices from a single mobile app.
+            Add second screen capabilities with JSON-based UI definitions.
             </TickText>
             <TickText>
-            No Server-Side Changes Required: Operate on the client side, simplifying the integration process.
+            Enable mobile keyboard input for Smart TVs and streaming devices.
             </TickText>
             <TickText>
-            Flexible and Adaptable: Customize the mobile app to suit your needs and preferences.
+            Deploy without server-side changes or additional infrastructure.
+
             </TickText>
             <TickText>
-            Reduced Development Overhead: No need for extensive re-engineering or additional hardware.
+            Support real-time content synchronization across devices
             </TickText>
-            <TickText>Real-Time Synchronisation: Provides real-time updates and synchronisation across devices, offering a cohesive and interactive user experience.
+            <TickText>Integrate in days - perfect for existing streaming applications
 
 
             </TickText>
             
             
             <TickText>
-            Improved User Engagement: Delivers a unified, seamless experience, driving higher user engagement across platforms.
+            Scale across platforms - Smart TVs, gaming consoles, set-top boxes
             </TickText>
             
 

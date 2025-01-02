@@ -59,7 +59,7 @@ const initData = {
             flexDirection: "row",
             backgroundColor: "rgb(74, 113, 205)",
           },
-          content: "Micro Apps",
+          content: "Example Mobile Controls",
         },
       },
       {

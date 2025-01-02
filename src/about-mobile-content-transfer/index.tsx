@@ -26,21 +26,24 @@ export const AboutMobileContentTransfer: React.FC = () => {
       <Content>
         <Row2>
           <Column>
-            <Title>Seamless Content Transfer and Collaboration Across Devices</Title>
+            <Title>Secure Device-to-Device Transfer</Title>
             <TickText>
-            Transfer content between devices, all protected by end-to-end encryption, ensuring the highest level of data security.
+            Enable direct encrypted transfers between devices.
             </TickText>
             <TickText>
-            Direct transfers without relying on third-party services, subscriptions, or cloud storages.            
+            Support transfers without user accounts or cloud storage.
             </TickText>
             <TickText>
-            Securely and conveniently share content on publicly accessible or unfamiliar devices without signing in or sharing personal information like email addresses. Simply establish a secure, end-to-end encrypted connection between devices to share data safely.
+            Allow secure sharing on public devices.
             </TickText>
             <TickText>
-            Transfer content to and from any device type—smartphones, tablets, laptops, smart TVs—without worrying about compatibility or security.
+            Enable cross-platform content.
             </TickText>
             <TickText>
-            Integrate secure content transfer directly into your business applications, enabling seamless collaboration with customers and partners, enriching in-store experience and providing exceptional services.
+            Perfect for streaming and IoT integrations.
+            </TickText>
+            <TickText>
+            Integrate content sharing into business applications.
             </TickText>
             
             

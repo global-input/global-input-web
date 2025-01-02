@@ -28,37 +28,43 @@ export const AboutMobileAuthentication: React.FC = () => {
       <Content>
         <Row2>
           <Column>
-            <Title> Seamless and Secure Authentication</Title>
-            <TickText>Boost the security without compromising on convenience.</TickText>
-            <TickText>Sign in with just a tap, eliminating the need for cumbersome passwords</TickText>
+            <Title> Zero-Change Authentication for Existing Systems</Title>
+            <TickText>Add mobile authentication with just a few lines of code integration</TickText>
+            <TickText>Keep your existing authentication infrastructure untouched</TickText>
             <TickText>
-            Safeguard authentication from storage to the application.
+            Deploy without modifying user databases or security policies
             </TickText>
-            <TickText>Keep control of your data in your hands, and no central storage.</TickText>
+            <TickText>Support both mobile and traditional authentication in parallel</TickText>
             <TickText>
-              Securely operate on the application after signing in.
+            Customize authentication flows using simple JSON specifications
             </TickText>
             <TickText>
-            Extra layer of security to the current password-based systems without the need for extensive re-engineering or sacrificing user experience.
+            Scale seamlessly across web, mobile, and IoT platforms
             </TickText>
           </Column>
           <SignInGraph />
         </Row2>
         <Row>
           <Column>
-            <Title>Simplifying Authentication for Business and Users</Title>
+            <Title>Transform Authentication Experience</Title>
             <TickText>
-            Unified app from signing in to subscribing and to operate on the applications and devices securely on all platforms.
+            Eliminate password-related support costs while maintaining security compliance
             </TickText>
             <TickText>
-             No more customer support calls for password resets etc and no more password fatigue for users, and no more password storage and management for businesses.
+            Provide consistent authentication experience across all your applications
             </TickText>
-            <TickText>No more development overhead and operational complexity thanks to straightforward and intuitive integration.
+            <TickText>Enhance user satisfaction with quick, secure mobile authentication              
+              </TickText>
+              <TickText>Reduce development overhead with standardized integration approach
+              </TickText>
+              <TickText>Perfect for streaming services where keyboard input is cumbersome
+              </TickText>
+              <TickText>Enable secure authentication on public displays without exposing credentials
               </TickText>
           </Column>
           <MultiFactorGraph />
         </Row>
-        <ConnectButton mobile={mobile} label="See it in action" />
+        <ConnectButton mobile={mobile} label="Connect Mobile" />
         <ConnectWindow mobile={mobile} />
       </Content>
       <PageFooter />
