@@ -97,7 +97,9 @@ const PrivacyPage: React.FC = () => {
 
          <ConnectButton mobile={mobile} label="Connect Mobile" />
          <ConnectWindow mobile={mobile} />
+         
        </Content>
+       
      </Container>
      <PageFooter />
    </Background>
