@@ -23,7 +23,7 @@ export const Container = styled.div`
   max-width: 100%;
   min-height: 100vh;
   padding: 100px 8vw 100px 8vw; // Added padding-bottom
-  background-color: #4984C4;
+  background-color:#758FD7;
   @media only screen and (min-width: 880px) {
     padding-left: 20vw;
     padding-right: 20vw;
