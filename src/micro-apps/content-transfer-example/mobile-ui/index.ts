@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"; ////website
 import { useGlobalInputApp,ConnectQR} from 'global-input-react';
 */
 
-import { useMobile,ConnectWidget } from '../../../mobile';
+import { useMobile,ConnectWidget } from '../../../global-input-mobile';
 
 
 import * as mobileUI from '../../../micro-apps/mobile-ui'; ////website

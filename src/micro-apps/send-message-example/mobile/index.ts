@@ -1,1 +1,1 @@
-export * from '../../../mobile';
+export * from '../../../global-input-mobile';

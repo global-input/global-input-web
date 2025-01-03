@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMobile } from '../../mobile';
 import {QRCodeSVG} from "qrcode.react";
-import { AppScanInstruction, AppQROverlay } from 'mobile';
+import { AppScanInstruction, AppQROverlay } from 'global-input-mobile';
 import {Footer, DarkButton,AppContainer,MoreInfo} from '../../components';
 
 
