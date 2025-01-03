@@ -24,7 +24,8 @@ export const Container = styled.div`
   justify-content: flex-start;
   max-width: 100%;
   min-height: 100vh;
-  padding: 100px 8vw 0 8vw;
+  padding: 100px 8vw 100px 8vw; // Added padding-bottom
+  background-color: rgb(114, 164, 210);
   @media only screen and (min-width: 880px) {
     padding-left: 20vw;
     padding-right: 20vw;
