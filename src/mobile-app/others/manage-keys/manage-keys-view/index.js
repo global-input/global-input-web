@@ -397,33 +397,22 @@ export default function ManageKeysView({
     );
   };
 
-  const renderDisplayClipboardCopy = () => {
-    const encryptedContent = appdata.exportEncryptionKeyItemAsText(
-      action.selectedEncryptionKeyItem,
-      action.password
-    );
-    if (!encryptedContent) {
-      logger.log('Failed to decrypt the encryption key');
-      return null;
-    }
-    const copyToClipboard = (text) => {
-      navigator.clipboard.writeText(text).then(() => {
-        logger.log('Copied to clipboard');
-        toClipboardCopyComplete();
-      });
-    };
-    const menuItems = [
-      {
-        menu: menusConfig.cancel.menu,
-        onPress: toListView,
-      },
-      {
-        menu: menusConfig.clipboardCopy.menu,
-        onPress: () => {
-          copyToClipboard(encryptedContent);
-        },
-      },
-    ];
+  const RenderDisplayClipboardCopy =  () => {
+    const [encryptedContent, setEncryptedContent] = useState('');
+    useEffect( () => {
+      const doEncryption = async () => {
+      const encryptedContent = await appdata.exportEncryptionKeyItemAsText(
+        action.selectedEncryptionKeyItem,
+        action.password
+      );
+      if(encryptedContent){
+        setEncryptedContent(encryptedContent);
+        };
+      };
+      doEncryption();
+
+    },[]);
+    
     return (
       <ClipboardCopyView
         title={manageKeysTextConfig.export.textContent.clipboard.title}
@@ -484,7 +473,7 @@ export default function ManageKeysView({
     case ACT_TYPE.PASSWORD_FOR_CLIPBOARD:
       return renderPasswordForClipboard();
     case ACT_TYPE.DISPLAY_CLIPBOARD:
-      return renderDisplayClipboardCopy();
+      return <RenderDisplayClipboardCopy/>
     case ACT_TYPE.CLIPBOARD_COPY_COMPLETE:
       return renderClipboardCopyComplete();
     default:
