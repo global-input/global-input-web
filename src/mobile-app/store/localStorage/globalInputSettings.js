@@ -1,5 +1,5 @@
 import * as globalInputMessage from 'global-input-message';
-import * as enc from '../enc';
+import * as enc from '../../global-input-enc/enc';
 import { logger } from 'global-input-logging';
 // Keys for localStorage
 const STORAGE_KEYS = {

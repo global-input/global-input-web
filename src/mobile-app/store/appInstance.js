@@ -1,4 +1,4 @@
-import * as enc from './enc';
+import * as enc from '../global-input-enc/enc';
 import * as globalInputMessage from 'global-input-message';
 import * as userSettings from './localStorage/userSettings';
 import * as globalInputSettings from './localStorage/globalInputSettings';
