@@ -104,8 +104,8 @@ export default class FormDataUtil {
     return (
       (!formField.type || formField.type === 'text') &&
       formField.id &&
-      formField.value &&
-      formField.value.trim().length > 0
+      formField.value && formField.value.length &&
+      formField.value.length > 0
     );
   }
   formHasContent(formData) {
