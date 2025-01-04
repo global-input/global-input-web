@@ -1,15 +1,25 @@
 // {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 //   "version": "0.2.0",
 //   "configurations": [
 //     {
-//       "type": "chrome",
+//       "name": "Debug React in Chrome",
+//       "type": "pwa-chrome",           // "pwa-msedge" if you prefer Edge
 //       "request": "launch",
-//       "name": "Launch Chrome against localhost",
-//       "url": "http://localhost:3000",
-//       "webRoot": "${workspaceFolder}"
+//       "url": "http://localhost:3000", // your dev server URL
+//       "webRoot": "${workspaceFolder}/src"
+//     }
+//   ]
+// }
+
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "safari",
+//       "request": "attach",
+//       "name": "Attach to Safari on iOS",
+//       "url": "https://4638-86-18-155-114.ngrok-free.app",
+//       "webRoot": "${workspaceFolder}/src"
 //     }
 //   ]
 // }
@@ -19,11 +29,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "safari",
+      "name": "Attach to Chrome",
+      "type": "pwa-chrome",
       "request": "attach",
-      "name": "Attach to Safari on iOS",
-      "url": "https://4638-86-18-155-114.ngrok-free.app",
-      "webRoot": "${workspaceFolder}/src"
+      "port": 9222,                  // must match the flag we used above
+      "webRoot": "${workspaceFolder}/src", 
+      "url": "http://localhost:3000" // optional; can help if you want VS Code to open a tab
     }
   ]
 }
