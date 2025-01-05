@@ -1,5 +1,5 @@
 import * as globalInputMessage from 'global-input-message';
-import * as enc from '../../global-input-enc/enc';
+import * as globalEncryption from '../../global-input-enc/enc';
 import { logger } from 'global-input-logging';
 // Keys for localStorage
 const STORAGE_KEYS = {
@@ -53,7 +53,7 @@ async function saveToLocalStorage(key, value) {
           case STORAGE_KEYS.CODE_AES:
           case STORAGE_KEYS.CLIENT:
           case STORAGE_KEYS.PROXY_URL:      
-            stringValue=await enc.encryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));
+            stringValue=await globalEncryption.encryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));
             break;
           default:
             stringValue=JSON.stringify(stringValue);        
@@ -75,7 +75,7 @@ async function decodeStorageValue(key,value){
           if(!appInstance.id){
              throw new Error("requires sign in for protected value");
           }                                
-                return await enc.decryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                              
+                return await globalEncryption.decryptContent(memDecrypt(appInstance.id),value,memDecrypt(appInstance.salt),memDecrypt(appInstance.iv));                              
       default:        
           return  JSON.parse(value);
       }        

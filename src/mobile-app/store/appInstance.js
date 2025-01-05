@@ -1,4 +1,4 @@
-import * as enc from '../global-input-enc/enc';
+import * as globalEncryption from '../global-input-enc/enc';
 import * as globalInputMessage from 'global-input-message';
 import * as userSettings from './localStorage/userSettings';
 import * as globalInputSettings from './localStorage/globalInputSettings';
@@ -39,14 +39,14 @@ export async function unlockAppInstallationId(password){
     if(!ivStored || !saltStored){
         throw new Error("App is not set up:iv");
     }
-    appInstance.id=await enc.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored)); 
+    appInstance.id=await globalEncryption.decryptContent(password, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored)); 
     if(!appInstance.id){
         throw new Error("password is not correct");
     }
     await globalInputSettings.initializeStateWithApplicationInstanceId(memDecrypt(appInstance.id),memDecrypt(saltStored), memDecrypt(ivStored))
     const encryptedContent=userSettings.getEncryptionKeyList();
     if(encryptedContent){
-        const decryptedContent=await enc.decryptContent(memDecrypt(appInstance.id),encryptedContent,memDecrypt(saltStored),memDecrypt(ivStored));
+        const decryptedContent=await globalEncryption.decryptContent(memDecrypt(appInstance.id),encryptedContent,memDecrypt(saltStored),memDecrypt(ivStored));
         if(decryptedContent){
             encryptionKeyList=JSON.parse(decryptedContent);
         }
@@ -57,7 +57,7 @@ export async function unlockAppInstallationId(password){
         if(formData){        
         const salt=userSettings.getAppInstallSalt();
         const iv=userSettings.getAppInstallIv();
-        const decryptedFormData=await enc.decryptContent(memDecrypt(appInstance.id),formData,memDecrypt(salt),memDecrypt(iv));
+        const decryptedFormData=await globalEncryption.decryptContent(memDecrypt(appInstance.id),formData,memDecrypt(salt),memDecrypt(iv));
         if(decryptedFormData){
             savedFormContent = JSON.parse(decryptedFormData);
         }        
@@ -70,17 +70,17 @@ export async function unlockAppInstallationId(password){
 }
 
 function generateSlaIV(){  
-    const  saltStored = memEncrypt(enc.generateSalt());
-    const ivStored = memEncrypt(enc.generateIV());
+    const  saltStored = memEncrypt(globalEncryption.generateSalt());
+    const ivStored = memEncrypt(globalEncryption.generateIV());
     userSettings.setAppInstallSalt(saltStored);
     userSettings.setAppInstallIv(ivStored);        
 }
 export async function createAppInstallationId(password){  
     generateSlaIV();
-    const  appInstallInstanceId = memEncrypt(enc.generateRandomString(23));    
+    const  appInstallInstanceId = memEncrypt(globalEncryption.generateRandomString(23));    
     const  salt=userSettings.getAppInstallSalt();
     const  iv=userSettings.getAppInstallIv();    
-    const instanceId=await enc.encryptContent(password, appInstallInstanceId, memDecrypt(salt), memDecrypt(iv));
+    const instanceId=await globalEncryption.encryptContent(password, appInstallInstanceId, memDecrypt(salt), memDecrypt(iv));
     userSettings.setAppInstallInstanceId(instanceId);                 
 }
 
@@ -89,17 +89,17 @@ async function lockWithAppInstallInstanceId(content){
     
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
-    return enc.encryptContent(memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
+    return globalEncryption.encryptContent(memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
 }
 
 export async function unlockWithAppInstallInstanceId(content){
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
-     return  enc.decryptContent(memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
+     return  globalEncryption.decryptContent(memDecrypt(appInstance.id),content,memDecrypt(saltStored),memDecrypt(ivStored));
 }
 
 export async function setupEncryptionKeys(){  
-    const activeEncryptionKey = enc.generateRandomString(23);        
+    const activeEncryptionKey = globalEncryption.generateRandomString(23);        
     const lockedEncryptionKey=await lockWithAppInstallInstanceId(activeEncryptionKey);    
     setEncryptionKeyList([{
         createdAt: new Date(),
@@ -137,12 +137,12 @@ export async function changePassword(oldPassword,newPassword, onError){
         return;
     }
 
-    const appInstanceId=await enc.decryptContent(oldPassword, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));
+    const appInstanceId=await globalEncryption.decryptContent(oldPassword, userSettings.getAppInstallInstanceId(), memDecrypt(saltStored), memDecrypt(ivStored));
     if(!appInstanceId){
         onError("old password is not correct");
         return;
     }    
-    userSettings.setAppInstallInstanceId(enc.encryptContent(newPassword, appInstanceId, memDecrypt(saltStored), memDecrypt(ivStored)));      
+    userSettings.setAppInstallInstanceId(globalEncryption.encryptContent(newPassword, appInstanceId, memDecrypt(saltStored), memDecrypt(ivStored)));      
 }
 
 export async function signout(){
@@ -154,12 +154,12 @@ export async function signout(){
 export async function encryptWithEncryptionKey(keyItem, content){
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    return enc.encryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
+    return globalEncryption.encryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
 export async function decryptWithEncryptionKey(keyItem, content){
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    return enc.decryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
+    return globalEncryption.decryptContent(unlockWithAppInstallInstanceId(keyItem.lockedKeyValue),content,memDecrypt(salt),memDecrypt(iv));
 }
 export async function decryptWithActiveEncryptionKey(content){
     const activeEncryptionKeyItem=getActiveEncryptionKey();
@@ -178,7 +178,7 @@ export async function setRememberPassword(passwordToRemember){
     if(!iv || !salt){
         return;
     }
-    const encryptedRememberToPassword=await enc.encryptContent(rememberPasswordKey,passwordToRemember, memDecrypt(salt), memDecrypt(iv));    
+    const encryptedRememberToPassword=await globalEncryption.encryptContent(rememberPasswordKey,passwordToRemember, memDecrypt(salt), memDecrypt(iv));    
     userSettings.setRememberPassword(encryptedRememberToPassword);    
 }    
 export async function getRememberPassword(){
@@ -191,7 +191,7 @@ export async function getRememberPassword(){
     if(!rememberPassword){
         return null;
     }    
-    return await enc.decryptContent(rememberPasswordKey,rememberPassword, memDecrypt(salt), memDecrypt(iv));    
+    return await globalEncryption.decryptContent(rememberPasswordKey,rememberPassword, memDecrypt(salt), memDecrypt(iv));    
 }
 export async function clearRememberPassword(){
     userSettings.clearRememberPassword();
@@ -207,7 +207,7 @@ export const saveFormContent=async (formContent)=>{
         savedFormContent=formContent;
         const salt=userSettings.getAppInstallSalt();
         const iv=userSettings.getAppInstallIv();
-        const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(formContent),memDecrypt(salt),memDecrypt(iv));
+        const encryptedFormContent=await globalEncryption.encryptContent(memDecrypt(appInstance.id),JSON.stringify(formContent),memDecrypt(salt),memDecrypt(iv));
         userSettings.setSavedFormContent(encryptedFormContent);
     }
     catch(e){
@@ -237,7 +237,7 @@ export const setEncryptionKeyList = async (list) => {
     encryptionKeyList = list;
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    const encryptedFormContent=await enc.encryptContent(memDecrypt(appInstance.id),JSON.stringify(encryptionKeyList),memDecrypt(salt),memDecrypt(iv));    
+    const encryptedFormContent=await globalEncryption.encryptContent(memDecrypt(appInstance.id),JSON.stringify(encryptionKeyList),memDecrypt(salt),memDecrypt(iv));    
     userSettings.setEncryptionKeyList(encryptedFormContent);
 }
 export const getActiveEncryptionKey = () => encryptionKeyList.filter((e) => e.role === ACTIVE_ROLE)[0];
