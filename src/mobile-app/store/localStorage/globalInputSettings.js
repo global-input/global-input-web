@@ -228,9 +228,7 @@ export const setProxyURL = (newProxyURL) => {
 
 
 // Optional: Listen to storage events for cross-tab synchronization
-window.addEventListener("storage", async (event) => {
-  console.log("storage event",event);
-  
+window.addEventListener("storage", async (event) => {    
   try{
       switch (event.key) {
         case STORAGE_KEYS.API_KEY:

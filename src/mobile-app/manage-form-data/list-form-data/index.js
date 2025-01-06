@@ -138,16 +138,13 @@ const ListFormData = ({
   }
 
   // Function to handle scroll event for infinite scrolling
-  const handleScroll = (e) => {
-    console.log("****scorlll****");
+  const handleScroll = (e) => {    
     const bottom =
       e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
     if (bottom) {
       onEndReached();
     }
   };
-  console.log("redern*****");
-
   return (
     <ViewWithTabMenu
       menuItems={adjustedMenuItems}

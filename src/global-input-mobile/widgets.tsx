@@ -589,8 +589,7 @@ export const ConnectWidget: React.FC<ConnectWidgetProps> = ({ mobile }) => {
   showOverlay={showGlobalInputQRCode}
   onOverlayClick={handleOverlayClick}
   onContainerClick={stopPropagation}
-  onClickCapture={() => {
-    console.log('click capture');
+  onClickCapture={() => {    
     onQRCodeClicked(appLaunchedData.globalInputUrl);
   }}
   qrValue={appLaunchedData.globalInputUrl}
