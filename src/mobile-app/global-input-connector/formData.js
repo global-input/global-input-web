@@ -131,9 +131,7 @@ const changeGlobalInputFields = ({
 };
 const copyFieldsToGlobalInputFields = ({
   globalInputdata,
-  fieldvalues,
-  onFieldChanged,
-  isEncrypted = false,
+  fieldvalues  
 }) => {
   if (!globalInputdata || !globalInputdata.length) {
     return globalInputdata;
@@ -158,13 +156,8 @@ const copyFieldsToGlobalInputFields = ({
         return false;
       });
     }
-    if (matchedFields && matchedFields.length) {
-      const value = matchedFields[0].value;
-      const field = {...gfield, value, isEncrypted};
-      updatedFields.push(field);
-      if (onFieldChanged) {
-        onFieldChanged({field, index});
-      }
+    if (matchedFields && matchedFields.length) {            
+      updatedFields.push({...gfield, value:matchedFields[0].value,  matched:true});       
     } else {
       updatedFields.push(gfield);
     }
@@ -186,9 +179,15 @@ export const fillContentEncryptionForm = ({
     const globalInputdata = copyFieldsToGlobalInputFields({
       fieldvalues,
       globalInputdata: action.globalInputdata,
-      onFieldChanged,
-      isEncrypted: false,
+      onFieldChanged      
     });
+    if(globalInputdata && globalInputdata.length){
+        for(let i=0;i<globalInputdata.length;i++){
+          if(globalInputdata[i].matched){     
+            onFieldChanged && onFieldChanged({field:globalInputdata[i], index:i});
+          }      
+        }
+     }
     return {...action, globalInputdata, actionType: ACT_TYPE.DEVICE_INPUT};
   });
 };
@@ -468,15 +467,17 @@ export const renderFormDataList = ({
     try {
       const globalInputdata = copyFieldsToGlobalInputFields({
         fieldvalues: formContent.fields,
-        globalInputdata: action.globalInputdata,
-        onFieldChanged,
-        isEncrypted: true,
+        globalInputdata: action.globalInputdata        
       });
-      for(let i=0;i<globalInputdata.length;i++){
-        if(globalInputdata[i].isEncrypted){
-          globalInputdata[i].value=await appStore.decryptContent(globalInputdata[i].value);
-        }
-      }      
+      if(globalInputdata && globalInputdata.length){
+          for(let i=0;i<globalInputdata.length;i++){
+            if(globalInputdata[i].matched){
+              globalInputdata[i].value=await appStore.decryptContent(globalInputdata[i].value);          
+              onFieldChanged && onFieldChanged({field:globalInputdata[i], index:i});
+            }
+
+          }
+        }      
       setAction({
         ...action,
         globalInputdata,
