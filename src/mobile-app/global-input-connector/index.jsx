@@ -145,7 +145,6 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
 
   const formDataToSave = formData.getFormDataForSaving(action);
   
-
   switch (action.actionType) {
     case ACT_TYPE.ERROR:
       return (
@@ -180,8 +179,7 @@ const GlobalInputConnector = ({ codedata, toCameraView, menuItems }) => {
     case ACT_TYPE.SAVE_FORM_DATA:
       return formData.renderSaveFormData({ action, setAction });
 
-    case ACT_TYPE.ENCRYPT_SECRET:
-      
+    case ACT_TYPE.ENCRYPT_SECRET:    
       return formData.renderEncryptSecret({
         action,
         setAction,

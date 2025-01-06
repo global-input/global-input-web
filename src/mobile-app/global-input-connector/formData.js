@@ -159,10 +159,8 @@ const copyFieldsToGlobalInputFields = ({
       });
     }
     if (matchedFields && matchedFields.length) {
-      const value = isEncrypted
-        ? appStore.decryptContent(matchedFields[0].value)
-        : matchedFields[0].value;
-      const field = {...gfield, value};
+      const value = matchedFields[0].value;
+      const field = {...gfield, value, isEncrypted};
       updatedFields.push(field);
       if (onFieldChanged) {
         onFieldChanged({field, index});
@@ -466,7 +464,7 @@ export const renderFormDataList = ({
     getAllLabels: () => formDataUtil.getAllLabelsFromFormDataList(formDataList),
   };
 
-  const autoFillWithFormData = formContent => {
+  const autoFillWithFormData = async formContent => {
     try {
       const globalInputdata = copyFieldsToGlobalInputFields({
         fieldvalues: formContent.fields,
@@ -474,6 +472,11 @@ export const renderFormDataList = ({
         onFieldChanged,
         isEncrypted: true,
       });
+      for(let i=0;i<globalInputdata.length;i++){
+        if(globalInputdata[i].isEncrypted){
+          globalInputdata[i].value=await appStore.decryptContent(globalInputdata[i].value);
+        }
+      }      
       setAction({
         ...action,
         globalInputdata,
@@ -577,7 +580,7 @@ export const renderEncryptSecret = ({
   setAction,
   onFieldChanged,
   messageTimerHandler,
-}) => {
+}) => {  
   const toDeviceInput = () =>
     setAction({...action, actionType: ACT_TYPE.DEVICE_INPUT});
 
@@ -600,7 +603,6 @@ export const renderEncryptSecret = ({
       });
     }
   };
-
   return (
     <EncryptContentView
       menuItems={menuItems}
