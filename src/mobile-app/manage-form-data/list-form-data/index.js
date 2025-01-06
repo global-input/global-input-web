@@ -139,12 +139,14 @@ const ListFormData = ({
 
   // Function to handle scroll event for infinite scrolling
   const handleScroll = (e) => {
+    console.log("****scorlll****");
     const bottom =
       e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
     if (bottom) {
       onEndReached();
     }
   };
+  console.log("redern*****");
 
   return (
     <ViewWithTabMenu
@@ -153,18 +155,14 @@ const ListFormData = ({
       header={renderHeader()}
       floatingButton={menusConfig.addRecord.menu}
       onPressFloatingIcon={onCreateFormData}
-    >
-      <div
-        style={styles.listContainer}
-        onScroll={handleScroll}
-        className="list-scroll-container"
-      >
+      onScroll={handleScroll}
+    >      
         {action.items.map((item) => (
           <React.Fragment key={item.key}>
             {renderItemListItem(item)}
           </React.Fragment>
         ))}
-      </div>
+      
     </ViewWithTabMenu>
   );
 };

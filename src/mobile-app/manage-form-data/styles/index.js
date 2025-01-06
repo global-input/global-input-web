@@ -32,7 +32,7 @@ var stylesData={
       fontFamily: 'Futura-Medium',
       fontSize:18
     },
-
+    
     formRecord: {
       marginLeft:10,
       marginRight:10,
@@ -153,10 +153,7 @@ var stylesData={
       display:"flex",
       flexDirection:"column",
       justifyContent:"flex-start",
-      alignItems:"flex-start",
-      borderBottomWidth:1,
-      borderStyle: 'solid',
-      borderColor:"rgba(72,128,237,0.2)",
+      alignItems:"flex-start",            
       paddingBottom:5,
       marginLeft:10,
       marginRight:10,

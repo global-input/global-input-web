@@ -118,7 +118,7 @@ export default class ViewWithTabMenu extends Component {
       <div style={styles.container}>
         {/* StatusBar is specific to mobile apps; it's omitted here */}
         {this.renderHeader()}
-        <div style={contentContainerStyle}>
+        <div style={contentContainerStyle} onScroll={this.props.onScroll}>
           <div>
             {this.renderContent()}
             {this.props.children}
@@ -169,7 +169,7 @@ class MenuItem extends Component {
     return (
       <div
         onClick={this.props.onPress}
-        style={{ ...styles.menuItem, cursor: 'pointer' }}
+        style={{ ...styles.menuItem, cursor: 'pointer' }}        
       >
         <div style={iconContainerStyle}>
           {this.renderImage()}
