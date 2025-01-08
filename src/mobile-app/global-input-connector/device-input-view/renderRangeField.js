@@ -15,9 +15,9 @@ const renderRangeLabel = (dataitem) => {
 };
 
 const SliderComponent = ({ dataitem, onFieldChanged }) => {
-  let { label, value, minimumValue, maximumValue, step } = dataitem;
+  let { value, minimumValue, maximumValue, step } = dataitem;
 
-  label = label || '';
+  
 
   minimumValue = minimumValue !== undefined ? parseFloat(minimumValue) : 0;
   maximumValue = maximumValue !== undefined ? parseFloat(maximumValue) : 100;

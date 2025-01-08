@@ -25,7 +25,7 @@ const commonStyles ={
   },
   header:{
           backgroundColor: "rgba(72,128,237,1)",
-          width:"100%",
+          
           minHeight: 50,
           display: "flex",
           flexDirection: 'row',

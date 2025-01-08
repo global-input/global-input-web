@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { styles } from './styles';
 import images from '../../configs/images';
-import {appdata} from '../../store';
 import * as appStore from  '../../store';
 
 const populateItemsInAction = (action, encryptionKeyList) => {

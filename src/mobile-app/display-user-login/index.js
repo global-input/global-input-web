@@ -8,7 +8,7 @@ import images from '../configs/images';
 import userLoginText from '../configs/userLoginText';
 import * as appStore from '../store';
 import DialogButton from '../components/modal/DialogButton';
-import TextInputField from '../components/input/TextInputField';
+
 import PasswordInputField from './PasswordInputField';
 
 const AppStoreImage = styled.img.attrs({

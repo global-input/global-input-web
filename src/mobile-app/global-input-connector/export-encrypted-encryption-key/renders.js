@@ -8,7 +8,7 @@ import images from "../../configs/images";
 
 
 
-import { appdata } from '../../store';
+
 import * as appStore from '../../store';  
 
 // Adjusted renderSelectIcon function

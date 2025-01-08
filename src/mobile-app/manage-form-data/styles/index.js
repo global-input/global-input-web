@@ -116,7 +116,6 @@ var stylesData={
       alignItems:"center"
     },
     qrCodeHelp:{
-      fontFamily: 'Futura-Medium',
       color:"rgba(72,128,237,1)",
       fontFamily: 'Futura-Medium',
       fontSize:14,
