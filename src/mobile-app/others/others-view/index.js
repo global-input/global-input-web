@@ -18,11 +18,11 @@ import {logger} from 'global-input-logging'
 
 const ACT_TYPE = {
   MAIN: 1,
-  CHANGEPASSOWRD: 2,
+  CHANGE_PASSWORD: 2,
   APP_SETTINGS: 3,
-  MANAGEKEYS: 4,
+  KEY_MANAGEMENT: 4,
   DECRYPT_IMPORT: 5,
-  BACKUPDATA: 6,
+  DATA_BACKUP: 6,
   HELP: 7,
   DELETE_ALL_DATA: 8,
 }
@@ -31,14 +31,14 @@ const OthersView= ({menuItems, logout}) => {
   const [content, setContent] = useState('')
 
   const toMain = () => setActionType(ACT_TYPE.MAIN)
-  const changePasswordSelected = () => setActionType(ACT_TYPE.CHANGEPASSOWRD)
+  const changePasswordSelected = () => setActionType(ACT_TYPE.CHANGE_PASSWORD)
   const changeSettingsSelected = () => setActionType(ACT_TYPE.APP_SETTINGS)
-  const manageKeysSelected = () => setActionType(ACT_TYPE.MANAGEKEYS)
+  const manageKeysSelected = () => setActionType(ACT_TYPE.KEY_MANAGEMENT)
   const restoreDataSelected = () => {
-    if(!navigator.clipboard == undefined){
+    if (!navigator.clipboard) {
       logger.log("Clipboard not supported");
       return;
-    }
+  }
     if(!navigator.clipboard.readText){
       logger.log("Clipboard readText not supported");
       return;
@@ -50,28 +50,28 @@ const OthersView= ({menuItems, logout}) => {
     })
   }
   const deleteAllDataSelected = () => setActionType(ACT_TYPE.DELETE_ALL_DATA)
-  const backupDataSelected = () => setActionType(ACT_TYPE.BACKUPDATA)
+  const backupDataSelected = () => setActionType(ACT_TYPE.DATA_BACKUP)
   const helpSelected = () => setActionType(ACT_TYPE.HELP)
 
   switch (actionType) {
-    case ACT_TYPE.CHANGEPASSOWRD:
+    case ACT_TYPE.CHANGE_PASSWORD:
       return <ChangePasswordView onBack={toMain} />
     case ACT_TYPE.APP_SETTINGS:
       return <AppSettingsView onBack={toMain} />
-    case ACT_TYPE.MANAGEKEYS:
+    case ACT_TYPE.KEY_MANAGEMENT:
       return <ManageKeysView onBack={toMain} />
     case ACT_TYPE.DECRYPT_IMPORT:
       return <DecryptImportView onBack={toMain} content={content} />
     case ACT_TYPE.DELETE_ALL_DATA:
       return <DeleteAllDataView onBack={toMain} />
-    case ACT_TYPE.BACKUPDATA: {
-      var menuItems = [
+    case ACT_TYPE.DATA_BACKUP: {
+      var mItems = [
         {
           menu: menusConfig.back.menu,
           onPress: toMain,
         },
       ]
-      return <BackupFormData menuItems={menuItems} onBack={toMain} />
+      return <BackupFormData menuItems={mItems} onBack={toMain} />
     }
     case ACT_TYPE.HELP: {
       const menuItems = [
