@@ -36,7 +36,10 @@ const ScrollToTop = () => {
 
 
 const App: React.FC = () => (
-  <Router>
+  <Router future={{
+    v7_startTransition: true, // Enable the future flag
+    v7_relativeSplatPath: true, // Enable the future flag
+  }}>
     <ScrollToTop />
     <Routes>
       

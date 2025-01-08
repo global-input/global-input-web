@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@react-native-community/cli": "^15.1.2",
     "workbox-cli": "^7.1.0"
   }
