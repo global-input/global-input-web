@@ -1,7 +1,6 @@
 import images from "../mobile-app/configs/images";
 import userLoginText from "../mobile-app/configs/userLoginText";
-export const config = {
-  id: 'globalInputApp',
+export const config = {  
   paths: {
     examples: {
       contentTransfer: {

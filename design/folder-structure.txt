@@ -1,0 +1,877 @@
+.
+├── README.md
+├── architecture
+│   ├── serviceWorkerfix.txt
+│   └── serviceWorkwrs.md
+├── design
+│   └── form_encryption.md
+├── jest.config.ts
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── globalInput-512.png
+│   ├── globalinput-144.png
+│   ├── globalinput-16.png
+│   ├── globalinput-256.png
+│   ├── globalinput-32.png
+│   ├── globalinput-48.png
+│   ├── globalinput-96.png
+│   ├── images
+│   │   ├── activate-icon-dark.png
+│   │   ├── activate-icon.png
+│   │   ├── active-icon-white.png
+│   │   ├── active-icon.png
+│   │   ├── add-field.png
+│   │   ├── add-new-field-icon.png
+│   │   ├── add-record.png
+│   │   ├── app
+│   │   │   ├── buttons
+│   │   │   │   ├── send-white.png
+│   │   │   │   └── settings.png
+│   │   │   └── icons
+│   │   │       └── connected.png
+│   │   ├── back.png
+│   │   ├── backup.png
+│   │   ├── browser.png
+│   │   ├── cancel-icon.png
+│   │   ├── cancel-light.png
+│   │   ├── change-password.png
+│   │   ├── checked.png
+│   │   ├── clear-field.png
+│   │   ├── clipboard-copy-white.png
+│   │   ├── clipboard-copy.png
+│   │   ├── clipboard-paste.png
+│   │   ├── continue-icon.png
+│   │   ├── decrypt-icon-light.png
+│   │   ├── decrypt-icon.png
+│   │   ├── delete-icon-light.png
+│   │   ├── delete-icon.png
+│   │   ├── device
+│   │   │   ├── back-icon.png
+│   │   │   ├── disconnect-icon.png
+│   │   │   ├── down-icon.png
+│   │   │   ├── encrypt.png
+│   │   │   ├── ff-icon.png
+│   │   │   ├── home.png
+│   │   │   ├── left-icon.png
+│   │   │   ├── pause-icon.png
+│   │   │   ├── play-icon.png
+│   │   │   ├── print-icon.png
+│   │   │   ├── reset-icon.png
+│   │   │   ├── right-icon.png
+│   │   │   ├── rw-icon.png
+│   │   │   ├── send-icon.png
+│   │   │   ├── settings-icon.png
+│   │   │   ├── sign-in.png
+│   │   │   ├── skip-to-begin.png
+│   │   │   ├── skip-to-end.png
+│   │   │   └── up-icon.png
+│   │   ├── discard-icon.png
+│   │   ├── disconnect-icon.png
+│   │   ├── domain-search.png
+│   │   ├── done-icon-dark.png
+│   │   ├── done-icon.png
+│   │   ├── edit-light.png
+│   │   ├── edit.png
+│   │   ├── encrypt-icon.png
+│   │   ├── encrypted-qr-selected.png
+│   │   ├── encrypted-qr.png
+│   │   ├── export-icon-light.png
+│   │   ├── export-icon.png
+│   │   ├── export-text.png
+│   │   ├── field-icon.png
+│   │   ├── fill-form.png
+│   │   ├── folder-white.png
+│   │   ├── folder.png
+│   │   ├── folders-icon.png
+│   │   ├── form-management-icon-selected.png
+│   │   ├── form-management-icon.png
+│   │   ├── help.png
+│   │   ├── hide-password-light.png
+│   │   ├── hide-password.png
+│   │   ├── home.png
+│   │   ├── id-icon.png
+│   │   ├── import-icon-light.png
+│   │   ├── import-icon.png
+│   │   ├── key-icon-selected.png
+│   │   ├── key-icon.png
+│   │   ├── key.png
+│   │   ├── label-icon.png
+│   │   ├── left-arrow-light.png
+│   │   ├── list-icon.png
+│   │   ├── logo.png
+│   │   ├── logout-icon.png
+│   │   ├── manage-key-icon.png
+│   │   ├── matched-icon.png
+│   │   ├── message.png
+│   │   ├── more-icon-selected.png
+│   │   ├── more-icon.png
+│   │   ├── not-checked.png
+│   │   ├── note.png
+│   │   ├── ok-icon.png
+│   │   ├── password-icon.png
+│   │   ├── qr-code-light.png
+│   │   ├── qr-code.png
+│   │   ├── radio-button-checked.png
+│   │   ├── radio-button-unchecked.png
+│   │   ├── random-icon-light.png
+│   │   ├── random-icon.png
+│   │   ├── reset-key-icon.png
+│   │   ├── restore-dark.png
+│   │   ├── restore.png
+│   │   ├── reveal-password-light.png
+│   │   ├── reveal-password.png
+│   │   ├── save-icon-white.png
+│   │   ├── save-icon.png
+│   │   ├── scan-icon-selected.png
+│   │   ├── scan-icon.png
+│   │   ├── search.png
+│   │   ├── select-icon.png
+│   │   ├── service-data.png
+│   │   ├── skip-icon.png
+│   │   ├── tick-off-icon.png
+│   │   ├── tick-on-icon.png
+│   │   ├── timestamp-icon.png
+│   │   ├── up-down-icon.png
+│   │   ├── user-preference.png
+│   │   └── white-key.png
+│   ├── index.html
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── sitemap.xml
+├── src
+│   ├── App.tsx
+│   ├── about-content-encryption
+│   │   ├── images
+│   │   │   ├── encrypted-qr-code-200.png
+│   │   │   ├── encrypted-qr-code-250.png
+│   │   │   ├── encrypted-qr-code-350.png
+│   │   │   ├── key-cloud-200.png
+│   │   │   ├── key-cloud-250.png
+│   │   │   ├── key-cloud-350.png
+│   │   │   ├── key-cloud-400.png
+│   │   │   ├── mobile-encryption-200.png
+│   │   │   ├── mobile-encryption-250.png
+│   │   │   ├── mobile-encryption-350.png
+│   │   │   └── mobile-encryption-400.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── about-mobile-authentication
+│   │   ├── images
+│   │   │   ├── multi-factor.png
+│   │   │   ├── multi-factor.png-1.png
+│   │   │   ├── one-click-sign-in-200.png
+│   │   │   ├── one-click-sign-in-250.png
+│   │   │   ├── one-click-sign-in-350.png
+│   │   │   └── one-click-sign-in-400.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── about-mobile-content-transfer
+│   │   ├── images
+│   │   │   ├── content-transfer-200.png
+│   │   │   ├── content-transfer-250.png
+│   │   │   └── content-transfer.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── about-mobile-input-control
+│   │   ├── images
+│   │   │   ├── mobile-input-200.png
+│   │   │   ├── mobile-input-250.png
+│   │   │   ├── mobile-input-350.png
+│   │   │   ├── mobile-input-400.png
+│   │   │   ├── one-click-sign-in-200.png
+│   │   │   ├── one-click-sign-in-250.png
+│   │   │   ├── one-click-sign-in-350.png
+│   │   │   ├── one-click-sign-in-400.png
+│   │   │   ├── secure-communication-200.png
+│   │   │   ├── secure-communication-250.png
+│   │   │   ├── secure-communication-350.png
+│   │   │   ├── tick.png
+│   │   │   ├── unified-control-200.png
+│   │   │   ├── unified-control-250.png
+│   │   │   ├── unified-control-350.png
+│   │   │   └── unified-control-400.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── about-mobile-personal-storage
+│   │   ├── images
+│   │   │   ├── customer-service-200.png
+│   │   │   ├── customer-service-250.png
+│   │   │   ├── customer-service-350.png
+│   │   │   ├── customer-service-400.png
+│   │   │   └── mobile-storage.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── about-second-screen
+│   │   ├── images
+│   │   │   ├── second-screen-200.png
+│   │   │   ├── second-screen-250.png
+│   │   │   ├── second-screen-350.png
+│   │   │   └── second-screen-400.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   ├── mobile-ui
+│   │   │   └── index.ts
+│   │   └── styles.js
+│   ├── contact-us-page
+│   │   ├── images
+│   │   │   └── background.svg
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── get-app-page
+│   │   ├── images
+│   │   │   ├── app-icon.png
+│   │   │   ├── app-store.png
+│   │   │   ├── background.svg
+│   │   │   ├── extension.png
+│   │   │   ├── firefox-addons.png
+│   │   │   ├── js-module.png
+│   │   │   ├── module.png
+│   │   │   ├── play-store.png
+│   │   │   ├── react-module.png
+│   │   │   └── web-store.png
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── global-input-config
+│   │   ├── code.txt
+│   │   └── index.js
+│   ├── global-input-logging
+│   │   └── index.js
+│   ├── global-input-mobile
+│   │   ├── commons.ts
+│   │   ├── help.tsx
+│   │   ├── images
+│   │   │   ├── app-icon.png
+│   │   │   ├── connect.png
+│   │   │   ├── disconnect.png
+│   │   │   ├── pairing.png
+│   │   │   └── settings.png
+│   │   ├── index.ts
+│   │   ├── settingsEditor.tsx
+│   │   ├── storage.ts
+│   │   ├── useMobile.tsx
+│   │   └── widgets.tsx
+│   ├── global-input-scanner
+│   │   ├── index.ts
+│   │   └── react-qr-scanner.tsx
+│   ├── home-page
+│   │   ├── card-section
+│   │   │   ├── images
+│   │   │   │   ├── arrow.svg
+│   │   │   │   ├── authentication.svg
+│   │   │   │   ├── control.svg
+│   │   │   │   ├── encryption.png
+│   │   │   │   ├── personal-storage.png
+│   │   │   │   ├── second-screen.svg
+│   │   │   │   └── transfer.png
+│   │   │   ├── index.tsx
+│   │   │   └── layout.tsx
+│   │   ├── how-it-works
+│   │   │   ├── images
+│   │   │   │   ├── 1.svg
+│   │   │   │   ├── 2.svg
+│   │   │   │   ├── 3.svg
+│   │   │   │   ├── extension.svg
+│   │   │   │   ├── mobile.svg
+│   │   │   │   ├── qrcode.png
+│   │   │   │   └── small
+│   │   │   │       ├── 1.svg
+│   │   │   │       ├── 2.svg
+│   │   │   │       ├── 3.svg
+│   │   │   │       ├── extension.svg
+│   │   │   │       └── qrcode.png
+│   │   │   ├── index.tsx
+│   │   │   └── layout.tsx
+│   │   ├── images
+│   │   │   └── headerBackground-1440.svg
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   ├── mobile-ui
+│   │   │   ├── exampleFields.ts
+│   │   │   ├── index.ts
+│   │   │   └── pageMenu.ts
+│   │   └── poster-image
+│   │       ├── images
+│   │       │   ├── right-poster-200-183.png
+│   │       │   ├── right-poster-350-320.png
+│   │       │   └── right-poster-552-505.png
+│   │       └── index.tsx
+│   ├── index.css
+│   ├── index.tsx
+│   ├── jest.config.js
+│   ├── micro-apps
+│   │   ├── content-transfer-example
+│   │   │   ├── index.tsx
+│   │   │   └── mobile-ui
+│   │   │       └── index.ts
+│   │   ├── game-control-example
+│   │   │   ├── GameComponent.ts
+│   │   │   ├── common-elements
+│   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── copyButton.tsx
+│   │   │   │   ├── formElements.tsx
+│   │   │   │   ├── help.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── tips.tsx
+│   │   │   ├── components
+│   │   │   │   ├── forms.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── use-window-size
+│   │   │   │       └── index.ts
+│   │   │   ├── game.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── mobile
+│   │   │   │   └── index.ts
+│   │   │   └── mobile-ui
+│   │   │       └── index.ts
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   ├── media-player-control-example
+│   │   │   ├── common-elements
+│   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── copyButton.tsx
+│   │   │   │   ├── formElements.tsx
+│   │   │   │   ├── help.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── tips.tsx
+│   │   │   ├── components
+│   │   │   │   ├── forms.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── use-window-size
+│   │   │   │       └── index.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── mobile
+│   │   │   │   └── index.ts
+│   │   │   ├── mobile-ui
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── playerUI.ts
+│   │   │   │   └── selectorUI.ts
+│   │   │   └── videoControl.ts
+│   │   ├── mobile-encryption-example
+│   │   │   ├── MainPage.tsx
+│   │   │   ├── common-elements
+│   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── copyButton.tsx
+│   │   │   │   ├── formElements.tsx
+│   │   │   │   ├── help.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── tips.tsx
+│   │   │   ├── components
+│   │   │   │   ├── icons.tsx
+│   │   │   │   ├── images
+│   │   │   │   │   ├── decrypt-icon.png
+│   │   │   │   │   ├── decrypt.png
+│   │   │   │   │   ├── encrypt.png
+│   │   │   │   │   ├── qr-code.png
+│   │   │   │   │   ├── send-icon.png
+│   │   │   │   │   └── show-icon.png
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── pageElements.tsx
+│   │   │   │   └── tipsOnMain.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── mobile
+│   │   │   │   └── index.ts
+│   │   │   ├── mobile-decryption
+│   │   │   │   ├── decrypt-content
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── provide-content
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── mobile-ui
+│   │   │   │   │       ├── onComputer.ts
+│   │   │   │   │       └── onMobile.ts
+│   │   │   │   └── result
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── mobile-ui
+│   │   │   │           ├── onComputer.ts
+│   │   │   │           └── onMobile.ts
+│   │   │   ├── mobile-encryption
+│   │   │   │   ├── encrypt-content
+│   │   │   │   │   ├── images
+│   │   │   │   │   │   ├── encrypt-icon.png
+│   │   │   │   │   │   ├── send-icon.png
+│   │   │   │   │   │   └── show-icon.png
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── provide-content
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── mobile-ui
+│   │   │   │   │       ├── onComputer.ts
+│   │   │   │   │       └── onMobile.ts
+│   │   │   │   └── result
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── mobile-ui
+│   │   │   │           ├── onComputer.ts
+│   │   │   │           └── onMobile.ts
+│   │   │   └── qr-code-generator
+│   │   │       ├── content-label
+│   │   │       │   ├── form.tsx
+│   │   │       │   ├── images
+│   │   │       │   │   ├── encrypt-on-mobile.png
+│   │   │       │   │   ├── keys-on-mobile.png
+│   │   │       │   │   └── settings-on-mobile.png
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── tips.tsx
+│   │   │       ├── generate-qr-code
+│   │   │       │   └── index.tsx
+│   │   │       └── index.tsx
+│   │   ├── mobile-ui
+│   │   │   ├── addField.ts
+│   │   │   └── index.ts
+│   │   ├── readme.txt
+│   │   ├── send-message-example
+│   │   │   ├── CompanyInfo.tsx
+│   │   │   ├── DisplayApplicationInfo.tsx
+│   │   │   ├── Home.tsx
+│   │   │   ├── MessageSent.tsx
+│   │   │   ├── SendMessage.tsx
+│   │   │   ├── app-layout
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── input-with-copy
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── input-with-label
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── page-container
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── page-elements
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── selectable
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── selectable-input
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── styleMatchingScreenSize.ts
+│   │   │   │   └── text-button
+│   │   │   │       └── index.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── mobile
+│   │   │       └── index.ts
+│   │   └── transfer-form-data-example
+│   │       ├── common-elements
+│   │       │   ├── checkbox.tsx
+│   │       │   ├── copyButton.tsx
+│   │       │   ├── formElements.tsx
+│   │       │   ├── help.tsx
+│   │       │   ├── index.tsx
+│   │       │   ├── pageElements.tsx
+│   │       │   └── tips.tsx
+│   │       ├── components
+│   │       │   ├── forms.tsx
+│   │       │   ├── index.tsx
+│   │       │   └── pageElements.tsx
+│   │       ├── forms.tsx
+│   │       ├── index.tsx
+│   │       ├── mobile
+│   │       │   └── index.ts
+│   │       ├── mobile-ui
+│   │       │   └── index.ts
+│   │       ├── storage
+│   │       │   └── index.ts
+│   │       └── url-query
+│   │           └── index.ts
+│   ├── mobile-app
+│   │   ├── clipboard-copy-view
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── common-styles
+│   │   │   └── index.js
+│   │   ├── components
+│   │   │   ├── buttons
+│   │   │   │   ├── CheckBoxButton.js
+│   │   │   │   ├── ClipboardCopyButton.js
+│   │   │   │   ├── CopyToClipboard.js
+│   │   │   │   ├── IconButton.js
+│   │   │   │   ├── TextButton.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── display-text
+│   │   │   │   ├── DisplayBlockText.js
+│   │   │   │   ├── DisplayBlockTitle.js
+│   │   │   │   ├── DisplayContent.jsx
+│   │   │   │   ├── NotificationText.jsx
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── empty-space
+│   │   │   │   ├── EmptySpace.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── input
+│   │   │   │   ├── InputPicker.js
+│   │   │   │   ├── TextFieldWithDone.js
+│   │   │   │   ├── TextInputField.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── list-items
+│   │   │   │   ├── DisplayItem.js
+│   │   │   │   ├── DisplayLongDescriptionItem.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── loading
+│   │   │   │   ├── CancelButton.js
+│   │   │   │   ├── LoadingScreen.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── menu
+│   │   │   │   ├── DisplayHeader.jsx
+│   │   │   │   ├── EditorWithTabMenu.js
+│   │   │   │   ├── NotificationBar.js
+│   │   │   │   ├── TabMenu.js
+│   │   │   │   ├── ViewWithTabMenu.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── modal
+│   │   │   │   ├── DialogButton.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── configs
+│   │   │   ├── appTextConfig.js
+│   │   │   ├── backupFormDataTextConfig.js
+│   │   │   ├── deviceInputTextConfig.js
+│   │   │   ├── encryptedQrCodeTextConfig.js
+│   │   │   ├── eyeTextConfig.js
+│   │   │   ├── images.js
+│   │   │   ├── manageFormDataTextConfig.js
+│   │   │   ├── manageKeysTextConfig.js
+│   │   │   ├── menusConfig.js
+│   │   │   ├── settingsTextConfig.js
+│   │   │   └── userLoginText.js
+│   │   ├── display-user-login
+│   │   │   ├── PasswordInputField.js
+│   │   │   ├── images
+│   │   │   │   ├── app-store.png
+│   │   │   │   └── play-store.png
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── global-input-connector
+│   │   │   ├── ACT_TYPE.js
+│   │   │   ├── device-input-view
+│   │   │   │   ├── index.js
+│   │   │   │   ├── renderButton.js
+│   │   │   │   ├── renderInfoContent.js
+│   │   │   │   ├── renderInputPickerField.js
+│   │   │   │   ├── renderInputSelection.js
+│   │   │   │   ├── renderInputSelectionList.js
+│   │   │   │   ├── renderRangeField.js
+│   │   │   │   ├── renderTextField.js
+│   │   │   │   └── renders.js
+│   │   │   ├── encrypt-decrypt-data
+│   │   │   │   ├── SelectEncryptionKey.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── export-encrypted-encryption-key
+│   │   │   │   ├── handlers.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── renders.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── formData.js
+│   │   │   ├── globalInput.js
+│   │   │   ├── import-form-data
+│   │   │   │   └── index.tsx
+│   │   │   ├── index.jsx
+│   │   │   ├── message-with-form-data
+│   │   │   │   ├── index.js
+│   │   │   │   ├── renderFormFields.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── notifications.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── global-input-enc
+│   │   │   ├── enc.js
+│   │   │   └── enc.test.js
+│   │   ├── global-input-eye
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── help-screen
+│   │   │   ├── HelpScreen.js
+│   │   │   ├── healp.txt
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── images
+│   │   │   ├── activate-icon-dark.png
+│   │   │   ├── activate-icon.png
+│   │   │   ├── active-icon-white.png
+│   │   │   ├── active-icon.png
+│   │   │   ├── add-field.png
+│   │   │   ├── add-new-field-icon.png
+│   │   │   ├── add-record.png
+│   │   │   ├── app
+│   │   │   │   ├── buttons
+│   │   │   │   │   ├── send-white.png
+│   │   │   │   │   └── settings.png
+│   │   │   │   └── icons
+│   │   │   │       └── connected.png
+│   │   │   ├── back.png
+│   │   │   ├── backup.png
+│   │   │   ├── browser.png
+│   │   │   ├── cancel-icon.png
+│   │   │   ├── cancel-light.png
+│   │   │   ├── change-password.png
+│   │   │   ├── checked.png
+│   │   │   ├── clear-field.png
+│   │   │   ├── clipboard-copy-white.png
+│   │   │   ├── clipboard-copy.png
+│   │   │   ├── clipboard-paste.png
+│   │   │   ├── continue-icon.png
+│   │   │   ├── decrypt-icon-light.png
+│   │   │   ├── decrypt-icon.png
+│   │   │   ├── delete-icon-light.png
+│   │   │   ├── delete-icon.png
+│   │   │   ├── device
+│   │   │   │   ├── back-icon.png
+│   │   │   │   ├── disconnect-icon.png
+│   │   │   │   ├── down-icon.png
+│   │   │   │   ├── encrypt.png
+│   │   │   │   ├── ff-icon.png
+│   │   │   │   ├── home.png
+│   │   │   │   ├── left-icon.png
+│   │   │   │   ├── pause-icon.png
+│   │   │   │   ├── play-icon.png
+│   │   │   │   ├── print-icon.png
+│   │   │   │   ├── reset-icon.png
+│   │   │   │   ├── right-icon.png
+│   │   │   │   ├── rw-icon.png
+│   │   │   │   ├── send-icon.png
+│   │   │   │   ├── settings-icon.png
+│   │   │   │   ├── sign-in.png
+│   │   │   │   ├── skip-to-begin.png
+│   │   │   │   ├── skip-to-end.png
+│   │   │   │   └── up-icon.png
+│   │   │   ├── discard-icon.png
+│   │   │   ├── disconnect-icon.png
+│   │   │   ├── domain-search.png
+│   │   │   ├── done-icon-dark.png
+│   │   │   ├── done-icon.png
+│   │   │   ├── edit-light.png
+│   │   │   ├── edit.png
+│   │   │   ├── encrypt-icon.png
+│   │   │   ├── encrypted-qr-selected.png
+│   │   │   ├── encrypted-qr.png
+│   │   │   ├── export-icon-light.png
+│   │   │   ├── export-icon.png
+│   │   │   ├── export-text.png
+│   │   │   ├── field-icon.png
+│   │   │   ├── fill-form.png
+│   │   │   ├── folder-white.png
+│   │   │   ├── folder.png
+│   │   │   ├── folders-icon.png
+│   │   │   ├── form-management-icon-selected.png
+│   │   │   ├── form-management-icon.png
+│   │   │   ├── help.png
+│   │   │   ├── hide-password-light.png
+│   │   │   ├── hide-password.png
+│   │   │   ├── home.png
+│   │   │   ├── id-icon.png
+│   │   │   ├── import-icon-light.png
+│   │   │   ├── import-icon.png
+│   │   │   ├── key-icon-selected.png
+│   │   │   ├── key-icon.png
+│   │   │   ├── key.png
+│   │   │   ├── label-icon.png
+│   │   │   ├── left-arrow-light.png
+│   │   │   ├── list-icon.png
+│   │   │   ├── logo.png
+│   │   │   ├── logout-icon.png
+│   │   │   ├── manage-key-icon.png
+│   │   │   ├── matched-icon.png
+│   │   │   ├── message.png
+│   │   │   ├── more-icon-selected.png
+│   │   │   ├── more-icon.png
+│   │   │   ├── not-checked.png
+│   │   │   ├── note.png
+│   │   │   ├── ok-icon.png
+│   │   │   ├── password-icon.png
+│   │   │   ├── qr-code-light.png
+│   │   │   ├── qr-code.png
+│   │   │   ├── radio-button-checked.png
+│   │   │   ├── radio-button-unchecked.png
+│   │   │   ├── random-icon-light.png
+│   │   │   ├── random-icon.png
+│   │   │   ├── reset-key-icon.png
+│   │   │   ├── restore-dark.png
+│   │   │   ├── restore.png
+│   │   │   ├── reveal-password-light.png
+│   │   │   ├── reveal-password.png
+│   │   │   ├── save-icon-white.png
+│   │   │   ├── save-icon.png
+│   │   │   ├── scan-icon-selected.png
+│   │   │   ├── scan-icon.png
+│   │   │   ├── search.png
+│   │   │   ├── select-icon.png
+│   │   │   ├── service-data.png
+│   │   │   ├── skip-icon.png
+│   │   │   ├── tick-off-icon.png
+│   │   │   ├── tick-on-icon.png
+│   │   │   ├── timestamp-icon.png
+│   │   │   ├── up-down-icon.png
+│   │   │   ├── user-preference.png
+│   │   │   └── white-key.png
+│   │   ├── import-encryption-key
+│   │   │   ├── ImportEncryptionKeyView.js
+│   │   │   ├── PasswordDecrypt.js
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── import-settings
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── index.tsx
+│   │   ├── manage-form-data
+│   │   │   ├── NotFormDataView.js
+│   │   │   ├── display-form-data
+│   │   │   │   └── index.js
+│   │   │   ├── edit-form-data
+│   │   │   │   ├── ACT_TYPE.js
+│   │   │   │   ├── formUtil.js
+│   │   │   │   ├── globalinput.js
+│   │   │   │   └── index.js
+│   │   │   ├── index.js
+│   │   │   ├── list-form-data
+│   │   │   │   ├── ListFormDataHeader.js
+│   │   │   │   └── index.js
+│   │   │   ├── list-form-labels
+│   │   │   │   ├── ListFormLabelsHeader.js
+│   │   │   │   └── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── others
+│   │   │   ├── app-settings
+│   │   │   │   ├── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── backup-data
+│   │   │   │   ├── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── change-password
+│   │   │   │   ├── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── delete-all-data
+│   │   │   │   ├── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   ├── manage-keys
+│   │   │   │   ├── generate-new-key
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── manage-keys-view
+│   │   │   │   │   ├── DeletingEncryptionKey.js
+│   │   │   │   │   ├── DisplayKeyDetails.js
+│   │   │   │   │   ├── EncryptionKeyItemActivated.js
+│   │   │   │   │   ├── EncryptionKeyItemImported.tsx
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── password-input-view
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── styles
+│   │   │   │   │   └── index.js
+│   │   │   │   └── view-encryption-key-details
+│   │   │   │       └── index.js
+│   │   │   ├── others-view
+│   │   │   │   └── index.js
+│   │   │   ├── restore-data
+│   │   │   │   ├── decrypt-import-view
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── form-content-data-view
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── password-decrypt
+│   │   │   │   │   └── index.js
+│   │   │   │   └── styles
+│   │   │   │       └── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── qr-code-encryption
+│   │   │   ├── encrypt-content-view
+│   │   │   │   └── index.js
+│   │   │   ├── index.js
+│   │   │   ├── qr-code-encryption-view
+│   │   │   │   └── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── qr-code-view
+│   │   │   ├── QRCodeView.js
+│   │   │   ├── index.js
+│   │   │   └── styles
+│   │   │       └── index.js
+│   │   ├── store
+│   │   │   ├── FormDataUtil.js
+│   │   │   ├── appInstance.js
+│   │   │   ├── domainFormsAccess.js
+│   │   │   ├── generalUtil.js
+│   │   │   ├── index.js
+│   │   │   └── localStorage
+│   │   │       ├── domainFormMappings.js
+│   │   │       ├── globalInputSettings.js
+│   │   │       └── userSettings.js
+│   │   └── ui
+│   │       └── input
+│   │           ├── GItemSelector.js
+│   │           ├── GMultiSelector.js
+│   │           ├── tick-off-icon.png
+│   │           ├── tick-on-icon.png
+│   │           └── up-down-icon.png
+│   ├── page-footer
+│   │   ├── images
+│   │   │   └── footer-background.svg
+│   │   └── index.tsx
+│   ├── page-header
+│   │   ├── images
+│   │   │   ├── app-icon.png
+│   │   │   ├── close.png
+│   │   │   ├── company-icon.png
+│   │   │   ├── menu-symbol.svg
+│   │   │   └── small-app-icon.png
+│   │   ├── index.tsx
+│   │   └── layout.tsx
+│   ├── page-metadata
+│   │   └── index.ts
+│   ├── privacy-page
+│   │   ├── images
+│   │   │   └── background.svg
+│   │   ├── index.tsx
+│   │   ├── layout.tsx
+│   │   └── mobile-ui
+│   │       └── index.ts
+│   ├── react-app-env.d.ts
+│   ├── renderReloader.ts
+│   ├── serviceWorker.ts
+│   ├── setupTests.ts
+│   ├── static-files
+│   │   └── test-code.txt
+│   ├── tests
+│   │   └── setup.js
+│   └── web-config
+│       └── index.ts
+├── tsconfig.json
+└── workbox-config.js
+
+203 directories, 672 files

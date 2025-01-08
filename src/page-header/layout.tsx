@@ -64,8 +64,7 @@ export const Pipe=styled.div`
   margin: 0 10px;
   
 `;
-export const appTitle =
-  config.id === "iterative" ? "Iterative Solution" : "Global Input App";
+export const appTitle ="Global Input App";
 
 export const LogoAndName = styled.div`
   
