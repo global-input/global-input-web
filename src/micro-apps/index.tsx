@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet'
+import { useCanonicalLink } from '../page-metadata';
 import { usePageTitle } from '../page-metadata';
 import { PageHeader } from '../page-header';
 import {PageFooter} from '../page-footer';
@@ -99,13 +99,11 @@ export const MobileEncryptionScreen = (props: any) => {
 }
 
 export const OldMobileEncryptionScreen = (props: any) => {
+  useCanonicalLink("https://globalinput.co.uk/global-input-app/mobile-encryption");
   return (
-    <>
-    <Helmet>      
-      <link rel="canonical" href="https://globalinput.co.uk/global-input-app/mobile-encryption" />            
-    </Helmet>    
+        
     <MobileEncryptionScreen {...props}/>
-    </>
+    
   );
   
   

@@ -1,5 +1,4 @@
-import React,{useEffect} from "react";
-import { Helmet } from 'react-helmet';
+import React from "react";
 import { config } from "../web-config";
 import { PageFooter } from "../page-footer";
 import { PageHeader } from "../page-header";
@@ -9,7 +8,7 @@ import {
   ConnectButton,
   DisconnectButton,
 } from "./mobile-ui";
-import { usePageTitle } from "../page-metadata";
+import { usePageTitle, useCanonicalPage } from "../page-metadata"; // Import your hooks
 import { PosterImage } from "./poster-image";
 import { HowItWorks } from "./how-it-works";
 import { CardSection } from "./card-section";
@@ -20,7 +19,7 @@ import {
   TitleSection,
   Title,
   Subtitle,
-  ButtonContainer
+  ButtonContainer,
 } from "./layout";
 
 const headerTextContent = {
@@ -29,45 +28,20 @@ const headerTextContent = {
     "Enable secure mobile capabilities in your applications with minimal code changes. Features encrypted QR authentication, dynamic mobile UI generation, and secure data exchange - perfect for streaming services, self-service systems, and IoT applications.",
 };
 
-interface HomePageProps {
-  
-}
+interface HomePageProps {}
+
 export const HomePage: React.FC<HomePageProps> = () => {
-  const [canonicalPage, setCanonicalPage] = React.useState(false);
+  const mobile = useConnectToMobile();
+
+  // Set the page title
   usePageTitle(
     "Global Input App - Introducing Mobile Interoperability into Web and Device Applications"
   );
-  const mobile = useConnectToMobile();
 
-  useEffect(()=>{
-    
-    if(window.location.search){
-      setCanonicalPage(true); 
-    }
-    if(window.location.pathname && window.location.pathname !== "/" && window.location.pathname !== "/index.html"){
-      setCanonicalPage(true); 
-    }
-
-    if (window.location) {
-      const { protocol, hostname } = window.location;
-      
-      if (protocol === "https:" && hostname === "globalinput.co.uk") {
-        return; // Skip setting canonical page if it's already the correct page
-      }
-    
-      console.log("Canonical page is set to true");
-      console.log(`Protocol: ${protocol}, Hostname: ${hostname}`);
-      setCanonicalPage(true);
-    }
-
-  }, []);
+  // Manage canonical link
+  useCanonicalPage("https://globalinput.co.uk/");
 
   return (
-    <>
-    {canonicalPage && <Helmet>
-      <link rel="canonical" href="https://globalinput.co.uk/" />
-      </Helmet>
-      }
     <Container>
       <PageHeader selected={config.paths.home.path} />
       <Content>
@@ -75,7 +49,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
         <TitleSection>
           <Title>{headerTextContent.title}</Title>
           <Subtitle>{headerTextContent.subtitle}</Subtitle>
-          <ButtonContainer>            
+          <ButtonContainer>
             <ConnectButton label="Connect Mobile" mobile={mobile} />
             <ConnectWindow mobile={mobile} />
             <DisconnectButton mobile={mobile} />
@@ -83,14 +57,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
         </TitleSection>
 
         <CardSection />
-
         <HowItWorks />
-        
       </Content>
       <PageFooter />
     </Container>
-    </>
   );
 };
-
-
