@@ -67,6 +67,7 @@ const images={
   changePassword:"/images/change-password.png",
   encryptIcon:"/images/encrypt-icon.png",
   encryptedQR:"/images/encrypted-qr.png",
+  encryptedQRBlack:"/images/encrypted-qr-black.png",
   encryptedQRSelected:"/images/encrypted-qr-selected.png",
   keyIcon:"/images/key-icon.png",
   keyIconSelected:"/images/key-icon-selected.png",

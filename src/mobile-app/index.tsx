@@ -10,7 +10,7 @@ import GlobalInputConnector from './global-input-connector';
 import menusConfig from './configs/menusConfig';
 import {ManageFormData} from './manage-form-data'
 import {ManageKeysView} from './others/manage-keys';
-import {QRCodeEncryptionView} from "./qr-code-encryption";
+
 import OthersView from './others/others-view';
 import {HelpScreen} from './help-screen'
 import { ImportSettingsView } from './import-settings';
@@ -20,8 +20,7 @@ enum Page {
     ImportEncryptionKey = 'import-encryption-key',
     GlobalInputConnector = 'global-input-connector',
     ManageFormData = 'manage-form-data',
-    ManageKeys = 'manage-keys',
-    EncryptedQRCode= 'encrypted-qr-code',
+    ManageKeys = 'manage-keys',    
     OthersMenu= 'others-menu',
     HelpScreen= 'help-screen',
     ImportSettings = 'import-settings',
@@ -130,13 +129,6 @@ const toManageKeys = useCallback(() => {
     });
     
 },[]);
-const toEncryptedQRCode = useCallback(() => {
-    setPage({
-        page: Page.EncryptedQRCode,
-        code: null,
-    });
-
-},[]);
 
 const toOthersMenu = useCallback(() => {
     setPage({
@@ -185,11 +177,7 @@ const renderHelpScreen =  useCallback(() => {
     {
       menu: menusConfig.manageKeys.menu,
       onPress: toManageKeys,
-    },
-    {
-      menu: menusConfig.encryptedQrCode.menu,
-      onPress: toEncryptedQRCode,
-    },
+    },    
     {
       menu: menusConfig.others.menu,
       onPress: toOthersMenu,
@@ -235,11 +223,9 @@ const renderHelpScreen =  useCallback(() => {
           />
         );
       case Page.ManageKeys:
-        return <ManageKeysView menuItems={menuItems} />;
-      case Page.EncryptedQRCode:
-        return <QRCodeEncryptionView menuItems={menuItems}/>;
+        return <ManageKeysView menuItems={menuItems} />;      
       case Page.OthersMenu:
-        return <OthersView menuItems={menuItems} logout={toUserLoginScreen} />;
+        return <OthersView menuItems={menuItems} logout={toUserLoginScreen}/>;
       case Page.HelpScreen:
         return renderHelpScreen();
       case Page.ImportSettings:

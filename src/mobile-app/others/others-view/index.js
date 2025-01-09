@@ -15,6 +15,7 @@ import BackupFormData from '../backup-data'
 import {HelpScreen} from '../../help-screen'
 import DeleteAllDataView from '../delete-all-data'
 import {logger} from 'global-input-logging'
+import {QRCodeEncryptionView} from "../../qr-code-encryption";
 
 const ACT_TYPE = {
   MAIN: 1,
@@ -25,6 +26,7 @@ const ACT_TYPE = {
   DATA_BACKUP: 6,
   HELP: 7,
   DELETE_ALL_DATA: 8,
+  ENCRYPTED_QR_CODE: 9,
 }
 const OthersView= ({menuItems, logout}) => {
   const [actionType, setActionType] = useState(ACT_TYPE.MAIN)
@@ -51,6 +53,7 @@ const OthersView= ({menuItems, logout}) => {
   }
   const deleteAllDataSelected = () => setActionType(ACT_TYPE.DELETE_ALL_DATA)
   const backupDataSelected = () => setActionType(ACT_TYPE.DATA_BACKUP)
+  const encryptedQRCodeSelected = () => setActionType(ACT_TYPE.ENCRYPTED_QR_CODE) 
   const helpSelected = () => setActionType(ACT_TYPE.HELP)
 
   switch (actionType) {
@@ -64,6 +67,9 @@ const OthersView= ({menuItems, logout}) => {
       return <DecryptImportView onBack={toMain} content={content} />
     case ACT_TYPE.DELETE_ALL_DATA:
       return <DeleteAllDataView onBack={toMain} />
+    case ACT_TYPE.ENCRYPTED_QR_CODE:
+      return <QRCodeEncryptionView onBack={toMain} menuItems={menuItems}/>
+
     case ACT_TYPE.DATA_BACKUP: {
       var mItems = [
         {
@@ -88,7 +94,19 @@ const OthersView= ({menuItems, logout}) => {
           title={menusConfig.others.menu.label}
           menuItems={menuItems}
           selected={menusConfig.others.menu}>
+
+            
           <div style={styles.iconContainer}>
+
+          <div style={styles.icon}>
+              <IconButton
+                label={menusConfig.encryptedQrCode.menu.label}
+                image={images.encryptedQRBlack}
+                onPress={encryptedQRCodeSelected}
+              />
+            </div>
+
+
             <div style={styles.icon}>
               <IconButton
                 label={menusConfig.exportButton.menu.label}
