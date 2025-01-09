@@ -19,6 +19,7 @@ import {formDataUtil} from "./FormDataUtil";
 import * as appInstance from './appInstance';
 import {logger} from 'global-input-logging';
 
+
 const safeDecrypt = function (content, encryptionKey) {
     try {
       return globalInputMessage.decrypt(content, encryptionKey)
@@ -710,3 +711,11 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
     }
     return domainFormsAccess.getAutoFillData(initData, savedFormContent);
   }
+
+  export const getHistoryData = () => {
+    return appInstance.getHistoryData();
+  }
+  export const saveHistoryData = (data) => {
+    appInstance.saveHistoryData(data);
+  }
+  

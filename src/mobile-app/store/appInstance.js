@@ -5,6 +5,7 @@ import * as globalInputSettings from './localStorage/globalInputSettings';
 import * as generalUtil from './generalUtil';
 import { logger } from 'global-input-logging';
 
+
 const ACTIVE_ROLE = 'active';
 const DEFAULT_ENCRYPTION_NAME="This Device";
 const DEFAULT_ENCRYPTION_ROLE="role";
@@ -16,7 +17,7 @@ const appInstance={
 }
 let savedFormContent=[];
 let encryptionKeyList=[];
-
+let historyData=[];
 
 function memEncrypt(data){
     return globalInputMessage.encrypt(data,appInstance.key);
@@ -67,6 +68,29 @@ export async function unlockAppInstallationId(password){
         logger.error("error in loading saved form content",e);
         savedFormContent=[];
     }
+    try{
+        const history=userSettings.getHistoryData();
+        if(history){        
+        const salt=userSettings.getAppInstallSalt();
+        const iv=userSettings.getAppInstallIv();
+        const decryptedHistory=await globalEncryption.decryptContent(memDecrypt(appInstance.id),history,memDecrypt(salt),memDecrypt(iv));
+        if(decryptedHistory){
+            historyData = JSON.parse(decryptedHistory);
+        }        
+      }
+    }
+    catch(e){
+        logger.error("error in loading history data",e);
+        historyData=[];
+    }
+}
+export const getHistoryData = () => historyData;
+export const saveHistoryData=async (data)=>{
+    historyData=data;
+    const salt=userSettings.getAppInstallSalt();
+    const iv=userSettings.getAppInstallIv();
+    const encryptedHistoryData=await globalEncryption.encryptContent(memDecrypt(appInstance.id),JSON.stringify(data),memDecrypt(salt),memDecrypt(iv));
+    userSettings.setHistoryData(encryptedHistoryData);
 }
 
 function generateSlaIV(){  
@@ -291,3 +315,4 @@ export const activateEncryptionItem = (encryptionItemToActivate) => {
 export const isEncryptionKeyIsActive = (encryptionKey)  => {
     return  encryptionKey.role === ACTIVE_ROLE;
   }
+

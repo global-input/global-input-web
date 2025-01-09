@@ -8,6 +8,7 @@ let appInstallSalt = null;
 let appInstallIv = null;
 let storageVersion = null;
 let rememberPassword = null;
+let historyData = null;
 
 
 // Keys for localStorage
@@ -20,7 +21,8 @@ const STORAGE_KEYS = {
     // cspell:disable-next
     APP_INSTALL_IV: 'appiv_gia',
     STORAGE_VERSION: 'storage_version_gia',
-    REMEMBER_PASSWORD: 'remember_gia'    
+    REMEMBER_PASSWORD: 'remember_gia',
+    HISTORY_DATA: 'history_data_gia',    
 };
 
 
@@ -76,6 +78,9 @@ function initializeState() {
     if (savedFormContent === null) {
         savedFormContent = loadFromLocalStorage(STORAGE_KEYS.SAVED_FORM_CONTENT, null);
     }
+    if (historyData === null) {
+        historyData = loadFromLocalStorage(STORAGE_KEYS.HISTORY_DATA, null);
+    }
     
     
 }
@@ -107,7 +112,7 @@ export const getRememberPassword = () => rememberPassword;
 export const getSavedFormContent = () => savedFormContent;
 
 
-
+export const getHistoryData = () => historyData;
 
 
 
@@ -156,6 +161,15 @@ export const setSavedFormContent = (content) => {
     }        
 };
 
+export const setHistoryData = (data) => {
+    historyData = data;
+    if(data){
+        saveToLocalStorage(STORAGE_KEYS.HISTORY_DATA, data);
+    }
+    else{
+        deleteFromLocalStorage(STORAGE_KEYS.HISTORY_DATA);
+    }
+};
 export const clearRememberPassword = () => {
     rememberPassword = false;
     deleteFromLocalStorage(STORAGE_KEYS.REMEMBER_PASSWORD);
@@ -229,5 +243,6 @@ export function signOut(){
     appInstallInstanceId = null;
     appInstallSalt = null;
     appInstallIv = null;
+    
 }
 
