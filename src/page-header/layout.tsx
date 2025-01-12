@@ -90,8 +90,6 @@ export const CompanyLogo = styled(AppLogo).attrs({
   src: companyIcon,
 })``;
 
-// export let Logo = config.id === "iterative" ? CompanyLogo : AppLogo;
-
 export const Container = styled.div`
   display: flex;
   @media only print {
