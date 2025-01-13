@@ -80,13 +80,12 @@ const MobileApp: React.FC = () => {
 
     
     const onGlobalInputConnect = useCallback((codeData) => {
+        appStore.addCodeDataHistoryRecord(codeData);
         setPage({
             page: Page.GlobalInputConnector,
             code: codeData,
         }
         )
-        appStore.addCodeDataHistoryRecord(codeData);
-
     },[]);
     
     

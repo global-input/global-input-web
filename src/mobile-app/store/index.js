@@ -717,20 +717,32 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
   }
   
   export const addCodeDataHistoryRecord = async (codeData) => {
-    const historyData = await appInstance.getCodeDataHistory();
-    const newRecord={
-      id:codeData.session,
-      time:new Date().getTime(),
-      codeData
-    }
+    try{
+        const historyData = await appInstance.getCodeDataHistory();
+        const newRecord={
+          id:codeData.session,
+          time:new Date().getTime(),
+          codeData
+        }
 
-    const updatedHistoryData = historyData.filter((record) => record.id !== newRecord.id);    
-    if(updatedHistoryData.length>10){
-      updatedHistoryData.pop();
-    }
-    updatedHistoryData.unshift(newRecord);
-    await appInstance.saveHistoryData(updatedHistoryData);
+        const updatedHistoryData = historyData.filter((record) => record.id !== newRecord.id);    
+        if(updatedHistoryData.length>10){
+          updatedHistoryData.pop();
+        }
+        updatedHistoryData.unshift(newRecord);
+        await appInstance.saveHistoryData(updatedHistoryData);
+      }
+      catch(error){
+        logger.error("failed to save the history data:"+error, error);
+      }
   }
+  
   export const saveHistoryData = async (historyData) => {
     await appInstance.saveHistoryData(historyData);
+  }
+
+  export const removeCodeDataFromHistory = async (codeData) => {
+    const historyData = await appInstance.getCodeDataHistory();
+    const updatedHistoryData = historyData.filter((record) => record.id !== codeData.session);
+    await appInstance.saveHistoryData(updatedHistoryData);
   }

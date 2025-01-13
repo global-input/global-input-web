@@ -1,6 +1,7 @@
 import { createMessageConnector } from "global-input-message";
 ////globa_input_connector////
-import { appdata,  globalInputSettings} from '../store';
+import * as appStore from "../store";
+
 import deviceInputTextConfig from "../configs/deviceInputTextConfig";
 
 import ACT_TYPE from './ACT_TYPE';
@@ -55,15 +56,16 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
     const onInputPermissionResult = message => {
         const setErrorMessage = (title, message) => {
             setAction(action => ({ ...action, actionType: ACT_TYPE.ERROR, title, message }));
-        };
+        };        
         if (!message.allow) {
             let reason = deviceInputTextConfig.permissionDenied.message;
             if (message && message.reason) {
                 reason = message.reason;
                 if (reason === 'The session does not exist') {
-                    reason = deviceInputTextConfig.permissionDenied.sessionDoesNotExists;
+                    reason = deviceInputTextConfig.permissionDenied.sessionDoesNotExists;                    
                 }
             }
+            appStore.removeCodeDataFromHistory(codedata);            
             setErrorMessage(deviceInputTextConfig.registerFailed.title, reason);
             return;
         }
@@ -81,7 +83,11 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
         onDeviceConnected(initData);
     };
     const onError = error => {
+        if(error?.indexOf('refused-to-connect')>=0){
+            appStore.removeCodeDataFromHistory(codedata);
+        }
         const reason = error;
+        
         setAction(action => ({ ...action, actionType: ACT_TYPE.ERROR, message: reason }));
     }
 
@@ -96,14 +102,14 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
         onError,
         onOutputMessageReceived
     });
-    const codeAES = globalInputSettings.getCodeAES();
+    const codeAES = appStore.globalInputSettings.getCodeAES();
     if (codeAES) {
         globalInputConnector.current.setCodeAES(codeAES);
     }
     if (!options.securityGroup) {
-        options.securityGroup = globalInputSettings.getSecurityGroup();
+        options.securityGroup = appStore.globalInputSettings.getSecurityGroup();
     }
-    const client = globalInputSettings.getClient();
+    const client = appStore.globalInputSettings.getClient();
 
 
     if (client) {
@@ -111,7 +117,7 @@ export const connect = ({ codedata, globalInputConnector, setAction, onDeviceCon
     }
     else {
         options.client = "ginput_" + globalInputConnector.current.client
-        globalInputSettings.setClient(options.client);
+        appStore.globalInputSettings.setClient(options.client);
     }
 
     globalInputConnector.current.connect(options);////connect////
@@ -141,10 +147,10 @@ export const sendFieldToDevice = ({ globalInputConnector, field, index }) => {
 export const getPairingData = ({ globalInputConnector }) => {
     if (globalInputConnector.current) {
         return globalInputConnector.current.buildPairingData({
-            proxyURL: globalInputSettings.getProxyURL(),
-            apiKey: globalInputSettings.getApiKey(),
-            securityGroup: globalInputSettings.getSecurityGroup(),
-            codeAES: globalInputSettings.getCodeAES()
+            proxyURL: appStore.globalInputSettings.getProxyURL(),
+            apiKey: appStore.globalInputSettings.getApiKey(),
+            securityGroup: appStore.globalInputSettings.getSecurityGroup(),
+            codeAES: appStore.globalInputSettings.getCodeAES()
         })
 
 
