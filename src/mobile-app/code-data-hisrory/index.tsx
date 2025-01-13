@@ -3,56 +3,16 @@ import styled from 'styled-components';
 import * as appStore from '../store';
 import ViewWithTabMenu  from '../components/menu/ViewWithTabMenu';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  color: white;
-`;
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 100%;
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-`;
-
-const MenuContainer = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const MenuButton = styled.button`
-  background-color: #2c2c2c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #3c3c3c;
-  }
-`;
 
 const HistoryCard = styled.div`
-  background-color: #2c2c2c;
-  border-radius: 8px;
+  background-color:rgb(238, 240, 243);
+  
+  border-bottom:1px solid black;
+  
   margin-bottom: 16px;
   overflow: hidden;
   transition: transform 0.2s;
-
   &:hover {
     transform: translateY(-2px);
   }
@@ -71,7 +31,7 @@ const RecordInfo = styled.div`
 `;
 
 const Timestamp = styled.p`
-  color: #a0a0a0;
+  color:rgba(72,128,237,1);
   font-size: 14px;
   margin: 0 0 8px 0;
 `;
@@ -119,29 +79,15 @@ const ManageCodeDataHistory = ({ menuItems, onCodeSelected }) => {
 
   return (
     <ViewWithTabMenu
-      menuItems={menuItems}          
+      menuItems={menuItems}
+      title="Connection History"
     >
-      <Header>
-        <Title>Code Data History</Title>
-        <MenuContainer>
-          {menuItems?.map((item, index) => (
-            <MenuButton
-              key={index}
-              onClick={item.onPress}
-            >
-              {item.menu.title}
-            </MenuButton>
-          ))}
-        </MenuContainer>
-      </Header>
-
       {codeDataHistory.length > 0 ? (
         codeDataHistory.map((record) => (
           <HistoryCard key={record.id}>
             <CardContent>
               <RecordInfo onClick={() => onCodeSelected(record.codeData)}>
-                <Timestamp>{formatTime(record.time)}</Timestamp>
-                <SessionId>Session ID: {record.id}</SessionId>
+                <Timestamp>{formatTime(record.time)}</Timestamp>                
               </RecordInfo>
               <DeleteButton onClick={() => handleDelete(record.id)}>
                 Delete
