@@ -151,7 +151,7 @@ export function generateSalt() {
   }
 
 
-  export async function encryptContent(password, content, saltBase64,ivBase64) {
+  export async function encryptContent(password, content, saltBase64,ivBase64) {    
     if (isWebCryptoAvailable()) {
       return await encryptContentWebCrypto(password, content, saltBase64,ivBase64);
     } else {

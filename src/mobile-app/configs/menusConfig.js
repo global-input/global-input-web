@@ -201,6 +201,10 @@ const menusConfig={
     checkbox:{
       options:[{image:images.device.checkbox.unchecked},{image:images.device.checkbox.checked}]
     },
+    history:{
+      menu:{label:"History",image:images.historyIcon, imageSelected:images.historyIconSelected}
+      
+    },
 
 
 

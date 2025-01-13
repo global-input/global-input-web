@@ -17,7 +17,7 @@ const appInstance={
 }
 let savedFormContent=[];
 let encryptionKeyList=[];
-let historyData=[];
+let codeDataHistory=[];
 
 function memEncrypt(data){
     return globalInputMessage.encrypt(data,appInstance.key);
@@ -34,7 +34,7 @@ export const isUserSignedIn = () =>{
 }
   
 
-export async function unlockAppInstallationId(password){
+export async function unlockAppInstallationId(password){    
     const saltStored=userSettings.getAppInstallSalt();
     const ivStored=userSettings.getAppInstallIv();    
     if(!ivStored || !saltStored){
@@ -51,8 +51,7 @@ export async function unlockAppInstallationId(password){
         if(decryptedContent){
             encryptionKeyList=JSON.parse(decryptedContent);
         }
-    }    
-
+    }
     try{
         const formData=userSettings.getSavedFormContent();
         if(formData){        
@@ -69,27 +68,30 @@ export async function unlockAppInstallationId(password){
         savedFormContent=[];
     }
     try{
-        const history=userSettings.getHistoryData();
-        if(history){        
-        const salt=userSettings.getAppInstallSalt();
-        const iv=userSettings.getAppInstallIv();
-        const decryptedHistory=await globalEncryption.decryptContent(memDecrypt(appInstance.id),history,memDecrypt(salt),memDecrypt(iv));
-        if(decryptedHistory){
-            historyData = JSON.parse(decryptedHistory);
-        }        
-      }
+        const history=userSettings.getCodeDataHistory();
+        if(history){
+            const salt=userSettings.getAppInstallSalt();
+            const iv=userSettings.getAppInstallIv();
+            const decryptedHistory=await globalEncryption.decryptContent(memDecrypt(appInstance.id),history,memDecrypt(salt),memDecrypt(iv));            
+            if(decryptedHistory){
+                codeDataHistory = JSON.parse(decryptedHistory);
+            }        
+        }
+        else{
+            codeDataHistory=[];
+        }
     }
     catch(e){
         logger.error("error in loading history data",e);
-        historyData=[];
+        codeDataHistory=[];
     }
 }
-export const getHistoryData = () => historyData;
+export const getCodeDataHistory = () => codeDataHistory;
 export const saveHistoryData=async (data)=>{
-    historyData=data;
+    codeDataHistory=data;    
     const salt=userSettings.getAppInstallSalt();
     const iv=userSettings.getAppInstallIv();
-    const encryptedHistoryData=await globalEncryption.encryptContent(memDecrypt(appInstance.id),JSON.stringify(data),memDecrypt(salt),memDecrypt(iv));
+    const encryptedHistoryData=await globalEncryption.encryptContent(memDecrypt(appInstance.id),JSON.stringify(codeDataHistory),memDecrypt(salt),memDecrypt(iv));
     userSettings.setHistoryData(encryptedHistoryData);
 }
 

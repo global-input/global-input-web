@@ -97,6 +97,8 @@ const images={
   moreIconSelected:"/images/more-icon-selected.png",
   passwordIcon:"/images/password-icon.png",
   continueIcon:"/images/continue-icon.png",
+  historyIcon:"/images/history.png",
+
 
   idIcon:"/images/id-icon.png",
   domainSearch:"/images/domain-search.png",

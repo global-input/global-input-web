@@ -14,6 +14,7 @@ import {ManageKeysView} from './others/manage-keys';
 import OthersView from './others/others-view';
 import {HelpScreen} from './help-screen'
 import { ImportSettingsView } from './import-settings';
+import {ManageCodeDataHistory} from './code-data-hisrory';
 enum Page {
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
@@ -24,7 +25,8 @@ enum Page {
     OthersMenu= 'others-menu',
     HelpScreen= 'help-screen',
     ImportSettings = 'import-settings',
-    ImportMotProtectedEncryptionKey = 'import-not-protected-encryption-key'
+    ImportMotProtectedEncryptionKey = 'import-not-protected-encryption-key',
+    MANAGE_CODE_DATA_HISTORY = 'manage-code-data-history'
 };
 
 interface PageData {
@@ -83,6 +85,7 @@ const MobileApp: React.FC = () => {
             code: codeData,
         }
         )
+        appStore.addCodeDataHistoryRecord(codeData);
 
     },[]);
     
@@ -92,8 +95,7 @@ const MobileApp: React.FC = () => {
         setPage({
             page: Page.ImportSettings,
             code: data
-        });
-        
+        });                
     },[]);
 
     const toCameraView =useCallback(() => {
@@ -183,7 +185,20 @@ const renderHelpScreen =  useCallback(() => {
       onPress: toOthersMenu,
     }
   ]
+  const codeDataHistory=appStore.getCodeDataHistory();
+  if(codeDataHistory.length>0){
+    menuItems.unshift({
+      menu: menusConfig.history.menu,
+      onPress: () => {
+        setPage({
+          page: Page.MANAGE_CODE_DATA_HISTORY,
+          code: null,          
+        });
+       }
+     });
+    }
   
+
   
        
       useEffect(() => {
@@ -228,6 +243,12 @@ const renderHelpScreen =  useCallback(() => {
         return <OthersView menuItems={menuItems} logout={toUserLoginScreen}/>;
       case Page.HelpScreen:
         return renderHelpScreen();
+      case Page.MANAGE_CODE_DATA_HISTORY:
+        return <ManageCodeDataHistory
+        menuItems={menuItems}
+        onCodeSelected={onGlobalInputConnect}
+      />;
+
       case Page.ImportSettings:
         return <ImportSettingsView        
         codedata={page.code}

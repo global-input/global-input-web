@@ -712,10 +712,25 @@ export const isAppSignedIn = () => appInstance.isUserSignedIn();
     return domainFormsAccess.getAutoFillData(initData, savedFormContent);
   }
 
-  export const getHistoryData = () => {
-    return appInstance.getHistoryData();
-  }
-  export const saveHistoryData = (data) => {
-    appInstance.saveHistoryData(data);
+  export const getCodeDataHistory = () => {
+    return appInstance.getCodeDataHistory();
   }
   
+  export const addCodeDataHistoryRecord = async (codeData) => {
+    const historyData = await appInstance.getCodeDataHistory();
+    const newRecord={
+      id:codeData.session,
+      time:new Date().getTime(),
+      codeData
+    }
+
+    const updatedHistoryData = historyData.filter((record) => record.id !== newRecord.id);    
+    if(updatedHistoryData.length>10){
+      updatedHistoryData.pop();
+    }
+    updatedHistoryData.unshift(newRecord);
+    await appInstance.saveHistoryData(updatedHistoryData);
+  }
+  export const saveHistoryData = async (historyData) => {
+    await appInstance.saveHistoryData(historyData);
+  }

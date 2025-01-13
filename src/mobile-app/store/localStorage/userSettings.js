@@ -112,7 +112,7 @@ export const getRememberPassword = () => rememberPassword;
 export const getSavedFormContent = () => savedFormContent;
 
 
-export const getHistoryData = () => historyData;
+export const getCodeDataHistory = () => historyData;
 
 
 
