@@ -1,6 +1,6 @@
 const integratedDevelopment=true;
 
-const globalInputAppLaunchBaseURL = "https://globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
+const globalInputAppLaunchBaseURL = "https://app.globalinput.co.uk/global-input-app/mobile-app?launchType=qr";
 
 const testAppLaunchHost='tnode2.globalinput.co.uk';
 
