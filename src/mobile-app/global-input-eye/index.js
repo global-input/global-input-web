@@ -53,18 +53,19 @@ const  parseAppLaunchURL=(url)=>{
   return { code, session, url:params.get('url') };
 
 }
-const sendAppLaunchedEvent = (url, session, code) => {
+const sendAppLaunchedEvent = (url, session, code) => {    
   const newUrl = new URL(url + "/global-input/app/launched");
   if (session) newUrl.searchParams.append('session', session);
   if (code) newUrl.searchParams.append('code', code);
 
+
   fetch(newUrl.toString())
       .then(response => response.json())
       .then(data => {
-          console.log('Success:', data);
+          console.log('Success:', data);          
       })
       .catch((error) => {
-          console.error('Error:', error);
+          logger.error('Error in sendAppLaunchedEvent:'+url, error);
       });
 };
 
@@ -154,7 +155,12 @@ const GlobalInputEye =  ({
         const launchData=parseAppLaunchURL(codedata);
         if (launchData.url && launchData.session && launchData.code) {
           setContentAndMessage("Please scan the QR Code displayed", "Global Input App Launched");
+          try{
           sendAppLaunchedEvent(launchData.url, launchData.session, launchData.code);
+          }
+          catch(error){
+            logger.error("error in sending app launched event:"+launchData.url,error);
+          }
           return;
         }
         const connector = createMessageConnector();
@@ -269,8 +275,17 @@ const GlobalInputEye =  ({
     const session = params.get('session');
     const code = params.get('code');
     const url = params.get('url');
+    
+
     if(url && session && code){
-      sendAppLaunchedEvent(url, session, code);    
+      const decodedUrl = decodeURIComponent(url); // Decode the URL
+      console.log(decodedUrl);
+      try{
+      sendAppLaunchedEvent(decodedUrl, session, code);    
+      }
+      catch(error){
+        logger.error("error in sending app launched event:"+url,error);
+      }
     }
 }, []);  
 
