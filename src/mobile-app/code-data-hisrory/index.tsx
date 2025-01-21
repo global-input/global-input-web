@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import * as appStore from '../store';
-import ViewWithTabMenu  from '../components/menu/ViewWithTabMenu';
-
-
+import ViewWithTabMenu from '../components/menu/ViewWithTabMenu';
 
 const HistoryCard = styled.div`
   background-color:rgb(238, 240, 243);
-  
   border-bottom:1px solid black;
-  
   margin-bottom: 16px;
   overflow: hidden;
   transition: transform 0.2s;
@@ -64,12 +60,23 @@ const EmptyMessage = styled.div`
 `;
 
 const ManageCodeDataHistory = ({ menuItems, onCodeSelected }) => {
-  const codeDataHistory = appStore.getCodeDataHistory();
+  // Add state to track history data
+  const [codeDataHistory, setCodeDataHistory] = useState([]);
 
-  const handleDelete = async (recordId) => {
-    const historyData = await appStore.getCodeDataHistory();
-    const updatedHistory = historyData.filter(record => record.id !== recordId);
+  // Load initial history data
+  useEffect(() => {
+    const loadHistory = async () => {
+      const historyData = await appStore.getCodeDataHistory();
+      setCodeDataHistory(historyData);
+    };
+    loadHistory();
+  }, []);
+
+  const handleDelete = async (recordId) => {    
+    const updatedHistory = codeDataHistory.filter(record => record.id !== recordId);
     await appStore.saveHistoryData(updatedHistory);
+    // Update local state to trigger re-render
+    setCodeDataHistory(updatedHistory);
   };
 
   const formatTime = (timestamp) => {
@@ -104,4 +111,4 @@ const ManageCodeDataHistory = ({ menuItems, onCodeSelected }) => {
   );
 };
 
-export  {ManageCodeDataHistory};
+export { ManageCodeDataHistory };
