@@ -209,7 +209,7 @@ const WebAppBadge = styled.div`
   }
 `;
 
-export const WebAppLink = () => (
+export const WebAppLink2 = () => (
    <ButtonLink href="https://app.globalinput.co.uk/global-input-app/mobile-app" >
   <WebAppBadge>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 48">
@@ -228,7 +228,7 @@ export const WebAppLink = () => (
   </ButtonLink>
 );
 
-export const WebAppLink2 = () => (
+export const WebAppLink = () => (
   <Link to="/global-input-app/mobile-app" >
  <WebAppBadge>
    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 48">
