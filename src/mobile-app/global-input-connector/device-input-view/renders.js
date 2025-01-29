@@ -38,38 +38,42 @@ const getStyleFromItem = (item, name) => {
     }
   };
   
-  const getMapItemKey = (item, index) => {
+  
+  const getMapItemKey = (item, index, prefix = '') => {
     if (item.id) {
-      return item.id;
+      return `${prefix}${item.id}`;
     } else if (item.label) {
-      return index + '_' + item.label;
+      return `${prefix}${index}_${item.label}`;
     } else if (item.value) {
-      return index + '_' + item.value;
+      return `${prefix}${index}_${item.value}`;
     } else {
-      return index;
+      return `${prefix}${index}`;
     }
   };
-  
   const RenderAField = ({
     dataitem,
     fieldSelection,
     onFieldChanged,
     onFieldSelected,
     showHideSecret,
+    viewId
   }) => {
+    // Ensure each field gets a unique key based on its viewId context
+    const uniqueKey = `${viewId}_${getMapItemKey(dataitem, dataitem.index || 0)}`;
+    
     switch (dataitem.type) {
       case 'button':
-        return renderButton({ dataitem, onFieldChanged });
+        return renderButton({ dataitem, onFieldChanged, key: uniqueKey });
       case 'range':
-        return renderRangeField({ dataitem, onFieldChanged });
+        return renderRangeField({ dataitem, onFieldChanged, key: uniqueKey });
       case 'info':
-        return renderInfoContent({ dataitem });
+        return renderInfoContent({ dataitem, key: uniqueKey });
       case 'list':
-        return renderInputSelectionList({ dataitem, onFieldChanged });
+        return renderInputSelectionList({ dataitem, onFieldChanged, key: uniqueKey });
       case 'select':
-        return renderInputSelection({ dataitem, onFieldChanged });
+        return renderInputSelection({ dataitem, onFieldChanged, key: uniqueKey });
       case 'picker':
-        return renderInputPickerField({ dataitem, onFieldChanged });
+        return renderInputPickerField({ dataitem, onFieldChanged, key: uniqueKey });
       case 'text':
       case 'secret':
         return renderTextField({
@@ -78,6 +82,7 @@ const getStyleFromItem = (item, name) => {
           onFieldChanged,
           onFieldSelected,
           showHideSecret,
+          key: uniqueKey
         });
       default:
         if (!dataitem.type) {
@@ -87,10 +92,10 @@ const getStyleFromItem = (item, name) => {
             onFieldChanged,
             onFieldSelected,
             showHideSecret,
+            key: uniqueKey
           });
-        } else {
-          return null;
         }
+        return null;
     }
   };
   
@@ -101,14 +106,15 @@ const getStyleFromItem = (item, name) => {
     fieldSelection,
     onSelectField,
     showHideSecret,
-    viewid,
+    viewId
   }) => {
     return globalInputdata.map((dataitem, index) => {
       if (!dataitem) {
         return null;
       }
-      if (viewid) {
-        if (dataitem.viewId !== viewid) {
+      
+      if (viewId) {
+        if (dataitem.viewId !== viewId) {
           return null;
         }
       } else {
@@ -117,18 +123,20 @@ const getStyleFromItem = (item, name) => {
           return null;
         }
       }
-      const key = getMapItemKey(dataitem, index);
+      
       const onFieldChanged = (value) => onGlobalInputDataChanged(value, index);
       const onFieldSelected = (dataitem) =>
         dataitem ? onSelectField({ dataitem, index }) : onSelectField(null);
+      
       return (
         <RenderAField
-          key={key}
-          dataitem={dataitem}
+          key={`${viewId || 'main'}_field_${index}`}
+          dataitem={{...dataitem, index}}
           onFieldChanged={onFieldChanged}
           fieldSelection={fieldSelection}
           onFieldSelected={onFieldSelected}
           showHideSecret={showHideSecret}
+          viewId={viewId}
         />
       );
     });
@@ -136,19 +144,20 @@ const getStyleFromItem = (item, name) => {
   
   const RenderViewItem = ({
     globalInputdata,
-    viewid,
+    viewId,
     formViews,
     onGlobalInputDataChanged,
     fieldSelection,
     onSelectField,
     showHideSecret,
   }) => {
-    const fieldViewStyle = getStyleFromViewItem(formViews, viewid);
+    const fieldViewStyle = getStyleFromViewItem(formViews, viewId);
+    
     return (
-      <div style={fieldViewStyle}>
+      <div style={fieldViewStyle} key={`view_${viewId}`}>
         {renderGlobalInputFields({
           globalInputdata,
-          viewid,
+          viewId,
           formViews,
           onGlobalInputDataChanged,
           fieldSelection,
@@ -171,16 +180,18 @@ const getStyleFromItem = (item, name) => {
     if (!viewIds.size) {
       return null;
     }
-    viewIds = Array.from(viewIds);
+    
+    const uniqueViewIds = Array.from(new Set(viewIds));
     const formViews = initData.form.views;
     const contentStyle = getStyleFromItem(formViews, 'formFields');
+    
     return (
       <div style={contentStyle}>
-        {viewIds.map((viewid) => (
+        {uniqueViewIds.map((viewId) => (
           <RenderViewItem
-            key={viewid}
+            key={`view_container_${viewId}`}
             globalInputdata={globalInputdata}
-            viewid={viewid}
+            viewId={viewId}
             formViews={formViews}
             onGlobalInputDataChanged={onGlobalInputDataChanged}
             fieldSelection={fieldSelection}

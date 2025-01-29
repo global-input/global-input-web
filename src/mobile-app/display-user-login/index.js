@@ -295,8 +295,7 @@ const DisplayUserLogin = ({ onLoggedIn }) => {
 
   // Detect platform for store badges
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  const isIOS = /iPhone|iPad|iPod|MacIntel/.test(navigator.platform) ||
-                /Mac OS X/.test(userAgent);
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.platform)
   const isAndroid = /Android/.test(userAgent);
 
   const renderStoreLinks = () => {

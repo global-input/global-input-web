@@ -218,7 +218,8 @@ export const DeviceInputView = ({
   }
 
   const menuItems = buildMenuItems();
-  var viewIds = new Set();
+  var viewIds = new Set();  
+  
   return (
     <EditorWithTabMenu
       title={deviceInputTextConfig.title}
