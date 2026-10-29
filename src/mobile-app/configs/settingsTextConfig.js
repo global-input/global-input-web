@@ -25,6 +25,11 @@ const settingsTextConfig={
           content:"The number of seconds that the app needs to wait before logging out when it is switched to the background.",
           placeholder:"Timeout value for Staying Logged in"
     },
+    getAppPrompt:{
+        title:"Get Global Input App Screen",
+        content:"Show the screen recommending the native Global Input App when this app is opened by scanning a QR Code with the phone camera.",
+        label:"Show"
+    },
     preserveSession:{
         title:"Preserve Session",
         content:"A boolean value specifying whether data transfer session should be kept alive when the app is switched to the background. Note that preserving session will consume more battary power.",

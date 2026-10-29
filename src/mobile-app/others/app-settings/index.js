@@ -17,6 +17,7 @@ import TextInputField from "../../components/input/TextInputField";
 
 
 import { globalInputSettings} from "../../store";
+import { isGetAppPromptDismissed, setGetAppPromptDismissed } from "../../app-launch";
 
 
 
@@ -37,6 +38,11 @@ const getStateFromProps = () => {
 }
 const Others = ({ onBack }) => {
   const [compData, setCompData] = useState(() => getStateFromProps());
+  const [showGetAppPrompt, setShowGetAppPrompt] = useState(() => !isGetAppPromptDismissed());
+  const onShowGetAppPromptChanged = (show) => {
+    setGetAppPromptDismissed(!show);
+    setShowGetAppPrompt(show);
+  };
 
   const setLoginTimeoutOnBackground = (loginTimeoutOnBackground) => setCompData({ ...compData, loginTimeoutOnBackground });
   const setProxyURL = proxyURL => setCompData({ ...compData, proxyURL });
@@ -188,6 +194,15 @@ const Others = ({ onBack }) => {
               }} />
           </div>
 
+        </div>
+        <div style={styles.settingItem}>
+          <span style={styles.itemTitle}>{settingsTextConfig.getAppPrompt.title}</span>
+          <span style={styles.itemText}>{settingsTextConfig.getAppPrompt.content}</span>
+          <div style={styles.checkboxContainer}>
+            <span style={styles.optionLabel}>{settingsTextConfig.getAppPrompt.label}</span>
+            <CheckBoxButton value={showGetAppPrompt}
+              display={menusConfig.checkbox.options} onChanged={onShowGetAppPromptChanged} />
+          </div>
         </div>
         <div style={styles.settingItem}>
           <span style={styles.itemTitle}>{settingsTextConfig.datatransfer.title}</span>

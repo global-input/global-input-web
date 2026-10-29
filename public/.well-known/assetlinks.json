@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "uk.co.globalinput2",
+      "sha256_cert_fingerprints": [
+        "18:4B:C3:74:67:E4:4B:6E:3D:08:A3:F8:40:E0:1B:D8:BB:1E:C3:B4:C5:8B:1D:17:AC:65:2F:35:7B:AC:07:8D"
+      ]
+    }
+  }
+]

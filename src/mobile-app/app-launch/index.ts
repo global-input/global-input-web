@@ -52,3 +52,37 @@ export const sendAppLaunchedEvent = (launchParams: AppLaunchParams): Promise<boo
     }
     return appLaunchedSent;
 };
+
+const GET_APP_PROMPT_DISMISSED_KEY = 'globalInput.getAppPromptDismissed';
+
+// Remembers that the user chose "Continue in browser", so the "Get the app" screen is not shown again.
+export const isGetAppPromptDismissed = (): boolean => {
+    try {
+        return !!localStorage.getItem(GET_APP_PROMPT_DISMISSED_KEY);
+    }
+    catch (error) {
+        return false;
+    }
+};
+
+export const setGetAppPromptDismissed = (dismissed: boolean) => {
+    try {
+        if (dismissed) {
+            localStorage.setItem(GET_APP_PROMPT_DISMISSED_KEY, new Date().toISOString());
+        }
+        else {
+            localStorage.removeItem(GET_APP_PROMPT_DISMISSED_KEY);
+        }
+    }
+    catch (error) {
+        logger.error('Unable to save the "Get the app" choice', error);
+    }
+};
+
+// For testing: opening the app with "getApp=show" in the URL forgets the remembered choice.
+export const shouldShowGetAppPrompt = (launchParams: AppLaunchParams): boolean => {
+    if (new URLSearchParams(window.location.search).get('getApp') === 'show') {
+        setGetAppPromptDismissed(false);
+    }
+    return isLaunchedFromQRCode(launchParams) && !isGetAppPromptDismissed();
+};

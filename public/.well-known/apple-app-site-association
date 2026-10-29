@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["N8745L99CL.uk.co.globalinput.globalInputMobile"],
+        "components": [
+          {
+            "/": "/global-input-app/mobile-app*",
+            "comment": "Global Input App launch URL rendered in the QR Code"
+          }
+        ]
+      }
+    ]
+  }
+}
