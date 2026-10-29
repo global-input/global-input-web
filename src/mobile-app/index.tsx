@@ -15,7 +15,10 @@ import OthersView from './others/others-view';
 import {HelpScreen} from './help-screen'
 import { ImportSettingsView } from './import-settings';
 import {ManageCodeDataHistory} from './code-data-hisrory';
+import {GetAppPrompt} from './get-app-prompt';
+import {getAppLaunchParams, isLaunchedFromQRCode, sendAppLaunchedEvent} from './app-launch';
 enum Page {
+    GetApp = 'get-app',
     UserLogin= 'user-login',    
     ScanQRCode = 'scan-qr-code',
     ImportEncryptionKey = 'import-encryption-key',
@@ -45,7 +48,10 @@ const AfterLoggedIn= {
     code: null,
 };
 const MobileApp: React.FC = () => {    
-    const [page, setPage] = useState<PageData>(initialState);
+    const [launchParams] = useState(getAppLaunchParams);
+    const [page, setPage] = useState<PageData>(() => isLaunchedFromQRCode(launchParams) ? {page: Page.GetApp, code: null} : initialState);
+    // Notify the web application straight away, so it does not wait for the user to log in
+    const [appLaunched] = useState(() => sendAppLaunchedEvent(launchParams));
     const [previousPage] = useState<PageData>(AfterLoggedIn);
     
     
@@ -201,7 +207,7 @@ const renderHelpScreen =  useCallback(() => {
   
        
       useEffect(() => {
-      if (!appStore.isUserSignedIn()) {          
+      if (!appStore.isUserSignedIn() && !isLaunchedFromQRCode(launchParams)) {          
           setPage({
               page: Page.UserLogin,
               code: null,
@@ -212,6 +218,8 @@ const renderHelpScreen =  useCallback(() => {
 
 
     switch (page.page) {
+      case Page.GetApp:
+        return <GetAppPrompt appLaunched={appLaunched} onContinueInBrowser={toUserLoginScreen} />;
       case Page.UserLogin:
         return <DisplayUserLogin onLoggedIn={toBack} />;
       case Page.ScanQRCode:        
